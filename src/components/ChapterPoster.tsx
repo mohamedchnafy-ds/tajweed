@@ -45,6 +45,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 10) {
       return 'Dès qu\'une des 5 lettres de Qutb Jadd (قُطْبُ جَدٍّ) porte un soukoûn (originel ou par arrêt), libérez le souffle par un rebond acoustique net sans jamais bouger la mâchoire ni ajouter de voyelle parasite. Distinguez bien la Majeure (Kubrā avec Shaddah), la Moyenne (Wustā à l\'arrêt) et la Mineure (Sughrā en cours de mot) !';
     }
+    if (chapter.number === 11) {
+      return 'L\'Izhār est la norme sacrée : ne fusionnez deux consonnes que si la première porte un soukoûn ! Bannissez impérativement l\'assimilation des lettres de Madd (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ), respectez les 8 fusions totales historiques (Irkam-ma\'anā, Nakhlukkum), et dans l\'Idghām Nāqis (بَسَطتَ), conservez la lourdeur du Tā\' sans qalqalah avant de libérer le Tā\' !';
+    }
     return 'Respectez rigoureusement les règles de Tajwīd pour préserver la récitation exacte du Noble Coran.';
   };
 
@@ -134,6 +137,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             ? 'Chapitre suivant (La Qalqalah & Ses Degrés)'
             : chapter.number === 10
             ? 'Chapitre suivant (L\'Assimilation - Idghām)'
+            : chapter.number === 11
+            ? 'Chapitre suivant (Tafkhīm & Tarqīq)'
             : 'Retour au sommaire'}
           <ArrowRight className="w-4 h-4" />
         </button>

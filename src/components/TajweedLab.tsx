@@ -1365,6 +1365,163 @@ const MIM_SAKINAH_TEST_BENCH_CASES: MimSakinahBenchCase[] = [
   },
 ];
 
+interface AssimilationBenchCase {
+  id: string;
+  title: string;
+  category: 'mutamathilayn' | 'madd' | 'kamil' | 'naqis';
+  arabicWord: string;
+  highlightedSegment: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  involvedLetters: string;
+  mushafSign: string;
+  pronunciation: string;
+  surahRef: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const ASSIMILATION_TEST_BENCH_CASES: AssimilationBenchCase[] = [
+  {
+    id: 'assim-1',
+    title: 'Al-Mā\'idah 5:61 — Mutamāthilayn entre deux mots (وَقَد دَّخَلُواْ)',
+    category: 'mutamathilayn',
+    arabicWord: 'وَإِذَا جَآءُوكُمۡ قَالُوٓاْ ءَامَنَّا وَقَد دَّخَلُواْ بِٱلۡكُفۡرِ',
+    highlightedSegment: 'وَقَد دَّخَلُواْ',
+    ruleBadge: 'Mutamāthilayn (د dans د)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Lettres Identiques (د + د)',
+    involvedLetters: 'دْ + دَ ➔ دَّ',
+    mushafSign: 'Premier Dāl nu (sans soukoûn) + second Dāl avec Shaddah (دَّ)',
+    pronunciation: 'Wa-qad-dakhalū (Dāl doublé sans Qalqalah)',
+    surahRef: 'Al-Mā\'idah 5:61',
+    explanation: 'Le premier Dāl s\'efface à 100% dans le second. Vos articulateurs se ferment directement sur le Dāl avec Shaddah sans aucune Qalqalah intermédiaire.',
+    fiqhImpact: 'Obligation de fusionner en continu.',
+    commonTrap: 'Faire une Qalqalah sur le premier Dāl (« Wa-qad-a-dakhalū »).',
+  },
+  {
+    id: 'assim-2',
+    title: 'An-Nisā\' 4:78 — Mutamāthilayn dans le même mot (يُدۡرِككُّمُ)',
+    category: 'mutamathilayn',
+    arabicWord: 'أَيۡنَمَا تَكُونُواْ يُدۡرِككُّمُ ٱلۡمَوۡتُ',
+    highlightedSegment: 'يُدۡرِككُّمُ',
+    ruleBadge: 'Mutamāthilayn Intramot (ك dans ك)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Lettres Identiques (ك + ك)',
+    involvedLetters: 'كْ + كُ ➔ كُّ',
+    mushafSign: 'Premier Kāf sans voyelle + second Kāf avec Shaddah (كُّ)',
+    pronunciation: 'Yudrik-kumu-l-mawt (Kāf Mushaddadah)',
+    surahRef: 'An-Nisā\' 4:78',
+    explanation: 'L\'assimilation d\'identiques a lieu au sein d\'un seul mot : le premier Kāf fond entièrement dans le second.',
+    fiqhImpact: 'Conforme et obligatoire.',
+    commonTrap: 'Séparer les deux Kāf avec une micro-pause saccadée.',
+  },
+  {
+    id: 'assim-3',
+    title: 'Yūsuf 12:7 — Exception Sacrée : Yā\' de Madd (فِى يُوسُفَ)',
+    category: 'madd',
+    arabicWord: 'لَّقَدۡ كَانَ فِى يُوسُفَ وَإِخۡوَتِهِۦٓ ءَايَٰتٞ',
+    highlightedSegment: 'فِى يُوسُفَ',
+    ruleBadge: '⚠️ Izhār Obligatoire (Lettre de Madd)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Exception Sacrée (Madd)',
+    involvedLetters: 'ي (Madd d\'Al-Jawf) + يُ (Consonne de la langue)',
+    mushafSign: 'Yā\' sans voyelle (Madd Naturel) suivi de Yā\' avec Dammah sans Shaddah',
+    pronunciation: 'Fī Yūsufa (Madd 2 temps puis consonne distincte)',
+    surahRef: 'Yūsuf 12:7',
+    explanation: 'INTERDICTION FORMELLE D\'ASSIMILATION : Le Yā\' de « Fī » est une voyelle longue d\'Al-Jawf. On prononce « Fī » avec 2 temps de Madd puis « Yūsuf » clairement.',
+    fiqhImpact: 'Lahn prohibé si l\'on fusionne (« Fiy-yūsuf » ❌).',
+    commonTrap: 'Tronquer le Madd de « Fī » pour enchaîner directement sur une Shaddah.',
+  },
+  {
+    id: 'assim-4',
+    title: 'Hūd 11:23 — Exception Sacrée : Wāw de Madd (ءَامَنُواْ وَعَمِلُواْ)',
+    category: 'madd',
+    arabicWord: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ',
+    highlightedSegment: 'ءَامَنُواْ وَعَمِلُواْ',
+    ruleBadge: '⚠️ Izhār Obligatoire (Lettre de Madd)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Exception Sacrée (Madd)',
+    involvedLetters: 'و (Madd d\'Al-Jawf) + وَ (Consonne des lèvres)',
+    mushafSign: 'Wāw de Madd + Alif muet orthographique + Wāw consonne sans Shaddah',
+    pronunciation: 'Āmanū wa-\'amilū (Madd 2 temps respecté)',
+    surahRef: 'Hūd 11:23',
+    explanation: 'Le Wāw de « Āmanū » est un Madd. On donne ses 2 temps complets avant d\'attaquer le Wāw consonne « wa-\'amilū ».',
+    fiqhImpact: 'Lahn prohibé en cas d\'assimilation (« Āmanuw-wa » ❌).',
+    commonTrap: 'Accélérer et écraser le Madd sur le second Wāw.',
+  },
+  {
+    id: 'assim-5',
+    title: 'Hūd 11:42 — Cas Unique : Bā\' dans Mīm (ٱرۡكَب مَّعَنَا)',
+    category: 'kamil',
+    arabicWord: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا وَلَا تَكُن مَّعَ ٱلۡكَٰفِرِينَ',
+    highlightedSegment: 'ٱرۡكَب مَّعَنَا',
+    ruleBadge: 'Idghām Kāmil avec Ghunnah 2 temps',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Fusions Rares (ب dans م)',
+    involvedLetters: 'بْ + مَ ➔ مَّ (avec 2t Ghunnah)',
+    mushafSign: 'Bā\' nu sans soukoûn + Mīm avec Shaddah (مَّ)',
+    pronunciation: 'Yā bunayya-rkam-ma\'anā (Mīm doublé avec 2t Ghunnah)',
+    surahRef: 'Hūd 11:42',
+    explanation: 'Cas unique dans tout le Coran : le Bā\' sans voyelle fusionne dans le Mīm avec 2 temps complets de Ghunnah nasale ! À l\'arrêt d\'urgence sur « Irkab », l\'Idghām s\'annule et le Bā\' rebondit en Qalqalah : « Irkab ! ».',
+    fiqhImpact: 'Obligatoire en Wasl selon Hafs.',
+    commonTrap: 'Oublier la Ghunnah ou faire une Qalqalah sur le Bā\' en continu.',
+  },
+  {
+    id: 'assim-6',
+    title: 'Al-Mursalāt 77:20 — Qāf dans Kāf (أَلَمۡ نَخۡلُقكُّم)',
+    category: 'kamil',
+    arabicWord: 'أَلَمۡ نَخۡلُقكُّم مِّن مَّآءٖ مَّهِينٖ',
+    highlightedSegment: 'نَخۡلُقكُّم',
+    ruleBadge: 'Idghām Mutaqāribayn Kāmil',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Fusions Rares (ق dans ك)',
+    involvedLetters: 'قْ + كُ ➔ كُّ',
+    mushafSign: 'Qāf nu sans soukoûn + Kāf avec Shaddah (كُّ)',
+    pronunciation: 'Alam nakhluk-kum (Kāf Mushaddadah pur)',
+    surahRef: 'Al-Mursalāt 77:20',
+    explanation: 'Dans la récitation de Hafs via Ash-Shātibiyyah, le Qāf s\'efface totalement dans le Kāf doublé.',
+    fiqhImpact: 'Lecture officielle dominante de Hafs.',
+    commonTrap: 'Laisser subsister un son Qāf ou une Qalqalah.',
+  },
+  {
+    id: 'assim-7',
+    title: 'Al-Baqarah 2:256 — Dāl dans Tā\' (قَد تَّبَيَّنَ)',
+    category: 'kamil',
+    arabicWord: 'قَد تَّبَيَّنَ ٱلرُّشۡدُ مِنَ ٱلۡغَيِّۚ',
+    highlightedSegment: 'قَد تَّبَيَّنَ',
+    ruleBadge: 'Idghām Mutajānisayn Kāmil',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Fusions Rares (د dans ت)',
+    involvedLetters: 'دْ + تَ ➔ تَّ',
+    mushafSign: 'Dāl nu sans soukoûn + Tā\' avec Shaddah (تَّ)',
+    pronunciation: 'Qat-tabayyana (Tā\' doublé sec)',
+    surahRef: 'Al-Baqarah 2:256',
+    explanation: 'Le Dāl et le Tā\' sont homogènes (Mutajānisayn). Le Dāl disparaît totalement au profit du Tā\' avec Shaddah.',
+    fiqhImpact: 'Obligatoire.',
+    commonTrap: 'Faire rebondir le Dāl en Qalqalah (« Qada-tabayyana »).',
+  },
+  {
+    id: 'assim-8',
+    title: 'Al-Mā\'idah 5:28 — Idghām Nāqis : Tā\' dans Tā\' (بَسَطتَ)',
+    category: 'naqis',
+    arabicWord: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ لِتَقۡتُلَنِى',
+    highlightedSegment: 'بَسَطتَ',
+    ruleBadge: 'Idghām Nāqis (ط dans ت)',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Assimilation Partielle (ط ➔ ت)',
+    involvedLetters: 'طْ (lourd Itbāq) + تَ (fin)',
+    mushafSign: 'Tā\' nu (ط) suivi de Tā\' sans Shaddah (تَ)',
+    pronunciation: 'Basat-ta (Tafkhīm scellé sans Qalqalah, puis Tā\' fin)',
+    surahRef: 'Al-Mā\'idah 5:28',
+    explanation: 'L\'assimilation est partielle : le Tā\' garde son emphase et son écrasement (Itbāq) au palais SANS Qalqalah, puis la langue libère le son fin du Tā\'.',
+    fiqhImpact: 'Règle technique indispensable de perfectionnement.',
+    commonTrap: 'Faire une Qalqalah parasite sur le Tā\' ou au contraire amincir le mot entier dès le départ.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -1433,6 +1590,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // State for Chapter 9
   const [mimCaseId, setMimCaseId] = useState<string>('mim-case-1');
   const [mimFilter, setMimFilter] = useState<'all' | 'ikhfa' | 'idgham' | 'izhar' | 'warning'>('all');
+
+  // State for Chapter 11
+  const [assimilationCaseId, setAssimilationCaseId] = useState<string>('assim-1');
+  const [assimilationFilter, setAssimilationFilter] = useState<'all' | 'mutamathilayn' | 'madd' | 'kamil' | 'naqis'>('all');
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -3031,6 +3192,166 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedMimCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 11 : BANC D'ESSAI DE L'ASSIMILATION (IDGHĀM)
+     ========================================================================= */
+  if (chapter.number === 11) {
+    const filteredCases = ASSIMILATION_TEST_BENCH_CASES.filter((c) => {
+      if (assimilationFilter === 'all') return true;
+      return c.category === assimilationFilter;
+    });
+
+    const selectedCase =
+      ASSIMILATION_TEST_BENCH_CASES.find((c) => c.id === assimilationCaseId) ||
+      ASSIMILATION_TEST_BENCH_CASES[0];
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Banc d'Essai de l'Assimilation (Idghām)"
+          description="Explorez les fusions totales et partielles, ainsi que les exceptions sacrées où l'assimilation est strictement prohibée."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 my-4">
+          <div className="segmented">
+            <button
+              onClick={() => setAssimilationFilter('all')}
+              aria-pressed={assimilationFilter === 'all'}
+            >
+              Tous ({ASSIMILATION_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setAssimilationFilter('mutamathilayn')}
+              aria-pressed={assimilationFilter === 'mutamathilayn'}
+            >
+              Identiques (2)
+            </button>
+            <button
+              onClick={() => setAssimilationFilter('madd')}
+              aria-pressed={assimilationFilter === 'madd'}
+            >
+              Exceptions Madd (2)
+            </button>
+            <button
+              onClick={() => setAssimilationFilter('kamil')}
+              aria-pressed={assimilationFilter === 'kamil'}
+            >
+              Fusions Totales (3)
+            </button>
+            <button
+              onClick={() => setAssimilationFilter('naqis')}
+              aria-pressed={assimilationFilter === 'naqis'}
+            >
+              Idghām Nāqis (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas de Hafs 'an 'Āsim via Ash-Shātibiyyah
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* List of cases */}
+          <div className="space-y-3">
+            {filteredCases.map((tc) => {
+              const isSelected = tc.id === selectedCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setAssimilationCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <h4 className="font-display font-semibold text-[15px] text-ink leading-snug truncate">
+                        {tc.title}
+                      </h4>
+                      <p className="text-xs text-muted mt-1 truncate">
+                        Lettres : <strong className="text-ink">{tc.involvedLetters}</strong>
+                      </p>
+                    </div>
+
+                    <span className="font-ar text-2xl text-ink shrink-0 font-bold" dir="rtl">
+                      {tc.highlightedSegment}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Diagnostic details */}
+          <section key={selectedCase.id} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm">
+            <div className="p-6 border-b border-line bg-soft/50 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
+                <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
+                  {selectedCase.ruleCategory}
+                </span>
+              </div>
+
+              <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed text-right py-1" dir="rtl">
+                {selectedCase.arabicWord}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="text-xs text-muted">Lettres concernées :</span>
+                <span className="chip chip-gold font-bold text-xs">
+                  {selectedCase.involvedLetters}
+                </span>
+                <span className="text-xs text-muted">Rasm Muṣ-ḥaf :</span>
+                <span className="chip chip-izhar font-mono text-xs">
+                  {selectedCase.mushafSign}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm font-mono text-muted">
+                Prononciation exacte : <strong className="text-ink">{selectedCase.pronunciation}</strong>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Justification</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Règle de transmission</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedCase.commonTrap}
                 </dd>
               </div>
             </div>

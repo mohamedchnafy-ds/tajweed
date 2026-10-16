@@ -11,7 +11,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
   { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: true },
   { number: 10, slug: 'qalqalah', titleFr: 'La Qalqalah & Ses Degrés de Rebond', titleAr: 'أحكام القلقلة ومراتبها', category: 'intermediate', isPilot: true },
-  { number: 11, slug: 'assimilation', titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)', titleAr: 'إدغام المتماثلين والمتقاربين والمتجانسين', category: 'advanced', isPilot: false },
+  { number: 11, slug: 'assimilation', titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)', titleAr: 'إدغام المتماثلين والمتقاربين والمتجانسين', category: 'advanced', isPilot: true },
   { number: 12, slug: 'heavy-light', titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)', titleAr: 'التفخيم والترقيق', category: 'advanced', isPilot: false },
   { number: 13, slug: 'iltiqa-sakīnayn', titleFr: 'Rencontre de Deux Soukoûns (Iltiqā\' As-Sākinayn)', titleAr: 'التقاء الساكنين', category: 'advanced', isPilot: false },
   { number: 14, slug: 'disjointed-letters', titleFr: 'Les Lettres Isolées (Al-Hurūf Al-Muqatta\'ah)', titleAr: 'الحروف المقطعة', category: 'advanced', isPilot: false },
@@ -3293,6 +3293,367 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'Erreur classique : Ne jamais transformer le rebond en voyelle (Fathah). Le rebond doit rester un soukoûn pur.',
         explanationFr: 'Le livre insiste fermement : le piège le plus fréquent en Qalqalah est d\'ouvrir la bouche et de glisser vers une Fathah. Le rebond ne doit comporter aucun mouvement de lèvres ou de mâchoire.',
         ruleId: 'qalqalah-definition'
+      }
+    ]
+  },
+
+  // ==========================================
+  // CHAPITRE 11 : L'ASSIMILATION (IDGHĀM)
+  // ==========================================
+  {
+    id: 'chap-11',
+    number: 11,
+    slug: 'assimilation',
+    titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)',
+    titleAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ وَالمُتَقَارِبَيْنِ وَالمُتَجَانِسَيْنِ',
+    category: 'advanced',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre la fusion des lettres selon leurs points d\'articulation et leurs attributs : les lettres identiques (Mutamāthilayn), l\'interdiction formelle de fusionner les lettres de Madd (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ), les 8 fusions totales historiques (Irkam-ma\'anā, Nakhlukkum), et l\'assimilation partielle (Idghām Nāqis dans Basatta).',
+    infographicPoints: [
+      'Règle de Base : L\'Izhār (clarté) est la norme fondamentale de récitation dans le Coran. L\'assimilation (Idghām) est une exception phonétique n\'intervenant que pour faciliter la diction lorsque la première consonne est dépourvue de voyelle (sākinah).',
+      'Mutamāthilayn (Identiques) : Deux consonnes strictement identiques se suivent et la première est sākinah ➔ fusion totale avec Shaddah (ex: فَلَا يُسۡرِف فِّى, وَقَد دَّخَلُواْ, يُدۡرِككُّمُ).',
+      'Interdiction Absolue sur les Lettres de Madd : Les lettres de prolongation (Wāw et Yā\') NE FUSIONNENT JAMAIS avec une consonne identique (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ) car leur Makhraj est différent (Al-Jawf vs langue/lèvres) !',
+      '8 Cas d\'Assimilation Totale (Kāmil) : Des couples spécifiques de lettres proches ou homogènes fusionnent entièrement : ت➔ط (وَقَالَت طَّآئِفَةٞ), ذ➔ظ (إِذ ظَّلَمۡتُمۡ), ب➔م (ٱرۡكَب مَّعَنَا), ق➔ك (أَلَمۡ نَخۡلُقكُّم), د➔ت (قَد تَّبَيَّنَ, عَبَدتُّمۡ), ت➔د (أَثۡقَلَت دَّعَوَا), ل➔ر (بَل رَّفَعَهُ, وَقُل رَّبِّ), ث➔ذ (يَلۡهَثۚ ذَّٰلِكَ).',
+      'Idghām Nāqis Unique (ط dans ت) : Dans « Basatta » (بَسَطتَ), « Farrattum » (فَرَّطتُمۡ) et « Ahattu » (أَحَطتُ), la lourdeur et l\'élévation du Tā\' (ط) subsistent sans Qalqalah avant de relâcher sur le Tā\' (ت) !',
+      'Règle du Waqf : L\'assimilation entre deux mots n\'existe qu\'en liaison continue (Wasl). À l\'arrêt d\'urgence sur « Irkab » (ٱرۡكَبۡ), vous prononcez le Bā\' avec sa Qalqalah Wustā pure !'
+    ],
+    subrules: [
+      {
+        id: 'idgham-mutamathilayn',
+        nameFr: '1. Idghām Al-Mutamāthilayn (Lettres Identiques)',
+        nameAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ الصَّغِيرُ',
+        mnemonic: 'Deux lettres 100% identiques : la 1ère sans voyelle fond dans la 2nde avec Shaddah (ّ)',
+        letters: ['ف', 'د', 'ب', 'ك', 'هـ'],
+        definitionFr: 'Lorsque deux lettres exactement identiques se suivent et que la première est privée de voyelle (sākinah), la première fusionne entièrement dans la seconde qui reçoit une Shaddah.',
+        mechanismFr: 'Prononcez la seconde consonne comme une lettre doublée avec Shaddah. Cela s\'applique entre deux mots séparés ou à l\'intérieur du même mot.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c11-1',
+            arabicText: 'فَلَا يُسۡرِف فِّى ٱلۡقَتۡلِۖ إِنَّهُۥ كَانَ مَنصُورٗا',
+            surahAyahRef: '17:33',
+            surahNameFr: 'Al-Isrā\'',
+            highlightSegment: 'يُسۡرِف فِّى',
+            highlightLetter: 'ف + فّ (Idghām Mutamāthilayn)',
+            ruleApplied: 'Idghām Mutamāthilayn entre deux mots (Yusrif-fī)',
+            ruleTag: 'silent',
+            explanationFr: 'Le Fā\' de « Yusrif » n\'a aucun signe de soukoûn et fusionne à 100% dans le Fā\' de « fī » qui prend une Shaddah : on prononce « Yusrif-fī ».',
+            transliteration: 'Falā yusrif-fīl-qatl',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/017033.mp3'
+          },
+          {
+            id: 'ex-c11-2',
+            arabicText: 'وَإِذَا جَآءُوكُمۡ قَالُوٓاْ ءَامَنَّا وَقَد دَّخَلُواْ بِٱلۡكُفۡرِ',
+            surahAyahRef: '5:61',
+            surahNameFr: 'Al-Mā\'idah',
+            highlightSegment: 'وَقَد دَّخَلُواْ',
+            highlightLetter: 'د + دّ',
+            ruleApplied: 'Idghām Mutamāthilayn (Wa-qad-dakhalū)',
+            ruleTag: 'silent',
+            explanationFr: 'Le premier Dāl disparaît totalement au profit du second : on prononce directement « Wa-qad-dakhalū » sans Qalqalah sur le premier Dāl !',
+            transliteration: 'Wa-qad-dakhalū bil-kufr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005061.mp3'
+          },
+          {
+            id: 'ex-c11-3',
+            arabicText: 'أَيۡنَمَا تَكُونُواْ يُدۡرِككُّمُ ٱلۡمَوۡتُ',
+            surahAyahRef: '4:78',
+            surahNameFr: 'An-Nisā\'',
+            highlightSegment: 'يُدۡرِككُّمُ',
+            highlightLetter: 'ك + كّ dans le même mot',
+            ruleApplied: 'Idghām Mutamāthilayn dans un mot (Yudrik-kum)',
+            ruleTag: 'silent',
+            explanationFr: 'L\'assimilation d\'identiques peut avoir lieu dans un même mot : le premier Kāf est nu et fond dans le second qui porte une Shaddah (« Yudrik-kumu-l-mawt »).',
+            transliteration: 'Aynamā takūnū yudrik-kumu-l-mawt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004078.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Faire une Qalqalah sur le premier Dāl dans « Qad dakhalū ».',
+            correctionFr: 'Le premier Dāl a totalement fusionné : il n\'a ni soukoûn ni rebond. On passe directement au Dāl doublé avec Shaddah.'
+          }
+        ]
+      },
+      {
+        id: 'mutamathilayn-madd-exceptions',
+        nameFr: '2. L\'Exception Sacrée des Lettres de Madd (فِى يُوسُفَ & ءَامَنُواْ وَعَمِلُواْ)',
+        nameAr: 'اسْتِثْنَاءُ حُرُوفِ المَدِّ مِنَ الإِدْغَامِ (حُكْمُ الإِظْهَارِ)',
+        mnemonic: 'Lettre de Madd + Consonne identique ➔ TOUJOURS Izhār avec 2 temps de Madd !',
+        letters: ['و', 'ي'],
+        definitionFr: 'Bien que le Yā\' et le Wāw de prolongation soient suivis d\'une consonne de même graphie, IL EST STRICTEMENT INTERDIT de les assimiler ! Le point d\'articulation d\'une voyelle longue est la cavité buccale (Al-Jawf), tandis que la consonne naît de la langue ou des lèvres.',
+        mechanismFr: 'Maintenez les 2 temps complets de Madd Naturel sur « Fī » et « Āmanū » avant d\'articuler distinctement la consonne qui suit, sans Shaddah.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c11-4',
+            arabicText: 'لَّقَدۡ كَانَ فِى يُوسُفَ وَإِخۡوَتِهِۦٓ ءَايَٰتٞ',
+            surahAyahRef: '12:7',
+            surahNameFr: 'Yūsuf',
+            highlightSegment: 'فِى يُوسُفَ',
+            highlightLetter: 'ي de Madd + يُ consonne ➔ Pas d\'Idghām !',
+            ruleApplied: 'Izhār obligatoire avec Madd Naturel 2 temps (Fī Yūsuf)',
+            ruleTag: 'madd',
+            explanationFr: 'Le Yā\' de « Fī » est une voyelle longue d\'Al-Jawf. On prononce « Fī » avec 2 temps pleins puis « Yūsufa » clairement. Assimiler en « Fiy-yūsuf » est un Lahn interdit !',
+            transliteration: 'Laqad kāna fī yūsufa wa-ikhwatihī āyāt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/012007.mp3'
+          },
+          {
+            id: 'ex-c11-5',
+            arabicText: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ',
+            surahAyahRef: '11:23',
+            surahNameFr: 'Hūd',
+            highlightSegment: 'ءَامَنُواْ وَعَمِلُواْ',
+            highlightLetter: 'و de Madd + وَ consonne ➔ Pas d\'Idghām !',
+            ruleApplied: 'Izhār obligatoire avec Madd Naturel 2 temps (Āmanū wa-\'amilū)',
+            ruleTag: 'madd',
+            explanationFr: 'Le Wāw de « Āmanū » est une voyelle longue. On prolonge 2 temps « Āmanū » puis on attaque le Wāw consonne « wa-\'amilū ». Interdiction absolue de fusionner en « Āmanuw-wa-\'amilū » !',
+            transliteration: 'Innal-ladhīna āmanū wa-\'amilūs-sālihāt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011023.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Avaler le Madd de « Fī » ou « Āmanū » pour enchaîner directement sur une Shaddah (« Fiy-yūsuf » ou « Āmanuw-wa »).',
+            correctionFr: 'C\'est l\'un des pièges les plus dénoncés par les imams du Tajwīd : le Madd doit être pleinement déployé pendant 2 temps avant d\'émettre la consonne suivante.'
+          }
+        ]
+      },
+      {
+        id: 'idgham-kamil-similar',
+        nameFr: '3. Les 8 Cas d\'Assimilation Totale (Mutajānisayn & Mutaqāribayn)',
+        nameAr: 'حَالَاتُ الإِدْغَامِ الكَامِلِ الثَّمَانِي (المُتَجَانِسَيْنِ وَالمُتَقَارِبَيْنِ)',
+        mnemonic: '8 couples précis : ت➔ط, ذ➔ظ, ب➔م, ق➔ك, د➔ت, ت➔د, ل➔ر, ث➔ذ',
+        letters: ['ت', 'ط', 'ذ', 'ظ', 'ب', 'م', 'ق', 'ك', 'د', 'ل', 'ر', 'ث'],
+        definitionFr: 'Lorsque deux lettres proches (Mutaqāribayn) ou de même point d\'articulation (Mutajānisayn) se rencontrent et que la première est sākinah, la première disparaît totalement au profit de la seconde qui prend une Shaddah.',
+        mechanismFr: 'La première consonne s\'efface à 100%. Cas unique exceptionnel : dans « Irkam-ma\'anā » (ب dans م), la fusion produit un Mīm Mushaddadah avec une Ghunnah de 2 temps obligatoires !',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c11-6',
+            arabicText: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا وَلَا تَكُن مَّعَ ٱلۡكَٰفِرِينَ',
+            surahAyahRef: '11:42',
+            surahNameFr: 'Hūd',
+            highlightSegment: 'ٱرۡكَب مَّعَنَا',
+            highlightLetter: 'ب + م ➔ مّ avec Ghunnah 2 temps',
+            ruleApplied: 'Idghām Mutajānisayn Kāmil avec Ghunnah (Irkam-ma\'anā)',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Cas unique dans tout le Coran : le Bā\' sans voyelle de « Irkab » fusionne dans le Mīm de « ma\'anā » : on prononce « Irkam-ma\'anā » avec 2 temps de Ghunnah nasale !',
+            transliteration: 'Yā bunayya-rkam-ma\'anā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011042.mp3'
+          },
+          {
+            id: 'ex-c11-7',
+            arabicText: 'أَلَمۡ نَخۡلُقكُّم مِّن مَّآءٖ مَّهِينٖ',
+            surahAyahRef: '77:20',
+            surahNameFr: 'Al-Mursalāt',
+            highlightSegment: 'نَخۡلُقكُّم',
+            highlightLetter: 'ق + ك ➔ كّ',
+            ruleApplied: 'Idghām Mutaqāribayn Kāmil (Nakhlukkum)',
+            ruleTag: 'silent',
+            explanationFr: 'Dans la lecture de Hafs via Ash-Shātibiyyah, le Qāf sans voyelle fusionne totalement dans le Kāf : on prononce « Nakhlukkum » avec un pur Kāf Mushaddadah !',
+            transliteration: 'Alam nakhluk-kum mim-mā\'im-mahīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/077020.mp3'
+          },
+          {
+            id: 'ex-c11-8',
+            arabicText: 'قَد تَّبَيَّنَ ٱلرُّشۡدُ مِنَ ٱلۡغَيِّۚ',
+            surahAyahRef: '2:256',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'قَد تَّبَيَّنَ',
+            highlightLetter: 'د + ت ➔ تّ',
+            ruleApplied: 'Idghām Mutajānisayn Kāmil (Qat-tabayyana)',
+            ruleTag: 'silent',
+            explanationFr: 'Le Dāl et le Tā\' partagent exactement le même point d\'articulation. Le Dāl fond dans le Tā\' qui prend une Shaddah : « Qat-tabayyana ».',
+            transliteration: 'Qat-tabayyanar-rushdu minal-ghayy',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002256.mp3'
+          },
+          {
+            id: 'ex-c11-9',
+            arabicText: 'بَل رَّفَعَهُ ٱللَّهُ إِلَيۡهِۚ',
+            surahAyahRef: '4:158',
+            surahNameFr: 'An-Nisā\'',
+            highlightSegment: 'بَل رَّفَعَهُ',
+            highlightLetter: 'ل + ر ➔ رّ',
+            ruleApplied: 'Idghām Mutaqāribayn Kāmil (Bar-rafa\'ahu)',
+            ruleTag: 'silent',
+            explanationFr: 'Le Lām de la particule « Bal » fusionne totalement dans le Râ\' qui prend une Shaddah : « Bar-rafa\'ahu-llāh ».',
+            transliteration: 'Bar-rafa\'ahul-lāhu ilayh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004158.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Oublier la Ghunnah de 2 temps sur « Irkam-ma\'anā » en passant trop vite.',
+            correctionFr: 'Le Bā\' transformé en Mīm avec Shaddah exige impérativement 2 pulsations complètes de résonance nasale.'
+          },
+          {
+            trapFr: 'Faire une Qalqalah sur le Bā\' de « Irkab » en lisant en continu.',
+            correctionFr: 'En lecture continue, le Bā\' n\'existe plus ! La Qalqalah ne réapparaît que si vous vous arrêtez d\'urgence sur « Irkab ».'
+          }
+        ]
+      },
+      {
+        id: 'idgham-naqis-ta-ta',
+        nameFr: '4. L\'Assimilation Partielle (Idghām Nāqis : ط dans ت)',
+        nameAr: 'الإِدْغَامُ النَّاقِصُ (إِدْغَامُ الطَّاءِ فِي التَّاءِ)',
+        mnemonic: 'Formule unique : ط + ت (Basatta, Farrattum, Ahattu) — Emphase conservée SANS Qalqalah',
+        letters: ['ط', 'ت'],
+        definitionFr: 'Le Tā\' (ط) est doté des attributs les plus puissants du Tajwīd (emphase Isti\'lā\' et compression Itbāq), alors que le Tā\' (ت) est faible et mince. Il est donc impossible de dissoudre entièrement le Tā\' dans le Tā\' : l\'assimilation reste partielle (Nāqis).',
+        mechanismFr: 'Collez la langue contre le palais supérieur avec l\'emphase et la fermeture du Tā\' (SANS relâcher en Qalqalah), puis décollez la langue en prononçant le son fin du Tā\' (ت) !',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c11-10',
+            arabicText: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ لِتَقۡتُلَنِى',
+            surahAyahRef: '5:28',
+            surahNameFr: 'Al-Mā\'idah',
+            highlightSegment: 'بَسَطتَ',
+            highlightLetter: 'ط + ت (Idghām Nāqis)',
+            ruleApplied: 'Idghām Mutajānisayn Nāqis (Basatta)',
+            ruleTag: 'heavy',
+            explanationFr: 'La langue se plaque contre le palais pour bloquer le Tā\' lourd (Itbāq) sans émettre de rebond de Qalqalah, puis la voix libère un Tā\' fin et doux.',
+            transliteration: 'La\'im-basatta ilayya yadaka',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005028.mp3'
+          },
+          {
+            id: 'ex-c11-11',
+            arabicText: 'فَقَالَ أَحَطتُ بِمَا لَمۡ تُحِطۡ بِهِۦ',
+            surahAyahRef: '27:22',
+            surahNameFr: 'An-Naml',
+            highlightSegment: 'أَحَطتُ',
+            highlightLetter: 'ط + ت (Idghām Nāqis)',
+            ruleApplied: 'Idghām Mutajānisayn Nāqis (Ahattu)',
+            ruleTag: 'heavy',
+            explanationFr: 'Même mécanisme dans « Ahat-tu » : la lourdeur du Tā\' est scellée sans Qalqalah, puis relâchée sur le Tā\' avec Dammah.',
+            transliteration: 'Faqāla ahattu bimā lam tuhit bih',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/027022.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Faire une Qalqalah sur le Tā\' dans « Basat-ta » en disant « Basata-ta ».',
+            correctionFr: 'Il n\'y a AUCUNE Qalqalah dans l\'Idghām Nāqis : la fermeture du Tā\' doit être silencieuse et retenue jusqu\'à l\'émission du Tā\'.'
+          },
+          {
+            trapFr: 'Amincir le mot entier en disant « Basatta » avec un Tā\' ordinaire dès le début.',
+            correctionFr: 'L\'emphase (Tafkhīm) du Tā\' doit être nettement entendue avant la libération du Tā\'.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c11-1',
+        title: 'Analyse guidée : Sūrah Hūd (11:42) — « Yā bunayya-rkam ma\'anā »',
+        verseArabic: 'وَهِيَ تَجۡرِي بِهِمۡ فِي مَوۡجٖ كَٱلۡجِبَالِ وَنَادَىٰ نُوحٌ ٱبۡنَهُۥ وَكَانَ فِي مَعۡزِلٖ يَٰبُنَيَّ ٱرۡكَب مَّعَنَا وَلَا تَكُن مَّعَ ٱلۡكَٰفِرِينَ',
+        surahAyahRef: '11:42',
+        targetSegment: 'يَٰبُنَيَّ ٱرۡكَب مَّعَنَا',
+        promptFr: 'Comment se récite la rencontre entre le Bā\' de « Irkab » et le Mīm de « ma\'anā » en continu, et que se passe-t-il si le récitateur s\'arrête sur « Irkab » ?',
+        hintFr: 'Distinguez le comportement en liaison continue (Wasl) de l\'arrêt d\'urgence (Waqf).',
+        solutionFr: 'En lecture continue (Wasl) : le Bā\' fusionne entièrement dans le Mīm (Idghām Mutajānisayn Kāmil) avec une Ghunnah obligatoire de 2 temps ➔ « Irkam-ma\'anā ». À l\'arrêt d\'urgence (Waqf sur « Irkab ») : l\'assimilation est annulée, le Bā\' retrouve son Soukoûn et produit un rebond sonore de Qalqalah Wustā ➔ « Irkab ! ».',
+        breakdownSteps: [
+          'Étape 1 : Le mot « ٱرۡكَب » se termine par un Bā\' sākin sans voyelle dans le Rasm coranique.',
+          'Étape 2 : Le mot suivant « مَّعَنَا » commence par un Mīm, lettre voisine articulée aux lèvres.',
+          'Étape 3 : En continu, le Bā\' s\'efface complètement dans le Mīm qui prend une Shaddah avec 2 temps de résonance nasale.',
+          'Étape 4 : Si le souffle s\'interrompt sur « Irkab », l\'Idghām disparaît et le Bā\' claque en Qalqalah Wustā.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/011042.mp3'
+      },
+      {
+        id: 'exo-c11-2',
+        title: 'L\'Assimilation Partielle (Idghām Nāqis) dans Al-Mā\'idah (5:28)',
+        verseArabic: 'لَئِنۢ بَسَطتَ إِلَيَّ يَدَكَ لِتَقۡتُلَنِي مَآ أَنَا۠ بِبَاسِطٖ يَدِيَ إِلَيۡكَ لِأَقۡتُلَكَ',
+        surahAyahRef: '5:28',
+        targetSegment: 'بَسَطتَ',
+        promptFr: 'Pourquoi qualifie-t-on la fusion de « Basatta » d\'Idghām Nāqis (partiel), et quelle est la technique pour le réussir ?',
+        hintFr: 'Le Tā\' (ط) est-il plus lourd ou plus léger que le Tā\' (ت) ? Fait-on une Qalqalah ?',
+        solutionFr: 'Le Tā\' (ط) est plus fort que le Tā\' (ت) car il possède l\'élévation (Isti\'lā\') et l\'écrasement lingual (Itbāq). Comme la lettre faible ne peut pas engloutir la lettre forte, le Tā\' conserve ses qualités lourdes mais perd son explosion (pas de Qalqalah). La langue se plaque avec fermeté pour sceller le son lourd, puis se détache sur le son doux du Tā\'.',
+        breakdownSteps: [
+          'Étape 1 : Observez la rencontre du Tā\' sākin (ط) suivi du Tā\' (ت) dans le même mot.',
+          'Étape 2 : Bloquez l\'air au point d\'articulation en élevant l\'arrière de la langue (Itbāq lourd).',
+          'Étape 3 : Gardez la langue scellée SANS rebond de Qalqalah (erreur fréquente).',
+          'Étape 4 : Relâchez l\'air avec la sonorité fine du Tā\' : « Basat-ta ».'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/005028.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c11-1',
+        type: 'mcq',
+        promptFr: 'Pourquoi les lettres identiques dans « Fī Yūsuf » (فِى يُوسُفَ) et « Āmanū wa \'amilū » (ءَامَنُواْ وَعَمِلُواْ) ne doivent-elles JAMAIS fusionner ?',
+        verseArabic: 'لَّقَدۡ كَانَ فِى يُوسُفَ ۝ ءَامَنُواْ وَعَمِلُواْ',
+        surahAyahRef: '12:7',
+        options: [
+          'Car la première lettre est une lettre de prolongation (Madd) issue du vide de la bouche (Al-Jawf), ayant un point d\'articulation différent de la consonne',
+          'Car il faut marquer une pause obligatoire (Saktah) entre les deux mots',
+          'Car le Coran interdit toute assimilation entre deux mots distincts',
+          'Car la deuxième lettre porte un soukoûn'
+        ],
+        correctAnswer: 'Car la première lettre est une lettre de prolongation (Madd) issue du vide de la bouche (Al-Jawf), ayant un point d\'articulation différent de la consonne',
+        explanationFr: 'Bien qu\'ayant la même graphie, une lettre de Madd n\'a pas le même Makhraj qu\'une consonne. Les fusionner détruirait la voyelle longue : l\'Izhār avec 2 temps de Madd est obligatoire.',
+        ruleId: 'mutamathilayn-madd-exceptions'
+      },
+      {
+        id: 'q-c11-2',
+        type: 'mcq',
+        promptFr: 'Dans Sūrah Hūd (11:42), comment se prononce « Irkab ma\'anā » en liaison continue (Wasl) ?',
+        verseArabic: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا',
+        surahAyahRef: '11:42',
+        options: [
+          'Le Bā\' fusionne entièrement dans le Mīm avec 2 temps de Ghunnah nasale : « Irkam-ma\'anā »',
+          'Le Bā\' est prononcé avec une Qalqalah vive : « Irkab-ma\'anā »',
+          'Le Bā\' devient un Nūn avec Idghām : « Irkan-ma\'anā »',
+          'On marque un arrêt complet de 2 secondes entre les deux mots'
+        ],
+        correctAnswer: 'Le Bā\' fusionne entièrement dans le Mīm avec 2 temps de Ghunnah nasale : « Irkam-ma\'anā »',
+        explanationFr: 'C\'est l\'unique cas d\'Idghām Mutajānisayn de Bā\' dans Mīm du Coran : le son B disparaît totalement et forme un Mīm doublé avec 2 temps de résonance nasale.',
+        ruleId: 'idgham-kamil-similar'
+      },
+      {
+        id: 'q-c11-3',
+        type: 'mcq',
+        promptFr: 'Dans « Basatta » (بَسَطتَ), pourquoi l\'assimilation du Tā\' (ط) dans le Tā\' (ت) est-elle dite « partielle » (Idghām Nāqis) ?',
+        verseArabic: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ',
+        surahAyahRef: '5:28',
+        options: [
+          'Car les caractéristiques lourdes du Tā\' (emphase et Itbāq) sont préservées, sans Qalqalah, avant de relâcher sur le Tā\' fin',
+          'Car on récite le mot en coupant le souffle au milieu',
+          'Car la lettre Tā\' disparaît à 100% sans laisser aucune trace',
+          'Car le Tā\' prend un soukoûn avec sifflement'
+        ],
+        correctAnswer: 'Car les caractéristiques lourdes du Tā\' (emphase et Itbāq) sont préservées, sans Qalqalah, avant de relâcher sur le Tā\' fin',
+        explanationFr: 'Une lettre forte (Tā\') ne peut être entièrement absorbée par une lettre faible (Tā\'). L\'emphase et le placage lingual subsistent, mais la Qalqalah est supprimée.',
+        ruleId: 'idgham-naqis-ta-ta'
+      },
+      {
+        id: 'q-c11-4',
+        type: 'error_detect',
+        promptFr: 'Un récitateur s\'arrête par manque de souffle sur le mot « ٱرۡكَبۡ » dans 11:42 en disant « Irkam ! ». Quelle est l\'erreur ?',
+        verseArabic: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا',
+        targetWord: 'ٱرۡكَب',
+        surahAyahRef: '11:42',
+        options: [
+          'Erreur majeure : L\'assimilation n\'existe qu\'en reliant les mots ! À l\'arrêt, le Bā\' retrouve sa prononciation originelle avec un rebond net de Qalqalah : « Irkab ! ».',
+          'Aucune erreur, l\'assimilation est permanente même à l\'arrêt.',
+          'Il fallait prononcer un son Wāw.',
+          'Il fallait prolonger le mot de 6 temps.'
+        ],
+        correctAnswer: 'Erreur majeure : L\'assimilation n\'existe qu\'en reliant les mots ! À l\'arrêt, le Bā\' retrouve sa prononciation originelle avec un rebond net de Qalqalah : « Irkab ! ».',
+        explanationFr: 'L\'assimilation entre deux mots dépend entièrement de la liaison continue (Wasl). Si l\'on s\'arrête sur le premier mot, la consonne finale est prononcée avec clarté (Izhār) et rebond de Qalqalah.',
+        ruleId: 'idgham-kamil-similar'
+      },
+      {
+        id: 'q-c11-5',
+        type: 'click_word',
+        promptFr: 'Repérage visuel : Cliquez sur le mot contenant une assimilation d\'identiques (Mutamāthilayn) dans le MÊME mot.',
+        verseArabic: 'أَيۡنَمَا تَكُونُواْ يُدۡرِككُّمُ ٱلۡمَوۡتُ وَلَوۡ كُنتُمۡ فِى بُرُوجٖ مُّشَيَّدَةٖ',
+        clickableSegments: ['أَيۡنَمَا', 'تَكُونُواْ', 'يُدۡرِككُّمُ', 'ٱلۡمَوۡتُ', 'بُرُوجٖ', 'مُّشَيَّدَةٖ'],
+        correctAnswer: 'يُدۡرِككُّمُ',
+        explanationFr: 'Dans « Yudrik-kum », deux Kāf se rencontrent dans le même mot. Le premier est nu et fond entièrement dans le second qui porte une Shaddah (« Yudrikkumu »).',
+        ruleId: 'idgham-mutamathilayn'
       }
     ]
   }

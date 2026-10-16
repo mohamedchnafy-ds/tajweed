@@ -480,7 +480,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
           }
         ]
       };
-    } else {
+    } else if (chapter.number === 10) {
       // Qalqalah
       return {
         id: 'root-qalqalah',
@@ -523,6 +523,52 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
           }
         ]
       };
+    } else {
+      // Chapitre 11 : L'Assimilation (Idghām)
+      return {
+        id: 'root-c11',
+        labelFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)',
+        labelAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ وَالمُتَقَارِبَيْنِ وَالمُتَجَانِسَيْنِ',
+        descriptionFr: 'Règles de fusion entre consonnes identiques, proches ou de même point d\'articulation.',
+        children: [
+          {
+            id: 'node-c11-mutamathilayn',
+            labelFr: '1. Mutamāthilayn (Lettres 100% Identiques)',
+            labelAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ الصَّغِيرُ',
+            tagColor: 'var(--idgham)',
+            letters: ['ف', 'د', 'ب', 'ك', 'هـ'],
+            descriptionFr: 'La 1ère lettre sans voyelle fond entièrement dans la seconde qui prend une Shaddah.',
+            examples: ['فَلَا يُسۡرِف فِّى ٱلۡقَتۡلِ', 'وَقَد دَّخَلُواْ', 'يُدۡرِككُّمُ ٱلۡمَوۡتُ', 'يُكۡرِههُّنَّ'],
+          },
+          {
+            id: 'node-c11-madd-exceptions',
+            labelFr: '2. Exception Sacrée : Lettres de Madd (JAMAIS d\'Idghām)',
+            labelAr: 'اسْتِثْنَاءُ حُرُوفِ المَدِّ (إِظْهَارٌ وَاجِبٌ)',
+            tagColor: 'var(--gold)',
+            letters: ['و', 'ي'],
+            descriptionFr: 'Le Wāw et le Yā\' de prolongation (Al-Jawf) NE FUSIONNENT JAMAIS avec une consonne de même graphie. Izhār obligatoire avec 2 temps de Madd !',
+            examples: ['فِى يُوسُفَ (Fī Yūsuf)', 'ءَامَنُواْ وَعَمِلُواْ (Āmanū wa-\'amilū)'],
+          },
+          {
+            id: 'node-c11-kamil',
+            labelFr: '3. Les 8 Cas d\'Assimilation Totale (Kāmil)',
+            labelAr: 'الإِدْغَامُ الكَامِلُ لِلْمُتَقَارِبَيْنِ وَالمُتَجَانِسَيْنِ',
+            tagColor: 'var(--idgham)',
+            letters: ['ت', 'ط', 'ذ', 'ظ', 'ب', 'م', 'ق', 'ك', 'د', 'ل', 'ر', 'ث'],
+            descriptionFr: 'Disparition complète de la 1ère lettre au profit de la 2nde avec Shaddah. Cas unique : Bā\' dans Mīm avec 2 temps de Ghunnah !',
+            examples: ['ٱرۡكَب مَّعَنَا (Irkam-ma\'anā)', 'أَلَمۡ نَخۡلُقكُّم (Nakhlukkum)', 'قَد تَّبَيَّنَ (Qat-tabayyana)', 'بَل رَّفَعَهُ (Bar-rafa\'ahu)'],
+          },
+          {
+            id: 'node-c11-naqis',
+            labelFr: '4. Idghām Nāqis (Assimilation Partielle : ط dans ت)',
+            labelAr: 'الإِدْغَامُ النَّاقِصُ (إِدْغَامُ الطَّاءِ فِي التَّاءِ)',
+            tagColor: 'var(--qalqalah)',
+            letters: ['ط', 'ت'],
+            descriptionFr: 'Le Tā\' conserve sa lourdeur (Tafkhīm/Itbāq) SANS Qalqalah avant que la langue ne relâche le son fin du Tā\'.',
+            examples: ['بَسَطتَ (Basatta)', 'أَحَطتُ (Ahattu)', 'فَرَّطتُمۡ (Farrattum)'],
+          }
+        ]
+      };
     }
   };
 
@@ -535,6 +581,10 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
     'node-ikhfa': true,
     'node-qal-letters': true,
     'node-deg-kubra': true,
+    'node-c11-mutamathilayn': true,
+    'node-c11-madd-exceptions': true,
+    'node-c11-kamil': true,
+    'node-c11-naqis': true,
   });
 
   const [selectedNode, setSelectedNode] = useState<TreeNode>(tree);

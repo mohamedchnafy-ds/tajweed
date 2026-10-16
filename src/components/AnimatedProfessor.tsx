@@ -3109,6 +3109,855 @@ const MimVsNunComparisonVisual: React.FC<{ animKey: number }> = ({ animKey }) =>
   );
 };
 
+/** =========================================================================
+ * CHAPITRE 10 : LA QALQALAH & SES DEGRÉS DE REBOND
+ * ========================================================================= */
+
+/** Écran 1 : La Nature Phonétique de la Qalqalah (Entre Soukoûn et Voyelle) */
+const QalqalahPhoneticNatureVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [mode, setMode] = useState<'vowel' | 'sukun' | 'qalqalah'>('qalqalah');
+  const [selectedLetter, setSelectedLetter] = useState<'ق' | 'ط' | 'ب' | 'ج' | 'د'>('ق');
+
+  const modeData = {
+    vowel: {
+      title: 'Lettre avec Voyelle (مُتَحَرِّك)',
+      arabicDisplay: `${selectedLetter}َ`,
+      articulators: 'Séparation des articulateurs (Infifāt)',
+      jawMovement: 'Mouvement actif de la mâchoire (Fathah = ouverture, Dammah = lèvres rondes, Kasrah = mâchoire basse)',
+      badge: 'Voyelle Pleine',
+      badgeClass: 'chip-gold',
+      description: 'Le son est soutenu par une voyelle qui ouvre la cavité buccale.',
+    },
+    sukun: {
+      title: 'Lettre Sākinah ordinaire (سَاكِن)',
+      arabicDisplay: `${selectedLetter}ْ`,
+      articulators: 'Choc et collision des articulateurs (Istidām)',
+      jawMovement: 'AUCUN mouvement de mâchoire (les articulateurs restent fermés/collés)',
+      badge: 'Fermeture / Collision',
+      badgeClass: 'chip-izhar',
+      description: 'L\'air et la voix sont bloqués sans aucun rebond.',
+    },
+    qalqalah: {
+      title: 'La Qalqalah (بَيْنَ السُّكُونِ وَالحَرَكَةِ)',
+      arabicDisplay: `${selectedLetter}ۡ 💥`,
+      articulators: 'Séparation instantanée (Rebond) des articulateurs',
+      jawMovement: 'AUCUN mouvement de mâchoire ni de lèvres ! (Immobilité stricte)',
+      badge: 'Rebond Pur sans Voyelle',
+      badgeClass: 'chip-qalqalah',
+      description: 'Règle d\'or du Dr. Islām Fekry : La Qalqalah partage avec la voyelle l\'écartement des articulateurs, et partage avec le soukoûn l\'absence totale de mouvement de mâchoire !',
+    },
+  };
+
+  const curr = modeData[mode];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Comment la Qalqalah se situe exactement entre le Soukoûn et la Voyelle
+      </div>
+
+      {/* Mode selector */}
+      <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+        <button
+          onClick={() => setMode('vowel')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            mode === 'vowel' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          1. Voyelle (مُتَحَرِّك)
+        </button>
+        <button
+          onClick={() => setMode('sukun')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            mode === 'sukun' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          2. Soukoûn pur (سَاكِن)
+        </button>
+        <button
+          onClick={() => setMode('qalqalah')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            mode === 'qalqalah' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          3. Qalqalah (قَلْقَلَة)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.badge}
+          </span>
+          <div className="flex items-center gap-1" dir="rtl">
+            {(['ق', 'ط', 'ب', 'ج', 'د'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setSelectedLetter(l)}
+                className={`w-7 h-7 rounded-lg text-xs font-bold font-ar flex items-center justify-center transition-colors ${
+                  selectedLetter === l ? 'bg-qalqalah text-white' : 'bg-soft text-ink hover:bg-line'
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="font-ar text-5xl sm:text-6xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicDisplay}
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-2 text-left text-xs">
+          <div className="p-3 rounded-xl bg-soft border border-line">
+            <span className="font-semibold text-muted block mb-1">Mouvement des articulateurs :</span>
+            <span className="text-ink font-medium">{curr.articulators}</span>
+          </div>
+          <div className="p-3 rounded-xl bg-soft border border-line">
+            <span className="font-semibold text-muted block mb-1">Mouvement de la mâchoire :</span>
+            <span className="text-ink font-medium">{curr.jawMovement}</span>
+          </div>
+        </div>
+
+        <p className="text-xs sm:text-sm text-ink leading-relaxed bg-soft/60 p-3 rounded-xl border border-line/60">
+          {curr.description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Soukoûn Originel vs Soukoûn Accidentel (Aslī vs 'Ārid) */
+const OriginalVsTemporarySukunVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'falaq' | 'khalaqna'>('falaq');
+  const [isWaqf, setIsWaqf] = useState<boolean>(true);
+
+  const wordData = {
+    falaq: {
+      title: '« Al-Falaq » (ٱلۡفَلَقِ) — Soukoûn Accidentel (السُّكُونُ العَارِضُ)',
+      surahRef: 'Al-Falaq 113:1',
+      waslArabic: 'بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ',
+      waqfArabic: 'بِرَبِّ ٱلۡفَلَقۡ',
+      waslPronunciation: 'bi-rabbil-falaqi min... (Qāf avec Kasrah ordinaire)',
+      waqfPronunciation: 'bi-rabbil-Falaq! (Qalqalah Wustā sonore)',
+      hasQalqalahInWasl: false,
+      hasQalqalahInWaqf: true,
+      explanation: 'À l\'arrêt (Waqf), la Kasrah finale disparaît et engendre un Soukoûn accidentel : la Qalqalah JAILLIT obligatoirement ! Mais si vous lisez en continu (Wasl), le Qāf conserve sa Kasrah et il n\'y a AUCUNE Qalqalah.',
+    },
+    khalaqna: {
+      title: '« Khalaqnā » (خَلَقۡنَا) — Soukoûn Originel (السُّكُونُ الأَصْلِيُّ)',
+      surahRef: 'At-Tīn 95:4',
+      waslArabic: 'لَقَدۡ خَلَقۡنَا ٱلۡإِنسَٰنَ',
+      waqfArabic: 'خَلَقۡ',
+      waslPronunciation: 'Khalaqnā (Rebond de Qalqalah Sughrā en continu)',
+      waqfPronunciation: 'Khalaq! (Rebond de Qalqalah Wustā à l\'arrêt)',
+      hasQalqalahInWasl: true,
+      hasQalqalahInWaqf: true,
+      explanation: 'Le Soukoûn du Qāf est originel : il est gravé dans la structure même du verbe. Par conséquent, la Qalqalah est obligatoire DANS TOUS LES CAS, que vous coupiez ou que vous poursuiviez votre lecture !',
+    },
+  };
+
+  const curr = wordData[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        La Qalqalah dépend de la nature du Soukoûn : Originel vs Accidentel
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('falaq')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'falaq' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱلۡفَلَقِ (Soukoûn Accidentel)
+        </button>
+        <button
+          onClick={() => setSelectedWord('khalaqna')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'khalaqna' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          خَلَقۡنَا (Soukoûn Originel)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold text-ink">{curr.title}</span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {isWaqf ? (
+            <span className="text-good font-bold">{curr.waqfArabic}</span>
+          ) : (
+            <span>{curr.waslArabic}</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+              En Continu (Wasl)
+            </button>
+            <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+              À l'Arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        <div className={`p-4 rounded-xl text-xs sm:text-sm text-left ${
+          (isWaqf ? curr.hasQalqalahInWaqf : curr.hasQalqalahInWasl)
+            ? 'bg-good-bg border border-good/30'
+            : 'bg-soft border border-line'
+        }`}>
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-semibold text-ink">
+              Statut de la Qalqalah :
+            </span>
+            <span className={`chip ${(isWaqf ? curr.hasQalqalahInWaqf : curr.hasQalqalahInWasl) ? 'chip-qalqalah' : 'chip-izhar'}`}>
+              {(isWaqf ? curr.hasQalqalahInWaqf : curr.hasQalqalahInWasl) ? '💥 Qalqalah Active' : '❌ Aucune Qalqalah'}
+            </span>
+          </div>
+          <p className="text-muted leading-relaxed font-mono text-xs">
+            {isWaqf ? curr.waqfPronunciation : curr.waslPronunciation}
+          </p>
+          <p className="text-xs text-muted mt-2 pt-2 border-t border-line/40">
+            {curr.explanation}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : Les 3 Degrés de Force de la Qalqalah (Kubrā, Wustā, Sughrā) */
+const ThreeDegreesInteractiveVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedDegree, setSelectedDegree] = useState<'kubra' | 'wusta' | 'sughra'>('kubra');
+
+  const degreeData = {
+    kubra: {
+      nameFr: 'Degré 1 : Qalqalah Kubrā (Majeure)',
+      nameAr: 'المَرْتَبَةُ الكُبْرَى',
+      intensity: 'Puissance Maximale (💥💥💥)',
+      chipClass: 'chip-qalqalah',
+      examples: [
+        { word: 'وَتَبَّ', ref: 'Al-Masad 111:1', desc: 'Arrêt sur Bā\' avec Shaddah' },
+        { word: 'بِٱلۡحَقِّ', ref: 'Al-Baqarah 2:189', desc: 'Arrêt sur Qāf avec Shaddah' },
+        { word: 'وَٱلۡحَجِّ', ref: 'Al-Baqarah 2:189', desc: 'Arrêt sur Jīm avec Shaddah' },
+      ],
+      mechanism: 'La lettre porte une Shaddah (ّ) et se trouve à la fin du mot lors d\'un arrêt (Waqf). Maintenez la pression sur la 1ère lettre (Nabrah), puis libérez le rebond le plus puissant et percutant du Tajwīd !',
+    },
+    wusta: {
+      nameFr: 'Degré 2 : Qalqalah Wustā (Moyenne)',
+      nameAr: 'المَرْتَبَةُ الوُسْطَى',
+      intensity: 'Puissance Moyenne (💥💥)',
+      chipClass: 'chip-gold',
+      examples: [
+        { word: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ', ref: 'Al-Ikhlās 112:1', desc: 'Arrêt sur Dāl simple' },
+        { word: 'بِرَبِّ ٱلۡفَلَقِ', ref: 'Al-Falaq 113:1', desc: 'Arrêt sur Qāf simple' },
+        { word: 'وَهُوَ ٱلۡغَفُورُ ٱلۡوَدُودُ', ref: 'Al-Burūj 85:14', desc: 'Arrêt sur Dāl simple' },
+      ],
+      mechanism: 'Arrêt (Waqf) sur une lettre de Qalqalah simple NON doublée d\'une Shaddah. Le rebond est franc, clair et bien audible, libéré à la fin du souffle de la phrase.',
+    },
+    sughra: {
+      nameFr: 'Degré 3 : Qalqalah Sughrā (Mineure)',
+      nameAr: 'المَرْتَبَةُ الصُّغْرَى',
+      intensity: 'Rebond Léger & Rapide (💥)',
+      chipClass: 'chip-izhar',
+      examples: [
+        { word: 'خَلَقۡنَا', ref: 'At-Tīn 95:4', desc: 'Qāf au milieu du mot' },
+        { word: 'يَقۡطَعُونَ', ref: 'Al-Baqarah 2:27', desc: 'Qāf au milieu du mot' },
+        { word: 'لَقَدۡ خَلَقۡنَا', ref: 'At-Tīn 95:4', desc: 'Dāl en liaison continue' },
+      ],
+      mechanism: 'La lettre de Qalqalah a un Soukoûn au milieu d\'un mot ou à la fin d\'un mot en liaison continue (Wasl). Le rebond doit être agile, instantané et fluide, pour ne jamais casser le rythme de la lecture.',
+    },
+  };
+
+  const curr = degreeData[selectedDegree];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Doser l'intensité du rebond selon la position et la présence d'une Shaddah
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedDegree('kubra')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedDegree === 'kubra' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          1. Kubrā (Shaddah)
+        </button>
+        <button
+          onClick={() => setSelectedDegree('wusta')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedDegree === 'wusta' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          2. Wustā (Arrêt simple)
+        </button>
+        <button
+          onClick={() => setSelectedDegree('sughra')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedDegree === 'sughra' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          3. Sughrā (En continu)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.chipClass} text-xs font-bold`}>
+            {curr.intensity}
+          </span>
+          <span className="font-ui-ar text-base text-ink" dir="rtl">
+            {curr.nameAr}
+          </span>
+        </div>
+
+        <h4 className="font-display font-semibold text-lg text-ink">
+          {curr.nameFr}
+        </h4>
+
+        {/* Examples row */}
+        <div className="grid grid-cols-3 gap-2">
+          {curr.examples.map((ex, i) => (
+            <div key={i} className="p-2.5 rounded-xl bg-soft border border-line flex flex-col justify-between">
+              <span className="font-ar text-2xl text-ink leading-relaxed" dir="rtl">
+                {ex.word}
+              </span>
+              <span className="text-[10px] text-muted block mt-1">
+                {ex.desc}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-xs sm:text-sm text-ink leading-relaxed bg-soft/60 p-3 rounded-xl border border-line/60 text-left">
+          {curr.mechanism}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Les Pièges Classiques & Lettres Intruse (Hams vs Qalqalah) */
+const QalqalahTrapsAndHamsVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeTrap, setActiveTrap] = useState<'vowel' | 'hams'>('vowel');
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Les 2 erreurs de récitation dénoncées dans le manuel du Dr. Islām Fekry (p. 132)
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setActiveTrap('vowel')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activeTrap === 'vowel' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Piège 1 : La Voyelle Parasite
+        </button>
+        <button
+          onClick={() => setActiveTrap('hams')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activeTrap === 'hams' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Piège 2 : Fausses Qalqalah (Kāf & Tā')
+        </button>
+      </div>
+
+      {activeTrap === 'vowel' ? (
+        <div className="p-5 rounded-2xl bg-card border border-bad/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-qalqalah text-xs font-bold">
+              ⚠️ Infiltration de Voyelle Parasite
+            </span>
+            <span className="text-xs text-muted">Livre p. 132</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 text-center">
+            <div className="p-3.5 rounded-xl bg-good-bg border border-good/40">
+              <span className="text-xs font-bold text-good block mb-1">✅ Conforme (Soukoûn pur)</span>
+              <span className="font-ar text-3xl text-ink block" dir="rtl">خَلَقۡنَا</span>
+              <span className="font-mono text-xs text-muted mt-1 block">Khalaq-nā</span>
+            </div>
+            <div className="p-3.5 rounded-xl bg-bad-bg border border-bad/40">
+              <span className="text-xs font-bold text-bad block mb-1">❌ Erreur (Fathah ajoutée)</span>
+              <span className="font-ar text-3xl text-bad line-through block" dir="rtl">خَلَقَنَا</span>
+              <span className="font-mono text-xs text-bad mt-1 block">Khalaqa-nā ❌</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 text-center">
+            <div className="p-3.5 rounded-xl bg-good-bg border border-good/40">
+              <span className="text-xs font-bold text-good block mb-1">✅ Conforme</span>
+              <span className="font-ar text-3xl text-ink block" dir="rtl">عَبۡدِهِۦ</span>
+              <span className="font-mono text-xs text-muted mt-1 block">\'Ab-dihī</span>
+            </div>
+            <div className="p-3.5 rounded-xl bg-bad-bg border border-bad/40">
+              <span className="text-xs font-bold text-bad block mb-1">❌ Erreur (Kasrah ajoutée)</span>
+              <span className="font-ar text-3xl text-bad line-through block" dir="rtl">عَبِدِهِۦ</span>
+              <span className="font-mono text-xs text-bad mt-1 block">\'Abi-dihī ❌</span>
+            </div>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed text-left bg-soft p-3 rounded-xl border border-line">
+            ⚠️ <strong>Règle d'or :</strong> Ne bougez JAMAIS la mâchoire ou les lèvres lors du rebond ! Si vous ouvrez la bouche, le rebond devient une Fathah parasite (Lahn Khafī).
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 rounded-2xl bg-card border border-gold/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-gold text-xs font-bold">
+              Lettres Intruse : Hams vs Qalqalah
+            </span>
+            <span className="text-xs text-muted">Livre p. 132</span>
+          </div>
+
+          <div className="space-y-2 text-left text-xs">
+            <div className="p-3 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+              <div>
+                <span className="font-bold text-ink">1. La lettre Kāf (ك) : « Wastakbara » (وَٱسۡتَكۡبَرَ)</span>
+                <p className="text-muted text-[11px] mt-0.5">Le Kāf a du souffle (Hams), JAMAIS de Qalqalah ! Ne dites pas « Wastakabara ».</p>
+              </div>
+              <span className="chip chip-izhar shrink-0">Hams pur</span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+              <div>
+                <span className="font-bold text-ink">2. La lettre Tā' (ت) : « Al-Atqā » (ٱلۡأَتۡقَىٰ)</span>
+                <p className="text-muted text-[11px] mt-0.5">Le Tā' a un léger filet d'air libéré, JAMAIS de rebond ! Ne dites pas « Al-Ataqā ».</p>
+              </div>
+              <span className="chip chip-izhar shrink-0">Hams pur</span>
+            </div>
+
+            <div className="p-3 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+              <div>
+                <span className="font-bold text-ink">3. La lettre 'Ayn (ع) : « Na'budu » (نَعۡبُدُ)</span>
+                <p className="text-muted text-[11px] mt-0.5">Le 'Ayn est une consonne intermédiaire (Tawassut) : ne secouez pas la gorge ! Ne dites pas « Na'abudu ».</p>
+              </div>
+              <span className="chip chip-gold shrink-0">Tawassut</span>
+            </div>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed text-left bg-soft p-3 rounded-xl border border-line">
+            💡 <strong>Seules les 5 lettres de « Qutb Jadd » (قُطْبُ جَدٍّ) ont droit à la Qalqalah !</strong> Faire rebondir toute autre consonne est une altération phonétique prohibée.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** =========================================================================
+ * CHAPITRE 11 : L'ASSIMILATION (IDGHĀM MUTAMĀTHILAYN, ETC.)
+ * ========================================================================= */
+
+/** Écran 1 : Idghām Al-Mutamāthilayn (Lettres Identiques) */
+const MutamathilaynFusionVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedCase, setSelectedCase] = useState<'words' | 'single' | 'vowelTrap'>('words');
+
+  const caseData = {
+    words: {
+      title: 'Entre deux mots séparés : « Wa-qad dakhalū » (وَقَد دَّخَلُواْ)',
+      surahRef: 'Al-Mā\'idah 5:61',
+      arabicDisplay: 'وَقَد دَّخَلُواْ',
+      formula: '[ دْ sans voyelle ] + [ دَ voyellé ] = [ دَّ doublé avec Shaddah ]',
+      pronunciation: 'Wa-qad-dakhalū (Le 1er Dāl fond sans aucune Qalqalah !)',
+      badge: 'Fusion Totale (Idghām Kāmil)',
+      badgeClass: 'chip-idgham',
+      explanation: 'Le Dāl de « Qad » est nu dans le Muṣ-ḥaf (aucun signe de soukoûn). Il disparaît à 100% dans le Dāl suivant qui prend une Shaddah. Il est formellement interdit de faire une Qalqalah sur le premier Dāl !',
+    },
+    single: {
+      title: 'Dans un seul et même mot : « Yudrikkumu » (يُدۡرِككُّمُ)',
+      surahRef: 'An-Nisā\' 4:78',
+      arabicDisplay: 'يُدۡرِككُّمُ ٱلۡمَوۡتُ',
+      formula: '[ كْ sans voyelle ] + [ كُ voyellé ] = [ كُّ doublé avec Shaddah ]',
+      pronunciation: 'Yudrik-kumu-l-mawt (Kāf Mushaddadah)',
+      badge: 'Fusion Intramot',
+      badgeClass: 'chip-idgham',
+      explanation: 'L\'assimilation d\'identiques peut avoir lieu à l\'intérieur d\'un même mot. Le premier Kāf est nu et s\'absorbe directement dans le second qui porte une Shaddah.',
+    },
+    vowelTrap: {
+      title: 'Le piège : 1ère lettre voyellée ➔ PAS d\'Idghām ! (نُؤۡمِنُ بِبَعۡضٖ)',
+      surahRef: 'An-Nisā\' 4:150',
+      arabicDisplay: 'نُؤۡمِنُ بِبَعۡضٖ وَنَكۡفُرُ بِبَعۡضٖ',
+      formula: '[ بِ voyellé avec Kasrah ] + [ بَ voyellé ] ➔ IZHĀR OBLIGATOIRE !',
+      pronunciation: 'Bi-ba\'d (Deux Bā\' distincts prononcés clairement)',
+      badge: '⚠️ Izhār Obligatoire (Pas de Soukoûn)',
+      badgeClass: 'chip-qalqalah',
+      explanation: 'Condition sine qua non : La première lettre DOIT porter un soukoûn ! Si la première lettre porte une voyelle (comme la Kasrah dans « Bi-ba\'d »), l\'assimilation est strictement interdite en lecture de Hafs : vous devez prononcer chaque lettre avec clarté.',
+    },
+  };
+
+  const curr = caseData[selectedCase];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        L'assimilation parfaite de deux consonnes strictement identiques
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+        <button
+          onClick={() => setSelectedCase('words')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedCase === 'words' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Entre 2 Mots (وَقَد دَّخَلُواْ)
+        </button>
+        <button
+          onClick={() => setSelectedCase('single')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedCase === 'single' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Même Mot (يُدۡرِككُّمُ)
+        </button>
+        <button
+          onClick={() => setSelectedCase('vowelTrap')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedCase === 'vowelTrap' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Piège : Voyelle (نُؤۡمِنُ بِبَعۡضٖ)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.badge}
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicDisplay}
+        </div>
+
+        <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+          {curr.formula}
+        </div>
+
+        <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm text-left">
+          <span className="font-semibold text-muted block mb-1">Prononciation exacte :</span>
+          <span className="text-good font-bold font-mono text-sm block">{curr.pronunciation}</span>
+          <p className="text-xs text-muted mt-2 pt-2 border-t border-line/60">
+            {curr.explanation}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : L'Exception Sacrée des Lettres de Madd (فِى يُوسُفَ & ءَامَنُواْ وَعَمِلُواْ) */
+const MaddExceptionsVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedLetter, setSelectedLetter] = useState<'ya' | 'waw'>('ya');
+
+  const exceptionData = {
+    ya: {
+      title: 'Le Yā\' de Madd : « Fī Yūsufa » (فِى يُوسُفَ)',
+      surahRef: 'Yūsuf 12:7',
+      verseArabic: 'لَّقَدۡ كَانَ فِى يُوسُفَ وَإِخۡوَتِهِۦٓ ءَايَٰتٞ',
+      segment: 'فِى يُوسُفَ',
+      maddLetterInfo: '1. Yā\' de « Fī » = Voyelle longue née d\'Al-Jawf (le vide de la bouche/gorge)',
+      consonantInfo: '2. Yā\' de « Yūsuf » = Consonne articulée au milieu de la langue (Al-Lisān)',
+      correctSound: '« Fī » (2 temps de Madd complets) ➔ puis « Yūsuf » distinct',
+      trapSound: '❌ « Fiy-yūsuf » (Assimiler et supprimer la voyelle longue)',
+      reason: 'Comme les deux lettres ne partagent PAS le même point d\'articulation, elles ne sont PAS identiques phonétiquement ! Les assimiler anéantirait la voyelle longue.',
+    },
+    waw: {
+      title: 'Le Wāw de Madd : « Āmanū wa \'amilū » (ءَامَنُواْ وَعَمِلُواْ)',
+      surahRef: 'Hūd 11:23',
+      verseArabic: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ',
+      segment: 'ءَامَنُواْ وَعَمِلُواْ',
+      maddLetterInfo: '1. Wāw de « Āmanū » = Voyelle longue issue d\'Al-Jawf (2 temps)',
+      consonantInfo: '2. Wāw de « wa » = Consonne articulée au niveau des deux lèvres',
+      correctSound: '« Āmanū » (2 temps de Madd complets) ➔ puis « Wa » distinct',
+      trapSound: '❌ « Āmanuw-wa » (Former une Shaddah sur le Wāw en escamotant le Madd)',
+      reason: 'Le Coran interdit d\'assimiler une lettre de Madd dans une consonne. L\'Izhār avec 2 temps de Madd est une obligation absolue pour respecter la parole divine !',
+    },
+  };
+
+  const curr = exceptionData[selectedLetter];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        L'interdiction absolue de fusionner les lettres de prolongation (Madd)
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedLetter('ya')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedLetter === 'ya' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Yā\' de Madd (فِى يُوسُفَ)
+        </button>
+        <button
+          onClick={() => setSelectedLetter('waw')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedLetter === 'waw' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Wāw de Madd (ءَامَنُواْ وَعَمِلُواْ)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-gold/40 shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className="chip chip-gold text-xs font-bold">
+            Izhār Obligatoire (2 Temps de Madd)
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.verseArabic}
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-2 text-left text-xs">
+          <div className="p-3 rounded-xl bg-good-bg border border-good/40">
+            <span className="font-bold text-good block mb-1">✅ Prononciation Conforme</span>
+            <span className="font-mono text-xs text-ink block">{curr.correctSound}</span>
+          </div>
+          <div className="p-3 rounded-xl bg-bad-bg border border-bad/40">
+            <span className="font-bold text-bad block mb-1">❌ Piège Sacrilège (Idghām Faux)</span>
+            <span className="font-mono text-xs text-bad line-through block">{curr.trapSound}</span>
+          </div>
+        </div>
+
+        <div className="space-y-1.5 text-xs text-left bg-soft p-3 rounded-xl border border-line">
+          <p className="text-ink">• {curr.maddLetterInfo}</p>
+          <p className="text-ink">• {curr.consonantInfo}</p>
+          <p className="text-muted pt-2 border-t border-line/60 font-semibold">{curr.reason}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : Les 8 Cas d'Assimilation Totale (Kāmil) */
+const EightSimilarCasesScannerVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeIdx, setActiveIdx] = useState<number>(0);
+
+  const cases = [
+    {
+      pair: 'ب ➔ م',
+      arabicText: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا',
+      readAs: 'Irkam-ma\'anā',
+      surahRef: 'Hūd 11:42',
+      badge: 'Ghunnah 2 Temps !',
+      badgeColor: 'chip-idgham',
+      desc: 'Cas unique dans tout le Coran : le Bā\' sans voyelle fond entièrement dans le Mīm avec 2 pulsations de résonance nasale.',
+    },
+    {
+      pair: 'ق ➔ ك',
+      arabicText: 'أَلَمۡ نَخۡلُقكُّم مِّن مَّآءٖ',
+      readAs: 'Nakhlukkum',
+      surahRef: 'Al-Mursalāt 77:20',
+      badge: 'Kāf Mushaddadah',
+      badgeColor: 'chip-izhar',
+      desc: 'Selon la voie d\'Ash-Shātibiyyah, le Qāf fond totalement dans le Kāf : récitez un pur Kāf avec Shaddah.',
+    },
+    {
+      pair: 'د ➔ ت',
+      arabicText: 'قَد تَّبَيَّنَ ٱلرُّشۡدُ',
+      readAs: 'Qat-tabayyana',
+      surahRef: 'Al-Baqarah 2:256',
+      badge: 'Mutajānisayn',
+      badgeColor: 'chip-izhar',
+      desc: 'Le Dāl et le Tā\' partagent le même point d\'articulation. Le Dāl disparaît dans le Tā\' doublé.',
+    },
+    {
+      pair: 'ت ➔ د',
+      arabicText: 'فَلَمَّآ أَثۡقَلَت دَّعَوَا ٱللَّهَ',
+      readAs: 'Athqalad-da\'awallāh',
+      surahRef: 'Al-A\'rāf 7:189',
+      badge: 'Mutajānisayn',
+      badgeColor: 'chip-izhar',
+      desc: 'Le Tā\' féminin sans voyelle fond totalement dans le Dāl avec Shaddah.',
+    },
+    {
+      pair: 'ل ➔ ر',
+      arabicText: 'بَل رَّفَعَهُ ٱللَّهُ إِلَيۡهِ',
+      readAs: 'Bar-rafa\'ahu',
+      surahRef: 'An-Nisā\' 4:158',
+      badge: 'Mutaqāribayn',
+      badgeColor: 'chip-izhar',
+      desc: 'La Lām de la particule « Bal » ou du verbe « Qul rabbi » fond entièrement dans le Râ\'.',
+    },
+    {
+      pair: 'ت ➔ ط',
+      arabicText: 'وَقَالَت طَّآئِفَةٞ مِّنۡ',
+      readAs: 'Wa-qālat-tā\'ifah',
+      surahRef: 'Āl \'Imrān 3:72',
+      badge: 'Mutajānisayn',
+      badgeColor: 'chip-izhar',
+      desc: 'Le Tā\' léger est complètement absorbé par le Tā\' emphatique avec Shaddah.',
+    },
+    {
+      pair: 'ذ ➔ ظ',
+      arabicText: 'إِذ ظَّلَمۡتُمۡ أَنَّكُمۡ',
+      readAs: 'Idh-zhalamtum',
+      surahRef: 'Az-Zukhruf 43:39',
+      badge: 'Mutaqāribayn',
+      badgeColor: 'chip-izhar',
+      desc: 'Le Dhāl disparaît dans le Zā\' lourd qui prend une Shaddah.',
+    },
+    {
+      pair: 'ث ➔ ذ',
+      arabicText: 'يَلۡهَثۚ ذَّٰلِكَ مَثَلُ',
+      readAs: 'Yalhadh-dhālik',
+      surahRef: 'Al-A\'rāf 7:176',
+      badge: 'Cas Unique',
+      badgeColor: 'chip-izhar',
+      desc: 'En liaison continue, le Thā\' s\'efface complètement dans le Dhāl : « Yalhadh-dhālik ».',
+    },
+  ];
+
+  const curr = cases[activeIdx];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Les 8 couples précis de lettres d'Idghām Kāmil répertoriés dans le Coran
+      </div>
+
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-1 max-w-xl mx-auto">
+        {cases.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveIdx(i)}
+            className={`p-1.5 rounded-xl text-xs font-bold font-ar transition-all ${
+              activeIdx === i ? 'bg-lapis text-lapis-ink shadow-xs scale-105' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            {c.pair}
+          </button>
+        ))}
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeColor} text-xs font-bold`}>
+            {curr.badge}
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicText}
+        </div>
+
+        <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+          Prononciation en liaison : <strong className="text-good">{curr.readAs}</strong>
+        </div>
+
+        <p className="text-xs sm:text-sm text-ink leading-relaxed bg-soft/60 p-3 rounded-xl border border-line/60 text-left">
+          {curr.desc}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : L'Assimilation Partielle (Idghām Nāqis : ط dans ت) */
+const IdghamNaqisHeavyToLightVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'basatta' | 'ahattu'>('basatta');
+
+  const words = {
+    basatta: {
+      wordArabic: 'بَسَطتَ',
+      verseArabic: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ لِتَقۡتُلَنِى',
+      surahRef: 'Al-Mā\'idah 5:28',
+      step1: '1. Scellez le Tā\' lourd (ط) : Plaquez fermement la langue contre le palais avec emphase (Tafkhīm) et écrasement (Itbāq), SANS faire de Qalqalah !',
+      step2: '2. Libérez sur le Tā\' fin (ت) : Décollez la langue en prononçant un Tā\' doux avec Fathah (« Basat-ta »).',
+    },
+    ahattu: {
+      wordArabic: 'أَحَطتُ',
+      verseArabic: 'فَقَالَ أَحَطتُ بِمَا لَمۡ تُحِطۡ بِهِۦ',
+      surahRef: 'An-Naml 27:22',
+      step1: '1. Scellez le Tā\' lourd (ط) : La lourdeur du Tā\' est bloquée au palais sans aucun rebond acoustique.',
+      step2: '2. Libérez sur le Tā\' fin (ت) : Ouvrez sur la Dammah du Tā\' (« Ahat-tu »).',
+    },
+  };
+
+  const curr = words[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Le mystère de l'Idghām Nāqis : Pourquoi la lettre forte ne peut disparaître
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('basatta')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'basatta' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          بَسَطتَ (Al-Mā\'idah 5:28)
+        </button>
+        <button
+          onClick={() => setSelectedWord('ahattu')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'ahattu' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          أَحَطتُ (An-Naml 27:22)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-qalqalah/40 shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className="chip chip-qalqalah text-xs font-bold">
+            Idghām Nāqis (Assimilation Partielle)
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.verseArabic}
+        </div>
+
+        {/* 2-Step Decomposition */}
+        <div className="space-y-2 text-left text-xs">
+          <div className="p-3 rounded-xl bg-good-bg border border-good/40">
+            <span className="font-bold text-good block mb-0.5">Étape 1 : Le Tā\' lourd bloqué</span>
+            <p className="text-ink leading-relaxed">{curr.step1}</p>
+          </div>
+          <div className="p-3 rounded-xl bg-soft border border-line">
+            <span className="font-bold text-ink block mb-0.5">Étape 2 : Le Tā\' fin libéré</span>
+            <p className="text-muted leading-relaxed">{curr.step2}</p>
+          </div>
+        </div>
+
+        <div className="p-3.5 rounded-xl bg-soft text-xs text-ink leading-relaxed text-left border border-line">
+          ⚠️ <strong>Règle d'or du Dr. Islām Fekry :</strong> Le Tā\' (ط) possède des attributs de force absolue (Isti\'lā\' et Itbāq). Comme une lettre faible (ت) ne peut pas anéantir une lettre forte, l\'emphase survit obligatoirement mais la Qalqalah est éteinte !
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
@@ -3316,81 +4165,32 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
   // Screens for Chapter 10 (Qalqalah)
   const qalqalahScreens = [
     {
-      title: 'Qu\'est-ce que la Qalqalah (الْقَلْقَلَةُ) ?',
-      badge: 'Le rebond acoustique',
-      concept: 'Une libération vive du souffle sans aucun mouvement de voyelle',
-      renderVisual: () => (
-        <div key={animKey} className="py-8 px-4 text-center select-none">
-          <div className="label mb-6">
-            Simulation du choc et du rebond acoustique
-          </div>
-
-          <div className="relative max-w-xs mx-auto h-32 flex items-center justify-center">
-            <div className="absolute bottom-4 left-6 right-6 h-px bg-line" />
-            <div className="absolute w-14 h-14 rounded-full bg-qalqalah text-card flex items-center justify-center font-ar text-3xl animate-qalqalah-bounce">
-              ق
-            </div>
-            <div className="absolute bottom-4 w-20 h-6 border-b-2 border-qalqalah/60 rounded-full animate-ping opacity-75" />
-          </div>
-
-          <div className="flex items-center justify-center gap-2 mt-4">
-            {['ق', 'ط', 'ب', 'ج', 'د'].map((l, i) => (
-              <span key={i} className="chip chip-qalqalah font-ar text-2xl px-3.5 py-1 animate-pop" style={{ animationDelay: `${i * 0.15}s` }}>
-                {l}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-sm leading-relaxed text-muted mt-6 max-w-sm mx-auto">
-            Formule mnémotechnique : <strong>قُطْبُ جَدٍّ (Qutb Jadd)</strong>. Dès qu'une de ces 5 lettres a un soukoûn, elle rebondit !
-          </p>
-        </div>
-      ),
-      explanation: 'À cause du blocage total du son et de l\'air (Shiddah + Jahr), la lettre sākinah ne peut être entendue clairement sans ce rebond rapide.'
+      title: 'La Nature Phonétique de la Qalqalah',
+      badge: 'Entre Soukoûn & Voyelle',
+      concept: 'Écartement des articulateurs SANS aucun mouvement de mâchoire',
+      renderVisual: () => <QalqalahPhoneticNatureVisual animKey={animKey} />,
+      explanation: 'La Qalqalah est un état intermédiaire fascinant : comme la voyelle, elle sépare les deux articulateurs sous la pression de l\'air emprisonné ; mais comme le soukoûn, elle interdit strictement tout mouvement de mâchoire ou de lèvres. Ne laissez jamais une Fathah ou une Kasrah s\'infiltrer !'
     },
     {
-      title: 'Les 3 Degrés de Force de la Qalqalah',
-      badge: 'Maîtrise des nuances',
-      concept: 'Comment doser la puissance du rebond selon la position dans le mot',
-      renderVisual: () => (
-        <div key={animKey} className="py-6 px-4 select-none">
-          <div className="space-y-3 max-w-md mx-auto">
-            <div className="p-3.5 rounded-2xl bg-card flex items-center justify-between gap-3 shadow-xs animate-drop" style={{ '--i': 0 } as any}>
-              <div className="text-left">
-                <span className="text-xs font-semibold text-qalqalah">1. Kubrā, degré majeur</span>
-                <div className="text-[15px] font-semibold text-ink">Arrêt sur une Shaddah</div>
-                <div className="text-sm text-muted mt-1">Ex : <span className="font-ui-ar text-xl text-ink" dir="rtl">وَتَبَّ · بِٱلۡحَقِّ</span></div>
-              </div>
-              <div className="chip chip-qalqalah shrink-0">
-                Fort
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-card flex items-center justify-between gap-3 shadow-xs animate-drop" style={{ '--i': 1 } as any}>
-              <div className="text-left">
-                <span className="text-xs font-semibold text-gold">2. Wustā, degré moyen</span>
-                <div className="text-[15px] font-semibold text-ink">Arrêt sur une lettre simple</div>
-                <div className="text-sm text-muted mt-1">Ex : <span className="font-ui-ar text-xl text-ink" dir="rtl">قُلۡ هُوَ ٱللَّهُ أَحَدٌ</span></div>
-              </div>
-              <div className="chip chip-gold shrink-0">
-                Moyen
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-card flex items-center justify-between gap-3 animate-drop" style={{ '--i': 2 } as any}>
-              <div className="text-left">
-                <span className="text-xs font-semibold text-izhar">3. Sughrā, degré mineur</span>
-                <div className="text-[15px] font-semibold text-ink">Au milieu d'un mot en continu</div>
-                <div className="text-sm text-muted mt-1">Ex : <span className="font-ui-ar text-xl text-ink" dir="rtl">يَقۡطَعُونَ · خَلَقۡنَا</span></div>
-              </div>
-              <div className="chip chip-izhar shrink-0">
-                Léger
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-      explanation: 'Plus la lettre est isolée à la fin d\'un verset avec une Shaddah, plus le rebond est spectaculaire. En milieu de mot, il doit rester agile pour ne pas couper la phrase.'
+      title: 'Soukoûn Originel (الأَصْلِيُّ) vs Accidentel (العَارِضُ)',
+      badge: 'Wasl vs Waqf',
+      concept: 'Pourquoi la Qalqalah disparaît en continu sur Al-Falaq mais reste sur Khalaqnā',
+      renderVisual: () => <OriginalVsTemporarySukunVisual animKey={animKey} />,
+      explanation: 'Sur un soukoûn accidentel né de l\'arrêt (ex: Al-Falaqi ➔ Al-Falaq), la Qalqalah n\'existe QU\'À L\'ARRÊT. Si vous lisez en continu, vous devez prononcer la Kasrah sans aucun rebond ! En revanche, sur un soukoûn originel (ex: Khalaqnā), le rebond retentit en continu comme à l\'arrêt.'
+    },
+    {
+      title: 'Les 3 Degrés de Puissance : Kubrā, Wustā, Sughrā',
+      badge: 'Hiérarchie du Rebond',
+      concept: 'Shaddah à l\'arrêt > Lettre simple à l\'arrêt > En milieu de mot',
+      renderVisual: () => <ThreeDegreesInteractiveVisual animKey={animKey} />,
+      explanation: 'Degré 1 Kubrā : à l\'arrêt sur Shaddah (وَتَبَّ, بِٱلۡحَقِّ), la compression puis la libération offrent le rebond le plus puissant. Degré 2 Wustā : à l\'arrêt sans Shaddah (أَحَدٌ, ٱلۡفَلَقِ). Degré 3 Sughrā : en cours de phrase (خَلَقۡنَا, يَقۡطَعُونَ), le rebond reste agile et discret.'
+    },
+    {
+      title: 'Les Pièges Démasqués : Hams (Kāf/Tā\') & Voyelle Parasite',
+      badge: 'Alertes du Dr. Fekry',
+      concept: 'Éradiquer les rebonds illégitimes sur Kāf, Tā\' et \'Ayn',
+      renderVisual: () => <QalqalahTrapsAndHamsVisual animKey={animKey} />,
+      explanation: 'Attention aux deux fautes majeures du livre (p. 132) : 1. Ne dites jamais « Khalaqa-nā » pour خَلَقۡنَا (voyelle parasite). 2. Ne faites JAMAIS rebondir le Kāf (وَٱسۡتَكۡبَرَ), le Tā\' (ٱلۡأَتۡقَىٰ) ou le \'Ayn (نَعۡبُدُ) : le Kāf et le Tā\' ont du souffle (Hams), pas de rebond !'
     }
   ];
 
@@ -3586,6 +4386,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 11 (Assimilation / Idghām)
+  const chapter11Screens = [
+    {
+      title: 'L\'Assimilation des Lettres Identiques (Mutamāthilayn)',
+      badge: 'Fusion Totale (ّ)',
+      concept: 'La première consonne sans voyelle s\'efface complètement dans la seconde',
+      renderVisual: () => <MutamathilaynFusionVisual animKey={animKey} />,
+      explanation: 'Lorsque deux lettres 100% identiques se suivent (ex: فَلَا يُسۡرِف فِّى ou وَقَد دَّخَلُواْ), la première est nue dans le Muṣ-ḥaf et fond dans la seconde qui prend une Shaddah. Attention : cette règle exige impérativement un soukoûn sur la 1ère lettre ; si elle est voyellée (نُؤۡمِنُ بِبَعۡضٖ), l\'Izhār est obligatoire !'
+    },
+    {
+      title: 'L\'Exception Sacrée des Lettres de Madd (فِى يُوسُفَ & ءَامَنُواْ)',
+      badge: 'Izhār Obligatoire',
+      concept: 'Pourquoi le Wāw et le Yā\' de prolongation ne fusionnent JAMAIS',
+      renderVisual: () => <MaddExceptionsVisual animKey={animKey} />,
+      explanation: 'Une lettre de Madd naît du vide de la bouche (Al-Jawf), tandis qu\'une consonne naît de la langue ou des lèvres. Bien qu\'écrites pareil, elles n\'ont PAS le même point d\'articulation ! Dans « Fī Yūsuf » et « Āmanū wa-\'amilū », donnez toujours 2 temps de Madd et ne fusionnez jamais en Shaddah !'
+    },
+    {
+      title: 'Les 8 Fusions Historiques (Mutajānisayn & Mutaqāribayn)',
+      badge: '8 Cas Récensés',
+      concept: 'Les seuls couples de consonnes distinctes qui fusionnent entièrement dans le Coran',
+      renderVisual: () => <EightSimilarCasesScannerVisual animKey={animKey} />,
+      explanation: 'Le Coran recense 8 couples de fusions totales : ت➔ط, ذ➔ظ, ب➔م (Irkam-ma\'anā avec 2 temps de Ghunnah !), ق➔ك (Nakhlukkum), د➔ت, ت➔د, ل➔ر, et ث➔ذ. Mémorisez ces perles de récitation transmises par les maîtres du Tajwīd.'
+    },
+    {
+      title: 'L\'Assimilation Partielle (Idghām Nāqis dans بَسَطتَ)',
+      badge: 'ط lourd ➔ ت fin',
+      concept: 'Conserver la force et l\'écrasement du Tā\' sans émettre de Qalqalah',
+      renderVisual: () => <IdghamNaqisHeavyToLightVisual animKey={animKey} />,
+      explanation: 'Dans « Basatta » (بَسَطتَ) et « Ahattu » (أَحَطتُ), le Tā\' possède des caractéristiques de puissance suprême (emphase et Itbāq). La lettre faible (ت) ne peut pas l\'anéantir : plaquez fermement la langue pour sceller l\'emphase SANS faire de Qalqalah, puis libérez la consonne sur le Tā\' fin !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -3605,7 +4437,9 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? nunScreens
       : chapter.number === 9
       ? chapter9Screens
-      : qalqalahScreens;
+      : chapter.number === 10
+      ? qalqalahScreens
+      : chapter11Screens;
   const current = screens[screenIndex] || screens[0];
 
   const goTo = (idx: number) => {

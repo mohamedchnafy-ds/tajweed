@@ -334,6 +334,53 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 11 (Assimilation / Idghām)
+  const chapter11Verses = [
+    {
+      ref: '11:42',
+      surahFr: 'Hūd',
+      words: [
+        { text: 'وَهِيَ', rule: 'Voyelles courtes', ruleClass: 'chip-gold', why: 'Prononciation standard sans étirement.' },
+        { text: 'تَجۡرِي', rule: 'Qalqalah Sughrā', ruleClass: 'chip-qalqalah', why: 'Rebond vif sur le Jīm au milieu du verbe.' },
+        { text: 'بِهِمۡ', rule: 'Mīm Sākinah', ruleClass: 'chip-izhar', why: 'Izhār Shafawī.' },
+        { text: 'فِي', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps de prolongation.' },
+        { text: 'مَوۡجٖ', rule: 'Lettre de Līn', ruleClass: 'chip-gold', why: 'Wāw de Līn sans prolongation en continu.' },
+        { text: 'كَٱلۡجِبَالِ', rule: 'Lām Qamariyyah', ruleClass: 'chip-izhar', why: 'Lām claire avec Soukoûn.' },
+        { text: 'وَنَادَىٰ', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps.' },
+        { text: 'نُوحٌ', rule: 'Tanwīn + Hamzat Wasl', ruleClass: 'chip-gold', why: 'Enchaînement sur le nom Ibnahū.' },
+        { text: 'ٱبۡنَهُۥ', rule: 'Qalqalah & Silah', ruleClass: 'chip-qalqalah', why: 'Rebond sur le Bā\'.' },
+        { text: 'وَكَانَ', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps.' },
+        { text: 'فِي', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps.' },
+        { text: 'مَعۡزِلٖ', rule: 'Tanwīn césure', ruleClass: 'chip-gold', why: 'Arrêt permis.' },
+        { text: 'يَٰبُنَيَّ', rule: 'Appel affectueux', ruleClass: 'chip-gold', why: 'Yā\' avec Shaddah.' },
+        { text: 'ٱرۡكَب مَّعَنَا', rule: '🌟 Idghām Kāmil (ب dans م)', ruleClass: 'chip-idgham', why: 'Le Bā\' nu fusionne entièrement dans le Mīm avec 2 temps de Ghunnah : « Irkam-ma\'anā » ! À l\'arrêt sur Irkab : Qalqalah « Irkab ! ».', target: true },
+        { text: 'وَلَا', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps.' },
+        { text: 'تَكُن', rule: 'Nūn Sākinah + Mīm', ruleClass: 'chip-idgham', why: 'Idghām bi-Ghunnah.' },
+        { text: 'مَّعَ', rule: 'Mīm vocalisé', ruleClass: 'chip-gold', why: 'Prononciation standard.' },
+        { text: 'ٱلۡكَٰفِرِينَ', rule: 'Madd \'Ārid à l\'arrêt', ruleClass: 'chip-izhar', why: '2, 4 ou 6 temps de prolongation.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/011042.mp3',
+    },
+    {
+      ref: '5:28',
+      surahFr: 'Al-Mā\'idah',
+      words: [
+        { text: 'لَئِنۢ', rule: 'Iqlāb (Nūn + Bā\')', ruleClass: 'chip-iqlab', why: 'Le Nūn se transforme en Mīm avec 2 temps de Ghunnah.' },
+        { text: 'بَسَطتَ', rule: '🌟 Idghām Nāqis (ط dans ت)', ruleClass: 'chip-qalqalah', why: 'Le Tā\' lourd conserve son emphase et son Itbāq sans Qalqalah, puis la langue libère le Tā\' fin : « Basat-ta » !', target: true },
+        { text: 'إِلَيَّ', rule: 'Yā\' Mushaddadah', ruleClass: 'chip-gold', why: 'Appui ferme sur le Yā\'.' },
+        { text: 'يَدَكَ', rule: 'Voyelles courtes', ruleClass: 'chip-gold', why: 'Prononciation fluide.' },
+        { text: 'لِتَقۡتُلَنِي', rule: 'Qalqalah Sughrā', ruleClass: 'chip-qalqalah', why: 'Rebond vif sur le Qāf sans voyelle.' },
+        { text: 'مَآ', rule: 'Madd Munfasil', ruleClass: 'chip-gold', why: 'Prolongation de 4 ou 5 temps.' },
+        { text: 'أَنَا۠', rule: 'Alif muet en continu', ruleClass: 'chip-gold', why: 'L\'un des 7 Alifs : muet en liaison rapide (« Anā bi-bāsitin »).' },
+        { text: 'بِبَاسِطٖ', rule: 'Tanwīn + Yā\'', ruleClass: 'chip-idgham', why: 'Idghām bi-Ghunnah.' },
+        { text: 'يَدِيَ', rule: 'Voyelles brèves', ruleClass: 'chip-gold', why: 'Yadiya.' },
+        { text: 'إِلَيۡكَ', rule: 'Lettre de Līn', ruleClass: 'chip-gold', why: 'Yā\' de Līn.' },
+        { text: 'لِأَقۡتُلَكَ', rule: 'Qalqalah Sughrā & Arrêt', ruleClass: 'chip-qalqalah', why: 'Rebond sur le Qāf et arrêt sur le Kāf avec Hams.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/005028.mp3',
+    }
+  ];
+
   const versesList =
     chapter.number === 1
       ? chapter1Verses
@@ -353,7 +400,9 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? nunVerses
       : chapter.number === 9
       ? chapter9Verses
-      : qalqalahVerses;
+      : chapter.number === 10
+      ? qalqalahVerses
+      : chapter11Verses;
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
   const [selectedWordIndex, setSelectedWordIndex] = useState<number>(0);
 
