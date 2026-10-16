@@ -146,6 +146,41 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 5 (Madd II - Secondary Madd / Far'ī)
+  const chapter5Verses = [
+    {
+      ref: '1:7',
+      surahFr: 'Al-Fātihah',
+      words: [
+        { text: 'صِرَٰطَ', rule: 'Alif Khanjariyyah (2 temps)', ruleClass: 'chip-gold', why: 'Prolongation naturelle stricte de 2 temps sur l\'Alif miniature.' },
+        { text: 'ٱلَّذِينَ', rule: 'Dhāl doux', ruleClass: 'chip-gold', why: 'Bout de la langue effleurant les incisives supérieures.' },
+        { text: 'أَنۡعَمۡتَ', rule: 'Fathah sacrée', ruleClass: 'chip-gold', why: 'Fathah sur le Tā\' (Tu as comblé).' },
+        { text: 'عَلَيۡهِمۡ', rule: 'Izhār Shafawī', ruleClass: 'chip-izhar', why: 'Mīm Sākinah claire sans allongement.' },
+        { text: 'غَيۡرِ', rule: 'Lettre de gorge', ruleClass: 'chip-gold', why: 'Ghayn clair et Râ\' amincie par la Kasrah.' },
+        { text: 'ٱلۡمَغۡضُوبِ', rule: 'Dād emphatique', ruleClass: 'chip-gold', why: 'Istitālah latérale sur le Dād.' },
+        { text: 'عَلَيۡهِمۡ', rule: 'Izhār Shafawī', ruleClass: 'chip-izhar', why: 'Mīm net devant la lettre Wāw.' },
+        { text: 'وَلَا', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps de prolongation simples.' },
+        { text: 'ٱلضَّآلِّينَ', rule: 'Madd Lāzim Kalimī (6 temps)', ruleClass: 'chip-bad', why: 'Madd Lāzim Muthaqqal : 6 temps incompressibles avec pression (Nabrah) sur le double Lām !', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3',
+    },
+    {
+      ref: '2:5',
+      surahFr: 'Al-Baqarah',
+      words: [
+        { text: 'أُوْلَٰٓئِكَ', rule: 'Madd Wājib Muttasil', ruleClass: 'chip-gold', why: 'Alif Khanjariyyah et Hamzah dans le même mot : 4 à 5 temps obligatoires.', target: true },
+        { text: 'عَلَىٰ', rule: 'Madd Naturel 2 temps', ruleClass: 'chip-gold', why: 'Alif Maqsūrah valant 2 temps de Madd.' },
+        { text: 'هُدٗى', rule: 'Tanwīn + Mīm', ruleClass: 'chip-idgham', why: 'Tanwīn Fath qui fusionne avec Ghunnah de 2 temps dans le Mīm suivant.' },
+        { text: 'مِّن', rule: 'Nūn Sākinah + Râ\'', ruleClass: 'chip-idgham', why: 'Idghām sans Ghunnah : fusion sèche dans le Râ\'.' },
+        { text: 'رَّبِّهِمۡۖ', rule: 'Waqf Jā\'iz (صلے)', ruleClass: 'chip-izhar', why: 'Liaison préférable mais arrêt permis.' },
+        { text: 'وَأُوْلَٰٓئِكَ', rule: 'Madd Wājib Muttasil', ruleClass: 'chip-gold', why: 'Deuxième occurrence : 4 à 5 temps obligatoires.', target: true },
+        { text: 'هُمُ', rule: 'Évitement de deux Soukoûns', ruleClass: 'chip-gold', why: 'Dammah sur Mīm pour éviter l\'Iltiqā\' As-Sākinayn.' },
+        { text: 'ٱلۡمُفۡلِحُونَ', rule: 'Madd \'Ārid li-s-Sukūn', ruleClass: 'chip-izhar', why: 'Arrêt sur la fin du verset : 2, 4 ou 6 temps au choix du lecteur !', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/002005.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -214,6 +249,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter3Verses
       : chapter.number === 4
       ? chapter4Verses
+      : chapter.number === 5
+      ? chapter5Verses
       : chapter.number === 8
       ? nunVerses
       : qalqalahVerses;

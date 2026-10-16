@@ -5,7 +5,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: true },
   { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: true },
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: true },
-  { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: false },
+  { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: true },
   { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: false },
   { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: false },
   { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
@@ -1339,6 +1339,345 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'La Fathah devient un Soukoûn et le Wāw devient un Madd Naturel de 2 temps : on prononce « Hū »',
         explanationFr: 'À l\'arrêt, la Fathah sur le Wāw se transforme en Soukoûn. Précédé d\'une Dammah (ـُ + وْ), il remplit alors parfaitement les conditions du Madd Naturel et s\'allonge de 2 temps (« Hū ») !',
         ruleId: 'waqf-huwa-hiya'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 5 : LES PROLONGATIONS II (MADD SECONDAIRE / FAR'Ī)
+  // ==========================================
+  {
+    id: 'chap-5',
+    number: 5,
+    slug: 'madd-2',
+    titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)',
+    titleAr: 'المَدُّ الفَرْعِيُّ (بِسَبَبِ الهَمْزِ وَالسُّكُونِ)',
+    category: 'intermediate',
+    estimatedMinutes: 25,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre et maîtriser le Madd Far\'ī (Secondaire), prolongé au-delà des 2 temps du Madd naturel en raison d\'une Hamzah (همزة) ou d\'un Soukoûn (سكون). Maîtriser le Madd Wājib Muttasil (4-5 temps obligatoire), le Madd Jā\'iz Munfasil (4-5 temps en liaison, 2 temps à l\'arrêt), le Madd Badal (2 temps dans Hafs), le Madd Silah Kubrā (4-5 temps), le Madd Lāzim (6 temps stricts obligatoires incompressibles avec Shaddah ou Soukoûn permanent), et le Madd \'Ārid li-s-Sukūn (2, 4 ou 6 temps) avec la règle d\'or de la cohérence de récitation (Al-Mīzān).',
+    infographicPoints: [
+      'Les deux causes du Madd Far\'ī : 1. La Hamzah (همزة) qui exige 4 à 5 Harakāt (ou 2 pour le Badal). 2. Le Soukoûn (سكون) qui exige 6 Harakāt (Lāzim) ou 2, 4, 6 Harakāt (\'Ārid).',
+      'Madd Muttasil (المتصل) : Lettre de Madd et Hamzah réunies dans le MÊME mot (ex: As-Samā\', Jā\'a). Statut : Wājib (Obligatoire 4-5 temps).',
+      'Madd Munfasil (المنفصل) : Madd en fin de mot + Hamzah au début du suivant (ex: Yā-Ayyuhā). En liaison (Wasl) = 4-5 temps ; à l\'arrêt sur le premier mot = 2 temps !',
+      'Madd Badal (البدل) : La Hamzah PRÉCÈDE la lettre de Madd (ex: Āmanū, Īmānan). Dans la lecture de Hafs \'an \'Āsim, il dure STRICTEMENT 2 temps.',
+      'Madd Lāzim (اللازم) : Madd suivi d\'un Soukoûn originel ou d\'une Shaddah (ex: Ad-Dāllīn, Al-Hāqqah, Alif-Lām-Mīm). Strictement 6 TEMPS OBLIGATOIRES !',
+      'Règle d\'or de l\'Équilibre (Al-Mīzān) : Si vous choisissez 4 temps pour le Madd \'Ārid à la première fin de verset, vous DEVEZ conserver 4 temps sur toutes les fins de versets suivantes !'
+    ],
+    subrules: [
+      {
+        id: 'madd-muttasil-munfasil',
+        nameFr: '1. Madd Muttasil vs Madd Munfasil (Causes par la Hamzah)',
+        nameAr: 'المَدُّ المُتَّصِلُ وَالمُنْفَصِلُ بِسَبَبِ الهَمْزَةِ',
+        mnemonic: 'Muttasil = Même mot (4-5 t. Wājib) | Munfasil = 2 mots distincts (4-5 t. Jā\'iz en Wasl, 2 t. en Waqf)',
+        letters: ['ا', 'و', 'ي', 'ء'],
+        definitionFr: 'Toute lettre de Madd suivie d\'une Hamzah voit sa prolongation accrue à 4 ou 5 Harakāt. Si la Hamzah est dans le même mot, le Madd est Muttasil (Obligatoire). Si la Hamzah est dans le mot suivant, le Madd est Munfasil (Permis).',
+        mechanismFr: 'Poussez le souffle depuis Al-Jawf pendant 4 à 5 pulsations régulières, puis attaquez la Hamzah avec fermeté et netteté.',
+        durationHarakat: 4,
+        examples: [
+          {
+            id: 'ex-c5-1',
+            arabicText: 'وَٱلسَّمَآءِ وَمَا بَنَىٰهَا',
+            surahAyahRef: '91:5',
+            surahNameFr: 'Ash-Shams',
+            highlightSegment: 'وَٱلسَّمَآءِ',
+            highlightLetter: 'آء (Même mot)',
+            ruleApplied: 'Madd Wājib Muttasil (4-5 temps obligatoires)',
+            ruleTag: 'madd',
+            explanationFr: 'La lettre de Madd (Alif) et la Hamzah sont dans le même mot « As-Samā\' » : prolongation obligatoire de 4 à 5 temps en continu comme à l\'arrêt.',
+            transliteration: 'Was-samā\'i wa mā banāhā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/091005.mp3'
+          },
+          {
+            id: 'ex-c5-2',
+            arabicText: 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱسۡتَعِينُواْ',
+            surahAyahRef: '2:153',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'يَٰٓأَيُّهَا',
+            highlightLetter: 'يَا + أَيُّهَا (2 mots)',
+            ruleApplied: 'Madd Jā\'iz Munfasil (4-5 temps en liaison)',
+            ruleTag: 'madd',
+            explanationFr: '« Yā » est la particule d\'appel et « Ayyuhā » est le mot suivant. En liaison continue (Wasl), 4 à 5 temps sont exigés selon Hafs via Ash-Shātibiyyah.',
+            transliteration: 'Yā-ayyuhal-ladhīna āmanūs-ta\'īnū',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002153.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Raccourcir le Madd Muttasil à 2 temps par empressement.',
+            correctionFr: 'C\'est un Lahn Khafī : le Madd Muttasil est unanime (Wājib), aucun lecteur coranique ne l\'autorise à 2 temps.'
+          },
+          {
+            trapFr: 'Conserver 4 temps sur un Madd Munfasil si l\'on s\'arrête sur le premier mot.',
+            correctionFr: 'Si vous vous arrêtez sur « Inna » dans « Innā anzalnāh », la Hamzah disparaît : vous devez impérativement revenir à un Madd Naturel de 2 temps !'
+          }
+        ]
+      },
+      {
+        id: 'madd-badal-silah-kubra',
+        nameFr: '2. Madd Badal & Madd Silah Kubrā',
+        nameAr: 'مَدُّ البَدَلِ وَمَدُّ الصِّلَةِ الكُبْرَى',
+        mnemonic: 'Badal = Hamzah AVANT le Madd (2 t. dans Hafs) | Silah Kubrā = Pronom ـهُۥٓ / ـهِۦٓ + Hamzah (4-5 t.)',
+        letters: ['ء', 'ا', 'و', 'ي'],
+        definitionFr: 'Dans le Madd Badal, la Hamzah précède la lettre de Madd au lieu de la suivre (ex: Āmanū). Dans le Madd Silah Kubrā, le pronom possessif Hā\' (ـهُۥٓ / ـهِۦٓ) est suivi d\'une Hamzah au mot suivant.',
+        mechanismFr: 'Pour le Badal, prononcez 2 temps simples sans forcer. Pour la Silah Kubrā, étirez le pronom pendant 4 à 5 temps en continu uniquement.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c5-3',
+            arabicText: 'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ',
+            surahAyahRef: '2:285',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ءَامَنَ',
+            highlightLetter: 'ءَا (Hamzah avant Alif)',
+            ruleApplied: 'Madd Badal (2 temps dans Hafs)',
+            ruleTag: 'madd',
+            explanationFr: 'La Hamzah précède le Alif. À l\'origine « \'A\'mana », la deuxième Hamzah est devenue un Alif. Il dure exactement 2 temps dans la lecture de Hafs.',
+            transliteration: '\'Āmana-r-rasūlu bimā unzila ilayh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002285.mp3'
+          },
+          {
+            id: 'ex-c5-4',
+            arabicText: 'يَحۡسَبُ أَنَّ مَالَهُۥٓ أَخۡلَدَهُۥ',
+            surahAyahRef: '104:3',
+            surahNameFr: 'Al-Humazah',
+            highlightSegment: 'مَالَهُۥٓ أَخۡلَدَهُۥ',
+            highlightLetter: 'ـهُۥٓ + أَ (Petit Wāw avec vague)',
+            ruleApplied: 'Madd Silah Kubrā (4-5 temps en liaison)',
+            ruleTag: 'madd',
+            explanationFr: 'Le pronom Hā\' est suivi d\'une Hamzah au début du mot suivant : en liaison, le petit Wāw avec la vague (~) reçoit 4 à 5 temps. À l\'arrêt sur « Mālah », il devient un simple Soukoûn pur.',
+            transliteration: 'Yahsabu anna mālahū akhladah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/104003.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Confondre Madd Badal et Madd Muttasil.',
+            correctionFr: 'Dans Badal, la Hamzah est AVANT la voyelle longue (ءَا = 2 temps). Dans Muttasil, elle est APRÈS (آء = 4-5 temps).'
+          },
+          {
+            trapFr: 'Appliquer la Silah Kubrā à l\'arrêt sur le mot.',
+            correctionFr: 'À l\'arrêt, le petit Wāw ou Yā\' s\'annule entièrement et la consonne Hā\' prend un Soukoûn franc sans aucun allongement (« Mālah »).'
+          }
+        ]
+      },
+      {
+        id: 'madd-lazim-6-counts',
+        nameFr: '3. Le Madd Lāzim (6 Temps Stricts Incompressibles)',
+        nameAr: 'المَدُّ اللَّازِمُ (كَلِمِيٌّ وَحَرْفِيٌّ - ٦ حَرَكَاتٍ)',
+        mnemonic: 'Madd + Soukoûn originel ou Shaddah ➔ 6 Temps OBLIGATOIRES !',
+        letters: ['ا', 'و', 'ي'],
+        definitionFr: 'Le Madd Lāzim survient lorsqu\'une lettre de Madd est suivie d\'un Soukoûn originel permanent (présent en continu comme à l\'arrêt), matérialisé par une Shaddah (Muthaqqal) ou un Soukoûn pur (Mukhaffaf). Il impose STRICTEMENT 6 temps complets de prolongation sans dérogation.',
+        mechanismFr: 'Maintenez la note vocale sur 6 pulsations métronomiques complètes, puis faites claquer la Shaddah ou le Soukoûn avec fermeté (Nabrah).',
+        durationHarakat: 6,
+        examples: [
+          {
+            id: 'ex-c5-5',
+            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+            surahAyahRef: '1:7',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلضَّآلِّينَ',
+            highlightLetter: 'آ + لّ (Shaddah sur Lām)',
+            ruleApplied: 'Madd Lāzim Kalimī Muthaqqal (6 temps incompressibles)',
+            ruleTag: 'madd',
+            explanationFr: 'L\'Alif est suivi d\'un Lām portant une Shaddah (donc un Lām Sākin originel). Obligation absolue d\'étirer sur 6 temps complets puis de compresser sur le Lām.',
+            transliteration: 'Wa lad-dāāāāāāllīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+          },
+          {
+            id: 'ex-c5-6',
+            arabicText: 'الٓمٓ ١ ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ',
+            surahAyahRef: '2:1',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'الٓمٓ',
+            highlightLetter: 'Lām (6t) + Mīm (6t)',
+            ruleApplied: 'Madd Lāzim Harfī (Muthaqqal + Mukhaffaf)',
+            ruleTag: 'madd',
+            explanationFr: 'Dans les lettres isolées au début des sourates : le Lām dure 6 temps et fusionne avec Ghunnah dans le Mīm qui dure lui aussi 6 temps complets.',
+            transliteration: 'Alif-Lāāāāāāmm-Mīīīīīīm',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Raccourcir « Ad-Dāllīn » à 2 ou 4 temps dans la prière par précipitation.',
+            correctionFr: 'C\'est une faute de récitation majeure (Lahn Khafī impardonnable dans la Fātihah). Comptez mentalement 6 battements complets.'
+          },
+          {
+            trapFr: 'Oublier d\'appuyer sur la Shaddah à la fin des 6 temps (omission du Nabrah).',
+            correctionFr: 'Si vous n\'appuyez pas fermement sur le double Lām, le mot sonne comme « Dālīn » sans Shaddah, altérant le mot coranique.'
+          }
+        ]
+      },
+      {
+        id: 'madd-arid-leen-waqf',
+        nameFr: '4. Madd \'Ārid li-s-Sukūn & Madd Līn à l\'Arrêt',
+        nameAr: 'المَدُّ العَارِضُ لِلسُّكُونِ وَمَدُّ اللِّينِ عِنْدَ الوَقْفِ',
+        mnemonic: 'Arrêt sur fin de verset ➔ Choix libre : 2, 4 ou 6 temps (Garder la même durée !)',
+        letters: ['ا', 'و', 'ي'],
+        definitionFr: 'Sur la dernière consonne d\'un verset, l\'arrêt impose un Soukoûn incident. La voyelle longue précédente devient alors un Madd \'Ārid li-s-Sukūn, et les lettres de Līn (ـَ + وْ / يْ) deviennent un Madd Līn. Le lecteur a le choix libre de prolonger à 2, 4 ou 6 temps.',
+        mechanismFr: 'Choisissez une cadence (ex: 4 temps) et maintenez exactement cette même durée sur toutes les fins de versets de votre lecture.',
+        durationHarakat: 4,
+        examples: [
+          {
+            id: 'ex-c5-7',
+            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '1:2',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلۡعَٰلَمِينَ',
+            highlightLetter: 'ـِينْ (Arrêt sur Soukoûn)',
+            ruleApplied: 'Madd \'Ārid li-s-Sukūn (2, 4 ou 6 temps au choix)',
+            ruleTag: 'madd',
+            explanationFr: 'En continuant : « Al-\'Ālamīna » (2 temps simples). À l\'arrêt : le Nūn prend un Soukoûn incident et le Yā\' peut s\'allonger de 2, 4 ou 6 temps.',
+            transliteration: 'Al-hamdu lillāhi rabbil-\'ālamīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
+          },
+          {
+            id: 'ex-c5-8',
+            arabicText: 'فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ',
+            surahAyahRef: '106:3',
+            surahNameFr: 'Quraysh',
+            highlightSegment: 'ٱلۡبَيۡتِ',
+            highlightLetter: 'ـَيۡتْ (Līn à l\'arrêt)',
+            ruleApplied: 'Madd Līn à l\'arrêt (2, 4 ou 6 temps)',
+            ruleTag: 'madd',
+            explanationFr: 'Le Yā\' est précédé d\'une Fathah : en continu, aucun Madd n\'est permis (« Al-Bayti »). Mais à l\'arrêt, il devient un Madd Līn de 2, 4 ou 6 temps !',
+            transliteration: 'Fal-ya\'budū rabba hādhal-bayt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106003.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Changer anarchiquement de durée entre chaque verset (ex: 2 temps sur Al-\'Ālamīn, puis 6 sur Ar-Rahīm, puis 4 sur Ad-Dīn).',
+            correctionFr: 'La règle fondamentale de la récitation (Al-Mīzān) impose l\'uniformité : la durée choisie au départ doit être conservée du début à la fin de la récitation.'
+          },
+          {
+            trapFr: 'Donner au Madd Līn une durée supérieure à celle du Madd \'Ārid.',
+            correctionFr: 'La lettre de Līn est phonétiquement plus faible que la lettre de Madd : elle peut être égale ou plus courte, mais JAMAIS plus longue que le Madd \'Ārid !'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c5-1',
+        title: 'Le Madd Lāzim de la Fātihah : « Ad-Dāllīn » (1:7)',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+        surahAyahRef: '1:7',
+        targetSegment: 'وَلَا ٱلضَّآلِّينَ',
+        promptFr: 'Pourquoi le mot « ٱلضَّآلِّينَ » impose-t-il obligatoirement 6 temps complets de prolongation et comment gérer la transition vers le Lām ?',
+        hintFr: 'Observez le symbole au-dessus du Alif et la lettre qui suit immédiatement : porte-t-elle une Shaddah ?',
+        solutionFr: 'C\'est un Madd Lāzim Kalimī Muthaqqal (Madd suivi d\'une Shaddah). Il exige 6 temps incompressibles avec une pression ferme (Nabrah) sur le double Lām.',
+        breakdownSteps: [
+          'Identification de la lettre de Madd : Le Alif après le Dād emphatique.',
+          'Identification de la cause : Le Lām qui suit porte une Shaddah (لّ), ce qui équivaut à un premier Lām avec Soukoûn originel permanent (لْ) suivi d\'un Lām avec Kasrah (لِ).',
+          'Application de la règle : C\'est un Madd Lāzim Kalimī Muthaqqal. Il est strictement obligatoire (Lāzim) de maintenir la voix pendant 6 pulsations complètes.',
+          'Le Nabrah (pression) sur la Shaddah : À la 6e pulsation, compressez la voix avec fermeté sur la langue pour faire claquer le double Lām sans interrompre le souffle.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+      },
+      {
+        id: 'exo-c5-2',
+        title: 'Muttasil vs Munfasil : Sourate Al-Baqarah (2:5)',
+        verseArabic: 'أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ',
+        surahAyahRef: '2:5',
+        targetSegment: 'أُوْلَٰٓئِكَ',
+        promptFr: 'Analysez la prolongation dans « أُوْلَٰٓئِكَ » : est-elle liée (Muttasil) ou séparée (Munfasil), et que se passe-t-il si vous vous arrêtez dessus ?',
+        hintFr: 'L\'Alif Khanjariyyah et la Hamzah sont-ils dans un seul et même mot indivisible ou répartis sur deux mots ?',
+        solutionFr: '« Ulā\'ika » est un mot unique : c\'est un Madd Wājib Muttasil (4-5 temps obligatoires en continu comme à l\'arrêt).',
+        breakdownSteps: [
+          '« Ulā\'ika » est un mot unique : l\'Alif Khanjariyyah (ٰ) et la Hamzah (ئِ) sont logés dans le même mot.',
+          'Règle : Madd Wājib Muttasil (prolongation obligatoire liée).',
+          'Durée : 4 à 5 Harakāt obligatoires en Wasl comme en Waqf.',
+          'Comparaison avec Munfasil : Même si l\'on s\'arrête sur « Ulā\'ika », la prolongation reste de 4 ou 5 temps, car la Hamzah fait partie intrinsèque du mot (contrairement à « Bimā unzila » où l\'arrêt sur « Bimā » ramène la prolongation à 2 temps).'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002005.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c5-1',
+        type: 'mcq',
+        promptFr: 'Quelle est la différence fondamentale entre le Madd Muttasil (المتصل) et le Madd Munfasil (المنفصل) ?',
+        verseArabic: 'ٱلسَّمَآءَ | يَٰٓأَيُّهَا',
+        targetWord: 'ٱلسَّمَآءَ',
+        surahAyahRef: '2:22',
+        options: [
+          'Dans le Muttasil, la lettre de Madd et la Hamzah sont dans le même mot (4-5 t. obligatoires) ; dans le Munfasil, elles sont dans deux mots séparés',
+          'Le Muttasil ne dure que 2 temps et le Munfasil dure 6 temps',
+          'Le Muttasil concerne uniquement le Wāw et le Munfasil uniquement l\'Alif',
+          'Le Muttasil est interdit le vendredi'
+        ],
+        correctAnswer: 'Dans le Muttasil, la lettre de Madd et la Hamzah sont dans le même mot (4-5 t. obligatoires) ; dans le Munfasil, elles sont dans deux mots séparés',
+        explanationFr: 'Le Madd Muttasil réunit le Madd et la Hamzah dans le même mot indivisible (Wājib 4-5 temps). Le Madd Munfasil les sépare entre deux mots (Jā\'iz 4-5 temps en liaison, et 2 temps si l\'on s\'arrête sur le premier mot).',
+        ruleId: 'madd-muttasil-munfasil'
+      },
+      {
+        id: 'q-c5-2',
+        type: 'mcq',
+        promptFr: 'Combien de temps (Harakāt) doit impérativement durer un Madd Lāzim (comme dans « ٱلضَّآلِّينَ » ou « الٓمٓ ») ?',
+        verseArabic: 'غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+        targetWord: 'ٱلضَّآلِّينَ',
+        surahAyahRef: '1:7',
+        options: [
+          'Strictement 6 temps (Harakāt) incompressibles, obligatoires pour tous les lecteurs',
+          '2 temps suffisent en cas de fatigue',
+          '4 temps au choix du lecteur',
+          'Entre 2 et 8 temps selon le rythme'
+        ],
+        correctAnswer: 'Strictement 6 temps (Harakāt) incompressibles, obligatoires pour tous les lecteurs',
+        explanationFr: 'Le Madd Lāzim (suivi d\'un Soukoûn originel ou d\'une Shaddah) exige obligatoirement 6 temps complets selon le consensus unanime de tous les maîtres du Tajwīd.',
+        ruleId: 'madd-lazim-6-counts'
+      },
+      {
+        id: 'q-c5-3',
+        type: 'mcq',
+        promptFr: 'Dans le mot « ءَامَنُواْ », quelle est la nature de la prolongation sur la Hamzah initiale et combien de temps dure-t-elle selon la lecture de Hafs ?',
+        verseArabic: 'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ',
+        targetWord: 'ءَامَنَ',
+        surahAyahRef: '2:285',
+        options: [
+          'C\'est un Madd Badal (la Hamzah précède le Madd), allongé de 2 temps seulement (comme un Madd Naturel)',
+          'C\'est un Madd Lāzim de 6 temps',
+          'C\'est un Madd Muttasil de 5 temps',
+          'Il n\'y a aucun Madd, c\'est une consonne sèche'
+        ],
+        correctAnswer: 'C\'est un Madd Badal (la Hamzah précède le Madd), allongé de 2 temps seulement (comme un Madd Naturel)',
+        explanationFr: 'Dans le Madd Badal, la Hamzah se trouve AVANT la voyelle longue. Dans la lecture de Hafs \'an \'Āsim, il se récite avec exactement 2 Harakāt.',
+        ruleId: 'madd-badal-silah-kubra'
+      },
+      {
+        id: 'q-c5-4',
+        type: 'mcq',
+        promptFr: 'Lorsque vous récitez la sourate Al-Fātihah et que vous choisissez de prolonger la fin du verset 2 (« Al-\'Ālamīn ») de 4 temps, quelle est la règle pour les versets suivants ?',
+        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ٢ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ ٣',
+        targetWord: 'ٱلۡعَٰلَمِينَ',
+        surahAyahRef: '1:2',
+        options: [
+          'Règle de cohérence (Al-Mīzān) : vous devez maintenir la même durée (4 temps) sur toutes les fins de versets de votre récitation',
+          'Vous devez obligatoirement alterner : 2 temps puis 6 temps puis 4 temps',
+          'Vous devez réciter les versets suivants sans aucun Madd',
+          'Le choix est totalement aléatoire à chaque verset'
+        ],
+        correctAnswer: 'Règle de cohérence (Al-Mīzān) : vous devez maintenir la même durée (4 temps) sur toutes les fins de versets de votre récitation',
+        explanationFr: 'Le Madd \'Ārid li-s-Sukūn offre le choix entre 2, 4 ou 6 temps, mais la règle fondamentale de la balance (Al-Mīzān) impose de conserver rigoureusement la même mesure pendant toute votre session de récitation.',
+        ruleId: 'madd-arid-leen-waqf'
+      },
+      {
+        id: 'q-c5-5',
+        type: 'mcq',
+        promptFr: 'Quelle est la règle pour le mot « قُرَيۡشٍ » (Quraysh 106:1) entre la lecture continue (Wasl) et l\'arrêt (Waqf) ?',
+        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ',
+        targetWord: 'قُرَيۡشٍ',
+        surahAyahRef: '106:1',
+        options: [
+          'En continu (Wasl), 0 temps de Madd (simple consonne de Līn douce) ; à l\'arrêt (Waqf), il devient un Madd Līn permis de 2, 4 ou 6 temps',
+          'Il dure 6 temps en continu et 2 temps à l\'arrêt',
+          'Il est interdit de s\'arrêter dessus',
+          'Il prend toujours 4 temps, qu\'on s\'arrête ou qu\'on continue'
+        ],
+        correctAnswer: 'En continu (Wasl), 0 temps de Madd (simple consonne de Līn douce) ; à l\'arrêt (Waqf), il devient un Madd Līn permis de 2, 4 ou 6 temps',
+        explanationFr: 'Les lettres de Līn (Wāw ou Yā\' précédés d\'une Fathah) ne reçoivent AUCUN Madd en continu. Ce n\'est qu\'à l\'arrêt, en raison du Soukoûn incident, qu\'elles peuvent s\'étirer de 2, 4 ou 6 temps.',
+        ruleId: 'madd-arid-leen-waqf'
       }
     ]
   },

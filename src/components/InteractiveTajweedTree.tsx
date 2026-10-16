@@ -221,6 +221,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 5) {
+      return {
+        id: 'root-c5',
+        labelFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)',
+        labelAr: 'المَدُّ الفَرْعِيُّ (بِسَبَبِ الهَمْزِ وَالسُّكُونِ)',
+        descriptionFr: 'Prolongation au-delà des 2 temps du Madd naturel, causée par la rencontre avec une Hamzah (همزة) ou un Soukoûn (سكون).',
+        children: [
+          {
+            id: 'node-muttasil',
+            labelFr: '1. Madd Muttasil (Lié dans le même mot)',
+            labelAr: 'المَدُّ الوَاجِبُ المُتَّصِلُ (٤-٥ حَرَكَاتٍ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'Lettre de Madd + Hamzah dans le MÊME mot. Obligatoire (Wājib) 4 ou 5 temps en Wasl et Waqf (jusqu\'à 6 temps si Hamzah finale à l\'arrêt).',
+            examples: ['ٱلسَّمَآءَ', 'جَآءَ', 'سُوٓءَ', 'سِيٓئَتۡ'],
+          },
+          {
+            id: 'node-munfasil-silah',
+            labelFr: '2. Madd Munfasil & Silah Kubrā (Entre deux mots)',
+            labelAr: 'المَدُّ المُنْفَصِلُ وَالصِّلَةُ الكُبْرَى (٤-٥ حَرَكَاتٍ)',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'Madd en fin de mot + Hamzah au début du mot suivant. Permis (Jā\'iz) 4-5 temps en liaison (Wasl) ; redevient 2 temps si l\'on s\'arrête sur le premier mot !',
+            examples: ['يَٰٓأَيُّهَا', 'قُوٓاْ أَنفُسَكُمۡ', 'مَالَهُۥٓ أَخۡلَدَهُۥ'],
+          },
+          {
+            id: 'node-badal',
+            labelFr: '3. Madd Badal (Hamzah avant la lettre de Madd)',
+            labelAr: 'مَدُّ البَدَلِ (حَرَكَتَانِ فِي رِوَايَةِ حَفْصٍ)',
+            tagColor: 'var(--izhar)',
+            descriptionFr: 'La Hamzah précède la lettre de Madd. Vaut 2 temps seulement dans la lecture de Hafs (identique au Madd Naturel). Origine : substitution de deux Hamzahs.',
+            examples: ['ءَامَنُواْ (أَأْمَنُوا)', 'إِيمَٰنٗا (إِئْمَانًا)', 'أُوتُواْ (أُؤْتُوا)'],
+          },
+          {
+            id: 'node-lazim',
+            labelFr: '4. Madd Lāzim (6 Temps Stricts Incompressibles)',
+            labelAr: 'المَدُّ اللَّازِمُ الكَلِمِيُّ وَالحَرْفِيُّ (٦ حَرَكَاتٍ لَازِمَةً)',
+            tagColor: 'var(--bad)',
+            descriptionFr: 'Suivi d\'un Soukoûn originel ou d\'une Shaddah. Obligatoire 6 temps stricts ! Muthaqqal (avec Shaddah) vs Mukhaffaf (sans Shaddah) dans les mots et les lettres isolées.',
+            examples: ['ٱلضَّآلِّينَ (كَلِمِيٌّ مُثَقَّلٌ)', 'ءَآلۡـَٰٔنَ (كَلِمِيٌّ مُخَفَّفٌ)', 'الٓمٓ (حَرْفِيٌّ)'],
+          },
+          {
+            id: 'node-arid-leen',
+            labelFr: '5. Madd \'Ārid li-s-Sukūn & Madd Līn à l\'Arrêt',
+            labelAr: 'المَدُّ العَارِضُ لِلسُّكُونِ وَمَدُّ اللِّينِ (٢ - ٤ - ٦ حَرَكَاتٍ)',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Provoqué par le Soukoûn incident créé par l\'arrêt à la fin d\'un verset. Choix de 2, 4 ou 6 temps avec maintien strict de la cohérence (Mīzān) sur toute la récitation.',
+            examples: ['ٱلۡعَٰلَمِينْ (عارض)', 'قُرَيۡشْ (لين)', 'ٱلۡبَيۡتْ (لين)'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

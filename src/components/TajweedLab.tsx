@@ -719,6 +719,172 @@ const MADD_TEST_BENCH_CASES: MaddBenchCase[] = [
   },
 ];
 
+interface MaddFariBenchCase {
+  id: string;
+  title: string;
+  category: 'muttasil' | 'munfasil' | 'lazim' | 'arid' | 'leen';
+  arabicWord: string;
+  waqfArabicText: string;
+  waslPronunciation: string;
+  waqfPronunciation: string;
+  surahRef: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  durationHarakatWasl: number;
+  durationHarakatWaqf: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const MADD_FARI_TEST_BENCH_CASES: MaddFariBenchCase[] = [
+  {
+    id: 'fari-case-1',
+    title: 'Ash-Shams 91:5 — Madd Wājib Muttasil (وَٱلسَّمَآءِ)',
+    category: 'muttasil',
+    arabicWord: 'وَٱلسَّمَآءِ وَمَا بَنَىٰهَا',
+    waqfArabicText: 'وَٱلسَّمَآءْ (4, 5 ou 6 temps)',
+    waslPronunciation: 'Was-samā\'i (4 ou 5 temps obligatoires)',
+    waqfPronunciation: 'Was-samā\' (4, 5 ou 6 temps à l\'arrêt)',
+    surahRef: 'Ash-Shams 91:5',
+    ruleBadge: 'Madd Muttasil (Wājib)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Hamzah dans le même mot',
+    durationHarakatWasl: 4,
+    durationHarakatWaqf: '4, 5 ou 6 temps',
+    explanation: 'Le Alif de Madd et la Hamzah sont réunis dans le même mot indivisible. Statut : Wājib (Obligatoire). Il dure 4 à 5 temps en continu. À l\'arrêt sur la Hamzah finale, 6 temps sont également autorisés.',
+    fiqhImpact: 'Obligation unanime. Raccourcir à 2 temps est un Lahn Khafī blâmable.',
+    commonTrap: 'Raccourcir la prolongation à 2 temps comme un Madd Naturel.',
+  },
+  {
+    id: 'fari-case-2',
+    title: 'An-Nasr 110:1 — Verbe court avec Madd Muttasil (جَآءَ)',
+    category: 'muttasil',
+    arabicWord: 'إِذَا جَآءَ نَصۡرُ ٱللَّهِ',
+    waqfArabicText: 'جَآءْ (4 ou 5 temps)',
+    waslPronunciation: 'Idhā jā\'a (4-5 temps obligatoires)',
+    waqfPronunciation: 'Jā\' (4-5 temps avec Hamzah nette)',
+    surahRef: 'An-Nasr 110:1',
+    ruleBadge: 'Madd Muttasil (4-5 temps)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Hamzah dans le même mot',
+    durationHarakatWasl: 4,
+    durationHarakatWaqf: '4 ou 5 temps',
+    explanation: 'Même dans un mot très court de 3 lettres, la rencontre de l\'Alif et de la Hamzah dans le même mot impose impérativement 4 ou 5 temps.',
+    fiqhImpact: 'Obligatoire (Wājib).',
+    commonTrap: 'Passer trop vite et traiter « Jā\'a » comme un mot de 2 temps.',
+  },
+  {
+    id: 'fari-case-3',
+    title: 'Al-Baqarah 2:153 — Madd Munfasil lié graphiquement (يَٰٓأَيُّهَا)',
+    category: 'munfasil',
+    arabicWord: 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ',
+    waqfArabicText: 'يَا (2 temps)',
+    waslPronunciation: 'Yā-ayyuhā (4 ou 5 temps en liaison)',
+    waqfPronunciation: 'Yā (2 temps si arrêt exceptionnel)',
+    surahRef: 'Al-Baqarah 2:153',
+    ruleBadge: 'Madd Munfasil (Jā\'iz)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Hamzah au début du mot suivant',
+    durationHarakatWasl: 4,
+    durationHarakatWaqf: '2 temps (Alif seul)',
+    explanation: '« Yā » est la particule d\'appel et « Ayyuhā » est le mot suivant, bien que liés graphiquement. En continu : 4 à 5 temps. À l\'arrêt sur « Yā » : 2 temps seulement (la Hamzah ayant disparu).',
+    fiqhImpact: 'Permis (Jā\'iz 4-5 temps dans Hafs via Shātibiyyah).',
+    commonTrap: 'Conserver 4 temps à l\'arrêt sur la particule d\'appel « Yā ».',
+  },
+  {
+    id: 'fari-case-4',
+    title: 'Al-Baqarah 2:4 — Madd Munfasil séparé (بِمَآ أُنزِلَ)',
+    category: 'munfasil',
+    arabicWord: 'بِمَآ أُنزِلَ إِلَيۡكَ',
+    waqfArabicText: 'بِمَا (2 temps)',
+    waslPronunciation: 'Bimā unzila (4 ou 5 temps en liaison)',
+    waqfPronunciation: 'Bimā (2 temps : Madd Naturel rétabli)',
+    surahRef: 'Al-Baqarah 2:4',
+    ruleBadge: 'Madd Munfasil Séparé',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Hamzah au début du mot suivant',
+    durationHarakatWasl: 4,
+    durationHarakatWaqf: '2 temps',
+    explanation: 'Deux mots graphiquement distincts. À l\'arrêt sur « Bimā », la Hamzah n\'est plus prononcée : la voyelle longue redevient instantanément un Madd Naturel de 2 temps.',
+    fiqhImpact: 'Conforme. Revenir à 2 temps à l\'arrêt est une règle absolue.',
+    commonTrap: 'Penser que le signe de la vague (~) oblige à faire 4 temps même à l\'arrêt sur le premier mot.',
+  },
+  {
+    id: 'fari-case-5',
+    title: 'Al-Humazah 104:3 — Madd Silah Kubrā (مَالَهُۥٓ أَخۡلَدَهُۥ)',
+    category: 'munfasil',
+    arabicWord: 'يَحۡسَبُ أَنَّ مَالَهُۥٓ أَخۡلَدَهُۥ',
+    waqfArabicText: 'مَالَهْ (Soukoûn pur sans Madd)',
+    waslPronunciation: 'Mālahū akhladah (4-5 temps sur le petit Wāw)',
+    waqfPronunciation: 'Mālah (Hā\' avec Soukoûn pur, 0 temps)',
+    surahRef: 'Al-Humazah 104:3',
+    ruleBadge: 'Silah Kubrā (4-5 temps)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Pronom Hā\' suivi d\'une Hamzah',
+    durationHarakatWasl: 4,
+    durationHarakatWaqf: '0 temps (Soukoûn)',
+    explanation: 'Le pronom possessif Hā\' suivi d\'une Hamzah suit la règle du Madd Munfasil : 4 à 5 temps en liaison. À l\'arrêt, le petit Wāw s\'annule totalement et la consonne Hā\' prend un Soukoûn pur.',
+    fiqhImpact: 'Conforme à Hafs \'an \'Āsim.',
+    commonTrap: 'Conserver la Silah à l\'arrêt en disant "Mālahū".',
+  },
+  {
+    id: 'fari-case-6',
+    title: 'Al-Fātihah 1:7 — Madd Lāzim Kalimī Muthaqqal (ٱلضَّآلِّينَ)',
+    category: 'lazim',
+    arabicWord: 'غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+    waqfArabicText: 'ٱلضَّآلِّينْ (6 temps + Nabrah)',
+    waslPronunciation: 'Wa lad-dāāāāāāllīna (6 temps incompressibles)',
+    waqfPronunciation: 'Wa lad-dāāāāāāllīn (6 temps + Nabrah)',
+    surahRef: 'Al-Fātihah 1:7',
+    ruleBadge: 'Lāzim Muthaqqal (6 Temps)',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Madd + Shaddah dans un mot',
+    durationHarakatWasl: 6,
+    durationHarakatWaqf: '6 temps stricts',
+    explanation: 'Alif suivi d\'un Lām avec Shaddah. Obligation absolue et unanime de tenir 6 battements complets, suivi d\'un claquement ferme de la langue sur le double Lām (Nabrah).',
+    fiqhImpact: 'Obligation stricte (Lāzim). Raccourcir est un Lahn Khafī blâmable dans la prière.',
+    commonTrap: 'Raccourcir à 2 ou 4 temps par fatigue ou négligence.',
+  },
+  {
+    id: 'fari-case-7',
+    title: 'Yūnus 10:51 — Madd Lāzim Kalimī Mukhaffaf (ءَآلۡـَٰٔنَ)',
+    category: 'lazim',
+    arabicWord: 'ءَآلۡـَٰٔنَ وَقَدۡ كُنتُم بِهِۦ تَسۡتَعۡجِلُونَ',
+    waqfArabicText: 'ءَآلۡـَٰٔنْ (6 temps)',
+    waslPronunciation: 'Āāāāāāl-\'āna (6 temps sur Alif + Lām claire)',
+    waqfPronunciation: 'Āāāāāāl-\'ān (6 temps)',
+    surahRef: 'Yūnus 10:51',
+    ruleBadge: 'Lāzim Mukhaffaf (6 Temps)',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Madd + Soukoûn pur dans un mot',
+    durationHarakatWasl: 6,
+    durationHarakatWaqf: '6 temps stricts',
+    explanation: 'L\'unique exemple de Madd Lāzim Kalimī Mukhaffaf dans tout le Coran : le Alif est suivi d\'un Lām Sākin originel SANS Shaddah.',
+    fiqhImpact: 'Obligatoire (6 temps stricts).',
+    commonTrap: 'Croire qu\'il y a une Shaddah sur le Lām : le Lām est prononcé légèrement avec Soukoûn pur.',
+  },
+  {
+    id: 'fari-case-8',
+    title: 'Al-Fātihah 1:2 — Madd \'Ārid li-s-Sukūn (ٱلۡعَٰلَمِينَ)',
+    category: 'arid',
+    arabicWord: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+    waqfArabicText: 'ٱلۡعَٰلَمِينْ (2, 4 ou 6 temps)',
+    waslPronunciation: 'Rabbil-\'Ālamīna (2 temps simples)',
+    waqfPronunciation: 'Rabbil-\'Ālamīn (2, 4 ou 6 temps au choix)',
+    surahRef: 'Al-Fātihah 1:2',
+    ruleBadge: 'Madd \'Ārid (2, 4 ou 6 temps)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Arrêt avec Soukoûn incident',
+    durationHarakatWasl: 2,
+    durationHarakatWaqf: '2, 4 ou 6 temps',
+    explanation: 'En liaison : Madd Naturel de 2 temps (« Al-\'Ālamīna »). À l\'arrêt : Soukoûn incident sur le Nūn, permettant 2, 4 ou 6 temps. La durée choisie doit être maintenue sur toute la récitation (Al-Mīzān).',
+    fiqhImpact: 'Permis (Jā\'iz). Règle de cohérence obligatoire.',
+    commonTrap: 'Changer de durée au hasard d\'un verset à l\'autre.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -769,6 +935,11 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   const [maddCaseId, setMaddCaseId] = useState<string>('madd-case-1');
   const [maddFilter, setMaddFilter] = useState<'all' | 'tabii' | 'leen' | 'cameleon'>('all');
   const [isMaddWaqfMode, setIsMaddWaqfMode] = useState<boolean>(false);
+
+  // State for Chapter 5
+  const [fariCaseId, setFariCaseId] = useState<string>('fari-case-1');
+  const [fariFilter, setFariFilter] = useState<'all' | 'muttasil' | 'munfasil' | 'lazim' | 'arid'>('all');
+  const [isFariWaqfMode, setIsFariWaqfMode] = useState<boolean>(false);
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -1597,6 +1768,210 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedMaddCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 5 : LE LABORATOIRE DU MADD FAR'Ī (SECONDAIRE)
+     ========================================================================= */
+  if (chapter.number === 5) {
+    const filteredFariCases = MADD_FARI_TEST_BENCH_CASES.filter(
+      (c) => fariFilter === 'all' || c.category === fariFilter
+    );
+    const selectedFariCase =
+      MADD_FARI_TEST_BENCH_CASES.find((c) => c.id === fariCaseId) || MADD_FARI_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-iqlab': 'var(--iqlab)',
+      'chip-ikhfa': 'var(--ikhfa)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-gold': 'var(--gold)',
+      'chip-bad': 'var(--bad)',
+    };
+    const accentBorder = accentMap[selectedFariCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Laboratoire du Madd Far'ī (Secondaire)"
+          description="Expérimentez l'impact de la Hamzah et du Soukoûn sur la voix : basculez entre liaison continue (Wasl) et arrêt (Waqf) pour observer l'évanouissement ou le surgissement de la prolongation."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setFariFilter('all')}
+              aria-pressed={fariFilter === 'all'}
+            >
+              Tous ({MADD_FARI_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setFariFilter('muttasil')}
+              aria-pressed={fariFilter === 'muttasil'}
+            >
+              Muttasil (2)
+            </button>
+            <button
+              onClick={() => setFariFilter('munfasil')}
+              aria-pressed={fariFilter === 'munfasil'}
+            >
+              Munfasil & Silah (3)
+            </button>
+            <button
+              onClick={() => setFariFilter('lazim')}
+              aria-pressed={fariFilter === 'lazim'}
+            >
+              Lāzim 6 Temps (2)
+            </button>
+            <button
+              onClick={() => setFariFilter('arid')}
+              aria-pressed={fariFilter === 'arid'}
+            >
+              'Ārid li-s-Sukūn (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas pratiques du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredFariCases.map((tc) => {
+              const isSelected = tc.id === selectedFariCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setFariCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedFariCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedFariCase.surahRef}</span>
+                <span className={`chip ${selectedFariCase.colorClass}`}>
+                  {selectedFariCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedFariCase.title}
+              </h3>
+            </div>
+
+            {/* Interactive Wasl vs Waqf Toggle & Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Basculez entre Liaison continue et Arrêt</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                {isFariWaqfMode ? (
+                  <span className="text-good font-bold animate-pop">
+                    {selectedFariCase.waqfArabicText}
+                  </span>
+                ) : (
+                  <span className="text-ink">
+                    {selectedFariCase.arabicWord}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <div className="segmented">
+                  <button
+                    onClick={() => setIsFariWaqfMode(false)}
+                    aria-pressed={!isFariWaqfMode}
+                  >
+                    En Continu (Wasl)
+                  </button>
+                  <button
+                    onClick={() => setIsFariWaqfMode(true)}
+                    aria-pressed={isFariWaqfMode}
+                  >
+                    À l'Arrêt (Waqf)
+                  </button>
+                </div>
+              </div>
+
+              {/* Counts Badge */}
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-xs text-muted">Durée mesurée :</span>
+                <span className={`chip ${isFariWaqfMode ? 'chip-gold' : 'chip-idgham'} font-bold text-xs`}>
+                  {isFariWaqfMode
+                    ? selectedFariCase.durationHarakatWaqf
+                    : `${selectedFariCase.durationHarakatWasl} Temps (Harakāt)`}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                {isFariWaqfMode
+                  ? selectedFariCase.waqfPronunciation
+                  : selectedFariCase.waslPronunciation}
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedFariCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Fiqh</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedFariCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedFariCase.commonTrap}
                 </dd>
               </div>
             </div>

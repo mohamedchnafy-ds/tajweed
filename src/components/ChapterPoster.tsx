@@ -27,6 +27,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 4) {
       return 'Le Madd est la seule règle explicitement mentionnée dans le Sahīh Al-Bukhārī : donnez toujours exactement 2 temps (Harakāt) au Madd Naturel (Nūhīhā) pour ne pas commettre de Lahn Jalī sacrilège, et ne prolongez jamais les lettres de Līn (ـَ + وْ / يْ) en lecture continue !';
     }
+    if (chapter.number === 5) {
+      return 'Le Madd Far\'ī obéit à deux causes : la Hamzah (Muttasil obligatoire 4-5 temps dans le même mot, Munfasil 4-5 temps entre mots) et le Soukoûn (Lāzim obligatoire 6 temps stricts incompressibles, \'Ārid flexible 2, 4 ou 6 temps à l\'arrêt). Gardez toujours la cohérence de vos 6 temps sur le Madd Lāzim et l\'équilibre parfait de la Balance (Al-Mīzān) !';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -106,6 +109,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             : chapter.number === 3
             ? 'Chapitre suivant (Les Prolongations I)'
             : chapter.number === 4
+            ? 'Chapitre suivant (Les Prolongations II - Madd Far\'ī)'
+            : chapter.number === 5
             ? 'Chapitre suivant (Nūn Sākinah)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'

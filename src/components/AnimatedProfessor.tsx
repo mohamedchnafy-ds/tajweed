@@ -1641,6 +1641,386 @@ const HuwaHiyaWaqfVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
   );
 };
 
+/** =========================================================================
+ * CHAPITRE 5 : LES PROLONGATIONS II (MADD SECONDAIRE / FAR'Ī)
+ * ========================================================================= */
+
+/** Écran 1 : Muttasil (Même mot) vs Munfasil (Mots séparés) */
+const MuttasilMunfasilVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedType, setSelectedType] = useState<'muttasil' | 'munfasil'>('muttasil');
+  const [isWaqf, setIsWaqf] = useState(false);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      {/* Category selector */}
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => { setSelectedType('muttasil'); setIsWaqf(false); }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedType === 'muttasil' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Madd Muttasil (المتصل - Même Mot)
+        </button>
+        <button
+          onClick={() => { setSelectedType('munfasil'); setIsWaqf(false); }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedType === 'munfasil' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          Madd Munfasil (المنفصل - Deux Mots)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        {selectedType === 'muttasil' ? (
+          <div className="space-y-4 animate-fade">
+            <div className="label">Madd Wājib Muttasil (المَدُّ الوَاجِبُ المُتَّصِلُ)</div>
+
+            <div className="font-ar text-4xl sm:text-5xl text-ink my-2 leading-[1.8]" dir="rtl">
+              <span className="text-gold font-bold">ٱلسَّمَآءَ</span>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="segmented">
+                <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+                  En continu (Wasl)
+                </button>
+                <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+                  À l'arrêt (Waqf sur Hamzah)
+                </button>
+              </div>
+            </div>
+
+            {/* Counts visualization */}
+            <div className="p-4 rounded-xl bg-gold-bg border border-gold/30 text-left space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-ink">
+                  {isWaqf ? 'Durée à l\'arrêt sur « As-Samā\' » :' : 'Durée en liaison continue :'}
+                </span>
+                <span className="chip chip-gold font-bold">
+                  {isWaqf ? '4, 5 ou 6 Temps' : '4 ou 5 Temps Obligatoires'}
+                </span>
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                {isWaqf
+                  ? 'La Hamzah et le Alif restent scellés dans le même mot. À l\'arrêt sur la Hamzah terminale, vous pouvez maintenir 4 ou 5 temps, ou monter jusqu\'à 6 temps en raison du Soukoûn incident.'
+                  : 'Statut Wājib (Obligatoire) : tous les maîtres du Tajwīd s\'accordent sur l\'obligation d\'allonger à 4 ou 5 pulsations. Le réduire à 2 temps est un Lahn Khafī !'}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4 animate-fade">
+            <div className="label">Madd Jā'iz Munfasil (المَدُّ الجَائِزُ المُنْفَصِلُ)</div>
+
+            <div className="font-ar text-3xl sm:text-4xl text-ink my-2 leading-[1.8]" dir="rtl">
+              {isWaqf ? (
+                <span>
+                  <span className="text-idgham font-bold">بِمَا</span>{' '}
+                  <span className="text-muted/40 line-through">أُنزِلَ</span>
+                </span>
+              ) : (
+                <span>
+                  <span className="text-idgham font-bold">بِمَآ</span>{' '}
+                  <span className="text-ink">أُنزِلَ</span>
+                </span>
+              )}
+            </div>
+
+            <div className="flex justify-center">
+              <div className="segmented">
+                <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+                  En continu (Wasl)
+                </button>
+                <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+                  Arrêt d'urgence sur « Bimā »
+                </button>
+              </div>
+            </div>
+
+            {/* Counts visualization */}
+            <div className={`p-4 rounded-xl border text-left space-y-2 ${
+              isWaqf ? 'bg-soft border-line' : 'bg-idgham-bg border-idgham/30'
+            }`}>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-ink">
+                  {isWaqf ? 'Durée à l\'arrêt sur « Bimā » :' : 'Durée en liaison continue :'}
+                </span>
+                <span className={`chip ${isWaqf ? 'chip-izhar' : 'chip-idgham'} font-bold`}>
+                  {isWaqf ? '2 Temps Seulement (Madd Naturel)' : '4 ou 5 Temps Permis (Hafs)'}
+                </span>
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                {isWaqf
+                  ? 'RÈGLE CRUCIALE : En coupant sur « Bimā », la Hamzah du mot suivant disparaît de la récitation ! La cause du Madd s\'évanouissant, le mot redevient un Madd Naturel strict de 2 temps.'
+                  : 'En liaison continue, la lettre de Madd rencontre la Hamzah du mot suivant : selon la voie d\'Ash-Shātibiyyah (Hafs), vous devez prolonger de 4 ou 5 temps.'}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Métronome des 6 temps du Madd Lāzim (ٱلضَّآلِّينَ) */
+const MaddLazimMetronomeVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeWord, setActiveWord] = useState<'dallin' | 'alan'>('dallin');
+  const [beatCount, setBeatCount] = useState(6);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      {/* Word toggle */}
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setActiveWord('dallin')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activeWord === 'dallin' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱلضَّآلِّينَ (Lāzim Muthaqqal / Lourd)
+        </button>
+        <button
+          onClick={() => setActiveWord('alan')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activeWord === 'alan' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ءَآلۡـَٰٔنَ (Lāzim Mukhaffaf / Léger)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-5">
+        <div className="label">
+          {activeWord === 'dallin'
+            ? 'Al-Fātihah 1:7 — Madd Lāzim Kalimī Muthaqqal'
+            : 'Yūnus 10:51, 91 — Madd Lāzim Kalimī Mukhaffaf'}
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink my-1 leading-[1.8]" dir="rtl">
+          {activeWord === 'dallin' ? (
+            <span>
+              وَلَا <span className="text-bad font-bold">ٱلضَّآلِّينَ</span>
+            </span>
+          ) : (
+            <span>
+              <span className="text-bad font-bold">ءَآلۡـَٰٔنَ</span> وَقَدۡ كُنتُم
+            </span>
+          )}
+        </div>
+
+        {/* 6 Beats Visual Track */}
+        <div className="p-4 rounded-xl bg-soft border border-line space-y-3">
+          <div className="flex items-center justify-between text-xs text-muted">
+            <span className="font-medium text-ink">Métronome des 6 Harakāt incompressibles</span>
+            <span className="font-mono font-bold text-bad">6 Temps Obligatoires</span>
+          </div>
+
+          <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
+            {[1, 2, 3, 4, 5, 6].map((beat) => (
+              <button
+                key={beat}
+                onClick={() => setBeatCount(beat)}
+                className={`py-2 rounded-xl text-center font-display text-sm font-bold transition-all ${
+                  beat <= beatCount
+                    ? 'bg-bad text-white shadow-xs scale-105'
+                    : 'bg-card text-muted border border-line'
+                }`}
+              >
+                {beat}
+              </button>
+            ))}
+          </div>
+
+          <div className="text-[11px] text-muted text-center">
+            {activeWord === 'dallin'
+              ? 'Temps 1 à 6 : étirement régulier du Alif ➔ Au 6e temps : Ancrage ferme sur le Lām avec Shaddah (Nabrah) !'
+              : 'Temps 1 à 6 : étirement sur le Alif ➔ Fin sur un simple Soukoûn sans Shaddah (Mukhaffaf).'}
+          </div>
+        </div>
+
+        {/* Breakdown box */}
+        <div className="p-4 rounded-xl bg-bad-bg/60 border border-bad/30 text-left space-y-2 text-xs">
+          <span className="font-semibold text-bad block">
+            {activeWord === 'dallin'
+              ? 'Le Nabrah (النبرة) sur la Shaddah :'
+              : 'Unicité coranique de « Āl-āna » :'}
+          </span>
+          <p className="text-muted leading-relaxed">
+            {activeWord === 'dallin'
+              ? 'Le piège fatal dans la Fātihah est d\'amortir les 6 temps en laissant s\'éteindre la voix sans appuyer sur le Lām. Vous devez exercer une pression musculaire de la langue (Nabrah) à la fin des 6 battements pour faire claquer le double Lām !'
+              : 'C\'est le SEUL et unique mot de tout le Saint Coran contenant un Madd Lāzim Kalimī Mukhaffaf (suivi d\'une Lām Sākinah sans Shaddah).'}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : La Règle d'Or de la Cohérence (Al-Mīzān) sur le Madd 'Ārid li-s-Sukūn */
+const MaddAridConsistencyVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedPace, setSelectedPace] = useState<2 | 4 | 6>(4);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="label text-center">Choisissez votre cadence pour la Sourate Al-Fātihah</div>
+
+      {/* Pace buttons */}
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedPace(2)}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedPace === 2 ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          2 Temps (Al-Qasr / Rapide)
+        </button>
+        <button
+          onClick={() => setSelectedPace(4)}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedPace === 4 ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          4 Temps (At-Tawassut / Recommandé)
+        </button>
+        <button
+          onClick={() => setSelectedPace(6)}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedPace === 6 ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          6 Temps (At-Tūl / Méditatif)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+        <div className="label text-center">Synchronisation des Fins de Versets (Al-Mīzān)</div>
+
+        {/* 3 Synchronized Verses */}
+        <div className="space-y-3">
+          <div className="p-3.5 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+            <span className="ref-tag text-xs">Verset 2</span>
+            <div className="font-ar text-2xl sm:text-3xl text-ink" dir="rtl">
+              رَبِّ <span className="text-good font-bold">ٱلۡعَٰلَمِينَ</span>
+            </div>
+            <span className="chip chip-gold text-xs font-mono font-bold">{selectedPace} Temps</span>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+            <span className="ref-tag text-xs">Verset 3</span>
+            <div className="font-ar text-2xl sm:text-3xl text-ink" dir="rtl">
+              ٱلرَّحۡمَٰنِ <span className="text-good font-bold">ٱلرَّحِيمِ</span>
+            </div>
+            <span className="chip chip-gold text-xs font-mono font-bold">{selectedPace} Temps</span>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-soft border border-line flex items-center justify-between gap-3">
+            <span className="ref-tag text-xs">Verset 4</span>
+            <div className="font-ar text-2xl sm:text-3xl text-ink" dir="rtl">
+              مَٰلِكِ يَوۡمِ <span className="text-good font-bold">ٱلدِّينِ</span>
+            </div>
+            <span className="chip chip-gold text-xs font-mono font-bold">{selectedPace} Temps</span>
+          </div>
+        </div>
+
+        {/* Golden rule alert */}
+        <div className="p-4 rounded-xl bg-good-bg border border-good/30 text-left space-y-1.5 text-xs">
+          <span className="font-semibold text-good block">Principe de la Balance (مِيزَانُ التِّلَاوَةِ) :</span>
+          <p className="text-muted leading-relaxed">
+            « Le semblable en sa matière doit être égal à son semblable » (وَاللَّفْظُ فِي نَظِيرِهِ كَمِثْلِهِ).
+            Si vous commencez votre prière avec 4 temps sur « Al-'Ālamīn », vous DEVEZ clore tous vos versets suivants sur 4 temps ! Varier anarchiquement est un défaut d'esthétique (Lahn Khafī).
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Le Laboratoire du Madd Līn (Wasl vs Waqf) */
+const MaddLeenWaqfVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'quraysh' | 'khawf'>('quraysh');
+  const [isWaqf, setIsWaqf] = useState(false);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      {/* Toggle word */}
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('quraysh')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'quraysh' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          قُرَيۡشٍ (Yā' de Līn)
+        </button>
+        <button
+          onClick={() => setSelectedWord('khawf')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'khawf' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          خَوۡفِۭ (Wāw de Līn)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">
+          {selectedWord === 'quraysh'
+            ? 'Sūrah Quraysh 106:1 — Yā\' Sākin précédé de Fathah'
+            : 'Sūrah Quraysh 106:4 — Wāw Sākin précédé de Fathah'}
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink my-2 leading-[1.8]" dir="rtl">
+          {isWaqf ? (
+            <span className="text-good font-bold animate-pop">
+              {selectedWord === 'quraysh' ? 'قُرَيۡشْ' : 'خَوۡفْ'}
+            </span>
+          ) : (
+            <span className="text-ink">
+              {selectedWord === 'quraysh' ? 'لِإِيلَٰفِ قُرَيۡشٍ ١' : 'مِّنۡ خَوۡفِۭ ٤'}
+            </span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+              En liaison (Wasl)
+            </button>
+            <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+              À l'arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        {/* Dynamic analysis */}
+        <div className={`p-4 rounded-xl border text-left space-y-2 ${
+          isWaqf ? 'bg-good-bg border-good/30' : 'bg-soft border-line'
+        }`}>
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-ink">
+              {isWaqf ? 'Statut du Madd à l\'arrêt :' : 'Statut en liaison continue :'}
+            </span>
+            <span className={`chip ${isWaqf ? 'chip-gold' : 'chip-izhar'} font-bold`}>
+              {isWaqf ? 'Madd Līn (2, 4 ou 6 Temps)' : '0 Temps de Madd (Consonne douce)'}
+            </span>
+          </div>
+
+          <p className="text-xs text-muted leading-relaxed">
+            {isWaqf
+              ? 'L\'arrêt immobilise la consonne finale avec un Soukoûn incident. La lettre de Līn se détend et s\'allonge librement de 2, 4 ou 6 temps au choix !'
+              : 'En continuant la lecture, il est FORMELLEMENT INTERDIT d\'allonger la lettre de Līn ! La voyelle coule rapidement et sans heurt (« Li-īlāfi Qurayshin ilāfihim »).'}
+          </p>
+
+          <p className="text-[11px] text-muted pt-2 border-t border-line/40">
+            ⚠️ Règle de proportionnalité : La durée du Madd Līn peut être égale ou inférieure au Madd 'Ārid, mais JAMAIS supérieure (si votre 'Ārid fait 4 temps, votre Līn fera 2 ou 4 temps, jamais 6).
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
@@ -1990,6 +2370,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 5 (Madd II - Secondary Madd / Far'ī)
+  const chapter5Screens = [
+    {
+      title: 'Madd Muttasil (Lié) vs Madd Munfasil (Séparé)',
+      badge: 'Hamzah : 4-5 Temps',
+      concept: 'Même mot (Wājib obligatoire) ou deux mots séparés (Jā\'iz permis)',
+      renderVisual: () => <MuttasilMunfasilVisual animKey={animKey} />,
+      explanation: 'Dans le Muttasil (ex: ٱلسَّمَآءَ), le Madd et la Hamzah sont soudés dans le même mot : 4 à 5 temps obligatoires en continu comme à l\'arrêt. Dans le Munfasil (ex: بِمَآ أُنزِلَ), la Hamzah est au début du second mot : 4 à 5 temps en continu, mais si vous coupez sur « Bimā », la Hamzah disparaît et la prolongation redescend à 2 temps !'
+    },
+    {
+      title: 'Le Métronome des 6 Temps du Madd Lāzim (ٱلضَّآلِّينَ)',
+      badge: '6 Temps Incompressibles',
+      concept: 'Le Madd le plus puissant du Coran et le claquement du Nabrah sur la Shaddah',
+      renderVisual: () => <MaddLazimMetronomeVisual animKey={animKey} />,
+      explanation: 'Madd Lāzim : lorsqu\'une voyelle longue est suivie d\'un Soukoûn originel ou d\'une Shaddah, vous DEVEZ tenir 6 pulsations métronomiques complètes sans relâcher. À la fin des 6 temps sur « Ad-Dāllīn », appliquez une pression ferme de la langue (Nabrah) pour faire résonner le double Lām !'
+    },
+    {
+      title: 'La Règle d\'Or de la Balance (Al-Mīzān) sur le Madd \'Ārid',
+      badge: 'Harmonie & Fiqh',
+      concept: 'L\'interdiction de varier anarchiquement la durée des fins de versets',
+      renderVisual: () => <MaddAridConsistencyVisual animKey={animKey} />,
+      explanation: 'À l\'arrêt sur la fin d\'un verset, le Madd \'Ārid li-s-Sukūn (ex: Al-\'Ālamīn) vous donne le choix entre 2, 4 ou 6 temps. Mais la règle de la Balance (Al-Mīzān) exige l\'uniformité : la durée choisie sur le premier verset doit être strictement conservée sur tous les versets suivants de votre récitation.'
+    },
+    {
+      title: 'Le Laboratoire du Madd Līn : Wasl vs Waqf',
+      badge: '0 Temps ➔ 2, 4, 6 Temps',
+      concept: 'Pourquoi une lettre de Līn ne prend aucun Madd en continu mais s\'allonge à l\'arrêt',
+      renderVisual: () => <MaddLeenWaqfVisual animKey={animKey} />,
+      explanation: 'Les lettres de Līn (Wāw ou Yā\' précédés d\'une Fathah comme dans Quraysh ou Khawf) ne reçoivent AUCUN Madd en lecture continue. Mais lorsque vous vous arrêtez dessus, le Soukoûn incident libère une prolongation permise de 2, 4 ou 6 temps. Sa durée ne peut jamais dépasser celle de votre Madd \'Ārid !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -1999,6 +2411,8 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter3Screens
       : chapter.number === 4
       ? chapter4Screens
+      : chapter.number === 5
+      ? chapter5Screens
       : chapter.number === 8
       ? nunScreens
       : qalqalahScreens;
