@@ -21,6 +21,56 @@ interface TreeNode {
 export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ chapter }) => {
   // Build tree based on chapter
   const getTreeData = (): TreeNode => {
+    if (chapter.number === 1) {
+      return {
+        id: 'root-c1',
+        labelFr: 'Fondements du Tajwīd & Éradication du Lahn',
+        labelAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ',
+        descriptionFr: 'Les bases indispensables pour réciter avec clarté, piété et conformité à la Sunnah.',
+        children: [
+          {
+            id: 'node-statut',
+            labelFr: '1. Qu\'est-ce que le Tajwīd & Statut Juridique',
+            labelAr: 'حُكْمُ التَّجْوِيدِ الشَّرْعِيُّ',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'Pratique = Farḍ \'Ayn (obligation individuelle pour chaque croyant afin de ne pas altérer la parole divine). Théorie = Farḍ Kifāyah (spécialistes).',
+            examples: ['وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا', 'يَتۡلُونَهُۥ حَقَّ تِلَاوَتِهِۦٓ'],
+          },
+          {
+            id: 'node-lahn-jali',
+            labelFr: '2. Al-Lahn Al-Jalī (Erreur Majeure)',
+            labelAr: 'اللَّحْنُ الجَلِيُّ (حَرَامٌ)',
+            tagColor: 'var(--bad)',
+            descriptionFr: 'Toute erreur qui change le sens ou la grammaire (ex: changer une voyelle). C\'est un péché (Harām) si commis par négligence !',
+            examples: ['أَنۡعَمۡتَ (Tu as comblé)', 'أَنۡعَمۡتُ (J\'ai comblé ❌)'],
+          },
+          {
+            id: 'node-lahn-khafi',
+            labelFr: '3. Al-Lahn Al-Khafī (Erreur Subtile)',
+            labelAr: 'اللَّحْنُ الخَفِيُّ (مَكْرُوهٌ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'Défaut de finition ou d\'embellissement sans altérer le sens (ex: prolonger un Madd 2 temps au lieu de 4-5 temps). Déconseillé.',
+            examples: ['ٱلسَّمَآءَ (Madd 4-5 temps)', 'بِمَصَٰبِيحَ'],
+          },
+          {
+            id: 'node-rasm',
+            labelFr: '4. Rasm \'Uthmānī & Muṣ-ḥaf',
+            labelAr: 'الرَّسْمُ العُثْمَانِيُّ وَالمُصْحَفُ',
+            tagColor: 'var(--izhar)',
+            descriptionFr: 'L\'orthographe sacrée fixée par les Compagnons (Sahābah). Qur\'ān = Parole révélée | Muṣ-ḥaf = Volume physique relié.',
+            examples: ['ٱلصَّلَوٰةَ (écrit avec Wāw)', 'ٱلزَّكَوٰةَ'],
+          },
+          {
+            id: 'node-conditions',
+            labelFr: '5. Les 2 Conditions d\'Acceptation',
+            labelAr: 'شَرْطَا قَبُولِ التِّلَاوَةِ',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: '1. L\'Intention pure (Ikhlās) exclusivement pour Allah. 2. La conformité à la Sunnah (Tajwīd et Tartīl mesuré). Mnémo 6236 versets : 6 - 23 ans - 6 !',
+            examples: ['قُلۡ إِنَّ صَلَاتِى... لِلَّهِ', '6236 versets (6-23-6)'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

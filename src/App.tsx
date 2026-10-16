@@ -82,17 +82,26 @@ export const App: React.FC = () => {
     }
   };
 
+  const isLastPilotChapter = () => {
+    const currentIdx = PILOT_CHAPTERS.findIndex(c => c.number === selectedChapter?.number);
+    return currentIdx === -1 || currentIdx + 1 >= PILOT_CHAPTERS.length;
+  };
+
+  const moveToNextChapter = () => {
+    const currentIdx = PILOT_CHAPTERS.findIndex(c => c.number === selectedChapter?.number);
+    if (currentIdx !== -1 && currentIdx + 1 < PILOT_CHAPTERS.length) {
+      handleSelectChapter(PILOT_CHAPTERS[currentIdx + 1].number);
+    } else {
+      handleBackToChapters();
+    }
+  };
+
   const goToNextStep = () => {
     if (currentStepIdx + 1 < STEPS_ORDER.length) {
       setCurrentStep(STEPS_ORDER[currentStepIdx + 1]);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Move to next chapter
-      if (selectedChapter?.number === 8) {
-        handleSelectChapter(10);
-      } else {
-        handleBackToChapters();
-      }
+      moveToNextChapter();
     }
   };
 
@@ -165,13 +174,7 @@ export const App: React.FC = () => {
                   setCurrentStep('map');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                onGoToNextChapter={() => {
-                  if (selectedChapter.number === 8) {
-                    handleSelectChapter(10);
-                  } else {
-                    handleBackToChapters();
-                  }
-                }}
+                onGoToNextChapter={moveToNextChapter}
               />
             )}
           </div>
@@ -196,7 +199,7 @@ export const App: React.FC = () => {
             <button onClick={goToNextStep} className="btn btn-primary">
               <span>
                 {currentStepIdx + 1 === STEPS_ORDER.length
-                  ? (selectedChapter.number === 8 ? 'Chapitre suivant' : 'Terminer')
+                  ? (!isLastPilotChapter() ? 'Chapitre suivant' : 'Terminer')
                   : STEPS[currentStepIdx + 1].label}
               </span>
               <ArrowRight className="w-4 h-4" />

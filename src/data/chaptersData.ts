@@ -1,7 +1,7 @@
 import { Chapter } from '../types/tajweed';
 
 export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string; titleAr: string; category: 'beginner' | 'intermediate' | 'advanced'; isPilot: boolean }[] = [
-  { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Erreurs (Lahn)', titleAr: 'المفاهيم الأساسية واللحن', category: 'beginner', isPilot: false },
+  { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)', titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ', category: 'beginner', isPilot: true },
   { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: false },
   { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: false },
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: false },
@@ -20,6 +20,297 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
 ];
 
 export const PILOT_CHAPTERS: Chapter[] = [
+  // ==========================================
+  // CHAPITRE 1 : CONCEPTS FONDAMENTAUX & LAHN
+  // ==========================================
+  {
+    id: 'chap-1',
+    number: 1,
+    slug: 'basic-concepts',
+    titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)',
+    titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ',
+    category: 'beginner',
+    estimatedMinutes: 15,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre ce qu\'est le Tajwīd, son obligation religieuse (Farḍ \'Ayn vs Farḍ Kifāyah), comment éradiquer le Lahn Jalī (erreur majeure altérant le sens), le graphisme sacré du Rasm \'Uthmānī et les deux conditions d\'acceptation de la récitation.',
+    infographicPoints: [
+      'Application du Tajwīd = Farḍ \'Ayn (obligation individuelle) pour réciter la parole divine sans la corrompre. L\'étude théorique des définitions est Farḍ Kifāyah.',
+      'Al-Lahn Al-Jalī (Erreur Majeure) : Altère le sens ou la grammaire (ex: dire An\'amtu au lieu de An\'amta). C\'est un péché (Harām) si commis par négligence !',
+      'Al-Lahn Al-Khafī (Erreur Subtile) : Défaut de finition sans changer le sens (ex: raccourcir un Madd de 5 temps à 2 temps). Déconseillé (Makrūh).',
+      'Rasm \'Uthmānī : L\'orthographe sacrée établie par les Compagnons sous \'Uthmān ibn \'Affān (ex: ٱلصَّلَوٰةَ s\'écrit avec un Wāw).',
+      'Deux conditions d\'acceptation : 1. L\'Intention pure (Ikhlās) exclusivement pour Allah. 2. La conformité à la Sunnah (Tajwīd et Tartīl).',
+      'Astuce mnémotechnique : 23 ans de mission prophétique. Ajoutez un 6 avant et un 6 après -> 6236 versets dans tout le Coran !'
+    ],
+    subrules: [
+      {
+        id: 'tajweed-definition',
+        nameFr: '1. Qu\'est-ce que le Tajwīd & Statut Juridique',
+        nameAr: 'تَعْرِيفُ التَّجْوِيدِ وَحُكْمُهُ الشَّرْعِيُّ',
+        mnemonic: 'Pratique = Farḍ \'Ayn (Chacun) | Théorie = Farḍ Kifāyah (Spécialistes)',
+        letters: [],
+        definitionFr: 'Linguistiquement, le Tajwīd signifie l\'embellissement et le perfectionnement. Techniquement, il consiste à donner à chaque lettre son point d\'articulation exact (Makhraj) et ses caractéristiques originelles (Sifāt).',
+        mechanismFr: 'L\'obligation individuelle (Farḍ \'Ayn) exige de lire les lettres et les voyelles correctement pour préserver le sens. Connaître les définitions techniques savantes est une obligation communautaire (Farḍ Kifāyah).',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c1-1',
+            arabicText: 'وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا',
+            surahAyahRef: '73:4',
+            surahNameFr: 'Al-Muzzammil',
+            highlightSegment: 'وَرَتِّلِ',
+            highlightLetter: 'Ordre divin',
+            ruleApplied: 'Obligation du Tartīl (Récitation posée)',
+            ruleTag: 'izhar',
+            explanationFr: 'Allah ordonne au Prophète ﷺ et à chaque musulman de réciter le Coran avec Tartīl, c\'est-à-dire lentement, distinctement et en respectant les règles.',
+            transliteration: 'Wa rattili-l-Qur\'āna tartīlā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/073004.mp3'
+          },
+          {
+            id: 'ex-c1-2',
+            arabicText: 'ٱلَّذِينَ ءَاتَيۡنَٰهُمُ ٱلۡكِتَٰبَ يَتۡلُونَهُۥ حَقَّ تِلَاوَتِهِۦٓ',
+            surahAyahRef: '2:121',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'حَقَّ تِلَاوَتِهِۦٓ',
+            highlightLetter: 'Droit de récitation',
+            ruleApplied: 'Récitation comme révélée',
+            ruleTag: 'heavy',
+            explanationFr: '« Ils le récitent comme il mérite d\'être récité ». Les Compagnons ont expliqué que cela signifie appliquer ses règles et méditer son sens.',
+            transliteration: 'Yatlūnahū haqqa tilāwatih',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002121.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Penser que le Tajwīd n\'est qu\'une option réservée aux imams ou aux savants.',
+            correctionFr: 'Le minimum vital (ne pas déformer les lettres ni les voyelles) est une obligation pour chaque musulman dans ses prières.'
+          }
+        ]
+      },
+      {
+        id: 'lahn-types',
+        nameFr: '2. Les Deux Types d\'Erreurs : Lahn Jalī vs Lahn Khafī',
+        nameAr: 'اللَّحْنُ الجَلِيُّ وَاللَّحْنُ الخَفِيُّ',
+        mnemonic: 'Jalī = Erreur Majeure (Harām / Altère le sens) | Khafī = Erreur Subtile (Makrūh / Altère l\'embellissement)',
+        letters: [],
+        definitionFr: 'Le mot arabe Lahn (لَحْن) désigne une erreur commise lors de la récitation. Le livre distingue formellement l\'erreur majeure qui détruit le sens, de l\'erreur subtile qui prive la récitation de sa plénitude.',
+        mechanismFr: 'Le Lahn Jalī provient du changement d\'une voyelle, de l\'échange d\'une consonne ou de la confusion entre voyelle courte et longue. Le Lahn Khafī concerne les durées de prolongations, l\'omission d\'une Ghunnah ou d\'une Qalqalah.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c1-3',
+            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+            surahAyahRef: '1:7',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'أَنۡعَمۡتَ',
+            highlightLetter: 'تَ (Fathah)',
+            ruleApplied: 'Piège critique de Lahn Jalī',
+            ruleTag: 'qalqalah',
+            explanationFr: '« An\'amta » avec Fathah signifie : « Ceux que Tu (Allah) as comblés ». Si un lecteur dit par erreur « An\'amtu » avec Dammah, le sens devient : « Ceux que J\'AI comblés », s\'attribuant ainsi l\'acte divin !',
+            transliteration: 'An\'amta \'alayhim',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+          },
+          {
+            id: 'ex-c1-4',
+            arabicText: 'وَلَقَدۡ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنۡيَا بِمَصَٰبِيحَ',
+            surahAyahRef: '67:5',
+            surahNameFr: 'Al-Mulk',
+            highlightSegment: 'ٱلسَّمَآءَ',
+            highlightLetter: 'Madd Wājib (4-5 temps)',
+            ruleApplied: 'Exemple de Lahn Khafī',
+            ruleTag: 'madd',
+            explanationFr: 'Le mot « As-Samā\' » doit s\'allonger de 4 à 5 temps. Si le lecteur ne fait que 2 temps, le sens (« le ciel ») ne change pas, mais c\'est un Lahn Khafī (manque de rigueur esthétique).',
+            transliteration: 'Zayyannā-s-samā\'a-d-dunyā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/067005.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Négliger la précision des voyelles courtes (Fathah, Dammah, Kasrah) dans la Fātihah.',
+            correctionFr: 'Une seule voyelle déplacée peut inverser le sujet et le complément d\'objet, invalidant la prière.'
+          },
+          {
+            trapFr: 'Confondre des consonnes proches comme Tā\' (ت) et Tā\' (ط), ou Sīn (س) et Sād (ص).',
+            correctionFr: 'Travaillez l\'articulation distincte des lettres emphatiques et légères.'
+          }
+        ]
+      },
+      {
+        id: 'quran-mushaf-rasm',
+        nameFr: '3. Qur\'ān vs Muṣ-ḥaf & Le Rasm \'Uthmānī',
+        nameAr: 'القُرْآنُ وَالمُصْحَفُ وَالرَّسْمُ العُثْمَانِيُّ',
+        mnemonic: 'Qur\'ān = Parole Révélée | Muṣ-ḥaf = Volume Relié | Rasm = Orthographe Sacrée',
+        letters: [],
+        definitionFr: 'Le « Qur\'ān » est la parole incréée d\'Allah, qu\'elle soit psalmodiée ou dans les cœurs, même pour un seul verset. Le « Muṣ-ḥaf » est l\'objet physique contenant l\'intégralité des 114 sourates. Le Rasm \'Uthmānī est le système orthographique fixé par les Compagnons.',
+        mechanismFr: 'L\'écriture du Coran obéit au Rasm \'Uthmānī : les mots s\'écrivent selon cette tradition immuable quel que soit le pays ou la calligraphie (ex: ٱلصَّلَوٰةَ avec Wāw).',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c1-5',
+            arabicText: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ',
+            surahAyahRef: '2:43',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ٱلصَّلَوٰةَ',
+            highlightLetter: 'وٰ (Wāw surmonté d\'un petit Alif)',
+            ruleApplied: 'Rasm \'Uthmānī (Orthographe Sacrée)',
+            ruleTag: 'silent',
+            explanationFr: 'Dans le Mushaf, « As-Salāh » s\'écrit avec un Wāw surmonté d\'un Alif minuscule (خنجرية), mais se lit toujours avec le son Alif long. C\'est la marque sacrée du Rasm \'Uthmānī.',
+            transliteration: 'Wa aqīmu-s-Salāta wa ātu-z-Zakāh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Prononcer le Wāw littéralement dans « As-Salawāh ».',
+            correctionFr: 'Le Wāw n\'est que le support écrit du Alif : on prononce « As-Salāh ».'
+          }
+        ]
+      },
+      {
+        id: 'acceptance-conditions',
+        nameFr: '4. Les 2 Conditions d\'Acceptation de la Récitation',
+        nameAr: 'شَرْطَا قَبُولِ التِّلَاوَةِ (الإِخْلَاصُ وَالمُتَابَعَةُ)',
+        mnemonic: '1. Intention pure (Ikhlās) + 2. Conformité Sunnah (Tartīl & Voix embellie)',
+        letters: [],
+        definitionFr: 'La récitation du Coran est un acte d\'adoration (عِبَادَة) récompensé par Allah. Mais pour être agréée, elle requiert deux conditions absolues : l\'intention sincère dans le cœur et la conformité à la Sunnah.',
+        mechanismFr: '1. Intention : réciter uniquement pour plaire à Allah, sans ostentation (Riyā\'). 2. Sunnah : réciter avec Tajwīd, Tartīl (rythme mesuré) et embellissement naturel de la voix.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c1-6',
+            arabicText: 'قُلۡ إِنَّ صَلَاتِى وَنُسُكِى وَمَحۡيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '6:162',
+            surahNameFr: 'Al-An\'ām',
+            highlightSegment: 'لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            highlightLetter: 'Pureté exclusive',
+            ruleApplied: 'L\'Intention Pure (Al-Ikhlās)',
+            ruleTag: 'heavy',
+            explanationFr: 'Toute l\'adoration du croyant, y compris chaque lettre récitée, doit être dédiée à Allah seul, sans chercher l\'éloge des créatures.',
+            transliteration: 'Qul inna salātī wa nusukī wa mahyāya wa mamātī lillāhi rabbi-l-\'ālamīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/006162.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Réciter pour impressionner son entourage ou faire étalage de sa belle voix.',
+            correctionFr: 'Renouvelez toujours votre intention intérieurement avant d\'ouvrir le Mushaf.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c1-1',
+        title: 'Analyse critique : Sūrah Al-Fātihah (1:7)',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ',
+        surahAyahRef: '1:7',
+        targetSegment: 'أَنۡعَمۡتَ',
+        promptFr: 'Pourquoi remplacer la Fathah finale par une Dammah sur « An\'amta » est-il considéré comme un péché (Lahn Jalī) ?',
+        hintFr: 'Traduisez le mot avec la Fathah « -ta » puis avec la Dammah « -tu ».',
+        solutionFr: 'Altération majeure du sens (Lahn Jalī)',
+        breakdownSteps: [
+          'Étape 1 : « An\'amta » (avec Fathah) est à la 2e personne du singulier : « Toi (Allah), Tu as comblé de bienfaits ».',
+          'Étape 2 : « An\'amtu » (avec Dammah) bascule à la 1re personne du singulier : « J\'ai comblé de bienfaits ».',
+          'Étape 3 : Le lecteur s\'attribue ainsi la grâce divine accordée aux prophètes et pieux prédécesseurs.',
+          'Conclusion : Cette faute déforme la théologie et invalide la prière. C\'est l\'archétype du Lahn Jalī à bannir impérativement.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+      },
+      {
+        id: 'exo-c1-2',
+        title: 'Décryptage du Rasm \'Uthmānī : Sūrah Al-Baqarah (2:43)',
+        verseArabic: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ وَٱرۡكَعُواْ مَعَ ٱلرَّٰكِعِينَ',
+        surahAyahRef: '2:43',
+        targetSegment: 'ٱلصَّلَوٰةَ',
+        promptFr: 'Comment prononce-t-on la lettre Wāw présente dans le mot « ٱلصَّلَوٰةَ » ?',
+        hintFr: 'Observez le petit symbole au-dessus du Wāw.',
+        solutionFr: 'On prononce un Alif long (As-Salāh), le Wāw n\'est que le tracé graphique',
+        breakdownSteps: [
+          'Le mot est écrit dans le Rasm \'Uthmānī sacré avec la lettre Wāw.',
+          'Un petit Alif miniature (Alif Khanjariyyah) est posé au-dessus du Wāw.',
+          'Ce signe indique que le Wāw ne se prononce pas « w », mais sert de support au son « ā ».',
+          'On prononce donc « As-Salāt / As-Salāh » et jamais « As-Salawat ».'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c1-1',
+        type: 'mcq',
+        promptFr: 'Quel est le statut religieux de l\'application pratique du Tajwīd lors de la lecture du Coran ?',
+        verseArabic: 'وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا',
+        surahAyahRef: '73:4',
+        options: [
+          'Farḍ \'Ayn (Obligation individuelle pour chaque musulman dans la mesure de ses capacités)',
+          'Farḍ Kifāyah (Obligation qui ne concerne que les imams et enseignants)',
+          'Sunnah purement facultative',
+          'Une tradition calligraphique sans rapport avec la voix'
+        ],
+        correctAnswer: 'Farḍ \'Ayn (Obligation individuelle pour chaque musulman dans la mesure de ses capacités)',
+        explanationFr: 'Réciter le Coran sans altérer les lettres ni les voyelles est une obligation individuelle (Farḍ \'Ayn). En revanche, apprendre par cœur les définitions et termes techniques savants est une obligation communautaire (Farḍ Kifāyah).',
+        ruleId: 'tajweed-definition'
+      },
+      {
+        id: 'q-c1-2',
+        type: 'mcq',
+        promptFr: 'Qu\'est-ce qui caractérise un « Lahn Jalī » (اللَّحْنُ الجَلِيُّ) ?',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+        targetWord: 'أَنۡعَمۡتَ',
+        surahAyahRef: '1:7',
+        options: [
+          'Une erreur évidente qui altère la grammaire ou change le sens d\'un verset (Harām par négligence)',
+          'Une prolongation raccourcie d\'un ou deux temps sans altérer le sens',
+          'Une récitation un peu trop rapide',
+          'L\'oubli d\'un signe d\'arrêt en fin de verset'
+        ],
+        correctAnswer: 'Une erreur évidente qui altère la grammaire ou change le sens d\'un verset (Harām par négligence)',
+        explanationFr: 'Le Lahn Jalī est une faute claire et majeure (changer une voyelle, omettre une consonne) qui transforme la signification de la parole d\'Allah. C\'est strictement interdit si commis par négligence.',
+        ruleId: 'lahn-types'
+      },
+      {
+        id: 'q-c1-3',
+        type: 'click_word',
+        promptFr: 'Repérage visuel : Cliquez sur le mot de ce verset où une faute de voyelle (mettre une Dammah au lieu de la Fathah) change radicalement le sens.',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+        clickableSegments: ['صِرَٰطَ', 'ٱلَّذِينَ', 'أَنۡعَمۡتَ', 'عَلَيۡهِمۡ'],
+        correctAnswer: 'أَنۡعَمۡتَ',
+        explanationFr: '« An\'amta » avec Fathah (« Tu as comblé »). Si on met une Dammah « An\'amtu », cela signifie « J\'ai comblé », déplaçant la divinité vers la créature ! C\'est l\'exemple emblématique du livre.',
+        ruleId: 'lahn-types'
+      },
+      {
+        id: 'q-c1-4',
+        type: 'error_detect',
+        promptFr: 'Un lecteur prolonge le mot « As-Samā\' » pendant 2 temps au lieu des 4 à 5 temps requis. Quelle est la nature exacte de cette faute ?',
+        verseArabic: 'وَلَقَدۡ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنۡيَا بِمَصَٰبِيحَ',
+        targetWord: 'ٱلسَّمَآءَ',
+        surahAyahRef: '67:5',
+        options: [
+          'Lahn Khafī : Le sens reste intact (« le ciel »), mais la récitation perd de sa splendeur et de sa perfection.',
+          'Lahn Jalī : La prière est annulée car le mot est invalidé.',
+          'Ce n\'est pas une erreur du tout.',
+          'Une erreur d\'articulation de consonne.'
+        ],
+        correctAnswer: 'Lahn Khafī : Le sens reste intact (« le ciel »), mais la récitation perd de sa splendeur et de sa perfection.',
+        explanationFr: 'Le livre de Drs. Islām Fekry classe explicitement le raccourcissement des prolongations secondaires comme un Lahn Khafī (erreur subtile) : elle ne change pas le sens, n\'est pas un péché, mais doit être évitée pour atteindre l\'excellence.',
+        ruleId: 'lahn-types'
+      },
+      {
+        id: 'q-c1-5',
+        type: 'mcq',
+        promptFr: 'Quelle est la méthode mnémotechnique donnée dans le livre pour se souvenir des 6236 versets du Coran ?',
+        verseArabic: '٦٢٣٦',
+        options: [
+          '23 ans de mission prophétique, entourés d\'un 6 avant et d\'un 6 après : 6 - 23 - 6',
+          'Multiplier le nombre de sourates par 55',
+          'Ajouter le nombre de pages du Mushaf',
+          'Compter 100 versets par jour pendant deux mois'
+        ],
+        correctAnswer: '23 ans de mission prophétique, entourés d\'un 6 avant et d\'un 6 après : 6 - 23 - 6',
+        explanationFr: 'Astuce mnémotechnique du chapitre 1 : la Da\'wah prophétique a duré 23 ans. Placez un 6 devant et un 6 derrière : vous obtenez instantanément 6236 versets !',
+        ruleId: 'acceptance-conditions'
+      }
+    ]
+  },
   // ==========================================
   // CHAPITRE 8 : NŪN SĀKINAH & TANWĪN
   // ==========================================

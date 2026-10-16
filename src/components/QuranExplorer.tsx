@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Chapter } from '../types/tajweed';
 import { Mic, Play, Pause, Square, RotateCcw } from 'lucide-react';
 import { StepHeader } from './ui';
@@ -10,6 +10,40 @@ interface QuranExplorerProps {
 }
 
 export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
+  // Verses for Chapter 1 (Basic Concepts & Lahn)
+  const chapter1Verses = [
+    {
+      ref: '1:7',
+      surahFr: 'Al-Fātihah',
+      words: [
+        { text: 'صِرَٰطَ', rule: 'Emphase (Sād & Tā\')', ruleClass: 'chip-gold', why: 'Lettres d\'Isti\'lā\' : ne confondez pas avec Sīn ou Tā\' (Lahn Jalī).' },
+        { text: 'ٱلَّذِينَ', rule: 'Liaison & Dhāl doux', ruleClass: 'chip-gold', why: 'Hamzat Wasl effacée, bout de la langue entre les dents pour le Dhāl.' },
+        { text: 'أَنۡعَمۡتَ', rule: 'Cœur du Lahn Jalī', ruleClass: 'chip-qalqalah', why: 'Fathah sacrée sur le Tā\' (Tu as comblé). Ne dites JAMAIS An\'amtu (J\'ai comblé) !', target: true },
+        { text: 'عَلَيۡهِمۡ', rule: 'Mīm Sākinah Izhār', ruleClass: 'chip-izhar', why: 'Mīm sans prolongation excessive, suivi du Ghayn.' },
+        { text: 'غَيۡرِ', rule: 'Ghayn & Râ\' Tarqīq', ruleClass: 'chip-gold', why: 'Ghayn de la gorge, Râ\' amincie par la Kasrah.' },
+        { text: 'ٱلۡمَغۡضُوبِ', rule: 'Dād & Istitālah', ruleClass: 'chip-gold', why: 'Prolongation latérale de la langue pour le Dād.' },
+        { text: 'عَلَيۡهِمۡ', rule: 'Izhār Shafawī', ruleClass: 'chip-izhar', why: 'Mīm Sākinah suivi du Wāw : clarté nette sans pause.' },
+        { text: 'وَلَا', rule: 'Madd naturel', ruleClass: 'chip-gold', why: 'Prolongation normale de 2 temps.' },
+        { text: 'ٱلضَّآلِّينَ', rule: 'Madd Lāzim (6 temps)', ruleClass: 'chip-idgham', why: 'Madd Lāzim Muthaqqal : 6 temps obligatoires avec Shaddah. Raccourcir est un Lahn Khafī.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3',
+    },
+    {
+      ref: '2:43',
+      surahFr: 'Al-Baqarah',
+      words: [
+        { text: 'وَأَقِيمُواْ', rule: 'Alif muet final', ruleClass: 'chip-gold', why: 'Le rond au-dessus du dernier Alif signale qu\'il est muet (Rasm \'Uthmānī).' },
+        { text: 'ٱلصَّلَوٰةَ', rule: 'Rasm \'Uthmānī (Wāw)', ruleClass: 'chip-qalqalah', why: 'Écrit avec Wāw mais lu As-Salāh grâce à l\'Alif vertical (Alif Khanjariyyah).', target: true },
+        { text: 'وَءَاتُواْ', rule: 'Madd Badal & Alif muet', ruleClass: 'chip-gold', why: '2 temps de Madd pour la Hamzah allongée.' },
+        { text: 'ٱلزَّكَوٰةَ', rule: 'Rasm \'Uthmānī (Wāw)', ruleClass: 'chip-qalqalah', why: 'Deuxième exemple classique de Wāw calligraphique portant l\'Alif suscrit.', target: true },
+        { text: 'وَٱرۡكَعُواْ', rule: 'Hamzat Wasl & Râ\' lourd', ruleClass: 'chip-gold', why: 'La Hamzah de début disparaît en liaison, le Râ\' est emphatique.' },
+        { text: 'مَعَ', rule: 'Lettre \'Ayn', ruleClass: 'chip-gold', why: 'Articulation profonde au milieu de la gorge.' },
+        { text: 'ٱلرَّٰكِعِينَ', rule: 'Arrêt avec Madd \'Ārid', ruleClass: 'chip-izhar', why: 'Arrêt permis sur 2, 4 ou 6 temps de prolongation.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -69,12 +103,18 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
-  const versesList = chapter.number === 8 ? nunVerses : qalqalahVerses;
+  const versesList = chapter.number === 1 ? chapter1Verses : chapter.number === 8 ? nunVerses : qalqalahVerses;
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
-  const currentVerse = versesList[activeVerseIndex];
   const [selectedWordIndex, setSelectedWordIndex] = useState<number>(0);
 
-  const selectedWord = currentVerse.words[selectedWordIndex];
+  // Reset indices on chapter change
+  useEffect(() => {
+    setActiveVerseIndex(0);
+    setSelectedWordIndex(0);
+  }, [chapter.number]);
+
+  const currentVerse = versesList[activeVerseIndex] || versesList[0];
+  const selectedWord = currentVerse.words[selectedWordIndex] || currentVerse.words[0];
 
   // Audio & Mic hooks
   const { isPlaying, isLoading, playbackRate, togglePlay, toggleSpeed } =
@@ -109,14 +149,14 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
           <div className="segmented">
             {versesList.map((v, i) => (
               <button
-                key={i}
-                aria-pressed={i === activeVerseIndex}
+                key={v.ref}
                 onClick={() => {
                   setActiveVerseIndex(i);
                   setSelectedWordIndex(0);
                 }}
+                aria-pressed={activeVerseIndex === i}
               >
-                {v.surahFr} {v.ref}
+                {v.ref}
               </button>
             ))}
           </div>
@@ -124,83 +164,115 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       />
 
       <div className="surface overflow-hidden">
-        <div className="px-5 sm:px-10 pt-8 pb-6 text-center">
-          <span className="ref-tag">Sourate {currentVerse.surahFr}, verset {currentVerse.ref}</span>
+        {/* Barre de lecture */}
+        <div className="px-6 py-4 bg-soft border-b border-line flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={togglePlay}
+              disabled={isLoading}
+              className="btn btn-primary"
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {isPlaying ? 'Pause' : 'Écouter le Cheikh'}
+            </button>
+            <button
+              onClick={toggleSpeed}
+              className="btn btn-secondary text-xs"
+              title="Vitesse de lecture"
+            >
+              {playbackRate}x
+            </button>
+          </div>
 
-          <div className="flex flex-wrap items-baseline justify-center gap-x-1 gap-y-2 mt-6" dir="rtl">
+          <span className="ref-tag">
+            {currentVerse.surahFr} ({currentVerse.ref}) · Cheikh Al-Husary
+          </span>
+        </div>
+
+        {/* Verset mot à mot */}
+        <div className="p-8 sm:p-12 text-center bg-card">
+          <p className="label mb-6">Touchez un mot pour analyser sa règle</p>
+
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3" dir="rtl">
             {currentVerse.words.map((w, idx) => {
               const isSelected = selectedWordIndex === idx;
+              const hasColor = w.target;
               return (
                 <button
                   key={idx}
                   onClick={() => setSelectedWordIndex(idx)}
-                  aria-pressed={isSelected}
-                  className={`px-2 sm:px-3 rounded-2xl transition-colors select-none ${
-                    isSelected ? 'bg-soft' : 'hover:bg-soft/60'
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl transition-all select-none ${
+                    isSelected
+                      ? 'bg-lapis text-lapis-ink shadow-md scale-105'
+                      : hasColor
+                      ? `${w.ruleClass} hover:opacity-90`
+                      : 'bg-soft text-ink hover:bg-line'
                   }`}
                 >
-                  <span
-                    className="font-ar text-[38px] sm:text-[48px] leading-[1.9] block"
-                    style={{ color: w.target ? ruleColor[w.ruleClass] : 'var(--ink)' }}
-                  >
+                  <span className="font-ar text-3xl sm:text-4xl leading-[1.7] block">
                     {w.text}
                   </span>
-                  <span
-                    className={`block h-0.5 mx-auto -mt-1 mb-1 rounded-full transition-all ${isSelected ? 'w-8 bg-gilt' : 'w-0'}`}
-                  />
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="px-5 sm:px-8 py-4 border-t border-line flex flex-wrap items-center justify-center gap-2">
-          <button onClick={togglePlay} disabled={isLoading} className="btn btn-primary">
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
-            <span>{isPlaying ? 'Pause' : 'Écouter Al-Husary'}</span>
-          </button>
-
-          <button onClick={toggleSpeed} className="btn btn-secondary tabular-nums" title="Changer la vitesse">
-            {playbackRate}×
-          </button>
-
-          {!recordedUrl ? (
-            <button
-              onClick={isRecording ? stopRecording : startRecording}
-              className={`btn ${isRecording ? 'bg-bad-bg text-bad' : 'btn-secondary'}`}
-            >
-              {isRecording ? <Square className="w-4 h-4 fill-current" /> : <Mic className="w-4 h-4" />}
-              <span>{isRecording ? 'Arrêter l\'enregistrement' : 'M\'enregistrer'}</span>
-            </button>
-          ) : (
-            <>
-              <button onClick={playRecordedAudio} className="btn btn-secondary">
-                {isPlayingRecording ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                <span>{isPlayingRecording ? 'Pause' : 'Écouter ma voix'}</span>
-              </button>
-              <button onClick={clearRecording} className="btn btn-ghost">
-                <RotateCcw className="w-4 h-4" />
-                <span>Recommencer</span>
-              </button>
-            </>
-          )}
-        </div>
-
+        {/* Fiche d'analyse du mot */}
         {selectedWord && (
-          <div key={`${activeVerseIndex}-${selectedWordIndex}`} className="px-5 sm:px-8 py-6 bg-soft flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 animate-fade">
-            <span
-              className="font-ar text-[40px] leading-[1.6] shrink-0"
-              style={{ color: selectedWord.target ? ruleColor[selectedWord.ruleClass] : 'var(--ink)' }}
-              dir="rtl"
-            >
-              {selectedWord.text}
-            </span>
-            <div>
-              <span className={`chip ${selectedWord.ruleClass}`}>{selectedWord.rule}</span>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink">{selectedWord.why}</p>
+          <div
+            className="p-6 sm:p-8 border-t border-line bg-soft animate-fade"
+            style={{ boxShadow: `inset 4px 0 0 ${ruleColor[selectedWord.ruleClass] || 'var(--ink)'}` }}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+              <span className={`chip ${selectedWord.ruleClass}`}>
+                {selectedWord.rule}
+              </span>
+              <span className="font-ar text-3xl text-ink" dir="rtl">{selectedWord.text}</span>
             </div>
+            <p className="text-[15px] sm:text-base leading-relaxed text-ink max-w-2xl">
+              {selectedWord.why}
+            </p>
           </div>
         )}
+
+        {/* Miroir vocal */}
+        <div className="p-6 sm:p-8 border-t border-line bg-card">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="label mb-1">Miroir vocal</p>
+              <h2 className="font-display text-lg text-ink">
+                Enregistrez-vous et comparez votre voix à celle du Cheikh
+              </h2>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {!isRecording ? (
+                <button onClick={startRecording} className="btn btn-secondary">
+                  <Mic className="w-4 h-4 text-bad" />
+                  S'enregistrer
+                </button>
+              ) : (
+                <button onClick={stopRecording} className="btn btn-primary bg-bad">
+                  <Square className="w-4 h-4" />
+                  Arrêter
+                </button>
+              )}
+
+              {recordedUrl && !isRecording && (
+                <>
+                  <button onClick={playRecordedAudio} className="btn btn-secondary">
+                    {isPlayingRecording ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                    Mon enregistrement
+                  </button>
+                  <button onClick={clearRecording} className="btn btn-ghost btn-icon" title="Effacer">
+                    <RotateCcw className="w-4 h-4" />
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
