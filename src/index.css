@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f2f4ef;
+  --card: #ffffff;
+  --ink: #1b2420;
+  --muted: #5b6660;
+  --line: #d6ddd5;
+  --soft: #e8ede6;
+
+  /* Catégories Tajwīd */
+  --izhar: #2457a6;
+  --izhar-bg: #e5edf8;
+  --idgham: #2b8549;
+  --idgham-bg: #e2f2e7;
+  --iqlab: #7b4fa8;
+  --iqlab-bg: #f1e9f8;
+  --ikhfa: #c2471f;
+  --ikhfa-bg: #fbeae2;
+  --qalqalah: #bd3434;
+  --qalqalah-bg: #f8e4e4;
+  --gold: #9a7417;
+  --gold-bg: #f6efdc;
+
+  --f-ar: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+  --f-display: "Young Serif", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --r: 16px;
+}
+
+:root.dark {
+  --paper: #111613;
+  --card: #19201c;
+  --ink: #e6ebe7;
+  --muted: #9ba69f;
+  --line: #2b3530;
+  --soft: #212a25;
+
+  /* Catégories Tajwīd en mode sombre */
+  --izhar: #86b3f2;
+  --izhar-bg: #1b2738;
+  --idgham: #5fc883;
+  --idgham-bg: #16301f;
+  --iqlab: #c59cec;
+  --iqlab-bg: #2a1f36;
+  --ikhfa: #f19069;
+  --ikhfa-bg: #33211a;
+  --qalqalah: #ef7070;
+  --qalqalah-bg: #371c1c;
+  --gold: #e0b956;
+  --gold-bg: #2e2715;
+}
+
+html, body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+/* Calligraphie arabe riche et nette */
+.ar {
+  font-family: var(--f-ar);
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+}
+
+.ar-display {
+  font-family: var(--f-ar);
+  font-size: clamp(28px, 7vw, 42px);
+  line-height: 1.7;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Badges Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-weight: 700;
+  font-size: 0.9em;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.25, 1.3);
+}
+.chip:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.chip-izhar { background: var(--izhar-bg); color: var(--izhar); border: 1px solid var(--izhar); }
+.chip-idgham { background: var(--idgham-bg); color: var(--idgham); border: 1px solid var(--idgham); }
+.chip-iqlab { background: var(--iqlab-bg); color: var(--iqlab); border: 1px solid var(--iqlab); }
+.chip-ikhfa { background: var(--ikhfa-bg); color: var(--ikhfa); border: 1px solid var(--ikhfa); }
+.chip-qalqalah { background: var(--qalqalah-bg); color: var(--qalqalah); border: 1px solid var(--qalqalah); }
+.chip-gold { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); }
+
+/* Badge référence coranique */
+.ref-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-bg);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-family: var(--f-body);
+  border: 1px solid rgba(154, 116, 23, 0.2);
+}
+.ref-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+}
+
+/* Le Professeur Card */
+.prof-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 20px 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.prof-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--idgham), var(--gold));
+}
+
+/* Interactive Mindmap Tree Layout */
+.mm-node {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mm-node:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.mm-node.active {
+  background: var(--soft);
+  border-color: var(--ink);
+  font-weight: 700;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
