@@ -212,6 +212,35 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 7 (Lam Sakinah)
+  const chapter7Verses = [
+    {
+      ref: '91:1-2',
+      surahFr: 'Ash-Shams',
+      words: [
+        { text: 'وَٱلشَّمۡسِ', rule: 'Double Effacement en Wasl', ruleClass: 'chip-idgham', why: 'Hamzat Wasl et Lām Shamsiyyah disparaissent toutes les deux : on récite directement « Wash-shams » !', target: true },
+        { text: 'وَضُحَىٰهَا', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: 'Prolongation de 2 temps sur le Hā\' et l\'Alif.' },
+        { text: 'وَٱلۡقَمَرِ', rule: 'Lām Qamariyyah (Izhār)', ruleClass: 'chip-izhar', why: 'La Lām porte un Soukoûn visible et se prononce clairement avec Tawassut : « Wal-qamar ».', target: true },
+        { text: 'إِذَا', rule: 'Dhāl doux & Madd', ruleClass: 'chip-gold', why: 'Sortir la pointe de la langue sur le Dhāl.' },
+        { text: 'تَلَىٰهَا', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: 'Prolongation naturelle de 2 temps.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/091001.mp3',
+    },
+    {
+      ref: '112:1-2',
+      surahFr: 'Al-Ikhlās',
+      words: [
+        { text: 'قُلۡ', rule: 'Lām Al-Fi\'l (Izhār)', ruleClass: 'chip-izhar', why: 'Lām du verbe impératif : prononcez avec Tawassut sans faire de Qalqalah (« Qula » ❌).', target: true },
+        { text: 'هُوَ', rule: 'Pronom Huwa', ruleClass: 'chip-gold', why: 'Prononciation standard.' },
+        { text: 'ٱللَّهُ', rule: 'Lafz Al-Jalālah Tafkhīm', ruleClass: 'chip-gold', why: 'Précédé de la Fathah du Wāw : Lām lourd et majestueux (« Huwa-llāh »).', target: true },
+        { text: 'أَحَدٌ', rule: 'Tanwīn à la césure', ruleClass: 'chip-gold', why: 'À l\'arrêt : « Ahad » (Qalqalah Wustā). En liaison : Tanwīn prend Kasrah accidentelle.' },
+        { text: 'ٱللَّهُ', rule: 'Lafz Al-Jalālah Tarqīq (Wasl)', ruleClass: 'chip-izhar', why: 'En liaison continue : « Ahaduni-llāh », la Kasrah accidentelle amincit le Nom d\'Allah !', target: true },
+        { text: 'ٱلصَّمَدُ', rule: 'Lām Shamsiyyah & Qalqalah', ruleClass: 'chip-idgham', why: 'Lām absorbée dans le Sād avec Shaddah (« As-Samad ») + Qalqalah sur le Dāl à l\'arrêt.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -284,6 +313,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter5Verses
       : chapter.number === 6
       ? chapter6Verses
+      : chapter.number === 7
+      ? chapter7Verses
       : chapter.number === 8
       ? nunVerses
       : qalqalahVerses;

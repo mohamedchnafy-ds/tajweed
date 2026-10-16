@@ -2366,6 +2366,446 @@ const TwoHamzahsTransformationVisual: React.FC<{ animKey: number }> = ({ animKey
 };
 
 /* =========================================================================
+   CHAPITRE 7 : Mini-composants interactifs et didactiques (Lām Sākinah)
+   ========================================================================= */
+
+/** Écran 1 : Métaphore Cosmique Lune vs Soleil (Izhār Qamarī vs Idghām Shamsī) */
+const MoonVsSunLamVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeType, setActiveType] = useState<'qamar' | 'shams'>('qamar');
+
+  const moonLetters = ['ء', 'ب', 'غ', 'ح', 'ج', 'ك', 'و', 'خ', 'ف', 'ع', 'ق', 'ي', 'م', 'هـ'];
+  const sunLetters = ['ط', 'ث', 'ص', 'ر', 'ت', 'ض', 'ذ', 'ن', 'د', 'س', 'ظ', 'ز', 'ش', 'ل'];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Basculez entre la Lām Lunaire (Izhār) et la Lām Solaire (Idghām)
+      </div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button
+            onClick={() => setActiveType('qamar')}
+            aria-pressed={activeType === 'qamar'}
+            className="flex items-center gap-1.5"
+          >
+            <span>🌙</span>
+            <span>Lām Qamariyyah (14)</span>
+          </button>
+          <button
+            onClick={() => setActiveType('shams')}
+            aria-pressed={activeType === 'shams'}
+            className="flex items-center gap-1.5"
+          >
+            <span>☀️</span>
+            <span>Lām Shamsiyyah (14)</span>
+          </button>
+        </div>
+      </div>
+
+      {activeType === 'qamar' ? (
+        <div className="p-5 rounded-2xl bg-card border border-izhar/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-izhar text-xs font-bold">
+              🌙 Izhār Qamarī (Clarté limpide)
+            </span>
+            <span className="text-xs text-muted">Signe : Soukoûn visible (لۡ)</span>
+          </div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+            <span className="text-muted">ٱ</span>
+            <span className="text-good font-bold underline decoration-izhar decoration-2 underline-offset-8">لۡ</span>
+            <span>قَمَرُ</span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+            Comme la lune permet d’admirer les étoiles sans les éclipser, la Lām reste <strong className="text-good">clairement audible</strong> avec son Soukoûn (لۡ) devant ces 14 lettres.
+          </p>
+
+          <div className="pt-2 border-t border-line">
+            <span className="text-[11px] font-semibold text-muted block mb-1.5">
+              Formule mnémonique sacrée des 14 lettres lunaires :
+            </span>
+            <div className="p-2 rounded-xl bg-soft font-ar text-lg text-ink font-semibold tracking-wide" dir="rtl">
+              إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ
+            </div>
+            <div className="flex flex-wrap justify-center gap-1 mt-2">
+              {moonLetters.map((l, i) => (
+                <span key={i} className="w-6 h-6 rounded-md bg-izhar-bg text-izhar text-xs font-bold flex items-center justify-center font-ar">
+                  {l}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="p-5 rounded-2xl bg-card border border-idgham/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-idgham text-xs font-bold">
+              ☀️ Idghām Shamsī (Fusion totale)
+            </span>
+            <span className="text-xs text-muted">Signe : Lām nue + Shaddah (ّ)</span>
+          </div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+            <span className="text-muted">ٱ</span>
+            <span className="text-bad opacity-35 line-through">ل</span>
+            <span className="text-idgham font-bold">شَّ</span>
+            <span>مۡسُ</span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+            Comme le soleil éblouit et fait disparaître les étoiles, la Lām est <strong className="text-bad">totalement silencieuse</strong> et fond dans la consonne suivante qui prend une Shaddah (ّ).
+          </p>
+
+          <div className="pt-2 border-t border-line">
+            <span className="text-[11px] font-semibold text-muted block mb-1.5">
+              Les 14 lettres solaires (début de chaque mot du poème) :
+            </span>
+            <div className="p-2 rounded-xl bg-soft font-ar text-sm sm:text-base text-ink" dir="rtl">
+              طِبۡ ثُمَّ صِلۡ رَحِمًا تَفُزۡ ضِفۡ ذَا نِعَمۡ · دَعۡ سُوءَ ظَنٍّ زُرۡ شَرِيفًا لِلۡكَرَمۡ
+            </div>
+            <div className="flex flex-wrap justify-center gap-1 mt-2">
+              {sunLetters.map((l, i) => (
+                <span key={i} className="w-6 h-6 rounded-md bg-idgham-bg text-idgham text-xs font-bold flex items-center justify-center font-ar">
+                  {l}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 2 : Le Double Effacement en Liaison Continue (Wasl sur وَٱلشَّمۡسِ) */
+const DoubleDropWaslVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [isWasl, setIsWasl] = useState(true);
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Le piège classique : Comment lire « Wash-Shams » dans la Sourate 91
+      </div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button onClick={() => setIsWasl(true)} aria-pressed={isWasl}>
+            En Liaison Continue (Wasl)
+          </button>
+          <button onClick={() => setIsWasl(false)} aria-pressed={!isWasl}>
+            À l'Attaque Isolée (Ibtidā')
+          </button>
+        </div>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {isWasl ? (
+            <span>
+              <span className="text-good font-bold">وَ</span>
+              <span className="text-bad opacity-30 line-through">ٱ</span>
+              <span className="text-bad opacity-30 line-through">ل</span>
+              <span className="text-idgham font-bold">شَّ</span>
+              <span>مۡسِ</span>
+            </span>
+          ) : (
+            <span>
+              <span className="text-good font-bold">اَ</span>
+              <span className="text-bad opacity-30 line-through">ل</span>
+              <span className="text-idgham font-bold">شَّ</span>
+              <span>مۡسِ</span>
+            </span>
+          )}
+        </div>
+
+        {/* Phonetic jump track */}
+        <div className="p-3 rounded-xl bg-soft flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-ink">
+          {isWasl ? (
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-1 rounded bg-good-bg text-good font-bold">WA</span>
+              <span className="text-muted">➔</span>
+              <span className="px-1.5 py-0.5 rounded bg-bad-bg text-bad text-[11px] line-through">ٱ Wasl muet</span>
+              <span className="text-muted">➔</span>
+              <span className="px-1.5 py-0.5 rounded bg-bad-bg text-bad text-[11px] line-through">ل Shams muet</span>
+              <span className="text-muted">➔</span>
+              <span className="px-2 py-1 rounded bg-idgham-bg text-idgham font-bold">SH-SHAMS</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-1 rounded bg-good-bg text-good font-bold">ASH</span>
+              <span className="text-muted">➔</span>
+              <span className="px-2 py-1 rounded bg-idgham-bg text-idgham font-bold">SHAMS</span>
+            </div>
+          )}
+        </div>
+
+        <div className={`p-4 rounded-xl border text-left text-xs space-y-2 ${
+          isWasl ? 'bg-amber-500/10 border-amber-500/30' : 'bg-soft border-line'
+        }`}>
+          <div className="flex items-center justify-between">
+            <span className="font-semibold text-ink">
+              {isWasl ? '⚠️ Le piège du Double Effacement :' : 'Attaque du mot :'}
+            </span>
+            <span className={`chip ${isWasl ? 'chip-gold' : 'chip-izhar'} text-xs font-bold`}>
+              {isWasl ? '2 lettres muettes simultanées' : 'Hamzat Wasl ressuscite (اَ)'}
+            </span>
+          </div>
+          <p className="text-muted leading-relaxed">
+            {isWasl
+              ? 'En lisant en continu, Hamzat Al-Wasl s\'élide ET la Lām Shamsiyyah disparaît ! La voix saute d\'une traite du Wāw vers le Shīn avec Shaddah : « WASH-SHAMS ». Aucun coup de gorge ni son Lām ne doit subsister.'
+              : 'En démarrant directement sur le mot, Hamzat Wasl prend obligatoirement une Fathah (اَلـ) car c\'est l\'article défini. La Lām reste silencieuse : on prononce « ASH-SHAMS ».'}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : La Balance Sacrée du Nom d'Allah (Tafkhīm vs Tarqīq) */
+const LafzAlJalalahBalanceVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedCase, setSelectedCase] = useState<'fathah' | 'dammah' | 'kasrah' | 'tanwin'>('fathah');
+
+  const cases = {
+    fathah: {
+      title: 'Précédé d\'une Fathah (ـَ)',
+      verse: 'قَالَ ٱللَّهُ',
+      translit: 'Qāla-llāhu',
+      status: 'Tafkhīm (Lourd & Majestueux)',
+      badgeClass: 'chip-qalqalah',
+      tongueShape: 'Arrière de la langue élevé vers le palais mou (Isti\'lā\')',
+      boxColor: 'border-gold/40 bg-card',
+      advice: 'Remplissez la cavité buccale de résonance majestueuse sans arrondir ni projeter les lèvres en O !'
+    },
+    dammah: {
+      title: 'Précédé d\'une Dammah (ـُ)',
+      verse: 'عَبۡدُ ٱللَّهِ',
+      translit: '\'Abdu-llāhi',
+      status: 'Tafkhīm (Lourd & Majestueux)',
+      badgeClass: 'chip-qalqalah',
+      tongueShape: 'Arrière de la langue surélevé pour donner du corps et de la gravité',
+      boxColor: 'border-gold/40 bg-card',
+      advice: 'La Dammah précédente prépare naturellement l\'emphase majestueuse du Nom divin.'
+    },
+    kasrah: {
+      title: 'Précédé d\'une Kasrah (ـِ)',
+      verse: 'بِسۡمِ ٱللَّهِ',
+      translit: 'Bismi-llāhi',
+      status: 'Tarqīq (Fin & Doux)',
+      badgeClass: 'chip-izhar',
+      tongueShape: 'Langue aplatie au fond du palais, mâchoire détendue',
+      boxColor: 'border-izhar/40 bg-card',
+      advice: 'Adoucissez le Lām comme pour un léger sourire intérieur : ne dites jamais « Bismi-llōh » !'
+    },
+    tanwin: {
+      title: 'Tanwīn en Wasl (Al-Ikhlās 112:1-2)',
+      verse: 'أَحَدٌ ٱللَّهُ ➔ أَحَدُنِ ٱللَّهُ',
+      translit: 'Ahaduni-llāhus-Samad',
+      status: 'Tarqīq Exceptionnel (Brisure de Soukoûn)',
+      badgeClass: 'chip-izhar',
+      tongueShape: 'Kasrah accidentelle brisant le double soukoûn ➔ Tarqīq automatique',
+      boxColor: 'border-izhar/40 bg-card',
+      advice: 'Le Nūn du Tanwīn prend une Kasrah de liaison (نِ) : le Nom d\'Allah devient doux et mince !'
+    }
+  };
+
+  const curr = cases[selectedCase];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Choisissez la voyelle qui précède le Nom Majestueux (ٱللَّه)
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-1.5">
+        <button
+          onClick={() => setSelectedCase('fathah')}
+          aria-pressed={selectedCase === 'fathah'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedCase === 'fathah' ? 'chip-gold font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Fathah (قَالَ ٱللَّهُ)
+        </button>
+        <button
+          onClick={() => setSelectedCase('dammah')}
+          aria-pressed={selectedCase === 'dammah'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedCase === 'dammah' ? 'chip-gold font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Dammah (عَبۡدُ ٱللَّهِ)
+        </button>
+        <button
+          onClick={() => setSelectedCase('kasrah')}
+          aria-pressed={selectedCase === 'kasrah'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedCase === 'kasrah' ? 'chip-izhar font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Kasrah (بِسۡمِ ٱللَّهِ)
+        </button>
+        <button
+          onClick={() => setSelectedCase('tanwin')}
+          aria-pressed={selectedCase === 'tanwin'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedCase === 'tanwin' ? 'chip-izhar font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Tanwīn Wasl (أَحَدٌ ٱللَّهُ)
+        </button>
+      </div>
+
+      <div className={`p-5 rounded-2xl border shadow-sm space-y-4 max-w-xl mx-auto transition-all ${curr.boxColor}`}>
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold text-muted">{curr.title}</span>
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.status}
+          </span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.verse}
+        </div>
+
+        <div className="p-2.5 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+          Prononciation : <strong className="text-lapis">{curr.translit}</strong>
+        </div>
+
+        <div className="text-left text-xs space-y-2 border-t border-line/60 pt-3">
+          <p className="text-ink">
+            <strong>Position linguale :</strong> {curr.tongueShape}
+          </p>
+          <p className="text-muted">
+            <strong>Conseil de récitation :</strong> {curr.advice}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Scanner de Lām Al-Fi'l (Verbe قُلۡ) et Lām Al-Harf (Particule بَلۡ) */
+const LamFilHarfScannerVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedItem, setSelectedItem] = useState<'qul-naam' | 'qul-lakum' | 'qul-rabbi' | 'bal-rafaahu'>('qul-naam');
+
+  const items = {
+    'qul-naam': {
+      word: 'قُلۡ نَعَمۡ',
+      type: 'Lām Al-Fi\'l (Verbe impératif)',
+      rule: 'Izhār Obligatoire (Clarté)',
+      badgeClass: 'chip-izhar',
+      translit: 'Qul na\'am',
+      trap: 'Attention au piège : Ne faites JAMAIS de Qalqalah (« Qula-na\'am ») et ne fusionnez pas dans le Nūn (« Qun-na\'am »). Maintenez la Lām avec Tawassut.',
+      explanation: 'Devant 26 lettres de l\'alphabet (toutes sauf Lām et Râ\'), la Lām du verbe doit obligatoirement retentir avec clarté sans aucune assimilation.'
+    },
+    'qul-lakum': {
+      word: 'قُل لَّكُمۡ',
+      type: 'Lām Al-Fi\'l + Lām',
+      rule: 'Idghām Mutamāthilayn (Identité)',
+      badgeClass: 'chip-idgham',
+      translit: 'Qul-lakum',
+      trap: 'Les deux Lāms fusionnent en une seule consonne doublée portant une Shaddah.',
+      explanation: 'Lorsque la Lām Sākinah rencontre une autre Lām voyellée, la fusion est absolue et naturelle par parfaite similitude de lettre.'
+    },
+    'qul-rabbi': {
+      word: 'وَقُل رَّبِّ',
+      type: 'Lām Al-Fi\'l + Râ\'',
+      rule: 'Idghām Mutaqāribayn (Proximité)',
+      badgeClass: 'chip-idgham',
+      translit: 'Wa Qur-rabbi',
+      trap: 'La Lām disparaît complètement : la voix saute directement sur le Râ\' avec Shaddah.',
+      explanation: 'Les points d\'articulation de la Lām et du Râ\' sont très proches sur le bord de la langue : la Lām s\'assimile entièrement dans le Râ\'.'
+    },
+    'bal-rafaahu': {
+      word: 'بَل رَّفَعَهُ ٱللَّهُ',
+      type: 'Lām Al-Harf (Particule بَلۡ) + Râ\'',
+      rule: 'Idghām Mutaqāribayn',
+      badgeClass: 'chip-idgham',
+      translit: 'Bar-rafa\'ahu-llāh',
+      trap: 'Exception unique : Dans « Bal... Rāna » (83:14), la Saktah (pause silencieuse sans souffle) interdit l\'Idghām selon Hafs !',
+      explanation: 'La particule « Bal » fusionne dans le Râ\'. Mais si une Saktah intervient, l\'Izhār reprend ses droits.'
+    }
+  };
+
+  const curr = items[selectedItem];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Analysez les cas de Lām du verbe et de la particule
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-1.5">
+        <button
+          onClick={() => setSelectedItem('qul-naam')}
+          aria-pressed={selectedItem === 'qul-naam'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedItem === 'qul-naam' ? 'chip-izhar font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          قُلۡ نَعَمۡ (Izhār)
+        </button>
+        <button
+          onClick={() => setSelectedItem('qul-lakum')}
+          aria-pressed={selectedItem === 'qul-lakum'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedItem === 'qul-lakum' ? 'chip-idgham font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          قُل لَّكُمۡ (Idghām L-L)
+        </button>
+        <button
+          onClick={() => setSelectedItem('qul-rabbi')}
+          aria-pressed={selectedItem === 'qul-rabbi'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedItem === 'qul-rabbi' ? 'chip-idgham font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          قُل رَّبِّ (Idghām L-R)
+        </button>
+        <button
+          onClick={() => setSelectedItem('bal-rafaahu')}
+          aria-pressed={selectedItem === 'bal-rafaahu'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            selectedItem === 'bal-rafaahu' ? 'chip-idgham font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          بَل رَّفَعَهُ (Particule)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted font-semibold">{curr.type}</span>
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.rule}
+          </span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.word}
+        </div>
+
+        <div className="p-2.5 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+          Prononciation : <strong className="text-lapis">{curr.translit}</strong>
+        </div>
+
+        <div className="text-left text-xs space-y-2 border-t border-line/60 pt-3">
+          <p className="text-ink leading-relaxed">
+            {curr.explanation}
+          </p>
+          <p className="p-2.5 rounded-lg bg-bad-bg/60 border border-bad/20 text-ink">
+            {curr.trap}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -2778,6 +3218,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 7 (Lam Sakinah)
+  const chapter7Screens = [
+    {
+      title: 'Lām Qamariyyah (Lune) vs Lām Shamsiyyah (Soleil)',
+      badge: 'Izhār vs Idghām',
+      concept: 'Pourquoi la Lām reste visible ou s\'efface devant les étoiles',
+      renderVisual: () => <MoonVsSunLamVisual animKey={animKey} />,
+      explanation: 'Devant les 14 lettres de « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ », la Lām reste allumée avec son Soukoûn visible (لۡ) : c\'est l\'Izhār Qamarī (ٱلۡقَمَرِ). Devant les 14 lettres solaires, la Lām s\'efface complètement dans la consonne suivante qui prend une Shaddah : c\'est l\'Idghām Shamsī (ٱلشَّمۡسِ).'
+    },
+    {
+      title: 'Le Piège du Double Effacement en Liaison Continue (Wasl)',
+      badge: 'Wasl vs Ibtidā\'',
+      concept: 'Hamzat Wasl et Lām Shamsiyyah disparaissent toutes les deux simultanément',
+      renderVisual: () => <DoubleDropWaslVisual animKey={animKey} />,
+      explanation: 'En lisant en continu dans « Wash-Shams » (وَٱلشَّمۡسِ), Hamzat Al-Wasl s\'élide ET la Lām Shamsiyyah est muette ! On saute d\'un seul trait du Wāw au Shīn doublé : « Wash-shams ». À l\'attaque isolée en revanche, Hamzat Wasl renaît avec une Fathah : « Ash-shams ».'
+    },
+    {
+      title: 'La Balance Sacrée du Nom d\'Allah (Lafz Al-Jalālah)',
+      badge: 'Tafkhīm vs Tarqīq',
+      concept: 'Fathah/Dammah ➔ Lourd & Majestueux | Kasrah ➔ Fin & Doux',
+      renderVisual: () => <LafzAlJalalahBalanceVisual animKey={animKey} />,
+      explanation: 'La Lām est à l\'origine fine en arabe, sauf dans le Nom Majestueux d\'Allah (ٱللَّه) : elle devient lourde et majestueuse (Tafkhīm) si la voyelle précédente est une Fathah ou une Dammah. Elle redevient douce et mince (Tarqīq) après toute Kasrah, y compris le Tanwīn en continu dans Al-Ikhlās (« Ahaduni-llāh ») !'
+    },
+    {
+      title: 'Lām du Verbe (قُلۡ) & de la Particule (بَلۡ, هَلۡ)',
+      badge: 'Izhār vs Idghām',
+      concept: 'Clarté absolue partout, sauf devant Lām et Râ\'',
+      renderVisual: () => <LamFilHarfScannerVisual animKey={animKey} />,
+      explanation: 'La Lām du verbe (قُلۡ نَعَمۡ) ou de la particule (هَلۡ تَرَىٰ) doit toujours être prononcée avec clarté sans rebond de Qalqalah. Elle ne fusionne que devant deux lettres : Lām (قُل لَّكُمۡ) par similitude et Râ\' (وَقُل رَّبِّ, بَل رَّفَعَهُ) par proximité !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -2791,6 +3263,8 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter5Screens
       : chapter.number === 6
       ? chapter6Screens
+      : chapter.number === 7
+      ? chapter7Screens
       : chapter.number === 8
       ? nunScreens
       : qalqalahScreens;

@@ -7,7 +7,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: true },
   { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: true },
   { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: true },
-  { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: false },
+  { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: true },
   { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
   { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: false },
   { number: 10, slug: 'qalqalah', titleFr: 'La Qalqalah & Ses Degrés de Rebond', titleAr: 'أحكام القلقلة ومراتبها', category: 'intermediate', isPilot: true },
@@ -2026,6 +2026,403 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'On prononce « ĪTŪNĪ » (إِيتُونِي) : la 2e Hamzah se transmute en lettre de Madd Yā\' de 2 temps',
         explanationFr: 'À l\'attaque, deux Hamzahs se rencontrent (I + \'). La règle phonétique universelle de substitution (Badal) transforme la Hamzah Sākinah en voyelle longue homogène ➔ « Ītūnī » !',
         ruleId: 'five-verbs-and-two-hamzahs'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 7 : LES RÈGLES DE LA LĀM SĀKINAH
+  // ==========================================
+  {
+    id: 'chap-7',
+    number: 7,
+    slug: 'lam-sakinah',
+    titleFr: 'Les Règles de la Lām Sākinah',
+    titleAr: 'أَحْكَامُ اللَّامِ السَّاكِنَةِ',
+    category: 'intermediate',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Maîtriser la prononciation du Lām sans voyelle (لْ) dans le Coran : la Lām Qamariyyah (claire avec Soukoûn), la Lām Shamsiyyah (fondue dans la consonne suivante avec Shaddah), l\'emphase et l\'amincissement sacrés du Nom d\'Allah (Lafz Al-Jalālah), ainsi que la Lām du verbe et de la particule.',
+    infographicPoints: [
+      'Lām Qamariyyah (14 lettres) : Mnémonique « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (Izhār Qamarī). La Lām porte un Soukoûn visible (لۡ) et se prononce distinctement avec Tawassut (ٱلۡقَمَرِ, ٱلۡبَيۡتِ, ٱلۡحَمۡدُ).',
+      'Lām Shamsiyyah (14 lettres) : Mnémonique « طِبۡ ثُمَّ صِلۡ... ». La Lām est nue (sans voyelle) et s\'assimile totalement (Idghām Shamsī) dans la lettre suivante qui porte une Shaddah (ٱلشَّمۡسِ ➔ Ash-shams).',
+      'Le Double Effacement en Wasl (وَٱلشَّمۡسِ) : En continu, Hamzat Al-Wasl s\'élide ET la Lām Shamsiyyah disparaît ! On passe directement du Wāw au Shīn avec Shaddah : « Wash-shams ».',
+      'Lām de Lafz Al-Jalālah (ٱللَّه) : Emphatique/Lourde (Tafkhīm) après Fathah (قَالَ ٱللَّهُ), Dammah (عَبۡدُ ٱللَّهِ) ou à l\'attaque. Amincie/Légère (Tarqīq) après Kasrah (بِسۡمِ ٱللَّهِ, لِلَّهِ) ou Tanwīn en Wasl (أَحَدٌ ٱللَّهُ ➔ Ahaduni-llāh).',
+      'Lām du Verbe (Lām Al-Fi\'l) & Particule (Harf) : Toujours prononcée avec clarté (Izhār) comme dans « Qul na\'am » et « Anzalnā », SAUF si elle rencontre un Lām (Qul-lakum) ou un Râ\' (Qur-rabbi, Bal-rafa\'ahu) où elle fusionne totalement !'
+    ],
+    subrules: [
+      {
+        id: 'lam-qamariyyah',
+        nameFr: '1. Lām Qamariyyah (اللَّامُ القَمَرِيَّةُ) — Izhār Qamarī',
+        nameAr: 'اللَّامُ القَمَرِيَّةُ وَالإِظْهَارُ القَمَرِيُّ',
+        mnemonic: 'إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ (14 lettres de la Lune)',
+        letters: ['ء', 'ب', 'غ', 'ح', 'ج', 'ك', 'و', 'خ', 'ف', 'ع', 'ق', 'ي', 'م', 'هـ'],
+        definitionFr: 'Lorsque l\'article défini (ٱلـ) précède l\'une des 14 lettres lunaires, la lettre Lām est prononcée de manière claire et limpide (Izhār Qamarī). Dans le Mushaf, elle est surmontée du symbole classique du Soukoûn (لۡ).',
+        mechanismFr: 'Appuyez la pointe de la langue contre les gencives supérieures et maintenez le son Lām pendant la durée de Tawassut (modérée, sans coupure sèche ni prolongation excessive), puis enchaînez naturellement sur la lettre lunaire.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c7-qam-1',
+            arabicText: 'ٱقۡتَرَبَتِ ٱلسَّاعَةُ وَٱنشَقَّ ٱلۡقَمَرُ',
+            surahAyahRef: '54:1',
+            surahNameFr: 'Al-Qamar',
+            highlightSegment: 'ٱلۡقَمَرُ',
+            highlightLetter: 'لۡ + ق',
+            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
+            ruleTag: 'izhar',
+            explanationFr: 'La Lām porte un Soukoûn visible et précède la lettre Qāf (lettre lunaire). Elle est prononcée nettement sans vibration parasite ni pause.',
+            transliteration: 'Al-Qamar',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/054001.mp3'
+          },
+          {
+            id: 'ex-c7-qam-2',
+            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '1:2',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلۡحَمۡدُ · ٱلۡعَٰلَمِينَ',
+            highlightLetter: 'لۡ + ح · لۡ + ع',
+            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
+            ruleTag: 'izhar',
+            explanationFr: 'Dans « Al-Hamd » et « Al-\'Ālamīn », la Lām précède le Hā\' et le \'Ayn (deux lettres lunaires de la gorge) : elle est clairement vocalisée.',
+            transliteration: 'Al-hamdu lillāhi rabbi-l-\'ālamīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
+          },
+          {
+            id: 'ex-c7-qam-3',
+            arabicText: 'وَإِذۡ جَعَلۡنَا ٱلۡبَيۡتَ مَثَابَةٗ لِّلنَّاسِ',
+            surahAyahRef: '2:125',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ٱلۡبَيۡتَ',
+            highlightLetter: 'لۡ + ب',
+            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
+            ruleTag: 'izhar',
+            explanationFr: 'La lettre Bā\' fait partie de la formule mnémonique lunaire (إِبۡغِ...). La Lām conserve son Soukoûn et se prononce distinctement en liaison : « Ja\'alna-l-bayta ».',
+            transliteration: 'Al-Bayt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002125.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Faire une Qalqalah (rebond) sur la Lām en disant « Ala-qamar » ou « Ala-hamdu ».',
+            correctionFr: 'La Lām n\'est pas une lettre de Qalqalah : stabilisez la pointe de la langue contre le palais sans la détacher brusquement.'
+          },
+          {
+            trapFr: 'Associer la Lām au son Jīm en l\'assimilant à tort (dire "Aj-jannah" au lieu de "Al-Jannah").',
+            correctionFr: 'Le Jīm (ج) est une lettre lunaire (dans حَجَّكَ) : la Lām doit obligatoirement être audible et séparée (« Al-Jannah »).'
+          }
+        ]
+      },
+      {
+        id: 'lam-shamsiyyah',
+        nameFr: '2. Lām Shamsiyyah (اللَّامُ الشَّمْسِيَّةُ) — Idghām Shamsī',
+        nameAr: 'اللَّامُ الشَّمْسِيَّةُ وَالإِدْغَامُ الشَّمْسِيُّ',
+        mnemonic: 'طِبۡ ثُمَّ صِلۡ رَحِمًا تَفُزۡ ضِفۡ ذَا نِعَمۡ * دَعۡ سُوءَ ظَنٍّ زُرۡ شَرِيفًا لِلۡكَرَمۡ',
+        letters: ['ط', 'ث', 'ص', 'ر', 'ت', 'ض', 'ذ', 'ن', 'د', 'س', 'ظ', 'ز', 'ش', 'ل'],
+        definitionFr: 'Lorsque l\'article défini (ٱلـ) précède l\'une des 14 lettres solaires, la Lām s\'assimile complètement dans la consonne suivante. Dans le Mushaf, la Lām est dépourvue de tout signe (nue) et la lettre suivante porte une Shaddah (ّ).',
+        mechanismFr: 'La langue ne touche pas le point d\'articulation du Lām : la voix se projette directement sur la lettre solaire avec une tension musculaire marquant le dédoublement de la Shaddah.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c7-sham-1',
+            arabicText: 'وَٱلشَّمۡسِ وَضُحَىٰهَا',
+            surahAyahRef: '91:1',
+            surahNameFr: 'Ash-Shams',
+            highlightSegment: 'وَٱلشَّمۡسِ',
+            highlightLetter: 'ل + شّ',
+            ruleApplied: 'Lām Shamsiyyah (Idghām Shamsī en liaison)',
+            ruleTag: 'silent',
+            explanationFr: 'En lecture continue, Hamzat Wasl ET la Lām Shamsiyyah sont muettes ! On prononce « Wash-shams », la voix enchaînant directement du Wāw au Shīn doublé.',
+            transliteration: 'Wash-shamsi wa duhāhā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/091001.mp3'
+          },
+          {
+            id: 'ex-c7-sham-2',
+            arabicText: 'مَٰلِكِ يَوۡمِ ٱلدِّينِ',
+            surahAyahRef: '1:4',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلدِّينِ',
+            highlightLetter: 'ل + دّ',
+            ruleApplied: 'Lām Shamsiyyah (Idghām Shamsī)',
+            ruleTag: 'silent',
+            explanationFr: 'La lettre Dāl est solaire : la Lām est silencieuse et fond dans le Dāl avec Shaddah. On prononce « Yawmi-d-Dīn ».',
+            transliteration: 'Māliki yawmi-d-dīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001004.mp3'
+          },
+          {
+            id: 'ex-c7-sham-3',
+            arabicText: 'قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ',
+            surahAyahRef: '114:1',
+            surahNameFr: 'An-Nās',
+            highlightSegment: 'ٱلنَّاسِ',
+            highlightLetter: 'ل + نّ',
+            ruleApplied: 'Lām Shamsiyyah avec Ghunnah 2 temps',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Cas particulier : la fusion de la Lām dans le Nūn solaire crée un Nūn Mushaddadah (نّ), imposant une Ghunnah nasale obligatoire de 2 temps pleins !',
+            transliteration: 'Bi-rabbi-n-nās',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/114001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Prononcer la Lām solaire en disant « Al-Shams » ou « Al-Dīn ».',
+            correctionFr: 'C\'est un Lahn Jalī : la Lām solaire s\'annule entièrement au profit de la consonne doublée (« Ash-Shams », « Ad-Dīn »).'
+          },
+          {
+            trapFr: 'Oublier les 2 temps de Ghunnah sur « An-Nās » (ٱلنَّاسِ) après l\'assimilation.',
+            correctionFr: 'Tout Nūn portant une Shaddah exige 2 temps de résonance nasale incompressibles dans la cavité nasale.'
+          }
+        ]
+      },
+      {
+        id: 'lam-lafz-al-jalalah',
+        nameFr: '3. Lām de Lafz Al-Jalālah (لَامُ لَفْظِ الجَلَالَةِ ٱللَّه)',
+        nameAr: 'أَحْكَامُ لَامِ لَفْظِ الجَلَالَةِ (تَفْخِيمٌ وَتَرْقِيقٌ)',
+        mnemonic: 'Fathah (ـَ) / Dammah (ـُ) = Emphase LOURDE (Tafkhīm) | Kasrah (ـِ) = Minceur LÉGÈRE (Tarqīq)',
+        letters: ['ل'],
+        definitionFr: 'La lettre Lām est à l\'origine toujours mince (Tarqīq) en langue arabe. La seule exception réside dans le Nom Majestueux d\'Allah (ٱللَّه) et Allahumma (ٱللَّهُمَّ) : elle devient lourde et majestueuse (Tafkhīm) si elle est précédée d\'une Fathah ou d\'une Dammah, ou lorsqu\'on débute la lecture par ce Nom. Elle redevient fine et douce (Tarqīq) si elle est précédée d\'une Kasrah.',
+        mechanismFr: 'Pour le Tafkhīm : élevez l\'arrière de la langue vers le voile du palais et remplissez la cavité buccale de résonance (sans projeter ni arrondir les lèvres en O !). Pour le Tarqīq : aplatissez la langue au fond de la bouche comme pour un léger sourire intérieur.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c7-jal-1',
+            arabicText: 'قَالَ ٱللَّهُ إِنِّى مُنَزِّلُهَا عَلَيۡكُمۡ',
+            surahAyahRef: '5:115',
+            surahNameFr: 'Al-Mā\'idah',
+            highlightSegment: 'قَالَ ٱللَّهُ',
+            highlightLetter: 'ـَ + ٱللَّهُ',
+            ruleApplied: 'Tafkhīm de Lafz Al-Jalālah (Précédé de Fathah)',
+            ruleTag: 'heavy',
+            explanationFr: 'Le Lām de « Qāla » porte une Fathah : le Nom d\'Allah résonne avec une emphase puissante et majestueuse (« Qāla-llāhu »).',
+            transliteration: 'Qāla-llāhu',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005115.mp3'
+          },
+          {
+            id: 'ex-c7-jal-2',
+            arabicText: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
+            surahAyahRef: '1:1',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'بِسۡمِ ٱللَّهِ',
+            highlightLetter: 'ـِ + ٱللَّهِ',
+            ruleApplied: 'Tarqīq de Lafz Al-Jalālah (Précédé de Kasrah)',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Mīm de « Bismi » porte une Kasrah : le Lām d\'Allah est prononcé avec une finesse et une douceur absolues (« Bismi-llāhi »).',
+            transliteration: 'Bismi-llāhir-Rahmānir-Rahīm',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001001.mp3'
+          },
+          {
+            id: 'ex-c7-jal-3',
+            arabicText: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ',
+            surahAyahRef: '112:1-2',
+            surahNameFr: 'Al-Ikhlās',
+            highlightSegment: 'أَحَدٌ ٱللَّهُ',
+            highlightLetter: 'ـٌ + ٱللَّهُ',
+            ruleApplied: 'Tarqīq exceptionnel par rupture de double soukoûn',
+            ruleTag: 'izhar',
+            explanationFr: 'En reliant les versets 1 et 2 en continu : le Tanwīn (Nūn sākin) rencontre Hamzat Wasl. Pour briser la rencontre de deux Soukoûns, le Tanwīn prend une Kasrah accidentelle ➔ on récite « Ahaduni-llāhus-Samad » avec un Lām aminci (Tarqīq) !',
+            transliteration: 'Qul huwa-llāhu ahad. Allāhus-Samad',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Arrondir les lèvres en avant pour rendre le Nom d\'Allah lourd (dire "Ollāh").',
+            correctionFr: 'L\'emphase (Tafkhīm) provient uniquement de l\'élévation de l\'arrière de la langue : les lèvres restent totalement neutres.'
+          },
+          {
+            trapFr: 'Garder le Lām lourd dans « Bismi-llāh » par habitude.',
+            correctionFr: 'Toute Kasrah précédente impose impérativement un Lām mince (Tarqīq) : dites « Bismi-llāh » avec douceur.'
+          }
+        ]
+      },
+      {
+        id: 'lam-al-fil-wal-harf',
+        nameFr: '4. Lām du Verbe, de la Particule & du Nom (Fi\'l, Harf, Ism, Amr)',
+        nameAr: 'لَامُ الفِعْلِ وَالحَرْفِ وَالاسْمِ وَالأَمْرِ',
+        mnemonic: 'Devant Lām (ل) ou Râ\' (ر) = IDGHĀM (Fusion) | Devant les 26 autres lettres = IZHĀR (Clarté)',
+        letters: ['ل', 'ر'],
+        definitionFr: 'La Lām Sākinah présente dans un verbe (Lām Al-Fi\'l : قُلۡ, أَنزَلۡنَا) ou dans une particule (Lām Al-Harf : بَلۡ, هَلۡ) doit obligatoirement être prononcée avec clarté (Izhār) devant 26 lettres de l\'alphabet. Elle ne fusionne (Idghām) que devant deux lettres spécifiques : le Lām (par identité - Tamāthul) et le Râ\' (par proximité - Taqārub). La Lām interne d\'un nom (Lām Al-Ism) ou de l\'ordre (Lām Al-Amr) est toujours prononcée avec clarté (Izhār).',
+        mechanismFr: 'Pour l\'Izhār sur « Qul na\'am » : marquez le contact de la langue pour la Lām sans la faire rebondir, puis passez au Nūn. Pour l\'Idghām sur « Qur-rabbi » : sautez la Lām et prononcez directement un Râ\' fort doublé d\'une Shaddah.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c7-fil-1',
+            arabicText: 'قُلۡ نَعَمۡ وَأَنتُمۡ دَاخِرُونَ',
+            surahAyahRef: '37:18',
+            surahNameFr: 'As-Sāffāt',
+            highlightSegment: 'قُلۡ نَعَمۡ',
+            highlightLetter: 'لۡ + ن',
+            ruleApplied: 'Izhār obligatoire de Lām Al-Fi\'l',
+            ruleTag: 'izhar',
+            explanationFr: 'La Lām du verbe impératif « Qul » rencontre un Nūn : elle doit être prononcée avec une parfaite netteté sans rebond parasite ni assimilation.',
+            transliteration: 'Qul na\'am wa antum dākhirūn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/037018.mp3'
+          },
+          {
+            id: 'ex-c7-fil-2',
+            arabicText: 'وَقُل رَّبِّ أَدۡخِلۡنِى مُدۡخَلَ صِدۡقٖ',
+            surahAyahRef: '17:80',
+            surahNameFr: 'Al-Isrā\'',
+            highlightSegment: 'وَقُل رَّبِّ',
+            highlightLetter: 'ل + رّ',
+            ruleApplied: 'Idghām complet de Lām dans le Râ\'',
+            ruleTag: 'silent',
+            explanationFr: 'La Lām du verbe rencontre la lettre Râ\' (proximité de point d\'articulation) : la Lām est totalement engloutie et l\'on prononce « Wa Qur-rabbi » avec un Râ\' doublé.',
+            transliteration: 'Wa qur-rabbi adkhilnī',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/017080.mp3'
+          },
+          {
+            id: 'ex-c7-fil-3',
+            arabicText: 'بَل رَّفَعَهُ ٱللَّهُ إِلَيۡهِ',
+            surahAyahRef: '4:158',
+            surahNameFr: 'An-Nisā\'',
+            highlightSegment: 'بَل رَّفَعَهُ',
+            highlightLetter: 'ل + رّ',
+            ruleApplied: 'Idghām de Lām Al-Harf',
+            ruleTag: 'silent',
+            explanationFr: 'La Lām de la particule « Bal » fusionne dans le Râ\' qui la suit : on prononce « Bar-rafa\'ahu-llāhu » sans aucune trace de Lām.',
+            transliteration: 'Bar-rafa\'ahu-llāhu ilayh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004158.mp3'
+          },
+          {
+            id: 'ex-c7-fil-4',
+            arabicText: 'إِنَّآ أَنزَلۡنَٰهُ فِى لَيۡلَةِ ٱلۡقَدۡرِ',
+            surahAyahRef: '97:1',
+            surahNameFr: 'Al-Qadr',
+            highlightSegment: 'أَنزَلۡنَٰهُ',
+            highlightLetter: 'لۡ + ن',
+            ruleApplied: 'Izhār de Lām Al-Fi\'l au milieu d\'un verbe',
+            ruleTag: 'izhar',
+            explanationFr: 'Lām médiane dans le verbe « Anzalnā » suivie de Nūn : clarté absolue requise. Ne jamais fusionner en disant « Anzannā » !',
+            transliteration: 'Innā anzalnāhu fī laylati-l-qadr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/097001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Fusionner par erreur la Lām dans le Nūn dans « Anzalnā » en disant "Anzannā".',
+            correctionFr: 'C\'est une faute de prononciation majeure : seule la rencontre Lām-Lām ou Lām-Râ\' autorise l\'Idghām. Devant le Nūn, la Lām doit rester 100% audible.'
+          },
+          {
+            trapFr: 'Faire une Qalqalah sur « Qul » en détachant brutalement la langue (dire "Qula-na\'am").',
+            correctionFr: 'Maintenez la langue fermement plaquée le temps de Tawassut (durée intermédiaire) sans relâcher brusquement le souffle.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'ex-c7-g1',
+        title: 'Distinguer Lām Shamsiyyah et Qamariyyah dans Sourate Ash-Shams (91:1-2)',
+        verseArabic: 'وَٱلشَّمۡسِ وَضُحَىٰهَا ۝ وَٱلۡقَمَرِ إِذَا تَلَىٰهَا',
+        surahAyahRef: '91:1-2',
+        targetSegment: 'وَٱلشَّمۡسِ · وَٱلۡقَمَرِ',
+        promptFr: 'Analysez le comportement de la lettre Lām dans « Wash-Shams » par rapport à « Wal-Qamar » lors d\'une récitation fluide.',
+        hintFr: 'Observez la présence ou l\'absence du signe de Soukoûn au-dessus de la Lām et la présence d\'une Shaddah sur la consonne suivante.',
+        solutionFr: 'Dans « Wash-Shams », la Lām est solaire (Shamsiyyah) : en continu, Hamzat Wasl et la Lām disparaissent toutes les deux, on saute directement du Wāw au Shīn avec Shaddah (« Wash-shams »). Dans « Wal-Qamar », la Lām est lunaire (Qamariyyah) : Hamzat Wasl s\'élide mais la Lām porte un Soukoûn visible et se prononce distinctement (« Wal-qamar ») !',
+        breakdownSteps: [
+          'Étape 1 : Observez le mot « وَٱلشَّمۡسِ » — la Lām n\'a aucun signe et le Shīn porte une Shaddah (ّ). C\'est une Lām Shamsiyyah.',
+          'Étape 2 : En continu depuis « Wa », Hamzat Wasl tombe ET la Lām Shamsiyyah s\'efface ➔ prononciation « Wash-shams ».',
+          'Étape 3 : Observez le mot « وَٱلۡقَمَرِ » — la Lām porte la tête de Khā\' miniature (Soukoûn لۡ) et le Qāf n\'a pas de Shaddah. C\'est une Lām Qamariyyah.',
+          'Étape 4 : En continu, seule Hamzat Wasl tombe : le Lām résonne clairement avec Tawassut ➔ « Wal-qamar ».'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/091001.mp3'
+      },
+      {
+        id: 'ex-c7-g2',
+        title: 'Le mystère de Lafz Al-Jalālah dans la Sourate Al-Ikhlās (112:1-2)',
+        verseArabic: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ',
+        surahAyahRef: '112:1-2',
+        targetSegment: 'هُوَ ٱللَّهُ · أَحَدٌ ٱللَّهُ',
+        promptFr: 'Pourquoi le Lām du Nom d\'Allah est-il lourd (Tafkhīm) dans « Huwa-llāh », mais devient-il léger (Tarqīq) si l\'on enchaîne le verset 1 avec le verset 2 ?',
+        hintFr: 'Rappelez-vous quelle voyelle précède immédiatement le Nom d\'Allah dans chaque situation, en appliquant la règle de rupture du double Soukoûn sur le Tanwīn.',
+        solutionFr: 'Dans « Huwa-llāh », le Nom d\'Allah est précédé par la Fathah du Wāw : la Lām est donc lourde et majestueuse (Tafkhīm). En revanche, lorsqu\'on lie « Ahadun » avec « Allāh », le Tanwīn (Nūn sākin) rencontre Hamzat Wasl (Soukoûn) : pour éviter l\'affrontement de deux Soukoûns, la règle grammaticale impose d\'attribuer une Kasrah accidentelle au Tanwīn (Ahaduni). Cette Kasrah contraint le Lām d\'Allah à devenir doux et aminci (Tarqīq) : on prononce « Ahaduni-llāhus-Samad » !',
+        breakdownSteps: [
+          'Étape 1 : Dans « Huwa-llāh », la voyelle précédente est une Fathah (ـَ) ➔ Tafkhīm lourd obligatoire.',
+          'Étape 2 : À la fin du verset 1, « Ahadun » (أَحَدٌ) se termine par un Tanwīn, soit phonétiquement le son « N » sans voyelle (نْ).',
+          'Étape 3 : Le début du verset 2 commence par Hamzat Wasl suivie d\'un Soukoûn sur la Lām. Deux Soukoûns consécutifs sont interdits en phonétique arabe.',
+          'Étape 4 : La règle d\'Iltiqā\' As-Sākinayn brise cette collision en vocalisant le Nūn avec une Kasrah (نِ).',
+          'Étape 5 : Comme le Nom d\'Allah est désormais précédé d\'une Kasrah, sa Lām s\'amincit obligatoirement (Tarqīq) ➔ « Ahaduni-llāh » !'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c7-1',
+        type: 'mcq',
+        promptFr: 'Quelle phrase mnémotechnique réunit la totalité des 14 lettres lunaires (Lām Qamariyyah) ?',
+        verseArabic: 'إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ',
+        options: [
+          '« إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (ء, ب, غ, ح, ج, ك, و, خ, ف, ع, ق, ي, م, هـ)',
+          '« يَرۡمَلُونَ » (ي, ر, م, ل, و, ن)',
+          '« قُطۡبُ جَدٍّ » (ق, ط, ب, ج, د)',
+          '« طِبۡ ثُمَّ صِلۡ رَحِمًا تَفُزۡ »'
+        ],
+        correctAnswer: '« إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (ء, ب, غ, ح, ج, ك, و, خ, ف, ع, ق, ي, م, هـ)',
+        explanationFr: 'Ces 14 lettres rassemblées dans cette célèbre formule provoquent l\'Izhār Qamarī : la Lām reste audible avec son Soukoûn.',
+        ruleId: 'lam-qamariyyah'
+      },
+      {
+        id: 'q-c7-2',
+        type: 'mcq',
+        promptFr: 'Comment reconnaître immédiatement dans la graphie du Mushaf une Lām Shamsiyyah (solaire) ?',
+        verseArabic: 'ٱلشَّمۡسُ وَٱلۡقَمَرُ',
+        options: [
+          'La Lām est nue (sans aucun signe au-dessus) et la lettre suivante porte une Shaddah (ّ)',
+          'La Lām porte un petit Soukoûn en forme de tête de Khā\' (لۡ)',
+          'La Lām porte une petite vaguelette de prolongation (~)',
+          'La Lām est écrite en rouge avec un petit point vert en dessous'
+        ],
+        correctAnswer: 'La Lām est nue (sans aucun signe au-dessus) et la lettre suivante porte une Shaddah (ّ)',
+        explanationFr: 'Dans le Rasm \'Uthmānī, une consonne assimilée est toujours dépouillée de tout signe (nue), et la consonne qui l\'absorbe reçoit une Shaddah pour indiquer le dédoublement.',
+        ruleId: 'lam-shamsiyyah'
+      },
+      {
+        id: 'q-c7-3',
+        type: 'mcq',
+        promptFr: 'En lisant en continu le début de la Sourate Ash-Shams « وَٱلشَّمۡسِ » (91:1), comment s\'effectue la prononciation exacte ?',
+        verseArabic: 'وَٱلشَّمۡسِ وَضُحَىٰهَا',
+        surahAyahRef: '91:1',
+        options: [
+          '« Wash-shams » : Hamzat Wasl ET la Lām Shamsiyyah sont toutes deux totalement muettes',
+          '« Wal-shams » : on prononce la Lām clairement',
+          '« Wa-al-shams » : on marque un coup de glotte sur la Hamzah',
+          '« Wa-ish-shams » : on ajoute une Kasrah sous la Hamzah'
+        ],
+        correctAnswer: '« Wash-shams » : Hamzat Wasl ET la Lām Shamsiyyah sont toutes deux totalement muettes',
+        explanationFr: 'C\'est le piège classique du double effacement : Hamzat Wasl tombe en liaison continue, et la Lām solaire disparaît par Idghām. On passe directement de la voyelle du Wāw au Shīn avec Shaddah.',
+        ruleId: 'lam-shamsiyyah'
+      },
+      {
+        id: 'q-c7-4',
+        type: 'mcq',
+        promptFr: 'Dans « بِسۡمِ ٱللَّهِ », pourquoi la Lām du Nom d\'Allah est-elle prononcée avec finesse et amincissement (Tarqīq) ?',
+        verseArabic: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
+        surahAyahRef: '1:1',
+        options: [
+          'Parce qu\'elle est précédée d\'une Kasrah (ـِ) sous le Mīm de « Bismi »',
+          'Parce que le Nom d\'Allah est toujours mince en toutes circonstances',
+          'Parce que le Nom d\'Allah est suivi du mot Ar-Rahmān',
+          'Parce qu\'il y a une règle de Waqf obligatoire'
+        ],
+        correctAnswer: 'Parce qu\'elle est précédée d\'une Kasrah (ـِ) sous le Mīm de « Bismi »',
+        explanationFr: 'La règle de Lafz Al-Jalālah est stricte : si la consonne précédente porte une Kasrah (originale ou accidentelle), la Lām devient obligatoirement Muraqqaqah (fine/mince).',
+        ruleId: 'lam-lafz-al-jalalah'
+      },
+      {
+        id: 'q-c7-5',
+        type: 'mcq',
+        promptFr: 'Dans le verset « وَقُل رَّبِّ » (17:80), quel phénomène subit la Lām du verbe « Qul » ?',
+        verseArabic: 'وَقُل رَّبِّ أَدۡخِلۡنِى مُدۡخَلَ صِدۡقٖ',
+        surahAyahRef: '17:80',
+        options: [
+          'Elle s\'assimile totalement dans le Râ\' (Idghām par proximité - Taqārub) ➔ on prononce « Qur-rabbi »',
+          'Elle se prononce clairement avec un rebond de Qalqalah ➔ « Qula-rabbi »',
+          'Elle se transforme en Nūn avec Ghunnah de 2 temps ➔ « Qun-rabbi »',
+          'Elle est prolongée de 6 temps de Madd Lāzim'
+        ],
+        correctAnswer: 'Elle s\'assimile totalement dans le Râ\' (Idghām par proximité - Taqārub) ➔ on prononce « Qur-rabbi »',
+        explanationFr: 'La Lām de verbe (Lām Al-Fi\'l) ou de particule ne fusionne que devant deux lettres : Lām (par identité) et Râ\' (par proximité de Makhraj). Le Lām disparaît complètement dans le Râ\' qui prend une Shaddah.',
+        ruleId: 'lam-al-fil-wal-harf'
       }
     ]
   },

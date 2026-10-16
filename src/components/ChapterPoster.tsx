@@ -33,6 +33,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 6) {
       return 'Ne confondez jamais Hamzat Al-Qat\' (ء - toujours fixe) et Hamzat Al-Wasl (ٱ - élidée en continu). À l\'attaque, appliquez rigoureusement la règle de la 3e lettre sur les verbes (Dammah ➔ اُ, Fathah/Kasrah ➔ اِ), commencez l\'article ٱلـ par une Fathah (اَلـ), et n\'attaquez JAMAIS les 5 verbes d\'exception (ٱبۡنُواْ, ٱمۡشُواْ) par une Dammah !';
     }
+    if (chapter.number === 7) {
+      return 'Observez la lettre qui suit la Lām : les 14 lettres de « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » gardent la Lām claire avec son Soukoûn (لۡ), tandis que les 14 lettres solaires l\'effacent complètement au profit d\'une Shaddah (ّ). En Wasl sur « Wash-Shams », effacez Hamzat Wasl ET la Lām Shamsiyyah simultanément ! Et donnez au Nom d\'Allah son Tafkhīm lourd après Fathah/Dammah et son Tarqīq doux après toute Kasrah.';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -116,7 +119,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             : chapter.number === 5
             ? 'Chapitre suivant (Les Hamzahs)'
             : chapter.number === 6
-            ? 'Chapitre suivant (Nūn Sākinah)'
+            ? 'Chapitre suivant (Les Règles de la Lām Sākinah)'
+            : chapter.number === 7
+            ? 'Chapitre suivant (Nūn Sākinah & Tanwīn)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'
             : 'Retour au sommaire'}

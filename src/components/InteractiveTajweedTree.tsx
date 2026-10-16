@@ -321,6 +321,58 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 7) {
+      return {
+        id: 'root-lam',
+        labelFr: 'Les Règles de la Lām Sākinah (لْ)',
+        labelAr: 'أَحْكَامُ اللَّامِ السَّاكِنَةِ',
+        descriptionFr: 'La lettre Lām sans voyelle se divise en 5 catégories coraniques : Lām At-Ta\'rīf (Qamariyyah & Shamsiyyah), Lafz Al-Jalālah, Lām Al-Fi\'l, Lām Al-Harf, et Lām Al-Ism/Al-Amr.',
+        children: [
+          {
+            id: 'node-lam-qamariyyah',
+            labelFr: '1. Lām Qamariyyah (Lune - Izhār)',
+            labelAr: 'اللَّامُ القَمَرِيَّةُ (إِظْهَارٌ قَمَرِيٌّ)',
+            tagColor: 'var(--izhar)',
+            letters: ['ء', 'ب', 'غ', 'ح', 'ج', 'ك', 'و', 'خ', 'ف', 'ع', 'ق', 'ي', 'م', 'هـ'],
+            descriptionFr: '14 lettres réunies dans « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ ». Prononciation claire et distincte de la Lām avec Soukoûn visible (لۡ).',
+            examples: ['ٱلۡقَمَرِ (Al-Qamar)', 'ٱلۡبَيۡتِ (Al-Bayt)', 'ٱلۡحَمۡدُ (Al-Hamd)', 'ٱلۡعَٰلَمِينَ'],
+          },
+          {
+            id: 'node-lam-shamsiyyah',
+            labelFr: '2. Lām Shamsiyyah (Soleil - Idghām)',
+            labelAr: 'اللَّامُ الشَّمْسِيَّةُ (إِدْغَامٌ شَمْسِيٌّ)',
+            tagColor: 'var(--idgham)',
+            letters: ['ط', 'ث', 'ص', 'ر', 'ت', 'ض', 'ذ', 'ن', 'د', 'س', 'ظ', 'ز', 'ش', 'ل'],
+            descriptionFr: '14 lettres. La Lām est nue et fusionne totalement dans la lettre suivante qui porte une Shaddah (ّ). Double effacement en Wasl (وَٱلشَّمۡسِ ➔ Wash-shams) !',
+            examples: ['ٱلشَّمۡسِ ➔ Ash-shams', 'ٱلدِّينِ ➔ Ad-dīn', 'ٱلنَّاسِ ➔ An-nās (Ghunnah 2t)', 'وَٱلشَّمۡسِ ➔ Wash-shams'],
+          },
+          {
+            id: 'node-lam-jalalah',
+            labelFr: '3. Lām de Lafz Al-Jalālah (ٱللَّه)',
+            labelAr: 'لَامُ لَفْظِ الجَلَالَةِ (تَفْخِيمٌ وَتَرْقِيقٌ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'Emphase puissante (Tafkhīm) après Fathah, Dammah ou à l\'attaque. Finesse (Tarqīq) après Kasrah originale ou accidentelle (Tanwīn en Wasl).',
+            examples: ['قَالَ ٱللَّهُ (Tafkhīm)', 'عَبۡدُ ٱللَّهِ (Tafkhīm)', 'بِسۡمِ ٱللَّهِ (Tarqīq)', 'أَحَدٌ ٱللَّهُ ➔ Ahaduni-llāh (Tarqīq)'],
+          },
+          {
+            id: 'node-lam-fil',
+            labelFr: '4. Lām du Verbe & de la Particule (Fi\'l & Harf)',
+            labelAr: 'لَامُ الفِعْلِ وَالحَرْفِ (قُلۡ، أَنزَلۡنَا، بَلۡ، هَلۡ)',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Toujours Izhār (clarté), SAUF si suivie d\'un Lām (fusion par similitude) ou d\'un Râ\' (fusion par proximité) où elle s\'assimile totalement.',
+            examples: ['قُلۡ نَعَمۡ (Izhār)', 'أَنزَلۡنَٰهُ (Izhār)', 'قُل لَّكُمۡ (Idghām L-L)', 'قُل رَّبِّ (Idghām L-R)'],
+          },
+          {
+            id: 'node-lam-ism-amr',
+            labelFr: '5. Lām du Nom & de l\'Impératif (Ism & Amr)',
+            labelAr: 'لَامُ الاسْمِ وَلَامُ الأَمْرِ (أَلْسِنَتِكُمْ، وَلْيَكْتُبْ)',
+            tagColor: 'var(--teal)',
+            descriptionFr: 'Dans la racine d\'un nom (Alsinatikum) ou préfixée avec Wāw/Fā/Thumma pour l\'ordre (Wal-yaktub) : TOUJOURS Izhār sans aucune exception !',
+            examples: ['أَلۡسِنَتِكُمۡ (Izhār)', 'أَلۡوَٰنِكُمۡ (Izhār)', 'وَلۡيُوفُواْ (Izhār)', 'فَلۡيَسۡتَجِيبُواْ (Izhār)'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

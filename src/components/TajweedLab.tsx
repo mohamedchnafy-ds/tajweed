@@ -1051,6 +1051,163 @@ const HAMZAH_TEST_BENCH_CASES: HamzahBenchCase[] = [
   },
 ];
 
+interface LamSakinahBenchCase {
+  id: string;
+  title: string;
+  category: 'qamariyyah' | 'shamsiyyah' | 'jalalah' | 'fil-harf';
+  arabicWord: string;
+  highlightedSegment: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  followingLetter: string;
+  mushafSign: string;
+  pronunciation: string;
+  surahRef: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const LAM_SAKINAH_TEST_BENCH_CASES: LamSakinahBenchCase[] = [
+  {
+    id: 'lam-case-1',
+    title: 'Al-Qamar 54:1 — Lām Qamariyyah (ٱلۡقَمَرُ)',
+    category: 'qamariyyah',
+    arabicWord: 'وَٱنشَقَّ ٱلۡقَمَرُ',
+    highlightedSegment: 'ٱلۡقَمَرُ',
+    ruleBadge: 'Izhār Qamarī (لۡ visible)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Lām At-Ta\'rīf Lunaire',
+    followingLetter: 'ق (Qāf - Lettre lunaire)',
+    mushafSign: 'Petit Soukoûn en forme de tête de Khā\' (لۡ)',
+    pronunciation: 'Al-Qamar (Lām claire avec durée de Tawassut)',
+    surahRef: 'Al-Qamar 54:1',
+    explanation: 'Le Qāf fait partie de la formule « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ ». La Lām est clairement prononcée en stabilisant la langue contre le palais sans rebond.',
+    fiqhImpact: 'Obligatoire. Ne jamais assimiler la Lām dans une lettre lunaire.',
+    commonTrap: 'Faire une Qalqalah parasite en relâchant la langue trop brusquement (« Ala-qamar »).',
+  },
+  {
+    id: 'lam-case-2',
+    title: 'Al-Baqarah 2:125 — Lām Qamariyyah en Liaison (ٱلۡبَيۡتَ)',
+    category: 'qamariyyah',
+    arabicWord: 'وَإِذۡ جَعَلۡنَا ٱلۡبَيۡتَ مَثَابَةٗ',
+    highlightedSegment: 'جَعَلۡنَا ٱلۡبَيۡتَ',
+    ruleBadge: 'Izhār Qamarī en Wasl',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Lām At-Ta\'rīf Lunaire',
+    followingLetter: 'ب (Bā\' - Lettre lunaire)',
+    mushafSign: 'Soukoûn visible sur la Lām (لۡ)',
+    pronunciation: 'Ja\'alna-l-bayta (Hamzat Wasl s\'élide, Lām claire)',
+    surahRef: 'Al-Baqarah 2:125',
+    explanation: 'En liaison continue, Hamzat Wasl tombe mais la Lām lunaire demeure parfaitement audible et limpide.',
+    fiqhImpact: 'Conforme à la Sunnah.',
+    commonTrap: 'Couper la voix ou marquer un arrêt artificiel devant la Lām.',
+  },
+  {
+    id: 'lam-case-3',
+    title: 'Al-Fātihah 1:4 — Lām Shamsiyyah (ٱلدِّينِ)',
+    category: 'shamsiyyah',
+    arabicWord: 'مَٰلِكِ يَوۡمِ ٱلدِّينِ',
+    highlightedSegment: 'يَوۡمِ ٱلدِّينِ',
+    ruleBadge: 'Idghām Shamsī (Lām nue + Shaddah)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Lām At-Ta\'rīf Solaire',
+    followingLetter: 'د (Dāl avec Shaddah دّ)',
+    mushafSign: 'Lām nue sans voyelle + Shaddah sur le Dāl',
+    pronunciation: 'Yawmi-d-Dīn (Lām totalement muette)',
+    surahRef: 'Al-Fātihah 1:4',
+    explanation: 'Le Dāl est solaire : la Lām est silencieuse et fusionne intégralement dans le Dāl dédoublé avec Shaddah.',
+    fiqhImpact: 'Lahn Jalī si la Lām est prononcée. Elle doit s\'annuler complètement.',
+    commonTrap: 'Prononcer "Yawm-il-Dīn" par négligence dialectale.',
+  },
+  {
+    id: 'lam-case-4',
+    title: 'Ash-Shams 91:1 — Double Chute en Wasl (وَٱلشَّمۡسِ)',
+    category: 'shamsiyyah',
+    arabicWord: 'وَٱلشَّمۡسِ وَضُحَىٰهَا',
+    highlightedSegment: 'وَٱلشَّمۡسِ',
+    ruleBadge: 'Double Effacement (Wasl + Shams)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Lām At-Ta\'rīf Solaire',
+    followingLetter: 'ش (Shīn avec Shaddah شّ)',
+    mushafSign: 'Hamzat Wasl + Lām nue',
+    pronunciation: 'Wash-shams (De "Wa" direct vers "Sh")',
+    surahRef: 'Ash-Shams 91:1',
+    explanation: 'En continu depuis le Wāw, Hamzat Wasl s\'élide ET la Lām Shamsiyyah disparaît : les deux consonnes sont muettes ! On enchaîne directement « Wash-shams » sans heurt.',
+    fiqhImpact: 'Récitation fluide sans saccade.',
+    commonTrap: 'Hésiter et insérer un son parasite "Wa-al-shams".',
+  },
+  {
+    id: 'lam-case-5',
+    title: 'An-Nās 114:1 — Lām Shamsiyyah avec Ghunnah (ٱلنَّاسِ)',
+    category: 'shamsiyyah',
+    arabicWord: 'قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ',
+    highlightedSegment: 'بِرَبِّ ٱلنَّاسِ',
+    ruleBadge: 'Idghām Shamsī + Ghunnah 2t',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Lām Solaire Spéciale Nūn',
+    followingLetter: 'ن (Nūn avec Shaddah نّ)',
+    mushafSign: 'Lām nue + Nūn Mushaddadah',
+    pronunciation: 'Bi-rabbi-n-nās (Ghunnah nasale de 2 temps)',
+    surahRef: 'An-Nās 114:1',
+    explanation: 'L\'assimilation dans le Nūn solaire crée un Nūn dédoublé (نّ) : une résonance nasale (Ghunnah) de 2 temps pleins devient obligatoire !',
+    fiqhImpact: 'Lahn Khafī si la Ghunnah de 2 temps est omise.',
+    commonTrap: 'Traiter le Nūn comme une consonne ordinaire sans marquer les 2 temps nasaux.',
+  },
+  {
+    id: 'lam-case-6',
+    title: 'Al-Mā\'idah 5:115 — Lafz Al-Jalālah Tafkhīm (قَالَ ٱللَّهُ)',
+    category: 'jalalah',
+    arabicWord: 'قَالَ ٱللَّهُ إِنِّى مُنَزِّلُهَا',
+    highlightedSegment: 'قَالَ ٱللَّهُ',
+    ruleBadge: 'Tafkhīm (Lourd après Fathah)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Lafz Al-Jalālah ٱللَّه',
+    followingLetter: 'Nom d\'Allah précédé de Fathah',
+    mushafSign: 'Lām avec Shaddah dans ٱللَّه',
+    pronunciation: 'Qāla-llāhu (Arrière de langue élevé, son majestueux)',
+    surahRef: 'Al-Mā\'idah 5:115',
+    explanation: 'La Fathah sur le Lām de « Qāla » impose le Tafkhīm : la bouche s\'emplit de résonance majestueuse sans arrondir les lèvres en cul-de-poule.',
+    fiqhImpact: 'Emphase obligatoire du Nom divin.',
+    commonTrap: 'Projeter les lèvres en O pour imiter le son lourd (dire "Ollāh").',
+  },
+  {
+    id: 'lam-case-7',
+    title: 'Al-Fātihah 1:1 — Lafz Al-Jalālah Tarqīq (بِسۡمِ ٱللَّهِ)',
+    category: 'jalalah',
+    arabicWord: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
+    highlightedSegment: 'بِسۡمِ ٱللَّهِ',
+    ruleBadge: 'Tarqīq (Fin après Kasrah)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Lafz Al-Jalālah ٱللَّه',
+    followingLetter: 'Nom d\'Allah précédé de Kasrah',
+    mushafSign: 'Kasrah sous le Mīm de Bismi',
+    pronunciation: 'Bismi-llāhi (Langue basse, sourire intérieur)',
+    surahRef: 'Al-Fātihah 1:1',
+    explanation: 'Toute Kasrah précédente rend le Nom d\'Allah doux et mince (Tarqīq). La langue reste plate.',
+    fiqhImpact: 'Ne jamais prononcer « Bismi-llōh ».',
+    commonTrap: 'Garder un Lām lourd par mimétisme.',
+  },
+  {
+    id: 'lam-case-8',
+    title: '17:80 & 37:18 — Lām Al-Fi\'l (قُلۡ نَعَمۡ vs قُل رَّبِّ)',
+    category: 'fil-harf',
+    arabicWord: 'قُلۡ نَعَمۡ ۝ وَقُل رَّبِّ',
+    highlightedSegment: 'قُلۡ نَعَمۡ · وَقُل رَّبِّ',
+    ruleBadge: 'Izhār (ن) vs Idghām (ر)',
+    colorClass: 'chip-iqlab',
+    ruleCategory: 'Lām du Verbe (Lām Al-Fi\'l)',
+    followingLetter: 'Nūn (Izhār) vs Râ\' (Idghām)',
+    mushafSign: 'Soukoûn visible sur قُلۡ نَعَمۡ / Lām nue sur وَقُل رَّبِّ',
+    pronunciation: 'Qul na\'am (Clarté) vs Qur-rabbi (Fusion totale)',
+    surahRef: 'Al-Isrā\' 17:80 & As-Sāffāt 37:18',
+    explanation: 'Devant le Nūn : Izhār obligatoire avec Tawassut sans rebond. Devant le Râ\' : Idghām complet, la Lām fond entièrement dans le Râ\'.',
+    fiqhImpact: 'Deux règles opposées selon la consonne suivante.',
+    commonTrap: 'Fusionner par erreur dans le Nūn (« Qun-na\'am ») ou faire une Qalqalah (« Qula-na\'am »).',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -1111,6 +1268,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   const [hamzahCaseId, setHamzahCaseId] = useState<string>('hamzah-case-1');
   const [hamzahFilter, setHamzahFilter] = useState<'all' | 'wasl-verb' | 'wasl-noun' | 'exception-verb' | 'two-hamzahs'>('all');
   const [isHamzahIbtidaMode, setIsHamzahIbtidaMode] = useState<boolean>(true);
+
+  // State for Chapter 7
+  const [lamCaseId, setLamCaseId] = useState<string>('lam-case-1');
+  const [lamFilter, setLamFilter] = useState<'all' | 'qamariyyah' | 'shamsiyyah' | 'jalalah' | 'fil-harf'>('all');
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -2347,6 +2508,187 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedHamzahCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 7 : LE LABORATOIRE DE LA LĀM SĀKINAH
+     ========================================================================= */
+  if (chapter.number === 7) {
+    const filteredLamCases = LAM_SAKINAH_TEST_BENCH_CASES.filter(
+      (c) => lamFilter === 'all' || c.category === lamFilter
+    );
+
+    const selectedLamCase =
+      LAM_SAKINAH_TEST_BENCH_CASES.find((c) => c.id === lamCaseId) ||
+      LAM_SAKINAH_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-gold': 'var(--gold)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-iqlab': 'var(--iqlab)',
+    };
+    const accentBorder = accentMap[selectedLamCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Laboratoire de la Lām Sākinah"
+          description="Testez la clarté lunaire (Izhār Qamarī), la fusion solaire (Idghām Shamsī), l'emphase sacrée du Nom d'Allah et les fusions de verbe et de particule."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setLamFilter('all')}
+              aria-pressed={lamFilter === 'all'}
+            >
+              Tous ({LAM_SAKINAH_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setLamFilter('qamariyyah')}
+              aria-pressed={lamFilter === 'qamariyyah'}
+            >
+              Lune (2)
+            </button>
+            <button
+              onClick={() => setLamFilter('shamsiyyah')}
+              aria-pressed={lamFilter === 'shamsiyyah'}
+            >
+              Soleil (3)
+            </button>
+            <button
+              onClick={() => setLamFilter('jalalah')}
+              aria-pressed={lamFilter === 'jalalah'}
+            >
+              Nom d'Allah (2)
+            </button>
+            <button
+              onClick={() => setLamFilter('fil-harf')}
+              aria-pressed={lamFilter === 'fil-harf'}
+            >
+              Verbe & Particule (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas extraits du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredLamCases.map((tc) => {
+              const isSelected = tc.id === selectedLamCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setLamCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedLamCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedLamCase.surahRef}</span>
+                <span className={`chip ${selectedLamCase.colorClass}`}>
+                  {selectedLamCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedLamCase.title}
+              </h3>
+            </div>
+
+            {/* Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Observation du segment et graphie du Mushaf</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                <span className="text-ink font-bold">
+                  {selectedLamCase.highlightedSegment}
+                </span>
+              </div>
+
+              {/* Status pills */}
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="text-xs text-muted">Lettre suivante :</span>
+                <span className="chip chip-gold font-bold text-xs">
+                  {selectedLamCase.followingLetter}
+                </span>
+                <span className="text-xs text-muted">Signe Mushaf :</span>
+                <span className="chip chip-izhar font-mono text-xs">
+                  {selectedLamCase.mushafSign}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                Prononciation exacte : <strong className="text-ink">{selectedLamCase.pronunciation}</strong>
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedLamCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Règle de récitation</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedLamCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedLamCase.commonTrap}
                 </dd>
               </div>
             </div>
