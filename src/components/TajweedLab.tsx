@@ -1866,19 +1866,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     };
   };
 
-  // Gestion du défilement mobile interactif (descente vers le diagnostic et remontée vers la liste)
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        setShowScrollTop(window.scrollY > 350);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const scrollToWorkbench = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
       setTimeout(() => {
@@ -1915,24 +1902,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
       <span>Remonter</span>
     </button>
   );
-
-  const renderFloatingBackToTop = () => {
-    if (!showScrollTop) return null;
-    return (
-      <div className="lg:hidden fixed bottom-24 right-4 z-30 pointer-events-auto animate-enter">
-        <button
-          type="button"
-          onClick={scrollToLabList}
-          aria-label="Remonter à la liste des cas"
-          className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-card/95 backdrop-blur-md border border-line shadow-lg text-ink font-semibold text-xs hover:border-lapis hover:text-lapis transition-all active:scale-95"
-        >
-          <ArrowUp className="w-4 h-4 text-lapis stroke-[2.5]" />
-          <span>Remonter</span>
-        </button>
-      </div>
-    );
-  };
-
   /* =========================================================================
      RENDU CHAPITRE 1 : BANC D'ESSAI DU LAHN
      ========================================================================= */
@@ -2127,7 +2096,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2300,7 +2268,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2502,7 +2469,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2698,7 +2664,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2910,7 +2875,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3122,7 +3086,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3311,7 +3274,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3500,7 +3462,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3671,7 +3632,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3842,7 +3802,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
-        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3943,7 +3902,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
           </div>
         </section>
       </div>
-      {renderFloatingBackToTop()}
     </>
   );
 };
