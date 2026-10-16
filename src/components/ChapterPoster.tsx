@@ -30,6 +30,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 5) {
       return 'Le Madd Far\'ī obéit à deux causes : la Hamzah (Muttasil obligatoire 4-5 temps dans le même mot, Munfasil 4-5 temps entre mots) et le Soukoûn (Lāzim obligatoire 6 temps stricts incompressibles, \'Ārid flexible 2, 4 ou 6 temps à l\'arrêt). Gardez toujours la cohérence de vos 6 temps sur le Madd Lāzim et l\'équilibre parfait de la Balance (Al-Mīzān) !';
     }
+    if (chapter.number === 6) {
+      return 'Ne confondez jamais Hamzat Al-Qat\' (ء - toujours fixe) et Hamzat Al-Wasl (ٱ - élidée en continu). À l\'attaque, appliquez rigoureusement la règle de la 3e lettre sur les verbes (Dammah ➔ اُ, Fathah/Kasrah ➔ اِ), commencez l\'article ٱلـ par une Fathah (اَلـ), et n\'attaquez JAMAIS les 5 verbes d\'exception (ٱبۡنُواْ, ٱمۡشُواْ) par une Dammah !';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -111,6 +114,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             : chapter.number === 4
             ? 'Chapitre suivant (Les Prolongations II - Madd Far\'ī)'
             : chapter.number === 5
+            ? 'Chapitre suivant (Les Hamzahs)'
+            : chapter.number === 6
             ? 'Chapitre suivant (Nūn Sākinah)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'

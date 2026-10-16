@@ -181,6 +181,37 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 6 (Hamzah - Wasl & Qat')
+  const chapter6Verses = [
+    {
+      ref: '1:6',
+      surahFr: 'Al-Fātihah',
+      words: [
+        { text: 'ٱهۡدِنَا', rule: '3e lettre Kasrah (Ihdinā)', ruleClass: 'chip-gold', why: '3e lettre (Dāl) avec Kasrah : Hamzat Al-Wasl s\'attaque impérativement avec Kasrah (« Ihdinā ») !', target: true },
+        { text: 'ٱلصِّرَٰطَ', rule: 'Article défini (Chute en Wasl)', ruleClass: 'chip-izhar', why: 'En Wasl : « Ihdina-s-Sirāt » (Hamzat Wasl s\'élide). À l\'attaque : Fathah (« As-Sirāt »).', target: true },
+        { text: 'ٱلۡمُسۡتَقِيمَ', rule: 'Article défini & Madd \'Ārid', ruleClass: 'chip-izhar', why: 'En Wasl : « Sirāta-l-Mustaqīm » (Hamzat Wasl s\'efface complètement).', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/001006.mp3',
+    },
+    {
+      ref: '46:4',
+      surahFr: 'Al-Ahqāf',
+      words: [
+        { text: 'أَمۡ', rule: 'Hamzat Al-Qat\'', ruleClass: 'chip-gold', why: 'Hamzat Qat\' originelle toujours prononcée avec netteté.' },
+        { text: 'لَهُمۡ', rule: 'Mīm Sākinah', ruleClass: 'chip-gold', why: 'Izhār Shafawī.' },
+        { text: 'شِرۡكٞ', rule: 'Râ\' Tarqīq', ruleClass: 'chip-gold', why: 'Râ\' amincie par la Kasrah du Shīn.' },
+        { text: 'فِى', rule: 'Madd naturel', ruleClass: 'chip-gold', why: 'Voyelle longue s\'effaçant devant le Soukoûn.' },
+        { text: 'ٱلسَّمَٰوَٰتِۖ', rule: 'Hamzat Wasl & Waqf Jā\'iz', ruleClass: 'chip-izhar', why: 'Hamzat Wasl effacée. Arrêt permis sur ce mot.' },
+        { text: 'ٱئۡتُونِى', rule: 'Rencontre de 2 Hamzahs', ruleClass: 'chip-bad', why: 'En Wasl : « samāwāti\'-tūnī ». À l\'attaque : transmutation en Madd Badal ➔ « ĪTŪNĪ » (إِيتُونِي) !', target: true },
+        { text: 'بِكِتَٰبٖ', rule: 'Alif miniature', ruleClass: 'chip-gold', why: 'Madd Naturel de 2 temps.' },
+        { text: 'مِّن', rule: 'Idghām bi-Ghunnah', ruleClass: 'chip-idgham', why: 'Tanwīn suivi de Mīm : fusion avec 2 temps de nasalité.' },
+        { text: 'قَبۡلِ', rule: 'Ikhfā\' & Qalqalah', ruleClass: 'chip-qalqalah', why: 'Ikhfā\' sur Nūn puis rebond franc sur le Bā\'.' },
+        { text: 'هَٰذَآ', rule: 'Madd Munfasil', ruleClass: 'chip-gold', why: 'Prolongation de 4 ou 5 temps.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/046004.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -251,6 +282,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter4Verses
       : chapter.number === 5
       ? chapter5Verses
+      : chapter.number === 6
+      ? chapter6Verses
       : chapter.number === 8
       ? nunVerses
       : qalqalahVerses;

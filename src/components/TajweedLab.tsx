@@ -885,6 +885,172 @@ const MADD_FARI_TEST_BENCH_CASES: MaddFariBenchCase[] = [
   },
 ];
 
+interface HamzahBenchCase {
+  id: string;
+  title: string;
+  category: 'wasl-verb' | 'wasl-noun' | 'exception-verb' | 'two-hamzahs';
+  arabicWord: string;
+  waslArabicText: string;
+  ibtidaArabicText: string;
+  waslPronunciation: string;
+  ibtidaPronunciation: string;
+  surahRef: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  determinedTashkeel: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const HAMZAH_TEST_BENCH_CASES: HamzahBenchCase[] = [
+  {
+    id: 'hamzah-case-1',
+    title: 'Al-Fātihah 1:2 — Article Défini ٱلـ (ٱلۡحَمۡدُ)',
+    category: 'wasl-noun',
+    arabicWord: 'ٱلۡحَمۡدُ لِلَّهِ',
+    waslArabicText: 'رَبِّ ٱلۡحَمۡدُ',
+    ibtidaArabicText: 'اَلۡحَمۡدُ',
+    waslPronunciation: 'Rabbi-l-hamdu (Chute totale de Hamzat Wasl)',
+    ibtidaPronunciation: 'Al-hamdu (Attaque avec FATHAH obligatoire)',
+    surahRef: 'Al-Fātihah 1:2',
+    ruleBadge: 'Article Défini (Fathah)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Noms avec ٱلـ',
+    determinedTashkeel: 'Fathah (اَلـ)',
+    explanation: 'Tout nom précédé de l\'article ٱلـ prend obligatoirement une Fathah à l\'attaque (« Al-hamdu »). En liaison, Hamzat Wasl tombe complètement sans rupture.',
+    fiqhImpact: 'Unanime. Ne jamais commencer un nom défini par une Kasrah.',
+    commonTrap: 'Prononcer "Il-hamdu" par mauvaise habitude dialectale.',
+  },
+  {
+    id: 'hamzah-case-2',
+    title: 'An-Nahl 16:125 — Verbe avec 3e lettre Dammah (ٱدۡعُ)',
+    category: 'wasl-verb',
+    arabicWord: 'ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ',
+    waslArabicText: 'قُلِ ٱدۡعُ',
+    ibtidaArabicText: 'اُدۡعُ',
+    waslPronunciation: 'Quli-d\'u (Wasl : consonne directe)',
+    ibtidaPronunciation: 'Ud\'u (Attaque avec DAMMAH)',
+    surahRef: 'An-Nahl 16:125',
+    ruleBadge: '3e lettre Dammah (اُ)',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Verbes à l\'impératif',
+    determinedTashkeel: 'Dammah (اُ)',
+    explanation: 'La 3e lettre (\'Ayn) porte une Dammah originelle (عُ) : Hamzat Al-Wasl prend donc obligatoirement une Dammah (« Ud\'u ») !',
+    fiqhImpact: 'Obligatoire. Dire "Id\'u" ou "Ad\'u" est une faute de Lahn.',
+    commonTrap: 'Commencer par une Kasrah "Id\'u".',
+  },
+  {
+    id: 'hamzah-case-3',
+    title: 'Al-Fātihah 1:6 — Verbe avec 3e lettre Kasrah (ٱهۡدِنَا)',
+    category: 'wasl-verb',
+    arabicWord: 'ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ',
+    waslArabicText: 'نَسۡتَعِينُ ٱهۡدِنَا',
+    ibtidaArabicText: 'اِهۡدِنَا',
+    waslPronunciation: 'Nasta\'īnu-hdinā (Wasl)',
+    ibtidaPronunciation: 'Ihdinā (Attaque avec KASRAH)',
+    surahRef: 'Al-Fātihah 1:6',
+    ruleBadge: '3e lettre Kasrah (اِ)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Verbes à l\'impératif',
+    determinedTashkeel: 'Kasrah (اِ)',
+    explanation: 'La 3e lettre (Dāl) porte une Kasrah (دِ) : Hamzat Al-Wasl prend obligatoirement une Kasrah (« Ihdinā »).',
+    fiqhImpact: 'Obligatoire dans la Fātihah.',
+    commonTrap: 'Mettre une Fathah en disant "Ahdinā" (Lahn Jalī majeur altérant le sens) !',
+  },
+  {
+    id: 'hamzah-case-4',
+    title: 'Tā-Hā 20:24 — Verbe avec 3e lettre Fathah (ٱذۡهَبۡ)',
+    category: 'wasl-verb',
+    arabicWord: 'ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ',
+    waslArabicText: 'قَالَ ٱذۡهَبۡ',
+    ibtidaArabicText: 'اِذۡهَبۡ',
+    waslPronunciation: 'Qāla-dh-hab (Wasl)',
+    ibtidaPronunciation: 'Idh-hab (Attaque avec KASRAH)',
+    surahRef: 'Tā-Hā 20:24',
+    ruleBadge: '3e lettre Fathah (اِ)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Verbes à l\'impératif',
+    determinedTashkeel: 'Kasrah (اِ)',
+    explanation: 'Règle absolue : si la 3e lettre a une Fathah (هَ), Hamzat Al-Wasl prend TOUJOURS une Kasrah (« Idh-hab »). Aucun verbe ne commence par Fathah !',
+    fiqhImpact: 'Conforme. Dire "Adh-hab" change le verbe en 1re personne ("Je pars").',
+    commonTrap: 'Attaquer par Fathah "Adh-hab".',
+  },
+  {
+    id: 'hamzah-case-5',
+    title: 'As-Sāffāt 37:97 — Verbe d\'exception aux fausses Dammahs (ٱبۡنُواْ)',
+    category: 'exception-verb',
+    arabicWord: 'قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
+    waslArabicText: 'قَالُواْ ٱبۡنُواْ',
+    ibtidaArabicText: 'اِبۡنُواْ',
+    waslPronunciation: 'Qālu-b-nū (Wasl)',
+    ibtidaPronunciation: 'Ibnū (Attaque avec KASRAH obligatoire)',
+    surahRef: 'As-Sāffāt 37:97',
+    ruleBadge: 'Exception : Kasrah (اِ)',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Les 5 verbes d\'exception',
+    determinedTashkeel: 'Kasrah (اِ)',
+    explanation: 'Bien que le Nūn porte une Dammah apparente, l\'origine du mot est « Ibniyū » (Kasrah). L\'attaque se fait STRICTEMENT en Kasrah : « Ibnū » !',
+    fiqhImpact: 'Faute de récitation très répandue chez les débutants.',
+    commonTrap: 'Dire "Ubnū" en regardant la Dammah du Nūn.',
+  },
+  {
+    id: 'hamzah-case-6',
+    title: 'Sād 38:6 — Verbe d\'exception (ٱمۡشُواْ)',
+    category: 'exception-verb',
+    arabicWord: 'وَٱنطَلَقَ ٱلۡمَلَأُ مِنۡهُمۡ أَنِ ٱمۡشُواْ',
+    waslArabicText: 'أَنِ ٱمۡشُواْ',
+    ibtidaArabicText: 'اِمۡشُواْ',
+    waslPronunciation: 'Ani-m-shū (Wasl avec Kasrah de liaison)',
+    ibtidaPronunciation: 'Imshū (Attaque avec KASRAH)',
+    surahRef: 'Sād 38:6',
+    ruleBadge: 'Exception : Kasrah (اِ)',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Les 5 verbes d\'exception',
+    determinedTashkeel: 'Kasrah (اِ)',
+    explanation: 'Même exception : racine « Imshiyū ». La Dammah est incidentelle au Wāw du pluriel. Prononcez « Imshū ».',
+    fiqhImpact: 'Obligatoire.',
+    commonTrap: 'Prononcer "Umshū".',
+  },
+  {
+    id: 'hamzah-case-7',
+    title: 'Maryam 19:7 — Nom indéfini spécifique (ٱسۡمُهُۥٓ)',
+    category: 'wasl-noun',
+    arabicWord: 'بِغُلَٰمٍ ٱسۡمُهُۥ يَحۡيَىٰ',
+    waslArabicText: 'غُلَٰمٍ ٱسۡمُهُۥ',
+    ibtidaArabicText: 'اِسۡمُهُۥ',
+    waslPronunciation: 'Ghulāmini-s-muhū (Kasrah de liaison)',
+    ibtidaPronunciation: 'Ismuhū (Attaque avec KASRAH)',
+    surahRef: 'Maryam 19:7',
+    ruleBadge: 'Nom Indéfini (Kasrah)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Noms sans ٱلـ',
+    determinedTashkeel: 'Kasrah (اِ)',
+    explanation: 'Le mot « Ism » fait partie des 4 noms indéfinis spécifiques du Coran (avec Ibn, Imra\'ah, Ithnān) qui reçoivent TOUJOURS une Kasrah à l\'attaque (« Ismuhū »).',
+    fiqhImpact: 'Conforme.',
+    commonTrap: 'Mettre une Dammah à cause de la Dammah sur le Mīm ("Usmuhū").',
+  },
+  {
+    id: 'hamzah-case-8',
+    title: 'Al-Ahqāf 46:4 — Rencontre de Deux Hamzahs (ٱئۡتُونِى)',
+    category: 'two-hamzahs',
+    arabicWord: 'فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ',
+    waslArabicText: 'فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى',
+    ibtidaArabicText: 'إِيتُونِى',
+    waslPronunciation: 'fīs-samāwāti\'-tūnī (Wasl : chute de Wasl)',
+    ibtidaPronunciation: 'ĪTŪNĪ (Madd Badal : transformation en Yā\')',
+    surahRef: 'Al-Ahqāf 46:4',
+    ruleBadge: 'Madd Badal (ĪTŪNĪ)',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Rencontre de deux Hamzahs',
+    determinedTashkeel: 'Kasrah + Yā\' (إِيتُونِي)',
+    explanation: 'À l\'attaque, Hamzat Wasl prend Kasrah (إِ) et la Hamzat Qat\' Sākinah (ئْ) se transmute en une voyelle longue Yā\' pour adoucir la voix ➔ « ĪTŪNĪ » !',
+    fiqhImpact: 'Règle phonétique majeure du Coran.',
+    commonTrap: 'Prononcer "I\'tūnī" avec une rupture glottale brutale.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -940,6 +1106,11 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   const [fariCaseId, setFariCaseId] = useState<string>('fari-case-1');
   const [fariFilter, setFariFilter] = useState<'all' | 'muttasil' | 'munfasil' | 'lazim' | 'arid'>('all');
   const [isFariWaqfMode, setIsFariWaqfMode] = useState<boolean>(false);
+
+  // State for Chapter 6
+  const [hamzahCaseId, setHamzahCaseId] = useState<string>('hamzah-case-1');
+  const [hamzahFilter, setHamzahFilter] = useState<'all' | 'wasl-verb' | 'wasl-noun' | 'exception-verb' | 'two-hamzahs'>('all');
+  const [isHamzahIbtidaMode, setIsHamzahIbtidaMode] = useState<boolean>(true);
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -1972,6 +2143,210 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedFariCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 6 : LE LABORATOIRE DES HAMZAHS (WASL & QAT')
+     ========================================================================= */
+  if (chapter.number === 6) {
+    const filteredHamzahCases = HAMZAH_TEST_BENCH_CASES.filter(
+      (c) => hamzahFilter === 'all' || c.category === hamzahFilter
+    );
+    const selectedHamzahCase =
+      HAMZAH_TEST_BENCH_CASES.find((c) => c.id === hamzahCaseId) || HAMZAH_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-iqlab': 'var(--iqlab)',
+      'chip-ikhfa': 'var(--ikhfa)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-gold': 'var(--gold)',
+      'chip-bad': 'var(--bad)',
+    };
+    const accentBorder = accentMap[selectedHamzahCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Laboratoire des Hamzahs (Wasl & Qat')"
+          description="Testez la chute de Hamzat Al-Wasl en liaison continue (Wasl) et découvrez sa voyelle d'attaque exacte (Tashkīl) à l'attaque (Ibtidā')."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setHamzahFilter('all')}
+              aria-pressed={hamzahFilter === 'all'}
+            >
+              Tous ({HAMZAH_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setHamzahFilter('wasl-verb')}
+              aria-pressed={hamzahFilter === 'wasl-verb'}
+            >
+              Verbes réguliers (3)
+            </button>
+            <button
+              onClick={() => setHamzahFilter('wasl-noun')}
+              aria-pressed={hamzahFilter === 'wasl-noun'}
+            >
+              Noms (2)
+            </button>
+            <button
+              onClick={() => setHamzahFilter('exception-verb')}
+              aria-pressed={hamzahFilter === 'exception-verb'}
+            >
+              5 Verbes d'exception (2)
+            </button>
+            <button
+              onClick={() => setHamzahFilter('two-hamzahs')}
+              aria-pressed={hamzahFilter === 'two-hamzahs'}
+            >
+              Deux Hamzahs (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredHamzahCases.map((tc) => {
+              const isSelected = tc.id === selectedHamzahCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setHamzahCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedHamzahCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedHamzahCase.surahRef}</span>
+                <span className={`chip ${selectedHamzahCase.colorClass}`}>
+                  {selectedHamzahCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedHamzahCase.title}
+              </h3>
+            </div>
+
+            {/* Interactive Wasl vs Ibtida Toggle & Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Basculez entre Liaison continue et Attaque du mot</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                {isHamzahIbtidaMode ? (
+                  <span className="text-good font-bold animate-pop">
+                    {selectedHamzahCase.ibtidaArabicText}
+                  </span>
+                ) : (
+                  <span className="text-ink">
+                    {selectedHamzahCase.waslArabicText}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <div className="segmented">
+                  <button
+                    onClick={() => setIsHamzahIbtidaMode(false)}
+                    aria-pressed={!isHamzahIbtidaMode}
+                  >
+                    En Continu (Wasl)
+                  </button>
+                  <button
+                    onClick={() => setIsHamzahIbtidaMode(true)}
+                    aria-pressed={isHamzahIbtidaMode}
+                  >
+                    À l'Attaque (Ibtidā')
+                  </button>
+                </div>
+              </div>
+
+              {/* Determined Tashkeel Badge */}
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-xs text-muted">Statut phonétique :</span>
+                <span className={`chip ${isHamzahIbtidaMode ? 'chip-gold' : 'chip-idgham'} font-bold text-xs`}>
+                  {isHamzahIbtidaMode
+                    ? `Attaque : ${selectedHamzahCase.determinedTashkeel}`
+                    : 'Hamzat Wasl totalement élidée'}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                {isHamzahIbtidaMode
+                  ? selectedHamzahCase.ibtidaPronunciation
+                  : selectedHamzahCase.waslPronunciation}
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedHamzahCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Fiqh</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedHamzahCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedHamzahCase.commonTrap}
                 </dd>
               </div>
             </div>

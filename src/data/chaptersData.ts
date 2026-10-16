@@ -6,7 +6,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: true },
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: true },
   { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: true },
-  { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: false },
+  { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: true },
   { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: false },
   { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
   { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: false },
@@ -1678,6 +1678,354 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'En continu (Wasl), 0 temps de Madd (simple consonne de Līn douce) ; à l\'arrêt (Waqf), il devient un Madd Līn permis de 2, 4 ou 6 temps',
         explanationFr: 'Les lettres de Līn (Wāw ou Yā\' précédés d\'une Fathah) ne reçoivent AUCUN Madd en continu. Ce n\'est qu\'à l\'arrêt, en raison du Soukoûn incident, qu\'elles peuvent s\'étirer de 2, 4 ou 6 temps.',
         ruleId: 'madd-arid-leen-waqf'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 6 : LES HAMZAHS (HAMZAT AL-WASL & AL-QAT')
+  // ==========================================
+  {
+    id: 'chap-6',
+    number: 6,
+    slug: 'hamzah',
+    titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')',
+    titleAr: 'هَمْزَتَا الوَصْلِ وَالقَطْعِ',
+    category: 'intermediate',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre et maîtriser la distinction absolue entre Hamzat Al-Qat\' (ء - toujours prononcée en toutes circonstances) et Hamzat Al-Wasl (ٱ - qui disparaît entièrement en liaison continue et ne renaît qu\'à l\'attaque du mot). Déterminer avec exactitude la voyelle d\'attaque (Tashkīl) selon la règle de la 3e lettre pour les verbes (Dammah ➔ اُ, Fathah/Kasrah ➔ اِ), la Fathah systématique sur l\'article défini (ٱلـ ➔ اَلـ), la Kasrah des noms singuliers coraniques, et déjouer le piège fatal des 5 verbes d\'exception (ٱبۡنُواْ, ٱمۡشُواْ, ٱقۡضُوٓاْ...) ainsi que la transmutation de « I\'tūnī » en « Ītūnī ».',
+    infographicPoints: [
+      'Hamzat Al-Qat\' (ء) : Porte toujours sa propre voyelle (أَ, إِ, أُ). Elle est TOUJOURS prononcée avec netteté, au début, au milieu ou à la fin d\'un mot, en continu comme à l\'arrêt !',
+      'Hamzat Al-Wasl (ٱ) : Surmontée du petit Sād (صـ pour Silah/connexion). Elle ne se trouve QU\'AU DÉBUT d\'un mot. En liaison continue (Wasl), elle est TOTALEMENT ANNULÉE et escamotée phonétiquement !',
+      'Tashkīl de l\'Article Défini (ٱلـ) : Tout nom commençant par l\'article défini ٱلـ commence TOUJOURS par une FATHAH à l\'attaque (« Al-hamdu », « Al-bayt ») !',
+      'Règle de la 3e lettre pour les Verbes : Comptez jusqu\'à la 3e lettre du verbe : si elle porte une Dammah ➔ attaquez avec Dammah (اُدۡعُ) ; si elle porte une Fathah ou Kasrah ➔ attaquez avec Kasrah (اِذۡهَبۡ, اِهۡدِنَا) !',
+      'Le piège des 5 Verbes d\'Exception : « Ibnū », « Iqdū », « Imshū », « I\'tū », « I\'tūnī » ont une Dammah apparente sur la 3e lettre mais s\'attaquent TOUS avec une KASRAH (اِبۡنُواْ) car la Dammah est accidentelle (due au pluriel).',
+      'La Rencontre des Deux Hamzahs (Al-Ahqāf 46:4) : En continu = « fīs-samāwāti\'-tūnī ». À l\'attaque = la 2e Hamzah se transmute en Yā\' de Madd et l\'on prononce « ĪTŪNĪ » (إِيتُونِي) !'
+    ],
+    subrules: [
+      {
+        id: 'hamzat-qat-vs-wasl',
+        nameFr: '1. Hamzat Al-Qat\' (ء) vs Hamzat Al-Wasl (ٱ)',
+        nameAr: 'الفَرْقُ بَيْنَ هَمْزَةِ القَطْعِ وَهَمْزَةِ الوَصْلِ',
+        mnemonic: 'Qat\' (ء) = Fixe & Invariable | Wasl (ٱ avec صـ) = Chute en continu, renaît à l\'attaque',
+        letters: ['ء', 'ٱ'],
+        definitionFr: 'Hamzat Al-Qat\' (ء) est une consonne authentique qui se prononce obligatoirement en toutes circonstances. Hamzat Al-Wasl (ٱ) est une béquille phonétique créée pour éviter de débuter un mot par un Soukoûn : elle disparaît complètement dès qu\'un mot la précède.',
+        mechanismFr: 'En lecture continue, passez directement de la dernière voyelle du mot précédent à la consonne qui suit Hamzat Al-Wasl sans aucune rupture ni hésitation glottale.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c6-1',
+            arabicText: 'ٱلَّذِينَ إِذَآ أَصَٰبَتۡهُم مُّصِيبَةٞ قَالُوٓاْ إِنَّا لِلَّهِ',
+            surahAyahRef: '2:156',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'أَصَٰبَتۡهُم · إِنَّا',
+            highlightLetter: 'أَ · إِ (Hamzat Al-Qat\')',
+            ruleApplied: 'Hamzat Al-Qat\' (Prononciation obligatoire)',
+            ruleTag: 'izhar',
+            explanationFr: 'Les Hamzahs de « Asābathum » et « Innā » sont des Hamzat Qat\' : elles se détachent nettement des cordes vocales sans jamais pouvoir être élidées.',
+            transliteration: 'Alladhīna idhā asābathum musībah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002156.mp3'
+          },
+          {
+            id: 'ex-c6-2',
+            arabicText: 'فَمَنۡ حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
+            surahAyahRef: '2:158',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
+            highlightLetter: 'ٱ (Chute en liaison continue)',
+            ruleApplied: 'Hamzat Al-Wasl (Élision complète en Wasl)',
+            ruleTag: 'silent',
+            explanationFr: 'En lisant en continu, les deux Hamzats Wasl s\'évanouissent totalement : on prononce « Hajja-l-bayta awi-\'tamara », la voix enchaînant directement sur le Lām puis sur le \'Ayn.',
+            transliteration: 'Faman hajja-l-bayta awi-\'tamara',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002158.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Marquer un coup de glotte sec sur Hamzat Al-Wasl en plein milieu d\'une phrase (ex: dire "Hajja ... Al-bayt").',
+            correctionFr: 'C\'est une faute majeure de liaison : Hamzat Al-Wasl doit être totalement imperceptible en Wasl.'
+          },
+          {
+            trapFr: 'Confondre le petit Sād (صـ) de Wasl avec un Soukoûn pur.',
+            correctionFr: 'Le petit Sād est le signe de « Silah » (connexion) : il rappelle que la lettre ne sert qu\'à relier et disparaît en continu.'
+          }
+        ]
+      },
+      {
+        id: 'verbs-third-letter-rule',
+        nameFr: '2. La Règle de la 3e Lettre pour les Verbes',
+        nameAr: 'حُكْمُ حَرَكَةِ هَمْزَةِ الوَصْلِ فِي الأَفْعَالِ (قَاعِدَةُ الحَرْفِ الثَّالِثِ)',
+        mnemonic: '3e lettre Dammah ➔ اُ | 3e lettre Fathah ou Kasrah ➔ اِ (Jamais de Fathah sur un verbe !)',
+        letters: ['ٱ'],
+        definitionFr: 'Dans le Coran, Hamzat Al-Wasl ne porte aucun Tashkīl. Pour savoir quelle voyelle lui donner lorsque l\'on débute par un verbe, on regarde la voyelle de sa 3e lettre (en comptant Hamzat Al-Wasl comme lettre n°1).',
+        mechanismFr: '1 = Hamzat Wasl, 2 = Lettre avec Soukoûn, 3 = Troisième lettre. Si 3 = Dammah originelle (ـُ), prononcez « U » (اُ). Si 3 = Fathah (ـَ) ou Kasrah (ـِ), prononcez « I » (اِ). Un verbe ne commence JAMAIS par une Fathah !',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c6-3',
+            arabicText: 'ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلۡحِكۡمَةِ',
+            surahAyahRef: '16:125',
+            surahNameFr: 'An-Nahl',
+            highlightSegment: 'ٱدۡعُ',
+            highlightLetter: '1:ٱ, 2:د, 3:عُ ➔ اُدۡعُ',
+            ruleApplied: '3e lettre avec Dammah ➔ Attaque en Dammah (Ud\'u)',
+            ruleTag: 'izhar',
+            explanationFr: 'La 3e lettre (\'Ayn) porte une Dammah originelle. À l\'attaque, Hamzat Al-Wasl prend donc obligatoirement une Dammah : « Ud\'u ».',
+            transliteration: 'Ud\'u ilā sabīli rabbika bil-hikmah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/016125.mp3'
+          },
+          {
+            id: 'ex-c6-4',
+            arabicText: 'ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ',
+            surahAyahRef: '1:6',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱهۡدِنَا',
+            highlightLetter: '1:ٱ, 2:هـ, 3:دِ ➔ اِهۡدِنَا',
+            ruleApplied: '3e lettre avec Kasrah ➔ Attaque en Kasrah (Ihdinā)',
+            ruleTag: 'izhar',
+            explanationFr: 'La 3e lettre (Dāl) porte une Kasrah. À l\'attaque, Hamzat Al-Wasl prend obligatoirement une Kasrah : « Ihdinā ».',
+            transliteration: 'Ihdinā-s-sirātal-mustaqīm',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001006.mp3'
+          },
+          {
+            id: 'ex-c6-5',
+            arabicText: 'ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ',
+            surahAyahRef: '20:24',
+            surahNameFr: 'Tā-Hā',
+            highlightSegment: 'ٱذۡهَبۡ',
+            highlightLetter: '1:ٱ, 2:ذ, 3:هَ ➔ اِذۡهَبۡ',
+            ruleApplied: '3e lettre avec Fathah ➔ Attaque en Kasrah (Idh-hab)',
+            ruleTag: 'izhar',
+            explanationFr: 'La 3e lettre (Hā\') porte une Fathah. Règle absolue : Fathah sur la 3e lettre donne TOUJOURS une Kasrah sur Hamzat Al-Wasl : on prononce « Idh-hab » et JAMAIS « Adh-hab » !',
+            transliteration: 'Idh-hab ilā fir\'awna innahū taghā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/020024.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Attaquer un verbe par une Fathah (ex: dire "Adh-hab" au lieu de "Idh-hab").',
+            correctionFr: 'C\'est un contresens grammatical majeur : les verbes à l\'impératif ne reçoivent JAMAIS de Fathah sur Hamzat Al-Wasl.'
+          },
+          {
+            trapFr: 'Regarder la 2e lettre au lieu de la 3e lettre.',
+            correctionFr: 'La 2e lettre porte obligatoirement un Soukoûn : elle ne vous apprend rien ! C\'est la 3e lettre qui commande toute la règle.'
+          }
+        ]
+      },
+      {
+        id: 'nouns-definite-indefinite',
+        nameFr: '3. Les Noms Définis (ٱلـ) & Indéfinis (ٱسۡمُ, ٱبۡنُ...)',
+        nameAr: 'حُكْمُ هَمْزَةِ الوَصْلِ فِي الأَسْمَاءِ المُعَرَّفَةِ وَالمُنَكَّرَةِ',
+        mnemonic: 'Article ٱلـ = TOUJOURS FATHAH (اَلـ) | 4 Noms singuliers = TOUJOURS KASRAH (اِ)',
+        letters: ['ٱ'],
+        definitionFr: 'Pour les noms, la règle est fixe et indépendante de la 3e lettre : tout nom avec l\'article défini ٱلـ s\'attaque avec Fathah. Les noms indéfinis spécifiques du Coran s\'attaquent tous avec Kasrah.',
+        mechanismFr: 'Noms définis : « Al-... ». Noms indéfinis : « Ibn », « Imra\'ah », « Ism », « Ithnān » prennent tous une Kasrah pure (« I »).',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c6-6',
+            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '1:2',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلۡحَمۡدُ',
+            highlightLetter: 'ٱلـ ➔ اَلۡحَمۡدُ',
+            ruleApplied: 'Article défini ➔ Fathah obligatoire (Al-hamdu)',
+            ruleTag: 'izhar',
+            explanationFr: 'Tout mot débutant par l\'article défini ٱلـ reçoit obligatoirement une Fathah à l\'attaque (« Al-Hamdu »).',
+            transliteration: 'Al-hamdu lillāhi rabbil-\'ālamīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
+          },
+          {
+            id: 'ex-c6-7',
+            arabicText: 'مَّسِيحُ عِيسَى ٱبۡنُ مَرۡيَمَ',
+            surahAyahRef: '4:171',
+            surahNameFr: 'An-Nisā\'',
+            highlightSegment: 'ٱبۡنُ',
+            highlightLetter: 'ٱبۡنُ ➔ اِبۡنُ (Kasrah)',
+            ruleApplied: 'Nom singulier coranique ➔ Kasrah obligatoire (Ibnu)',
+            ruleTag: 'izhar',
+            explanationFr: 'En continu : « \'Īsa-bnu Maryam ». Mais si l\'on débute sur le mot « Ibn », Hamzat Al-Wasl prend obligatoirement une Kasrah : « Ibnu Maryam ».',
+            transliteration: 'Masīhu \'Īsab-nu maryam',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004171.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Attaquer « ٱسۡمُ رَبِّكَ » avec une Dammah sous prétexte que le Mīm porte une Dammah.',
+            correctionFr: '« Ism » est un nom indéfini, pas un verbe ! Il prend impérativement une Kasrah (« Ismu Rabbika »).'
+          }
+        ]
+      },
+      {
+        id: 'five-verbs-and-two-hamzahs',
+        nameFr: '4. Les 5 Verbes d\'Exception & La Rencontre des Deux Hamzahs',
+        nameAr: 'الأَفْعَالُ الخَمْسَةُ المُسْتَثْنَاةُ وَاجْتِمَاعُ الهَمْزَتَيْنِ',
+        mnemonic: '5 verbes (Ibnū, Iqdū, Imshū, I\'tū, I\'tūnī) = KASRAH ! | ٱئۡتُونِي à l\'attaque = ĪTŪNĪ',
+        letters: ['ٱ'],
+        definitionFr: 'Cinq verbes coraniques ont une Dammah apparente sur leur 3e lettre mais s\'attaquent TOUS avec une Kasrah car cette Dammah est accidentelle (due au Wāw du pluriel). De plus, lorsque Hamzat Al-Wasl rencontre une Hamzat Qat\' sans voyelle (comme dans « I\'tūnī »), la 2e Hamzah se transforme en Madd à l\'attaque (« Ītūnī »).',
+        mechanismFr: '1. « Ibnū », « Imshū », « Iqdū » ➔ prononcez « Ibnū », « Imshū », « Iqdū » avec Kasrah. 2. « ٱئۡتُونِي » ➔ en Wasl : « ...s-samāwāti\'-tūnī » ; à l\'attaque : appliquez le Madd Badal et dites « Ītūnī » (إِيتُونِي) !',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c6-8',
+            arabicText: 'قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
+            surahAyahRef: '37:97',
+            surahNameFr: 'As-Sāffāt',
+            highlightSegment: 'ٱبۡنُواْ',
+            highlightLetter: 'نُ = Dammah accidentelle ➔ اِبۡنُواْ',
+            ruleApplied: 'Verbe d\'exception (Attaque en Kasrah obligatoire)',
+            ruleTag: 'izhar',
+            explanationFr: 'Bien que le Nūn porte une Dammah, l\'origine du verbe est « Ibniyū » : la Dammah a été introduite pour le Wāw du pluriel. À l\'attaque, on dit impérativement « Ibnū » avec Kasrah, et JAMAIS « Ubnū » !',
+            transliteration: 'Qālūb-nū lahū bunyānā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/037097.mp3'
+          },
+          {
+            id: 'ex-c6-9',
+            arabicText: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ',
+            surahAyahRef: '46:4',
+            surahNameFr: 'Al-Ahqāf',
+            highlightSegment: 'ٱئۡتُونِى',
+            highlightLetter: 'Wasl: samāwāti\'-tūnī | Ibtidā\': ĪTŪNĪ (إِيتُونِي)',
+            ruleApplied: 'Rencontre de deux Hamzahs (Madd Badal à l\'attaque)',
+            ruleTag: 'madd',
+            explanationFr: 'En continu : Hamzat Wasl saute ➔ « fīs-samāwāti\'-tūnī ». À l\'attaque : Hamzat Wasl prend une Kasrah, et la 2e Hamzah se transforme en voyelle longue Yā\' ➔ « Ītūnī » (إِيتُونِي) !',
+            transliteration: 'Am lahum shirkun fīs-samāwāt, Ītūnī bi-kitāb',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/046004.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Attaquer « ٱمۡشُواْ » par « Umshū » en regardant la Dammah du Shīn.',
+            correctionFr: 'C\'est une faute de Tajwīd impardonnable : l\'origine est « Imshiyū ». On attaque STRICTEMENT par « Imshū ».'
+          },
+          {
+            trapFr: 'Attaquer « ٱئۡتُونِي » en prononçant une Hamzah saccadée "I\'-tūnī".',
+            correctionFr: 'Deux Hamzahs ne peuvent se suivre ainsi à l\'attaque : la seconde se transforme obligatoirement en Madd ➔ « Ītūnī ».'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c6-1',
+        title: 'Verbe vs Nom Défini : Sourate Al-Fātihah (1:2 & 1:6)',
+        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ... ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ',
+        surahAyahRef: '1:2, 1:6',
+        targetSegment: 'ٱلۡحَمۡدُ · ٱهۡدِنَا',
+        promptFr: 'Pourquoi « ٱلۡحَمۡدُ » s\'attaque-t-il avec une Fathah (« Al-hamdu ») alors que le verbe « ٱهۡدِنَا » s\'attaque avec une Kasrah (« Ihdinā ») ?',
+        hintFr: 'Distinguez la nature grammaticale des deux mots : l\'un possède l\'article de définition, l\'autre est un verbe à l\'impératif.',
+        solutionFr: '« Al-Hamdu » est un nom avec l\'article défini ٱلـ (toujours Fathah). « Ihdinā » est un verbe dont la 3e lettre (Dāl) porte une Kasrah (donc Kasrah d\'attaque).',
+        breakdownSteps: [
+          'Dans « ٱلۡحَمۡدُ » : Le mot commence par l\'article de définition ٱلـ (Lām Ta\'rīf). La règle coranique unanime impose une FATHAH sur Hamzat Al-Wasl ➔ « Al-hamdu ».',
+          'Dans « ٱهۡدِنَا » : C\'est un verbe d\'action. On applique la règle de comptage de la 3e lettre.',
+          '1 = Hamzat Wasl (ٱ), 2 = Lettre Hā\' sans voyelle (هـۡ), 3 = Lettre Dāl avec Kasrah (دِ).',
+          'La 3e lettre portant une Kasrah, Hamzat Al-Wasl prend obligatoirement une KASRAH ➔ « Ihdinā ».'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001006.mp3'
+      },
+      {
+        id: 'exo-c6-2',
+        title: 'Le Chef-d\'Œuvre Phonétique : « Ītūnī » dans Sūrah Al-Ahqāf (46:4)',
+        verseArabic: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ مِّن قَبۡلِ هَٰذَآ',
+        surahAyahRef: '46:4',
+        targetSegment: 'فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى',
+        promptFr: 'Comment récitez-vous « ٱئۡتُونِى » en liaison continue après « As-Samāwāt », et comment le récitez-vous si vous reprenez votre souffle sur ce mot ?',
+        hintFr: 'En continu, Hamzat Al-Wasl s\'élide. À l\'attaque, deux Hamzahs se rencontrent : appliquez la règle de substitution (Badal).',
+        solutionFr: 'En continu : « fīs-samāwāti\'-tūnī ». À l\'attaque : « Ītūnī » (إِيتُونِي) avec prolongation Yā\' de 2 temps.',
+        breakdownSteps: [
+          'En lecture continue (Wasl) : Hamzat Al-Wasl tombe totalement. La Kasrah du Tā\' précédent s\'enchaîne directement sur la Hamzah Sākinah ➔ « fīs-samāwāti\'-tūnī ».',
+          'À l\'arrêt et reprise sur « ٱئۡتُونِى » : C\'est l\'un des 5 verbes d\'exception. Hamzat Al-Wasl prend une KASRAH (« I »).',
+          'Deux Hamzahs se retrouvent côte à côte au début du mot : la première avec Kasrah (إِ) et la seconde avec Soukoûn (ئْ).',
+          'La phonétique arabe interdit cette lourdeur : la 2e Hamzah se transmute en une lettre de Madd homogène (Yā\') ➔ on prononce « ĪTŪNĪ » (إِيتُونِي) !'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/046004.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c6-1',
+        type: 'mcq',
+        promptFr: 'Quelle est la différence essentielle entre Hamzat Al-Qat\' (ء) et Hamzat Al-Wasl (ٱ) lors de la lecture continue (Wasl) ?',
+        verseArabic: 'فَمَنۡ حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
+        targetWord: 'ٱلۡبَيۡتَ',
+        surahAyahRef: '2:158',
+        options: [
+          'Hamzat Al-Qat\' est toujours prononcée, tandis que Hamzat Al-Wasl s\'efface et disparaît totalement en continu',
+          'Hamzat Al-Wasl dure 6 temps et Hamzat Al-Qat\' dure 2 temps',
+          'Hamzat Al-Wasl ne se prononce que le vendredi',
+          'Il n\'y a aucune différence, elles se lisent exactement pareil'
+        ],
+        correctAnswer: 'Hamzat Al-Qat\' est toujours prononcée, tandis que Hamzat Al-Wasl s\'efface et disparaît totalement en continu',
+        explanationFr: 'Hamzat Al-Qat\' est une consonne fondamentale toujours prononcée. Hamzat Al-Wasl n\'est qu\'un pont phonétique : dès qu\'on lit en continu depuis un mot précédent, elle s\'annule complètement.',
+        ruleId: 'hamzat-qat-vs-wasl'
+      },
+      {
+        id: 'q-c6-2',
+        type: 'mcq',
+        promptFr: 'Si vous devez commencer votre récitation par le verbe « ٱدۡعُ » (16:125), quelle voyelle devez-vous donner à Hamzat Al-Wasl et pourquoi ?',
+        verseArabic: 'ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلۡحِكۡمَةِ',
+        targetWord: 'ٱدۡعُ',
+        surahAyahRef: '16:125',
+        options: [
+          'Une Dammah (« Ud\'u ») car la 3e lettre (\'Ayn) porte une Dammah originelle',
+          'Une Fathah (« Ad\'u ») comme tous les mots arabes',
+          'Une Kasrah (« Id\'u ») obligatoirement',
+          'Aucune voyelle, on commence par un Soukoûn'
+        ],
+        correctAnswer: 'Une Dammah (« Ud\'u ») car la 3e lettre (\'Ayn) porte une Dammah originelle',
+        explanationFr: 'Dans les verbes, on regarde la 3e lettre : le \'Ayn portant une Dammah originelle (عُ), Hamzat Al-Wasl prend obligatoirement une Dammah ➔ « Ud\'u ».',
+        ruleId: 'verbs-third-letter-rule'
+      },
+      {
+        id: 'q-c6-3',
+        type: 'mcq',
+        promptFr: 'Quelle voyelle reçoit Hamzat Al-Wasl au début du verbe « ٱذۡهَبۡ » (20:24) dont la 3e lettre porte une FATHAH ?',
+        verseArabic: 'ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ',
+        targetWord: 'ٱذۡهَبۡ',
+        surahAyahRef: '20:24',
+        options: [
+          'Une Kasrah (« Idh-hab ») : les verbes dont la 3e lettre a une Fathah ou une Kasrah s\'attaquent toujours en Kasrah',
+          'Une Fathah (« Adh-hab »)',
+          'Une Dammah (« Udh-hab »)',
+          'On ne peut jamais commencer par ce mot'
+        ],
+        correctAnswer: 'Une Kasrah (« Idh-hab ») : les verbes dont la 3e lettre a une Fathah ou une Kasrah s\'attaquent toujours en Kasrah',
+        explanationFr: 'Un verbe à l\'impératif ne commence JAMAIS par une Fathah en arabe ! Si la 3e lettre a une Fathah (هَ), Hamzat Al-Wasl reçoit impérativement une Kasrah ➔ « Idh-hab ».',
+        ruleId: 'verbs-third-letter-rule'
+      },
+      {
+        id: 'q-c6-4',
+        type: 'mcq',
+        promptFr: 'Pourquoi les verbes comme « ٱبۡنُواْ » et « ٱمۡشُواْ » s\'attaquent-ils avec une KASRAH (« Ibnū », « Imshū ») malgré la Dammah visible sur leur 3e lettre ?',
+        verseArabic: 'قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
+        targetWord: 'ٱبۡنُواْ',
+        surahAyahRef: '37:97',
+        options: [
+          'Parce que cette Dammah est accidentelle (due au Wāw du pluriel) et que la voyelle originelle de la racine est une Kasrah',
+          'Parce que ce sont des noms propres',
+          'Parce que le scribe du Coran a fait une erreur',
+          'Parce qu\'ils sont situés à la fin de la sourate'
+        ],
+        correctAnswer: 'Parce que cette Dammah est accidentelle (due au Wāw du pluriel) et que la voyelle originelle de la racine est une Kasrah',
+        explanationFr: 'Ces 5 verbes ont pour origine « Ibniyū » et « Imshiyū ». La Dammah n\'est pas originelle, elle a été adoptée pour faciliter la prononciation du Wāw pluriel. L\'attaque se fait donc en Kasrah.',
+        ruleId: 'five-verbs-and-two-hamzahs'
+      },
+      {
+        id: 'q-c6-5',
+        type: 'mcq',
+        promptFr: 'Dans la sourate Al-Ahqāf (46:4), comment doit-on prononcer le mot « ٱئۡتُونِى » si l\'on s\'arrête sur le verset précédent et que l\'on commence par ce mot ?',
+        verseArabic: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ',
+        targetWord: 'ٱئۡتُونِى',
+        surahAyahRef: '46:4',
+        options: [
+          'On prononce « ĪTŪNĪ » (إِيتُونِي) : la 2e Hamzah se transmute en lettre de Madd Yā\' de 2 temps',
+          'On prononce « I\'-tūnī » avec un arrêt de gorge saccadé',
+          'On prononce « U\'tūnī » avec une Dammah',
+          'Il est strictement interdit de commencer par ce mot'
+        ],
+        correctAnswer: 'On prononce « ĪTŪNĪ » (إِيتُونِي) : la 2e Hamzah se transmute en lettre de Madd Yā\' de 2 temps',
+        explanationFr: 'À l\'attaque, deux Hamzahs se rencontrent (I + \'). La règle phonétique universelle de substitution (Badal) transforme la Hamzah Sākinah en voyelle longue homogène ➔ « Ītūnī » !',
+        ruleId: 'five-verbs-and-two-hamzahs'
       }
     ]
   },

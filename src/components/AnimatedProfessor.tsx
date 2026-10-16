@@ -2021,6 +2021,350 @@ const MaddLeenWaqfVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
   );
 };
 
+/** =========================================================================
+ * CHAPITRE 6 : LES HAMZAHS (HAMZAT AL-WASL & AL-QAT')
+ * ========================================================================= */
+
+/** Écran 1 : Chute de Hamzat Al-Wasl en Wasl vs Maintien à l'Attaque */
+const HamzatDropInWaslVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [isWasl, setIsWasl] = useState(true);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="label text-center">Basculez entre Liaison continue et Attaque du mot</div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button onClick={() => setIsWasl(true)} aria-pressed={isWasl}>
+            En liaison continue (Wasl)
+          </button>
+          <button onClick={() => setIsWasl(false)} aria-pressed={!isWasl}>
+            Attaque sur le mot (Ibtidā')
+          </button>
+        </div>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-5">
+        <div className="label">
+          {isWasl ? 'Al-Baqarah 2:158 — فَمَنۡ حَجَّ ٱلۡبَيۡتَ' : 'Attaque sur l\'article défini : ٱلۡبَيۡتُ'}
+        </div>
+
+        {/* Big Arabic display */}
+        <div className="font-ar text-4xl sm:text-5xl text-ink my-2 leading-[1.8]" dir="rtl">
+          {isWasl ? (
+            <span>
+              فَمَنۡ حَجَّ <span className="opacity-30 line-through text-muted">ٱ</span>
+              <span className="text-good font-bold">لۡبَيۡتَ</span>
+            </span>
+          ) : (
+            <span>
+              <span className="text-good font-bold">اَلۡبَيۡتُ</span>
+            </span>
+          )}
+        </div>
+
+        {/* Phonetic transcription box */}
+        <div className="p-3.5 rounded-xl bg-soft border border-line font-mono text-xs sm:text-sm text-center">
+          {isWasl ? (
+            <span>
+              Prononciation : <strong className="text-ink">[ Faman hajja-l-bayta ]</strong> (Hamzat Wasl totalement élidée !)
+            </span>
+          ) : (
+            <span>
+              Prononciation : <strong className="text-ink">[ Al-Baytu ]</strong> (Hamzat Wasl prend une Fathah ouverte « A »)
+            </span>
+          )}
+        </div>
+
+        {/* Qat' vs Wasl contrast */}
+        <div className="grid sm:grid-cols-2 gap-3 text-left text-xs">
+          <div className="p-3.5 rounded-xl bg-good-bg border border-good/30">
+            <span className="font-semibold text-good block mb-1">Hamzat Al-Wasl (ٱ) :</span>
+            <p className="text-muted leading-relaxed">
+              Surmontée d'un petit Sād (صـ). Elle n'existe que pour franchir le Soukoûn initial. Dès qu'un mot précède, elle s'efface totalement sans aucun coup de glotte.
+            </p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-gold-bg border border-gold/30">
+            <span className="font-semibold text-gold block mb-1">Hamzat Al-Qat' (ء) :</span>
+            <p className="text-muted leading-relaxed">
+              Toujours écrite (أَ, إِ, أُ). Elle est INVARIABLE et ne s'efface JAMAIS, ni en continu ni à l'arrêt (ex: « Innā », « Asābathum »).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Le Scanner de la 3e Lettre des Verbes */
+const VerbThirdLetterScannerVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedVerb, setSelectedVerb] = useState<'ud-u' | 'ihdina' | 'idh-hab'>('ud-u');
+
+  const verbData = {
+    'ud-u': {
+      text: 'ٱدۡعُ',
+      transcription: 'Ud\'u (اُدۡعُ)',
+      surahRef: 'An-Nahl 16:125',
+      letter1: { char: 'ٱ', label: '1: Wasl' },
+      letter2: { char: 'دۡ', label: '2: Soukoûn' },
+      letter3: { char: 'عُ', label: '3: Dammah !' },
+      vowelOn3rd: 'Dammah (ـُ)',
+      resultTashkeel: 'Dammah (اُ)',
+      colorClass: 'chip-bad',
+      ruleExplanation: 'La 3e lettre porte une Dammah originelle : Hamzat Al-Wasl reçoit impérativement une Dammah (« Ud\'u ») !',
+    },
+    'ihdina': {
+      text: 'ٱهۡدِنَا',
+      transcription: 'Ihdinā (اِهۡدِنَا)',
+      surahRef: 'Al-Fātihah 1:6',
+      letter1: { char: 'ٱ', label: '1: Wasl' },
+      letter2: { char: 'هـۡ', label: '2: Soukoûn' },
+      letter3: { char: 'دِ', label: '3: Kasrah !' },
+      vowelOn3rd: 'Kasrah (ـِ)',
+      resultTashkeel: 'Kasrah (اِ)',
+      colorClass: 'chip-izhar',
+      ruleExplanation: 'La 3e lettre porte une Kasrah : Hamzat Al-Wasl reçoit impérativement une Kasrah (« Ihdinā ») !',
+    },
+    'idh-hab': {
+      text: 'ٱذۡهَبۡ',
+      transcription: 'Idh-hab (اِذۡهَبۡ)',
+      surahRef: 'Tā-Hā 20:24',
+      letter1: { char: 'ٱ', label: '1: Wasl' },
+      letter2: { char: 'ذۡ', label: '2: Soukoûn' },
+      letter3: { char: 'هَ', label: '3: Fathah !' },
+      vowelOn3rd: 'Fathah (ـَ)',
+      resultTashkeel: 'Kasrah (اِ)',
+      colorClass: 'chip-idgham',
+      ruleExplanation: 'RÈGLE D\'OR : Un verbe ne commence JAMAIS par une Fathah ! Si la 3e lettre a une Fathah, l\'attaque prend une Kasrah (« Idh-hab »).',
+    },
+  };
+
+  const curr = verbData[selectedVerb];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedVerb('ud-u')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'ud-u' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱدۡعُ (3e lettre Dammah)
+        </button>
+        <button
+          onClick={() => setSelectedVerb('ihdina')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'ihdina' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱهۡدِنَا (3e lettre Kasrah)
+        </button>
+        <button
+          onClick={() => setSelectedVerb('idh-hab')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'idh-hab' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱذۡهَبۡ (3e lettre Fathah)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-5">
+        <div className="flex items-center justify-between text-xs">
+          <span className="ref-tag">{curr.surahRef}</span>
+          <span className={`chip ${curr.colorClass} font-bold`}>Attaque : {curr.resultTashkeel}</span>
+        </div>
+
+        {/* 3 Letters Anatomy Display */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-sm mx-auto" dir="rtl">
+          <div className="p-3.5 rounded-2xl bg-soft border border-line">
+            <span className="font-ar text-4xl text-ink block">{curr.letter1.char}</span>
+            <span className="text-[11px] text-muted">{curr.letter1.label}</span>
+          </div>
+
+          <div className="p-3.5 rounded-2xl bg-soft border border-line">
+            <span className="font-ar text-4xl text-ink block">{curr.letter2.char}</span>
+            <span className="text-[11px] text-muted">{curr.letter2.label}</span>
+          </div>
+
+          <div className="p-3.5 rounded-2xl bg-gold-bg border-2 border-gold shadow-xs animate-pop">
+            <span className="font-ar text-4xl text-gold font-bold block">{curr.letter3.char}</span>
+            <span className="text-[11px] text-gold font-semibold">{curr.letter3.label}</span>
+          </div>
+        </div>
+
+        {/* Final attack pronunciation */}
+        <div className="p-4 rounded-xl bg-card border border-line shadow-xs">
+          <span className="text-xs text-muted block mb-1">Prononciation exacte à l'attaque :</span>
+          <span className="font-ar text-4xl text-ink font-bold block mb-1" dir="rtl">
+            {curr.transcription.split('(')[1]?.replace(')', '') || curr.text}
+          </span>
+          <span className="font-mono text-sm text-good font-semibold">
+            [ {curr.transcription.split('(')[0].trim()} ]
+          </span>
+        </div>
+
+        <p className="text-xs text-muted text-left leading-relaxed p-3 rounded-xl bg-soft">
+          {curr.ruleExplanation}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : Les 5 Verbes Pièges aux Fausses Dammahs */
+const FiveExceptionVerbsVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedVerb, setSelectedVerb] = useState<'ibnu' | 'imshu' | 'iqdu'>('ibnu');
+
+  const exceptions = {
+    ibnu: {
+      written: 'ٱبۡنُواْ',
+      origin: 'اِبْنِيُوا (Kasrah sur Nūn)',
+      pronounced: 'اِبۡنُواْ (Ibnū)',
+      trap: 'Ubnū ❌',
+      verse: 'As-Sāffāt 37:97 — قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
+      explanation: 'Le verbe vient de la racine (بني). La Dammah sur le Nūn est accidentelle : elle a été adoptée pour convenir au Wāw du pluriel. À l\'attaque, on prononce KASRAH : « Ibnū » !',
+    },
+    imshu: {
+      written: 'ٱمۡشُواْ',
+      origin: 'اِمْشِيُوا (Kasrah sur Shīn)',
+      pronounced: 'اِمۡشُواْ (Imshū)',
+      trap: 'Umshū ❌',
+      verse: 'Sād 38:6 — وَٱنطَلَقَ ٱلۡمَلَأُ مِنۡهُمۡ أَنِ ٱمۡشُواْ',
+      explanation: 'Même règle pour la racine (مشي). La Dammah est une modification d\'aisance phonétique. L\'attaque se fait STRICTEMENT en Kasrah : « Imshū » !',
+    },
+    iqdu: {
+      written: 'ٱقۡضُوٓاْ',
+      origin: 'اِقْضِيُوا (Kasrah sur Dād)',
+      pronounced: 'اِقۡضُوٓاْ (Iqdū)',
+      trap: 'Uqdū ❌',
+      verse: 'Yūnus 10:71 — ثُمَّ ٱقۡضُوٓاْ إِلَىَّ وَلَا تُنظِرُونِ',
+      explanation: 'Issu de la racine (قضي). Prononcez toujours avec Kasrah : « Iqdū » !',
+    },
+  };
+
+  const curr = exceptions[selectedVerb];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedVerb('ibnu')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'ibnu' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱبۡنُواْ (Ibnū)
+        </button>
+        <button
+          onClick={() => setSelectedVerb('imshu')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'imshu' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱمۡشُواْ (Imshū)
+        </button>
+        <button
+          onClick={() => setSelectedVerb('iqdu')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedVerb === 'iqdu' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱقۡضُوٓاْ (Iqdū)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">Le Piège de la Dammah Accidentelle</div>
+
+        <div className="grid grid-cols-2 gap-3 max-w-md mx-auto">
+          <div className="p-4 rounded-2xl bg-bad-bg border border-bad/30">
+            <span className="text-xs font-semibold text-bad block mb-1">Graphie Trompeuse</span>
+            <span className="font-ar text-4xl text-ink block" dir="rtl">{curr.written}</span>
+            <span className="text-xs text-bad block mt-1">Dammah apparente ➔ Piège : {curr.trap}</span>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-good-bg border border-good/30 animate-pop">
+            <span className="text-xs font-semibold text-good block mb-1">Attaque Authentique</span>
+            <span className="font-ar text-4xl text-good font-bold block" dir="rtl">{curr.pronounced}</span>
+            <span className="text-xs text-good font-semibold block mt-1">Kasrah Obligatoire !</span>
+          </div>
+        </div>
+
+        <div className="p-3.5 rounded-xl bg-soft border border-line text-xs font-mono text-muted text-left">
+          Racine étymologique : <strong>{curr.origin}</strong>
+        </div>
+
+        <div className="p-3.5 rounded-xl bg-soft text-xs text-muted text-left leading-relaxed">
+          <span className="font-semibold text-ink block mb-1">Explication :</span>
+          {curr.explanation}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : La Rencontre des Deux Hamzahs (ٱئۡتُونِي ➔ إِيتُونِي) */
+const TwoHamzahsTransformationVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [isIbtida, setIsIbtida] = useState(false);
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="label text-center">Sūrah Al-Ahqāf (46:4) — La transmutation de « I'tūnī »</div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button onClick={() => setIsIbtida(false)} aria-pressed={!isIbtida}>
+            En continu (Wasl)
+          </button>
+          <button onClick={() => setIsIbtida(true)} aria-pressed={isIbtida}>
+            À l'attaque (Ibtidā')
+          </button>
+        </div>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">
+          {isIbtida ? 'Transmutation phonétique : Madd Badal' : 'Élision normale en liaison'}
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8]" dir="rtl">
+          {isIbtida ? (
+            <span>
+              <span className="text-good font-bold animate-pop">إِيتُونِى</span> بِكِتَٰبٖ
+            </span>
+          ) : (
+            <span>
+              فِى ٱلسَّمَٰوَٰتِۖ <span className="text-gold font-bold">ٱئۡتُونِى</span>
+            </span>
+          )}
+        </div>
+
+        {/* Breakdown box */}
+        <div className={`p-4 rounded-xl border text-left space-y-2 text-xs ${
+          isIbtida ? 'bg-good-bg border-good/30' : 'bg-soft border-line'
+        }`}>
+          <div className="flex items-center justify-between">
+            <span className="font-semibold text-ink">
+              {isIbtida ? 'Prononciation à l\'attaque :' : 'Prononciation en liaison :'}
+            </span>
+            <span className={`chip ${isIbtida ? 'chip-gold' : 'chip-idgham'} font-bold`}>
+              {isIbtida ? '« ĪTŪNĪ » (Madd Badal 2 temps)' : '« samāwāti\'-tūnī »'}
+            </span>
+          </div>
+
+          <p className="text-muted leading-relaxed">
+            {isIbtida
+              ? 'Deux Hamzahs ne peuvent se choquer à l\'attaque (إِ + ئْ). Selon la règle universelle de Badal, la Hamzah Sākinah se transforme en voyelle longue Yā\' homogène : on dit « ĪTŪNĪ » !'
+              : 'En continuant la lecture depuis « As-Samāwāt », Hamzat Al-Wasl s\'efface et la Hamzah Sākinah se prononce avec un coup de glotte sec.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
@@ -2402,6 +2746,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 6 (Hamzah - Wasl & Qat')
+  const chapter6Screens = [
+    {
+      title: 'Hamzat Al-Wasl : Chute en Continu vs Maintien à l\'Attaque',
+      badge: 'Liaison vs Attaque',
+      concept: 'Comment la Hamzah s\'évanouit en Wasl et renaît à l\'Ibtidā\'',
+      renderVisual: () => <HamzatDropInWaslVisual animKey={animKey} />,
+      explanation: 'Hamzat Al-Wasl (ٱ) n\'est qu\'une béquille phonétique pour débuter un mot. En liaison continue (Wasl), elle est TOTALEMENT ANNULÉE : on dit « Faman hajja-l-bayta » d\'un seul trait sans heurt ! En revanche, Hamzat Al-Qat\' (ء) dans « Innā » ou « Asābathum » ne s\'efface JAMAIS.'
+    },
+    {
+      title: 'La Règle de la 3e Lettre pour les Verbes',
+      badge: 'Scanner de Tashkīl',
+      concept: 'Dammah originelle ➔ اُ | Fathah ou Kasrah ➔ اِ (Jamais de Fathah !)',
+      renderVisual: () => <VerbThirdLetterScannerVisual animKey={animKey} />,
+      explanation: 'Dans le Coran, Hamzat Al-Wasl est écrite nue sans voyelle. Pour savoir comment attaquer un verbe, comptez jusqu\'à la 3e lettre : 3e lettre Dammah ➔ dites « U » (اُدۡعُ) ; 3e lettre Kasrah ➔ dites « I » (اِهۡدِنَا) ; 3e lettre Fathah ➔ dites « I » (اِذۡهَبۡ). Un verbe ne commence JAMAIS par une Fathah !'
+    },
+    {
+      title: 'Les 5 Verbes Pièges aux Fausses Dammahs',
+      badge: 'Exceptions Subtiles',
+      concept: 'Pourquoi « Ibnū » et « Imshū » s\'attaquent avec KASRAH',
+      renderVisual: () => <FiveExceptionVerbsVisual animKey={animKey} />,
+      explanation: 'Dans « ٱبۡنُواْ », « ٱمۡشُواْ », « ٱقۡضُوٓاْ », la Dammah de la 3e lettre est trompeuse : elle n\'est pas originelle mais a été introduite pour le Wāw du pluriel (origine : « Ibniyū », « Imshiyū »). À l\'attaque, vous DEVEZ impérativement prononcer une Kasrah : « Ibnū », « Imshū » !'
+    },
+    {
+      title: 'La Rencontre des Deux Hamzahs (ٱئۡتُونِي ➔ ĪTŪNĪ)',
+      badge: 'Madd Badal Spécial',
+      concept: 'La métamorphose phonétique sublime dans la Sourate Al-Ahqāf (46:4)',
+      renderVisual: () => <TwoHamzahsTransformationVisual animKey={animKey} />,
+      explanation: 'En liaison continue, Hamzat Wasl tombe : « fīs-samāwāti\'-tūnī ». Mais si vous commencez par ce mot, deux Hamzahs se heurtent (إِ + ئْ). La règle de Badal transmute la seconde en un Yā\' de prolongation : on prononce « ĪTŪNĪ » (إِيتُونِي) avec 2 temps de Madd !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -2413,6 +2789,8 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter4Screens
       : chapter.number === 5
       ? chapter5Screens
+      : chapter.number === 6
+      ? chapter6Screens
       : chapter.number === 8
       ? nunScreens
       : qalqalahScreens;

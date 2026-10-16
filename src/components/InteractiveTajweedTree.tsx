@@ -271,6 +271,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 6) {
+      return {
+        id: 'root-c6',
+        labelFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')',
+        labelAr: 'هَمْزَتَا الوَصْلِ وَالقَطْعِ',
+        descriptionFr: 'Distinguer la Hamzah permanente (ء) de la Hamzah de liaison (ٱ) et déterminer sa voyelle d\'attaque exacte.',
+        children: [
+          {
+            id: 'node-hamzat-qat',
+            labelFr: '1. Hamzat Al-Qat\' (ء - Permanente & Fixe)',
+            labelAr: 'هَمْزَةُ القَطْعِ (ثَابِتَةٌ فِي الوَصْلِ وَالوَقْفِ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'Porte toujours sa propre voyelle (أَ, إِ, أُ, ء). Elle est prononcée obligatoirement en toutes circonstances, au début, milieu ou fin de mot.',
+            examples: ['أَصَٰبَتۡهُم', 'إِنَّا', 'أُوْلَٰٓئِكَ', 'سُوٓءَ'],
+          },
+          {
+            id: 'node-hamzat-wasl-drop',
+            labelFr: '2. Hamzat Al-Wasl (ٱ - Chute en Liaison)',
+            labelAr: 'هَمْزَةُ الوَصْلِ (تَسْقُطُ فِي دَرَجِ الكَلَامِ)',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'Porte le petit Sād (صـ pour Silah). Située uniquement au début du mot. Elle s\'élide et disparaît totalement dès qu\'un mot la précède en lecture continue.',
+            examples: ['حَجَّ ٱلۡبَيۡتَ ➔ Hajja-l-bayta', 'أَوِ ٱعۡتَمَرَ ➔ Awi-\'tamara'],
+          },
+          {
+            id: 'node-verbs-rule',
+            labelFr: '3. Verbes : Règle de la 3e Lettre',
+            labelAr: 'حَرَكَةُ الهَمْزَةِ فِي الأَفْعَالِ (الحَرْفُ الثَّالِثُ)',
+            tagColor: 'var(--izhar)',
+            descriptionFr: '3e lettre avec Dammah ➔ Attaque en Dammah (اُ). 3e lettre avec Fathah ou Kasrah ➔ Attaque en Kasrah (اِ). Jamais de Fathah sur un verbe !',
+            examples: ['ٱدۡعُ ➔ اُدۡعُ (عُ)', 'ٱذۡهَبۡ ➔ اِذۡهَبۡ (هَ)', 'ٱهۡدِنَا ➔ اِهۡدِنَا (دِ)'],
+          },
+          {
+            id: 'node-nouns-rule',
+            labelFr: '4. Noms Définis (ٱلـ) & Indéfinis (ٱسۡم...)',
+            labelAr: 'هَمْزَةُ الوَصْلِ فِي الأَسْمَاءِ',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Article défini ٱلـ = TOUJOURS Fathah (اَلـ). Noms singuliers spécifiques (Ibn, Imra\'ah, Ism, Ithnān) = TOUJOURS Kasrah (اِ).',
+            examples: ['ٱلۡحَمۡدُ ➔ اَلۡحَمۡدُ', 'ٱبۡنُ ➔ اِبۡنُ', 'ٱسۡمُ ➔ اِسۡمُ'],
+          },
+          {
+            id: 'node-exceptions-two-hamzahs',
+            labelFr: '5. Les 5 Verbes Pièges & Rencontre des 2 Hamzahs',
+            labelAr: 'الأَفْعَالُ الخَمْسَةُ وَاجْتِمَاعُ الهَمْزَتَيْنِ',
+            tagColor: 'var(--bad)',
+            descriptionFr: '« Ibnū », « Imshū », « Iqdū » s\'attaquent avec KASRAH (Dammah accidentelle) ! Et « ٱئۡتُونِي » devient « ĪTŪNĪ » (إِيتُونِي) à l\'attaque par substitution.',
+            examples: ['ٱبۡنُواْ ➔ اِبۡنُواْ', 'ٱمۡشُواْ ➔ اِمۡشُواْ', 'ٱئۡتُونِى ➔ إِيتُونِي (Ītūnī)'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',
