@@ -63,8 +63,8 @@ export const StepHeader: React.FC<{
 export const Modal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-  title: string;
-  subtitle?: string;
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
   maxWidth?: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
@@ -76,7 +76,7 @@ export const Modal: React.FC<{
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={title}
+      aria-label={typeof title === 'string' ? title : undefined}
     >
       <div
         className={`w-full ${maxWidth} max-h-[90vh] flex flex-col bg-card text-ink rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden animate-enter`}
