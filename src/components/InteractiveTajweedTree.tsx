@@ -444,6 +444,42 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
           }
         ]
       };
+    }
+    if (chapter.number === 9) {
+      return {
+        id: 'root-mim',
+        labelFr: 'Les Règles de la Mīm Sākinah (مْ)',
+        labelAr: 'أَحْكَامُ المِيمِ السَّاكِنَةِ',
+        descriptionFr: 'Le Mīm sans voyelle obéit à 3 règles labiales selon la lettre qui lui succède immédiatement.',
+        children: [
+          {
+            id: 'node-mim-ikhfa',
+            labelFr: '1. Ikhfā\' Shafawī (Dissimulation)',
+            labelAr: 'إِخْفَاءٌ شَفَوِيٌّ (ب)',
+            tagColor: 'var(--iqlab)',
+            letters: ['ب'],
+            descriptionFr: 'Devant la lettre Bā\' (ب) entre 2 mots distincts. Les lèvres se touchent avec délicatesse sans forcer, avec une Ghunnah de 2 temps.',
+            examples: ['تَرۡمِيهِم بِحِجَارَةٖ', 'إِنَّ رَبَّهُم بِهِم', 'ءَاتَيۡنَٰكُم بِقُوَّةٖ'],
+          },
+          {
+            id: 'node-mim-idgham',
+            labelFr: '2. Idghām Shafawī (Fusion)',
+            labelAr: 'إِدْغَامٌ شَفَوِيٌّ (م)',
+            tagColor: 'var(--idgham)',
+            letters: ['م'],
+            descriptionFr: 'Devant un autre Mīm. Fusion totale créant un Mīm Mushaddadah (مّ) avec Ghunnah obligatoire de 2 temps.',
+            examples: ['فِى قُلُوبِهِم مَّرَضٞ', 'لَهُم مَّشَوۡاْ', 'كُم مِّنَ ٱلۡأَرۡضِ'],
+          },
+          {
+            id: 'node-mim-izhar',
+            labelFr: '3. Izhār Shafawī (Clarté)',
+            labelAr: 'إِظْهَارٌ شَفَوِيٌّ (26 lettres)',
+            tagColor: 'var(--izhar)',
+            descriptionFr: 'Devant les 26 autres lettres. Le Mīm est émis avec netteté (Soukoûn visible مۡ). Alerte maximale devant Wāw et Fā\' !',
+            examples: ['ٱلۡحَمۡدُ لِلَّهِ', 'عَلَيۡهِمۡ غَيۡرِ', 'عَلَيۡهِمۡ وَلَا (Alerte Wāw)', 'هُمۡ فِيهَا (Alerte Fā\')'],
+          }
+        ]
+      };
     } else {
       // Qalqalah
       return {

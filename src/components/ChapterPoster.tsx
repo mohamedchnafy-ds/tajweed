@@ -39,7 +39,13 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
-    return 'Dès qu\'une des 5 lettres de Qutb Jadd (قُطْبُ جَدٍّ) porte un soukoûn, libérez le souffle par un rebond acoustique net sans jamais bouger la mâchoire ni ajouter de voyelle parasite.';
+    if (chapter.number === 9) {
+      return 'Devant le Bā\' (ب) : dissimulez avec 2 temps de Ghunnah (Ikhfā\' Shafawī) sans laisser de fente artificielle (Furjah). Devant le Mīm (م) : fusionnez en un Mīm doublé avec 2 temps de Ghunnah (Idghām Shafawī). Devant les 26 autres lettres : observez une clarté limpide (Izhār Shafawī), et redoublez d\'une vigilance absolue devant Wāw (و) et Fā\' (ف) pour ne jamais escamoter le Mīm !';
+    }
+    if (chapter.number === 10) {
+      return 'Dès qu\'une des 5 lettres de Qutb Jadd (قُطْبُ جَدٍّ) porte un soukoûn (originel ou par arrêt), libérez le souffle par un rebond acoustique net sans jamais bouger la mâchoire ni ajouter de voyelle parasite. Distinguez bien la Majeure (Kubrā avec Shaddah), la Moyenne (Wustā à l\'arrêt) et la Mineure (Sughrā en cours de mot) !';
+    }
+    return 'Respectez rigoureusement les règles de Tajwīd pour préserver la récitation exacte du Noble Coran.';
   };
 
   const ruleColors = ['var(--izhar)', 'var(--idgham)', 'var(--iqlab)', 'var(--ikhfa)', 'var(--qalqalah)', 'var(--gold)'];
@@ -123,7 +129,11 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             : chapter.number === 7
             ? 'Chapitre suivant (Nūn Sākinah & Tanwīn)'
             : chapter.number === 8
-            ? 'Chapitre suivant (Qalqalah)'
+            ? 'Chapitre suivant (Les Règles de la Mīm Sākinah)'
+            : chapter.number === 9
+            ? 'Chapitre suivant (La Qalqalah & Ses Degrés)'
+            : chapter.number === 10
+            ? 'Chapitre suivant (L\'Assimilation - Idghām)'
             : 'Retour au sommaire'}
           <ArrowRight className="w-4 h-4" />
         </button>

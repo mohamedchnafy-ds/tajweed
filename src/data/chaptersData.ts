@@ -9,7 +9,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: true },
   { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: true },
   { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
-  { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: false },
+  { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: true },
   { number: 10, slug: 'qalqalah', titleFr: 'La Qalqalah & Ses Degrés de Rebond', titleAr: 'أحكام القلقلة ومراتبها', category: 'intermediate', isPilot: true },
   { number: 11, slug: 'assimilation', titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)', titleAr: 'إدغام المتماثلين والمتقاربين والمتجانسين', category: 'advanced', isPilot: false },
   { number: 12, slug: 'heavy-light', titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)', titleAr: 'التفخيم والترقيق', category: 'advanced', isPilot: false },
@@ -2762,6 +2762,325 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'لَنَسۡفَعَۢا',
         explanationFr: '« Lanasfa\'an » se termine par un Tanwīn suivi de la lettre Bā\' dans le mot suivant. Le petit mīm (ۢ) indique la conversion en son Mīm avec Ghunnah de 2 temps.',
         ruleId: 'iqlab'
+      }
+    ]
+  },
+
+  // ==========================================
+  // CHAPITRE 9 : LES RÈGLES DE LA MĪM SĀKINAH
+  // ==========================================
+  {
+    id: 'chap-9',
+    number: 9,
+    slug: 'mim-sakinah',
+    titleFr: 'Les Règles de la Mīm Sākinah',
+    titleAr: 'أَحْكَامُ المِيمِ السَّاكِنَةِ',
+    category: 'intermediate',
+    estimatedMinutes: 15,
+    isPilotChapter: true,
+    summaryFr: 'Maîtriser les 3 règles de la Mīm sans voyelle (مْ) : l\'Ikhfā\' Shafawī (dissimulation devant Bā\'), l\'Idghām Shafawī (fusion dans un autre Mīm avec Ghunnah 2 temps), et l\'Izhār Shafawī (clarté absolue devant les 26 autres lettres, avec vigilance extrême devant Wāw et Fā\').',
+    infographicPoints: [
+      '3 Règles Uniquement : Contrairement au Nūn Sākinah qui en a 4, le Mīm Sākinah n\'obéit qu\'à 3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م) et Izhār Shafawī (les 26 autres lettres).',
+      'Ikhfā\' Shafawī (Lettre ب) : Se produit UNIQUEMENT entre deux mots distincts (تَرۡمِيهِم بِحِجَارَةٖ). Les lèvres se touchent doucement sans forcer (sans laisser d\'espace / sans furjah), avec une Ghunnah de 2 temps.',
+      'Idghām Shafawī (Lettre م) : Le premier Mīm sans voyelle fond dans le Mīm suivant qui prend une Shaddah (فِى قُلُوبِهِم مَّرَضٞ). Ghunnah de 2 temps obligatoire.',
+      'Mīm Mushaddadah (مّ) Partout : Tout Mīm avec Shaddah (ex: عَمَّا, ٱلۡيَمِّ) porte le plus haut degré de Ghunnah (2 temps), même si l\'on s\'arrête sur le mot !',
+      'Alerte Maximale sur Wāw (و) et Fā\' (ف) : Devant ces deux lettres labiales, l\'Izhār doit être particulièrement vigilant (Ashadd Izhār) pour ne pas avaler ou dissimuler le Mīm par facilité articulaire (عَلَيۡهِمۡ وَلَا, هُمۡ فِيهَا) !'
+    ],
+    subrules: [
+      {
+        id: 'ikhfa-shafawi',
+        nameFr: '1. Al-Ikhfā\' Al-Shafawī (La Dissimulation Labiale)',
+        nameAr: 'الإِخْفَاءُ الشَّفَوِيُّ',
+        mnemonic: 'Lettre unique : Bā\' (ب) — Entre deux mots obligatoirement',
+        letters: ['ب'],
+        definitionFr: 'Lorsque le Mīm Sākinah est suivi de la lettre Bā\' (ب), le son Mīm est dissimulé avec une résonance nasale (Ghunnah) de 2 temps pleins. Cette règle a toujours lieu entre deux mots séparés.',
+        mechanismFr: 'Appliquez les deux lèvres l\'une contre l\'autre avec une douceur naturelle (sans serrer excessivement et sans laisser d\'ouverture / pas de furjah), maintenez la résonance dans le nez pendant 2 battements, puis ouvrez les lèvres en libérant le son Bā\'.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c9-ikh-1',
+            arabicText: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
+            surahAyahRef: '105:4',
+            surahNameFr: 'Al-Fīl',
+            highlightSegment: 'تَرۡمِيهِم بِ',
+            highlightLetter: 'م + ب',
+            ruleApplied: 'Ikhfā\' Shafawī (Ghunnah 2 temps)',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Le Mīm sans voyelle de « Tarmīhim » rencontre le Bā\' de « bi-hijārah ». La voix maintient une Ghunnah douce de 2 temps sur les lèvres avant d\'émettre le Bā\'.',
+            transliteration: 'Tarmīhim bi-hijārah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/105004.mp3'
+          },
+          {
+            id: 'ex-c9-ikh-2',
+            arabicText: 'إِنَّ رَبَّهُم بِهِمۡ يَوۡمَئِذٖ لَّخَبِيرُۢ',
+            surahAyahRef: '100:11',
+            surahNameFr: 'Al-\'Ādiyāt',
+            highlightSegment: 'رَبَّهُم بِهِمۡ',
+            highlightLetter: 'م + ب',
+            ruleApplied: 'Ikhfā\' Shafawī',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Mīm Sākinah suivi du Bā\' : dissimulation labiale avec 2 temps de résonance nasale.',
+            transliteration: 'Inna rabbahum bihim',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/100011.mp3'
+          },
+          {
+            id: 'ex-c9-ikh-3',
+            arabicText: 'خُذُواْ مَآ ءَاتَيۡنَٰكُم بِقُوَّةٖ',
+            surahAyahRef: '2:93',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ءَاتَيۡنَٰكُم بِ',
+            highlightLetter: 'م + ب',
+            ruleApplied: 'Ikhfā\' Shafawī',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Même règle entre « Ātaynākum » et « bi-quwwah ». Le Mīm est nu (sans Soukoûn tracé dans le Mushaf).',
+            transliteration: 'Ātaynākum bi-quwwah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002093.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Laisser un espace béant entre les lèvres (Furjah artificielle) en produisant un son flottant.',
+            correctionFr: 'Selon la transmission authentique préférée des grands savants dont Ibn Al-Jazarī, les lèvres doivent simplement être en contact léger sans pression excessive.'
+          },
+          {
+            trapFr: 'Écraser les lèvres très fort en forçant le son.',
+            correctionFr: 'Le contact doit être souple et sans tension musculaire brutale.'
+          }
+        ]
+      },
+      {
+        id: 'idgham-shafawi',
+        nameFr: '2. Al-Idghām Al-Shafawī / Mithlayn Saghīr (La Fusion Labiale)',
+        nameAr: 'الإِدْغَامُ الشَّفَوِيُّ (إِدْغَامُ المِثْلَيْنِ الصَّغِيرُ)',
+        mnemonic: 'Lettre unique : Mīm (م) ➔ Devient Mīm Mushaddadah (مّ) avec Ghunnah 2 temps',
+        letters: ['م'],
+        definitionFr: 'Lorsque le Mīm Sākinah rencontre un autre Mīm pourvu d\'une voyelle, le premier s\'annule et fusionne entièrement dans le second. Les deux deviennent un seul Mīm avec Shaddah (مّ) portant une Ghunnah obligatoire de 2 temps.',
+        mechanismFr: 'Fermez les lèvres pour le premier Mīm et prolongez la résonance nasale pendant 2 pulsations complètes avant d\'ouvrir sur la voyelle du second Mīm.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c9-idg-1',
+            arabicText: 'فِى قُلُوبِهِم مَّرَضٞ فَزَادَهُمُ ٱللَّهُ مَرَضٗا',
+            surahAyahRef: '2:10',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'قُلُوبِهِم مَّرَضٞ',
+            highlightLetter: 'م + مّ',
+            ruleApplied: 'Idghām Shafawī (Fusion avec Ghunnah 2 temps)',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Le Mīm de « Qulūbihim » fusionne dans le Mīm de « Marad ». Dans le Mushaf, le premier Mīm est nu et le second porte une Shaddah.',
+            transliteration: 'Fī qulūbihim marad',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002010.mp3'
+          },
+          {
+            id: 'ex-c9-idg-2',
+            arabicText: 'كُلَّمَآ أَضَآءَ لَهُم مَّشَوۡاْ فِيهِ',
+            surahAyahRef: '2:20',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'لَهُم مَّشَوۡاْ',
+            highlightLetter: 'م + مّ',
+            ruleApplied: 'Idghām Shafawī',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Fusion complète de « Lahum » dans « Mashaw ». Ghunnah obligatoire de 2 temps.',
+            transliteration: 'Lahum-mashaw fīh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002020.mp3'
+          },
+          {
+            id: 'ex-c9-idg-3',
+            arabicText: 'فَٱقۡذِفِيهِ فِى ٱلۡيَمِّ فَلۡيُلۡقِهِ ٱلۡيَمُّ بِٱلسَّاحِلِ',
+            surahAyahRef: '20:39',
+            surahNameFr: 'Tāhā',
+            highlightSegment: 'ٱلۡيَمِّ',
+            highlightLetter: 'مّ (Mīm Mushaddadah)',
+            ruleApplied: 'Ghunnah maximale sur Mīm Mushaddadah (même à l\'arrêt)',
+            ruleTag: 'ghunnah',
+            explanationFr: 'Même si le récitateur s\'arrête sur « Al-Yamm », la Ghunnah de 2 temps sur le Mīm avec Shaddah doit être parfaitement maintenue !',
+            transliteration: 'Fil-yamm',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/020039.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Passer trop vite sans marquer les 2 temps de Ghunnah sur le Mīm doublé.',
+            correctionFr: 'Le Mīm avec Shaddah exige impérativement 2 pulsations complètes de résonance nasale.'
+          }
+        ]
+      },
+      {
+        id: 'izhar-shafawi',
+        nameFr: '3. Al-Izhār Al-Shafawī (L\'Élucidation / Clarté Labiale)',
+        nameAr: 'الإِظْهَارُ الشَّفَوِيُّ',
+        mnemonic: 'Les 26 autres lettres (tout sauf ب et م) — Vigilance extrême devant Wāw (و) et Fā\' (ف)',
+        letters: ['ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'ن', 'هـ', 'و', 'ي', 'ء'],
+        definitionFr: 'Lorsque le Mīm Sākinah est suivi de n\'importe quelle lettre hormis Bā\' et Mīm, il doit être prononcé clairement sans allonger la Ghunnah au-delà de sa durée naturelle, et sans coupure brusque. Dans le Mushaf, le Mīm porte un Soukoûn visible (مۡ). L\'Izhār est particulièrement strict et vigilant devant Wāw (و) et Fā\' (ف) !',
+        mechanismFr: 'Fermez les lèvres pour former le son M avec Tawassut (durée intermédiaire), puis ouvrez immédiatement sur la consonne suivante sans temps de nasalité supplémentaire et sans rebond de Qalqalah.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c9-izh-1',
+            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '1:2',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلۡحَمۡدُ',
+            highlightLetter: 'مۡ + د',
+            ruleApplied: 'Izhār Shafawī (Clarté dans un même mot)',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Mīm porte un Soukoûn et est suivi du Dāl : prononciation limpide et naturelle sans Ghunnah prolongée.',
+            transliteration: 'Al-Hamdu',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
+          },
+          {
+            id: 'ex-c9-izh-2',
+            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+            surahAyahRef: '1:7',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'عَلَيۡهِمۡ غَيۡرِ · عَلَيۡهِمۡ وَلَا',
+            highlightLetter: 'مۡ + غ · مۡ + و (Alerte Wāw)',
+            ruleApplied: 'Izhār Shafawī avec alerte maximale devant Wāw',
+            ruleTag: 'izhar',
+            explanationFr: 'Devant le Wāw de « Wa lā », l\'Izhār doit être extrêmement clair : comme le Mīm et le Wāw partagent les lèvres, le réflexe fautif est de dissimuler le Mīm. Il faut le prononcer fermement !',
+            transliteration: '\'Alayhim ghayril... \'Alayhim wa lā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+          },
+          {
+            id: 'ex-c9-izh-3',
+            arabicText: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُولَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+            surahAyahRef: '2:82',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'هُمۡ فِيهَا',
+            highlightLetter: 'مۡ + ف (Alerte Fā\')',
+            ruleApplied: 'Izhār Shafawī avec alerte maximale devant Fā\'',
+            ruleTag: 'izhar',
+            explanationFr: 'Deuxième alerte majeure : le Fā\' provient du bord des dents sur la lèvre inférieure. Ne dissimulez jamais le Mīm dans « Hum fīhā » !',
+            transliteration: 'Hum fīhā khālidūn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002082.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Avaler ou dissimuler le Mīm devant Wāw (« \'Alayhiw-walā ») ou Fā\' (« Huf-fīhā »).',
+            correctionFr: 'C\'est le piège numéro un du Tajwīd : les savants l\'appellent Ashadd Izhār (la clarté la plus impérative) pour résister à la tentation de fusionner ces lettres labiales.'
+          },
+          {
+            trapFr: 'Faire une Qalqalah sur le Mīm en détachant les lèvres avec force (« Al-Hamadu »).',
+            correctionFr: 'Le Mīm n\'a pas de Qalqalah : maintenez les lèvres doucement jointes.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'ex-c9-g1',
+        title: 'L\'Alerte Maximale d\'Izhār Shafawī dans Al-Fātihah 1:7',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+        surahAyahRef: '1:7',
+        targetSegment: 'عَلَيۡهِمۡ وَلَا',
+        promptFr: 'Pourquoi la rencontre entre le Mīm de « \'Alayhim » et le Wāw de « Wa lā » fait-elle l\'objet d\'une mise en garde solennelle des maîtres du Tajwīd ?',
+        hintFr: 'Observez où se forment le Mīm et le Wāw au niveau de la bouche (Makhraj commun).',
+        solutionFr: 'Le Mīm et le Wāw proviennent tous les deux exactement des deux lèvres (Ash-Shafatayn). En raison de cette proximité immédiate (Ittihād Al-Makhraj), l\'appareil vocal a naturellement tendance à dissimuler ou assimiler le Mīm dans le Wāw (en disant à tort « \'Alayhiw-walā »). L\'imam Ibn Al-Jazarī a expressément ordonné de redoubler de vigilance (Ashadd Izhār) pour bien fermer les lèvres sur le Mīm avant d\'ouvrir sur le Wāw !',
+        breakdownSteps: [
+          'Étape 1 : Identifiez le mot « عَلَيۡهِمۡ » se terminant par un Mīm Sākin (مۡ).',
+          'Étape 2 : Identifiez la lettre suivante « وَلَا » commençant par un Wāw (و).',
+          'Étape 3 : Notez que le Mīm et le Wāw partagent le même point d\'articulation (les deux lèvres).',
+          'Étape 4 : Pour éviter l\'erreur d\'Ikhfā\' inconscient, fermez complètement les lèvres sur le Mīm avec Tawassut, puis projetez le Wāw distinctement.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+      },
+      {
+        id: 'ex-c9-g2',
+        title: 'Ikhfā\' Shafawī vs Izhār Shafawī dans Sourate Al-Fīl (105:4-5)',
+        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ ۝ فَجَعَلَهُمۡ كَعَصۡفٖ مَّأۡكُولِۭ',
+        surahAyahRef: '105:4-5',
+        targetSegment: 'تَرۡمِيهِم بِحِجَارَةٖ · فَجَعَلَهُمۡ كَعَصۡفٖ',
+        promptFr: 'Comparez le comportement du Mīm Sākinah dans « Tarmīhim bi-hijārah » et dans « Fa-ja\'alahum ka-\'asf ».',
+        hintFr: 'Quelle est la lettre qui suit le Mīm dans chaque cas ? Quel impact sur la durée de Ghunnah ?',
+        solutionFr: 'Dans « Tarmīhim bi-hijārah », le Mīm est suivi du Bā\' : c\'est un Ikhfā\' Shafawī, les lèvres se joignent doucement avec une Ghunnah de 2 temps pleins. Dans « Fa-ja\'alahum ka-\'asf », le Mīm est suivi du Kāf (lettre ordinaire) : c\'est un Izhār Shafawī, la prononciation est nette et immédiate sans allongement de Ghunnah !',
+        breakdownSteps: [
+          'Étape 1 : Dans « تَرۡمِيهِم بِ », le Mīm rencontre la lettre unique d\'Ikhfā\' Shafawī (ب) ➔ Maintenez 2 temps de résonance nasale.',
+          'Étape 2 : Les lèvres se touchent avec délicatesse sans forcer ni laisser d\'ouverture.',
+          'Étape 3 : Dans « فَجَعَلَهُمۡ كَ », le Mīm porte un Soukoûn visible et précède le Kāf (ك) ➔ Izhār pur sans délai.',
+          'Étape 4 : Ne prolongez pas la Ghunnah sur le Kāf et ne laissez pas la langue rebondir en Qalqalah.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/105004.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c9-1',
+        type: 'mcq',
+        promptFr: 'À combien de règles fondamentales la Mīm Sākinah obéit-elle dans le Coran ?',
+        verseArabic: 'أَحْكَامُ المِيمِ السَّاكِنَةِ',
+        options: [
+          '3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م), et Izhār Shafawī (26 lettres)',
+          '4 règles comme la Nūn Sākinah',
+          '2 règles seulement : Izhār et Idghām',
+          '5 règles incluant la Qalqalah'
+        ],
+        correctAnswer: '3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م), et Izhār Shafawī (26 lettres)',
+        explanationFr: 'Contrairement au Nūn Sākinah qui compte 4 règles, le Mīm Sākinah n\'a ni Iqlāb ni Ikhfā\' à 15 lettres : seulement Ikhfā\' (ب), Idghām (م) et Izhār (le reste).',
+        ruleId: 'ikhfa-shafawi'
+      },
+      {
+        id: 'q-c9-2',
+        type: 'mcq',
+        promptFr: 'Quelle est l\'unique lettre qui déclenche la règle de l\'Ikhfā\' Shafawī sur le Mīm Sākinah ?',
+        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ',
+        surahAyahRef: '105:4',
+        options: [
+          'La lettre Bā\' (ب)',
+          'La lettre Mīm (م)',
+          'La lettre Wāw (و)',
+          'La lettre Nūn (ن)'
+        ],
+        correctAnswer: 'La lettre Bā\' (ب)',
+        explanationFr: 'Le Bā\' est l\'unique lettre d\'Ikhfā\' Shafawī. Elle exige une fermeture douce des lèvres avec une Ghunnah de 2 temps.',
+        ruleId: 'ikhfa-shafawi'
+      },
+      {
+        id: 'q-c9-3',
+        type: 'mcq',
+        promptFr: 'Pourquoi les imams du Tajwīd insistent-ils tant sur l\'Izhār devant Wāw (و) et Fā\' (ف) ?',
+        verseArabic: 'عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ ۝ هُمۡ فِيهَا خَٰلِدُونَ',
+        options: [
+          'Car elles partagent les lèvres avec le Mīm, ce qui pousse par facilité à assimiler ou dissimuler le Mīm',
+          'Car le Wāw et le Fā\' sont des lettres de gorge',
+          'Car il faut marquer une pause obligatoire (Saktah) entre eux',
+          'Car le Mīm doit être prolongé de 6 temps de Madd Lāzim'
+        ],
+        correctAnswer: 'Car elles partagent les lèvres avec le Mīm, ce qui pousse par facilité à assimiler ou dissimuler le Mīm',
+        explanationFr: 'L\'identité de point d\'articulation (Wāw) ou sa proximité immédiate (Fā\') incite le récitateur à dissimuler par inadvertance le Mīm. Les savants imposent une clarté vigilante (Ashadd Izhār).',
+        ruleId: 'izhar-shafawi'
+      },
+      {
+        id: 'q-c9-4',
+        type: 'mcq',
+        promptFr: 'Comment positionner correctement les lèvres lors de l\'Ikhfā\' Shafawī sur « Tarmīhim bi-hijārah » ?',
+        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
+        surahAyahRef: '105:4',
+        options: [
+          'Les lèvres se touchent avec douceur sans pression excessive et sans laisser d\'ouverture (pas de Furjah)',
+          'Il faut laisser un large trou de 5 millimètres entre les lèvres',
+          'Il faut serrer les dents et mordre la lèvre inférieure',
+          'Il faut ouvrir grand la bouche en disant un son A prolongé'
+        ],
+        correctAnswer: 'Les lèvres se touchent avec douceur sans pression excessive et sans laisser d\'ouverture (pas de Furjah)',
+        explanationFr: 'La position authentique transmise consiste en un contact doux et naturel des lèvres sans écrasement ni écartement artificiel.',
+        ruleId: 'ikhfa-shafawi'
+      },
+      {
+        id: 'q-c9-5',
+        type: 'mcq',
+        promptFr: 'Dans « Fī qulūbihim maradun » (2:10), que se passe-t-il entre les deux Mīms ?',
+        verseArabic: 'فِى قُلُوبِهِم مَّرَضٞ',
+        surahAyahRef: '2:10',
+        options: [
+          'Le premier Mīm fusionne totalement dans le second (Idghām Shafawī) avec 2 temps de Ghunnah',
+          'Le premier Mīm est prononcé avec un arrêt sec de Qalqalah',
+          'Le premier Mīm disparaît sans aucune résonance nasale',
+          'Les deux Mīms sont séparés par un arrêt obligatoire'
+        ],
+        correctAnswer: 'Le premier Mīm fusionne totalement dans le second (Idghām Shafawī) avec 2 temps de Ghunnah',
+        explanationFr: 'La rencontre de deux Mīms entraîne un Idghām Mutamāthilayn Saghīr : ils forment un seul Mīm portant une Shaddah avec une Ghunnah de 2 temps.',
+        ruleId: 'idgham-shafawi'
       }
     ]
   },

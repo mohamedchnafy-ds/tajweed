@@ -2806,6 +2806,310 @@ const LamFilHarfScannerVisual: React.FC<{ animKey: number }> = ({ animKey }) => 
 };
 
 /* =========================================================================
+   CHAPITRE 9 : Mini-composants interactifs et didactiques (Mīm Sākinah)
+   ========================================================================= */
+
+/** Écran 1 : La Position des Lèvres pour l'Ikhfā' Shafawī (Le Débat de la Furjah) */
+const IkhfaShafawiLipsVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [lipMode, setLipMode] = useState<'adequate' | 'gap' | 'tight'>('adequate');
+
+  const modes = {
+    adequate: {
+      badge: 'Conforme & Pure Sunnah (Recommandé)',
+      badgeClass: 'chip-idgham',
+      arabicWord: 'تَرۡمِيهِم بِحِجَارَةٖ',
+      translit: 'Tarmīhim bi-hijārah',
+      lipState: 'Contact doux & naturel des deux lèvres (Itbāq Latīf)',
+      boxClass: 'bg-good-bg border-good/40',
+      textColor: 'text-good',
+      mechanism: 'Les lèvres se posent l\'une contre l\'autre avec délicatesse, sans les écraser et SANS laisser d\'ouverture artificielle (pas de Furjah). La Ghunnah résonne 2 temps pleins dans la cavité nasale avant de relâcher le Bā\'.',
+      scholars: 'Avis prépondérant des plus grands maîtres du Tajwīd (Ibn Al-Jazarī, Dr. Ayman Swayd, Dr. Islām Fekry).'
+    },
+    gap: {
+      badge: 'Déconseillé (Furjah artificielle)',
+      badgeClass: 'chip-qalqalah',
+      arabicWord: 'تَرۡمِيهِم ␣ بِحِجَارَةٖ',
+      translit: 'Tarmīhi... bi-hijārah',
+      lipState: 'Fente ou trou visible entre les lèvres',
+      boxClass: 'bg-bad-bg border-bad/40',
+      textColor: 'text-bad',
+      mechanism: 'Laisser un espace ouvert entre les lèvres produit un son flottant qui dénature le Mīm en un hybride de Nūn étranger au Makhraj labial authentique.',
+      scholars: 'Pratique récente sans fondement textuel dans les poèmes classiques (Manzūmāt).'
+    },
+    tight: {
+      badge: 'Pression Excessive (Kazz \'alā ash-shafatayh)',
+      badgeClass: 'chip-qalqalah',
+      arabicWord: 'تَرۡمِيهِمْ بِحِجَارَةٖ',
+      translit: 'Tarmī-MMM-bi-hijārah',
+      lipState: 'Lèvres comprimées avec force et tension',
+      boxClass: 'bg-bad-bg border-bad/40',
+      textColor: 'text-bad',
+      mechanism: 'Presser trop fort étouffe la résonance du Khayshūm et durcit brutalement la transition vers le Bā\'.',
+      scholars: 'À corriger : détendez la mâchoire et laissez les lèvres simplement effleurer.'
+    }
+  };
+
+  const curr = modes[lipMode];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Comment prononcer le Mīm avant le Bā' : Testez les 3 positions des lèvres
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-1.5">
+        <button
+          onClick={() => setLipMode('adequate')}
+          aria-pressed={lipMode === 'adequate'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            lipMode === 'adequate' ? 'chip-idgham font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Contact Doux (Sans Furjah)
+        </button>
+        <button
+          onClick={() => setLipMode('gap')}
+          aria-pressed={lipMode === 'gap'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            lipMode === 'gap' ? 'chip-qalqalah font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Écartement Artificiel (Furjah)
+        </button>
+        <button
+          onClick={() => setLipMode('tight')}
+          aria-pressed={lipMode === 'tight'}
+          className={`chip text-xs px-3 py-1.5 transition-all ${
+            lipMode === 'tight' ? 'chip-qalqalah font-bold scale-105' : 'bg-soft text-muted hover:bg-line'
+          }`}
+        >
+          Pression Excessive
+        </button>
+      </div>
+
+      <div className={`p-5 rounded-2xl border shadow-sm space-y-4 max-w-xl mx-auto transition-all ${curr.boxClass}`}>
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.badge}
+          </span>
+          <span className="text-xs text-muted">Durée : 2 temps de Ghunnah</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicWord}
+        </div>
+
+        <div className="p-2.5 rounded-xl bg-card text-xs sm:text-sm font-mono text-ink">
+          Phonétique : <strong className={curr.textColor}>{curr.translit}</strong>
+        </div>
+
+        <div className="text-left text-xs space-y-2 border-t border-line/60 pt-3">
+          <p className="text-ink">
+            <strong>État des lèvres :</strong> {curr.lipState}
+          </p>
+          <p className="text-ink leading-relaxed">
+            <strong>Explication :</strong> {curr.mechanism}
+          </p>
+          <p className="text-muted text-[11px]">
+            <strong>Référence :</strong> {curr.scholars}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : L'Idghām Shafawī (Fusion des deux Mīms en un Mīm Mushaddadah) */
+const IdghamShafawiTwinVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeCase, setActiveCase] = useState<'wasl' | 'waqf'>('wasl');
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        La fusion totale dans le Mīm suivant & la Ghunnah à l'arrêt
+      </div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button onClick={() => setActiveCase('wasl')} aria-pressed={activeCase === 'wasl'}>
+            Idghām entre 2 Mots (فِى قُلُوبِهِم مَّرَضٞ)
+          </button>
+          <button onClick={() => setActiveCase('waqf')} aria-pressed={activeCase === 'waqf'}>
+            Mīm Mushaddadah à l'Arrêt (ٱلۡيَمِّ)
+          </button>
+        </div>
+      </div>
+
+      {activeCase === 'wasl' ? (
+        <div className="p-5 rounded-2xl bg-card border border-idgham/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-idgham text-xs font-bold">
+              Idghām Mithlayn Saghīr (Ghunnah 2 temps)
+            </span>
+            <span className="text-xs text-muted">Al-Baqarah 2:10</span>
+          </div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+            <span className="text-ink">فِى قُلُوبِهِ</span>
+            <span className="text-bad opacity-40 line-through">مۡ</span>
+            <span className="text-good font-bold"> مَّ</span>
+            <span className="text-ink">رَضٞ</span>
+          </div>
+
+          <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+            Formule mathématique : [ مْ sans voyelle ] + [ مَ voyellé ] = <strong className="text-good">[ مّ de 2 temps ]</strong>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+            Le premier Mīm est absorbé à 100% dans le second. Vos lèvres restent jointes pendant <strong className="text-good">2 pulsations complètes</strong> de résonance nasale (Ghunnah) avant d'ouvrir sur la Fathah de « Marad ».
+          </p>
+        </div>
+      ) : (
+        <div className="p-5 rounded-2xl bg-card border border-gold/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex items-center justify-between">
+            <span className="chip chip-gold text-xs font-bold">
+              Ghunnah Maximale à l'Arrêt (Akmal mā takūn)
+            </span>
+            <span className="text-xs text-muted">Tāhā 20:39</span>
+          </div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+            <span>فَٱقۡذِفِيهِ فِى </span>
+            <span className="text-good font-bold underline decoration-gold decoration-2 underline-offset-8">ٱلۡيَمِّ</span>
+          </div>
+
+          <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+            À l'arrêt (Waqf) : <strong className="text-good">« Fil-yamm... (maintenir 2 temps !) »</strong>
+          </div>
+
+          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+            ⚠️ <strong>Règle d'or du Dr. Islām Fekry :</strong> Même si vous vous arrêtez sur un mot qui se termine par un Mīm Mushaddadah (مّ) ou un Nūn Mushaddadah (نّ), vous DEVEZ obligatoirement maintenir la Ghunnah pendant 2 temps avant de couper la voix ! Ne coupez jamais à sec.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 3 : L'Alerte Maximale d'Izhār devant Wāw (و) et Fā' (ف) */
+const AshaddIzharWarningVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [dangerLetter, setDangerLetter] = useState<'waw' | 'fa'>('waw');
+
+  const warnings = {
+    waw: {
+      letter: 'و (Wāw)',
+      verseArabic: 'عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+      segment: 'عَلَيۡهِمۡ وَلَا',
+      surahRef: 'Al-Fātihah 1:7',
+      dangerTrap: 'Dire « \'Alayhiw-walā » en dissimulant le Mīm dans le Wāw',
+      whyTrapHappens: 'Identité totale du Makhraj (Ittihād) : le Mīm et le Wāw naissent tous deux du mouvement des deux lèvres !',
+      cure: 'Fermez fermement les deux lèvres sur le Mīm avec Tawassut, puis ouvrez-les en arrondissant la bouche pour le Wāw.'
+    },
+    fa: {
+      letter: 'ف (Fā\')',
+      verseArabic: 'أُولَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+      segment: 'هُمۡ فِيهَا',
+      surahRef: 'Al-Baqarah 2:82',
+      dangerTrap: 'Dire « Huf-fīhā » en avalant le Mīm au profit du Fā\'',
+      whyTrapHappens: 'Proximité immédiate (Taqārub) : le Fā\' naît de la lèvre inférieure touchant les incisives supérieures, juste à côté du Mīm !',
+      cure: 'Marquez la fermeture complète des lèvres sur « Hum » avant de toucher la lèvre inférieure avec les dents pour « Fīhā ».'
+    }
+  };
+
+  const curr = warnings[dangerLetter];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        L'avertissement solennel d'Ibn Al-Jazarī : « وَاحْذَرْ لَدَى وَاوٍ وَفَا أَنْ تَخْتَفِي »
+      </div>
+
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button onClick={() => setDangerLetter('waw')} aria-pressed={dangerLetter === 'waw'}>
+            Danger 1 : Devant Wāw (عَلَيۡهِمۡ وَلَا)
+          </button>
+          <button onClick={() => setDangerLetter('fa')} aria-pressed={dangerLetter === 'fa'}>
+            Danger 2 : Devant Fā' (هُمۡ فِيهَا)
+          </button>
+        </div>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-bad/40 shadow-sm space-y-4 max-w-xl mx-auto">
+        <div className="flex items-center justify-between">
+          <span className="chip chip-qalqalah text-xs font-bold">
+            ⚠️ Ashadd Izhār (Clarté Vigilante Impérative)
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.verseArabic}
+        </div>
+
+        <div className="p-2.5 rounded-xl bg-bad-bg/60 border border-bad/30 text-xs sm:text-sm text-ink">
+          <strong className="text-bad">Faute critique fréquente :</strong> {curr.dangerTrap}
+        </div>
+
+        <div className="text-left text-xs space-y-2 border-t border-line/60 pt-3">
+          <p className="text-ink">
+            <strong>Pourquoi ce piège ?</strong> {curr.whyTrapHappens}
+          </p>
+          <p className="text-good font-semibold">
+            <strong>Remède infaillible :</strong> {curr.cure}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Nūn Sākinah vs Mīm Sākinah (Le Grand Tableau Comparatif) */
+const MimVsNunComparisonVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Comparaison Didactique : Pourquoi le Mīm Sākinah est-il beaucoup plus simple ?
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left text-xs">
+        {/* Nūn Sākinah card */}
+        <div className="p-4 rounded-2xl bg-card border border-line space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-ink text-sm">Nūn Sākinah (نْ)</span>
+            <span className="chip chip-idgham text-[11px]">4 Règles</span>
+          </div>
+          <ul className="space-y-1.5 text-muted">
+            <li>• <strong>Izhār Halqī :</strong> 6 lettres de gorge (ء هـ ع ح غ خ)</li>
+            <li>• <strong>Idghām :</strong> 6 lettres (يَرۡمَلُونَ) avec/sans Ghunnah</li>
+            <li>• <strong>Iqlāb :</strong> 1 lettre (ب) ➔ converti en Mīm</li>
+            <li>• <strong>Ikhfā' Haqīqī :</strong> 15 lettres avec anticipation du Makhraj</li>
+          </ul>
+        </div>
+
+        {/* Mīm Sākinah card */}
+        <div className="p-4 rounded-2xl bg-card border border-lapis/40 shadow-sm space-y-3 ring-2 ring-lapis/20">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-ink text-sm">Mīm Sākinah (مْ)</span>
+            <span className="chip chip-izhar text-[11px] font-bold">3 Règles Seulement</span>
+          </div>
+          <ul className="space-y-1.5 text-ink">
+            <li>• <strong>Ikhfā' Shafawī :</strong> 1 seule lettre : Bā' (ب) avec 2t Ghunnah</li>
+            <li>• <strong>Idghām Shafawī :</strong> 1 seule lettre : Mīm (م) avec 2t Ghunnah</li>
+            <li>• <strong>Izhār Shafawī :</strong> Les 26 autres lettres (Soukoûn visible مۡ)</li>
+            <li className="text-good font-semibold">• <strong>Zéro Iqlāb :</strong> Le Mīm est déjà un Mīm !</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="p-3.5 rounded-xl bg-soft text-xs text-muted max-w-2xl mx-auto leading-relaxed">
+        💡 <strong>Astuce mnémonique pour retenir le Mīm en 5 secondes :</strong> Devant le <strong>Bā'</strong>, je dissimule (Ikhfā'). Devant le <strong>Mīm</strong>, je fusionne (Idghām). Devant <strong>tout le reste</strong>, je prononce clairement (Izhār), en ouvrant l'œil devant <strong>Wāw et Fā'</strong> !
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -3250,6 +3554,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 9 (Mim Sakinah)
+  const chapter9Screens = [
+    {
+      title: 'L\'Ikhfā\' Shafawī & Le Débat de la Furjah',
+      badge: 'Dissimulation Labiale (ب)',
+      concept: 'Contact doux des lèvres sans pression et sans ouverture artificielle',
+      renderVisual: () => <IkhfaShafawiLipsVisual animKey={animKey} />,
+      explanation: 'Lorsque le Mīm Sākinah rencontre la lettre Bā\' (ب) entre 2 mots (تَرۡمِيهِم بِحِجَارَةٖ), les lèvres se posent l\'une contre l\'autre avec délicatesse sans forcer et sans laisser d\'ouverture (Furjah). Maintenez 2 temps pleins de Ghunnah nasale !'
+    },
+    {
+      title: 'L\'Idghām Shafawī (Fusion des deux Mīms)',
+      badge: 'Fusion Totale (م)',
+      concept: 'Deux Mīms qui deviennent un Mīm Mushaddadah avec 2 temps de Ghunnah',
+      renderVisual: () => <IdghamShafawiTwinVisual animKey={animKey} />,
+      explanation: 'Le Mīm sans voyelle fusionne à 100% dans le Mīm suivant : « Fī qulūbihim maradun ». Et attention : tout Mīm avec Shaddah (مّ) conserve obligatoirement ses 2 temps de Ghunnah même à l\'arrêt (Waqf sur « Al-Yamm ») !'
+    },
+    {
+      title: 'L\'Alerte Maximale d\'Izhār devant Wāw (و) et Fā\' (ف)',
+      badge: 'Ashadd Izhār',
+      concept: 'Ne jamais avaler le Mīm par facilité articulaire labiale',
+      renderVisual: () => <AshaddIzharWarningVisual animKey={animKey} />,
+      explanation: 'L\'imam Ibn Al-Jazarī avertit : « Prends garde à ce que le Mīm ne disparaisse devant le Wāw et le Fā\' ! ». Dans « \'Alayhim wa lā » et « Hum fīhā », fermez complètement les lèvres sur le Mīm avant d\'articuler la lettre suivante pour éradiquer tout Ikhfā\' inconscient.'
+    },
+    {
+      title: 'Le Grand Face-à-Face : Nūn vs Mīm Sākinah',
+      badge: 'Comparaison Didactique',
+      concept: 'Pourquoi le Mīm Sākinah est beaucoup plus simple et sans Iqlāb',
+      renderVisual: () => <MimVsNunComparisonVisual animKey={animKey} />,
+      explanation: 'Le Mīm Sākinah n\'a que 3 règles : Bā\' ➔ Ikhfā\', Mīm ➔ Idghām, et tout le reste ➔ Izhār ! Il n\'a pas d\'Iqlāb car l\'Iqlāb consiste précisément à transformer une lettre en Mīm.'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -3267,6 +3603,8 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter7Screens
       : chapter.number === 8
       ? nunScreens
+      : chapter.number === 9
+      ? chapter9Screens
       : qalqalahScreens;
   const current = screens[screenIndex] || screens[0];
 

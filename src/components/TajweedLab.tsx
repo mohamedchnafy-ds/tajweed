@@ -1208,6 +1208,163 @@ const LAM_SAKINAH_TEST_BENCH_CASES: LamSakinahBenchCase[] = [
   },
 ];
 
+interface MimSakinahBenchCase {
+  id: string;
+  title: string;
+  category: 'ikhfa' | 'idgham' | 'izhar' | 'warning';
+  arabicWord: string;
+  highlightedSegment: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  followingLetter: string;
+  mushafSign: string;
+  pronunciation: string;
+  surahRef: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const MIM_SAKINAH_TEST_BENCH_CASES: MimSakinahBenchCase[] = [
+  {
+    id: 'mim-case-1',
+    title: 'Al-Fīl 105:4 — Ikhfā\' Shafawī (تَرۡمِيهِم بِحِجَارَةٖ)',
+    category: 'ikhfa',
+    arabicWord: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
+    highlightedSegment: 'تَرۡمِيهِم بِحِجَارَةٖ',
+    ruleBadge: 'Ikhfā\' Shafawī (2 temps)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Dissimulation devant Bā\' (ب)',
+    followingLetter: 'ب (Bā\' - Deux lèvres)',
+    mushafSign: 'Mīm nu (sans voyelle) + Bā\' sans Shaddah',
+    pronunciation: 'Tarmīhim bi-hijārah (Ghunnah douce sans Furjah)',
+    surahRef: 'Al-Fīl 105:4',
+    explanation: 'Mīm Sākinah suivi du Bā\'. Les lèvres se posent l\'une contre l\'autre délicatement avec 2 temps de Ghunnah nasale.',
+    fiqhImpact: 'Obligatoire. Omettre la Ghunnah est un Lahn Khafī.',
+    commonTrap: 'Laisser un espace ouvert (Furjah) ou écraser les lèvres excessivement.',
+  },
+  {
+    id: 'mim-case-2',
+    title: 'Al-\'Ādiyāt 100:11 — Ikhfā\' Shafawī (رَبَّهُم بِهِم)',
+    category: 'ikhfa',
+    arabicWord: 'إِنَّ رَبَّهُم بِهِمۡ يَوۡمَئِذٖ لَّخَبِيرُۢ',
+    highlightedSegment: 'رَبَّهُم بِهِمۡ',
+    ruleBadge: 'Ikhfā\' Shafawī (Ghunnah 2t)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Dissimulation devant Bā\' (ب)',
+    followingLetter: 'ب (Bā\')',
+    mushafSign: 'Mīm nu',
+    pronunciation: 'Rabbahum bihim (2 temps de résonance)',
+    surahRef: 'Al-\'Ādiyāt 100:11',
+    explanation: 'Se produit toujours entre deux mots distincts, jamais au sein d\'un seul mot.',
+    fiqhImpact: 'Conforme à la Sunnah.',
+    commonTrap: 'Prononcer un Mīm sec sans aucune Ghunnah.',
+  },
+  {
+    id: 'mim-case-3',
+    title: 'Al-Baqarah 2:10 — Idghām Shafawī (قُلُوبِهِم مَّرَضٞ)',
+    category: 'idgham',
+    arabicWord: 'فِى قُلُوبِهِم مَّرَضٞ فَزَادَهُمُ ٱللَّهُ مَرَضٗا',
+    highlightedSegment: 'قُلُوبِهِم مَّرَضٞ',
+    ruleBadge: 'Idghām Mithlayn Saghīr',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Fusion dans un autre Mīm',
+    followingLetter: 'م (Mīm avec Shaddah مّ)',
+    mushafSign: 'Premier Mīm nu + Second Mīm avec Shaddah',
+    pronunciation: 'Qulūbihim-marad (Ghunnah 2 temps fermée)',
+    surahRef: 'Al-Baqarah 2:10',
+    explanation: 'Le premier Mīm sans voyelle fond entièrement dans le second Mīm pourvu de voyelle. Les deux deviennent un seul Mīm Mushaddadah.',
+    fiqhImpact: 'Fusion absolue obligatoire.',
+    commonTrap: 'Séparer les deux Mīms par une hésitation artificielle.',
+  },
+  {
+    id: 'mim-case-4',
+    title: 'Tāhā 20:39 — Mīm Mushaddadah à l\'Arrêt (ٱلۡيَمِّ)',
+    category: 'idgham',
+    arabicWord: 'فَٱقۡذِفِيهِ فِى ٱلۡيَمِّ فَلۡيُلۡقِهِ ٱلۡيَمُّ بِٱلسَّاحِلِ',
+    highlightedSegment: 'فِى ٱلۡيَمِّ',
+    ruleBadge: 'Ghunnah à l\'Arrêt (Akmal)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Mīm Mushaddadah (مّ)',
+    followingLetter: 'Arrêt (Waqf) sur Mīm Mushaddadah',
+    mushafSign: 'Shaddah et Kasrah (مِّ)',
+    pronunciation: 'Fil-yamm... (2 temps de Ghunnah à l\'arrêt)',
+    surahRef: 'Tāhā 20:39',
+    explanation: 'En cas d\'arrêt sur un Mīm portant une Shaddah, la Ghunnah maximale de 2 temps doit impérativement être maintenue avant de couper le son !',
+    fiqhImpact: 'Règle d\'or du Dr. Islām Fekry : ne jamais couper à sec.',
+    commonTrap: 'Couper la voix net sur "Al-Yam" sans prolonger la Ghunnah.',
+  },
+  {
+    id: 'mim-case-5',
+    title: 'Al-Fātihah 1:2 — Izhār Shafawī Standard (ٱلۡحَمۡدُ)',
+    category: 'izhar',
+    arabicWord: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+    highlightedSegment: 'ٱلۡحَمۡدُ',
+    ruleBadge: 'Izhār Shafawī (Dans un mot)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Izhār devant les 26 lettres',
+    followingLetter: 'د (Dāl - Langue)',
+    mushafSign: 'Petit Soukoûn visible sur le Mīm (مۡ)',
+    pronunciation: 'Al-Hamdu (Clarté naturelle sans prolongation)',
+    surahRef: 'Al-Fātihah 1:2',
+    explanation: 'Dans un seul mot, le Mīm rencontre le Dāl : clarté nette avec Tawassut sans allongement nasal.',
+    fiqhImpact: 'Prononciation standard sans déviation.',
+    commonTrap: 'Faire une Qalqalah parasite en relâchant brutalement les lèvres (« Al-Hamadu »).',
+  },
+  {
+    id: 'mim-case-6',
+    title: 'Al-Fātihah 1:7 — Izhār Shafawī entre Mots (عَلَيۡهِمۡ غَيۡرِ)',
+    category: 'izhar',
+    arabicWord: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ',
+    highlightedSegment: 'عَلَيۡهِمۡ غَيۡرِ',
+    ruleBadge: 'Izhār Shafawī (Entre 2 mots)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Izhār devant les 26 lettres',
+    followingLetter: 'غ (Ghayn - Gorge)',
+    mushafSign: 'Soukoûn visible (مۡ)',
+    pronunciation: '\'Alayhim ghayril (Mīm net puis Ghayn)',
+    surahRef: 'Al-Fātihah 1:7',
+    explanation: 'Mīm Sākinah suivi du Ghayn (lettre de gorge) : Izhār Shafawī limpide sans pause.',
+    fiqhImpact: 'Conforme.',
+    commonTrap: 'Ajouter un temps de Ghunnah superflu.',
+  },
+  {
+    id: 'mim-case-7',
+    title: 'Al-Fātihah 1:7 — Ashadd Izhār devant Wāw (عَلَيۡهِمۡ وَلَا)',
+    category: 'warning',
+    arabicWord: 'غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
+    highlightedSegment: 'عَلَيۡهِمۡ وَلَا',
+    ruleBadge: '⚠️ Ashadd Izhār (Alerte Wāw)',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Alerte Maximale (Wāw)',
+    followingLetter: 'و (Wāw - Partage les deux lèvres !)',
+    mushafSign: 'Soukoûn visible (مۡ) + Wāw (وَ)',
+    pronunciation: '\'Alayhim wa lā (Fermeture complète avant ouverture)',
+    surahRef: 'Al-Fātihah 1:7',
+    explanation: 'PIÈGE CRITIQUE : Le Mīm et le Wāw partagent exactement le même Makhraj (les deux lèvres). L\'appareil buccal a tendance à assimiler le Mīm. Fermez franchement les lèvres !',
+    fiqhImpact: 'Lahn Khafī si le Mīm est avalé ou dissimulé.',
+    commonTrap: 'Dire « \'Alayhiw-walā » en faisant glisser le Mīm dans le Wāw.',
+  },
+  {
+    id: 'mim-case-8',
+    title: 'Al-Baqarah 2:82 — Ashadd Izhār devant Fā\' (هُمۡ فِيهَا)',
+    category: 'warning',
+    arabicWord: 'أُولَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+    highlightedSegment: 'هُمۡ فِيهَا',
+    ruleBadge: '⚠️ Ashadd Izhār (Alerte Fā\')',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Alerte Maximale (Fā\')',
+    followingLetter: 'ف (Fā\' - Lèvre inférieure et incisives)',
+    mushafSign: 'Soukoûn visible (مۡ) + Fā\' (فِ)',
+    pronunciation: 'Hum fīhā (Clarté rigoureuse du Mīm)',
+    surahRef: 'Al-Baqarah 2:82',
+    explanation: 'Le Fā\' naît au contact direct des incisives sur la lèvre inférieure. Ne dissimulez jamais le Mīm dans le Fā\'.',
+    fiqhImpact: 'Clarté obligatoire exigée par Ibn Al-Jazarī.',
+    commonTrap: 'Dire « Huf-fīhā » en anticipant le Fā\' trop tôt.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -1272,6 +1429,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // State for Chapter 7
   const [lamCaseId, setLamCaseId] = useState<string>('lam-case-1');
   const [lamFilter, setLamFilter] = useState<'all' | 'qamariyyah' | 'shamsiyyah' | 'jalalah' | 'fil-harf'>('all');
+
+  // State for Chapter 9
+  const [mimCaseId, setMimCaseId] = useState<string>('mim-case-1');
+  const [mimFilter, setMimFilter] = useState<'all' | 'ikhfa' | 'idgham' | 'izhar' | 'warning'>('all');
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -2689,6 +2850,187 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedLamCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 9 : LE LABORATOIRE DE LA MĪM SĀKINAH
+     ========================================================================= */
+  if (chapter.number === 9) {
+    const filteredMimCases = MIM_SAKINAH_TEST_BENCH_CASES.filter(
+      (c) => mimFilter === 'all' || c.category === mimFilter
+    );
+
+    const selectedMimCase =
+      MIM_SAKINAH_TEST_BENCH_CASES.find((c) => c.id === mimCaseId) ||
+      MIM_SAKINAH_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-gold': 'var(--gold)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-iqlab': 'var(--iqlab)',
+    };
+    const accentBorder = accentMap[selectedMimCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Laboratoire de la Mīm Sākinah"
+          description="Testez l'Ikhfā' Shafawī (dissimulation devant Bā'), l'Idghām Shafawī (fusion des 2 Mīms) et l'Izhār Shafawī avec l'alerte maximale devant Wāw et Fā'."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setMimFilter('all')}
+              aria-pressed={mimFilter === 'all'}
+            >
+              Tous ({MIM_SAKINAH_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setMimFilter('ikhfa')}
+              aria-pressed={mimFilter === 'ikhfa'}
+            >
+              Ikhfā' Bā' (2)
+            </button>
+            <button
+              onClick={() => setMimFilter('idgham')}
+              aria-pressed={mimFilter === 'idgham'}
+            >
+              Idghām Mīm (2)
+            </button>
+            <button
+              onClick={() => setMimFilter('izhar')}
+              aria-pressed={mimFilter === 'izhar'}
+            >
+              Izhār 26 lettres (2)
+            </button>
+            <button
+              onClick={() => setMimFilter('warning')}
+              aria-pressed={mimFilter === 'warning'}
+            >
+              ⚠️ Alerte Wāw/Fā' (2)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas extraits du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredMimCases.map((tc) => {
+              const isSelected = tc.id === selectedMimCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setMimCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedMimCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedMimCase.surahRef}</span>
+                <span className={`chip ${selectedMimCase.colorClass}`}>
+                  {selectedMimCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedMimCase.title}
+              </h3>
+            </div>
+
+            {/* Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Observation du segment et position des lèvres</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                <span className="text-ink font-bold">
+                  {selectedMimCase.highlightedSegment}
+                </span>
+              </div>
+
+              {/* Status pills */}
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="text-xs text-muted">Lettre suivante :</span>
+                <span className="chip chip-gold font-bold text-xs">
+                  {selectedMimCase.followingLetter}
+                </span>
+                <span className="text-xs text-muted">Signe Mushaf :</span>
+                <span className="chip chip-izhar font-mono text-xs">
+                  {selectedMimCase.mushafSign}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                Prononciation exacte : <strong className="text-ink">{selectedMimCase.pronunciation}</strong>
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedMimCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Règle de récitation</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedMimCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedMimCase.commonTrap}
                 </dd>
               </div>
             </div>

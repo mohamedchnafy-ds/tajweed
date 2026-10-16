@@ -300,6 +300,40 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 9 (Mim Sakinah)
+  const chapter9Verses = [
+    {
+      ref: '105:4-5',
+      surahFr: 'Al-Fīl',
+      words: [
+        { text: 'تَرۡمِيهِم', rule: 'Ikhfā\' Shafawī (Devant Bā\')', ruleClass: 'chip-idgham', why: 'Mīm sans voyelle suivi du Bā\' : dissimulation avec 2 temps de Ghunnah sur les lèvres !', target: true },
+        { text: 'بِحِجَارَةٖ', rule: 'Suite d\'Ikhfā\' & Tanwīn', ruleClass: 'chip-idgham', why: 'Ouverture sur le Bā\' puis Idghām avec Mīm.' },
+        { text: 'مِّن', rule: 'Nūn Sākinah + Sīn', ruleClass: 'chip-ikhfa', why: 'Ikhfā\' Haqīqī.' },
+        { text: 'سِجِّيلٖ', rule: 'Arrêt avec Madd \'Ārid', ruleClass: 'chip-izhar', why: '2, 4 ou 6 temps.' },
+        { text: 'فَجَعَلَهُمۡ', rule: 'Izhār Shafawī (Devant Kāf)', ruleClass: 'chip-izhar', why: 'Mīm suivi du Kāf : clarté nette sans pause ni prolongation.', target: true },
+        { text: 'كَعَصۡفٖ', rule: 'Tanwīn + Mīm', ruleClass: 'chip-idgham', why: 'Idghām avec Ghunnah.' },
+        { text: 'مَّأۡكُولِۭ', rule: 'Mīm Mushaddadah & Arrêt', ruleClass: 'chip-izhar', why: 'Ghunnah 2 temps sur Mīm puis arrêt sur Lām.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/105004.mp3',
+    },
+    {
+      ref: '1:7',
+      surahFr: 'Al-Fātihah',
+      words: [
+        { text: 'صِرَٰطَ', rule: 'Sād emphatique', ruleClass: 'chip-gold', why: 'Isti\'lā\' et Itbāq.' },
+        { text: 'ٱلَّذِينَ', rule: 'Hamzat Wasl effacée', ruleClass: 'chip-gold', why: 'Liaison continue.' },
+        { text: 'أَنۡعَمۡتَ', rule: 'Izhār Halqī (Nūn + \'Ayn)', ruleClass: 'chip-izhar', why: 'Nūn prononcé clairement.' },
+        { text: 'عَلَيۡهِمۡ', rule: 'Izhār Shafawī (Devant Ghayn)', ruleClass: 'chip-izhar', why: 'Mīm suivi du Ghayn : clarté sans pause.', target: true },
+        { text: 'غَيۡرِ', rule: 'Ghayn de gorge', ruleClass: 'chip-gold', why: 'Ghayn profond.' },
+        { text: 'ٱلۡمَغۡضُوبِ', rule: 'Dād avec Istitālah', ruleClass: 'chip-gold', why: 'Bord de la langue.' },
+        { text: 'عَلَيۡهِمۡ', rule: '⚠️ Ashadd Izhār (Alerte Wāw)', ruleClass: 'chip-qalqalah', why: 'Mīm suivi du Wāw : alerte maximale d\'Ibn Al-Jazarī pour ne pas dissimuler le Mīm !', target: true },
+        { text: 'وَلَا', rule: 'Wāw après Mīm', ruleClass: 'chip-gold', why: 'Ouverture nette des lèvres.' },
+        { text: 'ٱلضَّآلِّينَ', rule: 'Madd Lāzim (6 temps)', ruleClass: 'chip-idgham', why: '6 temps stricts incompressibles.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3',
+    }
+  ];
+
   const versesList =
     chapter.number === 1
       ? chapter1Verses
@@ -317,6 +351,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter7Verses
       : chapter.number === 8
       ? nunVerses
+      : chapter.number === 9
+      ? chapter9Verses
       : qalqalahVerses;
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
   const [selectedWordIndex, setSelectedWordIndex] = useState<number>(0);
