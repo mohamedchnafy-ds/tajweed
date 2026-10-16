@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Chapter } from '../types/tajweed';
 import { Mic, Play, Pause, Square, RotateCcw } from 'lucide-react';
 import { StepHeader } from './ui';
+import { TajweedText, TajweedRuleType } from './TajweedHighlighter';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
 
@@ -528,10 +529,23 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
             {currentVerse.words.map((w, idx) => {
               const isSelected = selectedWordIndex === idx;
               const hasColor = w.target;
+
+              const handleSelectWord = () => {
+                setSelectedWordIndex(idx);
+                if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                  setTimeout(() => {
+                    const el = document.getElementById('quran-word-card');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                  }, 60);
+                }
+              };
+
               return (
                 <button
                   key={idx}
-                  onClick={() => setSelectedWordIndex(idx)}
+                  onClick={handleSelectWord}
                   className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl transition-all select-none ${
                     isSelected
                       ? 'bg-lapis text-lapis-ink shadow-md scale-105'
@@ -543,6 +557,9 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
                   <span className="font-ar text-3xl sm:text-4xl leading-[1.7] block">
                     {w.text}
                   </span>
+                  {hasColor && (
+                    <span className="w-1.5 h-1.5 rounded-full mx-auto mt-1 block opacity-75" style={{ background: ruleColor[w.ruleClass] || 'currentColor' }} />
+                  )}
                 </button>
               );
             })}
@@ -552,14 +569,33 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
         {/* Fiche d'analyse du mot */}
         {selectedWord && (
           <div
-            className="p-6 sm:p-8 border-t border-line bg-soft animate-fade"
+            id="quran-word-card"
+            className="p-6 sm:p-8 border-t border-line bg-soft animate-fade scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${ruleColor[selectedWord.ruleClass] || 'var(--ink)'}` }}
           >
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
               <span className={`chip ${selectedWord.ruleClass}`}>
                 {selectedWord.rule}
               </span>
-              <span className="font-ar text-3xl text-ink" dir="rtl">{selectedWord.text}</span>
+              <TajweedText
+                text={selectedWord.text}
+                rule={
+                  selectedWord.ruleClass.includes('izhar')
+                    ? 'izhar'
+                    : selectedWord.ruleClass.includes('idgham')
+                    ? 'idgham'
+                    : selectedWord.ruleClass.includes('iqlab')
+                    ? 'iqlab'
+                    : selectedWord.ruleClass.includes('ikhfa')
+                    ? 'ikhfa'
+                    : selectedWord.ruleClass.includes('qalqalah')
+                    ? 'qalqalah'
+                    : selectedWord.ruleClass.includes('bad')
+                    ? 'error'
+                    : 'gold'
+                }
+                className="text-3xl text-ink"
+              />
             </div>
             <p className="text-[15px] sm:text-base leading-relaxed text-ink max-w-2xl">
               {selectedWord.why}

@@ -3,6 +3,7 @@ import { MistakeRecord } from '../types/tajweed';
 import { markMistakeResolved } from '../services/storageService';
 import { Check } from 'lucide-react';
 import { Modal, StarMark } from './ui';
+import { TajweedText } from './TajweedHighlighter';
 
 interface MistakeNotebookModalProps {
   isOpen: boolean;
@@ -64,19 +65,28 @@ export const MistakeNotebookModal: React.FC<MistakeNotebookModalProps> = ({
               <p className="text-[15px] font-semibold text-ink">{record.questionPrompt}</p>
 
               {record.verseArabic && (
-                <p className="mt-3 py-2 px-3 rounded-xl bg-soft text-center font-ar text-[26px] leading-[1.8] text-ink" dir="rtl">
-                  {record.verseArabic}
-                </p>
+                <div className="mt-3 py-2 px-3 rounded-xl bg-soft text-center font-ar text-[26px] leading-[1.8] text-ink" dir="rtl">
+                  <TajweedText
+                    text={record.verseArabic}
+                    highlightSegment={record.correctAnswer}
+                    rule="correct"
+                    className="text-[26px] leading-[1.8]"
+                  />
+                </div>
               )}
 
               <dl className="mt-3 grid sm:grid-cols-2 gap-2 text-sm">
                 <div className="rounded-xl bg-bad-bg px-3 py-2">
                   <dt className="text-bad font-semibold">Votre réponse</dt>
-                  <dd className="text-ink">{record.yourAnswer}</dd>
+                  <dd className={`text-ink ${/[\u0600-\u06FF]/.test(record.yourAnswer) ? 'font-ar text-xl leading-relaxed' : ''}`} dir={/[\u0600-\u06FF]/.test(record.yourAnswer) ? 'rtl' : 'ltr'}>
+                    {record.yourAnswer}
+                  </dd>
                 </div>
                 <div className="rounded-xl bg-good-bg px-3 py-2">
                   <dt className="text-good font-semibold">Bonne réponse</dt>
-                  <dd className="text-ink">{record.correctAnswer}</dd>
+                  <dd className={`text-ink ${/[\u0600-\u06FF]/.test(record.correctAnswer) ? 'font-ar text-xl leading-relaxed font-semibold' : 'font-semibold'}`} dir={/[\u0600-\u06FF]/.test(record.correctAnswer) ? 'rtl' : 'ltr'}>
+                    {record.correctAnswer}
+                  </dd>
                 </div>
               </dl>
 

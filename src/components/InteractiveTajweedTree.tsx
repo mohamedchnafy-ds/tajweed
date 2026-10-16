@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import { StepHeader } from './ui';
+import { ChevronDown, ChevronRight, Eye, Layers } from 'lucide-react';
+import { StepHeader, Modal } from './ui';
+import { TajweedText, TajweedRuleType } from './TajweedHighlighter';
 
 interface InteractiveTajweedTreeProps {
   chapter: Chapter;
@@ -638,10 +639,29 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
   });
 
   const [selectedNode, setSelectedNode] = useState<TreeNode>(tree);
+  const [isMobileDetailOpen, setIsMobileDetailOpen] = useState(false);
+
+  const mapTagColorToRule = (tagColor?: string): TajweedRuleType => {
+    if (!tagColor) return 'izhar';
+    if (tagColor.includes('bad')) return 'error';
+    if (tagColor.includes('good')) return 'correct';
+    if (tagColor.includes('qalqalah')) return 'qalqalah';
+    if (tagColor.includes('idgham')) return 'idgham';
+    if (tagColor.includes('iqlab')) return 'iqlab';
+    if (tagColor.includes('ikhfa')) return 'ikhfa';
+    if (tagColor.includes('madd-6') || tagColor.includes('lazim')) return 'madd-6';
+    if (tagColor.includes('madd') || tagColor.includes('gold')) return 'madd-4-5';
+    if (tagColor.includes('tafkhim')) return 'tafkhim';
+    if (tagColor.includes('silent')) return 'silent';
+    return 'izhar';
+  };
 
   const toggleNode = (id: string, node: TreeNode) => {
     setOpenNodes(prev => ({ ...prev, [id]: !prev[id] }));
     setSelectedNode(node);
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setIsMobileDetailOpen(true);
+    }
   };
 
   const expandAll = () => {
@@ -659,6 +679,88 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
     setSelectedNode(tree);
   };
 
+  // Rendu du détail partagé entre desktop (aside) et mobile (Bottom Sheet modal)
+  const renderDetailBody = (node: TreeNode) => {
+    const ruleType = mapTagColorToRule(node.tagColor);
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <p className="font-ui-ar text-[32px] leading-[1.6] text-ink" dir="rtl">
+            {node.labelAr}
+          </p>
+          <h3 className="font-display text-xl leading-snug text-ink mt-2">{node.labelFr}</h3>
+
+          {node.descriptionFr && (
+            <p className="mt-3 text-[15px] leading-relaxed text-muted">{node.descriptionFr}</p>
+          )}
+        </div>
+
+        {node.letters && node.letters.length > 0 && (
+          <div>
+            <p className="label mb-2.5">Lettres concernées</p>
+            <div className="flex flex-wrap gap-2" dir="rtl">
+              {node.letters.map((lettre, idx) => (
+                <span
+                  key={idx}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center font-ar text-2xl font-bold shadow-xs border transition-transform hover:scale-105"
+                  style={{
+                    color: node.tagColor || 'var(--ink)',
+                    background: 'var(--soft)',
+                    borderColor: 'var(--line)',
+                  }}
+                >
+                  {lettre}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {node.examples && node.examples.length > 0 && (
+          <div>
+            <p className="label mb-2.5">Exemples dans le Coran & Tajwīd</p>
+            <ul className="divide-y divide-line border-y border-line">
+              {node.examples.map((ex, idx) => {
+                // Sépare le texte arabe et la note explicative entre parenthèses
+                const match = ex.match(/^([^()]+)(?:\s*\(([^)]+)\))?$/);
+                const arabicText = (match ? match[1] : ex).trim();
+                const noteFr = match && match[2] ? match[2].trim() : null;
+
+                const isErrorExample = noteFr && (noteFr.includes('❌') || noteFr.toLowerCase().includes('erreur') || noteFr.toLowerCase().includes('harām'));
+                const itemRuleType = isErrorExample ? 'error' : ruleType;
+
+                return (
+                  <li key={idx} className="py-3.5 flex flex-col gap-1.5">
+                    <div className="text-right">
+                      <TajweedText
+                        text={arabicText}
+                        highlightLetters={node.letters}
+                        rule={itemRuleType}
+                        className="text-2xl sm:text-3xl leading-[1.8]"
+                      />
+                    </div>
+                    {noteFr && (
+                      <div className="flex justify-start">
+                        <span className={`text-xs px-2.5 py-0.5 rounded-full font-medium border ${
+                          isErrorExample
+                            ? 'bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300 border-red-200 dark:border-red-900'
+                            : 'bg-soft text-muted border-line'
+                        }`}>
+                          {noteFr}
+                        </span>
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   // Render node recursively
   const renderTreeNode = (node: TreeNode, depth: number = 0) => {
     const hasKids = node.children && node.children.length > 0;
@@ -672,7 +774,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
           onClick={() => toggleNode(node.id, node)}
           aria-expanded={hasKids ? isOpen : undefined}
           className={`w-full flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-2xl px-3.5 py-2.5 text-left transition-colors ${
-            isSelected ? 'bg-soft' : 'hover:bg-soft/70'
+            isSelected ? 'bg-soft ring-1 ring-lapis/20' : 'hover:bg-soft/70'
           }`}
         >
           <span className="flex items-center gap-3 flex-1 min-w-[11rem]">
@@ -686,9 +788,14 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
               {node.labelFr}
             </span>
           </span>
-          <span className={`font-ui-ar leading-[1.8] ml-auto ${depth === 0 ? 'text-2xl' : 'text-xl'} text-ink`} dir="rtl">
-            {node.labelAr}
-          </span>
+          <div className="flex items-center gap-2 ml-auto">
+            <span className={`font-ui-ar leading-[1.8] ${depth === 0 ? 'text-2xl' : 'text-xl'} text-ink`} dir="rtl">
+              {node.labelAr}
+            </span>
+            <span className="lg:hidden text-xs text-muted/70 pl-1" title="Voir l'explication">
+              <Eye className="w-3.5 h-3.5" />
+            </span>
+          </div>
         </button>
 
         {hasKids && isOpen && (
@@ -705,7 +812,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
       <StepHeader
         step={1}
         title="La carte des règles"
-        description="Toutes les règles du chapitre et leurs ramifications. Choisissez une branche pour voir ses lettres et ses exemples."
+        description="Toutes les règles du chapitre et leurs ramifications. Touchez une branche pour afficher ses explications, lettres et exemples."
         aside={
           <div className="segmented">
             <button aria-pressed={false} onClick={expandAll}>Tout déplier</button>
@@ -714,57 +821,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         }
       />
 
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_380px] gap-6 items-start">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_400px] gap-6 items-start">
         <ul className="surface p-3 sm:p-4 space-y-1">
           {renderTreeNode(tree, 0)}
         </ul>
 
+        {/* Panneau de détail latéral sur Desktop (>= lg) */}
         {selectedNode && (
-          <aside key={selectedNode.id} className="surface p-6 lg:sticky lg:top-36 animate-fade">
-            <p className="font-ui-ar text-[30px] leading-[1.6] text-ink" dir="rtl">
-              {selectedNode.labelAr}
-            </p>
-            <h3 className="font-display text-xl leading-snug text-ink mt-2">{selectedNode.labelFr}</h3>
-
-            {selectedNode.descriptionFr && (
-              <p className="mt-3 text-[15px] leading-relaxed text-muted">{selectedNode.descriptionFr}</p>
-            )}
-
-            {selectedNode.letters && selectedNode.letters.length > 0 && (
-              <div className="mt-6">
-                <p className="label mb-2.5">Lettres concernées</p>
-                <div className="flex flex-wrap gap-2" dir="rtl">
-                  {selectedNode.letters.map((lettre, idx) => (
-                    <span
-                      key={idx}
-                      className="w-11 h-11 rounded-xl flex items-center justify-center font-ar text-2xl"
-                      style={{
-                        color: selectedNode.tagColor || 'var(--ink)',
-                        background: 'var(--soft)',
-                      }}
-                    >
-                      {lettre}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {selectedNode.examples && selectedNode.examples.length > 0 && (
-              <div className="mt-6">
-                <p className="label mb-2.5">Exemples dans le Coran</p>
-                <ul className="divide-y divide-line border-y border-line">
-                  {selectedNode.examples.map((ex, idx) => (
-                    <li key={idx} className="py-2 font-ar text-2xl leading-[1.8] text-ink text-right" dir="rtl">
-                      {ex}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <aside key={selectedNode.id} className="hidden lg:block surface p-6 lg:sticky lg:top-36 animate-fade">
+            {renderDetailBody(selectedNode)}
           </aside>
         )}
       </div>
+
+      {/* Volet interactif Bottom Sheet sur Mobile (< lg) */}
+      <Modal
+        isOpen={isMobileDetailOpen}
+        onClose={() => setIsMobileDetailOpen(false)}
+        title={selectedNode?.labelFr || 'Détail de la règle'}
+        subtitle="Explications, lettres et exemples coraniques"
+      >
+        {selectedNode && renderDetailBody(selectedNode)}
+      </Modal>
+
+      {/* Barre flottante mobile pour ré-ouvrir le détail en un tap si fermé */}
+      {selectedNode && !isMobileDetailOpen && (
+        <div className="lg:hidden fixed bottom-20 left-4 right-4 z-20 animate-enter">
+          <button
+            onClick={() => setIsMobileDetailOpen(true)}
+            className="w-full p-3.5 rounded-2xl bg-card/95 backdrop-blur-md border border-line shadow-lg flex items-center justify-between gap-3 text-left hover:border-muted transition-all"
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span
+                className="w-2.5 h-2.5 rounded-full shrink-0"
+                style={{ background: selectedNode.tagColor || 'var(--lapis)' }}
+              />
+              <div className="min-w-0">
+                <span className="text-[10px] uppercase tracking-wider text-muted font-semibold block">Règle active</span>
+                <span className="font-display font-semibold text-sm text-ink truncate block">
+                  {selectedNode.labelFr}
+                </span>
+              </div>
+            </div>
+            <span className="btn btn-secondary text-xs px-3 py-1.5 shrink-0 flex items-center gap-1.5">
+              <Eye className="w-3.5 h-3.5" />
+              <span>Voir la fiche</span>
+            </span>
+          </button>
+        </div>
+      )}
     </>
   );
 };
+

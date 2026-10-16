@@ -21,24 +21,30 @@
   --gilt: #b08a3e;
   --gilt-soft: #f5efe1;
 
-  /* Catégories Tajwīd */
-  --izhar: #2c5cae;
-  --izhar-bg: #eaf0fa;
-  --idgham: #2a7a50;
-  --idgham-bg: #e7f3ec;
-  --iqlab: #74499f;
-  --iqlab-bg: #f2ecf8;
-  --ikhfa: #b9522a;
-  --ikhfa-bg: #fbeee7;
-  --qalqalah: #b23a3a;
-  --qalqalah-bg: #f9eaea;
+  /* Catégories Tajwīd - Norme Dār al-Ma'rifah & WCAG */
+  --izhar: #2563eb;
+  --izhar-bg: #eff6ff;
+  --idgham: #15803d;
+  --idgham-bg: #dcfce7;
+  --iqlab: #7e22ce;
+  --iqlab-bg: #f3e8ff;
+  --ikhfa: #0f766e;
+  --ikhfa-bg: #ccfbf1;
+  --qalqalah: #0284c7;
+  --qalqalah-bg: #e0f2fe;
+  --tafkhim: #1d4ed8;
+  --tafkhim-bg: #dbeafe;
+  --madd-lazim: #991b1b;
+  --madd-lazim-bg: #fee2e2;
+  --madd-wajib: #dc2626;
+  --madd-wajib-bg: #fef2f2;
   --gold: #8f6d24;
   --gold-bg: #f5efe1;
 
-  --good: #2a7a50;
-  --good-bg: #e7f3ec;
-  --bad: #b23a3a;
-  --bad-bg: #f9eaea;
+  --good: #15803d;
+  --good-bg: #dcfce7;
+  --bad: #b91c1c;
+  --bad-bg: #fee2e2;
 
   --f-ar: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
   --f-display: "Source Serif 4", "Amiri", Georgia, serif;
@@ -63,23 +69,29 @@
   --gilt: #d6b46a;
   --gilt-soft: #2a2516;
 
-  --izhar: #8fb2f0;
-  --izhar-bg: #19243c;
-  --idgham: #6fcb97;
-  --idgham-bg: #15291f;
-  --iqlab: #c4a2ec;
-  --iqlab-bg: #251d36;
-  --ikhfa: #ee9a72;
-  --ikhfa-bg: #31211a;
-  --qalqalah: #ef8080;
-  --qalqalah-bg: #341c1f;
+  --izhar: #93c5fd;
+  --izhar-bg: #1e3a8a40;
+  --idgham: #4ade80;
+  --idgham-bg: #052e1660;
+  --iqlab: #c084fc;
+  --iqlab-bg: #3b076460;
+  --ikhfa: #2dd4bf;
+  --ikhfa-bg: #134e4a60;
+  --qalqalah: #38bdf8;
+  --qalqalah-bg: #082f4960;
+  --tafkhim: #60a5fa;
+  --tafkhim-bg: #17255460;
+  --madd-lazim: #f87171;
+  --madd-lazim-bg: #450a0a80;
+  --madd-wajib: #fca5a5;
+  --madd-wajib-bg: #3f121280;
   --gold: #d6b46a;
   --gold-bg: #2a2516;
 
-  --good: #6fcb97;
-  --good-bg: #15291f;
-  --bad: #ef8080;
-  --bad-bg: #341c1f;
+  --good: #4ade80;
+  --good-bg: #052e1660;
+  --bad: #f87171;
+  --bad-bg: #450a0a80;
 
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   color-scheme: dark;

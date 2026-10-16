@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Pause, RotateCcw, Mic, Square, Volume2, Sparkles, AlertCircle } from 'lucide-react';
 import { TajweedExample } from '../types/tajweed';
+import { TajweedText } from './TajweedHighlighter';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
 
@@ -56,9 +57,26 @@ export const ExampleAudioCard: React.FC<ExampleAudioCardProps> = ({ example }) =
 
       {/* Main Arabic Calligraphy Display */}
       <div className="py-3 px-4 rounded-lg bg-neutral-50 dark:bg-neutral-950/50 border border-neutral-100 dark:border-neutral-900 text-center mb-3">
-        <p className="font-quran text-2xl sm:text-3xl text-neutral-900 dark:text-neutral-50 leading-relaxed dir-rtl select-none tracking-wide" dir="rtl">
-          {example.arabicText}
-        </p>
+        <div className="leading-relaxed dir-rtl select-none tracking-wide" dir="rtl">
+          <TajweedText
+            text={example.arabicText}
+            highlightSegment={example.highlightSegment}
+            rule={
+              example.ruleTag === 'madd'
+                ? 'madd-4-5'
+                : example.ruleTag === 'ghunnah'
+                ? 'ghunnah'
+                : example.ruleTag === 'qalqalah'
+                ? 'qalqalah'
+                : example.ruleTag === 'heavy'
+                ? 'tafkhim'
+                : example.ruleTag === 'silent'
+                ? 'silent'
+                : 'izhar'
+            }
+            className="text-2xl sm:text-3xl"
+          />
+        </div>
       </div>
 
       {/* Segment & Transliteration Breakdown */}

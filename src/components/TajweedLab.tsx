@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
 import { StepHeader } from './ui';
+import { TajweedText } from './TajweedHighlighter';
 import { AlertCircle, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface TajweedLabProps {
@@ -1948,7 +1949,17 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setSelectedCaseId(tc.id)}
+                  onClick={() => {
+                    setSelectedCaseId(tc.id);
+                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                      setTimeout(() => {
+                        const el = document.getElementById('lab-diagnostic-workbench');
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                      }, 60);
+                    }
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -1984,8 +1995,9 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right diagnostic workbench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade scroll-mt-28 scroll-mb-28"
             aria-live="polite"
           >
             {/* Top banner */}
@@ -2016,9 +2028,11 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               <div className="grid grid-cols-2 gap-4 text-center">
                 <div className="p-3 rounded-xl bg-card border border-line">
                   <span className="label block mb-1">Texte coranique</span>
-                  <span className="font-ar text-2xl sm:text-3xl font-bold text-ink block" dir="rtl">
-                    {selectedCase.arabicWord}
-                  </span>
+                  <TajweedText
+                    text={selectedCase.arabicWord}
+                    rule={selectedCase.category === 'jali' ? 'error' : selectedCase.category === 'khafi' ? 'gold' : 'correct'}
+                    className="text-2xl sm:text-3xl font-bold"
+                  />
                 </div>
                 <div className="p-3 rounded-xl bg-card border border-line">
                   <span className="label block mb-1">Récitation testée</span>
@@ -3729,7 +3743,17 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               return (
                 <button
                   key={item.letter}
-                  onClick={() => setSelectedLetter(item.letter)}
+                  onClick={() => {
+                    setSelectedLetter(item.letter);
+                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                      setTimeout(() => {
+                        const el = document.getElementById('letter-analysis-workbench');
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                      }, 60);
+                    }
+                  }}
                   aria-pressed={isSelected}
                   aria-label={item.nameFr}
                   className={`aspect-square sm:aspect-[4/5] rounded-2xl flex flex-col items-center justify-center sm:justify-between sm:pt-1 sm:pb-2 transition-colors select-none ${
@@ -3748,7 +3772,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
           </div>
         </div>
 
-        <section key={selectedLetter} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade" aria-live="polite">
+        <section id="letter-analysis-workbench" key={selectedLetter} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade scroll-mt-28 scroll-mb-28" aria-live="polite">
           <div className="p-6 flex items-center gap-5" style={{ boxShadow: `inset 4px 0 0 ${accentColor}` }}>
             <span className="font-ui-ar text-[44px] leading-[1.5] text-ink shrink-0" dir="rtl">
               {chapter.number === 8 ? `نْ ${selectedLetter}` : selectedLetter}
@@ -3772,7 +3796,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           <div className="px-6 py-4 bg-soft flex items-center justify-between gap-4">
             <span className="label">Exemple dans le Coran</span>
-            <span className="font-ar text-[28px] leading-[1.7] text-ink" dir="rtl">{currentAnalysis.example}</span>
+            <TajweedText
+              text={currentAnalysis.example}
+              highlightLetters={[selectedLetter, 'ن', 'نۡ']}
+              rule={chapter.number === 10 ? 'qalqalah' : 'idgham'}
+              className="text-[28px] leading-[1.7]"
+            />
           </div>
         </section>
       </div>

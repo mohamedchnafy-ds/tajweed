@@ -90,12 +90,25 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
               </div>
               <h3 className="font-display text-lg leading-snug text-ink mt-3">{sub.nameFr}</h3>
               {sub.mnemonic && (
-                <p className="mt-3 text-sm text-ink">
-                  <span className="text-muted">Lettres : </span>
-                  {sub.mnemonic}
-                </p>
+                <div className="mt-2.5 p-2 rounded-xl bg-soft flex items-center justify-between gap-2">
+                  <span className="text-xs text-muted font-medium">Formule clé :</span>
+                  <span className="font-ar text-lg font-bold text-ink" dir="rtl">{sub.mnemonic}</span>
+                </div>
               )}
-              <p className="mt-2 text-sm leading-relaxed text-muted">{sub.definitionFr}</p>
+              {sub.letters && sub.letters.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-1.5" dir="rtl">
+                  {sub.letters.map((lettre, lIdx) => (
+                    <span
+                      key={lIdx}
+                      className="w-7 h-7 rounded-lg bg-soft text-ink flex items-center justify-center font-ar text-sm border border-line"
+                      style={{ color: ruleColors[i % ruleColors.length] }}
+                    >
+                      {lettre}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">{sub.definitionFr}</p>
             </article>
           ))}
         </div>

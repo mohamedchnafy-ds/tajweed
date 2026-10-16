@@ -4,6 +4,7 @@ import { Chapter, QuizQuestion } from '../types/tajweed';
 import { recordMistake, recordChapterScore } from '../services/storageService';
 import { CheckCircle2, XCircle, ArrowRight, RotateCcw, NotebookPen } from 'lucide-react';
 import { StepHeader, StarMark } from './ui';
+import { TajweedText } from './TajweedHighlighter';
 
 interface QuizEngineProps {
   chapter: Chapter;
@@ -167,9 +168,14 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
         </div>
 
         <div className="mx-6 sm:mx-8 mt-6 py-6 px-4 rounded-2xl bg-soft text-center">
-          <p className="font-ar text-[36px] sm:text-[44px] leading-[1.9] text-ink" dir="rtl">
-            {highlightTarget(currentQ.verseArabic, currentQ.targetWord)}
-          </p>
+          <div className="font-ar text-[36px] sm:text-[44px] leading-[1.9] text-ink" dir="rtl">
+            <TajweedText
+              text={currentQ.verseArabic}
+              highlightSegment={currentQ.targetWord}
+              rule="gold"
+              className="text-[36px] sm:text-[44px]"
+            />
+          </div>
           {currentQ.surahAyahRef && (
             <div className="mt-2">
               <span className="ref-tag">Sourate {currentQ.surahAyahRef}</span>
