@@ -764,6 +764,471 @@ const SaktahVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 };
 
 /* =========================================================================
+   CHAPITRE 3 : Mini-composants interactifs et didactiques (Waqf & Ibtidā')
+   ========================================================================= */
+
+/** Écran 1 : La règle universelle de l'arrêt sur Soukoûn */
+const SukunTransformationVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'alamin' | 'nastain' | 'khabir' | 'adhab'>('alamin');
+  const [isStopping, setIsStopping] = useState(false);
+
+  const wordsData = {
+    alamin: {
+      label: 'Fathah (ـَ)',
+      waslText: 'ٱلۡعَٰلَمِينَ',
+      waqfText: 'ٱلۡعَٰلَمِينْ',
+      waslPhonetic: 'Al-\'Ālamīna (Fathah sur le Nūn)',
+      waqfPhonetic: 'Al-\'Ālamīn (Soukoûn pur sur le Nūn)',
+      surahRef: 'Al-Fātihah 1:2',
+      ruleNotice: 'La Fathah disparaît totalement au profit d\'un Soukoûn pur.',
+    },
+    nastain: {
+      label: 'Dammah (ـُ)',
+      waslText: 'نَسۡتَعِينُ',
+      waqfText: 'نَسۡتَعِينْ',
+      waslPhonetic: 'Nasta\'īnu (Dammah sur le Nūn)',
+      waqfPhonetic: 'Nasta\'īn (Soukoûn pur sur le Nūn)',
+      surahRef: 'Al-Fātihah 1:5',
+      ruleNotice: 'La Dammah s\'annule : interdiction de laisser traîner un son "ou".',
+    },
+    khabir: {
+      label: 'Tanwīn Damm (ـٌ)',
+      waslText: 'خَبِيرٞ',
+      waqfText: 'خَبِيرْ',
+      waslPhonetic: 'Khabīrun (Nunation avec Dammah)',
+      waqfPhonetic: 'Khabīr (Soukoûn pur avec Râ\' amincie)',
+      surahRef: 'Āl \'Imrān 3:153',
+      ruleNotice: 'Le Tanwīn Damm perd son son "N" : AUCUN Madd \'Iwad ici !',
+    },
+    adhab: {
+      label: 'Tanwīn Kasr (ـٍ)',
+      waslText: 'عَذَابٍ',
+      waqfText: 'عَذَابْ',
+      waslPhonetic: '‘Adhābin (Nunation avec Kasrah)',
+      waqfPhonetic: '‘Adhāb (Soukoûn pur + Qalqalah sur Bā\')',
+      surahRef: 'Al-Baqarah 2:7',
+      ruleNotice: 'Le Tanwīn Kasr disparaît et libère le rebond de Qalqalah sur le Bā\'.',
+    },
+  };
+
+  const curr = wordsData[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+        <button
+          onClick={() => setSelectedWord('alamin')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'alamin' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱلۡعَٰلَمِينَ (Fathah)
+        </button>
+        <button
+          onClick={() => setSelectedWord('nastain')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'nastain' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          نَسۡتَعِينُ (Dammah)
+        </button>
+        <button
+          onClick={() => setSelectedWord('khabir')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'khabir' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          خَبِيرٞ (Tanwīn Damm)
+        </button>
+        <button
+          onClick={() => setSelectedWord('adhab')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'adhab' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          عَذَابٍ (Tanwīn Kasr)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">Simulation d'Arrêt (Waqf vs Wasl) — {curr.surahRef}</div>
+
+        <div className="font-ar text-5xl sm:text-6xl text-ink my-3 leading-[1.8] transition-all" dir="rtl">
+          {isStopping ? (
+            <span className="text-good font-bold animate-pop">{curr.waqfText}</span>
+          ) : (
+            <span className="text-ink">{curr.waslText}</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button
+              onClick={() => setIsStopping(false)}
+              aria-pressed={!isStopping}
+            >
+              En continu (Wasl)
+            </button>
+            <button
+              onClick={() => setIsStopping(true)}
+              aria-pressed={isStopping}
+            >
+              À l'arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        <div className={`p-4 rounded-xl text-sm text-left transition-all ${
+          isStopping ? 'bg-good-bg border border-good/30' : 'bg-soft border border-line'
+        }`}>
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-semibold text-ink">
+              {isStopping ? 'État acoustique à l\'arrêt (Waqf) :' : 'État acoustique en liaison (Wasl) :'}
+            </span>
+            <span className={`chip ${isStopping ? 'chip-idgham' : 'chip-gold'}`}>
+              {isStopping ? 'Soukoûn Pur' : curr.label}
+            </span>
+          </div>
+          <p className="text-muted leading-relaxed font-mono text-xs sm:text-sm">
+            {isStopping ? curr.waqfPhonetic : curr.waslPhonetic}
+          </p>
+          <p className="text-xs text-muted mt-2 pt-2 border-t border-line/40">
+            {curr.ruleNotice}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Madd 'Iwad (Tanwīn Fath ➔ Alif de 2 temps) */
+const MaddIwadVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'qarara' | 'binaa' | 'maa'>('qarara');
+  const [isWaqf, setIsWaqf] = useState(true);
+
+  const wordMap = {
+    qarara: {
+      wasl: 'قَرَارٗا',
+      waqf: 'قَرَارَا',
+      surah: 'Ghāfir 40:64',
+      withAlif: true,
+      desc: 'Le Tanwīn Fath est écrit avec un Alif de soutien. À l\'arrêt, le son "an" s\'efface et devient un Alif naturel de 2 temps.',
+    },
+    binaa: {
+      wasl: 'بِنَآءٗ',
+      waqf: 'بِنَآءَا',
+      surah: 'Ghāfir 40:64',
+      withAlif: false,
+      desc: 'Aucun Alif n\'est tracé après la Hamzah en calligraphie arabe ! Pourtant, à l\'oral, l\'arrêt exige obligatoirement 2 temps de Madd \'Iwad.',
+    },
+    maa: {
+      wasl: 'مَآءً',
+      waqf: 'مَآءَا',
+      surah: 'An-Naba 78:14',
+      withAlif: false,
+      desc: 'Même règle universelle : « Mā\'an » devient à l\'arrêt « Mā\'ā » avec 2 temps de prolongation.',
+    },
+  };
+
+  const curr = wordMap[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('qarara')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'qarara' ? 'bg-gold text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          قَرَارٗا (Avec Alif écrit)
+        </button>
+        <button
+          onClick={() => setSelectedWord('binaa')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'binaa' ? 'bg-gold text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          بِنَآءٗ (Sans Alif écrit)
+        </button>
+        <button
+          onClick={() => setSelectedWord('maa')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'maa' ? 'bg-gold text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          مَآءً (Hamzah)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">Madd \'Iwad (مد العوض) — {curr.surah}</div>
+
+        <div className="font-ar text-5xl sm:text-6xl text-ink my-2 leading-[1.8]" dir="rtl">
+          {isWaqf ? (
+            <span className="text-gold font-bold animate-pop">{curr.waqf}</span>
+          ) : (
+            <span className="text-ink">{curr.wasl}</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+              En continu (Wasl)
+            </button>
+            <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+              À l'arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        {isWaqf && (
+          <div className="p-4 rounded-xl bg-gold-bg border border-gold/30 text-center animate-fade">
+            <span className="text-xs uppercase tracking-wider font-semibold text-gold block mb-2">
+              Chronomètre de prolongation (2 Harakāt)
+            </span>
+            <div className="flex justify-center items-center gap-3">
+              <span className="w-9 h-9 rounded-full bg-gold text-card font-bold flex items-center justify-center text-sm shadow-xs animate-bounce" style={{ animationDuration: '1s' }}>
+                1
+              </span>
+              <span className="w-9 h-9 rounded-full bg-gold text-card font-bold flex items-center justify-center text-sm shadow-xs animate-bounce" style={{ animationDuration: '1s', animationDelay: '0.2s' }}>
+                2
+              </span>
+              <span className="text-xs text-muted font-medium ml-2">2 temps de voyelle complète [ā]</span>
+            </div>
+          </div>
+        )}
+
+        <div className="p-4 rounded-xl bg-soft border border-line text-sm text-left">
+          <span className="font-semibold text-ink block mb-1">
+            {isWaqf ? 'Prononciation à l\'arrêt (Madd \'Iwad) :' : 'Prononciation en continu (Wasl) :'}
+          </span>
+          <p className="text-muted leading-relaxed text-xs sm:text-sm">
+            {curr.desc}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : La Tā' Marbūtah (ة ➔ هـ) */
+const TaMarbutahVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'rahmah' | 'salah' | 'jannat'>('rahmah');
+  const [isWaqf, setIsWaqf] = useState(true);
+
+  const wordData = {
+    rahmah: {
+      type: 'marbutah',
+      title: 'Tā\' Marbūtah avec Tanwīn Fath (وَرَحۡمَةٗ)',
+      waslText: 'وَرَحۡمَةٗ',
+      waqfText: 'وَرَحۡمَهْ',
+      waslPronunciation: 'Wa rahmatan (Tanwīn en continu)',
+      waqfPronunciation: 'Wa rahmah (Hā\' avec Soukoûn)',
+      trapAlert: 'PIÈGE MAJEUR : Malgré le Tanwīn Fath, il n\'y a AUCUN Madd \'Iwad ! Ne dites jamais "Rahmatā".',
+      isTrap: true,
+    },
+    salah: {
+      type: 'marbutah',
+      title: 'Tā\' Marbūtah avec Fathah (ٱلصَّلَوٰةَ)',
+      waslText: 'ٱلصَّلَوٰةَ',
+      waqfText: 'ٱلصَّلَاهْ',
+      waslPronunciation: 'As-Salāta (Fathah en continu)',
+      waqfPronunciation: 'As-Salāh (Hā\' avec Soukoûn)',
+      trapAlert: 'La Tā\' devient un souffle doux de Hā\' venant du bas de la gorge.',
+      isTrap: false,
+    },
+    jannat: {
+      type: 'maftuhah',
+      title: 'Tā\' Maftūhah / Ouverte (جَنَّٰتٍ)',
+      waslText: 'جَنَّٰتٍ',
+      waqfText: 'جَنَّٰتْ',
+      waslPronunciation: 'Jannātin (Tanwīn Kasr en continu)',
+      waqfPronunciation: 'Jannāt (Tā\' Sākinah avec Hams)',
+      trapAlert: 'DISTINCTION : La Tā\' ouverte (ت) NE DEVIENT PAS un Hā\' ! Elle reste un Tā\' avec un léger souffle (Hams).',
+      isTrap: false,
+    },
+  };
+
+  const curr = wordData[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex flex-wrap justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('rahmah')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'rahmah' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          وَرَحۡمَةٗ (Piège Tanwīn)
+        </button>
+        <button
+          onClick={() => setSelectedWord('salah')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'salah' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          ٱلصَّلَوٰةَ (Tā\' Marbūtah)
+        </button>
+        <button
+          onClick={() => setSelectedWord('jannat')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'jannat' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          جَنَّٰتٍ (Tā\' Maftūhah)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">{curr.title}</div>
+
+        <div className="font-ar text-5xl sm:text-6xl text-ink my-2 leading-[1.8]" dir="rtl">
+          {isWaqf ? (
+            <span className={`${curr.isTrap ? 'text-bad' : 'text-good'} font-bold animate-pop`}>
+              {curr.waqfText}
+            </span>
+          ) : (
+            <span className="text-ink">{curr.waslText}</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+              En continu (Wasl)
+            </button>
+            <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+              À l'arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        <div className={`p-4 rounded-xl text-sm text-left ${
+          curr.isTrap && isWaqf ? 'bg-bad-bg border border-bad/30' : 'bg-soft border border-line'
+        }`}>
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-semibold text-ink">
+              {isWaqf ? 'Résultat sonore à l\'arrêt :' : 'Résultat sonore en continu :'}
+            </span>
+            <span className={`chip ${isWaqf ? (curr.type === 'marbutah' ? 'chip-iqlab' : 'chip-izhar') : 'chip-gold'}`}>
+              {isWaqf ? (curr.type === 'marbutah' ? 'Devient Hā\' (هْ)' : 'Reste Tā\' (تْ)') : 'Sonorité Tā\''}
+            </span>
+          </div>
+          <p className="text-muted leading-relaxed font-mono text-xs sm:text-sm">
+            {isWaqf ? curr.waqfPronunciation : curr.waslPronunciation}
+          </p>
+          <p className={`text-xs mt-2 pt-2 border-t border-line/40 font-medium ${
+            curr.isTrap ? 'text-bad' : 'text-muted'
+          }`}>
+            {curr.trapAlert}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Reprise "Stop & Repeat" et le piège des citations (Āl 'Imrān 3:181) */
+const StopAndRepeatVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeScenario, setActiveScenario] = useState<'danger' | 'safe' | 'ideal'>('danger');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="label text-center">Āl \'Imrān 3:181 — Le piège fatal des citations tronquées</div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="font-ar text-2xl sm:text-3xl text-ink leading-[2.2]" dir="rtl">
+          <span>لَّقَدۡ سَمِعَ ٱللَّهُ </span>
+          <span className={`px-2 py-0.5 rounded-lg transition-all ${
+            activeScenario === 'ideal' ? 'bg-gold/30 text-gold font-bold underline' : ''
+          }`}>
+            قَوۡلَ ٱلَّذِينَ
+          </span>
+          <span> </span>
+          <span className={`px-2 py-0.5 rounded-lg transition-all ${
+            activeScenario === 'safe' || activeScenario === 'ideal' ? 'bg-good-bg text-good font-bold underline' : 'bg-bad-bg text-bad line-through'
+          }`}>
+            قَالُوٓاْ
+          </span>
+          <span> </span>
+          <span className={`px-2 py-0.5 rounded-lg transition-all ${
+            activeScenario === 'danger' ? 'bg-bad text-card font-bold' : 'text-muted'
+          }`}>
+            إِنَّ ٱللَّهَ فَقِيرٞ
+          </span>
+          <span> وَنَحۡنُ أَغۡنِيَآءُ</span>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+          <button
+            onClick={() => setActiveScenario('danger')}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeScenario === 'danger' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-bad hover:bg-bad-bg'
+            }`}
+          >
+            Reprise sur « Inna Allāh » (Interdit)
+          </button>
+          <button
+            onClick={() => setActiveScenario('safe')}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeScenario === 'safe' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            Recul sur « Qālū » (Valide)
+          </button>
+          <button
+            onClick={() => setActiveScenario('ideal')}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeScenario === 'ideal' ? 'bg-gold text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            Recul sur « Qawla » (Idéal)
+          </button>
+        </div>
+
+        <div className={`p-4 rounded-xl text-sm text-left ${
+          activeScenario === 'danger'
+            ? 'bg-bad-bg border border-bad/30'
+            : activeScenario === 'safe'
+            ? 'bg-good-bg border border-good/30'
+            : 'bg-gold-bg border border-gold/30'
+        }`}>
+          {activeScenario === 'danger' && (
+            <div>
+              <span className="font-semibold text-bad block mb-1">Péril Théologique Majeur (Ibtidā\' Qabīh) :</span>
+              <p className="text-muted leading-relaxed text-xs sm:text-sm">
+                Si vous reprenez par <strong className="text-bad">« Inna Allāha faqīr »</strong> (Certes Allah est pauvre), vous proférez une parole de mécréance pure en affirmant que Dieu est indigent !
+                <br />
+                <span className="text-bad font-medium">Cette phrase n\'est vraie que parce qu\'elle est précédée du verbe « Qālū » (ils ont dit). Ne commencez JAMAIS ici !</span>
+              </p>
+            </div>
+          )}
+          {activeScenario === 'safe' && (
+            <div>
+              <span className="font-semibold text-good block mb-1">Règle « Stop & Repeat » Respectée :</span>
+              <p className="text-muted leading-relaxed text-xs sm:text-sm">
+                En reculant pour reprendre : <strong className="text-good">« Qālū inna Allāha faqīr... »</strong>, vous précisez immédiatement à l\'auditeur qu\'il s\'agit d\'une citation des négateurs et non de votre propre foi.
+              </p>
+            </div>
+          )}
+          {activeScenario === 'ideal' && (
+            <div>
+              <span className="font-semibold text-gold block mb-1">Reprise Parfaite & Maîtrise Ultime :</span>
+              <p className="text-muted leading-relaxed text-xs sm:text-sm">
+                Reprendre depuis <strong className="text-gold">« Qawla-lladhīna qālū... »</strong> (les propos de ceux qui ont dit) offre une phrase syntaxiquement et théologiquement parfaite avec le verbe initial.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -1048,11 +1513,45 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 3 (Stopping & Resuming / Waqf & Ibtidā')
+  const chapter3Screens = [
+    {
+      title: 'La Règle d\'Or de l\'Arrêt : Le Soukoûn Universel',
+      badge: 'Règle Fondamentale',
+      concept: 'En arabe, on ne s\'arrête JAMAIS sur une voyelle !',
+      renderVisual: () => <SukunTransformationVisual animKey={animKey} />,
+      explanation: 'La règle universelle du Coran et de la langue arabe est stricte : « Lā yubtada\'u bi-sākin wa lā yūqafu \'alā mutaharrik ». Toute voyelle courte (Fathah, Dammah, Kasrah) et tout Tanwīn Damm ou Kasr se dissolvent instantanément en Soukoûn à l\'arrêt.'
+    },
+    {
+      title: 'Exception 1 : Madd \'Iwad (مد العوض)',
+      badge: 'Tanwīn Fath ➔ 2 Temps',
+      concept: 'Le Tanwīn Fath se transforme toujours en Alif de 2 temps à l\'arrêt',
+      renderVisual: () => <MaddIwadVisual animKey={animKey} />,
+      explanation: 'Lorsque vous vous arrêtez sur un mot portant un Tanwīn Fath (ـً / ـٗا), la nunation s\'efface et laisse place à un Alif naturel mesuré sur exactement 2 temps. Cette règle s\'applique même si l\'orthographe n\'écrit pas d\'Alif après une Hamzah (ex: بِنَاءً ➔ Binā\'ā) !'
+    },
+    {
+      title: 'Exception 2 : La Métamorphose de la Tā\' Marbūtah',
+      badge: 'Tā\' ➔ Hā\' Sākinah',
+      concept: 'Toute Tā\' ronde (ة) devient un Hā\' (هْ), même avec Tanwīn Fath !',
+      renderVisual: () => <TaMarbutahVisual animKey={animKey} />,
+      explanation: 'À l\'arrêt, la Tā\' Marbūtah (ة) se mue obligatoirement en une lettre Hā\' douce avec Soukoûn. Piège fatal : même avec un Tanwīn Fath (ex: وَرَحۡمَةٗ), elle NE REÇOIT PAS de Madd \'Iwad et se lit « Rahmah » avec un souffle de gorge !'
+    },
+    {
+      title: 'L\'Art du « Stop & Repeat » & Le Piège des Citations',
+      badge: 'Sécurité Théologique',
+      concept: 'Comment reprendre sans proférer de paroles blasphématoires',
+      renderVisual: () => <StopAndRepeatVisual animKey={animKey} />,
+      explanation: 'Si votre souffle s\'épuise en cours de verset, reculez de 2 à 3 mots pour reprendre une phrase complète. Ne reprenez JAMAIS sur une parole de mécréants isolée comme « Inna Allāha faqīr » (Āl \'Imrān 3:181) sous peine de commettre un Ibtidā\' Qabīh sacrilège !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
       : chapter.number === 2
       ? chapter2Screens
+      : chapter.number === 3
+      ? chapter3Screens
       : chapter.number === 8
       ? nunScreens
       : qalqalahScreens;

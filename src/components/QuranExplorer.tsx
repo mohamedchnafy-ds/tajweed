@@ -78,6 +78,43 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 3 (Waqf & Ibtidā')
+  const chapter3Verses = [
+    {
+      ref: '3:181',
+      surahFr: 'Āl \'Imrān',
+      words: [
+        { text: 'لَّقَدۡ', rule: 'Qalqalah Sughrā', ruleClass: 'chip-qalqalah', why: 'Rebond léger sur le Dāl au milieu de la phrase.' },
+        { text: 'سَمِعَ', rule: 'Voyelles courtes', ruleClass: 'chip-gold', why: 'Articulation claire des voyelles sans allongement.' },
+        { text: 'ٱللَّهُ', rule: 'Nom Divin (Tafkhīm)', ruleClass: 'chip-gold', why: 'Lourd car précédé d\'une Fathah.' },
+        { text: 'قَوۡلَ', rule: 'Wāw Sākinah', ruleClass: 'chip-gold', why: 'Son fluide "qawla".' },
+        { text: 'ٱلَّذِينَ', rule: 'Hamzat Wasl', ruleClass: 'chip-gold', why: 'S\'efface en liaison.' },
+        { text: 'قَالُوٓاْ', rule: 'Arrêt & Citation', ruleClass: 'chip-bad', why: 'Si vous vous arrêtez ici, vous DEVEZ reculer ! Reprendre après sans ce verbe crée un Waqf Qabīh gravissime.', target: true },
+        { text: 'إِنَّ', rule: 'Ghunnah 2 temps & Piège', ruleClass: 'chip-idgham', why: 'Nūn Mushaddadah avec Ghunnah. INTERDICTION ABSOLUE de débuter ici sans le verbe Qālū !', target: true },
+        { text: 'ٱللَّهَ', rule: 'Nom Divin', ruleClass: 'chip-gold', why: 'Nom d\'Allah précédé de Fathah.' },
+        { text: 'فَقِيرٞ', rule: 'Arrêt avec Soukoûn pur', ruleClass: 'chip-izhar', why: 'Tanwīn Damm devient Soukoûn pur "Faqīr" avec Râ\' amincie. Aucun Madd \'Iwad !', target: true },
+        { text: 'وَنَحۡنُ', rule: 'Hā\' de Hams', ruleClass: 'chip-gold', why: 'Écoulement doux du souffle.' },
+        { text: 'أَغۡنِيَآءُ', rule: 'Madd Muttasil & Arrêt', ruleClass: 'chip-gold', why: 'Prolongation obligatoire de 4-5 temps. À l\'arrêt, la Hamzah prend un Soukoûn pur.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/003181.mp3',
+    },
+    {
+      ref: '40:64',
+      surahFr: 'Ghāfir',
+      words: [
+        { text: 'ٱللَّهُ', rule: 'Nom Divin', ruleClass: 'chip-gold', why: 'Début avec Hamzat Wasl en "A" lourd.' },
+        { text: 'ٱلَّذِى', rule: 'Pronom relatif', ruleClass: 'chip-gold', why: 'Madd naturel 2 temps sur le Yā\'.' },
+        { text: 'جَعَلَ', rule: 'Voyelles ouvertes', ruleClass: 'chip-gold', why: 'Trois Fathahs légères.' },
+        { text: 'لَكُمُ', rule: 'Dammah sur Mīm', ruleClass: 'chip-gold', why: 'Dammah pour éviter la rencontre de deux Soukoûns.' },
+        { text: 'ٱلۡأَرۡضَ', rule: 'Lām & Râ\' Tafkhīm', ruleClass: 'chip-gold', why: 'Râ\' lourd précédé d\'une Fathah.' },
+        { text: 'قَرَارٗا', rule: 'Madd \'Iwad (2 temps)', ruleClass: 'chip-gold', why: 'À l\'arrêt : Tanwīn Fath devient un Alif de 2 temps « Qarārā ». En liaison : Idghām avec Wāw.', target: true },
+        { text: 'وَٱلسَّمَآءَ', rule: 'Madd Wājib Muttasil', ruleClass: 'chip-gold', why: '4 ou 5 temps obligatoires pour la Hamzah dans le même mot.' },
+        { text: 'بِنَآءٗ', rule: 'Madd \'Iwad sans Alif écrit', ruleClass: 'chip-izhar', why: 'Bien qu\'aucun Alif ne soit tracé après la Hamzah, l\'arrêt exige 2 temps : « Binā\'ā » !', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -142,6 +179,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter1Verses
       : chapter.number === 2
       ? chapter2Verses
+      : chapter.number === 3
+      ? chapter3Verses
       : chapter.number === 8
       ? nunVerses
       : qalqalahVerses;

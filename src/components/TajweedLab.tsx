@@ -423,6 +423,154 @@ const QURAN_SYMBOLS: QuranSymbolInfo[] = [
   },
 ];
 
+interface StoppingBenchCase {
+  id: string;
+  title: string;
+  category: 'sukun' | 'iwad' | 'marbutah' | 'resume';
+  arabicWord: string;
+  waqfArabicText: string;
+  waslPronunciation: string;
+  waqfPronunciation: string;
+  surahRef: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const STOPPING_TEST_BENCH_CASES: StoppingBenchCase[] = [
+  {
+    id: 'case-sukun-1',
+    title: 'Al-Fātihah 1:2 — Fathah finale (ـَ)',
+    category: 'sukun',
+    arabicWord: 'ٱلۡعَٰلَمِينَ',
+    waqfArabicText: 'ٱلۡعَٰلَمِينْ',
+    waslPronunciation: 'Al-\'Ālamīna (Fathah sur le Nūn)',
+    waqfPronunciation: 'Al-\'Ālamīn (Soukoûn pur sur Nūn)',
+    surahRef: 'Al-Fātihah 1:2',
+    ruleBadge: 'Soukoûn Pur Obligatoire',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Règle Générale de l\'Arrêt',
+    explanation: 'En arabe, on ne s\'arrête JAMAIS sur une voyelle ! La Fathah finale s\'éteint et la consonne Nūn prend un Soukoûn franc.',
+    fiqhImpact: 'Valide et obligatoire : laisser une voyelle est une faute de lecture.',
+    commonTrap: 'Laisser résonner un petit "na" en fin de mot par hésitation.',
+  },
+  {
+    id: 'case-sukun-2',
+    title: 'Al-Fātihah 1:5 — Dammah finale (ـُ)',
+    category: 'sukun',
+    arabicWord: 'نَسۡتَعِينُ',
+    waqfArabicText: 'نَسۡتَعِينْ',
+    waslPronunciation: 'Nasta\'īnu (Dammah sur le Nūn)',
+    waqfPronunciation: 'Nasta\'īn (Soukoûn pur sur Nūn)',
+    surahRef: 'Al-Fātihah 1:5',
+    ruleBadge: 'Soukoûn Pur',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Règle Générale de l\'Arrêt',
+    explanation: 'La Dammah s\'annule entièrement. Le Yā\' précédent peut être prolongé de 2, 4 ou 6 temps (Madd \'Ārid li-s-Sukūn).',
+    fiqhImpact: 'Conforme à la Sunnah prophétique.',
+    commonTrap: 'Arrondir les lèvres sur le Nūn final en pensant maintenir la Dammah.',
+  },
+  {
+    id: 'case-sukun-3',
+    title: 'Āl \'Imrān 3:153 — Tanwīn Damm (ـٌ)',
+    category: 'sukun',
+    arabicWord: 'خَبِيرٞ',
+    waqfArabicText: 'خَبِيرْ',
+    waslPronunciation: 'Khabīrun (Nunation avec Dammah)',
+    waqfPronunciation: 'Khabīr (Soukoûn pur avec Râ\' fine)',
+    surahRef: 'Āl \'Imrān 3:153',
+    ruleBadge: 'Annulation du Tanwīn',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Règle Générale de l\'Arrêt',
+    explanation: 'Le Tanwīn Damm perd son son "N" : AUCUN Madd \'Iwad ici ! Le mot se termine par un simple Soukoûn avec amincissement du Râ\'.',
+    fiqhImpact: 'Conforme. Ne jamais ajouter d\'allongement artificiel.',
+    commonTrap: 'Croire à tort que tout Tanwīn fait un Madd \'Iwad : seuls les Tanwīns Fath s\'allongent !',
+  },
+  {
+    id: 'case-iwad-1',
+    title: 'Ghāfir 40:64 — Tanwīn Fath avec Alif écrit (ـٗا)',
+    category: 'iwad',
+    arabicWord: 'قَرَارٗا',
+    waqfArabicText: 'قَرَارَا (2 temps)',
+    waslPronunciation: 'Qarāraw-was-Samā\' (Idghām avec Wāw)',
+    waqfPronunciation: 'Qarārā (Prolongation de 2 temps)',
+    surahRef: 'Ghāfir 40:64',
+    ruleBadge: 'Madd \'Iwad (2 temps)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Exception 1 : Madd \'Iwad',
+    explanation: 'Le son "N" de la nunation est remplacé par une voyelle longue Alif de 2 temps réguliers. En continu, le Tanwīn fusionne dans le Wāw suivant.',
+    fiqhImpact: 'Madd obligatoire à l\'arrêt : couper à sec en disant "Qarār" est une erreur.',
+    commonTrap: 'Prononcer "Qarār" avec un simple Soukoûn en ignorant le Tanwīn Fath.',
+  },
+  {
+    id: 'case-iwad-2',
+    title: 'Ghāfir 40:64 — Tanwīn Fath sans Alif tracé (ءً)',
+    category: 'iwad',
+    arabicWord: 'بِنَآءٗ',
+    waqfArabicText: 'بِنَآءَا (2 temps)',
+    waslPronunciation: 'Binā\'an (Tanwīn Fath en liaison)',
+    waqfPronunciation: 'Binā\'ā (Prolongation de 2 temps)',
+    surahRef: 'Ghāfir 40:64',
+    ruleBadge: 'Madd \'Iwad Phonétique Pur',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Exception 1 : Madd \'Iwad',
+    explanation: 'L\'orthographe arabe interdit d\'écrire un Alif après une Hamzah déjà précédée d\'un Alif. Mais à l\'oral, l\'obligation de prolonger de 2 temps reste absolue !',
+    fiqhImpact: 'Conforme. La règle s\'applique à l\'écoute et à la voix, pas aux yeux.',
+    commonTrap: 'Oublier d\'allonger la Hamzah sous prétexte qu\'aucun Alif n\'est visible.',
+  },
+  {
+    id: 'case-ta-1',
+    title: 'Yūnus 10:57 — Tā\' Marbūtah avec Tanwīn Fath (ةٗ)',
+    category: 'marbutah',
+    arabicWord: 'وَرَحۡمَةٗ',
+    waqfArabicText: 'وَرَحۡمَهْ',
+    waslPronunciation: 'Wa rahmatan (Tanwīn Fath en liaison)',
+    waqfPronunciation: 'Wa rahmah (Hā\' Sākinah doux)',
+    surahRef: 'Yūnus 10:57',
+    ruleBadge: 'Métamorphose en Hā\' Sākinah',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: 'Exception 2 : Tā\' Marbūtah',
+    explanation: 'PIÈGE MAJEUR DU LIVRE : La Tā\' Marbūtah (ة) devient TOUJOURS un Hā\' avec Soukoûn à l\'arrêt, MÊME avec Tanwīn Fath ! Elle ne prend JAMAIS de Madd \'Iwad.',
+    fiqhImpact: 'Dire "Rahmatā" est une faute grave de Lahn. Dire "Rahmah" est la Sunnah.',
+    commonTrap: 'Appliquer un Madd \'Iwad à cause des deux traits de Fathah.',
+  },
+  {
+    id: 'case-ta-2',
+    title: 'Al-Baqarah 2:43 — Tā\' Marbūtah avec Fathah (ةَ)',
+    category: 'marbutah',
+    arabicWord: 'ٱلصَّلَوٰةَ',
+    waqfArabicText: 'ٱلصَّلَاهْ',
+    waslPronunciation: 'As-Salāta (Fathah en liaison continue)',
+    waqfPronunciation: 'As-Salāh (Souffle de gorge Hā\')',
+    surahRef: 'Al-Baqarah 2:43',
+    ruleBadge: 'Hā\' avec Soukoûn & Hams',
+    colorClass: 'chip-iqlab',
+    ruleCategory: 'Exception 2 : Tā\' Marbūtah',
+    explanation: 'La Tā\' ronde se métamorphose en Hā\' de gorge avec un léger souffle (Hams). Écrit avec un Wāw dans le Rasm, elle se prononce As-Salāh.',
+    fiqhImpact: 'Conforme.',
+    commonTrap: 'Garder un bruit de Tā\' dur "As-Salāt" à l\'arrêt.',
+  },
+  {
+    id: 'case-resume-1',
+    title: 'Āl \'Imrān 3:181 — La citation blasphematoire (قَالُوٓاْ)',
+    category: 'resume',
+    arabicWord: 'قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
+    waqfArabicText: 'Reprise : قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
+    waslPronunciation: 'Qawla-lladhīna qālū inna Allāha faqīr',
+    waqfPronunciation: 'Stop & Repeat : Reculer sur « Qālū »',
+    surahRef: 'Āl \'Imrān 3:181',
+    ruleBadge: 'Waqf & Ibtidā\' Qabīh Évité',
+    colorClass: 'chip-bad',
+    ruleCategory: 'L\'Art de la Reprise (Al-Isti\'nāf)',
+    explanation: 'Si le souffle coupe sur « Qālū », reprendre directement par « Inna Allāha faqīr » isole le blasphème et en fait votre propre parole ! Reculer sur « Qālū » est un impératif de foi.',
+    fiqhImpact: 'Ibtidā\' Qabīh gravissime si non corrigé par le recul.',
+    commonTrap: 'Reprendre bêtement là où le souffle s\'est arrêté sans analyser le sujet du verbe.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -463,6 +611,11 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // State for Chapter 2
   const [selectedSymbolId, setSelectedSymbolId] = useState<string>('m-lazim');
   const [symbolCategory, setSymbolCategory] = useState<'all' | 'waqf' | 'pronounce' | 'structure'>('all');
+
+  // State for Chapter 3
+  const [stoppingCaseId, setStoppingCaseId] = useState<string>('case-sukun-1');
+  const [stoppingFilter, setStoppingFilter] = useState<'all' | 'sukun' | 'iwad' | 'marbutah' | 'resume'>('all');
+  const [isWaqfMode, setIsWaqfMode] = useState<boolean>(true);
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -909,6 +1062,200 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-gilt">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-gilt-soft/40 p-3 rounded-xl border border-gilt/20">
                   {selectedSymbol.trapToAvoid}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 3 : LE BANC D'ARRÊT & REPRISE (WAQF & IBTIDĀ')
+     ========================================================================= */
+  if (chapter.number === 3) {
+    const filteredStoppingCases = STOPPING_TEST_BENCH_CASES.filter(
+      (c) => stoppingFilter === 'all' || c.category === stoppingFilter
+    );
+    const selectedStoppingCase =
+      STOPPING_TEST_BENCH_CASES.find((c) => c.id === stoppingCaseId) || STOPPING_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-iqlab': 'var(--iqlab)',
+      'chip-ikhfa': 'var(--ikhfa)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-gold': 'var(--gold)',
+      'chip-bad': 'var(--bad)',
+    };
+    const accentBorder = accentMap[selectedStoppingCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Banc d'Arrêt & Reprise (Waqf & Ibtidā')"
+          description="Basculez entre lecture continue (Wasl) et arrêt (Waqf) pour observer en temps réel la transformation phonétique et la sécurité théologique."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setStoppingFilter('all')}
+              aria-pressed={stoppingFilter === 'all'}
+            >
+              Tous (8)
+            </button>
+            <button
+              onClick={() => setStoppingFilter('sukun')}
+              aria-pressed={stoppingFilter === 'sukun'}
+            >
+              Soukoûn (3)
+            </button>
+            <button
+              onClick={() => setStoppingFilter('iwad')}
+              aria-pressed={stoppingFilter === 'iwad'}
+            >
+              Madd 'Iwad (2)
+            </button>
+            <button
+              onClick={() => setStoppingFilter('marbutah')}
+              aria-pressed={stoppingFilter === 'marbutah'}
+            >
+              Tā' Marbūtah (2)
+            </button>
+            <button
+              onClick={() => setStoppingFilter('resume')}
+              aria-pressed={stoppingFilter === 'resume'}
+            >
+              Reprise (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredStoppingCases.map((tc) => {
+              const isSelected = tc.id === selectedStoppingCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setStoppingCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedStoppingCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedStoppingCase.surahRef}</span>
+                <span className={`chip ${selectedStoppingCase.colorClass}`}>
+                  {selectedStoppingCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedStoppingCase.title}
+              </h3>
+            </div>
+
+            {/* Interactive Wasl vs Waqf Toggle & Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Basculez entre Liaison et Arrêt</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                {isWaqfMode ? (
+                  <span className="text-good font-bold animate-pop">
+                    {selectedStoppingCase.waqfArabicText}
+                  </span>
+                ) : (
+                  <span className="text-ink">
+                    {selectedStoppingCase.arabicWord}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <div className="segmented">
+                  <button
+                    onClick={() => setIsWaqfMode(false)}
+                    aria-pressed={!isWaqfMode}
+                  >
+                    Lecture Continue (Wasl)
+                  </button>
+                  <button
+                    onClick={() => setIsWaqfMode(true)}
+                    aria-pressed={isWaqfMode}
+                  >
+                    À l'Arrêt (Waqf)
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                {isWaqfMode
+                  ? selectedStoppingCase.waqfPronunciation
+                  : selectedStoppingCase.waslPronunciation}
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedStoppingCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Fiqh</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedStoppingCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedStoppingCase.commonTrap}
                 </dd>
               </div>
             </div>

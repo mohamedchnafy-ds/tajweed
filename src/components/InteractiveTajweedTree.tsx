@@ -121,6 +121,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 3) {
+      return {
+        id: 'root-c3',
+        labelFr: 'L\'Art du Waqf & Ibtidā\' (Arrêt, Reprise & Coupure)',
+        labelAr: 'عِلْمُ الوَقْفِ وَالابْتِدَاءِ فِي التِّلَاوَةِ',
+        descriptionFr: '« Le Tajwīd consiste à parfaire les lettres et à connaître les arrêts » — \'Alī ibn Abī Tālib (qu\'Allah l\'agrée).',
+        children: [
+          {
+            id: 'node-4-actions',
+            labelFr: '1. Les 4 Actions Fondamentales du Lecteur',
+            labelAr: 'الأَفْعَالُ الأَرْبَعَةُ لِلْقَارِئِ',
+            tagColor: 'var(--izhar)',
+            descriptionFr: '1. Al-Ibtidā\' (commencer) 2. Al-Waqf (arrêt avec souffle pour continuer) 3. Al-Isti\'nāf (reprise après arrêt) 4. Al-Qat\' (coupure finale).',
+            examples: ['الابْتِدَاءُ', 'الوَقْفُ', 'الاسْتِئْنَافُ', 'القَطْعُ'],
+          },
+          {
+            id: 'node-stopping-vowel',
+            labelFr: '2. Règle Universelle : Transformation en Soukoûn',
+            labelAr: 'تَحْوِيلُ الحَرَكَاتِ إِلَى سُكُونٍ',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'En arabe, on ne s\'arrête JAMAIS sur une voyelle ! Fathah, Dammah, Kasrah, Tanwīn Damm et Tanwīn Kasr deviennent TOUS un Soukoûn pur.',
+            examples: ['ٱلۡعَٰلَمِينَ ➔ ٱلۡعَٰلَمِينْ', 'نَسۡتَعِينُ ➔ نَسۡتَعِينْ', 'خَبِيرٞ ➔ خَبِيرْ'],
+          },
+          {
+            id: 'node-madd-iwad',
+            labelFr: '3. Exception 1 : Madd \'Iwad (Tanwīn Fath)',
+            labelAr: 'مَدُّ العِوَضِ (التَّنْوِينُ المَفْتُوحُ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'Le Tanwīn Fath (ـً / ـٗا) se transmute TOUJOURS en un Alif de 2 temps à l\'arrêt, même s\'il n\'y a pas d\'Alif dessiné après la Hamzah.',
+            examples: ['قَرَارٗا ➔ قَرَارَا (2 temps)', 'بِنَآءٗ ➔ بِنَآءَا (2 temps)', 'مَآءً ➔ مَآءَا'],
+          },
+          {
+            id: 'node-ta-marbutah',
+            labelFr: '4. Exception 2 : Tā\' Marbūtah (ة ➔ هـ)',
+            labelAr: 'التَّاءُ المَرْبُوطَةُ تَنْقَلِبُ هَاءً سَاكِنَةً',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Toute Tā\' Marbūtah (ة / ـة) devient impérativement un Hā\' avec Soukoûn (هْ) à l\'arrêt, MÊME avec un Tanwīn Fath (pas de Madd \'Iwad !).',
+            examples: ['وَرَحۡمَةٗ ➔ وَرَحۡمَهْ', 'ٱلصَّلَوٰةَ ➔ ٱلصَّلَاهْ', 'جَنَّةٍ ➔ جَنَّهْ'],
+          },
+          {
+            id: 'node-resuming-safety',
+            labelFr: '5. Reprise Sécurisée (Stop & Repeat) & Piège des Citations',
+            labelAr: 'الاسْتِئْنَافُ السَّلِيمُ وَحِكَايَةُ أَقْوَالِ الكُفْرِ',
+            tagColor: 'var(--bad)',
+            descriptionFr: 'Règle « Stop & Repeat » : reculer de 2-3 mots si le souffle a manqué. Piège fatal : Ne jamais reprendre sur une citation blasphématoire isolée !',
+            examples: ['قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ (آل عمران 181)', 'Reculer sur : قَوۡلَ ٱلَّذِينَ قَالُوٓاْ...'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

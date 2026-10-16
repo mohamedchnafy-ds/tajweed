@@ -3,7 +3,7 @@ import { Chapter } from '../types/tajweed';
 export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string; titleAr: string; category: 'beginner' | 'intermediate' | 'advanced'; isPilot: boolean }[] = [
   { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)', titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ', category: 'beginner', isPilot: true },
   { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: true },
-  { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: false },
+  { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: true },
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: false },
   { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: false },
   { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: false },
@@ -648,6 +648,358 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'Interdiction de couper la récitation ou d\'aller au Rukūʿ à cet endroit car le sens est incomplet',
         explanationFr: 'Le symbole (لا) signifie "ne coupez pas la lecture ici". Si vous manquez de souffle, vous pouvez faire une courte pause mais vous devez obligatoirement enchaîner pour compléter le sens.',
         ruleId: 'waqf-symbols'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 3 : ARRÊT & REPRISE (WAQF & IBTIDĀ')
+  // ==========================================
+  {
+    id: 'chap-3',
+    number: 3,
+    slug: 'stopping-resuming',
+    titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')',
+    titleAr: 'عِلْمُ الوَقْفِ وَالابْتِدَاءِ فِي التِّلَاوَةِ',
+    category: 'intermediate',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre et maîtriser les 4 actions du lecteur (Al-Ibtidā\', Al-Waqf, Al-Isti\'nāf, Al-Qat\'), la règle fondamentale d\'arrêt sur Soukoûn, les deux exceptions majeures (Madd \'Iwad et métamorphose de la Tā\' Marbūtah), la technique universelle du « Stop & Repeat » et l\'évitement absolu du Waqf Qabīh sur les citations de mécréance.',
+    infographicPoints: [
+      'Les 4 actions du lecteur : 1. Al-Ibtidā\' (Commencer la lecture) 2. Al-Waqf (Interrompre sa voix avec respiration pour continuer) 3. Al-Isti\'nāf (Reprendre sa lecture) 4. Al-Qat\' (Clore définitivement la récitation).',
+      'Règle d\'or de l\'arrêt : En arabe, on ne s\'arrête JAMAIS sur une lettre vocalisée ! Fathah, Dammah, Kasrah, Tanwīn Damm et Tanwīn Kasr deviennent TOUS un Soukoûn pur (ex : Al-\'Ālamīn, Nasta\'īn).',
+      'Exception 1 — Madd \'Iwad (مد العوض) : Le Tanwīn Fath (ـً / ـٗا) se transmute TOUJOURS en un Alif de 2 temps à l\'arrêt (ex : Qarārā, Binā\'ā), même lorsqu\'aucun Alif n\'est écrit après la Hamzah !',
+      'Exception 2 — Tā\' Marbūtah (ة) : Elle se métamorphose TOUJOURS en Hā\' avec Soukoûn (هْ) à l\'arrêt, MÊME si elle porte un Tanwīn Fath (ex : Rahmah, As-Salāh) ! Jamais de Madd \'Iwad sur la Tā\' Marbūtah.',
+      'Reprise sécurisée (Stop & Repeat) : Si le souffle vous manque en plein milieu d\'un verset, reculez systématiquement de 2 ou 3 mots pour reprendre avec une phrase grammaticalement et théologiquement complète.',
+      'Le piège fatal des citations : Ne reprenez JAMAIS sur une parole de négateurs isolée comme « Inna Allāha faqīr » (Āl \'Imrān 3:181) ! Reculez obligatoirement sur « Qālū » ou « Qawla » pour attribuer le propos à ses auteurs.'
+    ],
+    subrules: [
+      {
+        id: 'stopping-sukun',
+        nameFr: '1. Règle Générale : L\'Arrêt sur Soukoûn (السكون عند الوقف)',
+        nameAr: 'تَحْوِيلُ الحَرَكَاتِ إِلَى سُكُونٍ',
+        mnemonic: 'Voyelle courte & Tanwīn Damm/Kasr ➔ Soukoûn Pur',
+        letters: [],
+        definitionFr: 'La règle universelle de la langue arabe et du Coran : on ne commence jamais par une lettre portant un Soukoûn, et on ne s\'arrête JAMAIS sur une lettre vocalisée (لا يبتدأ بساكن ولا يوقف على متحرك).',
+        mechanismFr: 'Sur la consonne finale, immobilisez les cordes vocales et relâchez l\'appareil phonatoire sans émettre la moindre voyelle. Les Tanwīns Damm (ـٌ) et Kasr (ـٍ) perdent totalement leur son "N" pour devenir un Soukoûn pur.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c3-1',
+            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+            surahAyahRef: '1:2',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'ٱلۡعَٰلَمِينَ',
+            highlightLetter: 'نَ ➔ نْ',
+            ruleApplied: 'Fathah devient Soukoûn pur',
+            ruleTag: 'izhar',
+            explanationFr: 'En continuant : « Al-\'Ālamīna Ar-Rahmān ». À l\'arrêt sur le verset : la Fathah disparaît et l\'on prononce « Al-\'Ālamīn » avec un Soukoûn sur le Nūn.',
+            transliteration: 'Al-hamdu lillāhi rabbi-l-\'ālamīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
+          },
+          {
+            id: 'ex-c3-2',
+            arabicText: 'إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ',
+            surahAyahRef: '1:5',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'نَسۡتَعِينُ',
+            highlightLetter: 'نُ ➔ نْ',
+            ruleApplied: 'Dammah devient Soukoûn pur',
+            ruleTag: 'izhar',
+            explanationFr: 'La Dammah finale sur le Nūn s\'efface à l\'arrêt pour donner « Nasta\'īn » avec un arrêt franc sur le Soukoûn.',
+            transliteration: 'Iyyāka na\'budu wa iyyāka nasta\'īn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001005.mp3'
+          },
+          {
+            id: 'ex-c3-3',
+            arabicText: 'وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ',
+            surahAyahRef: '3:153',
+            surahNameFr: 'Āl \'Imrān',
+            highlightSegment: 'خَبِيرٞ',
+            highlightLetter: 'ـٌ ➔ ْ',
+            ruleApplied: 'Tanwīn Damm devient Soukoûn pur',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Tanwīn Damm s\'annule complètement à l\'arrêt : on prononce « Khabīr » avec Râ\' amincie (Tarqīq), SANS aucun Madd \'Iwad.',
+            transliteration: 'Wallāhu bimā ta\'malūna khabīr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003153.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Laisser entendre un résidu de voyelle à la fin du mot lors de l\'arrêt.',
+            correctionFr: 'Bloquez l\'air net sur la dernière consonne : l\'arrêt en arabe requiert un Soukoûn parfait et franc.'
+          },
+          {
+            trapFr: 'Croire que le Tanwīn Damm (ـٌ) ou Kasr (ـٍ) se transforme en prolongation comme le Tanwīn Fath.',
+            correctionFr: 'Non ! Seul le Tanwīn Fath donne une prolongation. Le Tanwīn Damm et le Tanwīn Kasr s\'évanouissent complètement en Soukoûn.'
+          }
+        ]
+      },
+      {
+        id: 'madd-iwad',
+        nameFr: '2. Exception 1 : Madd \'Iwad sur Tanwīn Fath (مد العوض)',
+        nameAr: 'مَدُّ العِوَضِ عَنِ التَّنْوِينِ المَفْتُوحِ',
+        mnemonic: 'Tanwīn Fath (ـً / ـٗا) ➔ Alif de 2 temps à l\'arrêt',
+        letters: ['ـً', 'ـٗا'],
+        definitionFr: 'Le Madd \'Iwad (prolongation de compensation) : lorsque l\'on s\'arrête sur un mot terminé par un Tanwīn Fath, le son de la nunation s\'efface et est remplacé par une voyelle longue Alif de 2 temps.',
+        mechanismFr: 'Ouvrez délicatement la bouche et prolongez le son [ā] sur 2 temps réguliers. Même s\'il n\'y a pas d\'Alif tracé après une Hamzah (ex: بِنَاءً), la phonétique exige un Alif de 2 temps.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c3-4',
+            arabicText: 'ٱللَّهُ ٱلَّذِى جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا',
+            surahAyahRef: '40:64',
+            surahNameFr: 'Ghāfir',
+            highlightSegment: 'قَرَارٗا',
+            highlightLetter: 'ـٗا ➔ ا',
+            ruleApplied: 'Madd \'Iwad classique (2 temps)',
+            ruleTag: 'madd',
+            explanationFr: 'En continu : « Qarāraw-was-Samā\' » (Idghām avec Wāw). À l\'arrêt : on prononce « Qarārā » avec une prolongation exacte de 2 temps.',
+            transliteration: 'Ja\'ala lakumu-l-arda qarārā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
+          },
+          {
+            id: 'ex-c3-5',
+            arabicText: 'وَٱلسَّمَآءَ بِنَآءٗ',
+            surahAyahRef: '40:64',
+            surahNameFr: 'Ghāfir',
+            highlightSegment: 'بِنَآءٗ',
+            highlightLetter: 'ءً ➔ ءَا',
+            ruleApplied: 'Madd \'Iwad sans Alif écrit (2 temps)',
+            ruleTag: 'madd',
+            explanationFr: 'En orthographe arabe, on n\'écrit pas d\'Alif après une Hamzah précédée d\'un Alif. Mais à l\'arrêt, on prononce obligatoirement « Binā\'ā » avec 2 temps de Madd !',
+            transliteration: 'Was-samā\'a binā\'ā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Supprimer la voyelle et prononcer un Soukoûn sec sur le Tanwīn Fath (ex: dire "Qarār" au lieu de "Qarārā").',
+            correctionFr: 'Le Tanwīn Fath exige impérativement une prolongation Alif de 2 temps à l\'arrêt.'
+          },
+          {
+            trapFr: 'Oublier d\'allonger la Hamzah dans « Binā\'an » sous prétexte qu\'aucun Alif n\'est calligraphié.',
+            correctionFr: 'La règle s\'applique à l\'oreille, pas aux yeux : « Binā\'ā » s\'allonge de 2 temps comme n\'importe quel Tanwīn Fath.'
+          }
+        ]
+      },
+      {
+        id: 'ta-marbutah',
+        nameFr: '3. Exception 2 : Métamorphose de la Tā\' Marbūtah (التاء المربوطة)',
+        nameAr: 'انْقِلابُ التَّاءِ المَرْبُوطَةِ هَاءً سَاكِنَةً',
+        mnemonic: 'Tā\' Marbūtah (ة / ـة) ➔ Hā\' Soukoûn (هْ) | JAMAIS de Madd \'Iwad !',
+        letters: ['ة', 'ـة'],
+        definitionFr: 'Toute Tā\' Marbūtah (ة / ـة) se métamorphose obligatoirement en une lettre Hā\' avec Soukoûn (هْ) lors d\'un arrêt, quelle que soit sa voyelle (Fathah, Dammah, Kasrah ou Tanwīn Fath).',
+        mechanismFr: 'Relâchez le bout de la langue et expirez un souffle doux depuis le bas de la gorge (Makhraj du Hā\') pour faire entendre la consonne Hā\' sans forcer.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c3-6',
+            arabicText: 'يَٰٓأَيُّهَا ٱلنَّاسُ قَدۡ جَآءَتۡكُم مَّوۡعِظَةٞ مِّن رَّبِّكُمۡ وَشِفَآءٞ لِّمَا فِى ٱلصُّدُورِ وَهُدٗى وَرَحۡمَةٗ لِّلۡمُؤۡمِنِينَ',
+            surahAyahRef: '10:57',
+            surahNameFr: 'Yūnus',
+            highlightSegment: 'وَرَحۡمَةٗ',
+            highlightLetter: 'ةٗ ➔ هْ',
+            ruleApplied: 'Tā\' Marbūtah devient Hā\' Sākinah',
+            ruleTag: 'silent',
+            explanationFr: 'Attention piège ! Même avec un Tanwīn Fath (ـَةٗ), la Tā\' Marbūtah NE PREND PAS de Madd \'Iwad ! Elle devient « Rahmah » avec un Hā\' doux final.',
+            transliteration: 'Wa hudan wa rahmah',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/010057.mp3'
+          },
+          {
+            id: 'ex-c3-7',
+            arabicText: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ',
+            surahAyahRef: '2:43',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ٱلصَّلَوٰةَ',
+            highlightLetter: 'ةَ ➔ هْ',
+            ruleApplied: 'Tā\' Marbūtah avec Fathah ➔ Hā\' Sākinah',
+            ruleTag: 'silent',
+            explanationFr: 'En continu : « As-Salāta wa ātū ». À l\'arrêt : « As-Salāh » avec un souffle franc sur le Hā\' final.',
+            transliteration: 'Wa aqīmu-s-salāh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Appliquer un Madd \'Iwad sur une Tā\' Marbūtah portant Tanwīn Fath (ex: dire "Rahmatā").',
+            correctionFr: 'Interdiction absolue ! La Tā\' Marbūtah se transmute TOUJOURS en Hā\' Sākinah (« Rahmah »).'
+          },
+          {
+            trapFr: 'Confondre Tā\' Marbūtah (ة) et Tā\' Maftūhah (ت comme dans جَنَّٰتٍ).',
+            correctionFr: 'La Tā\' Maftūhah (ت) reste un Tā\' avec Soukoûn et souffle (Hams) : « Jannāt ». Seule la Tā\' ronde (ة) devient un Hā\'.'
+          }
+        ]
+      },
+      {
+        id: 'resuming-safety',
+        nameFr: '4. Reprise (Al-Isti\'nāf) & Le Piège des Citations',
+        nameAr: 'الاسْتِئْنَافُ الحَسَنُ وَتَجَنُّبُ القَبِيحِ',
+        mnemonic: 'Souffle court ➔ Reculer de 2-3 mots ("Stop & Repeat") | Jamais de citation isolée',
+        letters: [],
+        definitionFr: 'L\'Isti\'nāf régit la reprise de la lecture après une pause respiratoire. Si l\'arrêt a eu lieu au milieu d\'une proposition liée, il est indispensable de reculer de quelques mots pour reprendre une unité de sens autonome.',
+        mechanismFr: 'Identifiez le verbe ou le sujet principal précédent pour relancer la phrase. Ne repartez jamais d\'une particule subordonnée ou d\'une citation sans son locuteur.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c3-8',
+            arabicText: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ وَنَحۡنُ أَغۡنِيَآءُ',
+            surahAyahRef: '3:181',
+            surahNameFr: 'Āl \'Imrān',
+            highlightSegment: 'قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
+            highlightLetter: 'Stop & Repeat',
+            ruleApplied: 'Reprise sécurisée obligatoire',
+            ruleTag: 'izhar',
+            explanationFr: 'Si votre souffle s\'interrompt sur « Qālū », vous devez obligatoirement reculer et reprendre depuis « Qawla-lladhīna qālū » ou au moins « Qālū » ! Reprendre par « Inna Allāha faqīr » seul constitue une parole de mécréance.',
+            transliteration: 'Qawla-lladhīna qālū inna Allāha faqīr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003181.mp3'
+          },
+          {
+            id: 'ex-c3-9',
+            arabicText: 'إِلَىٰ صِرَٰطِ ٱلۡعَزِيزِ ٱلۡحَمِيدِ ١ ٱللَّهِ ٱلَّذِى لَهُۥ مَا فِى ٱلسَّمَٰوَٰتِ',
+            surahAyahRef: '14:1-2',
+            surahNameFr: 'Ibrāhīm',
+            highlightSegment: 'ٱللَّهِ',
+            highlightLetter: 'Kasrah initiale interdite',
+            ruleApplied: 'Liaison Wasl obligatoire',
+            ruleTag: 'heavy',
+            explanationFr: 'En lecture Hafs, le mot « Allāhi » au verset 2 porte une Kasrah grammaticale liée au mot précédent. Si vous commencez au verset 2, liez-le au verset 1 (« Al-Hamīdi-llāh ») pour ne jamais débuter sur une Kasrah subordonnée isolée.',
+            transliteration: 'Al-hamīdi-llāhi-lladhī',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/014001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Reprendre sur le mot qui suit immédiatement l\'endroit où l\'on a manqué d\'air sans regarder le sens.',
+            correctionFr: 'Appliquez la règle de précaution : reculez systématiquement de 2 ou 3 mots pour reconstituer un membre de phrase cohérent.'
+          },
+          {
+            trapFr: 'Débuter une récitation sur une parole négative ou blasphématoire rapportée dans le Coran.',
+            correctionFr: 'Englobez toujours le verbe d\'énonciation (ex: « Wa qālū... » ou « Qāla... ») pour que l\'affirmation ne vous soit pas attribuée.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c3-1',
+        title: 'Le Piège de la Citation Blasphématoire : Sūrah Āl \'Imrān (3:181)',
+        verseArabic: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ وَنَحۡنُ أَغۡنِيَآءُ',
+        surahAyahRef: '3:181',
+        targetSegment: 'قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
+        promptFr: 'Votre souffle s\'épuise sur le mot « قَالُوٓاْ » (Qālū). Comment devez-vous reprendre votre récitation pour éviter un contresens théologique ?',
+        hintFr: 'Réfléchissez à qui prononce les paroles « Allah est pauvre ». Est-ce le croyant ou les négateurs ?',
+        solutionFr: 'Reculer d\'au moins un mot pour ré-énoncer « Qālū » ou « Qawla-lladhīna qālū »',
+        breakdownSteps: [
+          'Étape 1 : Si vous reprenez directement par « Inna Allāha faqīr » (إِنَّ ٱللَّهَ فَقِيرٞ), vous énoncez la phrase comme si c\'était votre propre affirmation, ce qui est une parole sacrilège inacceptable (Ibtidā\' Qabīh).',
+          'Étape 2 : Le mot « Qālū » (ils ont dit) est le marqueur de citation indispensable qui attribue ce propos ignoble à ses véritables auteurs.',
+          'Étape 3 : Règle « Stop & Repeat » : reprenez depuis « Qawla-lladhīna qālū » (قَوۡلَ ٱلَّذِينَ قَالُوٓاْ) ou au minimum « Qālū » (قَالُوٓاْ).',
+          'Étape 4 : Vous préservez ainsi parfaitement la majesté divine et le sens de la révélation.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/003181.mp3'
+      },
+      {
+        id: 'exo-c3-2',
+        title: 'Maîtrise du Madd \'Iwad : Sūrah Ghāfir (40:64)',
+        verseArabic: 'ٱللَّهُ ٱلَّذِى جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا وَٱلسَّمَآءَ بِنَآءٗ',
+        surahAyahRef: '40:64',
+        targetSegment: 'قَرَارٗا وَٱلسَّمَآءَ بِنَآءٗ',
+        promptFr: 'Comparez la prononciation du mot « قَرَارٗا » et du mot « بِنَآءٗ » si le lecteur s\'arrête sur chacun d\'eux.',
+        hintFr: 'Examinez la présence d\'un Alif écrit sur le premier mot et son absence sur le second après la Hamzah.',
+        solutionFr: 'Les deux mots reçoivent exactement le même Madd \'Iwad de 2 temps (« Qarārā » et « Binā\'ā »)',
+        breakdownSteps: [
+          'Sur « Qarārā » (قَرَارٗا) : Le Tanwīn Fath est calligraphié avec un Alif. À l\'arrêt, le Tanwīn devient un Alif de 2 temps : « Qarārā ».',
+          'Sur « Binā\'ā » (بِنَآءٗ) : En calligraphie coranique, on n\'écrit pas d\'Alif après une Hamzah précédée d\'un Alif. Mais phonétiquement, la règle de Tajwīd reste stricte !',
+          'À l\'arrêt, « Binā\'an » devient obligatoirement « Binā\'ā » avec une prolongation de 2 temps complets.',
+          'En continu (Wasl), le Madd disparaît et vous appliquez la règle de Tanwīn appropriée (Idghām avec Wāw sur « Qarāraw-was-Samā\' »).'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c3-1',
+        type: 'mcq',
+        promptFr: 'Quelle est la règle générale en Tajwīd lorsqu\'on marque un arrêt (Waqf) sur un mot qui se termine par une voyelle courte (Fathah, Dammah ou Kasrah) ?',
+        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
+        targetWord: 'ٱلۡعَٰلَمِينَ',
+        surahAyahRef: '1:2',
+        options: [
+          'La voyelle s\'efface totalement et la dernière lettre se prononce avec un Soukoûn pur (Al-\'Ālamīn)',
+          'La voyelle est allongée de 2 temps',
+          'On doit obligatoirement chuchoter la voyelle',
+          'On prononce la voyelle normalement comme en lecture continue'
+        ],
+        correctAnswer: 'La voyelle s\'efface totalement et la dernière lettre se prononce avec un Soukoûn pur (Al-\'Ālamīn)',
+        explanationFr: 'Règle absolue : En arabe, on ne s\'arrête jamais sur une voyelle (لا يوقف على متحرك). Fathah, Dammah et Kasrah se transforment immédiatement en Soukoûn pur.',
+        ruleId: 'stopping-sukun'
+      },
+      {
+        id: 'q-c3-2',
+        type: 'mcq',
+        promptFr: 'Comment devez-vous prononcer le mot « قَرَارٗا » (terminé par Tanwīn Fath) si vous marquez un arrêt sur celui-ci ?',
+        verseArabic: 'جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا',
+        targetWord: 'قَرَارٗا',
+        surahAyahRef: '40:64',
+        options: [
+          '« Qarārā » : Le Tanwīn est remplacé par une prolongation Alif de 2 temps (Madd \'Iwad)',
+          '« Qarār » : On met un simple Soukoûn sans aucun allongement',
+          '« Qarāran » : On prononce le son Nūn du Tanwīn',
+          '« Qarāri » : On transforme en Kasrah'
+        ],
+        correctAnswer: '« Qarārā » : Le Tanwīn est remplacé par une prolongation Alif de 2 temps (Madd \'Iwad)',
+        explanationFr: 'C\'est la règle du Madd \'Iwad (مد العوض) : tout Tanwīn Fath (ـً / ـٗا) se transforme à l\'arrêt en une prolongation Alif de 2 temps complets.',
+        ruleId: 'madd-iwad'
+      },
+      {
+        id: 'q-c3-3',
+        type: 'mcq',
+        promptFr: 'Que devient une Tā\' Marbūtah portant un Tanwīn Fath (comme dans « رَحۡمَةٗ ») lors d\'un arrêt ?',
+        verseArabic: 'وَرَحۡمَةٗ لِّلۡمُؤۡمِنِينَ',
+        targetWord: 'وَرَحۡمَةٗ',
+        surahAyahRef: '10:57',
+        options: [
+          'Elle se transforme obligatoirement en une lettre Hā\' avec Soukoûn (« Rahmah ») sans aucun Madd',
+          'Elle fait un Madd \'Iwad et se prononce « Rahmatā »',
+          'Elle se prononce « Rahmat » avec un Tā\' net',
+          'Elle se prononce « Rahmahn » avec un Tanwīn'
+        ],
+        correctAnswer: 'Elle se transforme obligatoirement en une lettre Hā\' avec Soukoûn (« Rahmah ») sans aucun Madd',
+        explanationFr: 'C\'est l\'exception capitale : la Tā\' Marbūtah (ة) se transforme TOUJOURS en Hā\' Sākinah (هْ) à l\'arrêt, même si elle porte un Tanwīn Fath. Elle ne prend JAMAIS de Madd \'Iwad !',
+        ruleId: 'ta-marbutah'
+      },
+      {
+        id: 'q-c3-4',
+        type: 'mcq',
+        promptFr: 'Si votre souffle s\'interrompt sur « قَالُوٓاْ » dans Āl \'Imrān 3:181, pourquoi est-il formellement interdit de reprendre directement par « إِنَّ ٱللَّهَ فَقِيرٞ » ?',
+        verseArabic: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
+        targetWord: 'إِنَّ ٱللَّهَ فَقِيرٞ',
+        surahAyahRef: '3:181',
+        options: [
+          'Parce qu\'isoler cette phrase attribue ce blasphème au lecteur ou à la vérité, au lieu de citer les négateurs (Ibtidā\' Qabīh)',
+          'Parce que la lettre Hamzah ne peut pas être prononcée en début de souffle',
+          'Parce qu\'il faut faire une Ghunnah de 6 temps',
+          'Parce que le mot Allāh doit toujours être précédé d\'un verbe'
+        ],
+        correctAnswer: 'Parce qu\'isoler cette phrase attribue ce blasphème au lecteur ou à la vérité, au lieu de citer les négateurs (Ibtidā\' Qabīh)',
+        explanationFr: 'C\'est une faute théologique majeure (Ibtidā\' Qabīh). Le lecteur doit appliquer la technique « Stop & Repeat » et reculer au moins sur « Qālū » ou « Qawla-lladhīna qālū ».',
+        ruleId: 'resuming-safety'
+      },
+      {
+        id: 'q-c3-5',
+        type: 'mcq',
+        promptFr: 'Que devient le Tanwīn Damm (ـٌ) ou Kasr (ـٍ) à l\'arrêt sur un mot comme « عَظِيمٌ » ou « خَبِيرٍ » ?',
+        verseArabic: 'وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ',
+        targetWord: 'خَبِيرٞ',
+        surahAyahRef: '3:153',
+        options: [
+          'Le Tanwīn disparaît et la lettre prend un simple Soukoûn (« Khabīr »), SANS prolongation \'Iwad',
+          'Le Tanwīn se transforme en un Wāw prolongé de 2 temps',
+          'Le Tanwīn se transforme en un Yā\' prolongé de 2 temps',
+          'Le Tanwīn continue de sonner avec une Ghunnah'
+        ],
+        correctAnswer: 'Le Tanwīn disparaît et la lettre prend un simple Soukoûn (« Khabīr »), SANS prolongation \'Iwad',
+        explanationFr: 'Le Madd \'Iwad est réservé exclusivement au Tanwīn Fath (ـً / ـٗا). Les Tanwīns Damm et Kasr perdent totalement leur nunation et deviennent un Soukoûn pur.',
+        ruleId: 'stopping-sukun'
       }
     ]
   },

@@ -21,6 +21,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 2) {
       return 'Les symboles du Mushaf sont les gardiens du sens : observez scrupuleusement le Waqf Lāzim (مـ) pour ne pas attribuer de faux propos, ne coupez jamais sur un (لا), et dans la triade (ۛ...ۛ), arrêtez-vous à l\'un mais jamais aux deux à la fois !';
     }
+    if (chapter.number === 3) {
+      return 'L\'arrêt en arabe se fait toujours sur un Soukoûn pur : transmutez le Tanwīn Fath en Alif de 2 temps (Madd \'Iwad), faites muter la Tā\' Marbūtah en Hā\' Sākinah, et en cas de panne de souffle, appliquez le « Stop & Repeat » en reculant de 2 à 3 mots pour ne jamais isoler une citation sacrilège.';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -96,6 +99,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
           {chapter.number === 1
             ? 'Chapitre suivant (Symboles Coraniques)'
             : chapter.number === 2
+            ? 'Chapitre suivant (Arrêt & Reprise)'
+            : chapter.number === 3
             ? 'Chapitre suivant (Nūn Sākinah)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'
