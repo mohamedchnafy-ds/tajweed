@@ -1522,6 +1522,172 @@ const ASSIMILATION_TEST_BENCH_CASES: AssimilationBenchCase[] = [
   },
 ];
 
+interface HeavyLightBenchCase {
+  id: string;
+  title: string;
+  category: 'heavy-degrees' | 'hybrid-alif-lam' | 'hybrid-raa' | 'takhlees';
+  arabicWord: string;
+  highlightedSegment: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  status: string;
+  involvedLetters: string;
+  mushafSign: string;
+  pronunciation: string;
+  surahRef: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const HEAVY_LIGHT_BENCH_CASES: HeavyLightBenchCase[] = [
+  {
+    id: 'hl-1',
+    title: 'Āl \'Imrān 3:17 — 1er Degré de Tafkhīm (ٱلصَّٰبِرِينَ)',
+    category: 'heavy-degrees',
+    arabicWord: 'ٱلصَّٰبِرِينَ وَٱلصَّٰدِقِينَ وَٱلۡقَٰنِتِينَ',
+    highlightedSegment: 'ٱلصَّٰبِرِينَ',
+    ruleBadge: 'Tafkhīm Degré 1 (Sommet)',
+    colorClass: 'chip-bad',
+    ruleCategory: '7 Lettres Lourdes (خُصَّ ضَغۡطٍ قِظۡ)',
+    status: 'Tafkhīm Absolu (100% Résonance)',
+    involvedLetters: 'ص + Fathah + Alif',
+    mushafSign: 'Sād avec Shaddah et Fathah + petit Alif vertical (صَّٰ)',
+    pronunciation: 'Aṣ-Ṣābirīn (Écho pharyngien puissant sans moue)',
+    surahRef: 'Āl \'Imrān 3:17',
+    explanation: 'Le Sād est une consonne d\'Isti\'lā\' et d\'Itbāq suivie d\'un Alif : c\'est le degré le plus élevé d\'emphase. La racine de la langue s\'élève et le centre se creuse pour créer un écho caverneux maximal.',
+    fiqhImpact: 'Obligation de maintenir l\'emphase pleine sous peine d\'altérer la perfection de la récitation.',
+    commonTrap: 'Arrondir et avancer les lèvres en faisant une moue pour forcer l\'emphase.',
+  },
+  {
+    id: 'hl-2',
+    title: 'Al-Fātihah 1:7 — 5e Degré avec Kasrah (صِرَٰطَ)',
+    category: 'heavy-degrees',
+    arabicWord: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+    highlightedSegment: 'صِرَٰطَ',
+    ruleBadge: 'Tafkhīm Degré 5 (Adouci)',
+    colorClass: 'chip-qalqalah',
+    ruleCategory: '7 Lettres Lourdes (خُصَّ ضَغۡطٍ قِظۡ)',
+    status: 'Tafkhīm Minimal mais Présent',
+    involvedLetters: 'ص + Kasrah (صِ)',
+    mushafSign: 'Sād avec Kasrah inférieure (صِ)',
+    pronunciation: 'Ṣirāṭ (Sād lourd et posé, JAMAIS un Sīn)',
+    surahRef: 'Al-Fātihah 1:7',
+    explanation: 'Sous l\'effet de la Kasrah, l\'emphase diminue mais ne s\'annule JAMAIS. Le Sād fait partie des 4 lettres d\'Itbāq : la langue reste plaquée vers le haut.',
+    fiqhImpact: 'Harām (Lahn Jalī) si le Sād est prononcé comme un Sīn (« Sirate ») car cela change la lettre sacrée.',
+    commonTrap: 'Affaiblir la consonne au point de lire un Sīn léger (« Sirāṭ »).',
+  },
+  {
+    id: 'hl-3',
+    title: 'Al-Baqarah 2:82 — L\'Alif Caméléon Lourd (خَٰلِدُونَ)',
+    category: 'hybrid-alif-lam',
+    arabicWord: 'أُوْلَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+    highlightedSegment: 'خَٰلِدُونَ',
+    ruleBadge: 'Alif Emphatique (Suiveur)',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Lettres Hybrides (Alif)',
+    status: 'Tafkhīm par Propagation',
+    involvedLetters: 'خَ (Lourd) + Alif (Lourd)',
+    mushafSign: 'Khā avec Fathah + Alif Khanjariyyah',
+    pronunciation: 'Khāālidūn (Alif caverneux et ample)',
+    surahRef: 'Al-Baqarah 2:82',
+    explanation: 'L\'Alif est un caméléon sans voix autonome : précédé d\'une lettre d\'Isti\'lā\' (Khā), il absorbe sa lourdeur et résonne amplement dans toute la bouche.',
+    fiqhImpact: 'Règle essentielle d\'esthétique phonétique du Coran.',
+    commonTrap: 'Fermer la bouche et faire un son plat « Khè-lidūn » avec un Alif fin.',
+  },
+  {
+    id: 'hl-4',
+    title: 'Al-Fātihah 1:5 — L\'Alif Caméléon Fin (إِيَّاكَ)',
+    category: 'hybrid-alif-lam',
+    arabicWord: 'إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ',
+    highlightedSegment: 'إِيَّاكَ',
+    ruleBadge: 'Alif Aminci (Tarqīq)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Lettres Hybrides (Alif)',
+    status: 'Tarqīq Lumineux (Mince)',
+    involvedLetters: 'يَّ (Fin) + Alif (Fin)',
+    mushafSign: 'Yā\' avec Shaddah et Fathah + Alif standard',
+    pronunciation: 'Iyyāka (Alif fin, clair et souriant)',
+    surahRef: 'Al-Fātihah 1:5',
+    explanation: 'Le Yā\' est une consonne légère d\'Istifāl : l\'Alif qui le prolonge reste parfaitement clair, horizontal et lumineux.',
+    fiqhImpact: 'Harmonie phonétique de la Fātihah.',
+    commonTrap: 'Gonfler la bouche en disant un « Iyyââka » sourd et lourd.',
+  },
+  {
+    id: 'hl-5',
+    title: 'Āl \'Imrān 3:18 — La Lām d\'Allah Majestueuse (شَهِدَ ٱللَّهُ)',
+    category: 'hybrid-alif-lam',
+    arabicWord: 'شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ',
+    highlightedSegment: 'شَهِدَ ٱللَّهُ',
+    ruleBadge: 'Lām d\'Allah Emphatique',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Lettre Hybride (Lām du Nom Divin)',
+    status: 'Tafkhīm de Majesté',
+    involvedLetters: 'Dāl Fathah (دَ) + Lafz Al-Jalālah (ٱللَّهُ)',
+    mushafSign: 'Nom d\'Allah précédé d\'un Dāl avec Fathah',
+    pronunciation: 'Shahida-Llāhu (Lām lourd et puissant)',
+    surahRef: 'Āl \'Imrān 3:18',
+    explanation: 'Le Nom Sacré d\'Allah est précédé d\'une Fathah : la Lām devient lourde pour exprimer la majesté divine suprême.',
+    fiqhImpact: 'Obligatoire dans la lecture de Hafs \'an \'Āsim.',
+    commonTrap: 'Amincir la Lām par mimétisme avec la langue profane (« Shahida-llah » fin).',
+  },
+  {
+    id: 'hl-6',
+    title: 'Al-Baqarah 2:49 — Râ\' Fine : Soukoûn après Kasrah (فِرۡعَوۡنَ)',
+    category: 'hybrid-raa',
+    arabicWord: 'وَإِذۡ نَجَّيۡنَٰكُم مِّنۡ ءَالِ فِرۡعَوۡنَ',
+    highlightedSegment: 'فِرۡعَوۡنَ',
+    ruleBadge: 'Tarqīq de la Râ\' (Cas 2)',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Lettre Hybride (Râ\')',
+    status: 'Tarqīq Mince et Cristallin',
+    involvedLetters: 'فِ (Kasrah originelle) + رۡ (Soukoûn) + ع (Légère)',
+    mushafSign: 'Fā\' avec Kasrah + Râ\' avec Soukoûn visible',
+    pronunciation: 'Fir\'awn (Râ\' fine sans roulement lourd)',
+    surahRef: 'Al-Baqarah 2:49',
+    explanation: 'La Râ\' est soukounée, précédée d\'une Kasrah originelle dans le même mot, et la lettre qui suit (\'Ayn) est légère : les conditions de Tarqīq sont toutes réunies.',
+    fiqhImpact: 'Règle stricte de Hafs.',
+    commonTrap: 'Faire vibrer la Râ\' avec lourdeur en disant « Feer\'awn » guttural.',
+  },
+  {
+    id: 'hl-7',
+    title: 'Al-An\'ām 6:7 — Exception : Râ\' Lourde malgré Kasrah (قِرۡطَاسٖ)',
+    category: 'hybrid-raa',
+    arabicWord: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ',
+    highlightedSegment: 'قِرۡطَاسٖ',
+    ruleBadge: '⚠️ Exception : Tafkhīm de la Râ\' !',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Lettre Hybride (Râ\')',
+    status: 'Tafkhīm Imposé par Lettre Lourde',
+    involvedLetters: 'قِ (Kasrah) + رۡ (Soukoûn) + طَ (Lourd avec Fathah !)',
+    mushafSign: 'Râ\' soukounée suivie immédiatement d\'un Tā\' (ط) avec Fathah',
+    pronunciation: 'Qirṭās (Râ\' lourde imposée par le Tā\')',
+    surahRef: 'Al-An\'ām 6:7',
+    explanation: 'Bien que précédée d\'une Kasrah, la Râ\' est suivie dans le MÊME mot d\'une lettre d\'Isti\'lā\' avec Fathah. La force phénoménale du Tā\' annule l\'amincissement !',
+    fiqhImpact: 'Exception majeure répertoriée dans le poème d\'Al-Jazariyyah.',
+    commonTrap: 'Amincir la Râ\' en se focalisant uniquement sur la Kasrah du Qāf.',
+  },
+  {
+    id: 'hl-8',
+    title: 'Al-\'Alaq 96:2 — Takhlees Al-Hurūf Magistral (خَلَقَ)',
+    category: 'takhlees',
+    arabicWord: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
+    highlightedSegment: 'خَلَقَ',
+    ruleBadge: 'Takhlees Al-Hurūf (Chirurgie)',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Décontamination Phonétique',
+    status: 'Alternance : Lourd ➔ Fin ➔ Lourd',
+    involvedLetters: 'خَ (Lourd) ➔ لَ (Fin !) ➔ قَ (Lourd)',
+    mushafSign: 'Khā Fathah + Lām Fathah + Qāf Fathah',
+    pronunciation: 'Khalaqa (Lām limpide et fin au milieu)',
+    surahRef: 'Al-\'Alaq 96:2',
+    explanation: 'Le Lām se trouve pris en étau entre deux monstres de lourdeur (Khā et Qāf). Le récitateur doit abaisser instantanément sa langue sur le Lām pour le garder fin sans saccader la parole.',
+    fiqhImpact: 'Critère absolu d\'excellence et de virtuosité en Tajwīd.',
+    commonTrap: 'Contaminer le Lām et prononcer un Lām épais : « Kha-LÂ-qa » ❌.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -1594,6 +1760,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // State for Chapter 11
   const [assimilationCaseId, setAssimilationCaseId] = useState<string>('assim-1');
   const [assimilationFilter, setAssimilationFilter] = useState<'all' | 'mutamathilayn' | 'madd' | 'kamil' | 'naqis'>('all');
+
+  // State for Chapter 12
+  const [heavyLightCaseId, setHeavyLightCaseId] = useState<string>('hl-1');
+  const [heavyLightFilter, setHeavyLightFilter] = useState<'all' | 'heavy-degrees' | 'hybrid-alif-lam' | 'hybrid-raa' | 'takhlees'>('all');
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -3350,6 +3520,166 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
               <div className="pt-2 border-t border-line/60">
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 12 : BANC D'ESSAI DU TAFKHĪM & TARQĪQ (EMPHASE & AMINCISSEMENT)
+     ========================================================================= */
+  if (chapter.number === 12) {
+    const filteredCases = HEAVY_LIGHT_BENCH_CASES.filter((c) => {
+      if (heavyLightFilter === 'all') return true;
+      return c.category === heavyLightFilter;
+    });
+
+    const selectedCase =
+      HEAVY_LIGHT_BENCH_CASES.find((c) => c.id === heavyLightCaseId) ||
+      HEAVY_LIGHT_BENCH_CASES[0];
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Banc d'Essai du Tafkhīm & Tarqīq"
+          description="Testez la résonance des lettres : observez les 5 degrés de lourdeur, les caméléons (Alif, Lām d'Allah, Râ') et l'art de la décontamination (Takhlees Al-Hurūf)."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 my-4">
+          <div className="segmented">
+            <button
+              onClick={() => setHeavyLightFilter('all')}
+              aria-pressed={heavyLightFilter === 'all'}
+            >
+              Tous ({HEAVY_LIGHT_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setHeavyLightFilter('heavy-degrees')}
+              aria-pressed={heavyLightFilter === 'heavy-degrees'}
+            >
+              5 Degrés (2)
+            </button>
+            <button
+              onClick={() => setHeavyLightFilter('hybrid-alif-lam')}
+              aria-pressed={heavyLightFilter === 'hybrid-alif-lam'}
+            >
+              Alif & Lām (3)
+            </button>
+            <button
+              onClick={() => setHeavyLightFilter('hybrid-raa')}
+              aria-pressed={heavyLightFilter === 'hybrid-raa'}
+            >
+              La Râ' (2)
+            </button>
+            <button
+              onClick={() => setHeavyLightFilter('takhlees')}
+              aria-pressed={heavyLightFilter === 'takhlees'}
+            >
+              Takhlees (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Manuel de Tajwīd — Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* List of cases */}
+          <div className="space-y-3">
+            {filteredCases.map((tc) => {
+              const isSelected = tc.id === selectedCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setHeavyLightCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <h4 className="font-display font-semibold text-[15px] text-ink leading-snug truncate">
+                        {tc.title}
+                      </h4>
+                      <p className="text-xs text-muted mt-1 truncate">
+                        Lettres : <strong className="text-ink">{tc.involvedLetters}</strong>
+                      </p>
+                    </div>
+
+                    <span className="font-ar text-2xl text-ink shrink-0 font-bold" dir="rtl">
+                      {tc.highlightedSegment}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Diagnostic details */}
+          <section key={selectedCase.id} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm">
+            <div className="p-6 border-b border-line bg-soft/50 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
+                <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
+                  {selectedCase.status}
+                </span>
+              </div>
+
+              <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed text-right py-1" dir="rtl">
+                {selectedCase.arabicWord}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="text-xs text-muted">Combinaison :</span>
+                <span className="chip chip-gold font-bold text-xs">
+                  {selectedCase.involvedLetters}
+                </span>
+                <span className="text-xs text-muted">Rasm :</span>
+                <span className="chip chip-izhar font-mono text-xs">
+                  {selectedCase.mushafSign}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm font-mono text-muted">
+                Prononciation exacte : <strong className="text-ink">{selectedCase.pronunciation}</strong>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Justification</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Impact sur la récitation & Fiqh</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège classique dénoncé par le livre</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedCase.commonTrap}
                 </dd>

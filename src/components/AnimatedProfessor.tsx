@@ -3959,6 +3959,447 @@ const IdghamNaqisHeavyToLightVisual: React.FC<{ animKey: number }> = ({ animKey 
 };
 
 /* =========================================================================
+   CHAPITRE 12 : Mini-composants interactifs et didactiques (Tafkhīm & Tarqīq)
+   ========================================================================= */
+
+/** Écran 1 : Les 7 Lettres d'Isti'lā' & Les 5 Degrés de Tafkhīm */
+const HeavyLettersMouthShapeVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedDegree, setSelectedDegree] = useState<1 | 2 | 3 | 4 | 5>(1);
+
+  const degrees = {
+    1: {
+      name: '1er Degré (Sommet)',
+      condition: 'Lettre lourde + Fathah + ALIF',
+      arabicExample: 'ٱلصَّٰبِرِينَ',
+      verseRef: 'Āl \'Imrān 3:17',
+      mechanics: 'La voyelle longue Alif prolonge l\'écho caverneux créé par l\'arrière de la langue élevée au voile du palais.',
+      lipsStatus: 'Lèvres neutres et immobiles (PAS de moue !)',
+      badgeClass: 'chip-bad',
+    },
+    2: {
+      name: '2e Degré (Plein)',
+      condition: 'Lettre lourde + FATHAH (sans Alif)',
+      arabicExample: 'خَلَقَ ٱلۡإِنسَٰنَ',
+      verseRef: 'Al-\'Alaq 96:2',
+      mechanics: 'La Fathah ouvre la mâchoire verticalement pendant que la racine de la langue remplit le pharynx.',
+      lipsStatus: 'Lèvres détendues sans projection vers l\'avant.',
+      badgeClass: 'chip-bad',
+    },
+    3: {
+      name: '3e Degré (Intermédiaire)',
+      condition: 'Lettre lourde + DAMMAH',
+      arabicExample: 'يَقُولُ ٱلَّذِينَ',
+      verseRef: 'Al-Baqarah 2:113',
+      mechanics: 'Seul cas où les lèvres s\'arrondissent légitimement, car la voyelle Dammah exige le travail des lèvres !',
+      lipsStatus: 'Arrondissement permis pour la voyelle « Ou », pas pour l\'emphase !',
+      badgeClass: 'chip-gold',
+    },
+    4: {
+      name: '4e Degré (Stable)',
+      condition: 'Lettre lourde + SOUKOÛN',
+      arabicExample: 'يَخۡشَى ٱللَّهَ',
+      verseRef: 'Fāṭir 35:28',
+      mechanics: 'Le son de la lettre lourde est figé sans voyelle : la cavité pharyngienne conserve sa forme haute.',
+      lipsStatus: 'Lèvres parfaitement immobiles.',
+      badgeClass: 'chip-izhar',
+    },
+    5: {
+      name: '5e Degré (Adouci mais Présent)',
+      condition: 'Lettre lourde + KASRAH',
+      arabicExample: 'صِرَٰطَ ٱلَّذِينَ',
+      verseRef: 'Al-Fātihah 1:7',
+      mechanics: 'La Kasrah tire la langue vers le bas, mais l\'arrière de la langue résiste et reste relevé. Ne dites JAMAIS « Sirate » avec un Sīn fin !',
+      lipsStatus: 'Légère ouverture souriante sans trahir l\'Isti\'lā\'.',
+      badgeClass: 'chip-qalqalah',
+    },
+  };
+
+  const curr = degrees[selectedDegree];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Les 7 Lettres خُصَّ ضَغۡطٍ قِظۡ & la Hiérarchie d'Ibn Al-Jazarī
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-1.5 max-w-lg mx-auto">
+        {([1, 2, 3, 4, 5] as const).map(deg => (
+          <button
+            key={deg}
+            onClick={() => setSelectedDegree(deg)}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              selectedDegree === deg
+                ? 'bg-lapis text-lapis-ink shadow-xs scale-105'
+                : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            Degré {deg}
+          </button>
+        ))}
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeClass} text-xs font-bold`}>
+            {curr.name}
+          </span>
+          <span className="text-xs text-muted font-mono">{curr.condition}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicExample}
+        </div>
+        <div className="text-xs text-muted">{curr.verseRef}</div>
+
+        <div className="grid sm:grid-cols-2 gap-2 text-left text-xs">
+          <div className="p-3 rounded-xl bg-good-bg border border-good/40">
+            <span className="font-bold text-good block mb-0.5">Mécanique Linguale</span>
+            <p className="text-ink leading-relaxed">{curr.mechanics}</p>
+          </div>
+          <div className="p-3 rounded-xl bg-soft border border-line">
+            <span className="font-bold text-ink block mb-0.5">Position des Lèvres</span>
+            <p className="text-muted leading-relaxed">{curr.lipsStatus}</p>
+          </div>
+        </div>
+
+        <div className="p-3 rounded-xl bg-bad-bg/60 border border-bad/30 text-xs text-left text-ink leading-relaxed">
+          🚫 <strong>Le Piège Fatal des Lèvres Rondes :</strong> Arrondir les lèvres sur une lettre lourde sans Dammah (ex: faire la moue sur « Khā ») est une erreur courante. L\'emphase naît <em>au fond de la gorge</em>, jamais avec les lèvres !
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Les Lettres Hybrides I (Alif Caméléon & Le Nom d'Allah) */
+const ChameleonAlifAndLamVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeTab, setActiveTab] = useState<'alif' | 'lam'>('alif');
+  const [alifType, setAlifType] = useState<'heavy' | 'light'>('heavy');
+  const [lamType, setLamType] = useState<'fathah' | 'dammah' | 'kasrah'>('fathah');
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        Les 2 Caméléons : L'Alif dépendant & La Lām du Nom Divin
+      </div>
+
+      <div className="segmented max-w-xs mx-auto">
+        <button
+          onClick={() => setActiveTab('alif')}
+          aria-pressed={activeTab === 'alif'}
+        >
+          L'Alif Caméléon (ا)
+        </button>
+        <button
+          onClick={() => setActiveTab('lam')}
+          aria-pressed={activeTab === 'lam'}
+        >
+          La Lām d'Allah (ٱللَّه)
+        </button>
+      </div>
+
+      {activeTab === 'alif' ? (
+        <div className="space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex justify-center gap-2">
+            <button
+              onClick={() => setAlifType('heavy')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                alifType === 'heavy' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Alif Lourd (après خُصَّ ضَغۡطٍ قِظۡ)
+            </button>
+            <button
+              onClick={() => setAlifType('light')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                alifType === 'light' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Alif Fin (après lettres légères)
+            </button>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-3">
+            <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+              {alifType === 'heavy' ? 'خَٰلِدِينَ فِيهَا' : 'إِيَّاكَ نَعۡبُدُ'}
+            </div>
+            <div className="text-xs text-muted">
+              {alifType === 'heavy' ? 'Al-Baqarah 2:82' : 'Al-Fātihah 1:5'}
+            </div>
+
+            <div className={`p-3.5 rounded-xl text-xs sm:text-sm text-left leading-relaxed ${
+              alifType === 'heavy' ? 'bg-bad-bg border border-bad/30 text-ink' : 'bg-good-bg border border-good/30 text-ink'
+            }`}>
+              {alifType === 'heavy' ? (
+                <>
+                  🔥 <strong>Alif Emphatique :</strong> L'Alif succède à la consonne lourde Khā (خ). Il s'imprègne de son écho et remplit la bouche d'une ampleur caverneuse (« Khāālidīn »).
+                </>
+              ) : (
+                <>
+                  ✨ <strong>Alif Aminci (Tarqīq) :</strong> L'Alif succède au Yā' (ي), consonne légère d'Istifāl. Le son est fin, ouvert, lumineux et souriant (« Iyyāāka »).
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-4 max-w-xl mx-auto animate-fade">
+          <div className="flex justify-center gap-1.5 sm:gap-2">
+            <button
+              onClick={() => setLamType('fathah')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                lamType === 'fathah' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Après Fathah (ـَ)
+            </button>
+            <button
+              onClick={() => setLamType('dammah')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                lamType === 'dammah' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Après Dammah (ـُ)
+            </button>
+            <button
+              onClick={() => setLamType('kasrah')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                lamType === 'kasrah' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Après Kasrah (ـِ)
+            </button>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-3">
+            <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+              {lamType === 'fathah' && 'شَهِدَ ٱللَّهُ'}
+              {lamType === 'dammah' && 'نَصۡرُ ٱللَّهِ'}
+              {lamType === 'kasrah' && 'بِسۡمِ ٱللَّهِ'}
+            </div>
+            <div className="text-xs text-muted">
+              {lamType === 'fathah' && 'Āl \'Imrān 3:18'}
+              {lamType === 'dammah' && 'An-Nasr 110:1'}
+              {lamType === 'kasrah' && 'Al-Fātihah 1:1'}
+            </div>
+
+            <div className={`p-3.5 rounded-xl text-xs sm:text-sm text-left leading-relaxed ${
+              lamType === 'kasrah' ? 'bg-good-bg border border-good/30 text-ink' : 'bg-bad-bg border border-bad/30 text-ink'
+            }`}>
+              {lamType === 'kasrah' ? (
+                <>
+                  🌿 <strong>Tarqīq (Lām Mince) :</strong> La Kasrah sous le Mīm (« Bismi ») impose la finesse. Le Nom Sacré est prononcé avec humilité et douceur : « Bismi-Llāh ».
+                </>
+              ) : (
+                <>
+                  👑 <strong>Tafkhīm (Lām Majestueux) :</strong> La {lamType === 'fathah' ? 'Fathah' : 'Dammah'} précédente commande la force et la grandeur. La Lām résonne avec plénitude : « {lamType === 'fathah' ? 'Shahida-Llāh' : 'Nasru-Llāh'} ».
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 3 : La Râ' (ر) & Ses 4 Règles de Tarqīq */
+const RaaRulesMatrixVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedCase, setSelectedCase] = useState<number>(0);
+
+  const cases = [
+    {
+      title: 'Cas 1 : Kasrah Directe',
+      badge: 'Tarqīq Immédiat',
+      badgeColor: 'chip-izhar',
+      arabicText: 'فَرِحِينَ بِمَآ ءَاتَىٰهُمُ',
+      readAs: 'Farihīna',
+      surahRef: 'Āl \'Imrān 3:170',
+      ruleDesc: 'La Râ\' porte elle-même une voyelle Kasrah (ـِ) : elle s\'amincit instantanément sans hésitation.',
+    },
+    {
+      title: 'Cas 2 : Soukoûn après Kasrah originelle',
+      badge: 'Tarqīq Conditionnel',
+      badgeColor: 'chip-izhar',
+      arabicText: 'وَإِذۡ نَجَّيۡنَٰكُم مِّنۡ ءَالِ فِرۡعَوۡنَ',
+      readAs: 'Fir\'awna',
+      surahRef: 'Al-Baqarah 2:49',
+      ruleDesc: 'Râ\' sākinah précédée d\'une Kasrah originelle dans le même mot, et NON suivie d\'une lettre lourde.',
+    },
+    {
+      title: 'Cas 3 : Waqf après Soukoûn après Kasrah',
+      badge: 'Tarqīq à l\'Arrêt',
+      badgeColor: 'chip-izhar',
+      arabicText: 'هَلۡ فِى ذَٰلِكَ قَسَمٞ لِّذِى حِجۡرٍ',
+      readAs: 'Li-dhī Hijr',
+      surahRef: 'Al-Fajr 89:5',
+      ruleDesc: 'À l\'arrêt sur « Hijr », la Kasrah du Hā\' traverse le Jīm soukouné pour adoucir la Râ\' finale.',
+    },
+    {
+      title: 'Cas 4 : Waqf après Yā\' Sākinah',
+      badge: 'Tarqīq Soyeux',
+      badgeColor: 'chip-izhar',
+      arabicText: 'إِنَّ ٱللَّهَ بِمَا تَعۡمَلُونَ خَبِيرٌ',
+      readAs: 'Khabīr',
+      surahRef: 'Al-Baqarah 2:234',
+      ruleDesc: 'À l\'arrêt après un Yā\' de prolongation ou de Līn (Khayr, Bashīr), la Râ\' est obligatoirement fine.',
+    },
+    {
+      title: 'Exception : Suivie d\'une lettre lourde !',
+      badge: 'Tafkhīm Malgré Kasrah !',
+      badgeColor: 'chip-bad',
+      arabicText: 'كِتَٰبٗا فِى قِرۡطَاسٖ فَلَمَسُوهُ',
+      readAs: 'Qirṭās (Tā\' lourd)',
+      surahRef: 'Al-An\'ām 6:7',
+      ruleDesc: 'Même précédée d\'une Kasrah, la Râ\' reste LOURDE car le Tā\' (ط) emphatique avec Fathah suit dans le même mot !',
+    },
+  ];
+
+  const curr = cases[selectedCase];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        La Râ' est lourde par défaut ! Voici ses 4 portes d'amincissement (Tarqīq)
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 max-w-xl mx-auto">
+        {cases.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setSelectedCase(i)}
+            className={`p-2 rounded-xl text-xs font-semibold transition-all ${
+              selectedCase === i ? 'bg-lapis text-lapis-ink shadow-xs scale-105' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            {c.title.split(':')[0]}
+          </button>
+        ))}
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+        <div className="flex items-center justify-between">
+          <span className={`chip ${curr.badgeColor} text-xs font-bold`}>
+            {curr.badge}
+          </span>
+          <span className="text-xs text-muted">{curr.surahRef}</span>
+        </div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink leading-tight py-2" dir="rtl">
+          {curr.arabicText}
+        </div>
+
+        <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-ink">
+          Phonétique : <strong className="text-good">{curr.readAs}</strong>
+        </div>
+
+        <p className="text-xs sm:text-sm text-ink leading-relaxed bg-soft/60 p-3 rounded-xl border border-line/60 text-left">
+          {curr.ruleDesc}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Takhlees Al-Hurūf (Le Laboratoire de Décontamination) */
+const TakhleesLetterDecontaminationVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [wordIdx, setWordIdx] = useState<0 | 1>(0);
+
+  const words = [
+    {
+      word: 'خَلَقَ',
+      title: 'Khalaqa (Al-\'Alaq 96:2)',
+      segments: [
+        { letter: 'خَ', type: 'heavy', label: 'Khā (Lourd)', desc: 'Isti\'lā\' : Arrière de la langue relevé, son caverneux' },
+        { letter: 'لَ', type: 'light', label: 'Lām (Fin !)', desc: 'Istifāl : Abaissement instantané de la langue, son mince et souriant' },
+        { letter: 'قَ', type: 'heavy', label: 'Qāf (Lourd)', desc: 'Isti\'lā\' : Remontée ferme de la racine linguale' },
+      ],
+      danger: 'Ne prononcez JAMAIS « Kha-LÂ-qa » ! Le Lām doit rester pur et cristallin entre les deux géants.',
+    },
+    {
+      word: 'وَٱلۡمُطَلَّقَٰتُ',
+      title: 'Al-Muṭallaqāt (Al-Baqarah 2:228)',
+      segments: [
+        { letter: 'مُ', type: 'light', label: 'Mīm (Fin)', desc: 'Léger avec Dammah' },
+        { letter: 'طَ', type: 'heavy', label: 'Tā\' (Lourd)', desc: 'Itbāq et Isti\'lā\' puissants' },
+        { letter: 'لَّ', type: 'light', label: 'Lām (Fin !)', desc: 'Le double Lām reste mince !' },
+        { letter: 'قَٰ', type: 'heavy', label: 'Qāf + Alif (Lourd)', desc: 'Degré 1 maximal de Tafkhīm' },
+        { letter: 'تُ', type: 'light', label: 'Tā\' (Fin)', desc: 'Relâchement complet' },
+      ],
+      danger: 'Alternance virtuose Fin ➔ Lourd ➔ Fin ➔ Lourd ➔ Fin !',
+    },
+  ];
+
+  const curr = words[wordIdx];
+
+  return (
+    <div key={animKey} className="py-6 px-4 text-center select-none space-y-5">
+      <div className="label">
+        L'Art Suprême du Tajwīd : Alterner les calibres sans contamination
+      </div>
+
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setWordIdx(0)}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            wordIdx === 0 ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          خَلَقَ (3 Lettres)
+        </button>
+        <button
+          onClick={() => setWordIdx(1)}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            wordIdx === 1 ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          وَٱلۡمُطَلَّقَٰتُ (Chirurgie 5 Lettres)
+        </button>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-card border border-line shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
+        <div className="text-xs text-muted font-bold">{curr.title}</div>
+
+        {/* Word Display with color-coded letters */}
+        <div className="flex items-center justify-center gap-3 py-3" dir="rtl">
+          {curr.segments.map((seg, idx) => (
+            <div
+              key={idx}
+              className={`p-3 rounded-2xl border text-center transition-all ${
+                seg.type === 'heavy'
+                  ? 'bg-bad-bg border-bad/40 text-bad'
+                  : 'bg-good-bg border-good/40 text-good'
+              }`}
+            >
+              <span className="font-ar text-4xl block font-bold">{seg.letter}</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider block mt-1">
+                {seg.type === 'heavy' ? 'Lourd' : 'Fin'}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Breakdown of each segment */}
+        <div className="space-y-1.5 text-xs text-left">
+          {curr.segments.map((seg, idx) => (
+            <div key={idx} className="p-2.5 rounded-xl bg-soft border border-line flex items-start gap-2">
+              <span className={`w-2 h-2 rounded-full mt-1 shrink-0 ${seg.type === 'heavy' ? 'bg-bad' : 'bg-good'}`} />
+              <div>
+                <strong className={seg.type === 'heavy' ? 'text-bad' : 'text-good'}>{seg.label} : </strong>
+                <span className="text-ink">{seg.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="p-3.5 rounded-xl bg-soft text-xs text-ink leading-relaxed text-left border border-line">
+          ⚠️ <strong>Avertissement pédagogique :</strong> {curr.danger}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -4418,6 +4859,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 12 (Heavy & Light / Tafkhīm & Tarqīq)
+  const chapter12Screens = [
+    {
+      title: 'Les 7 Lettres d\'Isti\'lā\' (خُصَّ ضَغۡطٍ قِظۡ) & Leurs 5 Degrés',
+      badge: 'Tafkhīm Absolu',
+      concept: 'L\'arrière de la langue s\'élève pour former une résonance caverneuse',
+      renderVisual: () => <HeavyLettersMouthShapeVisual animKey={animKey} />,
+      explanation: 'Les 7 consonnes de « Khuṣṣa Ḍaghṭin Qiz » sont TOUJOURS lourdes (Tafkhīm). Selon Ibn Al-Jazarī, leur puissance s\'échelonne en 5 degrés : 1. Fathah + Alif > 2. Fathah seule > 3. Dammah > 4. Soukoûn > 5. Kasrah. Piège critique : ne projetez JAMAIS les lèvres en avant pour faire une lettre lourde sans Dammah !'
+    },
+    {
+      title: 'Les Lettres Hybrides I : L\'Alif Miroir & Le Nom d\'Allah',
+      badge: 'Caméléons du Coran',
+      concept: 'L\'Alif mime son voisin, la Lām d\'Allah obéit à la voyelle précédente',
+      renderVisual: () => <ChameleonAlifAndLamVisual animKey={animKey} />,
+      explanation: 'L\'Alif n\'a aucun timbre propre : il copie la lettre qui le précède (lourd après Khā dans « Khālidīn », léger après Yā\' dans « Iyyāka »). Quant à la Lām, elle est toujours fine dans tout le Coran, sauf dans le Nom Sacré d\'Allah : lourde après Fathah/Dammah (« Shahida-Llāhu »), et fine après Kasrah (« Bismi-Llāhi ») !'
+    },
+    {
+      title: 'Les Lettres Hybrides II : La Râ\' & Ses 4 Portes de Finesse',
+      badge: 'Tarqīq de la Râ\'',
+      concept: 'La Râ\' est lourde par défaut : découvrez ses 4 exceptions codifiées',
+      renderVisual: () => <RaaRulesMatrixVisual animKey={animKey} />,
+      explanation: 'La Râ\' (ر) est originellement lourde ! Elle ne s\'amincit (Tarqīq) que dans 4 cas : 1. Avec Kasrah directe (رِزۡقٗا). 2. Avec Soukoûn après Kasrah originelle dans le mot (فِرۡعَوۡنَ). 3. À l\'arrêt après Soukoûn précédé de Kasrah (حِجۡرٍ). 4. À l\'arrêt après un Yā\' soukouné (خَبِيرٌ, خَيۡرٌ). Attention à l\'exception de « Qirṭās » qui reste lourde !'
+    },
+    {
+      title: 'Takhlees Al-Hurūf : L\'Art de la Décontamination',
+      badge: 'Chirurgie Phonétique',
+      concept: 'Isoler chaque consonne pour que le lourd n\'écrase pas le fin',
+      renderVisual: () => <TakhleesLetterDecontaminationVisual animKey={animKey} />,
+      explanation: 'Takhlees Al-Hurūf est la marque des grands récitateurs : dans « خَلَقَ », le Khā lourd est immédiatement suivi d\'un Lām fin avant de remonter sur un Qāf lourd. Votre langue doit s\'abaisser en une fraction de seconde pour préserver la clarté du Lām sans jamais dire « Kha-lâ-qa » !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -4439,7 +4912,9 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter9Screens
       : chapter.number === 10
       ? qalqalahScreens
-      : chapter11Screens;
+      : chapter.number === 11
+      ? chapter11Screens
+      : chapter12Screens;
   const current = screens[screenIndex] || screens[0];
 
   const goTo = (idx: number) => {

@@ -48,6 +48,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 11) {
       return 'L\'Izhār est la norme sacrée : ne fusionnez deux consonnes que si la première porte un soukoûn ! Bannissez impérativement l\'assimilation des lettres de Madd (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ), respectez les 8 fusions totales historiques (Irkam-ma\'anā, Nakhlukkum), et dans l\'Idghām Nāqis (بَسَطتَ), conservez la lourdeur du Tā\' sans qalqalah avant de libérer le Tā\' !';
     }
+    if (chapter.number === 12) {
+      return 'L\'emphase (Tafkhīm) naît au fond de la gorge par élévation de la racine de la langue (Isti\'lā\') et JAMAIS par arrondissement des lèvres sans Dammah ! Retenez les 7 lettres permanentes (خُصَّ ضَغۡطٍ قِظۡ) et leurs 5 degrés, souvenez-vous que l\'Alif est un miroir aveugle, que la Lām d\'Allah s\'alourdit après Fathah/Dammah, que la Râ\' est lourde par défaut avec 4 cas de finesse (Tarqīq), et maîtrisez l\'art du Takhlees Al-Hurūf pour qu\'aucune consonne lourde n\'écrase sa voisine !';
+    }
     return 'Respectez rigoureusement les règles de Tajwīd pour préserver la récitation exacte du Noble Coran.';
   };
 
@@ -139,6 +142,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             ? 'Chapitre suivant (L\'Assimilation - Idghām)'
             : chapter.number === 11
             ? 'Chapitre suivant (Tafkhīm & Tarqīq)'
+            : chapter.number === 12
+            ? 'Chapitre suivant (Rencontre de Deux Soukoûns)'
             : 'Retour au sommaire'}
           <ArrowRight className="w-4 h-4" />
         </button>

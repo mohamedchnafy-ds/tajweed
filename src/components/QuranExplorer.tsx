@@ -381,6 +381,36 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 12 (Tafkhīm & Tarqīq)
+  const chapter12Verses = [
+    {
+      ref: '95:4',
+      surahFr: 'At-Tīn',
+      words: [
+        { text: 'لَقَدۡ', rule: 'Qalqalah Sughrā', ruleClass: 'chip-qalqalah', why: 'Rebond vif et net sur le Dāl soukouné.' },
+        { text: 'خَلَقۡنَا', rule: '🌟 Takhlees Al-Hurūf Magistral', ruleClass: 'chip-bad', why: 'Khā lourd (Isti\'lā\') ➔ Abaissement immédiat pour Lām fin ! ➔ Remontée pour Qāf lourd avec Qalqalah. Ne dites JAMAIS « Kha-LÂ-qnā » !', target: true },
+        { text: 'ٱلۡإِنسَٰنَ', rule: 'Ikhfā\' Tarqīq', ruleClass: 'chip-ikhfa', why: 'Ghunnah mince et claire devant le Sīn.' },
+        { text: 'فِىٓ', rule: 'Madd Munfasil (4-5 temps)', ruleClass: 'chip-gold', why: 'Prolongation séparée devant la Hamzah.' },
+        { text: 'أَحۡسَنِ', rule: 'Hā\' avec Hams (Souffle)', ruleClass: 'chip-gold', why: 'Écoulement doux du souffle.' },
+        { text: 'تَقۡوِيمٖ', rule: 'Tā\' fin ➔ Qāf lourd + Madd \'Ārid', ruleClass: 'chip-izhar', why: 'Ne contaminez pas le Tā\' fin avec la lourdeur du Qāf suivant. À l\'arrêt, Madd \'Ārid de 2, 4 ou 6 temps.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/095004.mp3',
+    },
+    {
+      ref: '89:5',
+      surahFr: 'Al-Fajr',
+      words: [
+        { text: 'هَلۡ', rule: 'Lām de la particule', ruleClass: 'chip-izhar', why: 'Izhār net et sans rebond de la Lām Sākinah.' },
+        { text: 'فِى', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: '2 temps de Madd standard.' },
+        { text: 'ذَٰلِكَ', rule: 'Alif Khanjariyyah', ruleClass: 'chip-gold', why: 'Alif vertical miniature de 2 temps.' },
+        { text: 'قَسَمٞ', rule: 'Qāf lourd (Degré 2)', ruleClass: 'chip-bad', why: 'Qāf d\'Isti\'lā\' avec Fathah sans Alif.', target: true },
+        { text: 'لِّذِى', rule: 'Idghām sans Ghunnah', ruleClass: 'chip-idgham', why: 'Le Tanwīn fond entièrement dans le Lām.' },
+        { text: 'حِجۡرٍ', rule: '🌟 Tarqīq Cas 3 à l\'Arrêt', ruleClass: 'chip-izhar', why: 'À l\'arrêt sur « Hijr », la Râ\' prend un soukoûn précédé du Jīm soukouné (Qalqalah), lui-même précédé de la Kasrah du Hā\' : la Râ\' est obligatoirement mince (Tarqīq) !', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/089005.mp3',
+    }
+  ];
+
   const versesList =
     chapter.number === 1
       ? chapter1Verses
@@ -402,7 +432,9 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter9Verses
       : chapter.number === 10
       ? qalqalahVerses
-      : chapter11Verses;
+      : chapter.number === 11
+      ? chapter11Verses
+      : chapter12Verses;
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
   const [selectedWordIndex, setSelectedWordIndex] = useState<number>(0);
 

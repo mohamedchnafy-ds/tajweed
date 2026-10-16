@@ -12,7 +12,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: true },
   { number: 10, slug: 'qalqalah', titleFr: 'La Qalqalah & Ses Degrés de Rebond', titleAr: 'أحكام القلقلة ومراتبها', category: 'intermediate', isPilot: true },
   { number: 11, slug: 'assimilation', titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)', titleAr: 'إدغام المتماثلين والمتقاربين والمتجانسين', category: 'advanced', isPilot: true },
-  { number: 12, slug: 'heavy-light', titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)', titleAr: 'التفخيم والترقيق', category: 'advanced', isPilot: false },
+  { number: 12, slug: 'heavy-light', titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)', titleAr: 'التفخيم والترقيق', category: 'advanced', isPilot: true },
   { number: 13, slug: 'iltiqa-sakīnayn', titleFr: 'Rencontre de Deux Soukoûns (Iltiqā\' As-Sākinayn)', titleAr: 'التقاء الساكنين', category: 'advanced', isPilot: false },
   { number: 14, slug: 'disjointed-letters', titleFr: 'Les Lettres Isolées (Al-Hurūf Al-Muqatta\'ah)', titleAr: 'الحروف المقطعة', category: 'advanced', isPilot: false },
   { number: 15, slug: 'important-comparisons', titleFr: 'Comparaisons & Distinctions Subtiles', titleAr: 'مقارنات وفروق هامة', category: 'advanced', isPilot: false },
@@ -3656,5 +3656,414 @@ export const PILOT_CHAPTERS: Chapter[] = [
         ruleId: 'idgham-mutamathilayn'
       }
     ]
+  },
+  // ==========================================
+  // CHAPITRE 12 : TAFKHĪM & TARQĪQ (EMPHASE & AMINCISSEMENT)
+  // ==========================================
+  {
+    id: 'chap-12',
+    number: 12,
+    slug: 'heavy-light',
+    titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)',
+    titleAr: 'التَّفْخِيمُ وَالتَّرْقِيقُ',
+    category: 'advanced',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre et maîtriser la résonance des lettres arabes : les 7 lettres d\'emphase absolue (خُصَّ ضَغۡطٍ قِظۡ) et leurs 5 degrés, le piège fatal de l\'arrondissement des lèvres, les 3 lettres hybrides caméléons (Alif, Lām du Nom d\'Allah, et la Râ\' avec ses 4 cas de finesse), et l\'art suprême de la décontamination des lettres adjacentes (Takhlees Al-Hurūf).',
+    infographicPoints: [
+      'Tafkhīm (Élévation / Isti\'lā\') : La résonance caverneuse est créée en élevant l\'arrière de la langue vers le voile du palais. Les lèvres NE DOIVENT JAMAIS s\'arrondir (sauf si la lettre porte une Dammah) !',
+      'Les 7 Lettres Toujours Lourdes : Mnémonique « خُصَّ ضَغۡطٍ قِظۡ » (Khuṣṣa Ḍaghṭin Qiz). Les 4 lettres d\'Itbāq (ص, ض, ط, ظ) ont une emphase encore plus puissante et compacte.',
+      'Les 5 Degrés d\'Emphase (Ibn Al-Jazarī) : 1. Fathah + Alif (صَابِرِينَ) > 2. Fathah seule (خَلَقَ) > 3. Dammah (يَقُولُ) > 4. Soukoûn (يَخۡشَىٰ) > 5. Kasrah (صِرَاطَ - degré minimal, mais toujours lourd !).',
+      'L\'Alif Caméléon : L\'Alif ne possède aucun son propre, il mime la lettre précédente ! Lourd après lettre lourde (خَالِدِينَ), fin après lettre légère (إِيَّاكَ).',
+      'La Lām du Nom Majestueux : La Lām est TOUJOURS fine dans tout le Coran, sauf dans le mot « Allāh / Allāhumma » s\'il est précédé d\'une Fathah ou Dammah (شَهِدَ ٱللَّهُ). S\'il est précédé d\'une Kasrah, il redevient fin (بِسۡمِ ٱللَّهِ).',
+      'La Râ\' (ر) : Lourde par défaut ! Elle n\'est amincie (Tarqīq) que dans 4 cas précis : avec Kasrah directe (رِجَالٌ), avec Soukoûn après Kasrah sans consonne lourde (فِرۡعَوۡنَ), à l\'arrêt après soukoûn précédé de kasrah (حِجۡرٍ), ou à l\'arrêt après un Yā\' soukouné (خَبِيرٌ, خَيۡرٌ).',
+      'Takhlees Al-Hurūf (Décontamination) : L\'épreuve de virtuosité du lecteur ! Dans « خَلَقَ », isoler le Lām fin au milieu de deux lettres lourdes (Khā et Qāf) sans le contaminer.'
+    ],
+    subrules: [
+      {
+        id: 'heavy-letters-degrees',
+        nameFr: '1. Les 7 Lettres d\'Emphase Permanente & Leurs 5 Degrés',
+        nameAr: 'حُرُوفُ الِاسْتِعْلَاءِ السَّبْعَةُ وَمَرَاتِبُ التَّفْخِيمِ',
+        mnemonic: 'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz) | 5 Degrés du plus sonore au plus adouci',
+        letters: ['خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'],
+        definitionFr: 'Les 7 lettres d\'Isti\'lā\' (élévation de la racine de la langue) sont TOUJOURS emphatiques (Tafkhīm), quelle que soit leur voyelle ou leur position. Les 4 lettres d\'Itbāq (ص, ض, ط, ظ) possèdent la plus forte intensité en écrasant le corps de la langue contre le palais.',
+        mechanismFr: 'L\'emphase résulte de l\'élévation du fond de la langue et de l\'abaissement de sa partie centrale, créant une chambre acoustique caverneuse dans la cavité buccale. L\'intensité varie en 5 degrés hiérarchiques selon la voyelle associée.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c12-1',
+            arabicText: 'ٱلصَّٰبِرِينَ وَٱلصَّٰدِقِينَ وَٱلۡقَٰنِتِينَ',
+            surahAyahRef: '3:17',
+            surahNameFr: 'Āl \'Imrān',
+            highlightSegment: 'ٱلصَّٰبِرِينَ',
+            highlightLetter: 'صَّٰ (Degré 1 : Fathah + Alif)',
+            ruleApplied: 'Tafkhīm de 1er degré (Maximum)',
+            ruleTag: 'heavy',
+            explanationFr: 'La lettre Sād est suivie d\'un Alif : c\'est le sommet du Tafkhīm. L\'écho acoustique remplit toute la bouche.',
+            transliteration: 'As-Sābirīna',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003017.mp3'
+          },
+          {
+            id: 'ex-c12-2',
+            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+            surahAyahRef: '1:7',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'صِرَٰطَ',
+            highlightLetter: 'صِ (Degré 5 : Kasrah)',
+            ruleApplied: 'Tafkhīm de 5e degré (Adouci)',
+            ruleTag: 'heavy',
+            explanationFr: 'Sous Kasrah, l\'emphase du Sād est au degré le plus bas, mais la lettre RESTE lourde ! Il est formellement interdit de la prononcer comme un Sīn fin.',
+            transliteration: 'Sirāta',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+          },
+          {
+            id: 'ex-c12-3',
+            arabicText: 'وَلَقَدۡ خَلَقۡنَا ٱلۡإِنسَٰنَ مِن سُلَٰلَةٖ مِّن طِينٖ',
+            surahAyahRef: '23:12',
+            surahNameFr: 'Al-Mu\'minūn',
+            highlightSegment: 'طِينٖ',
+            highlightLetter: 'طِ (Itbāq avec Kasrah)',
+            ruleApplied: 'Itbāq résistant à la Kasrah',
+            ruleTag: 'heavy',
+            explanationFr: 'Le Tā\' (ط) fait partie des 4 lettres d\'Itbāq : même avec une Kasrah, sa lourdeur reste très perceptible et ne doit jamais sonner comme un Tā\' (ت).',
+            transliteration: 'Min tīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/023012.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Arrondir les lèvres vers l\'avant en récitant une lettre lourde sans Dammah (ex: faire la moue sur « Khā »).',
+            correctionFr: 'Le Tafkhīm se fait exclusivement à l\'arrière du pharynx avec la langue ! Les lèvres doivent rester neutres et détendues.'
+          },
+          {
+            trapFr: 'Amincir les lettres lourdes lorsqu\'elles portent une Kasrah (ex: prononcer « Sirāt » comme « Sirate » avec un Sīn).',
+            correctionFr: 'Maintenez l\'élévation de l\'arrière de la langue même sous Kasrah pour préserver l\'identité de la lettre.'
+          }
+        ]
+      },
+      {
+        id: 'hybrid-alif-lam',
+        nameFr: '2. Les Lettres Hybrides I : L\'Alif Caméléon & Le Nom d\'Allah',
+        nameAr: 'الأَلِفُ التَّابِعَةُ وَلَامُ لَفْظِ الجَلَالَةِ',
+        mnemonic: 'Alif = Miroir de son prédécesseur | Lām d\'Allah = Lourd après Fathah/Dammah, Léger après Kasrah',
+        letters: ['ا', 'ل'],
+        definitionFr: 'L\'Alif de prolongation n\'a pas de timbre propre : il est emphatique s\'il succède à une lettre d\'Isti\'lā\', et mince s\'il succède à une lettre d\'Istifāl. La Lām est toujours mince dans tout le Coran, sauf dans le Nom Sacré d\'Allah et Allāhumma.',
+        mechanismFr: 'Pour le Nom Majestueux « Allāh » : après une voyelle Fathah (ـَ) ou Dammah (ـُ), la Lām devient lourde et ample. Après une Kasrah (ـِ), elle retrouve sa finesse originelle.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c12-4',
+            arabicText: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُوْلَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+            surahAyahRef: '2:82',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'خَٰلِدُونَ',
+            highlightLetter: 'Alif après Khā (Lourd)',
+            ruleApplied: 'Alif Emphatique',
+            ruleTag: 'heavy',
+            explanationFr: 'Le Khā (خ) étant une consonne d\'Isti\'lā\', l\'Alif qui le prolonge absorbe son emphase et résonne lourdement.',
+            transliteration: 'Khālidūn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002082.mp3'
+          },
+          {
+            id: 'ex-c12-5',
+            arabicText: 'إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ',
+            surahAyahRef: '1:5',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'إِيَّاكَ',
+            highlightLetter: 'Alif après Yā (Léger)',
+            ruleApplied: 'Alif Aminci (Tarqīq)',
+            ruleTag: 'madd',
+            explanationFr: 'Le Yā\' (ي) étant une lettre légère, l\'Alif est prononcé avec une clarté fine et lumineuse sans aucun gonflement buccal.',
+            transliteration: 'Iyyāka',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001005.mp3'
+          },
+          {
+            id: 'ex-c12-6',
+            arabicText: 'شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ',
+            surahAyahRef: '3:18',
+            surahNameFr: 'Āl \'Imrān',
+            highlightSegment: 'شَهِدَ ٱللَّهُ',
+            highlightLetter: 'Lām d\'Allah après Fathah',
+            ruleApplied: 'Tafkhīm de la Lām d\'Allah',
+            ruleTag: 'heavy',
+            explanationFr: 'Le Nom d\'Allah est précédé par la Fathah du Dāl (« Shahida-Llāhu ») : les deux Lām s\'épaississent avec majesté.',
+            transliteration: 'Shahida-Llāh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003018.mp3'
+          },
+          {
+            id: 'ex-c12-7',
+            arabicText: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
+            surahAyahRef: '1:1',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'بِسۡمِ ٱللَّهِ',
+            highlightLetter: 'Lām d\'Allah après Kasrah',
+            ruleApplied: 'Tarqīq de la Lām d\'Allah',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Nom d\'Allah est précédé par la Kasrah du Mīm (« Bismi-Llāhi ») : la Lām est amincie avec douceur.',
+            transliteration: 'Bismi-Llāh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Rendre la Lām lourde dans des mots ordinaires comme « Al-Hamd » (ٱلۡحَمۡدُ) ou « Salāt » (ٱلصَّلَوٰةَ).',
+            correctionFr: 'La Lām n\'est JAMAIS lourde dans les mots ordinaires en lecture Hafs : seule celle du Nom Divin peut l\'être.'
+          },
+          {
+            trapFr: 'Amincir le Nom d\'Allah quand il est précédé d\'une voyelle longue tombée par rencontre de soukoûns (ex: « Qālu-Llāhumma »).',
+            correctionFr: 'On regarde la voyelle prononcée juste avant la Lām : ici la Dammah du Lām dans « Qālu », donc la Lām d\'Allah est lourde !'
+          }
+        ]
+      },
+      {
+        id: 'hybrid-raa-rules',
+        nameFr: '3. Les Lettres Hybrides II : La Râ\' (ر) & Ses 4 Cas d\'Amincissement',
+        nameAr: 'أَحْكَامُ الرَّاءِ : التَّفْخِيمُ الأَصْلِيُّ وَحَالَاتُ التَّرْقِيقِ الأَرْبَعُ',
+        mnemonic: 'Râ\' = Lourde par défaut ! 4 Cas de finesse : Kasrah directe, Soukoûn après Kasrah originelle, Arrêt après Soukoûn après Kasrah, Arrêt après Yā\'',
+        letters: ['ر'],
+        definitionFr: 'La lettre Râ\' (ر) est fondamentale en Tajwīd : sa nature première est d\'être EMPHATIQUE (Tafkhīm). Elle ne s\'amincit (Tarqīq) que sous l\'influence directe de la Kasrah ou du Yā\' à travers 4 cas codifiés.',
+        mechanismFr: '1. Râ\' avec Kasrah directe (رِزۡقٗا). 2. Râ\' soukounée précédée d\'une Kasrah originelle dans le même mot sans lettre lourde après elle (فِرۡعَوۡنَ). 3. Râ\' à l\'arrêt précédée d\'une consonne soukounée elle-même précédée d\'une Kasrah (حِجۡرٍ). 4. Râ\' à l\'arrêt précédée d\'un Yā\' soukouné (خَبِيرٌ, خَيۡرٌ). Partout ailleurs, elle est LOURDE.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c12-8',
+            arabicText: 'وَإِذۡ نَجَّيۡنَٰكُم مِّنۡ ءَالِ فِرۡعَوۡنَ يَسُومُونَكُمۡ سُوٓءَ ٱلۡعَذَابِ',
+            surahAyahRef: '2:49',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'فِرۡعَوۡنَ',
+            highlightLetter: 'Râ\' soukounée après Fā\' Kasrah',
+            ruleApplied: 'Tarqīq Cas 2 (Kasrah originelle)',
+            ruleTag: 'izhar',
+            explanationFr: 'La Râ\' porte un Soukoûn, est précédée d\'une Kasrah originelle dans le mot, et la lettre suivante (\'Ayn) est légère : Tarqīq absolu (« Fir\'awn »).',
+            transliteration: 'Fir\'awn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002049.mp3'
+          },
+          {
+            id: 'ex-c12-9',
+            arabicText: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
+            surahAyahRef: '11:1',
+            surahNameFr: 'Hūd',
+            highlightSegment: 'خَبِيرٍ',
+            highlightLetter: 'Râ\' à l\'arrêt après Yā\'',
+            ruleApplied: 'Tarqīq Cas 4 (Waqf après Yā\')',
+            ruleTag: 'izhar',
+            explanationFr: 'À l\'arrêt sur « Khabīr », la Râ\' prend un soukoûn temporaire après un Yā\' : elle doit être prononcée très fine et souple (« Khabeer »).',
+            transliteration: 'Khabīr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011001.mp3'
+          },
+          {
+            id: 'ex-c12-10',
+            arabicText: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ فَلَمَسُوهُ بِأَيۡدِيهِمۡ',
+            surahAyahRef: '6:7',
+            surahNameFr: 'Al-An\'ām',
+            highlightSegment: 'قِرۡطَاسٖ',
+            highlightLetter: 'Râ\' suivie d\'un Tā\' lourd',
+            ruleApplied: 'Exception : Tafkhīm malgré la Kasrah !',
+            ruleTag: 'heavy',
+            explanationFr: 'Bien que précédée d\'une Kasrah, la Râ\' est immédiatement suivie dans le même mot d\'une lettre lourde avec Fathah (Tā\' ط). La force du Tā\' impose le Tafkhīm de la Râ\' !',
+            transliteration: 'Qirṭās',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/006007.mp3'
+          },
+          {
+            id: 'ex-c12-11',
+            arabicText: 'هَلۡ فِى ذَٰلِكَ قَسَمٞ لِّذِى حِجۡرٍ',
+            surahAyahRef: '89:5',
+            surahNameFr: 'Al-Fajr',
+            highlightSegment: 'حِجۡرٍ',
+            highlightLetter: 'Râ\' à l\'arrêt : Kasrah + Jīm soukoûn + Râ\'',
+            ruleApplied: 'Tarqīq Cas 3 (Waqf après soukoûn)',
+            ruleTag: 'izhar',
+            explanationFr: 'À l\'arrêt sur « Hijr », la Râ\' devient soukounée, précédée d\'un Jīm soukouné, lui-même précédé d\'un Hā\' avec Kasrah : la Kasrah traverse le soukoûn et amincit la Râ\'.',
+            transliteration: 'Hijr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/089005.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Faire le Tafkhīm sur la Râ\' à l\'arrêt sur des mots se terminant par « -īr » ou « -ayr » (ex: « Bashīr », « Khayr »).',
+            correctionFr: 'Le Yā\' attire irrémédiablement la langue vers l\'avant et le bas : la Râ\' à l\'arrêt après tout Yā\' est toujours fine.'
+          },
+          {
+            trapFr: 'Amincir la Râ\' dans « Irji\'ī » (ٱرۡجِعِيٓ) en croyant que la Kasrah sous le Hamzat Wasl est d\'origine.',
+            correctionFr: 'La voyelle de Hamzat Wasl est accidentelle et temporaire : la Râ\' reste obligatoirement lourde (Tafkhīm).'
+          }
+        ]
+      },
+      {
+        id: 'takhlees-al-huroof',
+        nameFr: '4. Takhlees Al-Hurūf : L\'Art Suprême de la Décontamination',
+        nameAr: 'تَخْلِيصُ الحُرُوفِ : فَنُّ عَدَمِ سِرَايَةِ التَّفْخِيمِ لِلْمُرَقَّقِ',
+        mnemonic: 'Chaque lettre est une île indépendante : ne laissez jamais le lourd déborder sur le fin !',
+        letters: [],
+        definitionFr: '« Takhlees Al-Hurūf » désigne l\'art d\'extraire et de purifier la prononciation de chaque consonne lorsqu\'une lettre fine (Tarqīq) est coincée à côté ou entre deux lettres lourdes (Tafkhīm). C\'est la signature des maîtres de récitation.',
+        mechanismFr: 'L\'appareil phonatoire doit modifier instantanément la position de l\'arrière de la langue entre deux consonnes consécutives sans altérer la continuité du souffle ni saccader la récitation.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c12-12',
+            arabicText: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
+            surahAyahRef: '96:2',
+            surahNameFr: 'Al-\'Alaq',
+            highlightSegment: 'خَلَقَ',
+            highlightLetter: 'Khā (Lourd) -> Lām (Fin !) -> Qāf (Lourd)',
+            ruleApplied: 'Chirurgie de Takhlees',
+            ruleTag: 'heavy',
+            explanationFr: 'Le Khā (خ) est lourd, puis la langue doit redescendre immédiatement pour un Lām (ل) limpide et fin, avant de remonter vivement pour le Qāf (ق) lourd. Ne dites jamais « Kha-lâ-qa » !',
+            transliteration: 'Khalaqa',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/096002.mp3'
+          },
+          {
+            id: 'ex-c12-13',
+            arabicText: 'وَٱلۡمُطَلَّقَٰتُ يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ ثَلَٰثَةَ قُرُوٓءٖ',
+            surahAyahRef: '2:228',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'ٱلۡمُطَلَّقَٰتُ',
+            highlightLetter: 'Mīm (Fin) -> Tā (Lourd) -> Lām (Fin) -> Qāf (Lourd) -> Tā (Fin)',
+            ruleApplied: 'Alternance complexe de résonance',
+            ruleTag: 'heavy',
+            explanationFr: 'Ce mot contient une alternance virtuose : Fin (Mīm) -> Lourd (Tā\') -> Fin (Lām doublé) -> Lourd (Qāf) -> Fin (Tā\'). Chaque son garde sa pureté.',
+            transliteration: 'Al-mutallaqāt',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002228.mp3'
+          },
+          {
+            id: 'ex-c12-14',
+            arabicText: 'وَمَا لَكَ مِنَ ٱللَّهِ مِن وَلِيّٖ وَلَا نَصِيرٍ',
+            surahAyahRef: '2:120',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'نَصِيرٍ',
+            highlightLetter: 'Nūn (Fin !) -> Sād (Lourd) -> Yā/Rā (Fin)',
+            ruleApplied: 'Protection du Nūn fin',
+            ruleTag: 'heavy',
+            explanationFr: 'L\'erreur fréquente est d\'anticiper l\'emphase du Sād et de dire « Nâ-ṣīr ». Le Nūn initial doit rester parfaitement fin : « Na-ṣīr ».',
+            transliteration: 'Nasīr',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002120.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Laisser l\'emphase d\'une consonne contaminer la voyelle ou la consonne légère voisine (ex: dire « Twa-baba\'a » au lieu de « Taba\'a »).',
+            correctionFr: 'Entraînez-vous à prononcer le mot au ralenti, syllabe par syllabe, en vérifiant la position de la langue sur chaque lettre.'
+          },
+          {
+            trapFr: 'Faire des pauses hachées artificielles entre les lettres pour éviter la contamination.',
+            correctionFr: 'La transition doit être fluide et liée sans interruption de son ni saccade.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c12-1',
+        title: 'Chirurgie Phonétique : Takhlees dans « Khalaqa » (96:2)',
+        verseArabic: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
+        surahAyahRef: '96:2',
+        targetSegment: 'خَلَقَ',
+        promptFr: 'Dans le mot « خَلَقَ », comment articulerez-vous précisément le Lām central entre les deux géants d\'emphase que sont le Khā et le Qāf ?',
+        hintFr: 'Visualisez la descente de la racine de la langue dès la fin du Khā.',
+        solutionFr: 'Takhlees Al-Hurūf : Khā lourd (Isti\'lā\') -> Abaissement instantané pour Lām fin (Istifāl) -> Réélévation vive pour Qāf lourd',
+        breakdownSteps: [
+          'Étape 1 : Articulez le « Khā » (خَ) avec l\'arrière de la langue relevé, lèvres neutres : écho caverneux sans faire la moue.',
+          'Étape 2 : Relâchez instantanément l\'arrière de la langue vers le bas lors de l\'attaque du « Lām » (لَ) : le son doit être mince et souriant.',
+          'Étape 3 : Remontez immédiatement et fermement l\'arrière de la langue pour frapper le « Qāf » (قَ) lourd.',
+          'Piège classique éliminé : Ne prononcez jamais « Kha-LÂ-qa » avec un Lām épais !'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/096002.mp3'
+      },
+      {
+        id: 'exo-c12-2',
+        title: 'Le Duel de la Râ\' : « Khabīr » (11:1) vs « Qirṭās » (6:7)',
+        verseArabic: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
+        surahAyahRef: '11:1',
+        targetSegment: 'خَبِيرٍ',
+        promptFr: 'Pourquoi la Râ\' de « خَبِيرٍ » s\'amincit-elle à l\'arrêt, tandis que celle de « قِرۡطَاسٖ » reste obligatoirement lourde malgré sa Kasrah précédente ?',
+        hintFr: 'Observez la lettre qui suit directement la Râ\' dans chaque mot.',
+        solutionFr: '« Khabīr » = Tarqīq (arrêt après Yā\') | « Qirṭās » = Tafkhīm (suivi d\'une lettre lourde avec Fathah dans le même mot)',
+        breakdownSteps: [
+          'Pour « خَبِيرٍ » à l\'arrêt : la Râ\' prend un soukoûn consécutif à l\'arrêt, précédé par un Yā\' de prolongation. La règle n°4 impose un Tarqīq absolu et soyeux.',
+          'Pour « قِرۡطَاسٖ » : bien que précédée d\'un Qāf avec Kasrah, la Râ\' est suivie dans le MÊME mot par le Tā\' (ط), lettre d\'Isti\'lā\' et d\'Itbāq avec Fathah.',
+          'La force d\'attraction du Tā\' neutralise l\'effet amincissant de la Kasrah antérieure.',
+          'Conclusion : La Râ\' de « Qirṭās » est lue avec une emphase pleine (Tafkhīm).'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/011001.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c12-1',
+        type: 'mcq',
+        promptFr: 'Quelle formule mnémotechnique rassemble les 7 lettres qui sont TOUJOURS prononcées avec emphase (Tafkhīm) ?',
+        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+        surahAyahRef: '1:7',
+        options: [
+          'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz)',
+          'قُطۡبُ جَدٍّ (Qutbu Jaddin)',
+          'يَرۡمَلُونَ (Yarmalūn)',
+          'أَخِي هَاكَ عِلۡمًا (Akhī Hāka \'Ilman)'
+        ],
+        correctAnswer: 'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz)',
+        explanationFr: 'Les 7 lettres d\'Isti\'lā\' sont : Khā (خ), Sād (ص), Dād (ض), Ghayn (غ), Tā (ط), Qāf (ق), Zā (ظ). Elles ne sont jamais amincies !',
+        ruleId: 'heavy-letters-degrees'
+      },
+      {
+        id: 'q-c12-2',
+        type: 'mcq',
+        promptFr: 'Pourquoi l\'Alif de prolongation est-il lourd dans « خَالِدِينَ » mais fin dans « إِيَّاكَ » ?',
+        verseArabic: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُوْلَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
+        surahAyahRef: '2:82',
+        options: [
+          'Car l\'Alif est un caméléon sans timbre propre : il copie l\'emphase ou la finesse de la lettre qui le précède directement',
+          'Car l\'Alif dépend de la lettre qui le suit',
+          'Car l\'Alif est toujours lourd au début des mots et fin à la fin',
+          'Car cela dépend du choix arbitraire du récitateur'
+        ],
+        correctAnswer: 'Car l\'Alif est un caméléon sans timbre propre : il copie l\'emphase ou la finesse de la lettre qui le précède directement',
+        explanationFr: 'L\'Alif est la seule lettre qui suit aveuglément son prédécesseur : précédé du Khā lourd -> Alif lourd ; précédé du Yā\' fin -> Alif fin.',
+        ruleId: 'hybrid-alif-lam'
+      },
+      {
+        id: 'q-c12-3',
+        type: 'mcq',
+        promptFr: 'Dans « Qirṭās » (قِرۡطَاسٖ), pourquoi la Râ\' reste-t-elle EMPHATIQUE bien qu\'elle soit précédée d\'une Kasrah ?',
+        verseArabic: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ',
+        surahAyahRef: '6:7',
+        options: [
+          'Car elle est immédiatement suivie dans le même mot par une lettre lourde avec Fathah (le Tā\' ط)',
+          'Car le mot contient 5 lettres',
+          'Car c\'est un nom propre étranger',
+          'Car le Qāf initial a une Shaddah'
+        ],
+        correctAnswer: 'Car elle est immédiatement suivie dans le même mot par une lettre lourde avec Fathah (le Tā\' ط)',
+        explanationFr: 'Pour que la Râ\' soukounée s\'amincisse après une Kasrah, la lettre suivante ne doit pas être une consonne lourde dans le même mot. Ici le Tā\' impose l\'emphase.',
+        ruleId: 'hybrid-raa-rules'
+      },
+      {
+        id: 'q-c12-4',
+        type: 'error_detect',
+        promptFr: 'Un étudiant prononce le Khā dans « خَلَقَ » en projetant et en arrondissant les lèvres comme pour siffler. Quelle est l\'erreur ?',
+        verseArabic: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
+        targetWord: 'خَلَقَ',
+        surahAyahRef: '96:2',
+        options: [
+          'Erreur d\'arrondissement des lèvres : l\'emphase (Tafkhīm) provient uniquement de l\'élévation du fond de la langue (Isti\'lā\') dans la bouche. Les lèvres ne doivent jamais s\'arrondir sans Dammah !',
+          'Aucune erreur, arrondir les lèvres est la seule façon de faire du Tafkhīm.',
+          'Il fallait faire une prolongation de 4 temps.',
+          'Le Khā doit être prononcé comme un Hā.'
+        ],
+        correctAnswer: 'Erreur d\'arrondissement des lèvres : l\'emphase (Tafkhīm) provient uniquement de l\'élévation du fond de la langue (Isti\'lā\') dans la bouche. Les lèvres ne doivent jamais s\'arrondir sans Dammah !',
+        explanationFr: 'C\'est l\'un des pièges les plus fréquents dénoncés par les maîtres de Tajwīd : projeter les lèvres déforme le timbre de la Fathah en un son « O » hybride défectueux.',
+        ruleId: 'heavy-letters-degrees'
+      },
+      {
+        id: 'q-c12-5',
+        type: 'click_word',
+        promptFr: 'Repérage auditif : Cliquez sur le mot où la lettre Râ\' (ر) doit être prononcée FINE (Tarqīq) lors d\'un arrêt de pause (Waqf).',
+        verseArabic: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
+        clickableSegments: ['كِتَٰبٌ', 'أُحۡكِمَتۡ', 'ءَايَٰتُهُۥ', 'فُصِّلَتۡ', 'حَكِيمٍ', 'خَبِيرٍ'],
+        correctAnswer: 'خَبِيرٍ',
+        explanationFr: 'À l\'arrêt sur « خَبِيرٍ », la Râ\' prend un soukoûn précédé par un Yā\' sākinah : elle s\'amincit obligatoirement (Tarqīq) avec élégance et finesse.',
+        ruleId: 'hybrid-raa-rules'
+      }
+    ]
   }
 ];
+

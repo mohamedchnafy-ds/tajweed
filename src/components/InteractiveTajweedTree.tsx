@@ -570,6 +570,52 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+
+    if (chapter.number === 12) {
+      return {
+        id: 'root-c12',
+        labelFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)',
+        labelAr: 'التَّفْخِيمُ وَالتَّرْقِيقُ',
+        descriptionFr: 'La science du calibre des lettres : résonance caverneuse des lourdes, clarté cristalline des légères, et les subtilités des 3 lettres hybrides.',
+        children: [
+          {
+            id: 'node-c12-heavy-letters',
+            labelFr: '1. Les 7 Lettres d\'Emphase Permanente (خُصَّ ضَغۡطٍ قِظۡ)',
+            labelAr: 'حُرُوفُ الِاسْتِعْلَاءِ السَّبْعَةُ (دَائِمًا مُفَخَّمَة)',
+            tagColor: 'var(--bad)',
+            letters: ['خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'],
+            descriptionFr: 'Toujours emphatiques en toute circonstance. 5 degrés selon la voyelle : 1. Fathah + Alif > 2. Fathah > 3. Dammah > 4. Soukoûn > 5. Kasrah. Les 4 lettres d\'Itbāq (ص, ض, ط, ظ) sont les plus puissantes.',
+            examples: ['ٱلصَّٰبِرِينَ (Degré 1)', 'خَلَقَ (Degré 2)', 'يَقُولُ (Degré 3)', 'يَخۡشَىٰ (Degré 4)', 'صِرَٰطَ (Degré 5)', 'طِينٖ (Itbāq)'],
+          },
+          {
+            id: 'node-c12-hybrid-alif-lam',
+            labelFr: '2. Les Lettres Hybrides I : L\'Alif Caméléon & Le Nom d\'Allah',
+            labelAr: 'الأَلِفُ التَّابِعَةُ وَلَامُ لَفْظِ الجَلَالَةِ',
+            tagColor: 'var(--gold)',
+            letters: ['ا', 'ل'],
+            descriptionFr: 'L\'Alif est le miroir de son prédécesseur (lourd après خُصَّ ضَغۡطٍ قِظۡ, mince après les autres). La Lām est toujours mince sauf dans « Allāh / Allāhumma » précédé d\'une Fathah ou d\'une Dammah.',
+            examples: ['خَالِدِينَ (Alif lourd)', 'إِيَّاكَ (Alif léger)', 'شَهِدَ ٱللَّهُ (Lām lourd)', 'بِسۡمِ ٱللَّهِ (Lām léger)'],
+          },
+          {
+            id: 'node-c12-hybrid-raa',
+            labelFr: '3. Les Lettres Hybrides II : La Râ\' (ر) & Ses 4 Cas de Tarqīq',
+            labelAr: 'أَحْكَامُ الرَّاءِ (4 حَالَاتٍ لِلتَّرْقِيقِ)',
+            tagColor: 'var(--izhar)',
+            letters: ['ر'],
+            descriptionFr: 'Lourde par défaut ! Amincie (Tarqīq) uniquement dans 4 cas : 1. Avec Kasrah (رِزۡقٗا). 2. Soukoûn après Kasrah originelle sans lettre lourde (فِرۡعَوۡنَ). 3. Waqf après Soukoûn précédé de Kasrah (حِجۡرٍ). 4. Waqf après Yā\' (خَبِيرٌ, خَيۡرٌ).',
+            examples: ['فِرۡعَوۡنَ (Tarqīq)', 'خَبِيرٌ (Waqf Tarqīq)', 'قِرۡطَاسٖ (Exception Tafkhīm !)', 'رَبَّنَا (Tafkhīm standard)'],
+          },
+          {
+            id: 'node-c12-takhlees',
+            labelFr: '4. Takhlees Al-Hurūf (Décontamination des Lettres)',
+            labelAr: 'تَخْلِيصُ الحُرُوفِ (عَدَمُ سِرَايَةِ التَّفْخِيمِ)',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'L\'art d\'articuler une lettre fine coincée à côté ou entre deux lettres lourdes sans la contaminer. Éviter d\'épaissir le Lām dans « Khalaqa » ou le Nūn dans « Nasīr ».',
+            examples: ['خَلَقَ (Khā lourd -> Lām fin -> Qāf lourd)', 'وَٱلۡمُطَلَّقَٰتُ', 'نَصِيرٌ (Nūn fin pur)', 'يَهۡبِطُ'],
+          }
+        ]
+      };
+    }
   };
 
   const tree = getTreeData();
@@ -585,6 +631,10 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
     'node-c11-madd-exceptions': true,
     'node-c11-kamil': true,
     'node-c11-naqis': true,
+    'node-c12-heavy-letters': true,
+    'node-c12-hybrid-alif-lam': true,
+    'node-c12-hybrid-raa': true,
+    'node-c12-takhlees': true,
   });
 
   const [selectedNode, setSelectedNode] = useState<TreeNode>(tree);
