@@ -1229,6 +1229,419 @@ const StopAndRepeatVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 };
 
 /* =========================================================================
+   CHAPITRE 4 : Mini-composants interactifs et didactiques (Madd I)
+   ========================================================================= */
+
+/** Écran 1 : Le décortiqueur de la formule sacrée « Nūhīhā » (نُوحِيهَا) */
+const NuhihaBreakdownVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activePart, setActivePart] = useState<'all' | 'nu' | 'hi' | 'ha'>('all');
+
+  const partDetails = {
+    all: {
+      label: 'La Clé Universelle des 3 Madds (Hūd 11:49)',
+      badge: 'Formule Complète',
+      badgeClass: 'chip-idgham',
+      arabic: 'نُوحِيهَآ',
+      phonetic: 'Nū - hī - hā',
+      desc: 'Ce mot coranique unique réunit les 3 lettres de Madd avec leurs 3 voyelles homogènes obligatoires dans l\'ordre.',
+    },
+    nu: {
+      label: '1ère lettre : Le Wāw Sākin précédé de Dammah',
+      badge: 'ـُ + و (Dammah + Wāw)',
+      badgeClass: 'chip-gold',
+      arabic: 'نُو',
+      phonetic: 'Nūn + Dammah + Wāw ➔ [nū] (2 temps)',
+      desc: 'Le Wāw ne porte aucun signe. La Dammah sur le Nūn prépare les lèvres arrondies pour prolonger le son [ū] sur 2 temps.',
+    },
+    hi: {
+      label: '2ème lettre : Le Yā\' Sākin précédé de Kasrah',
+      badge: 'ـِ + ي (Kasrah + Yā\')',
+      badgeClass: 'chip-izhar',
+      arabic: 'حِي',
+      phonetic: 'Hā\' + Kasrah + Yā\' ➔ [hī] (2 temps)',
+      desc: 'Le Yā\' est sans voyelle. La Kasrah sous le Hā\' abaisse la mâchoire pour prolonger le son [ī] sur 2 temps.',
+    },
+    ha: {
+      label: '3ème lettre : Le Alif Sākin précédé de Fathah',
+      badge: 'ـَ + ا (Fathah + Alif)',
+      badgeClass: 'chip-iqlab',
+      arabic: 'هَا',
+      phonetic: 'Hā\' + Fathah + Alif ➔ [hā] (2 temps)',
+      desc: 'L\'Alif est TOUJOURS précédé d\'une Fathah. La bouche s\'ouvre verticalement pour un son [ā] pur de 2 temps.',
+    },
+  };
+
+  const curr = partDetails[activePart];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+        <button
+          onClick={() => setActivePart('all')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activePart === 'all' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          نُوحِيهَآ (Tout)
+        </button>
+        <button
+          onClick={() => setActivePart('nu')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activePart === 'nu' ? 'bg-gold text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          نُو (Wāw)
+        </button>
+        <button
+          onClick={() => setActivePart('hi')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activePart === 'hi' ? 'bg-izhar text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          حِي (Yā\')
+        </button>
+        <button
+          onClick={() => setActivePart('ha')}
+          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            activePart === 'ha' ? 'bg-iqlab text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          هَا (Alif)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">{curr.label}</div>
+
+        <div className="font-ar text-5xl sm:text-6xl text-ink my-2 leading-[1.8] transition-all" dir="rtl">
+          {activePart === 'all' ? (
+            <span>
+              <span className="text-gold font-bold">نُو</span>
+              <span className="text-izhar font-bold">حِي</span>
+              <span className="text-iqlab font-bold">هَا</span>
+            </span>
+          ) : (
+            <span className="text-lapis font-bold animate-pop">{curr.arabic}</span>
+          )}
+        </div>
+
+        <div className="flex items-center justify-center gap-2">
+          <span className={`chip ${curr.badgeClass}`}>{curr.badge}</span>
+          <span className="text-xs font-mono text-muted">{curr.phonetic}</span>
+        </div>
+
+        <div className="p-4 rounded-xl bg-soft border border-line text-xs sm:text-sm text-left">
+          <p className="text-muted leading-relaxed">{curr.desc}</p>
+        </div>
+
+        {/* Miniature Rasm Uthmani symbols */}
+        <div className="pt-3 border-t border-line/60">
+          <span className="text-xs uppercase tracking-wider font-semibold text-muted block mb-2">
+            Équivalents miniatures en Rasm 'Uthmānī
+          </span>
+          <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="p-2 rounded-xl bg-card border border-line">
+              <span className="font-ar text-2xl text-ink block" dir="rtl">مَٰلِكِ</span>
+              <span className="text-muted font-medium">Alif Khanjariyyah (ٰ)</span>
+            </div>
+            <div className="p-2 rounded-xl bg-card border border-line">
+              <span className="font-ar text-2xl text-ink block" dir="rtl">يَلۡوُۥنَ</span>
+              <span className="text-muted font-medium">Petit Wāw (ۥ)</span>
+            </div>
+            <div className="p-2 rounded-xl bg-card border border-line">
+              <span className="font-ar text-2xl text-ink block" dir="rtl">إِۦلَٰفِهِمۡ</span>
+              <span className="text-muted font-medium">Petit Yā' (ۦ)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 2 : Le Chronomètre des 2 Harakāt & Le Péril du Lahn Jalī */
+const MaddTabiiDurationVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeTab, setActiveTab] = useState<'chrono' | 'lahn'>('lahn');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button
+            onClick={() => setActiveTab('lahn')}
+            aria-pressed={activeTab === 'lahn'}
+          >
+            Le Péril du Lahn Jalī (أَخَذۡنَا)
+          </button>
+          <button
+            onClick={() => setActiveTab('chrono')}
+            aria-pressed={activeTab === 'chrono'}
+          >
+            Mesure des 2 Harakāt (بَا)
+          </button>
+        </div>
+      </div>
+
+      {activeTab === 'lahn' ? (
+        <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+          <div className="label text-center">At-Tawbah 9:50 — Comment une voyelle tronquée inverse le sens</div>
+
+          <div className="grid sm:grid-cols-2 gap-3 text-center">
+            {/* Correct */}
+            <div className="p-4 rounded-xl bg-good-bg border border-good/40 space-y-2">
+              <span className="chip chip-idgham text-xs">2 Temps : Conforme (Sunnah)</span>
+              <div className="font-ar text-3xl sm:text-4xl text-good font-bold my-1" dir="rtl">
+                أَخَذۡنَآ أَمۡرَنَا
+              </div>
+              <p className="text-xs text-ink font-semibold">« Nous avons pris notre affaire »</p>
+              <p className="text-[11px] text-muted">
+                Pronom pluriel <strong className="text-good">نَا (Nā)</strong> : 2 temps de Madd obligatoires.
+              </p>
+            </div>
+
+            {/* Error */}
+            <div className="p-4 rounded-xl bg-bad-bg border border-bad/40 space-y-2">
+              <span className="chip chip-qalqalah text-xs">1 Temps : Lahn Jalī (Harām)</span>
+              <div className="font-ar text-3xl sm:text-4xl text-bad font-bold my-1 line-through" dir="rtl">
+                أَخَذۡنَ أَمۡرَنَا
+              </div>
+              <p className="text-xs text-bad font-semibold">« Les femmes ont pris notre affaire »</p>
+              <p className="text-[11px] text-muted">
+                Tronquer l'Alif crée le <strong className="text-bad">Nūn an-Niswah</strong> : grave contresens !
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-soft border border-line text-xs sm:text-sm text-left">
+            <span className="font-semibold text-ink block mb-1">Règle d'or de l'Imām :</span>
+            <p className="text-muted leading-relaxed">
+              Le Madd Naturel ne doit jamais descendre en dessous de 2 temps sous prétexte de vitesse, ni être sur-étiré à 4 ou 6 temps sans cause de Hamzah ou de Soukoûn.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+          <div className="label">Étalonnage du temps de maintien sonore</div>
+
+          <div className="font-ar text-6xl text-ink my-2 leading-[1.8]" dir="rtl">
+            بَا <span className="text-muted text-3xl font-sans">=</span> بَ + بَ
+          </div>
+
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex flex-col items-center gap-1">
+              <div className="w-12 h-12 rounded-full bg-gold text-card font-display text-xl flex items-center justify-center font-bold shadow-xs animate-bounce" style={{ animationDuration: '1s' }}>
+                1
+              </div>
+              <span className="text-xs font-mono text-muted">1ère Harakah (0.5s)</span>
+            </div>
+            <span className="text-muted text-2xl font-bold">+</span>
+            <div className="flex flex-col items-center gap-1">
+              <div className="w-12 h-12 rounded-full bg-gold text-card font-display text-xl flex items-center justify-center font-bold shadow-xs animate-bounce" style={{ animationDuration: '1s', animationDelay: '0.2s' }}>
+                2
+              </div>
+              <span className="text-xs font-mono text-muted">2ème Harakah (0.5s)</span>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted max-w-sm mx-auto leading-relaxed mt-2">
+            1 Harakah = temps de prononciation d'une lettre courte (ex: « Ba »).<br />
+            2 Harakāt = temps de prononciation de « Bā » (environ 1 seconde à tempo modéré).
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 3 : Comparateur Madd vs Līn (حَرْفَا اللِّينِ) */
+const MaddVsLeenVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeCategory, setActiveCategory] = useState<'madd' | 'leen'>('leen');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center">
+        <div className="segmented">
+          <button
+            onClick={() => setActiveCategory('leen')}
+            aria-pressed={activeCategory === 'leen'}
+          >
+            Lettres de Līn (حَرْفَا اللِّينِ)
+          </button>
+          <button
+            onClick={() => setActiveCategory('madd')}
+            aria-pressed={activeCategory === 'madd'}
+          >
+            Lettres de Madd (حُرُوفُ المَدِّ)
+          </button>
+        </div>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line space-y-4 text-center">
+        {activeCategory === 'leen' ? (
+          <div className="space-y-4 animate-fade">
+            <div className="label">Wāw (و) & Yā' (ي) Sākinah précédés d'une FATHAH (ـَ)</div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="p-4 rounded-xl bg-soft border border-line">
+                <span className="font-ar text-4xl text-ink block mb-1" dir="rtl">قُرَيۡشٍ</span>
+                <span className="text-xs font-semibold text-iqlab">Yā' précédé de Fathah</span>
+                <span className="text-[11px] text-muted block mt-1">« Quraysh » : glissement doux sans Madd en continu</span>
+              </div>
+              <div className="p-4 rounded-xl bg-soft border border-line">
+                <span className="font-ar text-4xl text-ink block mb-1" dir="rtl">خَوۡفٖ</span>
+                <span className="text-xs font-semibold text-iqlab">Wāw précédé de Fathah</span>
+                <span className="text-[11px] text-muted block mt-1">« Khawf » : prononciation souple sans allongement</span>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-iqlab-bg border border-iqlab/30 text-xs text-left">
+              <span className="font-semibold text-iqlab block mb-1">Règle absolue du Līn :</span>
+              <p className="text-muted leading-relaxed">
+                En lecture continue (Wasl), les lettres de Līn ne reçoivent <strong>AUCUN MADD</strong> ! L'Alif ne peut JAMAIS être une lettre de Līn car il est toujours précédé de sa propre voyelle (Fathah).
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4 animate-fade">
+            <div className="label">Les 3 Voyelles Longues Homogènes (نُوحِيهَا)</div>
+
+            <div className="grid grid-cols-3 gap-2">
+              <div className="p-3 rounded-xl bg-soft border border-line">
+                <span className="font-ar text-3xl text-ink block" dir="rtl">قَالُواْ</span>
+                <span className="text-[11px] text-gold font-medium">Alif + Wāw (2 temps)</span>
+              </div>
+              <div className="p-3 rounded-xl bg-soft border border-line">
+                <span className="font-ar text-3xl text-ink block" dir="rtl">قِيلَ</span>
+                <span className="text-[11px] text-izhar font-medium">Yā' (2 temps)</span>
+              </div>
+              <div className="p-3 rounded-xl bg-soft border border-line">
+                <span className="font-ar text-3xl text-ink block" dir="rtl">يَقُولُ</span>
+                <span className="text-[11px] text-idgham font-medium">Wāw (2 temps)</span>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-soft border border-line text-xs text-left">
+              <span className="font-semibold text-ink block mb-1">Règle du Madd Naturel :</span>
+              <p className="text-muted leading-relaxed">
+                Chaque lettre de Madd est précédée de sa voyelle sœur (ـُ avant و, ـِ avant ي, ـَ avant ا) et exige exactement 2 temps réguliers.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/** Écran 4 : Les mots caméléons هُوَ et هِيَ à l'arrêt */
+const HuwaHiyaWaqfVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedWord, setSelectedWord] = useState<'huwa' | 'hiya' | 'maiya'>('huwa');
+  const [isWaqf, setIsWaqf] = useState(false);
+
+  const wordData = {
+    huwa: {
+      title: 'Le mot « Huwa » (هُوَ) — Sūrah At-Tawbah 9:31',
+      waslText: 'لَّآ إِلَٰهَ إِلَّا هُوَۚ سُبۡحَٰنَهُۥ',
+      waqfText: 'لَّآ إِلَٰهَ إِلَّا هُو',
+      waslPronunciation: 'Illā Huwa (Wāw consonne avec Fathah ➔ Pas de Madd)',
+      waqfPronunciation: 'Illā Hū (Le Wāw devient Soukoûn précédé de Dammah ➔ Madd 2 temps !)',
+      notice: 'À l\'arrêt d\'urgence, la Fathah devient Soukoûn : le Wāw devient alors une lettre de Madd à part entière !',
+    },
+    hiya: {
+      title: 'Le mot « Hiya » (هِيَ) — Sūrah Al-Qāri\'ah 101:10',
+      waslText: 'وَمَآ أَدۡرَىٰكَ مَا هِيَهۡ',
+      waqfText: 'مَا هِي',
+      waslPronunciation: 'Mā Hiya (Yā\' consonne avec Fathah)',
+      waqfPronunciation: 'Mā Hī (Le Yā\' devient Soukoûn précédé de Kasrah ➔ Madd 2 temps !)',
+      notice: 'Même métamorphose : le Yā\' s\'allonge de 2 temps complets à l\'arrêt.',
+    },
+    maiya: {
+      title: 'Le mot « Ma\'iya » (مَعِيَ) — Sūrah At-Tawbah 9:83',
+      waslText: 'لَّن تَخۡرُجُواْ مَعِىَ أَبَدٗا',
+      waqfText: 'لَّن تَخۡرُجُواْ مَعِي',
+      waslPronunciation: 'Ma\'iya abadā (Yā\' avec Fathah)',
+      waqfPronunciation: 'Ma\'ī (Yā\' avec Soukoûn ➔ Madd de 2 temps)',
+      notice: 'Le pronom possessif retrouve sa pleine prolongation de 2 temps.',
+    },
+  };
+
+  const curr = wordData[selectedWord];
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => setSelectedWord('huwa')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'huwa' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          هُوَ (Huwa ➔ Hū)
+        </button>
+        <button
+          onClick={() => setSelectedWord('hiya')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'hiya' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          هِيَ (Hiya ➔ Hī)
+        </button>
+        <button
+          onClick={() => setSelectedWord('maiya')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            selectedWord === 'maiya' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+          }`}
+        >
+          مَعِيَ (Ma\'iya ➔ Ma\'ī)
+        </button>
+      </div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center space-y-4">
+        <div className="label">{curr.title}</div>
+
+        <div className="font-ar text-4xl sm:text-5xl text-ink my-2 leading-[1.8]" dir="rtl">
+          {isWaqf ? (
+            <span className="text-good font-bold animate-pop">{curr.waqfText}</span>
+          ) : (
+            <span className="text-ink">{curr.waslText}</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          <div className="segmented">
+            <button onClick={() => setIsWaqf(false)} aria-pressed={!isWaqf}>
+              En continu (Wasl)
+            </button>
+            <button onClick={() => setIsWaqf(true)} aria-pressed={isWaqf}>
+              À l'arrêt (Waqf)
+            </button>
+          </div>
+        </div>
+
+        <div className={`p-4 rounded-xl text-xs sm:text-sm text-left ${
+          isWaqf ? 'bg-good-bg border border-good/30' : 'bg-soft border border-line'
+        }`}>
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-semibold text-ink">
+              {isWaqf ? 'Prononciation à l\'arrêt (Waqf) :' : 'Prononciation en liaison (Wasl) :'}
+            </span>
+            <span className={`chip ${isWaqf ? 'chip-idgham' : 'chip-gold'}`}>
+              {isWaqf ? 'Madd Naturel (2 temps)' : 'Consonne vocalisée'}
+            </span>
+          </div>
+          <p className="text-muted leading-relaxed font-mono text-xs">
+            {isWaqf ? curr.waqfPronunciation : curr.waslPronunciation}
+          </p>
+          <p className="text-xs text-muted mt-2 pt-2 border-t border-line/40">
+            {curr.notice}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -1545,6 +1958,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
+  // Screens for Chapter 4 (Madd I - Natural Madd & Leen)
+  const chapter4Screens = [
+    {
+      title: 'La Formule Sacrée « Nūhīhā » (نُوحِيهَا)',
+      badge: 'Les 3 Lettres de Madd',
+      concept: 'Les 3 voyelles longues et leurs voyelles homogènes obligatoires',
+      renderVisual: () => <NuhihaBreakdownVisual animKey={animKey} />,
+      explanation: '« Nūhīhā » dans Sūrah Hūd (11:49) est la formule maîtresse du Coran : elle contient Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي) et Alif précédé de Fathah (هَا). Sans voyelle sur la lettre elle-même !'
+    },
+    {
+      title: 'Le Chronomètre des 2 Harakāt & Le Péril du Lahn Jalī',
+      badge: 'Mesure & Fiqh',
+      concept: 'Pourquoi raccourcir un Madd Naturel est un péché (Harām)',
+      renderVisual: () => <MaddTabiiDurationVisual animKey={animKey} />,
+      explanation: '1 Harakah = durée de « Ba ». 2 Harakāt = durée de « Bā ». Raccourcir « Akhadhnā » (Nous avons pris) en « Akhadhna » (Les femmes ont pris) corrompt le sens théologique : c\'est un Lahn Jalī majeur formellement interdit.'
+    },
+    {
+      title: 'Lettres de Madd vs Lettres de Līn (حَرْفَا اللِّينِ)',
+      badge: 'Distinction Cruciale',
+      concept: 'Wāw et Yā\' portant Soukoûn précédés d\'une FATHAH',
+      renderVisual: () => <MaddVsLeenVisual animKey={animKey} />,
+      explanation: 'Lorsque Wāw ou Yā\' sont précédés d\'une Fathah (comme dans Quraysh ou Khawf), ce sont des lettres de Līn : elles ne reçoivent AUCUN Madd en lecture continue (Wasl) ! L\'Alif ne peut jamais être une lettre de Līn.'
+    },
+    {
+      title: 'Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ à l\'Arrêt',
+      badge: 'Wasl vs Waqf',
+      concept: 'Comment une consonne vocalisée se transmute en Madd de 2 temps à l\'arrêt',
+      renderVisual: () => <HuwaHiyaWaqfVisual animKey={animKey} />,
+      explanation: 'En continu, le mot « Huwa » a un Wāw vocalisé (pas de Madd). Mais si vous vous arrêtez d\'urgence dessus, la Fathah devient Soukoûn : le Wāw Sākin précédé de Dammah devient alors un pur Madd Naturel de 2 temps (« Hū ») !'
+    }
+  ];
+
   const screens =
     chapter.number === 1
       ? chapter1Screens
@@ -1552,6 +1997,8 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       ? chapter2Screens
       : chapter.number === 3
       ? chapter3Screens
+      : chapter.number === 4
+      ? chapter4Screens
       : chapter.number === 8
       ? nunScreens
       : qalqalahScreens;

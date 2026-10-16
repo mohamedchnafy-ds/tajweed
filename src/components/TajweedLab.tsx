@@ -571,6 +571,154 @@ const STOPPING_TEST_BENCH_CASES: StoppingBenchCase[] = [
   },
 ];
 
+interface MaddBenchCase {
+  id: string;
+  title: string;
+  category: 'tabii' | 'leen' | 'cameleon';
+  arabicWord: string;
+  waqfArabicText: string;
+  waslPronunciation: string;
+  waqfPronunciation: string;
+  surahRef: string;
+  ruleBadge: string;
+  colorClass: string;
+  ruleCategory: string;
+  explanation: string;
+  fiqhImpact: string;
+  commonTrap: string;
+}
+
+const MADD_TEST_BENCH_CASES: MaddBenchCase[] = [
+  {
+    id: 'madd-case-1',
+    title: 'Sūrah Hūd 11:49 — La Clé « Nūhīhā » (نُوحِيهَآ)',
+    category: 'tabii',
+    arabicWord: 'نُوحِيهَآ',
+    waqfArabicText: 'نُوحِيهَا (2 temps)',
+    waslPronunciation: 'Nū - hī - hā (3 Madds de 2 temps)',
+    waqfPronunciation: 'Nū - hī - hā (Alif final de 2 temps)',
+    surahRef: 'Hūd 11:49',
+    ruleBadge: 'Les 3 Madds Réunis',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Madd Naturel Fondamental',
+    explanation: 'Le mot maître du Tajwīd : il réunit Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي) et Alif précédé de Fathah (هَا). Sans voyelle sur les consonnes de Madd !',
+    fiqhImpact: 'Modèle de récitation prophétique.',
+    commonTrap: 'Tronquer une des trois voyelles lors d\'un débit rapide.',
+  },
+  {
+    id: 'madd-case-2',
+    title: 'Al-Fātihah 1:4 — Alif Khanjariyyah (مَٰلِكِ)',
+    category: 'tabii',
+    arabicWord: 'مَٰلِكِ',
+    waqfArabicText: 'مَٰلِكْ (2 temps)',
+    waslPronunciation: 'Māliki (2 temps de Madd sur le Mīm)',
+    waqfPronunciation: 'Mālik (2 temps + Soukoûn sur Kāf)',
+    surahRef: 'Al-Fātihah 1:4',
+    ruleBadge: 'Alif Miniature (ٰ)',
+    colorClass: 'chip-gold',
+    ruleCategory: 'Rasm \'Uthmānī',
+    explanation: 'Le petit trait vertical (ٰ) est un Alif à part entière en Rasm \'Uthmānī qui requiert exactement 2 temps.',
+    fiqhImpact: 'Conforme à la lecture Hafs \'an \'Āsim.',
+    commonTrap: 'Lire "Maliki" sans prolonger le Mīm.',
+  },
+  {
+    id: 'madd-case-3',
+    title: 'At-Tawbah 9:50 — Péril du Lahn Jalī (أَخَذۡنَآ)',
+    category: 'tabii',
+    arabicWord: 'أَخَذۡنَآ أَمۡرَنَا',
+    waqfArabicText: 'أَخَذۡنَا (2 temps)',
+    waslPronunciation: 'Akhadhnā amranā (Madd 2 temps)',
+    waqfPronunciation: 'Akhadhnā (2 temps à l\'arrêt)',
+    surahRef: 'At-Tawbah 9:50',
+    ruleBadge: 'Péril de Lahn Jalī',
+    colorClass: 'chip-bad',
+    ruleCategory: 'Préservation du Sens',
+    explanation: 'Raccourcir en « Akhadhna » supprime le pronom pluriel "Nous" et crée le féminin "Elles ont pris" : Harām !',
+    fiqhImpact: 'Lahn Jalī majeur : altère le sens du texte sacré.',
+    commonTrap: 'Avaler la fin du mot lors d\'une récitation rapide.',
+  },
+  {
+    id: 'madd-case-4',
+    title: 'Al-Fātihah 1:7 — Calibrage Précis (صِرَٰطَ)',
+    category: 'tabii',
+    arabicWord: 'صِرَٰطَ',
+    waqfArabicText: 'صِرَاطْ (2 temps)',
+    waslPronunciation: 'Sirāta (2 temps exacts)',
+    waqfPronunciation: 'Sirāt (2 temps + Tā\' emphatique)',
+    surahRef: 'Al-Fātihah 1:7',
+    ruleBadge: 'Ni trop court, ni trop long',
+    colorClass: 'chip-izhar',
+    ruleCategory: 'Madd Naturel Calibré',
+    explanation: 'Le Madd Naturel se limite strictement à 2 Harakāt : l\'étirer à 4 ou 6 temps est une faute fréquente.',
+    fiqhImpact: 'Défaut de finition (Lahn Khafī) si sur-allongé.',
+    commonTrap: 'Étirer excessivement le Alif dans la Fātihah.',
+  },
+  {
+    id: 'madd-case-5',
+    title: 'Sūrah Quraysh 106:1 — Lettre de Līn Yā\' (قُرَيۡشٍ)',
+    category: 'leen',
+    arabicWord: 'لِإِيلَٰفِ قُرَيۡشٍ',
+    waqfArabicText: 'قُرَيۡشْ (2, 4 ou 6 temps)',
+    waslPronunciation: 'Qurayshin (Glissement souple, PAS de Madd)',
+    waqfPronunciation: 'Quraysh (Madd Līn permis à 2, 4 ou 6 temps)',
+    surahRef: 'Quraysh 106:1',
+    ruleBadge: 'Lettre de Līn (ـَ + يْ)',
+    colorClass: 'chip-iqlab',
+    ruleCategory: 'Lettres de Līn',
+    explanation: 'Le Yā\' porte un Soukoûn et est précédé d\'une FATHAH : en continu (Wasl), AUCUN Madd n\'est permis !',
+    fiqhImpact: 'Allonger en continu est une erreur de Tajwīd.',
+    commonTrap: 'Traiter une lettre de Līn comme un Madd en lecture continue.',
+  },
+  {
+    id: 'madd-case-6',
+    title: 'Sūrah Quraysh 106:4 — Lettre de Līn Wāw (خَوۡفِۭ)',
+    category: 'leen',
+    arabicWord: 'مِّنۡ خَوۡفِۭ',
+    waqfArabicText: 'خَوۡفْ (2, 4 ou 6 temps)',
+    waslPronunciation: 'Min khawfin (Souplesse sans Madd)',
+    waqfPronunciation: 'Khawf (Madd Līn permis à 2, 4 ou 6 temps)',
+    surahRef: 'Quraysh 106:4',
+    ruleBadge: 'Lettre de Līn (ـَ + وْ)',
+    colorClass: 'chip-iqlab',
+    ruleCategory: 'Lettres de Līn',
+    explanation: 'Le Wāw porte un Soukoûn et est précédé d\'un Khā\' avec FATHAH. L\'Alif ne peut JAMAIS être une lettre de Līn.',
+    fiqhImpact: 'Conforme.',
+    commonTrap: 'Confondre Wāw de Madd (précédé de Dammah) et Wāw de Līn (précédé de Fathah).',
+  },
+  {
+    id: 'madd-case-7',
+    title: 'At-Tawbah 9:31 — Mot Caméléon (هُوَ)',
+    category: 'cameleon',
+    arabicWord: 'إِلَّا هُوَۚ',
+    waqfArabicText: 'إِلَّا هُو (2 temps)',
+    waslPronunciation: 'Illā Huwa (Consonne vocalisée, pas de Madd)',
+    waqfPronunciation: 'Illā Hū (Madd Naturel de 2 temps à l\'arrêt)',
+    surahRef: 'At-Tawbah 9:31',
+    ruleBadge: 'Wasl Huwa ➔ Waqf Hū',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Cas Particulier à l\'Arrêt',
+    explanation: 'À l\'arrêt, la Fathah devient Soukoûn : le Wāw précédé de Dammah devient un Madd Naturel de 2 temps (« Hū ») !',
+    fiqhImpact: 'Obligation d\'allonger de 2 temps si l\'on s\'arrête.',
+    commonTrap: 'Dire "Huw" sec à l\'arrêt sans allonger le Wāw.',
+  },
+  {
+    id: 'madd-case-8',
+    title: 'At-Tawbah 9:83 — Mot Caméléon (مَعِىَ)',
+    category: 'cameleon',
+    arabicWord: 'مَعِىَ أَبَدٗا',
+    waqfArabicText: 'مَعِي (2 temps)',
+    waslPronunciation: 'Ma\'iya abadā (Yā\' vocalisé)',
+    waqfPronunciation: 'Ma\'ī (Madd Naturel de 2 temps à l\'arrêt)',
+    surahRef: 'At-Tawbah 9:83',
+    ruleBadge: 'Wasl Ma\'iya ➔ Waqf Ma\'ī',
+    colorClass: 'chip-idgham',
+    ruleCategory: 'Cas Particulier à l\'Arrêt',
+    explanation: 'À l\'arrêt, le Yā\' prend un Soukoûn précédé de Kasrah et devient un Madd de 2 temps complets (« Ma\'ī »).',
+    fiqhImpact: 'Conforme.',
+    commonTrap: 'Couper le Yā\' sans lui donner ses 2 temps.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -616,6 +764,11 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   const [stoppingCaseId, setStoppingCaseId] = useState<string>('case-sukun-1');
   const [stoppingFilter, setStoppingFilter] = useState<'all' | 'sukun' | 'iwad' | 'marbutah' | 'resume'>('all');
   const [isWaqfMode, setIsWaqfMode] = useState<boolean>(true);
+
+  // State for Chapter 4
+  const [maddCaseId, setMaddCaseId] = useState<string>('madd-case-1');
+  const [maddFilter, setMaddFilter] = useState<'all' | 'tabii' | 'leen' | 'cameleon'>('all');
+  const [isMaddWaqfMode, setIsMaddWaqfMode] = useState<boolean>(false);
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -1256,6 +1409,194 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
                 <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
                   {selectedStoppingCase.commonTrap}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 4 : LE LABORATOIRE DU MADD NATUREL & LĪN
+     ========================================================================= */
+  if (chapter.number === 4) {
+    const filteredMaddCases = MADD_TEST_BENCH_CASES.filter(
+      (c) => maddFilter === 'all' || c.category === maddFilter
+    );
+    const selectedMaddCase =
+      MADD_TEST_BENCH_CASES.find((c) => c.id === maddCaseId) || MADD_TEST_BENCH_CASES[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-iqlab': 'var(--iqlab)',
+      'chip-ikhfa': 'var(--ikhfa)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-gold': 'var(--gold)',
+      'chip-bad': 'var(--bad)',
+    };
+    const accentBorder = accentMap[selectedMaddCase.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Laboratoire du Madd Naturel & des Lettres de Līn"
+          description="Analysez les conditions d'éligibilité du Madd (2 Harakāt), distinguez les lettres de Līn et observez la métamorphose des mots à l'arrêt."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="segmented">
+            <button
+              onClick={() => setMaddFilter('all')}
+              aria-pressed={maddFilter === 'all'}
+            >
+              Tous ({MADD_TEST_BENCH_CASES.length})
+            </button>
+            <button
+              onClick={() => setMaddFilter('tabii')}
+              aria-pressed={maddFilter === 'tabii'}
+            >
+              Madd Naturel (4)
+            </button>
+            <button
+              onClick={() => setMaddFilter('leen')}
+              aria-pressed={maddFilter === 'leen'}
+            >
+              Lettres de Līn (2)
+            </button>
+            <button
+              onClick={() => setMaddFilter('cameleon')}
+              aria-pressed={maddFilter === 'cameleon'}
+            >
+              Mots Caméléons (2)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left: list of test cases */}
+          <div className="space-y-3">
+            {filteredMaddCases.map((tc) => {
+              const isSelected = tc.id === selectedMaddCase.id;
+              return (
+                <button
+                  key={tc.id}
+                  onClick={() => setMaddCaseId(tc.id)}
+                  aria-pressed={isSelected}
+                  className={`w-full p-4 rounded-2xl text-left transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="ref-tag text-xs">{tc.surahRef}</span>
+                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                      {tc.ruleBadge}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
+                      {tc.arabicWord}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: interactive test bench */}
+          <section
+            key={selectedMaddCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            aria-live="polite"
+          >
+            {/* Header banner */}
+            <div className="p-6 border-b border-line bg-soft/50">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="ref-tag">{selectedMaddCase.surahRef}</span>
+                <span className={`chip ${selectedMaddCase.colorClass}`}>
+                  {selectedMaddCase.ruleBadge}
+                </span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
+                {selectedMaddCase.title}
+              </h3>
+            </div>
+
+            {/* Interactive Wasl vs Waqf Toggle & Big Arabic Display */}
+            <div className="p-6 bg-card text-center border-b border-line space-y-4">
+              <div className="label">Basculez entre Liaison et Arrêt</div>
+
+              <div className="font-ar text-4xl sm:text-5xl text-ink my-3 leading-[1.8] min-h-[4rem] flex items-center justify-center transition-all" dir="rtl">
+                {isMaddWaqfMode ? (
+                  <span className="text-good font-bold animate-pop">
+                    {selectedMaddCase.waqfArabicText}
+                  </span>
+                ) : (
+                  <span className="text-ink">
+                    {selectedMaddCase.arabicWord}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <div className="segmented">
+                  <button
+                    onClick={() => setIsMaddWaqfMode(false)}
+                    aria-pressed={!isMaddWaqfMode}
+                  >
+                    En Continu (Wasl)
+                  </button>
+                  <button
+                    onClick={() => setIsMaddWaqfMode(true)}
+                    aria-pressed={isMaddWaqfMode}
+                  >
+                    À l'Arrêt (Waqf)
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+                {isMaddWaqfMode
+                  ? selectedMaddCase.waqfPronunciation
+                  : selectedMaddCase.waslPronunciation}
+              </div>
+            </div>
+
+            {/* Analysis details */}
+            <div className="p-6 space-y-4 text-sm">
+              <div>
+                <dt className="label mb-1">Mécanisme phonétique & Explication</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedMaddCase.explanation}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Statut théologique & Fiqh</dt>
+                <dd className="text-ink leading-relaxed">
+                  {selectedMaddCase.fiqhImpact}
+                </dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-bad font-semibold">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-bad-bg/60 p-3 rounded-xl border border-bad/20">
+                  {selectedMaddCase.commonTrap}
                 </dd>
               </div>
             </div>

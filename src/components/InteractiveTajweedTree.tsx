@@ -171,6 +171,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 4) {
+      return {
+        id: 'root-c4',
+        labelFr: 'Les Prolongations I (Madd Naturel & Lettres de Līn)',
+        labelAr: 'المَدُّ الأَصْلِيُّ (الطَّبِيعِيُّ) وَحُرُوفُ اللِّينِ',
+        descriptionFr: '« Le Prophète ﷺ étirait nettement les mots lors de sa récitation » — Hadīth d\'Anas ibn Mālik (Sahīh Al-Bukhārī).',
+        children: [
+          {
+            id: 'node-3-letters',
+            labelFr: '1. Les 3 Lettres de Madd & La Clé « Nūhīhā »',
+            labelAr: 'حُرُوفُ المَدِّ الثَّلَاثَةُ (نُوحِيهَا)',
+            tagColor: 'var(--izhar)',
+            descriptionFr: 'Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي), Alif précédé de Fathah (هَا). Sans voyelle sur la lettre elle-même !',
+            examples: ['نُوحِيهَآ (هود 49)', 'مَٰلِكِ (Alif ٰ)', 'يَلۡوُۥنَ (Wāw ۥ)'],
+          },
+          {
+            id: 'node-madd-tabii',
+            labelFr: '2. Le Madd Naturel (2 Temps / Harakāt)',
+            labelAr: 'المَدُّ الطَّبِيعِيُّ (حَرَكَتَانِ)',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'La mesure standard : 1 Harakah = durée de « Ba » | 2 Harakāt = durée de « Bā » (Ba + Ba, env. 1 sec). Ni plus, ni moins !',
+            examples: ['قَالَ', 'يَقُولُ', 'قِيلَ'],
+          },
+          {
+            id: 'node-lahn-jali-madd',
+            labelFr: '3. Le Péril du Lahn Jalī (Raccourcissement)',
+            labelAr: 'اللَّحْنُ الجَلِيُّ بِحَذْفِ المَدِّ (حَرَامٌ)',
+            tagColor: 'var(--bad)',
+            descriptionFr: 'Tronquer le Madd en voyelle courte altère le sens du Coran ! Ex: « Akhadhnā » (Nous avons pris) ➔ « Akhadhna » (Les femmes ont pris ❌).',
+            examples: ['أَخَذۡنَآ (Nous)', 'أَخَذۡنَ (Elles ❌)'],
+          },
+          {
+            id: 'node-leen-letters',
+            labelFr: '4. Lettres de Madd vs Lettres de Līn',
+            labelAr: 'حَرْفَا اللِّينِ (الوَاوُ وَاليَاءُ المَفْتُوحُ مَا قَبْلَهُمَا)',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Wāw et Yā\' portant un Soukoûn et précédés d\'une FATHAH (ـَ + وْ / يْ). Aucun Madd en lecture continue (Wasl) ! L\'Alif n\'est jamais de Līn.',
+            examples: ['قُرَيۡشٍ', 'خَوۡفٖ', 'ٱلۡبَيۡتِ'],
+          },
+          {
+            id: 'node-huwa-hiya',
+            labelFr: '5. Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ',
+            labelAr: 'الوَقْفُ عَلَى (هُوَ - هِيَ - مَعِيَ)',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'En continu = consonne avec Fathah (« Huwa »). À l\'arrêt d\'urgence = la Fathah devient Soukoûn et libère un Madd de 2 temps (« Hū ») !',
+            examples: ['إِلَّا هُوَۚ ➔ إِلَّا هُو', 'مَعِىَ ➔ مَعِي'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

@@ -4,7 +4,7 @@ export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string;
   { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)', titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ', category: 'beginner', isPilot: true },
   { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: true },
   { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: true },
-  { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: false },
+  { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: true },
   { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: false },
   { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: false },
   { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: false },
@@ -1000,6 +1000,345 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: 'Le Tanwīn disparaît et la lettre prend un simple Soukoûn (« Khabīr »), SANS prolongation \'Iwad',
         explanationFr: 'Le Madd \'Iwad est réservé exclusivement au Tanwīn Fath (ـً / ـٗا). Les Tanwīns Damm et Kasr perdent totalement leur nunation et deviennent un Soukoûn pur.',
         ruleId: 'stopping-sukun'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 4 : LES PROLONGATIONS I (MADD NATUREL & DÉRIVÉS)
+  // ==========================================
+  {
+    id: 'chap-4',
+    number: 4,
+    slug: 'madd-1',
+    titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)',
+    titleAr: 'المَدُّ الأَصْلِيُّ (الطَّبِيعِيُّ) وَحُرُوفُ اللِّينِ',
+    category: 'beginner',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Comprendre la nature sacrée du Madd (seule règle de Tajwīd citée nominativement dans le Hadīth prophétique d\'Anas), maîtriser les 3 lettres de Madd et leur formule maîtresse « Nūhīhā » (نُوحِيهَا), calibrer exactement la durée de 2 Harakāt du Madd Naturel pour éradiquer le Lahn Jalī (altération du sens), distinguer lettres de Madd et lettres de Līn (حَرْفَا اللِّينِ), et maîtriser l\'arrêt d\'urgence sur les mots caméléons comme « Huwa » (هُوَ) et « Hiya » (هِيَ).',
+    infographicPoints: [
+      'Fondement Prophétique : Le Madd est la seule règle de Tajwīd citée explicitement dans le Sahīh Al-Bukhārī : « Le Prophète ﷺ étirait nettement les mots lors de sa récitation » (Hadīth d\'Anas ibn Mālik).',
+      'La Clé Sacrée « Nūhīhā » (نُوحِيهَا) : Réunit les 3 lettres de Madd avec leurs voyelles homogènes obligatoires : Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي), Alif précédé de Fathah (هَا).',
+      'Mesure des 2 Harakāt : 1 Harakah = durée d\'une voyelle courte (ex: Ba). 2 Harakāt = durée d\'une voyelle longue (ex: Bā = Ba + Ba, environ 1 seconde selon le tempo).',
+      'Le Péril du Lahn Jalī : Tronquer un Madd Naturel en voyelle courte change le sens et constitue un péché (Harām) ! Ex: Dire « Akhadhna » (les femmes ont pris) au lieu de « Akhadhnā » (Nous avons pris).',
+      'Madd vs Līn (حرفا اللين) : Lorsque Wāw ou Yā\' portent un Soukoûn et sont précédés d\'une FATHAH (ex: Bayt, Khawf, Quraysh), ce sont des lettres de Līn, qui ne reçoivent aucun Madd en lecture continue !',
+      'Le Cas Particulier de « Huwa » (هُوَ) & « Hiya » (هِيَ) : En liaison continue, le Wāw porte une Fathah (pas de Madd). Mais si vous vous arrêtez d\'urgence, la voyelle devient Soukoûn et le Wāw se mue en un Madd Naturel de 2 temps (« Hū ») !'
+    ],
+    subrules: [
+      {
+        id: 'madd-definition-nuhiha',
+        nameFr: '1. Les 3 Lettres de Madd & La Formule « Nūhīhā »',
+        nameAr: 'حُرُوفُ المَدِّ الثَّلَاثَةُ وَكَلِمَةُ (نُوحِيهَا)',
+        mnemonic: 'نُوحِيهَا ➔ Dammah + و | Kasrah + ي | Fathah + ا',
+        letters: ['ا', 'و', 'ي'],
+        definitionFr: 'Le mot Madd (مَدّ) signifie linguistiquement l\'étirement. En Tajwīd, il désigne l\'allongement de la voix sur les 3 voyelles longues arabes lorsqu\'elles sont sans voyelle (Sākinah) et précédées de leur voyelle courte correspondante.',
+        mechanismFr: 'La voyelle s\'écoule librement à travers la cavité buccale et la gorge (Al-Jawf) sans aucun blocage consonantique.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c4-1',
+            arabicText: 'تِلۡكَ مِنۡ أَنۢبَآءِ ٱلۡغَيۡبِ نُوحِيهَآ إِلَيۡكَ',
+            surahAyahRef: '11:49',
+            surahNameFr: 'Hūd',
+            highlightSegment: 'نُوحِيهَآ',
+            highlightLetter: 'و + ي + ا',
+            ruleApplied: 'Les 3 lettres de Madd réunies',
+            ruleTag: 'madd',
+            explanationFr: 'Ce mot contient les 3 lettres de Madd avec leurs voyelles homogènes obligatoires : Wāw précédé de Dammah (Nū), Yā\' précédé de Kasrah (hī) et Alif précédé de Fathah (hā).',
+            transliteration: 'Tilka min ambā\'i-l-ghaybi nūhīhā ilayk',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011049.mp3'
+          },
+          {
+            id: 'ex-c4-2',
+            arabicText: 'مَٰلِكِ يَوۡمِ ٱلدِّينِ',
+            surahAyahRef: '1:4',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'مَٰلِكِ',
+            highlightLetter: 'ٰ (Alif Khanjariyyah)',
+            ruleApplied: 'Alif Khanjariyyah = Madd Naturel 2 temps',
+            ruleTag: 'madd',
+            explanationFr: 'Le petit Alif vertical miniature (ٰ) est un Alif à part entière en Rasm \'Uthmānī : il exige exactement 2 temps de Madd.',
+            transliteration: 'Māliki yawmi-d-dīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001004.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Tenter de commencer un mot par une lettre de Madd.',
+            correctionFr: 'Impossible en arabe ! Une lettre de Madd est par définition sans voyelle (Sākinah), et la langue arabe interdit d\'attaquer une phrase par un Soukoûn.'
+          },
+          {
+            trapFr: 'Croire que l\'Alif peut porter une voyelle.',
+            correctionFr: 'L\'Alif est TOUJOURS une lettre de Madd précédée d\'une Fathah. La lettre qui porte une voyelle (Fathah, Dammah, Kasrah) est la Hamzah (ء).'
+          }
+        ]
+      },
+      {
+        id: 'madd-tabii-duration',
+        nameFr: '2. Le Madd Naturel (2 Temps) & L\'Éradication du Lahn Jalī',
+        nameAr: 'المَدُّ الطَّبِيعِيُّ (حَرَكَتَانِ) وَتَجَنُّبُ اللَّحْنِ الجَلِيِّ',
+        mnemonic: '2 Harakāt obligatoires (بَا = بَ + بَ) | Ni trop court (Harām), ni trop long',
+        letters: ['ا', 'و', 'ي'],
+        definitionFr: 'Le Madd Naturel (Al-Madd At-Tabī\'ī ou Al-Aslī) est la prolongation intrinsèque sans laquelle la lettre ne peut exister. Il n\'est suivi ni d\'une Hamzah, ni d\'un Soukoûn.',
+        mechanismFr: 'Maintenez le son pendant exactement 2 battements réguliers (environ 1 seconde à tempo modéré). Ne jamais le tronquer en voyelle courte ni l\'étirer au-delà de 2 temps.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c4-3',
+            arabicText: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
+            surahAyahRef: '9:50',
+            surahNameFr: 'At-Tawbah',
+            highlightSegment: 'أَخَذۡنَآ',
+            highlightLetter: 'نَا (2 temps)',
+            ruleApplied: 'Madd 2 temps obligatoire (Préservation du pronom "Nous")',
+            ruleTag: 'madd',
+            explanationFr: 'Raccourcir « Akhadhnā » en « Akhadhna » supprime l\'Alif et transforme « Nous avons pris » en « Les femmes ont pris », un contresens théologique majeur (Lahn Jalī Harām) !',
+            transliteration: 'Yaqūlū qad akhadhnā amranā min qabl',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009050.mp3'
+          },
+          {
+            id: 'ex-c4-4',
+            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
+            surahAyahRef: '1:7',
+            surahNameFr: 'Al-Fātihah',
+            highlightSegment: 'صِرَٰطَ',
+            highlightLetter: 'ٰ (2 temps seulement)',
+            ruleApplied: 'Calibrage exact à 2 temps (Pas de sur-étirement)',
+            ruleTag: 'madd',
+            explanationFr: 'Le petit Alif vertical sur « Sirāt » ne doit durer que 2 temps : l\'étirer à 4 ou 6 temps est une faute fréquente dans la Fātihah.',
+            transliteration: 'Sirāta-lladhīna an\'amta \'alayhim',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Aller trop vite et tronquer la voyelle longue en voyelle courte (ex: dire "Qala" au lieu de "Qāla").',
+            correctionFr: 'C\'est un Lahn Jalī majeur (Harām) qui détruit la grammaire du Coran. Accordez toujours 2 temps pleins.'
+          },
+          {
+            trapFr: 'Sur-allonger le Madd Naturel jusqu\'à 4 ou 5 temps sans aucune justification.',
+            correctionFr: 'Le Madd Naturel ne dure strictement que 2 Harakāt : seul le Madd Far\'ī (avec Hamzah ou Soukoûn) autorise un allongement supérieur.'
+          }
+        ]
+      },
+      {
+        id: 'madd-vs-leen',
+        nameFr: '3. Lettres de Madd vs Lettres de Līn (حَرْفَا اللِّينِ)',
+        nameAr: 'الفَرْقُ بَيْنَ حُرُوفِ المَدِّ وَحَرْفَيِ اللِّينِ',
+        mnemonic: 'Madd = Voyelle homogène | Līn = Wāw/Yā\' précédés d\'une Fathah (ـَ + وْ / يْ)',
+        letters: ['و', 'ي'],
+        definitionFr: 'Lorsque les lettres Wāw (و) ou Yā\' (ي) portent un Soukoûn mais sont précédées d\'une FATHAH (ـَ), elles perdent leur statut de Madd pour devenir des « lettres de Līn » (douceur).',
+        mechanismFr: 'La langue ou les lèvres glissent avec souplesse sur la consonne. En lecture continue (Wasl), les lettres de Līn ne reçoivent AUCUNE prolongation supplémentaire !',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c4-5',
+            arabicText: 'لِإِيلَٰفِ قُرَيۡشٍ',
+            surahAyahRef: '106:1',
+            surahNameFr: 'Quraysh',
+            highlightSegment: 'قُرَيۡشٍ',
+            highlightLetter: 'يْ précédé de Fathah',
+            ruleApplied: 'Lettre de Līn (Yā\' précédé de Fathah)',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Yā\' de Quraysh est précédé d\'un Râ\' avec Fathah : en continu, on prononce « Qurayshin » sans allonger le Yā\'.',
+            transliteration: 'Li-īlāfi quraysh',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
+          },
+          {
+            id: 'ex-c4-6',
+            arabicText: 'وَءَامَنَهُم مِّنۡ خَوۡفِۭ',
+            surahAyahRef: '106:4',
+            surahNameFr: 'Quraysh',
+            highlightSegment: 'خَوۡفِۭ',
+            highlightLetter: 'وْ précédé de Fathah',
+            ruleApplied: 'Lettre de Līn (Wāw précédé de Fathah)',
+            ruleTag: 'izhar',
+            explanationFr: 'Le Wāw porte un Soukoûn et est précédé d\'un Khā\' avec Fathah : c\'est un Līn pur. L\'Alif ne peut JAMAIS être une lettre de Līn.',
+            transliteration: 'Wa āmanahum min khawf',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106004.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Allonger une lettre de Līn en pleine lecture continue (ex: dire "Qurayyyy-shin").',
+            correctionFr: 'En lecture continue (Wasl), la lettre de Līn ne s\'allonge pas ! Elle ne peut être prolongée qu\'à l\'arrêt (Madd Līn à 2, 4 ou 6 temps).'
+          },
+          {
+            trapFr: 'Penser que l\'Alif peut être une lettre de Līn.',
+            correctionFr: 'L\'Alif est exclusivement une lettre de Madd car il est TOUJOURS précédé d\'une Fathah homogène.'
+          }
+        ]
+      },
+      {
+        id: 'waqf-huwa-hiya',
+        nameFr: '4. Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ (Wasl vs Waqf)',
+        nameAr: 'حُكْمُ الوَقْفِ عَلَى الكَلِمَاتِ المَفْتُوحَةِ (هُوَ - هِيَ)',
+        mnemonic: 'En continu = Consonne avec Fathah | À l\'arrêt d\'urgence = Madd Naturel 2 temps (Hū, Hī)',
+        letters: ['و', 'ي'],
+        definitionFr: 'Des mots comme « Huwa » (هُوَ), « Hiya » (هِيَ) ou « Ma\'iya » (مَعِيَ) se terminent par un Wāw ou un Yā\' portant une Fathah : ce ne sont donc pas des lettres de Madd en lecture continue.',
+        mechanismFr: 'Cependant, si le lecteur est contraint de s\'arrêter (panne de souffle), la Fathah devient Soukoûn, réunissant aussitôt les conditions du Madd Naturel : la lettre doit alors être prolongée de 2 temps !',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c4-7',
+            arabicText: 'لَّآ إِلَٰهَ إِلَّا هُوَۚ سُبۡحَٰنَهُۥ عَمَّا يُشۡرِكُونَ',
+            surahAyahRef: '9:31',
+            surahNameFr: 'At-Tawbah',
+            highlightSegment: 'إِلَّا هُوَۚ',
+            highlightLetter: 'هُوَ ➔ هُو (2 temps)',
+            ruleApplied: 'Huwa en continu ➔ Hū à l\'arrêt',
+            ruleTag: 'madd',
+            explanationFr: 'En continu : « Illā Huwa Subhānah » (consonne w). À l\'arrêt d\'urgence : la Fathah devient Soukoûn sur le Wāw précédé de Dammah, donnant un Madd pur de 2 temps : « Illā Hū ».',
+            transliteration: 'Lā ilāha illā hū',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009031.mp3'
+          },
+          {
+            id: 'ex-c4-8',
+            arabicText: 'فَقُل لَّن تَخۡرُجُواْ مَعِىَ أَبَدٗا',
+            surahAyahRef: '9:83',
+            surahNameFr: 'At-Tawbah',
+            highlightSegment: 'مَعِىَ',
+            highlightLetter: 'مَعِيَ ➔ مَعِي (2 temps)',
+            ruleApplied: 'Ma\'iya en continu ➔ Ma\'ī à l\'arrêt',
+            ruleTag: 'madd',
+            explanationFr: 'À l\'arrêt, le Yā\' prend un Soukoûn précédé d\'une Kasrah et devient un Madd de 2 temps : « Ma\'ī ».',
+            transliteration: 'Fa-qul lan takhrujū ma\'ī',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009083.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'S\'arrêter sur « Huwa » en disant "Huw" avec une consonne sèche sans prolonger.',
+            correctionFr: 'Le Wāw Sākin précédé de Dammah devient un Madd Naturel : vous devez impérativement prolonger de 2 temps (« Hū »).'
+          },
+          {
+            trapFr: 'Allonger « Huwa » en pleine lecture continue.',
+            correctionFr: 'En continu, le Wāw porte une Fathah : on dit rapidement « Huwa » sans aucun Madd.'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c4-1',
+        title: 'Le Raccourcissement Sacrilège : Sūrah At-Tawbah (9:50)',
+        verseArabic: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
+        surahAyahRef: '9:50',
+        targetSegment: 'أَخَذۡنَآ أَمۡرَنَا',
+        promptFr: 'Quelle est la conséquence dramatique si un lecteur raccourcit le Alif final de « أَخَذۡنَا » à moins de 2 temps ?',
+        hintFr: 'Comparez la signification du verbe avec Alif long (pronom pluriel \'Nā\') et sans Alif (Nūn an-Niswah).',
+        solutionFr: 'Le mot devient « Akhadhna » (les femmes ont pris) au lieu de « Akhadhnā » (Nous avons pris) : Lahn Jalī majeur !',
+        breakdownSteps: [
+          '« Akhadhnā » (أَخَذۡنَا) avec 2 temps de Madd signifie « Nous avons pris » (1re personne pluriel).',
+          'Si vous récitez trop vite et avalez le Alif, le mot s\'entend « Akhadhna » (أَخَذۡنَ) avec une simple Fathah sur le Nūn.',
+          'En grammaire arabe, cela devient le Nūn du féminin pluriel (Nūn an-Niswah) : « Elles (les femmes) ont pris notre affaire en main » !',
+          'Le sens du verset est corrompu : c\'est un Lahn Jalī caractérisé, formellement interdit (Harām).'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/009050.mp3'
+      },
+      {
+        id: 'exo-c4-2',
+        title: 'Distinction Pratique Madd vs Līn : Sūrah Quraysh (106:1-4)',
+        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ٢ فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ ٣ ٱلَّذِىٓ أَطۡعَمَهُم مِّن جُوعٖ وَءَامَنَهُم مِّنۡ خَوۡفِۭ ٤',
+        surahAyahRef: '106:1-4',
+        targetSegment: 'قُرَيۡشٍ · ٱلصَّيۡفِ · ٱلۡبَيۡتِ · جُوعٖ · خَوۡفِۭ',
+        promptFr: 'Parmi les mots surlignés, identifiez lequel contient une lettre de Madd naturel et lesquels contiennent des lettres de Līn en lecture continue.',
+        hintFr: 'Regardez attentivement la voyelle qui précède le Wāw ou le Yā\' : est-elle une Fathah ou une voyelle homogène ?',
+        solutionFr: '« Jū\' » contient un Madd Wāw (précédé de Dammah). « Quraysh », « As-Sayf », « Al-Bayt » et « Khawf » contiennent des lettres de Līn (précédées de Fathah).',
+        breakdownSteps: [
+          'Dans « Jū\' » (جُوعٖ) : Le Wāw porte un Soukoûn et est précédé d\'un Jīm avec Dammah (ـُ + و). C\'est une voyelle homogène : Madd Naturel de 2 temps !',
+          'Dans « Quraysh », « As-Sayf », « Al-Bayt » : Le Yā\' porte un Soukoûn et est précédé d\'une FATHAH (ـَ + ي). Ce sont des lettres de Līn, sans aucun Madd en continu.',
+          'Dans « Khawf » : Le Wāw porte un Soukoûn et est précédé d\'un Khā\' avec FATHAH (ـَ + و). C\'est également une lettre de Līn.',
+          'Règle d\'or : La lettre de Līn n\'a jamais de voyelle homogène avant elle, elle est toujours précédée d\'une Fathah.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c4-1',
+        type: 'mcq',
+        promptFr: 'Quel mot coranique célèbre réunit à lui seul les 3 lettres de Madd avec leurs 3 voyelles homogènes obligatoires ?',
+        verseArabic: 'تِلۡكَ مِنۡ أَنۢبَآءِ ٱلۡغَيۡبِ نُوحِيهَآ إِلَيۡكَ',
+        targetWord: 'نُوحِيهَآ',
+        surahAyahRef: '11:49',
+        options: [
+          'نُوحِيهَا (Nū-hī-hā) : Dammah avant Wāw, Kasrah avant Yā\', Fathah avant Alif',
+          'ٱلصَّلَوٰةَ',
+          'إِيَّاكَ',
+          'يَرۡمَلُونَ'
+        ],
+        correctAnswer: 'نُوحِيهَا (Nū-hī-hā) : Dammah avant Wāw, Kasrah avant Yā\', Fathah avant Alif',
+        explanationFr: 'Le mot « Nūhīhā » dans la sourate Hūd (11:49) est la formule universelle du Tajwīd résumant les 3 lettres de Madd et leurs conditions strictes de voyelles homogènes.',
+        ruleId: 'madd-definition-nuhiha'
+      },
+      {
+        id: 'q-c4-2',
+        type: 'mcq',
+        promptFr: 'Quelle est la durée exacte obligatoire du Madd Naturel (Al-Madd At-Tabī\'ī) lors de la récitation ?',
+        verseArabic: 'قَالَ رَبُّنَا ٱلَّذِىٓ أَعۡطَىٰ كُلَّ شَىۡءٍ خَلۡقَهُۥ',
+        targetWord: 'قَالَ',
+        surahAyahRef: '20:50',
+        options: [
+          'Exactement 2 Harakāt (temps / pulsations) : la durée de deux voyelles courtes (بَ + بَ)',
+          '4 ou 5 Harakāt',
+          '6 Harakāt obligatoires',
+          '1 seule Harakah'
+        ],
+        correctAnswer: 'Exactement 2 Harakāt (temps / pulsations) : la durée de deux voyelles courtes (بَ + بَ)',
+        explanationFr: 'Le Madd Naturel se mesure rigoureusement à 2 Harakāt (environ 1 seconde à tempo normal). Ni plus (pour ne pas déformer la mélodie), ni moins (pour ne pas avaler la lettre).',
+        ruleId: 'madd-tabii-duration'
+      },
+      {
+        id: 'q-c4-3',
+        type: 'mcq',
+        promptFr: 'Pourquoi raccourcir le mot « أَخَذۡنَا » en « أَخَذۡنَ » est-il considéré comme un péché (Lahn Jalī Harām) ?',
+        verseArabic: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
+        targetWord: 'أَخَذۡنَآ',
+        surahAyahRef: '9:50',
+        options: [
+          'Parce que cela change le sujet grammatical de « Nous avons pris » à « Les femmes ont pris », dénaturant gravement le verset',
+          'Parce que le Alif doit toujours être prononcé avec une Ghunnah',
+          'Parce que cela brise la rime poétique du verset',
+          'Parce que le mot devient un mot étranger'
+        ],
+        correctAnswer: 'Parce que cela change le sujet grammatical de « Nous avons pris » à « Les femmes ont pris », dénaturant gravement le verset',
+        explanationFr: 'Raccourcir une voyelle longue en voyelle courte qui inverse ou altère le sens du texte sacré constitue un Lahn Jalī caractérisé, interdit par le consensus des savants.',
+        ruleId: 'madd-tabii-duration'
+      },
+      {
+        id: 'q-c4-4',
+        type: 'mcq',
+        promptFr: 'Quelle est la condition indispensable pour que la lettre Wāw (و) ou Yā\' (ي) soit qualifiée de « lettre de Līn » (حَرْفُ لِين) et non de Madd ?',
+        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ',
+        targetWord: 'قُرَيۡشٍ',
+        surahAyahRef: '106:1',
+        options: [
+          'La lettre porte un Soukoûn et est obligatoirement précédée d\'une FATHAH (ـَ)',
+          'La lettre est suivie d\'une Hamzah',
+          'La lettre est précédée d\'une Dammah',
+          'La lettre est écrite en rouge dans le Coran'
+        ],
+        correctAnswer: 'La lettre porte un Soukoûn et est obligatoirement précédée d\'une FATHAH (ـَ)',
+        explanationFr: 'Les deux lettres de Līn sont Wāw et Yā\' portant un Soukoûn précédées d\'une Fathah (comme dans Khawf et Quraysh). L\'Alif ne peut JAMAIS être une lettre de Līn.',
+        ruleId: 'madd-vs-leen'
+      },
+      {
+        id: 'q-c4-5',
+        type: 'mcq',
+        promptFr: 'Que devient le mot « هُوَ » (Huwa) si le lecteur s\'arrête dessus en cas de panne de souffle impérieuse ?',
+        verseArabic: 'لَّآ إِلَٰهَ إِلَّا هُوَۚ سُبۡحَٰنَهُۥ عَمَّا يُشۡرِكُونَ',
+        targetWord: 'إِلَّا هُوَۚ',
+        surahAyahRef: '9:31',
+        options: [
+          'La Fathah devient un Soukoûn et le Wāw devient un Madd Naturel de 2 temps : on prononce « Hū »',
+          'On prononce « Huw » avec une consonne sèche',
+          'On prononce « Huwa » comme en continu',
+          'Le mot est annulé et on ne prononce rien'
+        ],
+        correctAnswer: 'La Fathah devient un Soukoûn et le Wāw devient un Madd Naturel de 2 temps : on prononce « Hū »',
+        explanationFr: 'À l\'arrêt, la Fathah sur le Wāw se transforme en Soukoûn. Précédé d\'une Dammah (ـُ + وْ), il remplit alors parfaitement les conditions du Madd Naturel et s\'allonge de 2 temps (« Hū ») !',
+        ruleId: 'waqf-huwa-hiya'
       }
     ]
   },

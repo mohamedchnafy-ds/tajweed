@@ -115,6 +115,37 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 4 (Madd I - Natural Madd & Leen)
+  const chapter4Verses = [
+    {
+      ref: '11:49',
+      surahFr: 'Hūd',
+      words: [
+        { text: 'تِلۡكَ', rule: 'Lām Sākinah', ruleClass: 'chip-gold', why: 'Lām Sākinah claire (Izhār).' },
+        { text: 'مِنۡ', rule: 'Nūn Sākinah Izhār', ruleClass: 'chip-izhar', why: 'Suivi de la Hamzah (lettre de gorge) : Izhār Halqī limpide.' },
+        { text: 'أَنۢبَآءِ', rule: 'Iqlāb & Madd Wājib', ruleClass: 'chip-iqlab', why: 'Nūn suivi de Bā\' (Iqlāb en Mīm) + Madd Muttasil 4-5 temps.' },
+        { text: 'ٱلۡغَيۡبِ', rule: 'Lettre de Līn', ruleClass: 'chip-izhar', why: 'Yā\' Sākin précédé d\'une Fathah : lettre de Līn sans aucun Madd en continu !' },
+        { text: 'نُوحِيهَآ', rule: 'La Clé Sacrée des 3 Madds', ruleClass: 'chip-idgham', why: 'Contient Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي) et Alif précédé de Fathah (هَا) !', target: true },
+        { text: 'إِلَيۡكَ', rule: 'Lettre de Līn finale', ruleClass: 'chip-gold', why: 'Yā\' Sākin précédé de Fathah : glissement souple sans allongement en continu.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/011049.mp3',
+    },
+    {
+      ref: '106:1-2',
+      surahFr: 'Quraysh',
+      words: [
+        { text: 'لِإِيلَٰفِ', rule: 'Madd Badal & Alif Khanjariyyah', ruleClass: 'chip-gold', why: 'Yā\' de 2 temps après Hamzah + Alif miniature de 2 temps sur Lām.' },
+        { text: 'قُرَيۡشٍ', rule: 'Lettre de Līn Yā\'', ruleClass: 'chip-iqlab', why: 'Yā\' précédé d\'une Fathah : AUCUN Madd en continu. Devient Madd Līn (2, 4 ou 6 temps) à l\'arrêt !', target: true },
+        { text: '١', rule: 'Fin de verset', ruleClass: 'chip-gold', why: 'Arrêt permis.' },
+        { text: 'إِۦلَٰفِهِمۡ', rule: 'Petit Yā\' (ۦ) & Alif (ٰ)', ruleClass: 'chip-gold', why: 'Deux symboles miniatures de Rasm \'Uthmānī qui reçoivent chacun 2 temps de Madd.', target: true },
+        { text: 'رِحۡلَةَ', rule: 'Hā\' de Hams', ruleClass: 'chip-gold', why: 'Souffle continu.' },
+        { text: 'ٱلشِّتَآءِ', rule: 'Madd Wājib Muttasil', ruleClass: 'chip-gold', why: '4 ou 5 temps obligatoires pour la Hamzah.' },
+        { text: 'وَٱلصَّيۡفِ', rule: 'Lettre de Līn Yā\'', ruleClass: 'chip-iqlab', why: 'Yā\' Sākin précédé d\'une Fathah : souplesse sans allongement en liaison continue.', target: true },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -181,6 +212,8 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
       ? chapter2Verses
       : chapter.number === 3
       ? chapter3Verses
+      : chapter.number === 4
+      ? chapter4Verses
       : chapter.number === 8
       ? nunVerses
       : qalqalahVerses;

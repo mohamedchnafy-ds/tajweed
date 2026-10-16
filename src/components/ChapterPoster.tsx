@@ -24,6 +24,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 3) {
       return 'L\'arrêt en arabe se fait toujours sur un Soukoûn pur : transmutez le Tanwīn Fath en Alif de 2 temps (Madd \'Iwad), faites muter la Tā\' Marbūtah en Hā\' Sākinah, et en cas de panne de souffle, appliquez le « Stop & Repeat » en reculant de 2 à 3 mots pour ne jamais isoler une citation sacrilège.';
     }
+    if (chapter.number === 4) {
+      return 'Le Madd est la seule règle explicitement mentionnée dans le Sahīh Al-Bukhārī : donnez toujours exactement 2 temps (Harakāt) au Madd Naturel (Nūhīhā) pour ne pas commettre de Lahn Jalī sacrilège, et ne prolongez jamais les lettres de Līn (ـَ + وْ / يْ) en lecture continue !';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -101,6 +104,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
             : chapter.number === 2
             ? 'Chapitre suivant (Arrêt & Reprise)'
             : chapter.number === 3
+            ? 'Chapitre suivant (Les Prolongations I)'
+            : chapter.number === 4
             ? 'Chapitre suivant (Nūn Sākinah)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'
