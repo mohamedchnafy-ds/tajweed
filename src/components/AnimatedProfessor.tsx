@@ -385,6 +385,385 @@ const MnemonicVersesVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 };
 
 /* =========================================================================
+   CHAPITRE 2 : Mini-composants interactifs pour les Symboles Coraniques
+   ========================================================================= */
+
+/** Écran 1 : Waqf Lāzim (مـ) vs Interdiction de couper (لا) */
+const WaqfLazimVsLaVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [selectedCase, setSelectedCase] = useState<'lazim' | 'la'>('lazim');
+  const [actionTested, setActionTested] = useState<'stop' | 'continue'>('stop');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-5">
+      <div className="flex justify-center mb-4">
+        <div className="segmented">
+          <button
+            onClick={() => { setSelectedCase('lazim'); setActionTested('stop'); }}
+            aria-pressed={selectedCase === 'lazim'}
+          >
+            مـ (Waqf Lāzim - Yā-Sīn)
+          </button>
+          <button
+            onClick={() => { setSelectedCase('la'); setActionTested('continue'); }}
+            aria-pressed={selectedCase === 'la'}
+          >
+            لا (Interdiction - Al-Mā'ūn)
+          </button>
+        </div>
+      </div>
+
+      {selectedCase === 'lazim' ? (
+        <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+          <div className="label text-center">Yā-Sīn 36:76 — Le symbole (مـ) au-dessus de قَوۡلُهُمۡ</div>
+          <div className="font-ar text-2xl sm:text-3xl text-center leading-[2] text-ink" dir="rtl">
+            <span>فَلَا يَحۡزُنكَ </span>
+            <span className="p-1 px-2 rounded-lg bg-bad-bg text-bad font-bold border border-bad/30">
+              قَوۡلُهُمۡۘ
+            </span>
+            <span> إِنَّا نَعۡلَمُ مَا يُسِرُّونَ وَمَا يُعۡلِنُونَ</span>
+          </div>
+
+          <div className="flex justify-center gap-3 pt-2">
+            <button
+              onClick={() => setActionTested('stop')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                actionTested === 'stop' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Option 1 : S'arrêter (Waqf Lāzim)
+            </button>
+            <button
+              onClick={() => setActionTested('continue')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                actionTested === 'continue' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Option 2 : Lier sans s'arrêter
+            </button>
+          </div>
+
+          <div className={`p-4 rounded-xl text-sm ${actionTested === 'stop' ? 'bg-good-bg border border-good/30' : 'bg-bad-bg border border-bad/30'}`}>
+            {actionTested === 'stop' ? (
+              <div>
+                <span className="font-semibold text-good block mb-1">Récitation Conforme (Arrêt Obligatoire) :</span>
+                <p className="text-muted leading-relaxed">
+                  « Que leurs paroles ne t'affligent donc pas. [Pause] Certes, Nous savons ce qu'ils cachent et ce qu'ils divulguent. »
+                  <br />
+                  <span className="text-good font-medium">Les propos des mécréants sont nettement coupés de la parole majestueuse d'Allah.</span>
+                </p>
+              </div>
+            ) : (
+              <div>
+                <span className="font-semibold text-bad block mb-1">Grave Altération du Sens (Lahn Jalī) :</span>
+                <p className="text-muted leading-relaxed">
+                  Lier sans arrêt fait comprendre : « Que leurs paroles [disant que] Nous savons ce qu'ils cachent ne t'affligent pas ! »
+                  <br />
+                  <span className="text-bad font-medium">Vous attribuez sacrilègement la parole d'Allah aux mécréants !</span>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+          <div className="label text-center">Al-Mā'ūn 107:4-5 — Le symbole (لا) à la fin du verset 4</div>
+          <div className="font-ar text-2xl sm:text-3xl text-center leading-[2] text-ink" dir="rtl">
+            <span className="p-1 px-2 rounded-lg bg-bad-bg text-bad font-bold border border-bad/30">
+              فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤
+            </span>
+            <span> ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ ٥</span>
+          </div>
+
+          <div className="flex justify-center gap-3 pt-2">
+            <button
+              onClick={() => setActionTested('continue')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                actionTested === 'continue' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Option 1 : Enchaîner avec le verset 5
+            </button>
+            <button
+              onClick={() => setActionTested('stop')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                actionTested === 'stop' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              Option 2 : Couper et aller au Rukūʿ
+            </button>
+          </div>
+
+          <div className={`p-4 rounded-xl text-sm ${actionTested === 'continue' ? 'bg-good-bg border border-good/30' : 'bg-bad-bg border border-bad/30'}`}>
+            {actionTested === 'continue' ? (
+              <div>
+                <span className="font-semibold text-good block mb-1">Sens Parfait & Complet :</span>
+                <p className="text-muted leading-relaxed">
+                  « Malheur aux prieurs... [qui ?] ceux qui sont insouciants de leur prière. »
+                  <br />
+                  <span className="text-good font-medium">La menace divine ne vise que les négligents, la phrase est complète.</span>
+                </p>
+              </div>
+            ) : (
+              <div>
+                <span className="font-semibold text-bad block mb-1">Interdit Absolu (Waqf Qabīh) :</span>
+                <p className="text-muted leading-relaxed">
+                  Clore votre récitation sur « Malheur aux prieurs » sans lire la suite maudit tous les croyants qui accomplissent la prière !
+                  <br />
+                  <span className="text-bad font-medium">Le symbole (لا) vous défend formellement de terminer votre prière ici.</span>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 2 : Arrêt d'Étreinte (Al-Waqf Al-Muta'āniq ۛ ... ۛ) */
+const MutaaniqVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [activeStop, setActiveStop] = useState<'first' | 'second' | 'both'>('first');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-4">
+      <div className="label text-center">Al-Baqarah 2:2 — La double triade d'arrêts (ۛ ... ۛ)</div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line text-center">
+        <div className="font-ar text-2xl sm:text-3xl leading-[2.2] text-ink mb-4" dir="rtl">
+          <span>ذَٰلِكَ ٱلۡكِتَٰبُ </span>
+          <span className={`px-2 py-1 rounded-xl transition-all ${
+            activeStop === 'first' || activeStop === 'both' ? 'bg-lapis text-lapis-ink font-bold shadow-xs' : 'bg-soft text-ink'
+          }`}>
+            لَا رَيۡبَۛ
+          </span>
+          <span> </span>
+          <span className={`px-2 py-1 rounded-xl transition-all ${
+            activeStop === 'second' || activeStop === 'both' ? 'bg-lapis text-lapis-ink font-bold shadow-xs' : 'bg-soft text-ink'
+          }`}>
+            فِيهِۛ
+          </span>
+          <span> هُدٗى لِّلۡمُتَّقِينَ</span>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-2 my-4">
+          <button
+            onClick={() => setActiveStop('first')}
+            className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeStop === 'first' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            Option A : Arrêt sur « Lā rayb »
+          </button>
+          <button
+            onClick={() => setActiveStop('second')}
+            className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeStop === 'second' ? 'bg-good text-card shadow-xs' : 'bg-soft text-muted hover:text-ink'
+            }`}
+          >
+            Option B : Arrêt sur « Fīh »
+          </button>
+          <button
+            onClick={() => setActiveStop('both')}
+            className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              activeStop === 'both' ? 'bg-bad text-card shadow-xs' : 'bg-soft text-bad/80 hover:text-bad'
+            }`}
+          >
+            Arrêt aux deux (Erreur)
+          </button>
+        </div>
+
+        <div className={`p-4 rounded-xl text-sm text-left ${
+          activeStop === 'both' ? 'bg-bad-bg border border-bad/30' : 'bg-good-bg border border-good/30'
+        }`}>
+          {activeStop === 'first' && (
+            <div>
+              <span className="font-semibold text-good block mb-1">Nuance A (Arrêt sur Lā rayb) :</span>
+              <p className="text-muted leading-relaxed">
+                « Ce Livre, nul doute ! [Puis enchaîner] En lui réside une guidée pour ceux qui ont la piété. »
+              </p>
+            </div>
+          )}
+          {activeStop === 'second' && (
+            <div>
+              <span className="font-semibold text-good block mb-1">Nuance B (Arrêt sur Fīh) :</span>
+              <p className="text-muted leading-relaxed">
+                « Ce Livre, aucun doute n'est en lui. [Puis enchaîner] C'est une guidée pour ceux qui ont la piété. »
+              </p>
+            </div>
+          )}
+          {activeStop === 'both' && (
+            <div>
+              <span className="font-semibold text-bad block mb-1">Erreur Formelle (Waqf Qabīh) :</span>
+              <p className="text-muted leading-relaxed">
+                S'arrêter à la fois sur « Lā rayb » ET sur « Fīh » laisse le mot « Fīh » isolé au milieu de nulle part, sans verbe ni sujet ! C'est strictement interdit.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** Écran 3 : Les Deux Zéros (Rond vs Ovale) */
+const TwoSifrVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [sifrType, setSifrType] = useState<'oval' | 'round'>('oval');
+  const [ovalMode, setOvalMode] = useState<'continue' | 'stop'>('continue');
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-5">
+      <div className="flex justify-center mb-4">
+        <div className="segmented">
+          <button
+            onClick={() => setSifrType('oval')}
+            aria-pressed={sifrType === 'oval'}
+          >
+            Ovale Allongé (۠ - Les 7 Alifs)
+          </button>
+          <button
+            onClick={() => setSifrType('round')}
+            aria-pressed={sifrType === 'round'}
+          >
+            Cercle Rond (ْ - 100% Muet)
+          </button>
+        </div>
+      </div>
+
+      {sifrType === 'oval' ? (
+        <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+          <div className="label text-center">As-Sifr Al-Mustatīl (الصِّفْرُ المُسْتَطِيلُ ۠) — Les 7 Alifs</div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-center text-ink my-2 leading-[1.8]" dir="rtl">
+            <span>قَالَ </span>
+            <span className="text-gold font-bold underline decoration-gold/60">أَنَا۠</span>
+            <span> خَيۡرٞ مِّنۡهُ</span>
+          </div>
+
+          <div className="flex justify-center gap-2 pt-1">
+            <button
+              onClick={() => setOvalMode('continue')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                ovalMode === 'continue' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              1. Récitation en continu (Wasl)
+            </button>
+            <button
+              onClick={() => setOvalMode('stop')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                ovalMode === 'stop' ? 'bg-lapis text-lapis-ink shadow-xs' : 'bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              2. Arrêt sur le mot (Waqf)
+            </button>
+          </div>
+
+          <div className="p-4 rounded-xl bg-soft text-sm">
+            {ovalMode === 'continue' ? (
+              <div>
+                <span className="font-semibold text-ink block mb-1">En continu : L'Alif est ANNULÉ</span>
+                <p className="text-muted leading-relaxed">
+                  On prononce uniquement la voyelle courte : <strong className="text-ink">« Qāla Ana Khayr »</strong> (sans allonger le son "na").
+                </p>
+              </div>
+            ) : (
+              <div>
+                <span className="font-semibold text-good block mb-1">À l'arrêt : L'Alif REPREND VIE (2 temps)</span>
+                <p className="text-muted leading-relaxed">
+                  Si le souffle manque et qu'on s'arrête sur le mot, on prononce un Alif long complet : <strong className="text-good">« Qāla Anā »</strong> (2 temps de Madd).
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="p-3 rounded-xl bg-gilt-soft/60 border border-gilt/20 text-xs text-ink">
+            <strong>Les 7 Alifs célèbres :</strong> أَنَا۠, لَّٰكِنَّا۠, ٱلظُّنُونَا۠, ٱلرَّسُولَا۠, ٱلسَّبِيلَا۠, قَوَارِيرَا۠, سَلَٰسِلَا۠.
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 rounded-2xl bg-card border border-line space-y-4">
+          <div className="label text-center">As-Sifr Al-Mustadīr (الصِّفْرُ المُسْتَدِيرُ ْ) — Annulation Totale</div>
+
+          <div className="font-ar text-4xl sm:text-5xl text-center text-ink my-2 leading-[1.8]" dir="rtl">
+            <span>يَفۡرَحُو</span>
+            <span className="text-bad font-bold line-through decoration-bad">اْ</span>
+          </div>
+
+          <div className="p-4 rounded-xl bg-bad-bg border border-bad/20 text-sm">
+            <span className="font-semibold text-bad block mb-1">Règle d'or : 100% Inexistant à l'oral</span>
+            <p className="text-muted leading-relaxed">
+              Le cercle rond parfait indique que la lettre est purement orthographique. On lit <strong className="text-ink">« Yafrahū »</strong> sans jamais prononcer le Alif, que l'on continue ou que l'on s'arrête !
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 text-center text-xs">
+            <div className="p-2.5 rounded-xl bg-soft">
+              <span className="font-ar text-xl block text-ink" dir="rtl">مِاْئَةَ</span>
+              <span className="text-muted">Se lit « Mi'ah »</span>
+            </div>
+            <div className="p-2.5 rounded-xl bg-soft">
+              <span className="font-ar text-xl block text-ink" dir="rtl">لَأَاْذۡبَحَنَّهُۥ</span>
+              <span className="text-muted">Se lit « La'adh-bahannahū »</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Écran 4 : La Saktah (Pause de 2 temps sans souffle) */
+const SaktahVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
+  const [isSimulating, setIsSimulating] = useState(false);
+
+  const runSimulation = () => {
+    setIsSimulating(true);
+    setTimeout(() => setIsSimulating(false), 2400);
+  };
+
+  return (
+    <div key={animKey} className="py-6 px-4 select-none max-w-xl mx-auto space-y-5 text-center">
+      <div className="label">Al-Kahf 18:1-2 — La Saktah (س) entre عِوَجَا et قَيِّمٗا</div>
+
+      <div className="p-6 rounded-2xl bg-card border border-line shadow-xs space-y-4">
+        <div className="font-ar text-3xl sm:text-4xl text-ink leading-[2]" dir="rtl">
+          <span>وَلَمۡ يَجۡعَل لَّهُۥ </span>
+          <span className="p-1 px-2.5 rounded-xl bg-izhar-bg text-izhar font-bold border border-izhar/40">
+            عِوَجَاۜ ١
+          </span>
+          <span> </span>
+          <span className="p-1 px-2.5 rounded-xl bg-soft text-ink font-bold">
+            قَيِّمٗا
+          </span>
+        </div>
+
+        <div className="relative max-w-xs mx-auto h-16 flex items-center justify-center">
+          {isSimulating ? (
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-izhar text-card flex items-center justify-center font-bold text-sm animate-ping">
+                2t
+              </div>
+              <span className="text-xs text-izhar font-semibold animate-pulse">Silence sans respirer...</span>
+            </div>
+          ) : (
+            <button onClick={runSimulation} className="btn btn-secondary text-xs">
+              Simuler la pause silencieuse (2 temps)
+            </button>
+          )}
+        </div>
+
+        <div className="p-4 rounded-xl bg-good-bg border border-good/20 text-sm text-left">
+          <span className="font-semibold text-good block mb-1">Pourquoi la Saktah est-elle obligatoire ici ?</span>
+          <p className="text-muted leading-relaxed">
+            « \'Iwajā » signifie « déviance » et « Qayyimā » signifie « d\'une droiture absolue ». Si l\'on liait sans silence, l\'auditeur pourrait croire que la déviance elle-même est qualifiée de droite ! La Saktah coupe la liaison sans couper la récitation.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================================
    COMPOSANT PRINCIPAL
    ========================================================================= */
 
@@ -431,6 +810,38 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
       concept: 'Retenir le nombre de versets en 3 secondes et adapter sa vitesse de lecture',
       renderVisual: () => <MnemonicVersesVisual animKey={animKey} />,
       explanation: '23 ans de prophétie entourés de 6 au début et 6 à la fin donnent 6236 versets. Vous pouvez les réciter selon 3 rythmes légitimes : At-Tahqīq (lent), At-Tadwīr (modéré) ou Al-Hadr (rapide), sans jamais sacrifier le Tajwīd.'
+    }
+  ];
+
+  // Screens for Chapter 2 (Quranic Symbols)
+  const chapter2Screens = [
+    {
+      title: 'Waqf Lāzim (مـ) vs Le Danger de Lā (لا)',
+      badge: 'Sens & Interdictions',
+      concept: 'Où respirer pour ne pas inverser ou tronquer la parole d\'Allah',
+      renderVisual: () => <WaqfLazimVsLaVisual animKey={animKey} />,
+      explanation: 'Le signe (مـ) impose un arrêt absolu car lier dénature le sens théologique (ex: Yā-Sīn 36:76). À l\'inverse, le signe (لا) interdit formellement de couper la récitation ou d\'aller au Rukūʿ car la phrase resterait incomplète (ex: Al-Mā\'ūn 107:4).'
+    },
+    {
+      title: 'Al-Waqf Al-Muta\'āniq (ۛ ... ۛ) : L\'Arrêt d\'Étreinte',
+      badge: 'Règle d\'Exclusivité',
+      concept: 'Deux arrêts jumeaux : choisissez-en un seul, jamais les deux !',
+      renderVisual: () => <MutaaniqVisual animKey={animKey} />,
+      explanation: 'Dans Al-Baqarah 2:2, la double triade (ۛ ... ۛ) offre deux lectures sublimes : s\'arrêter sur « Lā rayb » OU sur « Fīh ». Mais la règle est intransigeante : vous devez choisir un seul arrêt et lier l\'autre.'
+    },
+    {
+      title: 'Cercle Rond (ْ) vs Ovale Allongé (۠)',
+      badge: 'Calligraphie & 7 Alifs',
+      concept: 'Comment un simple changement de forme dicte si la lettre est prononcée',
+      renderVisual: () => <TwoSifrVisual animKey={animKey} />,
+      explanation: 'Le cercle parfait (ْ) annule définitivement la lettre (ex: يَفۡرَحُواْ). L\'ovale vertical (۠) signale les 7 Alifs : l\'Alif est muet en liaison rapide, mais reprend vie et se prolonge de 2 temps pleins si vous vous arrêtez dessus.'
+    },
+    {
+      title: 'As-Saktah Al-Latīfah (السَّكْتَةُ اللَّطِيفَةُ)',
+      badge: 'Silence de 2 temps',
+      concept: 'Interrompre la voix sans respirer pour séparer deux vérités opposées',
+      renderVisual: () => <SaktahVisual animKey={animKey} />,
+      explanation: 'La Saktah (س) est un arrêt silencieux d\'environ deux battements sans reprendre de souffle. Dans la sourate Al-Kahf, elle évite de lier « \'Iwajā » (déviance) avec « Qayyimā » (droiture), préservant la clarté immaculée du Coran.'
     }
   ];
 
@@ -637,7 +1048,14 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
     }
   ];
 
-  const screens = chapter.number === 1 ? chapter1Screens : chapter.number === 8 ? nunScreens : qalqalahScreens;
+  const screens =
+    chapter.number === 1
+      ? chapter1Screens
+      : chapter.number === 2
+      ? chapter2Screens
+      : chapter.number === 8
+      ? nunScreens
+      : qalqalahScreens;
   const current = screens[screenIndex] || screens[0];
 
   const goTo = (idx: number) => {

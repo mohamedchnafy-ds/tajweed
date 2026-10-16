@@ -44,6 +44,40 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
+  // Verses for Chapter 2 (Quranic Symbols)
+  const chapter2Verses = [
+    {
+      ref: '2:2',
+      surahFr: 'Al-Baqarah',
+      words: [
+        { text: 'ذَٰلِكَ', rule: 'Alif Khanjariyyah (ٰ)', ruleClass: 'chip-gold', why: 'Le petit Alif vertical au-dessus du Dhāl est une voyelle longue obligatoire (2 temps). Ne jamais l\'omettre !', target: true },
+        { text: 'ٱلۡكِتَٰبُ', rule: 'Hamzat Wasl & Alif Khanjariyyah', ruleClass: 'chip-gold', why: 'La Hamzah s\'efface en liaison, et le Tā\' porte un Alif miniature obligatoire.' },
+        { text: 'لَا', rule: 'Madd Naturel', ruleClass: 'chip-gold', why: 'Prolongation normale de 2 temps.' },
+        { text: 'رَيۡبَۛ', rule: 'Triade 1 (Waqf Muta\'āniq)', ruleClass: 'chip-iqlab', why: 'Premier arrêt de la triade (ۛ) : si vous vous arrêtez ici, vous devez obligatoirement lier « Fīh » !', target: true },
+        { text: 'فِيهِۛ', rule: 'Triade 2 (Waqf Muta\'āniq)', ruleClass: 'chip-iqlab', why: 'Deuxième arrêt de la triade (ۛ) : arrêt permis seulement si vous n\'avez pas coupé sur « Rayb ».', target: true },
+        { text: 'هُدٗى', rule: 'Tanwīn + Lām', ruleClass: 'chip-idgham', why: 'Tanwīn suivi de Lām : Idghām sans Ghunnah.' },
+        { text: 'لِّلۡمُتَّقِينَ', rule: 'Arrêt avec Madd \'Ārid', ruleClass: 'chip-izhar', why: 'Prolongation permise à l\'arrêt (2, 4 ou 6 temps).' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/002002.mp3',
+    },
+    {
+      ref: '18:1-2',
+      surahFr: 'Al-Kahf',
+      words: [
+        { text: 'وَلَمۡ', rule: 'Soukoûn Coranique (ﹾ)', ruleClass: 'chip-izhar', why: 'La tête de Khā\' sur le Mīm ordonne une clarté absolue (Izhār Shafawī).' },
+        { text: 'يَجۡعَل', rule: 'Qalqalah Sughrā', ruleClass: 'chip-qalqalah', why: 'Rebond net sur le Jīm au milieu du verbe.' },
+        { text: 'لَّهُۥ', rule: 'Petit Wāw de Silah (ۥ)', ruleClass: 'chip-idgham', why: 'Le petit Wāw se prononce comme une voyelle longue de 2 temps en liaison continue.', target: true },
+        { text: 'عِوَجَاۜ', rule: 'Saktah Latīfah (س)', ruleClass: 'chip-qalqalah', why: 'Pause obligatoire de 2 temps sans respirer pour séparer la déviance de la droiture !', target: true },
+        { text: '١', rule: 'Fin de verset', ruleClass: 'chip-gold', why: 'Numéro de verset séparateur.' },
+        { text: 'قَيِّمٗا', rule: 'Reprise post-Saktah', ruleClass: 'chip-idgham', why: 'Reprise sans avoir pris de souffle d\'air.' },
+        { text: 'لِّيُنذِرَ', rule: 'Idghām & Ikhfā\'', ruleClass: 'chip-ikhfa', why: 'Idghām sans Ghunnah puis Ikhfā\' sur le Nūn devant Dhāl.' },
+        { text: 'بَأۡسٗا', rule: 'Hamzah Sākinah', ruleClass: 'chip-gold', why: 'Blocage net des cordes vocales.' },
+        { text: 'شَدِيدٗا', rule: 'Arrêt avec Madd \'Iwad', ruleClass: 'chip-izhar', why: 'Le Tanwīn se transforme en Alif de 2 temps à l\'arrêt.' },
+      ],
+      audioUrl: 'https://everyayah.com/data/Husary_128kbps/018001.mp3',
+    }
+  ];
+
   // Verses for Chapter 8 (Nun Sakinah)
   const nunVerses = [
     {
@@ -103,7 +137,14 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     }
   ];
 
-  const versesList = chapter.number === 1 ? chapter1Verses : chapter.number === 8 ? nunVerses : qalqalahVerses;
+  const versesList =
+    chapter.number === 1
+      ? chapter1Verses
+      : chapter.number === 2
+      ? chapter2Verses
+      : chapter.number === 8
+      ? nunVerses
+      : qalqalahVerses;
   const [activeVerseIndex, setActiveVerseIndex] = useState(0);
   const [selectedWordIndex, setSelectedWordIndex] = useState<number>(0);
 

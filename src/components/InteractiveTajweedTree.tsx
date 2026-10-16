@@ -71,6 +71,56 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         ]
       };
     }
+    if (chapter.number === 2) {
+      return {
+        id: 'root-c2',
+        labelFr: 'Symboles du Mushaf & Rasm Uthmānī',
+        labelAr: 'عَلَامَاتُ المُصْحَفِ وَضَبْطِهِ',
+        descriptionFr: 'Le guide complet des symboles calligraphiques du Coran : où s\'arrêter sans altérer le sens et quelles lettres prononcer ou taire.',
+        children: [
+          {
+            id: 'node-waqf-lazim',
+            labelFr: '1. Waqf Lāzim (مـ) vs Interdiction (لا)',
+            labelAr: 'الوَقْفُ اللَّازِمُ (مـ) وَالمَمْنُوعُ (لا)',
+            tagColor: 'var(--bad)',
+            descriptionFr: 'مـ = Arrêt obligatoire sous peine de grave contresens théologique. لا = Interdiction de couper la lecture car le sens est incomplet.',
+            examples: ['فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ (مـ)', 'فَوَيۡلٞ لِّلۡمُصَلِّينَ (لا)'],
+          },
+          {
+            id: 'node-waqf-other',
+            labelFr: '2. Arrêts Optionnels (ج · قلى · صلى)',
+            labelAr: 'الوَقْفُ الجَائِزُ وَأَوْلَوِيَّاتُهُ',
+            tagColor: 'var(--gold)',
+            descriptionFr: 'ج = Choix égal. قلى = Arrêt préférable (Al-Waqfu awlā). صلى = Liaison préférable (Al-Waslu awlā).',
+            examples: ['ج (تخيير متساوٍ)', 'قلى (الوقف أولى)', 'صلى (الوصل أولى)'],
+          },
+          {
+            id: 'node-mutaaniq',
+            labelFr: '3. Arrêt d\'Étreinte (ۛ ... ۛ)',
+            labelAr: 'الوَقْفُ المُتَعَانِقُ (المُعَانَقَةُ)',
+            tagColor: 'var(--iqlab)',
+            descriptionFr: 'Double triade de points : arrêtez-vous à l\'un OU à l\'autre, mais JAMAIS aux deux à la fois !',
+            examples: ['لَا رَيۡبَۛ فِيهِۛ هُدٗى (البقرة 2)'],
+          },
+          {
+            id: 'node-saktah',
+            labelFr: '4. La Pause sans Souffle (س)',
+            labelAr: 'السَّكْتَةُ اللَّطِيفَةُ (س)',
+            tagColor: 'var(--izhar)',
+            descriptionFr: 'Arrêt bref de 2 temps sans reprendre sa respiration pour éviter une fausse liaison contradictoire.',
+            examples: ['عِوَجَاۜ ١ قَيِّمٗا (الكهف 1)', 'مِن مَّرۡقَدِنَاۜۗ (يس 52)'],
+          },
+          {
+            id: 'node-vowels-rasm',
+            labelFr: '5. Lettres Vocales & Zéros (ٰ · ۥ · ۦ · ْ · ۠)',
+            labelAr: 'ضَبْطُ الحُرُوفِ وَالصِّفْرَانِ',
+            tagColor: 'var(--idgham)',
+            descriptionFr: 'Alif Khanjariyyah (ٰ), petit Wāw (ۥ), petit Yā\' (ۦ) = voyelles obligatoires. Cercle rond (ْ) = lettre muette. Ovale (۠) = les 7 Alifs.',
+            examples: ['حَوۡلَهُۥ ذَهَبَ', 'أَنَا۠ خَيۡرٞ', 'يَفۡرَحُواْ'],
+          }
+        ]
+      };
+    }
     if (chapter.number === 8) {
       return {
         id: 'root-nun',

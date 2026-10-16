@@ -164,6 +164,265 @@ const LAHN_TEST_CASES: LahnTestCase[] = [
   },
 ];
 
+interface QuranSymbolInfo {
+  id: string;
+  symbol: string;
+  nameAr: string;
+  nameFr: string;
+  category: 'waqf' | 'pronounce' | 'structure';
+  actionFr: string;
+  colorClass: string;
+  badge: string;
+  explanation: string;
+  theologicalImpact: string;
+  exampleAr: string;
+  exampleRef: string;
+  trapToAvoid: string;
+}
+
+const QURAN_SYMBOLS: QuranSymbolInfo[] = [
+  {
+    id: 'm-lazim',
+    symbol: 'مـ',
+    nameAr: 'الوَقْفُ اللَّازِمُ',
+    nameFr: 'Waqf Lāzim (Arrêt Obligatoire)',
+    category: 'waqf',
+    actionFr: 'Arrêt obligatoire avec reprise de souffle. Ne jamais lier avec la suite.',
+    colorClass: 'chip-qalqalah',
+    badge: 'Arrêt Impératif',
+    explanation: 'Le symbole (مـ) horizontal indique que la phrase est achevée. Lier avec ce qui suit crée une confusion grave ou un faux sens théologique.',
+    theologicalImpact: 'Préserve la frontière sacrée entre les propos rapportés (mécréants) et la parole divine qui répond.',
+    exampleAr: 'فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ إِنَّا نَعۡلَمُ مَا يُسِرُّونَ',
+    exampleRef: 'Yā-Sīn 36:76',
+    trapToAvoid: 'Ne pas confondre avec le petit Mīm vertical (ۢ) qui indique un Iqlāb de Nūn/Tanwīn.',
+  },
+  {
+    id: 'la-taqif',
+    symbol: 'لا',
+    nameAr: 'لَا تَقِفْ (الوّقْفُ المَمْنُوعُ)',
+    nameFr: 'Lā Taqif (Interdiction d\'arrêter)',
+    category: 'waqf',
+    actionFr: 'Ne coupez jamais votre récitation ici et n\'allez jamais au Rukūʿ.',
+    colorClass: 'chip-qalqalah',
+    badge: 'Interdiction de Couper',
+    explanation: 'La phrase est grammaticalement suspendue. S\'arrêter à cet endroit délivre un message incomplet ou contradictoire.',
+    theologicalImpact: 'Dans Al-Mā\'ūn 107:4 (« Malheur aux prieurs »), couper la lecture maudit les croyants ! Il faut impérativement lier avec le verset 5.',
+    exampleAr: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤ ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ ٥',
+    exampleRef: 'Al-Mā\'ūn 107:4',
+    trapToAvoid: 'Si le souffle vous manque, reprenez votre respiration puis reprenez la lecture avant ce mot pour compléter la phrase.',
+  },
+  {
+    id: 'jeem-jaiz',
+    symbol: 'ج',
+    nameAr: 'الوَقْفُ الجَائِزُ',
+    nameFr: 'Waqf Jā\'iz (Arrêt Permis Équilibré)',
+    category: 'waqf',
+    actionFr: 'Choix entièrement libre : vous pouvez vous arrêter ou lier de manière égale.',
+    colorClass: 'chip-izhar',
+    badge: 'Choix Égal',
+    explanation: 'Les deux options (s\'arrêter ou continuer) sont linguistiquement et théologiquement équivalentes sans préférence marquée.',
+    theologicalImpact: 'Aucun risque d\'altération du sens, que vous preniez votre respiration ou que vous poursuiviez d\'un trait.',
+    exampleAr: 'نَحۡنُ نَقُصُّ عَلَيۡكَ نَبَأَهُم بِٱلۡحَقِّۚ إِنَّهُمۡ فِتۡيَةٌ',
+    exampleRef: 'Al-Kahf 18:13',
+    trapToAvoid: 'Inutile d\'hésiter : choisissez selon votre capacité de souffle.',
+  },
+  {
+    id: 'qala-awla',
+    symbol: 'قلى',
+    nameAr: 'الوَقْفُ أَوْلَى',
+    nameFr: 'Al-Waqfu Awlā (Arrêt Préférable)',
+    category: 'waqf',
+    actionFr: 'Il est préférable de s\'arrêter pour respirer, bien que la liaison soit permise.',
+    colorClass: 'chip-gold',
+    badge: 'Arrêt Préférable',
+    explanation: 'L\'arrêt marque la fin d\'un développement sémantique, semblable à un point final dans nos langues modernes.',
+    theologicalImpact: 'Permet à l\'auditeur de méditer la sentence avant d\'entamer le point suivant.',
+    exampleAr: 'قُل رَّبِّيٓ أَعۡلَمُ بِعِدَّتِهِم مَّا يَعۡلَمُهُمۡ إِلَّا قَلِيلٞۗ',
+    exampleRef: 'Al-Kahf 18:22',
+    trapToAvoid: 'Ne forcez pas la liaison au détriment de votre souffle sur un (قلى).',
+  },
+  {
+    id: 'sala-awla',
+    symbol: 'صلى',
+    nameAr: 'الوَصْلُ أَوْلَى',
+    nameFr: 'Al-Waslu Awlā (Liaison Préférable)',
+    category: 'waqf',
+    actionFr: 'Il est préférable de lier en continu, même si l\'arrêt reste toléré.',
+    colorClass: 'chip-idgham',
+    badge: 'Liaison Préférable',
+    explanation: 'La suite de la phrase est intimement liée à ce qui précède. Lier offre une fluidité narrative supérieure.',
+    theologicalImpact: 'Maintient la cohésion d\'une condition ou d\'un attribut sans fragmentation.',
+    exampleAr: 'وَإِن يَمۡسَسۡكَ ٱللَّهُ بِضُرّٖ فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَۖ',
+    exampleRef: 'Al-An\'ām 6:17',
+    trapToAvoid: 'Si vous vous arrêtez par essoufflement, il n\'y a aucun péché.',
+  },
+  {
+    id: 'mutaaniq-triad',
+    symbol: 'ۛ ... ۛ',
+    nameAr: 'وَقْفُ المُعَانَقَةِ (المُتَعَانِقُ)',
+    nameFr: 'Al-Waqf Al-Muta\'āniq (Arrêt d\'Étreinte)',
+    category: 'waqf',
+    actionFr: 'Arrêtez-vous à l\'un OU à l\'autre, mais JAMAIS aux deux à la fois !',
+    colorClass: 'chip-iqlab',
+    badge: 'Arrêt Alternatif Exclusif',
+    explanation: 'Deux groupes de trois points disposés en triangle. Ils représentent deux facettes complémentaires d\'un même verset.',
+    theologicalImpact: 'S\'arrêter au premier illumine un sens ; s\'arrêter au second révèle une autre nuance. Cumuler les deux brise la grammaire.',
+    exampleAr: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
+    exampleRef: 'Al-Baqarah 2:2',
+    trapToAvoid: 'Ne jamais faire de pause aux deux endroits lors de la même récitation.',
+  },
+  {
+    id: 'saktah-silence',
+    symbol: 'س',
+    nameAr: 'السَّكْتَةُ اللَّطِيفَةُ',
+    nameFr: 'As-Saktah (Silence sans souffle)',
+    category: 'waqf',
+    actionFr: 'Arrêt bref de 2 temps sans respirer, puis reprise immédiate de la récitation.',
+    colorClass: 'chip-izhar',
+    badge: 'Silence de 2 Temps',
+    explanation: 'Suspension de la voix sans reprendre d\'air dans les poumons pour interdire la liaison entre deux mots.',
+    theologicalImpact: 'Empêche d\'associer deux mots contradictoires, comme « déviance » (عِوَجًا) et « droit » (قَيِّمًا) dans Al-Kahf.',
+    exampleAr: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ',
+    exampleRef: 'Al-Kahf 18:1-2',
+    trapToAvoid: 'Ne prenez surtout pas d\'air pendant la Saktah ; le souffle doit rester suspendu.',
+  },
+  {
+    id: 'alif-khanjariyyah',
+    symbol: 'ٰ',
+    nameAr: 'الأَلِفُ الخِنْجَرِيَّةُ',
+    nameFr: 'Alif Khanjariyyah (Dagger Alif)',
+    category: 'pronounce',
+    actionFr: 'Prononcez obligatoirement un Alif long de 2 temps.',
+    colorClass: 'chip-gold',
+    badge: 'Alif Miniature Obligatoire',
+    explanation: 'Un petit Alif vertical qui ressemble à un poignard arabe. Il remplace l\'Alif plein dans le Rasm ʿUthmānī.',
+    theologicalImpact: 'L\'omettre constitue un Lahn Jalī car cela supprime une lettre sacrée du Coran.',
+    exampleAr: 'ذَٰلِكَ ٱلۡكِتَٰبُ · ٱلصَّلَوٰةَ · ٱلرَّحۡمَٰنِ',
+    exampleRef: 'Al-Fātihah & Al-Baqarah',
+    trapToAvoid: 'Ne pas lire rapidement comme une voyelle courte d\'un seul temps.',
+  },
+  {
+    id: 'waw-silah',
+    symbol: 'ۥ',
+    nameAr: 'صِلَةُ الوَاوِ الصَّغِيرَةِ',
+    nameFr: 'Petit Wāw de Silah (ۥ)',
+    category: 'pronounce',
+    actionFr: 'Prononcez un Wāw long (ū) de 2 temps en liaison continue.',
+    colorClass: 'chip-idgham',
+    badge: 'Wāw en Liaison',
+    explanation: 'Placé après le pronom Hā\' (ـهُ). Il ne se prononce que si vous continuez la lecture sans vous arrêter sur le mot.',
+    theologicalImpact: 'Prolonge harmonieusement le pronom de majesté ou de possession.',
+    exampleAr: 'فَلَمَّآ أَضَآءَتۡ مَا حَوۡلَهُۥ ذَهَبَ ٱللَّهُ',
+    exampleRef: 'Al-Baqarah 2:17',
+    trapToAvoid: 'Si vous vous arrêtez sur le mot, dites « Hawlah » avec Soukoûn sur le Hā\' : le Wāw disparaît.',
+  },
+  {
+    id: 'yaa-silah',
+    symbol: 'ۦ',
+    nameAr: 'صِلَةُ اليَاءِ الصَّغِيرَةِ',
+    nameFr: 'Petit Yā\' de Silah (ۦ)',
+    category: 'pronounce',
+    actionFr: 'Prononcez un Yā\' long (ī) de 2 temps en liaison continue.',
+    colorClass: 'chip-idgham',
+    badge: 'Yā\' en Liaison',
+    explanation: 'Petit Yā\' inversé sous le pronom Hā\' portant une Kasrah (ـهِ). Se prolonge en continu.',
+    theologicalImpact: 'Confère la plénitude acoustique révélée au texte coranique.',
+    exampleAr: 'إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ',
+    exampleRef: 'Quraysh 106:2',
+    trapToAvoid: 'Disparaît à l\'arrêt comme le petit Wāw.',
+  },
+  {
+    id: 'madd-wave',
+    symbol: 'ٓ',
+    nameAr: 'عَلَامَةُ المَدِّ',
+    nameFr: 'Signe de Madd (Vague)',
+    category: 'pronounce',
+    actionFr: 'Allongez la voyelle de 4 à 6 temps selon la règle applicable.',
+    colorClass: 'chip-gold',
+    badge: 'Prolongation 4 à 6t',
+    explanation: 'La vague calligraphique au-dessus d\'une voyelle longue signale la présence d\'une Hamzah ou d\'une Shaddah consécutive.',
+    theologicalImpact: 'Son omission ou son raccourcissement constitue un Lahn Khafī à proscrire.',
+    exampleAr: 'ٱلضَّآلِّينَ (6 temps) · جَآءَ (4-5 temps)',
+    exampleRef: 'Al-Fātihah 1:7',
+    trapToAvoid: 'Ne jamais lire comme un simple Madd naturel de 2 temps.',
+  },
+  {
+    id: 'sukun-qurani',
+    symbol: 'ﹾ',
+    nameAr: 'السُّكُونُ القُرْآنِيُّ',
+    nameFr: 'Soukoûn Coranique (Tête de Khā\')',
+    category: 'pronounce',
+    actionFr: 'Consonne sans voyelle prononcée avec clarté absolue (Izhār).',
+    colorClass: 'chip-izhar',
+    badge: 'Clarté / Izhār',
+    explanation: 'Dans le Mushaf, le Soukoûn ressemble à un demi-cercle ouvert (tête de la lettre Khā\' خ sans point). Il ordonne la clarté.',
+    theologicalImpact: 'Garantit que la consonne n\'est ni assimilée ni escamotée.',
+    exampleAr: 'أَنۡعَمۡتَ · مَنۡ ءَامَنَ',
+    exampleRef: 'Al-Fātihah 1:7',
+    trapToAvoid: 'Ne confondez pas avec le rond fermé d\'annulation (ْ).',
+  },
+  {
+    id: 'sifr-mustadir',
+    symbol: 'ْ',
+    nameAr: 'الصِّفْرُ المُسْتَدِيرُ (المُلْغَى)',
+    nameFr: 'Cercle Rond (100% muet)',
+    category: 'pronounce',
+    actionFr: 'Ignorez totalement cette lettre : elle est 100% muette toujours.',
+    colorClass: 'chip-qalqalah',
+    badge: 'Lettre 100% Muette',
+    explanation: 'Un cercle rond parfait au-dessus d\'un Alif, Wāw ou Yā\'. Indique que la lettre n\'a qu\'une valeur orthographique.',
+    theologicalImpact: 'Prononcer cette lettre ajoute un son inexistant à la récitation prophétique.',
+    exampleAr: 'يَفۡرَحُواْ · مِاْئَةَ · أُوْلَٰٓئِكَ',
+    exampleRef: 'Al-Baqarah 2:5',
+    trapToAvoid: 'Ne prononcez jamais le Alif final de « Yafrahū » ou de « Qālū ».',
+  },
+  {
+    id: 'sifr-mustatil',
+    symbol: '۠',
+    nameAr: 'الصِّفْرُ المُسْتَطِيلُ (الأَلِفَاتُ السَّبْعُ)',
+    nameFr: 'Ovale Allongé (Les 7 Alifs)',
+    category: 'pronounce',
+    actionFr: 'Muet en liaison continue, mais prononcé avec 2 temps complets à l\'arrêt.',
+    colorClass: 'chip-gold',
+    badge: 'Les 7 Alifs Célèbres',
+    explanation: 'Un ovale allongé verticalement sur 7 Alifs précis du Coran (ex: أَنَا۠, لَّٰكِنَّا۠).',
+    theologicalImpact: 'Respecte scrupuleusement la transmission orale : "ana khayr" en continu, "anā" à l\'arrêt.',
+    exampleAr: 'قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ',
+    exampleRef: 'Al-A\'rāf 7:12',
+    trapToAvoid: 'Ne prolongez pas l\'Alif si vous liez avec le mot suivant.',
+  },
+  {
+    id: 'mim-iqlab',
+    symbol: 'ۢ',
+    nameAr: 'مِيمُ الإِقْلَابِ الصَّغِيرَةُ',
+    nameFr: 'Petit Mīm d\'Iqlāb (ۢ)',
+    category: 'pronounce',
+    actionFr: 'Transformez le son N en Mīm avec Ghunnah de 2 temps devant un Bā\'.',
+    colorClass: 'chip-iqlab',
+    badge: 'Iqlāb en Mīm Doux',
+    explanation: 'Petit Mīm vertical placé au-dessus d\'un Nūn ou d\'un Tanwīn suivi de la lettre Bā\' (ب).',
+    theologicalImpact: 'Facilite la transition phonétique entre le nez et les lèvres.',
+    exampleAr: 'مِنۢ بَعۡدِ · أَنۢبِيَآءَ · عَلِيمُۢ بِذَاتِ',
+    exampleRef: 'Al-Baqarah 2:27',
+    trapToAvoid: 'Ne serrez pas les lèvres avec force : laissez un contact doux.',
+  },
+  {
+    id: 'sujud-mark',
+    symbol: '۩',
+    nameAr: 'عَلَامَةُ السَّجْدَةِ',
+    nameFr: 'Signe de Sujūd (۩)',
+    category: 'structure',
+    actionFr: 'Prosternez-vous (Sujūd at-Tilāwah) après avoir lu le verset.',
+    colorClass: 'chip-idgham',
+    badge: 'Prosternation Sacrée',
+    explanation: 'Le trait au-dessus du mot indique la cause de la prosternation, et l\'arche (۩) en fin de verset marque le moment du Sujūd.',
+    theologicalImpact: 'Sunnah Mu\'akkadah démontrant l\'humilité et l\'obéissance immédiate à Allah.',
+    exampleAr: 'وَلَهُۥ يَسۡجُدُونَۤ۩',
+    exampleRef: 'Al-A\'rāf 7:206',
+    trapToAvoid: 'Pas besoin de Tashahhud ni de Salām pour le Sujūd at-Tilāwah.',
+  },
+];
+
 export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // Arabic alphabet for Chapters 8 & 10
   const ARABIC_ALPHABET = [
@@ -200,6 +459,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   // State for Chapter 1
   const [selectedCaseId, setSelectedCaseId] = useState<string>('jali-1');
   const [filterCategory, setFilterCategory] = useState<'all' | 'jali' | 'khafi' | 'correct'>('all');
+
+  // State for Chapter 2
+  const [selectedSymbolId, setSelectedSymbolId] = useState<string>('m-lazim');
+  const [symbolCategory, setSymbolCategory] = useState<'all' | 'waqf' | 'pronounce' | 'structure'>('all');
 
   // State for Chapters 8 & 10
   const [selectedLetter, setSelectedLetter] = useState(
@@ -481,6 +744,171 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 <dt className="label mb-1 text-gilt">Conseil de correction du professeur</dt>
                 <dd className="text-ink bg-gilt-soft/40 p-3 rounded-xl border border-gilt/20">
                   {selectedCase.correctionTip}
+                </dd>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
+  /* =========================================================================
+     RENDU CHAPITRE 2 : DÉCODEUR DES SYMBOLES DU MUSHAF
+     ========================================================================= */
+  if (chapter.number === 2) {
+    const filteredSymbols = QURAN_SYMBOLS.filter(
+      (s) => symbolCategory === 'all' || s.category === symbolCategory
+    );
+    const selectedSymbol =
+      QURAN_SYMBOLS.find((s) => s.id === selectedSymbolId) || QURAN_SYMBOLS[0];
+
+    const accentMap: Record<string, string> = {
+      'chip-izhar': 'var(--izhar)',
+      'chip-idgham': 'var(--idgham)',
+      'chip-iqlab': 'var(--iqlab)',
+      'chip-ikhfa': 'var(--ikhfa)',
+      'chip-qalqalah': 'var(--qalqalah)',
+      'chip-gold': 'var(--gold)',
+    };
+    const accentBorder = accentMap[selectedSymbol.colorClass] || 'var(--ink)';
+
+    return (
+      <>
+        <StepHeader
+          step={3}
+          title="Le Décodeur des Symboles du Mushaf"
+          description="Sélectionnez un symbole calligraphique du Coran pour comprendre immédiatement ce que vous devez faire, son impact théologique et le piège à éviter."
+        />
+
+        {/* Filter bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 my-4">
+          <div className="segmented">
+            <button
+              onClick={() => setSymbolCategory('all')}
+              aria-pressed={symbolCategory === 'all'}
+            >
+              Tous ({QURAN_SYMBOLS.length})
+            </button>
+            <button
+              onClick={() => setSymbolCategory('waqf')}
+              aria-pressed={symbolCategory === 'waqf'}
+            >
+              Arrêts & Pauses (7)
+            </button>
+            <button
+              onClick={() => setSymbolCategory('pronounce')}
+              aria-pressed={symbolCategory === 'pronounce'}
+            >
+              Rasm & Prononciation (8)
+            </button>
+            <button
+              onClick={() => setSymbolCategory('structure')}
+              aria-pressed={symbolCategory === 'structure'}
+            >
+              Spéciaux (1)
+            </button>
+          </div>
+          <span className="text-xs text-muted">
+            Symboles officiels du Mushaf de Médine
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
+          {/* Left grid of symbols */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            {filteredSymbols.map((s) => {
+              const isSelected = s.id === selectedSymbol.id;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setSelectedSymbolId(s.id)}
+                  aria-pressed={isSelected}
+                  className={`p-3.5 rounded-2xl flex flex-col items-center justify-between text-center transition-all border ${
+                    isSelected
+                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20 scale-[1.02]'
+                      : 'bg-card/75 border-line hover:border-muted/50 hover:bg-card'
+                  }`}
+                >
+                  <span className="font-ar text-4xl text-ink font-bold my-1" dir="rtl">
+                    {s.symbol}
+                  </span>
+                  <div className="min-w-0 w-full mt-2">
+                    <span className="text-xs font-semibold text-ink block truncate">
+                      {s.nameFr.split('(')[0].trim()}
+                    </span>
+                    <span className={`chip ${s.colorClass} text-[11px] py-0 px-2 mt-1 truncate`}>
+                      {s.badge}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right diagnostic card */}
+          <section
+            key={selectedSymbol.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade"
+            aria-live="polite"
+          >
+            {/* Header */}
+            <div
+              className="p-6 bg-soft border-b border-line flex items-center justify-between gap-4"
+              style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
+            >
+              <div>
+                <span className="label block mb-1">{selectedSymbol.nameAr}</span>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-ink">
+                  {selectedSymbol.nameFr}
+                </h3>
+                <span className={`chip ${selectedSymbol.colorClass} mt-2`}>
+                  {selectedSymbol.badge}
+                </span>
+              </div>
+              <span className="font-ar text-5xl sm:text-6xl text-ink font-bold shrink-0" dir="rtl">
+                {selectedSymbol.symbol}
+              </span>
+            </div>
+
+            {/* Action required box */}
+            <div className="p-5 bg-card border-b border-line">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-1">
+                Action immédiate exigée
+              </span>
+              <p className="text-base font-semibold text-ink leading-snug">
+                {selectedSymbol.actionFr}
+              </p>
+            </div>
+
+            {/* Detailed analysis */}
+            <div className="p-6 space-y-4 text-sm leading-relaxed">
+              <div>
+                <dt className="label mb-1">Règle de Tajwīd</dt>
+                <dd className="text-ink">{selectedSymbol.explanation}</dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1">Impact sur le sens sacré</dt>
+                <dd className="text-ink font-medium">{selectedSymbol.theologicalImpact}</dd>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="label">Exemple dans le Coran</span>
+                  <span className="ref-tag text-xs">{selectedSymbol.exampleRef}</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-soft text-center">
+                  <span className="font-ar text-2xl sm:text-3xl text-ink block leading-[1.8]" dir="rtl">
+                    {selectedSymbol.exampleAr}
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-line/60">
+                <dt className="label mb-1 text-gilt">Piège fréquent à éviter</dt>
+                <dd className="text-ink bg-gilt-soft/40 p-3 rounded-xl border border-gilt/20">
+                  {selectedSymbol.trapToAvoid}
                 </dd>
               </div>
             </div>

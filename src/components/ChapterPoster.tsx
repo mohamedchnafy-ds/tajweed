@@ -18,6 +18,9 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
     if (chapter.number === 1) {
       return 'Le Tajwīd pratique est une obligation personnelle (Farḍ \'Ayn) pour préserver le sens : éliminez impérativement tout Lahn Jalī (erreur de voyelle ou de consonne altérant le texte) par respect et piété pour la parole d\'Allah.';
     }
+    if (chapter.number === 2) {
+      return 'Les symboles du Mushaf sont les gardiens du sens : observez scrupuleusement le Waqf Lāzim (مـ) pour ne pas attribuer de faux propos, ne coupez jamais sur un (لا), et dans la triade (ۛ...ۛ), arrêtez-vous à l\'un mais jamais aux deux à la fois !';
+    }
     if (chapter.number === 8) {
       return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
@@ -91,6 +94,8 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
         </button>
         <button onClick={onGoToNextChapter} className="btn btn-primary">
           {chapter.number === 1
+            ? 'Chapitre suivant (Symboles Coraniques)'
+            : chapter.number === 2
             ? 'Chapitre suivant (Nūn Sākinah)'
             : chapter.number === 8
             ? 'Chapitre suivant (Qalqalah)'

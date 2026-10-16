@@ -2,7 +2,7 @@ import { Chapter } from '../types/tajweed';
 
 export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string; titleAr: string; category: 'beginner' | 'intermediate' | 'advanced'; isPilot: boolean }[] = [
   { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)', titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ', category: 'beginner', isPilot: true },
-  { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: false },
+  { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: true },
   { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: false },
   { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: false },
   { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: false },
@@ -308,6 +308,346 @@ export const PILOT_CHAPTERS: Chapter[] = [
         correctAnswer: '23 ans de mission prophétique, entourés d\'un 6 avant et d\'un 6 après : 6 - 23 - 6',
         explanationFr: 'Astuce mnémotechnique du chapitre 1 : la Da\'wah prophétique a duré 23 ans. Placez un 6 devant et un 6 derrière : vous obtenez instantanément 6236 versets !',
         ruleId: 'acceptance-conditions'
+      }
+    ]
+  },
+  // ==========================================
+  // CHAPITRE 2 : SYMBOLES CORANIQUES & PONCTUATION
+  // ==========================================
+  {
+    id: 'chap-2',
+    number: 2,
+    slug: 'quranic-symbols',
+    titleFr: 'Symboles Coraniques & Ponctuation',
+    titleAr: 'عَلَامَاتُ المُصْحَفِ وَضَبْطِهِ',
+    category: 'beginner',
+    estimatedMinutes: 20,
+    isPilotChapter: true,
+    summaryFr: 'Maîtriser tous les symboles du Mushaf selon le Rasm ʿUthmānī : les 6 signes d\'arrêt (Waqf Lāzim, Lā, Jīm, Qalā, Salā, la triade ۛ...ۛ, la Saktah), les symboles de prononciation obligatoire (Alif Khanjariyyah, petit Wāw et Yā\', Madd, Soukoûn coranique, zéros d\'annulation et les 7 Alifs).',
+    infographicPoints: [
+      'Signe (مـ) = Waqf Lāzim (Arrêt obligatoire) : vous DEVEZ vous arrêter car lier dénature le sens théologique.',
+      'Signe (لا) = Interdiction d\'arrêter et de terminer la récitation (Waqf Qabīh) : le sens serait tronqué ou contraire au dogme.',
+      'Triade (ۛ ... ۛ) = Al-Waqf Al-Mutaʿāniq : arrêt permis à l\'un des deux, mais strictement INTERDIT de s\'arrêter aux deux à la fois !',
+      'Saktah (س) = Pause brève de 2 temps sans reprendre sa respiration, empêchant une fausse liaison sémantique.',
+      'Cercle parfait (ْ) = Lettre 100% muette toujours (ex: يَفۡرَحُواْ). Ovale allongé (۠) = Les 7 Alifs : prononcé à l\'arrêt, annulé en continu.',
+      'Alif Khanjariyyah (ٰ), petit Wāw (ۥ) et petit Yā\' (ۦ) = Lettres obligatoires à prononcer transmises par voie orale.'
+    ],
+    subrules: [
+      {
+        id: 'waqf-symbols',
+        nameFr: '1. Les Signes d\'Arrêt & de Respiration (عَلَامَاتُ الوَقْفِ)',
+        nameAr: 'عَلَامَاتُ الوَقْفِ فِي المُصْحَفِ',
+        mnemonic: 'مـ (Arrêt Obligatoire) | لا (Interdit d\'arrêter) | ج (Permis) | قلى (Arrêt Préférable) | صلى (Liaison Préférable) | ۛ...ۛ (Arrêt d\'Étreinte)',
+        letters: ['مـ', 'لا', 'ج', 'قلى', 'صلى', 'ۛ'],
+        definitionFr: 'Symboles placés au-dessus des mots pour indiquer où il est permis, recommandé ou obligatoire de s\'arrêter pour respirer, et où il est strictement interdit de couper la lecture sous peine de dénaturer le sens divin.',
+        mechanismFr: 'L\'arrêt (Waqf) consiste à couper le son à la fin d\'un mot avec l\'intention de reprendre sa respiration. Ne terminez JAMAIS votre récitation et n\'allez jamais au Rukūʿ sur un mot marqué par (لا).',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c2-1',
+            arabicText: 'فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ إِنَّا نَعۡلَمُ مَا يُسِرُّونَ وَمَا يُعۡلِنُونَ',
+            surahAyahRef: '36:76',
+            surahNameFr: 'Yā-Sīn',
+            highlightSegment: 'قَوۡلُهُمۡۘ',
+            highlightLetter: 'مـ (Waqf Lāzim)',
+            ruleApplied: 'Waqf Lāzim (Arrêt Obligatoire)',
+            ruleTag: 'izhar',
+            explanationFr: 'Si vous liez sans vous arrêter, vous faites croire que la phrase « Certes Nous savons ce qu\'ils cachent » fait partie des propos des mécréants, ce qui constitue une altération grave du sens. L\'arrêt est donc obligatoire.',
+            transliteration: 'Fa lā yahzunka qawluhum. Innā na\'lamu mā yusirrūna wa mā yu\'linūn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/036076.mp3'
+          },
+          {
+            id: 'ex-c2-2',
+            arabicText: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤ ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ ٥',
+            surahAyahRef: '107:4-5',
+            surahNameFr: 'Al-Mā\'ūn',
+            highlightSegment: 'لِّلۡمُصَلِّينَ',
+            highlightLetter: 'لا (Lā Taqif)',
+            ruleApplied: 'Interdiction de terminer la récitation (Lā)',
+            ruleTag: 'heavy',
+            explanationFr: 'S\'arrêter et clore la récitation sur « Malheur aux prieurs » sans lire la suite déforme totalement le message divin. Il est impératif de poursuivre jusqu\'à la fin du verset 5.',
+            transliteration: 'Fa waylul-lil-musallīn. Alladhīna hum \'an salātihim sāhūn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/107004.mp3'
+          },
+          {
+            id: 'ex-c2-3',
+            arabicText: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
+            surahAyahRef: '2:2',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'لَا رَيۡبَۛ فِيهِۛ',
+            highlightLetter: 'ۛ ... ۛ (Triade)',
+            ruleApplied: 'Al-Waqf Al-Muta\'āniq (Arrêt d\'Étreinte)',
+            ruleTag: 'madd',
+            explanationFr: 'Vous pouvez vous arrêter sur « Lā rayb » OU sur « Fīh », mais il est formellement interdit de s\'arrêter aux deux à la fois. Chaque option révèle une nuance sémantique sublime.',
+            transliteration: 'Dhālika-l-kitābu lā rayba fīhi hudal-lil-muttaqīn',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002002.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'S\'arrêter sur le premier signe (ۛ) puis s\'arrêter à nouveau sur le deuxième signe (ۛ).',
+            correctionFr: 'La règle est stricte : choisissez l\'un des deux arrêts et liez obligatoirement l\'autre.'
+          },
+          {
+            trapFr: 'Aller au Rukūʿ ou terminer sa prière sur un mot marqué par le signe (لا).',
+            correctionFr: 'Le signe (لا) interdit de clore la récitation à cet endroit car la phrase reste suspendue.'
+          }
+        ]
+      },
+      {
+        id: 'saktah-pause',
+        nameFr: '2. La Pause Momentanée sans Souffle (As-Saktah / السَّكْتَة)',
+        nameAr: 'السَّكْتَاتُ اللَّطِيفَةُ فِي القُرْآنِ',
+        mnemonic: 'س = Silence de 2 temps SANS reprendre de souffle',
+        letters: ['س'],
+        definitionFr: 'Une brève interruption de la voix pendant environ 2 temps, sans respirer, avant de continuer aussitôt la lecture. Il y a 4 Saktahs obligatoires selon Hafs.',
+        mechanismFr: 'Bloquer le son au niveau des cordes vocales pendant deux battements sans ouvrir les poumons ni inspirer d\'air.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c2-4',
+            arabicText: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ بَأۡسٗا شَدِيدٗا',
+            surahAyahRef: '18:1-2',
+            surahNameFr: 'Al-Kahf',
+            highlightSegment: 'عِوَجَاۜ',
+            highlightLetter: 'س (Saktah)',
+            ruleApplied: 'Saktah Latīfah obligatoire',
+            ruleTag: 'silent',
+            explanationFr: 'Si on liait « \'Iwajā » avec « Qayyimā » sans pause, on pourrait penser que le Livre est à la fois « déviant » et « droit » ! La Saktah sépare les deux qualificatifs sans couper la récitation.',
+            transliteration: 'Wa lam yaj\'al lahū \'iwajā. Qayyimāl-liyundhira ba\'san shadīdā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/018001.mp3'
+          },
+          {
+            id: 'ex-c2-5',
+            arabicText: 'قَالُواْ يَٰوَيۡلَنَا مَنۢ بَعَثَنَا مِن مَّرۡقَدِنَاۜۗ هَٰذَا مَا وَعَدَ ٱلرَّحۡمَٰنُ',
+            surahAyahRef: '36:52',
+            surahNameFr: 'Yā-Sīn',
+            highlightSegment: 'مَّرۡقَدِنَاۜۗ',
+            highlightLetter: 'س (Saktah)',
+            ruleApplied: 'Saktah entre les paroles des mécréants et la réponse des anges',
+            ruleTag: 'silent',
+            explanationFr: 'La pause silencieuse de 2 temps sur « marqadinā » sépare la plainte des ressuscités de l\'attestation de vérité des anges : « Voici ce que le Tout Miséricordieux avait promis ».',
+            transliteration: 'Man ba\'athanā mim-marqadinā... hādhā mā wa\'ada-r-Rahmān',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/036052.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Reprendre son souffle pendant la Saktah.',
+            correctionFr: 'Si vous respirez, cela devient un arrêt ordinaire (Waqf) et non une Saktah. Gardez le souffle suspendu.'
+          }
+        ]
+      },
+      {
+        id: 'vowel-letters-symbols',
+        nameFr: '3. Les Lettres Vocales Rajoutées (Alif Khanjariyyah, Wāw & Yā\')',
+        nameAr: 'الأَلِفُ الخِنْجَرِيَّةُ وَصِلَةُ الوَاوِ وَاليَاءِ الصَّغِيرَتَيْنِ',
+        mnemonic: 'ٰ (Alif Khanjariyyah) | ۥ (Petit Wāw de Silah) | ۦ (Petit Yā\' de Silah)',
+        letters: ['ٰ', 'ۥ', 'ۦ'],
+        definitionFr: 'Caractères miniatures qui indiquent des lettres longues bien réelles que l\'on doit obligatoirement prononcer en continu. Ne jamais les sauter !',
+        mechanismFr: 'Prolonger la voyelle de 2 temps naturels en continu. Si l\'on s\'arrête sur le mot précédent, le petit Wāw ou Yā\' disparaît car la liaison est rompue.',
+        durationHarakat: 2,
+        examples: [
+          {
+            id: 'ex-c2-6',
+            arabicText: 'فَلَمَّآ أَضَآءَتۡ مَا حَوۡلَهُۥ ذَهَبَ ٱللَّهُ بِنُورِهِمۡ',
+            surahAyahRef: '2:17',
+            surahNameFr: 'Al-Baqarah',
+            highlightSegment: 'حَوۡلَهُۥ',
+            highlightLetter: 'ۥ (Petit Wāw)',
+            ruleApplied: 'Silah Sughrā (Wāw prononcé en continu)',
+            ruleTag: 'ghunnah',
+            explanationFr: 'En lisant en continu, le petit Wāw se prononce comme une voyelle longue de 2 temps : « Hawlahū dhahaba ». Si vous vous arrêtez sur le mot, dites simplement « Hawlah » sans le Wāw.',
+            transliteration: 'Mā hawlahū dhahaba-llāhu bi-nūrihim',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002017.mp3'
+          },
+          {
+            id: 'ex-c2-7',
+            arabicText: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ٢',
+            surahAyahRef: '106:1-2',
+            surahNameFr: 'Quraysh',
+            highlightSegment: 'إِۦلَٰفِهِمۡ',
+            highlightLetter: 'ۦ (Petit Yā\')',
+            ruleApplied: 'Petit Yā\' inversé prononcé',
+            ruleTag: 'madd',
+            explanationFr: 'Le petit Yā\' inversé sous la Hamzah indique une voyelle longue "ī" : on prononce « Īlāfihim » avec 2 temps de Madd.',
+            transliteration: 'Īlāfihim rihlata-sh-shitā\'i wa-s-sayf',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Oublier d\'allonger la voyelle sur l\'Alif Khanjariyyah (ٰ) comme dans « Dhālika » ou « Al-Kitāb ».',
+            correctionFr: 'Cet Alif miniature a exactement la même valeur de prolongation qu\'un Alif ordinaire écrit en grand.'
+          }
+        ]
+      },
+      {
+        id: 'silent-letters-sifr',
+        nameFr: '4. Les Lettres Muettes & Les Deux Zéros (ْ vs ۠)',
+        nameAr: 'الصِّفْرُ المُسْتَدِيرُ وَالصِّفْرُ المُسْتَطِيلُ (الأَلِفَاتُ السَّبْعُ)',
+        mnemonic: 'Rond parfait (ْ) = 100% muet toujours | Ovale allongé (۠) = Prononcé à l\'arrêt, muet en continu',
+        letters: ['ْ', '۠'],
+        definitionFr: 'Distinction graphique fondamentale du Rasm ʿUthmānī : le cercle rond (As-Sifr Al-Mustadīr) annule la lettre totalement. L\'ovale allongé (As-Sifr Al-Mustatīl) signale les 7 Alifs célèbres.',
+        mechanismFr: 'Devant le cercle rond (ْ), ignorez complètement la lettre. Devant l\'ovale (۠), prononcez une voyelle courte en liaison, mais un Alif long complet de 2 temps si vous vous arrêtez.',
+        durationHarakat: 0,
+        examples: [
+          {
+            id: 'ex-c2-8',
+            arabicText: 'قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ خَلَقۡتَنِي مِن نَّارٖ',
+            surahAyahRef: '7:12',
+            surahNameFr: 'Al-A\'rāf',
+            highlightSegment: 'أَنَا۠',
+            highlightLetter: '۠ (As-Sifr Al-Mustatīl)',
+            ruleApplied: 'Les 7 Alifs (Al-Alifāt As-Sab\')',
+            ruleTag: 'silent',
+            explanationFr: 'En continu, on lit « Ana khayrun » (sans allonger le "na"). Mais si l\'on s\'arrête sur le mot, l\'Alif reprend vie et l\'on prononce « Anā » avec 2 temps complets.',
+            transliteration: 'Qāla ana khayrum-minhu khalaqtanī min nār',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/007012.mp3'
+          },
+          {
+            id: 'ex-c2-9',
+            arabicText: 'وَإِن تُصِبۡكُمۡ سَيِّئَةٞ يَفۡرَحُواْ بِهَا',
+            surahAyahRef: '3:120',
+            surahNameFr: 'Āl \'Imrān',
+            highlightSegment: 'يَفۡرَحُواْ',
+            highlightLetter: 'ْ (Cercle Rond d\'Annulation)',
+            ruleApplied: 'Lettre 100% muette (As-Sifr Al-Mustadīr)',
+            ruleTag: 'silent',
+            explanationFr: 'Le cercle rond sur l\'Alif final de « Yafrahū » indique qu\'il ne se prononce jamais, ni en continu, ni à l\'arrêt. On lit uniquement « Yafrahū ».',
+            transliteration: 'Wa in tusibkum sayyi\'atun yafrahū bihā',
+            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003120.mp3'
+          }
+        ],
+        commonMistakes: [
+          {
+            trapFr: 'Confondre le Soukoûn coranique (ﹾ tête de Khā\') avec le cercle rond (ْ zéro d\'annulation).',
+            correctionFr: 'Dans le Coran, le Soukoûn ressemble à un demi-cercle ouvert. Le zéro fermé parfait signifie toujours que la lettre est muette !'
+          }
+        ]
+      }
+    ],
+    guidedExercises: [
+      {
+        id: 'exo-c2-1',
+        title: 'Maîtrise de l\'arrêt d\'étreinte : Sūrah Al-Baqarah (2:2)',
+        verseArabic: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
+        surahAyahRef: '2:2',
+        targetSegment: 'لَا رَيۡبَۛ فِيهِۛ',
+        promptFr: 'Peut-on s\'arrêter à la fois sur « Lā rayb » ET sur « Fīh » lors de la même récitation ? Expliquez la règle de la triade.',
+        hintFr: 'Rappelez-vous du principe d\'exclusivité de la double triade de trois points.',
+        solutionFr: 'Non, interdiction absolue de s\'arrêter aux deux emplacements !',
+        breakdownSteps: [
+          'Le signe (ۛ ... ۛ) est appelé Al-Waqf Al-Muta\'āniq (arrêt d\'étreinte).',
+          'Option 1 : Si vous vous arrêtez sur « Lā rayba ۛ », vous devez obligatoirement enchaîner « fīhi hudal-lil-muttaqīn » sans pause.',
+          'Option 2 : Si vous liez « Dhālika-l-kitābu lā rayba », vous pouvez alors vous arrêter sur « fīh ۛ », puis reprendre « hudal-lil-muttaqīn ».',
+          'Conclusion : Cumuler les deux arrêts brise la grammaire coranique et crée un Waqf Qabīh.'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002002.mp3'
+      },
+      {
+        id: 'exo-c2-2',
+        title: 'Exécution de la Saktah : Sūrah Al-Kahf (18:1-2)',
+        verseArabic: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ بَأۡسٗا شَدِيدٗا',
+        surahAyahRef: '18:1-2',
+        targetSegment: 'عِوَجَاۜ ١ قَيِّمٗا',
+        promptFr: 'Comment le lecteur doit-il exécuter la Saktah (س) entre les deux premiers versets de la sourate Al-Kahf ?',
+        hintFr: 'Faites attention à la différence entre un Waqf (avec respiration) et une Saktah (sans respiration).',
+        solutionFr: 'Interruption brève du son pendant 2 temps en bloquant le souffle dans les poumons',
+        breakdownSteps: [
+          'À la fin du mot « \'Iwajā », arrêtez la vibration des cordes vocales pendant environ 2 temps.',
+          'Ne prenez surtout AUCUNE inspiration d\'air pendant ce silence.',
+          'Reprenez immédiatement au mot « Qayyimā » avec le souffle restant.',
+          'Cette pause empêche de relier le qualificatif négatif (« déviance ») au qualificatif positif (« parfaitement droit »).'
+        ],
+        audioUrl: 'https://everyayah.com/data/Husary_128kbps/018001.mp3'
+      }
+    ],
+    quizzes: [
+      {
+        id: 'q-c2-1',
+        type: 'mcq',
+        promptFr: 'Que devez-vous obligatoirement faire lorsque vous rencontrez le symbole (مـ) au-dessus d\'un mot dans le Coran ?',
+        verseArabic: 'فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ إِنَّا نَعۡلَمُ مَا يُسِرُّونَ وَمَا يُعۡلِنُونَ',
+        targetWord: 'قَوۡلُهُمۡۘ',
+        surahAyahRef: '36:76',
+        options: [
+          'S\'arrêter obligatoirement (Waqf Lāzim) car lier dénaturerait gravement le sens du verset',
+          'Faire une Ghunnah de 2 temps sur la lettre suivante',
+          'Continuer sans respirer',
+          'Faire une prosternation (Sujūd)'
+        ],
+        correctAnswer: 'S\'arrêter obligatoirement (Waqf Lāzim) car lier dénaturerait gravement le sens du verset',
+        explanationFr: 'Le symbole (مـ) horizontal indique un Waqf Lāzim (arrêt impératif). Dans Yā-Sīn 36:76, continuer sans arrêt ferait faussement attribuer la parole d\'Allah aux mécréants.',
+        ruleId: 'waqf-symbols'
+      },
+      {
+        id: 'q-c2-2',
+        type: 'mcq',
+        promptFr: 'Comment devez-vous vous comporter devant la double triade de points (ۛ ... ۛ) appelée Al-Waqf Al-Muta\'āniq ?',
+        verseArabic: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
+        targetWord: 'لَا رَيۡبَۛ فِيهِۛ',
+        surahAyahRef: '2:2',
+        options: [
+          'Vous devez vous arrêter à l\'un des deux emplacements, mais jamais aux deux à la fois',
+          'Vous devez obligatoirement vous arrêter aux deux endroits',
+          'Vous ne devez vous arrêter à aucun des deux',
+          'Vous devez prolonger le mot de 6 temps'
+        ],
+        correctAnswer: 'Vous devez vous arrêter à l\'un des deux emplacements, mais jamais aux deux à la fois',
+        explanationFr: 'L\'arrêt d\'étreinte (Al-Waqf Al-Muta\'āniq) est exclusif : si vous vous arrêtez au premier, vous devez continuer au second (ou vice versa). S\'arrêter aux deux est formellement interdit.',
+        ruleId: 'waqf-symbols'
+      },
+      {
+        id: 'q-c2-3',
+        type: 'mcq',
+        promptFr: 'Quelle est la différence fondamentale entre le cercle rond parfait (ْ) et l\'ovale vertical allongé (۠) au-dessus d\'une lettre ?',
+        verseArabic: 'قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ | يَفۡرَحُواْ',
+        targetWord: 'أَنَا۠',
+        surahAyahRef: '7:12',
+        options: [
+          'Le cercle rond (ْ) annule la lettre en permanence, tandis que l\'ovale (۠) se prononce à l\'arrêt mais s\'annule en continu',
+          'L\'ovale est une lettre de Qalqalah',
+          'Le cercle rond impose un arrêt de 2 temps',
+          'Il n\'y a aucune différence, c\'est juste une variante calligraphique'
+        ],
+        correctAnswer: 'Le cercle rond (ْ) annule la lettre en permanence, tandis que l\'ovale (۠) se prononce à l\'arrêt mais s\'annule en continu',
+        explanationFr: 'Le cercle rond (ْ) indique une lettre muette en continu et à l\'arrêt. L\'ovale allongé (۠) signale les 7 Alifs : on prononce "Anā" (2 temps) à l\'arrêt, mais "Ana khayr" (sans Alif) en continu !',
+        ruleId: 'silent-letters-sifr'
+      },
+      {
+        id: 'q-c2-4',
+        type: 'mcq',
+        promptFr: 'Qu\'indique le symbole (س) au-dessus d\'un mot coranique (comme dans la sourate Al-Kahf) ?',
+        verseArabic: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا',
+        targetWord: 'عِوَجَاۜ',
+        surahAyahRef: '18:1-2',
+        options: [
+          'Une Saktah : interruption brève de la voix de 2 temps sans reprendre sa respiration',
+          'Prononcer la lettre Sīn avec un fort sifflement',
+          'Une obligation de se prosterner',
+          'Une prolongation de 6 temps'
+        ],
+        correctAnswer: 'Une Saktah : interruption brève de la voix de 2 temps sans reprendre sa respiration',
+        explanationFr: 'La Saktah (س) est un arrêt silencieux d\'environ deux temps sans respirer, évitant une liaison qui créerait une confusion de sens théologique.',
+        ruleId: 'saktah-pause'
+      },
+      {
+        id: 'q-c2-5',
+        type: 'mcq',
+        promptFr: 'Que signifie le symbole (لا) placé au-dessus ou à la fin d\'un mot coranique ?',
+        verseArabic: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤',
+        targetWord: 'لِّلۡمُصَلِّينَ',
+        surahAyahRef: '107:4',
+        options: [
+          'Interdiction de couper la récitation ou d\'aller au Rukūʿ à cet endroit car le sens est incomplet',
+          'Obligation absolue de s\'arrêter pour respirer',
+          'Répéter le mot trois fois',
+          'Ne pas prononcer la lettre suivante'
+        ],
+        correctAnswer: 'Interdiction de couper la récitation ou d\'aller au Rukūʿ à cet endroit car le sens est incomplet',
+        explanationFr: 'Le symbole (لا) signifie "ne coupez pas la lecture ici". Si vous manquez de souffle, vous pouvez faire une courte pause mais vous devez obligatoirement enchaîner pour compléter le sens.',
+        ruleId: 'waqf-symbols'
       }
     ]
   },
