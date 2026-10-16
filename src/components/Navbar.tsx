@@ -1,7 +1,17 @@
 import React from 'react';
-import { BookOpen, Moon, Sun, AlertCircle, Download, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { Moon, Sun, Download, ArrowLeft, NotebookPen } from 'lucide-react';
+import { StarMark } from './ui';
 
 export type LessonStep = 'map' | 'prof' | 'lab' | 'quran' | 'quiz' | 'poster';
+
+export const STEPS: { id: LessonStep; label: string }[] = [
+  { id: 'map', label: 'Carte' },
+  { id: 'prof', label: 'Explication' },
+  { id: 'lab', label: 'Laboratoire' },
+  { id: 'quran', label: 'Coran' },
+  { id: 'quiz', label: 'Quiz' },
+  { id: 'poster', label: 'Synthèse' },
+];
 
 interface NavbarProps {
   currentTab: 'chapters' | 'lesson';
@@ -30,135 +40,100 @@ export const Navbar: React.FC<NavbarProps> = ({
   isDark,
   onToggleTheme,
 }) => {
-  const STEPS: { id: LessonStep; labelFr: string; labelAr: string }[] = [
-    { id: 'map', labelFr: '1. Carte', labelAr: 'الْخَرِيطَة' },
-    { id: 'prof', labelFr: '2. Le prof', labelAr: 'الْأُسْتَاذ' },
-    { id: 'lab', labelFr: '3. Laboratoire', labelAr: 'الْمُخْتَبَر' },
-    { id: 'quran', labelFr: '4. Coran', labelAr: 'الْقُرْآن' },
-    { id: 'quiz', labelFr: '5. Quiz', labelAr: 'التَّمَارِين' },
-    { id: 'poster', labelFr: '6. Fiche', labelAr: 'الْمُلَخَّص' },
-  ];
-
   const currentStepIdx = STEPS.findIndex(s => s.id === currentStep);
+  const inLesson = currentTab === 'lesson';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-line bg-paper/95 backdrop-blur-md transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-2.5">
-        
-        {/* Brand Bar */}
-        <div className="flex items-center justify-between gap-3 mb-2">
-          
-          <div className="flex items-center gap-2.5 cursor-pointer group" onClick={onBackToChapters}>
-            <div className="w-8 h-8 rounded-xl bg-ink text-paper flex items-center justify-center transition-transform group-hover:scale-105 shadow-xs">
-              <BookOpen className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-ar font-bold text-lg sm:text-xl text-ink leading-tight" dir="rtl">
-                  التَّجْوِيدُ الْمُيَسَّرُ
+    <header className="sticky top-0 z-40 w-full bg-paper/85 backdrop-blur-xl border-b border-line">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="h-16 flex items-center justify-between gap-3">
+          {inLesson ? (
+            <button
+              onClick={onBackToChapters}
+              className="flex items-center gap-3 min-w-0 text-left group"
+            >
+              <span className="btn btn-secondary btn-icon shrink-0">
+                <ArrowLeft className="w-4 h-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-muted">Chapitre {selectedChapterNumber}</span>
+                <span className="block font-display text-[17px] leading-tight text-ink truncate">
+                  {selectedChapterTitle}
                 </span>
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-soft text-muted font-bold">
-                  Hafs
-                </span>
-              </div>
-              <p className="text-[11px] text-muted hidden sm:block">
-                {selectedChapterNumber 
-                  ? `Chapitre ${selectedChapterNumber} : ${selectedChapterTitle}`
-                  : 'Apprentissage interactif du Tajwīd • Drs. Islām Fekry'}
-              </p>
-            </div>
-          </div>
+              </span>
+            </button>
+          ) : (
+            <button onClick={onBackToChapters} className="flex items-center gap-2.5">
+              <StarMark className="w-6 h-6 text-gilt" />
+              <span className="font-display text-xl text-ink">Tajwīd</span>
+            </button>
+          )}
 
-          {/* Right Action Buttons */}
-          <div className="flex items-center gap-2">
-            
-            {/* Cahier d'erreurs */}
+          <div className="flex items-center gap-1">
             <button
               onClick={onOpenMistakes}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-                unresolvedMistakesCount > 0
-                  ? 'border-amber-500 bg-amber-50 text-amber-900 dark:bg-amber-950 dark:text-amber-200'
-                  : 'border-line bg-card text-muted hover:text-ink'
-              }`}
-              title="Cahier d'erreurs intelligent"
+              className="btn btn-ghost px-3"
+              title="Cahier d'erreurs"
             >
-              {unresolvedMistakesCount > 0 ? (
-                <AlertCircle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-              ) : (
-                <CheckCircle2 className="w-3.5 h-3.5 text-idgham" />
-              )}
-              <span className="hidden sm:inline">Erreurs</span>
+              <NotebookPen className="w-4 h-4" />
+              <span className="hidden sm:inline">Révisions</span>
               {unresolvedMistakesCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-amber-600 text-white">
+                <span className="min-w-5 h-5 px-1.5 rounded-full bg-gilt text-white text-[11px] font-bold inline-flex items-center justify-center">
                   {unresolvedMistakesCount}
                 </span>
               )}
             </button>
-
-            {/* Backup */}
             <button
               onClick={onOpenDataBackup}
-              className="p-2 rounded-full border border-line bg-card hover:bg-soft text-muted hover:text-ink transition-colors shadow-xs"
+              className="btn btn-ghost btn-icon"
               title="Sauvegarder ma progression"
+              aria-label="Sauvegarder ma progression"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-4 h-4" />
             </button>
-
-            {/* Dark Mode Toggle */}
             <button
               onClick={onToggleTheme}
-              className="p-2 rounded-full border border-line bg-card hover:bg-soft text-muted hover:text-ink transition-colors shadow-xs"
-              title="Mode sombre / clair"
+              className="btn btn-ghost btn-icon"
+              title={isDark ? 'Passer en mode clair' : 'Passer en mode sombre'}
+              aria-label={isDark ? 'Passer en mode clair' : 'Passer en mode sombre'}
             >
-              {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
-
         </div>
 
-        {/* 6-Step Stepper (if inside a chapter) */}
-        {currentTab === 'lesson' && (
-          <div className="mt-2 pt-2 border-t border-line/60">
-            <div className="grid grid-cols-6 gap-1.5">
+        {inLesson && (
+          <nav className="pb-3 -mt-1" aria-label="Étapes du chapitre">
+            <ol className="grid grid-cols-6 gap-1.5">
               {STEPS.map((step, idx) => {
-                const isCur = step.id === currentStep;
+                const isCur = idx === currentStepIdx;
                 const isDone = idx < currentStepIdx;
-
                 return (
-                  <button
-                    key={step.id}
-                    onClick={() => onSelectStep(step.id)}
-                    className="flex flex-col gap-1 text-left group focus:outline-hidden"
-                  >
-                    {/* Bar segment */}
-                    <div
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        isCur
-                          ? 'bg-idgham shadow-xs'
-                          : isDone
-                          ? 'bg-ink'
-                          : 'bg-line group-hover:bg-muted/60'
-                      }`}
-                    />
-                    {/* Label */}
-                    <span
-                      className={`text-[10px] sm:text-xs truncate transition-colors ${
-                        isCur
-                          ? 'font-bold text-ink'
-                          : isDone
-                          ? 'font-medium text-ink/70'
-                          : 'text-muted group-hover:text-ink'
-                      }`}
+                  <li key={step.id}>
+                    <button
+                      onClick={() => onSelectStep(step.id)}
+                      aria-current={isCur ? 'step' : undefined}
+                      className="w-full flex flex-col gap-1.5 text-left group"
                     >
-                      {step.labelFr}
-                    </span>
-                  </button>
+                      <span
+                        className={`h-1 w-full rounded-full transition-colors duration-300 ${
+                          isCur ? 'bg-gilt' : isDone ? 'bg-lapis' : 'bg-line group-hover:bg-muted/40'
+                        }`}
+                      />
+                      <span
+                        className={`hidden sm:block text-xs truncate transition-colors ${
+                          isCur ? 'text-ink font-semibold' : 'text-muted group-hover:text-ink'
+                        }`}
+                      >
+                        {step.label}
+                      </span>
+                    </button>
+                  </li>
                 );
               })}
-            </div>
-          </div>
+            </ol>
+          </nav>
         )}
-
       </div>
     </header>
   );

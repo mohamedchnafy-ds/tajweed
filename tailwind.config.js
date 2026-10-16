@@ -8,10 +8,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Atkinson Hyperlegible"', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['"Young Serif"', 'Georgia', 'serif'],
-        ar: ['"Amiri"', '"Scheherazade New"', '"Noto Naskh Arabic"', 'serif'],
-        'ui-ar': ['"Noto Naskh Arabic"', '"Amiri"', 'serif'],
+        sans: ['"Instrument Sans"', '"Amiri"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Source Serif 4"', '"Amiri"', 'Georgia', 'serif'],
+        ar: ['"Amiri Quran"', '"Amiri"', '"Noto Naskh Arabic"', 'serif'],
+        'ui-ar': ['"Amiri"', '"Noto Naskh Arabic"', 'serif'],
       },
       colors: {
         paper: 'var(--paper)',
@@ -20,6 +20,23 @@ export default {
         muted: 'var(--muted)',
         line: 'var(--line)',
         soft: 'var(--soft)',
+        lapis: {
+          DEFAULT: 'var(--lapis)',
+          ink: 'var(--lapis-ink)',
+          bg: 'var(--lapis-bg)',
+        },
+        gilt: {
+          DEFAULT: 'var(--gilt)',
+          soft: 'var(--gilt-soft)',
+        },
+        good: {
+          DEFAULT: 'var(--good)',
+          bg: 'var(--good-bg)',
+        },
+        bad: {
+          DEFAULT: 'var(--bad)',
+          bg: 'var(--bad-bg)',
+        },
 
         // Tajwid Categories
         izhar: {
@@ -51,6 +68,7 @@ export default {
         card: 'var(--r)',
       },
       animation: {
+        'fade': 'fade 0.2s ease both',
         'enter': 'enter 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both',
         'drop': 'drop 0.6s cubic-bezier(0.2, 0.9, 0.25, 1.2) both',
         'pop': 'pop 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.3) both',
@@ -60,6 +78,10 @@ export default {
         'qalqalah-bounce': 'qalqalahBounce 1.2s ease-in-out infinite',
       },
       keyframes: {
+        fade: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
         enter: {
           from: { opacity: '0', transform: 'translateY(12px)' },
           to: { opacity: '1', transform: 'translateY(0)' },

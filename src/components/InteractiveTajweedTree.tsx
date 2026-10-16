@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
-import { ChevronDown, ChevronRight, Sparkles, Layers, BookOpen } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { StepHeader } from './ui';
 
 interface InteractiveTajweedTreeProps {
   chapter: Chapter;
@@ -175,142 +176,107 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
     const hasKids = node.children && node.children.length > 0;
     const isOpen = !!openNodes[node.id];
     const isSelected = selectedNode.id === node.id;
+    const color = node.tagColor || 'var(--lapis)';
 
     return (
-      <div key={node.id} className="relative my-2 select-none">
-        <div
+      <li key={node.id} className="select-none">
+        <button
           onClick={() => toggleNode(node.id, node)}
-          className={`mm-node ${isSelected ? 'active ring-2 ring-amber-500/40' : ''}`}
-          style={{
-            marginLeft: `${depth * 18}px`,
-            borderLeft: node.tagColor ? `4px solid ${node.tagColor}` : undefined
-          }}
+          aria-expanded={hasKids ? isOpen : undefined}
+          className={`w-full flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-2xl px-3.5 py-2.5 text-left transition-colors ${
+            isSelected ? 'bg-soft' : 'hover:bg-soft/70'
+          }`}
         >
-          <div className="flex items-center gap-2.5">
-            {hasKids ? (
-              <span className="text-muted w-4 h-4 flex items-center justify-center">
+          <span className="flex items-center gap-3 flex-1 min-w-[11rem]">
+            <span className="w-1 self-stretch min-h-[28px] rounded-full shrink-0" style={{ background: color }} />
+            {hasKids && (
+              <span className="text-muted shrink-0">
                 {isOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </span>
-            ) : (
-              <span className="w-2 h-2 rounded-full" style={{ background: node.tagColor || 'var(--ink)' }} />
             )}
-            <span className="font-medium text-xs sm:text-sm text-ink">{node.labelFr}</span>
-          </div>
-
-          <span className="font-ar font-bold text-base sm:text-lg text-ink" dir="rtl">
+            <span className={`text-[15px] leading-snug ${depth === 0 ? 'font-semibold' : ''} ${isSelected ? 'text-ink font-semibold' : 'text-ink'}`}>
+              {node.labelFr}
+            </span>
+          </span>
+          <span className={`font-ui-ar leading-[1.8] ml-auto ${depth === 0 ? 'text-2xl' : 'text-xl'} text-ink`} dir="rtl">
             {node.labelAr}
           </span>
-        </div>
+        </button>
 
-        {/* Children branches */}
         {hasKids && isOpen && (
-          <div className="pl-4 border-l-2 border-line/60 ml-3 space-y-1 animate-enter">
+          <ul className="ml-5 pl-3 border-l border-line mt-1 space-y-1 animate-fade">
             {node.children!.map(kid => renderTreeNode(kid, depth + 1))}
-          </div>
+          </ul>
         )}
-      </div>
+      </li>
     );
   };
 
   return (
-    <div className="animate-enter space-y-6">
-      
-      {/* Header kicker */}
-      <div>
-        <p className="text-[11px] uppercase tracking-wider font-bold text-muted mb-1 flex items-center gap-1.5">
-          <Layers className="w-3.5 h-3.5 text-gold" />
-          <span>Étape 1 · La Carte Mentale Active</span>
-        </p>
-        <h1 className="font-display text-2xl sm:text-3xl font-normal text-ink mb-2">
-          {tree.labelFr}
-        </h1>
-        <p className="text-xs sm:text-sm text-muted">
-          Touchez n'importe quelle branche pour explorer ses ramifications et faire apparaître son explication détaillée ci-dessous.
-        </p>
-      </div>
-
-      {/* Control Toolbar */}
-      <div className="flex items-center justify-between gap-2 pt-2 border-t border-line/70">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={expandAll}
-            className="px-3 py-1.5 rounded-full border border-line bg-card text-xs font-medium text-muted hover:text-ink hover:border-ink transition-colors"
-          >
-            Tout déplier
-          </button>
-          <button
-            onClick={collapseAll}
-            className="px-3 py-1.5 rounded-full border border-line bg-card text-xs font-medium text-muted hover:text-ink hover:border-ink transition-colors"
-          >
-            Tout replier
-          </button>
-        </div>
-        <span className="text-[11px] text-muted hidden sm:inline">
-          {chapter.number === 8 ? '4 Règles fondamentales' : '3 Degrés de force'}
-        </span>
-      </div>
-
-      {/* Interactive Tree Canvas */}
-      <div className="p-4 sm:p-6 rounded-2xl bg-card border border-line shadow-xs overflow-x-auto">
-        {renderTreeNode(tree, 0)}
-      </div>
-
-      {/* Detail Panel Below Tree */}
-      {selectedNode && (
-        <div className="p-5 rounded-2xl bg-soft border border-line animate-pop">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-line">
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-muted">Focus sélectionné</span>
-              <h3 className="font-display text-lg font-bold text-ink">{selectedNode.labelFr}</h3>
-            </div>
-            <span className="font-ar font-bold text-2xl text-ink" dir="rtl">
-              {selectedNode.labelAr}
-            </span>
+    <>
+      <StepHeader
+        step={1}
+        title="La carte des règles"
+        description="Toutes les règles du chapitre et leurs ramifications. Choisissez une branche pour voir ses lettres et ses exemples."
+        aside={
+          <div className="segmented">
+            <button aria-pressed={false} onClick={expandAll}>Tout déplier</button>
+            <button aria-pressed={false} onClick={collapseAll}>Replier</button>
           </div>
+        }
+      />
 
-          {selectedNode.descriptionFr && (
-            <p className="text-xs sm:text-sm text-ink mb-4 leading-relaxed">
-              {selectedNode.descriptionFr}
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_380px] gap-6 items-start">
+        <ul className="surface p-3 sm:p-4 space-y-1">
+          {renderTreeNode(tree, 0)}
+        </ul>
+
+        {selectedNode && (
+          <aside key={selectedNode.id} className="surface p-6 lg:sticky lg:top-36 animate-fade">
+            <p className="font-ui-ar text-[30px] leading-[1.6] text-ink" dir="rtl">
+              {selectedNode.labelAr}
             </p>
-          )}
+            <h3 className="font-display text-xl leading-snug text-ink mt-2">{selectedNode.labelFr}</h3>
 
-          {/* Letter Chips if present */}
-          {selectedNode.letters && selectedNode.letters.length > 0 && (
-            <div className="mb-4">
-              <span className="text-[11px] font-bold uppercase text-muted block mb-2">Lettres concernées :</span>
-              <div className="flex flex-wrap gap-2">
-                {selectedNode.letters.map((lettre, idx) => (
-                  <span
-                    key={idx}
-                    className="chip px-3 py-1 rounded-xl bg-card border border-line text-ink font-ar text-xl shadow-xs"
-                  >
-                    {lettre}
-                  </span>
-                ))}
+            {selectedNode.descriptionFr && (
+              <p className="mt-3 text-[15px] leading-relaxed text-muted">{selectedNode.descriptionFr}</p>
+            )}
+
+            {selectedNode.letters && selectedNode.letters.length > 0 && (
+              <div className="mt-6">
+                <p className="label mb-2.5">Lettres concernées</p>
+                <div className="flex flex-wrap gap-2" dir="rtl">
+                  {selectedNode.letters.map((lettre, idx) => (
+                    <span
+                      key={idx}
+                      className="w-11 h-11 rounded-xl flex items-center justify-center font-ar text-2xl"
+                      style={{
+                        color: selectedNode.tagColor || 'var(--ink)',
+                        background: 'var(--soft)',
+                      }}
+                    >
+                      {lettre}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Quranic Examples */}
-          {selectedNode.examples && selectedNode.examples.length > 0 && (
-            <div>
-              <span className="text-[11px] font-bold uppercase text-muted block mb-2">Exemples Coraniques :</span>
-              <div className="flex flex-wrap gap-2">
-                {selectedNode.examples.map((ex, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3.5 py-1.5 rounded-xl bg-card border border-line font-ar text-xl text-ink shadow-xs"
-                    dir="rtl"
-                  >
-                    {ex}
-                  </span>
-                ))}
+            {selectedNode.examples && selectedNode.examples.length > 0 && (
+              <div className="mt-6">
+                <p className="label mb-2.5">Exemples dans le Coran</p>
+                <ul className="divide-y divide-line border-y border-line">
+                  {selectedNode.examples.map((ex, idx) => (
+                    <li key={idx} className="py-2 font-ar text-2xl leading-[1.8] text-ink text-right" dir="rtl">
+                      {ex}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-
-    </div>
+            )}
+          </aside>
+        )}
+      </div>
+    </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
-import { FlaskConical, Sparkles, CheckCircle2, AlertCircle, Volume2 } from 'lucide-react';
+import { StepHeader } from './ui';
 
 interface TajweedLabProps {
   chapter: Chapter;
@@ -139,7 +139,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
         isQal: false,
         badge: 'Pas de rebond !',
         colorClass: 'chip-izhar',
-        explanation: `ATTENTION PIÈGE DU LIVRE : La lettre ${l} ne fait PAS partie de la Qalqalah. Elle a la caractéristique de Hams (écoulement de souffle). Ne JAMAIS la faire rebondir !`,
+        explanation: `Piège fréquent : la lettre ${l} ne fait pas partie de la Qalqalah. Elle a la caractéristique de Hams (écoulement de souffle) : ne la faites jamais rebondir.`,
         mouthMechanism: 'Laissez simplement glisser un souffle d\'air à l\'arrêt, sans secouer la lettre.',
         example: l === 'ك' ? 'أَلَمۡ نَشۡرَحۡ لَكَ' : 'فَتَحۡنَا',
       };
@@ -161,112 +161,83 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
       ? getNunAnalysis(selectedLetter)
       : getQalqalahAnalysis(selectedLetter);
 
+  const accent: Record<string, string> = {
+    'chip-izhar': 'var(--izhar)',
+    'chip-idgham': 'var(--idgham)',
+    'chip-iqlab': 'var(--iqlab)',
+    'chip-ikhfa': 'var(--ikhfa)',
+    'chip-qalqalah': 'var(--qalqalah)',
+    'chip-gold': 'var(--gold)',
+  };
+  const accentColor = accent[currentAnalysis.colorClass] || 'var(--ink)';
+
   return (
-    <div className="animate-enter space-y-6">
-      
-      {/* Header */}
-      <div>
-        <p className="text-[11px] uppercase tracking-wider font-bold text-muted mb-1 flex items-center gap-1.5">
-          <FlaskConical className="w-3.5 h-3.5 text-idgham" />
-          <span>Étape 3 · Le Laboratoire Interactif</span>
-        </p>
-        <h1 className="font-display text-2xl sm:text-3xl font-normal text-ink mb-1">
-          Banc d'Essai des 28 Lettres Arabes
-        </h1>
-        <p className="text-xs sm:text-sm text-muted">
-          Touchez n'importe quelle lettre du clavier ci-dessous pour déclencher la règle en direct et observer son comportement phonétique.
-        </p>
-      </div>
+    <>
+      <StepHeader
+        step={3}
+        title="Le laboratoire des lettres"
+        description={
+          chapter.number === 8
+            ? 'Choisissez la lettre qui suit le Nūn sākin : la règle qui s\'applique s\'affiche aussitôt.'
+            : 'Choisissez une lettre pour savoir si elle rebondit lorsqu\'elle porte un soukoûn.'
+        }
+      />
 
-      {/* Interactive Letter Keyboard Grid */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-card border border-line shadow-xs">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-3">
-          Sélectionnez une lettre à tester :
-        </span>
-        <div className="grid grid-cols-7 sm:grid-cols-10 gap-1.5 sm:gap-2" dir="rtl">
-          {ARABIC_ALPHABET.map((item) => {
-            const isSelected = selectedLetter === item.letter;
-            return (
-              <button
-                key={item.letter}
-                onClick={() => setSelectedLetter(item.letter)}
-                className={`w-full aspect-square rounded-xl flex flex-col items-center justify-center transition-all select-none ${
-                  isSelected
-                    ? 'bg-ink text-paper font-bold shadow-md scale-105 ring-2 ring-gold'
-                    : 'bg-soft/70 hover:bg-soft text-ink border border-line/60 hover:scale-102'
-                }`}
-              >
-                <span className="font-ar text-2xl sm:text-3xl leading-none">{item.letter}</span>
-                <span className="text-[9px] font-sans opacity-70 mt-1 hidden sm:block">
-                  {item.nameFr}
-                </span>
-              </button>
-            );
-          })}
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_400px] gap-6 items-start">
+        <div className="surface p-4 sm:p-5">
+          <div className="grid grid-cols-7 gap-1.5 sm:gap-2" dir="rtl">
+            {ARABIC_ALPHABET.map((item) => {
+              const isSelected = selectedLetter === item.letter;
+              return (
+                <button
+                  key={item.letter}
+                  onClick={() => setSelectedLetter(item.letter)}
+                  aria-pressed={isSelected}
+                  aria-label={item.nameFr}
+                  className={`aspect-square sm:aspect-[4/5] rounded-2xl flex flex-col items-center justify-center sm:justify-between sm:pt-1 sm:pb-2 transition-colors select-none ${
+                    isSelected
+                      ? 'bg-lapis text-lapis-ink'
+                      : 'bg-soft text-ink hover:bg-line'
+                  }`}
+                >
+                  <span className="font-ui-ar text-[26px] sm:text-[30px] leading-[1.3]">{item.letter}</span>
+                  <span className={`text-[11px] leading-none hidden sm:block ${isSelected ? 'opacity-80' : 'text-muted'}`}>
+                    {item.nameFr}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Dynamic Laboratory Result Card */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-card border-2 border-line shadow-sm animate-pop">
-        
-        {/* Top Result Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-line">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-soft border border-line flex items-center justify-center font-ar font-bold text-3xl text-ink">
-              {chapter.number === 8 ? `نْ + ${selectedLetter}` : selectedLetter}
+        <section key={selectedLetter} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade" aria-live="polite">
+          <div className="p-6 flex items-center gap-5" style={{ boxShadow: `inset 4px 0 0 ${accentColor}` }}>
+            <span className="font-ui-ar text-[44px] leading-[1.5] text-ink shrink-0" dir="rtl">
+              {chapter.number === 8 ? `نْ ${selectedLetter}` : selectedLetter}
+            </span>
+            <div className="min-w-0">
+              <h3 className="font-display text-xl leading-snug text-ink">{currentAnalysis.rule}</h3>
+              <span className={`chip ${currentAnalysis.colorClass} mt-2`}>{currentAnalysis.badge}</span>
+            </div>
+          </div>
+
+          <dl className="px-6 pb-6 space-y-5 text-[15px] leading-relaxed">
+            <div>
+              <dt className="label mb-1">Pourquoi</dt>
+              <dd className="text-ink">{currentAnalysis.explanation}</dd>
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-muted">Résultat du test</span>
-              <h3 className="font-display text-base sm:text-lg font-bold text-ink">
-                {currentAnalysis.rule}
-              </h3>
+              <dt className="label mb-1">Position de la bouche</dt>
+              <dd className="text-ink">{currentAnalysis.mouthMechanism}</dd>
             </div>
+          </dl>
+
+          <div className="px-6 py-4 bg-soft flex items-center justify-between gap-4">
+            <span className="label">Exemple dans le Coran</span>
+            <span className="font-ar text-[28px] leading-[1.7] text-ink" dir="rtl">{currentAnalysis.example}</span>
           </div>
-
-          <span className={`chip ${currentAnalysis.colorClass} self-start sm:self-auto`}>
-            {currentAnalysis.badge}
-          </span>
-        </div>
-
-        {/* Explanation & Articulation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5 text-xs sm:text-sm">
-          
-          <div className="p-4 rounded-xl bg-soft/60 border border-line/80 space-y-1.5">
-            <span className="font-bold text-ink block text-xs uppercase tracking-wider">
-              Diagnostic de la règle :
-            </span>
-            <p className="text-muted leading-relaxed">
-              {currentAnalysis.explanation}
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-soft/60 border border-line/80 space-y-1.5">
-            <span className="font-bold text-ink block text-xs uppercase tracking-wider">
-              Positionnement buccal :
-            </span>
-            <p className="text-muted leading-relaxed">
-              {currentAnalysis.mouthMechanism}
-            </p>
-          </div>
-
-        </div>
-
-        {/* Example in Quran */}
-        <div className="p-4 rounded-xl bg-paper border border-line flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-0.5">
-              Exemple Coranique type :
-            </span>
-            <span className="text-xs text-muted">Observez la combinaison dans le Mushaf</span>
-          </div>
-
-          <div className="px-5 py-2 rounded-xl bg-card border border-line font-ar font-bold text-2xl sm:text-3xl text-ink shadow-xs" dir="rtl">
-            {currentAnalysis.example}
-          </div>
-        </div>
-
+        </section>
       </div>
-
-    </div>
+    </>
   );
 };

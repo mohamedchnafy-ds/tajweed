@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
-import { BookOpen, Sparkles, Volume2, Mic, Play, Pause, RotateCcw } from 'lucide-react';
+import { Mic, Play, Pause, Square, RotateCcw } from 'lucide-react';
+import { StepHeader } from './ui';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import { useVoiceRecorder } from '../hooks/useVoiceRecorder';
 
@@ -89,162 +90,118 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
     clearRecording,
   } = useVoiceRecorder();
 
+  const ruleColor: Record<string, string> = {
+    'chip-izhar': 'var(--izhar)',
+    'chip-idgham': 'var(--idgham)',
+    'chip-iqlab': 'var(--iqlab)',
+    'chip-ikhfa': 'var(--ikhfa)',
+    'chip-qalqalah': 'var(--qalqalah)',
+    'chip-gold': 'var(--ink)',
+  };
+
   return (
-    <div className="animate-enter space-y-6">
-      
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <p className="text-[11px] uppercase tracking-wider font-bold text-muted mb-1 flex items-center gap-1.5">
-            <BookOpen className="w-3.5 h-3.5 text-gold" />
-            <span>Étape 4 · Le Coran Mot par Mot</span>
-          </p>
-          <h1 className="font-display text-2xl sm:text-3xl font-normal text-ink">
-            Analyse & Écoute Active du Verset
-          </h1>
-        </div>
-
-        {/* Verse switcher */}
-        <div className="flex items-center gap-1.5 bg-card border border-line p-1 rounded-xl self-start sm:self-auto shadow-xs">
-          {versesList.map((v, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setActiveVerseIndex(i);
-                setSelectedWordIndex(0);
-              }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                i === activeVerseIndex
-                  ? 'bg-ink text-paper shadow-xs'
-                  : 'text-muted hover:text-ink'
-              }`}
-            >
-              Verset {i + 1} ({v.ref})
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Main Quran Verse Interactive Container */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-card border border-line shadow-sm text-center">
-        
-        {/* Reference pill */}
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <span className="ref-tag">
-            Sūrah {currentVerse.surahFr} • Verset {currentVerse.ref}
-          </span>
-        </div>
-
-        {/* Tactile Clickable Words Row */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 my-4" dir="rtl">
-          {currentVerse.words.map((w, idx) => {
-            const isSelected = selectedWordIndex === idx;
-            return (
+    <>
+      <StepHeader
+        step={4}
+        title="Le verset, mot par mot"
+        description="Écoutez la récitation, puis touchez chaque mot coloré pour comprendre la règle qui s'y applique."
+        aside={
+          <div className="segmented">
+            {versesList.map((v, i) => (
               <button
-                key={idx}
-                onClick={() => setSelectedWordIndex(idx)}
-                className={`group px-3 sm:px-4 py-2 rounded-xl transition-all select-none ${
-                  isSelected
-                    ? 'bg-ink text-paper scale-110 shadow-md ring-2 ring-gold'
-                    : w.target
-                    ? 'bg-soft text-ink hover:scale-105 border border-line'
-                    : 'text-muted hover:text-ink hover:bg-soft/50'
-                }`}
+                key={i}
+                aria-pressed={i === activeVerseIndex}
+                onClick={() => {
+                  setActiveVerseIndex(i);
+                  setSelectedWordIndex(0);
+                }}
               >
-                <span className="font-ar font-bold text-3xl sm:text-4xl block leading-tight">
-                  {w.text}
-                </span>
-                {w.target && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold mx-auto mt-1 block group-hover:scale-125" />
-                )}
+                {v.surahFr} {v.ref}
               </button>
-            );
-          })}
+            ))}
+          </div>
+        }
+      />
+
+      <div className="surface overflow-hidden">
+        <div className="px-5 sm:px-10 pt-8 pb-6 text-center">
+          <span className="ref-tag">Sourate {currentVerse.surahFr}, verset {currentVerse.ref}</span>
+
+          <div className="flex flex-wrap items-baseline justify-center gap-x-1 gap-y-2 mt-6" dir="rtl">
+            {currentVerse.words.map((w, idx) => {
+              const isSelected = selectedWordIndex === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedWordIndex(idx)}
+                  aria-pressed={isSelected}
+                  className={`px-2 sm:px-3 rounded-2xl transition-colors select-none ${
+                    isSelected ? 'bg-soft' : 'hover:bg-soft/60'
+                  }`}
+                >
+                  <span
+                    className="font-ar text-[38px] sm:text-[48px] leading-[1.9] block"
+                    style={{ color: w.target ? ruleColor[w.ruleClass] : 'var(--ink)' }}
+                  >
+                    {w.text}
+                  </span>
+                  <span
+                    className={`block h-0.5 mx-auto -mt-1 mb-1 rounded-full transition-all ${isSelected ? 'w-8 bg-gilt' : 'w-0'}`}
+                  />
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <p className="text-xs text-muted mt-6 italic">
-          Touchez un mot dans le verset ci-dessus pour examiner sa règle de Tajwīd et vous entraîner.
-        </p>
-
-        {/* Audio Player Toolbar for the Verse */}
-        <div className="mt-8 pt-6 border-t border-line flex flex-wrap items-center justify-center gap-3">
-          
-          <button
-            onClick={togglePlay}
-            disabled={isLoading}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-ink text-paper text-xs font-semibold hover:opacity-90 transition-opacity shadow-xs"
-          >
+        <div className="px-5 sm:px-8 py-4 border-t border-line flex flex-wrap items-center justify-center gap-2">
+          <button onClick={togglePlay} disabled={isLoading} className="btn btn-primary">
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
-            <span>{isPlaying ? 'Pause' : 'Écouter Cheikh Al-Hussary'}</span>
+            <span>{isPlaying ? 'Pause' : 'Écouter Al-Husary'}</span>
           </button>
 
-          <button
-            onClick={toggleSpeed}
-            className="px-3 py-2 rounded-xl border border-line bg-soft text-xs font-mono font-bold text-ink hover:bg-line transition-colors"
-            title="Ralentir à 0.75x"
-          >
-            {playbackRate}x
+          <button onClick={toggleSpeed} className="btn btn-secondary tabular-nums" title="Changer la vitesse">
+            {playbackRate}×
           </button>
 
-          {/* Voice Mirror Micro */}
           {!recordedUrl ? (
             <button
               onClick={isRecording ? stopRecording : startRecording}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
-                isRecording
-                  ? 'bg-bad-bg border-bad text-bad animate-pulse'
-                  : 'bg-card border-line hover:bg-soft text-ink'
-              }`}
+              className={`btn ${isRecording ? 'bg-bad-bg text-bad' : 'btn-secondary'}`}
             >
-              <Mic className="w-4 h-4" />
-              <span>{isRecording ? 'Enregistrement en cours...' : 'Répéter au micro'}</span>
+              {isRecording ? <Square className="w-4 h-4 fill-current" /> : <Mic className="w-4 h-4" />}
+              <span>{isRecording ? 'Arrêter l\'enregistrement' : 'M\'enregistrer'}</span>
             </button>
           ) : (
-            <div className="flex items-center gap-1.5 bg-soft p-1 rounded-xl">
-              <button
-                onClick={playRecordedAudio}
-                className="px-3 py-1.5 rounded-lg bg-card text-ink font-semibold text-xs shadow-xs"
-              >
-                {isPlayingRecording ? 'Pause' : 'Écouter ma voix'}
+            <>
+              <button onClick={playRecordedAudio} className="btn btn-secondary">
+                {isPlayingRecording ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                <span>{isPlayingRecording ? 'Pause' : 'Écouter ma voix'}</span>
               </button>
-              <button
-                onClick={clearRecording}
-                className="px-2.5 py-1 text-xs text-bad hover:underline"
-              >
-                Refaire
+              <button onClick={clearRecording} className="btn btn-ghost">
+                <RotateCcw className="w-4 h-4" />
+                <span>Recommencer</span>
               </button>
-            </div>
+            </>
           )}
-
         </div>
 
-      </div>
-
-      {/* Selected Word Deep Breakdown Card */}
-      {selectedWord && (
-        <div className="p-5 sm:p-6 rounded-2xl bg-soft border border-line shadow-xs animate-pop">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-line">
-            <div className="flex items-center gap-3">
-              <span className="font-ar font-bold text-3xl sm:text-4xl text-ink" dir="rtl">
-                {selectedWord.text}
-              </span>
-              <div>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-muted">Règle identifiée</span>
-                <h4 className="font-display text-base font-bold text-ink">{selectedWord.rule}</h4>
-              </div>
-            </div>
-
-            <span className={`chip ${selectedWord.ruleClass} self-start sm:self-auto`}>
-              {selectedWord.rule}
+        {selectedWord && (
+          <div key={`${activeVerseIndex}-${selectedWordIndex}`} className="px-5 sm:px-8 py-6 bg-soft flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 animate-fade">
+            <span
+              className="font-ar text-[40px] leading-[1.6] shrink-0"
+              style={{ color: selectedWord.target ? ruleColor[selectedWord.ruleClass] : 'var(--ink)' }}
+              dir="rtl"
+            >
+              {selectedWord.text}
             </span>
+            <div>
+              <span className={`chip ${selectedWord.ruleClass}`}>{selectedWord.rule}</span>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink">{selectedWord.why}</p>
+            </div>
           </div>
-
-          <p className="text-xs sm:text-sm text-ink leading-relaxed">
-            {selectedWord.why}
-          </p>
-        </div>
-      )}
-
-    </div>
+        )}
+      </div>
+    </>
   );
 };

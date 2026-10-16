@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Chapter, QuizQuestion } from '../types/tajweed';
 import { recordMistake, recordChapterScore } from '../services/storageService';
-import { CheckCircle2, XCircle, ArrowRight, RotateCcw, Award, AlertCircle, ArrowLeft, Sparkles, BookOpen } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, RotateCcw, NotebookPen } from 'lucide-react';
+import { StepHeader, StarMark } from './ui';
 
 interface QuizEngineProps {
   chapter: Chapter;
@@ -10,6 +11,19 @@ interface QuizEngineProps {
   onOpenMistakes: () => void;
   onCompleteQuiz: () => void;
 }
+
+/** Met en évidence le passage visé par la question dans le verset. */
+const highlightTarget = (verse: string, target?: string) => {
+  if (!target || !verse.includes(target)) return verse;
+  const [before, ...rest] = verse.split(target);
+  return (
+    <>
+      {before}
+      <mark className="bg-gilt-soft text-ink rounded-lg px-1 [box-decoration-break:clone]">{target}</mark>
+      {rest.join(target)}
+    </>
+  );
+};
 
 export const QuizEngine: React.FC<QuizEngineProps> = ({
   chapter,
@@ -91,69 +105,33 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
     const isPerfect = finalScorePercent === 100;
 
     return (
-      <div className="max-w-xl mx-auto py-8 text-center animate-enter">
-        <div className={`w-16 h-16 rounded-3xl mx-auto flex items-center justify-center mb-4 shadow-sm ${
-          isPerfect
-            ? 'bg-idgham-bg text-idgham border-2 border-idgham'
-            : 'bg-soft text-ink border border-line'
-        }`}>
-          <Award className="w-8 h-8" />
-        </div>
+      <div className="surface max-w-xl mx-auto px-6 py-12 sm:px-12 text-center">
+        <StarMark className="w-10 h-10 mx-auto text-gilt" filled={isPerfect} />
+        <p className="mt-6 font-display text-[64px] leading-none text-ink tabular-nums">{finalScorePercent} %</p>
+        <p className="mt-2 text-sm text-muted">{score} bonne{score > 1 ? 's' : ''} réponse{score > 1 ? 's' : ''} sur {questions.length}</p>
 
-        <h2 className="font-display text-3xl font-bold text-ink mb-1">
-          {isPerfect ? 'Perfection Absolue ! 0 Faute' : 'Entraînement Terminé !'}
+        <h2 className="mt-8 font-display text-2xl text-ink">
+          {isPerfect ? 'Sans faute. Bravo !' : 'Quiz terminé'}
         </h2>
-        <p className="text-xs sm:text-sm text-muted mb-6">
+        <p className="mt-2 text-[15px] leading-relaxed text-muted max-w-sm mx-auto">
           {isPerfect
-            ? 'Félicitations, vous maîtrisez impeccablement les règles de ce chapitre.'
-            : 'La répétition et l\'analyse des erreurs mènent à l\'excellence.'}
+            ? 'Vous maîtrisez les règles de ce chapitre.'
+            : `${mistakesMadeInSession.length} question${mistakesMadeInSession.length > 1 ? 's ont été ajoutées' : ' a été ajoutée'} à votre cahier d'erreurs pour la réviser plus tard.`}
         </p>
 
-        {/* Score pill */}
-        <div className="p-6 rounded-2xl border border-line bg-card shadow-xs mb-6 max-w-xs mx-auto">
-          <div className="text-4xl font-extrabold font-mono text-ink mb-1">
-            {finalScorePercent}%
-          </div>
-          <div className="text-xs text-muted font-medium">
-            {score} sur {questions.length} questions réussies
-          </div>
-        </div>
-
-        {/* Mistakes Alert if any */}
-        {mistakesMadeInSession.length > 0 && (
-          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-900/60 text-xs text-amber-900 dark:text-amber-200 mb-6 text-left flex items-start gap-3 shadow-xs">
-            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <strong>{mistakesMadeInSession.length} erreur(s) enregistrée(s) :</strong> Ajoutées à votre <em>Cahier d'erreurs</em> pour révision ciblée.
-            </div>
-          </div>
-        )}
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <button
-            onClick={restartQuiz}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-line bg-card hover:bg-soft text-xs font-semibold text-ink transition-colors shadow-xs"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Recommencer</span>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          <button onClick={restartQuiz} className="btn btn-secondary">
+            <RotateCcw className="w-4 h-4" />
+            Recommencer
           </button>
-
           {mistakesMadeInSession.length > 0 && (
-            <button
-              onClick={onOpenMistakes}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-600 text-white hover:bg-amber-700 text-xs font-semibold transition-colors shadow-xs"
-            >
-              <AlertCircle className="w-3.5 h-3.5" />
-              <span>Ouvrir mon cahier</span>
+            <button onClick={onOpenMistakes} className="btn btn-secondary">
+              <NotebookPen className="w-4 h-4" />
+              Ouvrir mon cahier
             </button>
           )}
-
-          <button
-            onClick={onGoToPoster}
-            className="flex items-center gap-1.5 px-5 py-2 rounded-xl bg-ink text-paper hover:opacity-90 text-xs font-semibold transition-opacity shadow-xs"
-          >
-            <span>Voir la fiche de synthèse</span>
+          <button onClick={onGoToPoster} className="btn btn-primary">
+            Voir la synthèse
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -161,173 +139,133 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
     );
   }
 
+  const isCorrect = selectedAnswer === currentQ.correctAnswer;
+
   // Active Question View
   return (
-    <div className="animate-enter space-y-6">
-      
-      {/* Top Header & Progress */}
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-[11px] uppercase tracking-wider font-bold text-muted mb-1 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-gold" />
-            <span>Étape 5 · Exercices & Quiz Interactifs</span>
-          </p>
-          <span className="text-xs text-muted font-mono">
-            Question {currentIndex + 1} sur {questions.length}
-          </span>
+    <>
+      <StepHeader
+        step={5}
+        title="Vérifiez vos acquis"
+        aside={
+          <div className="flex items-center gap-3 text-sm text-muted">
+            <span className="tabular-nums">Question {currentIndex + 1} sur {questions.length}</span>
+            <div className="flex gap-1" aria-hidden="true">
+              {questions.map((_, i) => (
+                <span key={i} className={`h-1.5 w-6 rounded-full ${i < currentIndex ? 'bg-lapis' : i === currentIndex ? 'bg-gilt' : 'bg-line'}`} />
+              ))}
+            </div>
+          </div>
+        }
+      />
+
+      <div key={currentQ.id} className="surface overflow-hidden animate-fade">
+        <div className="px-6 sm:px-8 pt-7">
+          <h2 className="font-display text-[22px] sm:text-2xl leading-snug text-ink max-w-2xl">
+            {currentQ.promptFr}
+          </h2>
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-28 h-2 rounded-full bg-soft overflow-hidden border border-line">
-          <div
-            className="h-full bg-idgham transition-all duration-300"
-            style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
-          />
-        </div>
-      </div>
-
-      {/* Main Question Card */}
-      <div className="p-6 sm:p-7 rounded-2xl bg-card border border-line shadow-xs space-y-5">
-        
-        {/* Prompt */}
-        <h2 className="font-display text-lg sm:text-xl font-normal text-ink leading-snug">
-          {currentQ.promptFr}
-        </h2>
-
-        {/* Quranic Verse Box */}
-        <div className="py-6 px-4 rounded-2xl bg-paper border border-line text-center shadow-xs">
-          <p className="font-ar font-bold text-3xl sm:text-4xl text-ink leading-relaxed" dir="rtl">
-            {currentQ.verseArabic}
+        <div className="mx-6 sm:mx-8 mt-6 py-6 px-4 rounded-2xl bg-soft text-center">
+          <p className="font-ar text-[36px] sm:text-[44px] leading-[1.9] text-ink" dir="rtl">
+            {highlightTarget(currentQ.verseArabic, currentQ.targetWord)}
           </p>
           {currentQ.surahAyahRef && (
-            <span className="ref-tag mt-3 inline-block">
-              Sūrah réf: {currentQ.surahAyahRef}
-            </span>
+            <div className="mt-2">
+              <span className="ref-tag">Sourate {currentQ.surahAyahRef}</span>
+            </div>
           )}
         </div>
 
-        {/* Type: Click on segment in verse */}
-        {currentQ.type === 'click_word' && currentQ.clickableSegments && (
-          <div className="space-y-2">
-            <span className="text-xs text-muted block font-medium">
-              Cliquez directement sur le mot qui contient la règle :
-            </span>
-            <div className="flex flex-wrap items-center justify-center gap-2" dir="rtl">
-              {currentQ.clickableSegments.map((segment) => {
-                const isSelected = selectedAnswer === segment;
-                let btnStyle = 'border-line bg-card hover:bg-soft text-ink';
-
-                if (isAnswerSubmitted) {
-                  if (segment === currentQ.correctAnswer) {
-                    btnStyle = 'border-idgham bg-idgham-bg text-idgham font-bold shadow-xs';
+        <div className="px-6 sm:px-8 py-6">
+          {currentQ.type === 'click_word' && currentQ.clickableSegments && (
+            <div>
+              <p className="label mb-3">Touchez le mot qui contient la règle</p>
+              <div className="flex flex-wrap items-center justify-center gap-2" dir="rtl">
+                {currentQ.clickableSegments.map((segment) => {
+                  const isSelected = selectedAnswer === segment;
+                  let btnStyle = 'border-line bg-card hover:border-muted text-ink';
+                  if (isAnswerSubmitted) {
+                    if (segment === currentQ.correctAnswer) btnStyle = 'border-good bg-good-bg text-good';
+                    else if (isSelected) btnStyle = 'border-bad bg-bad-bg text-bad';
+                    else btnStyle = 'border-line bg-card text-ink opacity-40';
                   } else if (isSelected) {
-                    btnStyle = 'border-bad bg-bad-bg text-bad font-bold';
+                    btnStyle = 'border-lapis bg-lapis-bg text-ink';
                   }
-                } else if (isSelected) {
-                  btnStyle = 'border-ink bg-ink text-paper font-bold shadow-md';
-                }
+                  return (
+                    <button
+                      key={segment}
+                      onClick={() => handleSelectAnswer(segment)}
+                      disabled={isAnswerSubmitted}
+                      aria-pressed={isSelected}
+                      className={`font-ar text-[28px] leading-[1.7] px-5 py-1 rounded-2xl border-2 transition-colors select-none ${btnStyle}`}
+                    >
+                      {segment}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
+          {(currentQ.type === 'mcq' || currentQ.type === 'error_detect') && currentQ.options && (
+            <div className="grid sm:grid-cols-2 gap-2.5">
+              {currentQ.options.map((option, i) => {
+                const isSelected = selectedAnswer === option;
+                let btnStyle = 'border-line bg-card hover:border-muted text-ink';
+                if (isAnswerSubmitted) {
+                  if (option === currentQ.correctAnswer) btnStyle = 'border-good bg-good-bg text-good';
+                  else if (isSelected) btnStyle = 'border-bad bg-bad-bg text-bad';
+                  else btnStyle = 'border-line bg-card text-ink opacity-40';
+                } else if (isSelected) {
+                  btnStyle = 'border-lapis bg-lapis-bg text-ink';
+                }
                 return (
                   <button
-                    key={segment}
-                    onClick={() => handleSelectAnswer(segment)}
+                    key={option}
+                    onClick={() => handleSelectAnswer(option)}
                     disabled={isAnswerSubmitted}
-                    className={`font-ar text-2xl px-5 py-2.5 rounded-xl border transition-all select-none ${btnStyle}`}
+                    aria-pressed={isSelected}
+                    className={`w-full text-left px-4 py-3.5 rounded-2xl border-2 text-[15px] transition-colors flex items-center gap-3 ${btnStyle}`}
                   >
-                    {segment}
+                    <span className={`w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-xs font-semibold ${
+                      isSelected && !isAnswerSubmitted ? 'bg-lapis text-lapis-ink' : 'bg-soft text-muted'
+                    }`}>
+                      {String.fromCharCode(65 + i)}
+                    </span>
+                    <span className="leading-snug flex-1">{option}</span>
+                    {isAnswerSubmitted && option === currentQ.correctAnswer && <CheckCircle2 className="w-5 h-5 shrink-0" />}
+                    {isAnswerSubmitted && isSelected && option !== currentQ.correctAnswer && <XCircle className="w-5 h-5 shrink-0" />}
                   </button>
                 );
               })}
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Type: MCQ Options */}
-        {(currentQ.type === 'mcq' || currentQ.type === 'error_detect') && currentQ.options && (
-          <div className="space-y-2.5">
-            {currentQ.options.map((option) => {
-              const isSelected = selectedAnswer === option;
-              let btnStyle = 'border-line bg-paper/60 hover:bg-soft text-ink';
-
-              if (isAnswerSubmitted) {
-                if (option === currentQ.correctAnswer) {
-                  btnStyle = 'border-idgham bg-idgham-bg text-idgham font-bold shadow-xs';
-                } else if (isSelected) {
-                  btnStyle = 'border-bad bg-bad-bg text-bad font-bold';
-                } else {
-                  btnStyle = 'opacity-40 border-line bg-card';
-                }
-              } else if (isSelected) {
-                btnStyle = 'border-ink bg-ink text-paper font-bold shadow-sm';
-              }
-
-              return (
-                <button
-                  key={option}
-                  onClick={() => handleSelectAnswer(option)}
-                  disabled={isAnswerSubmitted}
-                  className={`w-full text-left p-4 rounded-xl border text-xs sm:text-sm transition-all flex items-center justify-between gap-3 ${btnStyle}`}
-                >
-                  <span className="leading-snug">{option}</span>
-                  {isAnswerSubmitted && option === currentQ.correctAnswer && (
-                    <CheckCircle2 className="w-4 h-4 text-idgham shrink-0" />
-                  )}
-                  {isAnswerSubmitted && isSelected && option !== currentQ.correctAnswer && (
-                    <XCircle className="w-4 h-4 text-bad shrink-0" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Detailed Explanation upon submission */}
-        {isAnswerSubmitted && (
-          <div className={`p-4 rounded-xl border text-xs leading-relaxed animate-pop ${
-            selectedAnswer === currentQ.correctAnswer
-              ? 'bg-idgham-bg border-idgham text-idgham'
-              : 'bg-bad-bg border-bad text-bad'
-          }`}>
-            <div className="font-bold mb-1 flex items-center gap-1.5 text-xs sm:text-sm">
-              {selectedAnswer === currentQ.correctAnswer ? (
-                <>
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>Excellent ! Règle parfaitement identifiée.</span>
-                </>
-              ) : (
-                <>
-                  <XCircle className="w-4 h-4 shrink-0" />
-                  <span>Erreur de Tajwīd ! Attention au piège.</span>
-                </>
-              )}
+          {isAnswerSubmitted && (
+            <div className={`mt-5 p-4 rounded-2xl text-[15px] leading-relaxed animate-fade ${isCorrect ? 'bg-good-bg' : 'bg-bad-bg'}`} aria-live="polite">
+              <p className={`font-semibold flex items-center gap-2 ${isCorrect ? 'text-good' : 'text-bad'}`}>
+                {isCorrect ? <CheckCircle2 className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                {isCorrect ? 'Bonne réponse' : 'Pas tout à fait'}
+              </p>
+              <p className="mt-1 text-ink">{currentQ.explanationFr}</p>
             </div>
-            <p className="mt-1 opacity-90">{currentQ.explanationFr}</p>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* Bottom Action Button */}
-        <div className="flex items-center justify-end pt-2">
+        <div className="px-6 sm:px-8 py-4 border-t border-line flex justify-end">
           {!isAnswerSubmitted ? (
-            <button
-              onClick={handleSubmitAnswer}
-              disabled={!selectedAnswer}
-              className="px-6 py-2.5 rounded-xl bg-ink text-paper font-semibold text-xs hover:opacity-90 disabled:opacity-30 transition-opacity shadow-xs"
-            >
-              Valider la réponse
+            <button onClick={handleSubmitAnswer} disabled={!selectedAnswer} className="btn btn-primary">
+              Valider
             </button>
           ) : (
-            <button
-              onClick={handleNextQuestion}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-ink text-paper font-semibold text-xs hover:opacity-90 transition-opacity shadow-xs"
-            >
-              <span>{currentIndex + 1 === questions.length ? 'Voir mes résultats' : 'Question suivante'}</span>
+            <button onClick={handleNextQuestion} className="btn btn-primary">
+              {currentIndex + 1 === questions.length ? 'Voir mon résultat' : 'Question suivante'}
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
         </div>
-
       </div>
-
-    </div>
+    </>
   );
 };

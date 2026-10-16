@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PILOT_CHAPTERS } from './data/chaptersData';
 import { Chapter, UserStats } from './types/tajweed';
 import { loadUserStats } from './services/storageService';
-import { Navbar, LessonStep } from './components/Navbar';
+import { Navbar, LessonStep, STEPS } from './components/Navbar';
 import { ChapterList } from './components/ChapterList';
 import { InteractiveTajweedTree } from './components/InteractiveTajweedTree';
 import { AnimatedProfessor } from './components/AnimatedProfessor';
@@ -99,7 +99,7 @@ export const App: React.FC = () => {
   const unresolvedMistakesCount = userStats.mistakeHistory.filter(m => !m.retriedSuccessfully).length;
 
   return (
-    <div className="min-h-full flex flex-col bg-paper text-ink transition-colors pb-24">
+    <div className={`min-h-full flex flex-col bg-paper text-ink ${currentTab === 'lesson' ? 'pb-28' : ''}`}>
       
       {/* Top Header with Stepper */}
       <Navbar
@@ -120,7 +120,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Stage */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 pt-6">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6">
         {currentTab === 'chapters' || !selectedChapter ? (
           <ChapterList
             onSelectChapter={handleSelectChapter}
@@ -129,7 +129,7 @@ export const App: React.FC = () => {
             onOpenMistakes={() => setIsMistakesModalOpen(true)}
           />
         ) : (
-          <div className="space-y-6">
+          <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-12 space-y-8 animate-enter">
             {currentStep === 'map' && (
               <InteractiveTajweedTree chapter={selectedChapter} />
             )}
@@ -178,50 +178,29 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Fixed Bottom Step Navigation (identique à Nahw Saghîr) */}
+      {/* Navigation entre étapes */}
       {currentTab === 'lesson' && selectedChapter && (
-        <div className="fixed bottom-0 left-0 right-0 z-30 bg-paper/95 backdrop-blur-md border-t border-line py-3 px-4 shadow-lg">
-          <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
-            
-            {/* Prev button */}
-            <button
-              onClick={goToPrevStep}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-line bg-card hover:bg-soft text-xs font-semibold text-muted hover:text-ink transition-colors shadow-xs"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
+        <div className="fixed bottom-0 left-0 right-0 z-30 bg-paper/85 backdrop-blur-xl border-t border-line pb-[env(safe-area-inset-bottom)]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between gap-3">
+            <button onClick={goToPrevStep} className="btn btn-secondary">
+              <ArrowLeft className="w-4 h-4" />
               <span>{currentStepIdx === 0 ? 'Sommaire' : 'Précédent'}</span>
             </button>
 
-            {/* Step Dots indicator */}
-            <div className="flex items-center gap-1.5">
-              {STEPS_ORDER.map((s, idx) => (
-                <button
-                  key={s}
-                  onClick={() => {
-                    setCurrentStep(s);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className={`h-2 rounded-full transition-all ${
-                    idx === currentStepIdx
-                      ? 'w-6 bg-idgham'
-                      : idx < currentStepIdx
-                      ? 'w-2 bg-ink'
-                      : 'w-2 bg-line'
-                  }`}
-                  title={`Étape ${idx + 1}`}
-                />
-              ))}
-            </div>
+            <p className="hidden sm:block text-sm text-muted">
+              <span className="text-ink font-semibold">{STEPS[currentStepIdx].label}</span>
+              <span className="mx-2 text-line">/</span>
+              {currentStepIdx + 1} sur {STEPS_ORDER.length}
+            </p>
 
-            {/* Next button */}
-            <button
-              onClick={goToNextStep}
-              className="flex items-center gap-1.5 px-5 py-2 rounded-xl bg-ink text-paper text-xs font-semibold hover:opacity-90 transition-opacity shadow-xs"
-            >
-              <span>{currentStepIdx + 1 === STEPS_ORDER.length ? 'Chapitre suivant' : 'Étape suivante'}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+            <button onClick={goToNextStep} className="btn btn-primary">
+              <span>
+                {currentStepIdx + 1 === STEPS_ORDER.length
+                  ? (selectedChapter.number === 8 ? 'Chapitre suivant' : 'Terminer')
+                  : STEPS[currentStepIdx + 1].label}
+              </span>
+              <ArrowRight className="w-4 h-4" />
             </button>
-
           </div>
         </div>
       )}

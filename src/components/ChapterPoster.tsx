@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chapter } from '../types/tajweed';
-import { Layers, CheckCircle2, ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
+import { StepHeader, StarMark } from './ui';
 
 interface ChapterPosterProps {
   chapter: Chapter;
@@ -15,109 +16,81 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
 }) => {
   const getGoldenRule = () => {
     if (chapter.number === 8) {
-      return 'Regardez toujours la lettre qui SUIT le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
+      return 'Regardez toujours la lettre qui suit le Nūn sans voyelle : Gorge = Clarté (Izhār), Yarmalūn = Fusion (Idghām), Bā\' = Mīm (Iqlāb), et le reste = Dissimulation avec 2 temps de Ghunnah (Ikhfā\').';
     }
     return 'Dès qu\'une des 5 lettres de Qutb Jadd (قُطْبُ جَدٍّ) porte un soukoûn, libérez le souffle par un rebond acoustique net sans jamais bouger la mâchoire ni ajouter de voyelle parasite.';
   };
 
+  const ruleColors = ['var(--izhar)', 'var(--idgham)', 'var(--iqlab)', 'var(--ikhfa)', 'var(--qalqalah)', 'var(--gold)'];
+
   return (
-    <div className="animate-enter space-y-6">
-      
-      {/* Header */}
-      <div>
-        <p className="text-[11px] uppercase tracking-wider font-bold text-muted mb-1 flex items-center gap-1.5">
-          <Layers className="w-3.5 h-3.5 text-gold" />
-          <span>Étape 6 · Fiche Synthèse & Règle d'Or</span>
-        </p>
-        <h1 className="font-display text-2xl sm:text-3xl font-normal text-ink mb-1">
-          L'Essentiel en Un Coup d'Œil
-        </h1>
-        <p className="text-xs sm:text-sm text-muted">
-          La méthode en une phrase et le récapitulatif visuel du chapitre.
-        </p>
-      </div>
+    <>
+      <StepHeader
+        step={6}
+        title="L'essentiel à retenir"
+        description="Relisez cette synthèse avant chaque séance de récitation."
+      />
 
-      {/* La Méthode en une phrase (Gold Card) */}
-      <div className="p-6 rounded-2xl bg-gold-bg border-2 border-gold/40 shadow-xs space-y-2">
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold">
-          <Sparkles className="w-4 h-4 text-gold" />
-          <span>La Règle d'Or du Chapitre (À mémoriser)</span>
-        </div>
-        <p className="font-display text-base sm:text-lg text-ink font-semibold leading-relaxed">
-          « {getGoldenRule()} »
-        </p>
-      </div>
+      {/* Règle d'or */}
+      <figure className="relative rounded-[var(--r)] bg-lapis text-lapis-ink dark:bg-lapis-bg dark:text-ink px-6 py-10 sm:px-12 sm:py-14 overflow-hidden">
+        <StarMark className="absolute -right-20 -bottom-24 w-80 h-80 text-gilt opacity-[0.12]" />
+        <p className="relative text-sm font-semibold opacity-75 mb-4">La règle d'or du chapitre</p>
+        <blockquote className="relative font-display text-[22px] sm:text-[28px] leading-[1.4] max-w-3xl">
+          {getGoldenRule()}
+        </blockquote>
+      </figure>
 
-      {/* Poster Bullet Points from the book */}
-      <div className="p-6 rounded-2xl bg-card border border-line shadow-xs space-y-4">
-        <h3 className="font-display text-lg font-bold text-ink">
-          Points Clés de l'Infographie
-        </h3>
-
-        <div className="space-y-3">
-          {chapter.infographicPoints.map((point, idx) => (
-            <div
-              key={idx}
-              className="p-3.5 rounded-xl bg-soft/70 border border-line/60 flex items-start gap-3"
-            >
-              <div className="w-6 h-6 rounded-full bg-ink text-paper font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                {idx + 1}
-              </div>
-              <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                {point}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Rules & Mnemonic Table */}
-      <div className="p-6 rounded-2xl bg-card border border-line shadow-xs">
-        <h3 className="font-display text-lg font-bold text-ink mb-4">
-          Tableau Récapitulatif
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {chapter.subrules.map((sub) => (
-            <div
+      {/* Les règles */}
+      <section>
+        <h2 className="font-display text-2xl text-ink mb-4">Les règles</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {chapter.subrules.map((sub, i) => (
+            <article
               key={sub.id}
-              className="p-4 rounded-xl border border-line bg-paper/60 space-y-1.5"
+              className="surface p-6"
             >
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-xs sm:text-sm text-ink">{sub.nameFr}</span>
-                <span className="font-ar font-bold text-lg text-muted" dir="rtl">{sub.nameAr}</span>
+              <div className="flex items-center justify-between gap-4">
+                <span className="h-1 w-8 rounded-full" style={{ background: ruleColors[i % ruleColors.length] }} />
+                <p className="font-ui-ar text-[28px] leading-[1.6] text-right" dir="rtl" style={{ color: ruleColors[i % ruleColors.length] }}>
+                  {sub.nameAr}
+                </p>
               </div>
+              <h3 className="font-display text-lg leading-snug text-ink mt-3">{sub.nameFr}</h3>
               {sub.mnemonic && (
-                <div className="text-xs font-mono text-idgham font-semibold">
-                  Formule : {sub.mnemonic}
-                </div>
+                <p className="mt-3 text-sm text-ink">
+                  <span className="text-muted">Lettres : </span>
+                  {sub.mnemonic}
+                </p>
               )}
-              <p className="text-xs text-muted leading-relaxed">
-                {sub.definitionFr}
-              </p>
-            </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{sub.definitionFr}</p>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Navigation Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-line">
-        <button
-          onClick={onRestartSteps}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-line bg-card hover:bg-soft text-xs font-semibold text-muted hover:text-ink transition-colors shadow-xs"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span>Revoir les étapes</span>
+      {/* Points clés */}
+      <section>
+        <h2 className="font-display text-2xl text-ink mb-4">Points clés</h2>
+        <ul className="surface divide-y divide-line">
+          {chapter.infographicPoints.map((point, idx) => (
+            <li key={idx} className="px-6 py-4 flex items-start gap-4">
+              <StarMark className="w-4 h-4 text-gilt shrink-0 mt-1" />
+              <p className="text-[15px] leading-relaxed text-ink">{point}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button onClick={onRestartSteps} className="btn btn-secondary">
+          <RotateCcw className="w-4 h-4" />
+          Revoir les étapes
         </button>
-
-        <button
-          onClick={onGoToNextChapter}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-ink text-paper text-xs font-semibold hover:opacity-90 transition-opacity shadow-xs"
-        >
-          <span>Chapitre suivant</span>
+        <button onClick={onGoToNextChapter} className="btn btn-primary">
+          {chapter.number === 8 ? 'Chapitre suivant' : 'Retour au sommaire'}
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
-
-    </div>
+    </>
   );
 };

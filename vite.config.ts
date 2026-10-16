@@ -14,8 +14,8 @@ export default defineConfig({
         name: 'Tajwīd Excellence - Maîtrise de la Récitation',
         short_name: 'Tajwīd',
         description: 'Application moderne et épurée pour apprendre et perfectionner le Tajwīd (Hafs an Asim)',
-        theme_color: '#0a0a0a',
-        background_color: '#ffffff',
+        theme_color: '#24366f',
+        background_color: '#f7f7f5',
         display: 'standalone',
         orientation: 'portrait',
         icons: [

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ALL_BOOK_CHAPTERS } from '../data/chaptersData';
 import { UserStats, Chapter } from '../types/tajweed';
-import { CheckCircle2, ChevronRight, Sparkles, BookOpen, AlertCircle, Layers } from 'lucide-react';
+import { ArrowRight, Check, Clock, NotebookPen } from 'lucide-react';
+import { Medallion, StarMark } from './ui';
 
 interface ChapterListProps {
   onSelectChapter: (chapterNumber: number) => void;
@@ -10,218 +11,198 @@ interface ChapterListProps {
   onOpenMistakes: () => void;
 }
 
+type Filter = 'all' | 'beginner' | 'intermediate' | 'advanced';
+
+const FILTERS: { id: Filter; label: string }[] = [
+  { id: 'all', label: 'Tous' },
+  { id: 'beginner', label: 'Débutant' },
+  { id: 'intermediate', label: 'Intermédiaire' },
+  { id: 'advanced', label: 'Avancé' },
+];
+
+const LEVEL_LABEL: Record<string, string> = {
+  beginner: 'Débutant',
+  intermediate: 'Intermédiaire',
+  advanced: 'Avancé',
+};
+
 export const ChapterList: React.FC<ChapterListProps> = ({
   onSelectChapter,
   userStats,
   pilotChapters,
   onOpenMistakes,
 }) => {
-  const [filter, setFilter] = useState<'all' | 'pilot' | 'beginner' | 'intermediate' | 'advanced'>('all');
+  const [filter, setFilter] = useState<Filter>('all');
 
-  const filteredChapters = ALL_BOOK_CHAPTERS.filter((ch) => {
-    if (filter === 'pilot') return ch.isPilot;
-    if (filter === 'all') return true;
-    return ch.category === filter;
-  });
+  const filteredChapters = ALL_BOOK_CHAPTERS.filter((ch) => filter === 'all' || ch.category === filter);
 
-  const getScore = (chapterNum: number) => {
-    return userStats.chapterScores[`chap-${chapterNum}`] || 0;
-  };
-
-  const isCompleted = (chapterNum: number) => {
-    return userStats.completedChapters.includes(`chap-${chapterNum}`);
-  };
+  const getScore = (chapterNum: number) => userStats.chapterScores[`chap-${chapterNum}`] || 0;
+  const isCompleted = (chapterNum: number) => userStats.completedChapters.includes(`chap-${chapterNum}`);
 
   const unresolvedCount = userStats.mistakeHistory.filter(m => !m.retriedSuccessfully).length;
+  const completedCount = userStats.completedChapters.length;
+  const progress = Math.round((completedCount / ALL_BOOK_CHAPTERS.length) * 100);
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 animate-enter">
-      
-      {/* Hero Banner: Warm Paper & Serif Style */}
-      <div className="mb-8 border-b border-line pb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="ref-tag">
-                Hafs 'an 'Āsim • Ash-Shātibiyyah
-              </span>
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-normal text-ink mb-2">
-              Le Tajwīd Simplifié
-            </h1>
-            <p className="text-xs sm:text-sm text-muted max-w-xl">
-              Parcours interactif en 6 étapes inspiré du chef-d'œuvre <em>"Learners' Handbook of Tajweed"</em> (Drs. Islām Fekry, Arabic101).
-            </p>
-          </div>
+    <div className="pb-16">
+      {/* Ouverture */}
+      <section className="pt-10 sm:pt-16 pb-12 sm:pb-16 grid sm:grid-cols-[1fr_auto] items-end gap-8">
+        <div className="max-w-xl animate-enter">
+          <h1 className="font-display text-[40px] sm:text-[56px] leading-[1.05] tracking-[-0.02em] text-ink">
+            Apprenez à réciter le Coran, règle par règle.
+          </h1>
+          <p className="mt-5 text-[17px] leading-relaxed text-muted">
+            Seize chapitres pour maîtriser le Tajwīd selon la lecture de Hafs ʿan ʿĀṣim :
+            une carte des règles, des démonstrations animées, l'écoute des versets et des quiz pour vérifier vos acquis.
+          </p>
 
-          {/* Quick Stats Card */}
-          <div className="flex items-center gap-4 bg-card px-5 py-3 rounded-2xl border border-line shadow-xs self-start sm:self-auto">
-            <div>
-              <div className="text-[10px] text-muted font-bold uppercase tracking-wider">Maîtrise</div>
-              <div className="text-xl font-bold font-mono text-idgham">
-                {pilotChapters.length > 0 
-                  ? Math.round(pilotChapters.reduce((acc, c) => acc + (userStats.chapterScores[c.id] || 0), 0) / pilotChapters.length)
-                  : 0}%
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <button onClick={() => onSelectChapter(pilotChapters[0]?.number ?? 8)} className="btn btn-primary h-12 px-6 text-[15px]">
+              {completedCount > 0 ? 'Reprendre' : 'Commencer le premier chapitre'}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <div className="flex items-center gap-3 text-sm text-muted">
+              <div className="w-28 h-1.5 rounded-full bg-line overflow-hidden" aria-hidden="true">
+                <div className="h-full bg-gilt rounded-full" style={{ width: `${progress}%` }} />
               </div>
-            </div>
-            <div className="w-px h-8 bg-line" />
-            <div>
-              <div className="text-[10px] text-muted font-bold uppercase tracking-wider">Progression</div>
-              <div className="text-xl font-bold font-mono text-ink">
-                {userStats.completedChapters.length} / {ALL_BOOK_CHAPTERS.length}
-              </div>
+              <span>{completedCount} sur {ALL_BOOK_CHAPTERS.length} chapitres terminés</span>
             </div>
           </div>
         </div>
 
-        {/* Unresolved Mistakes Alert Box */}
-        {unresolvedCount > 0 && (
-          <div 
-            onClick={onOpenMistakes}
-            className="cursor-pointer mt-4 p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-900/60 flex items-center justify-between hover:scale-[1.01] transition-transform shadow-xs"
-          >
-            <div className="flex items-center gap-3 text-xs text-amber-900 dark:text-amber-200">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>
-                <strong>{unresolvedCount} question{unresolvedCount > 1 ? 's' : ''}</strong> à revoir dans votre <strong>Cahier d'erreurs</strong> pour atteindre le 100% sans faute.
-              </span>
-            </div>
-            <span className="text-xs font-bold text-amber-900 dark:text-amber-300 underline shrink-0">
-              Réviser →
+        <p
+          className="hidden sm:block font-ui-ar text-[120px] leading-none text-lapis select-none"
+          dir="rtl"
+          aria-hidden="true"
+        >
+          التَّجْوِيد
+        </p>
+      </section>
+
+      {unresolvedCount > 0 && (
+        <button
+          onClick={onOpenMistakes}
+          className="w-full mb-10 surface px-5 py-4 flex items-center justify-between gap-4 text-left hover:border-gilt transition-colors"
+        >
+          <span className="flex items-center gap-3">
+            <span className="w-9 h-9 rounded-full bg-gilt-soft text-gilt flex items-center justify-center shrink-0">
+              <NotebookPen className="w-4 h-4" />
             </span>
-          </div>
-        )}
-      </div>
+            <span className="text-[15px] text-ink">
+              {unresolvedCount} question{unresolvedCount > 1 ? 's' : ''} à revoir dans votre cahier d'erreurs
+            </span>
+          </span>
+          <span className="text-sm font-semibold text-lapis shrink-0">Réviser</span>
+        </button>
+      )}
 
-      {/* Filter Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar text-xs font-medium">
-        <button
-          onClick={() => setFilter('all')}
-          className={`px-3.5 py-1.5 rounded-full border transition-all ${
-            filter === 'all'
-              ? 'border-ink bg-ink text-paper font-semibold shadow-xs'
-              : 'border-line bg-card text-muted hover:text-ink'
-          }`}
-        >
-          Tous (16 chapitres)
-        </button>
-        <button
-          onClick={() => setFilter('pilot')}
-          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border transition-all ${
-            filter === 'pilot'
-              ? 'border-ink bg-ink text-paper font-semibold shadow-xs'
-              : 'border-line bg-card text-muted hover:text-ink'
-          }`}
-        >
-          <Sparkles className="w-3.5 h-3.5 text-gold" />
-          <span>Chapitres Interactifs (Prêts)</span>
-        </button>
-        <button
-          onClick={() => setFilter('beginner')}
-          className={`px-3.5 py-1.5 rounded-full border transition-all ${
-            filter === 'beginner'
-              ? 'border-ink bg-ink text-paper font-semibold shadow-xs'
-              : 'border-line bg-card text-muted hover:text-ink'
-          }`}
-        >
-          Débutant
-        </button>
-        <button
-          onClick={() => setFilter('intermediate')}
-          className={`px-3.5 py-1.5 rounded-full border transition-all ${
-            filter === 'intermediate'
-              ? 'border-ink bg-ink text-paper font-semibold shadow-xs'
-              : 'border-line bg-card text-muted hover:text-ink'
-          }`}
-        >
-          Intermédiaire
-        </button>
-        <button
-          onClick={() => setFilter('advanced')}
-          className={`px-3.5 py-1.5 rounded-full border transition-all ${
-            filter === 'advanced'
-              ? 'border-ink bg-ink text-paper font-semibold shadow-xs'
-              : 'border-line bg-card text-muted hover:text-ink'
-          }`}
-        >
-          Avancé
-        </button>
-      </div>
-
-      {/* Chapters Grid */}
-      <div className="space-y-3">
-        {filteredChapters.map((ch) => {
-          const score = getScore(ch.number);
-          const completed = isCompleted(ch.number);
-          const isPilot = ch.isPilot;
-
-          return (
-            <div
-              key={ch.number}
-              onClick={() => {
-                if (isPilot) onSelectChapter(ch.number);
-              }}
-              className={`group rounded-2xl border p-4 sm:p-5 transition-all flex items-center justify-between gap-4 ${
-                isPilot
-                  ? 'cursor-pointer border-line bg-card hover:border-ink hover:shadow-md hover:translate-y-[-2px]'
-                  : 'opacity-50 border-dashed border-line bg-soft/30 cursor-not-allowed'
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                {/* Number Badge */}
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-mono font-bold text-sm shrink-0 transition-transform group-hover:scale-105 ${
-                  completed
-                    ? 'bg-idgham text-white shadow-xs'
-                    : isPilot
-                    ? 'bg-ink text-paper shadow-xs'
-                    : 'bg-soft text-muted'
-                }`}>
-                  {completed ? <CheckCircle2 className="w-5 h-5" /> : ch.number}
-                </div>
-
-                {/* Chapter Titles */}
-                <div>
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <h3 className="font-display font-bold text-base sm:text-lg text-ink">
-                      {ch.titleFr}
-                    </h3>
-                    {isPilot && (
-                      <span className="chip chip-idgham text-[10px] uppercase font-bold tracking-wider py-0.5">
-                        6 Étapes Actives
-                      </span>
-                    )}
-                  </div>
-                  <p className="font-ar font-bold text-xl sm:text-2xl text-muted leading-snug" dir="rtl">
+      {/* Chapitres disponibles */}
+      <section>
+        <h2 className="font-display text-2xl text-ink mb-5">Disponibles maintenant</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {pilotChapters.map((ch) => {
+            const score = getScore(ch.number);
+            const done = isCompleted(ch.number);
+            return (
+              <button
+                key={ch.id}
+                onClick={() => onSelectChapter(ch.number)}
+                className="group surface p-6 text-left flex flex-col gap-5 hover:border-lapis/40 transition-colors"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <Medallion value={ch.number} size="lg" tone={done ? 'good' : 'gilt'} />
+                  <p className="font-ui-ar text-[26px] leading-[1.6] text-ink text-right" dir="rtl">
                     {ch.titleAr}
                   </p>
                 </div>
-              </div>
+                <div>
+                  <h3 className="font-display text-[22px] leading-snug text-ink">{ch.titleFr}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-2">{ch.summaryFr}</p>
+                </div>
+                <div className="mt-auto pt-4 border-t border-line flex items-center justify-between text-sm">
+                  <span className="flex items-center gap-4 text-muted">
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      {ch.estimatedMinutes} min
+                    </span>
+                    {score > 0 && <span>Meilleur score {score} %</span>}
+                  </span>
+                  <span className="flex items-center gap-1.5 font-semibold text-lapis">
+                    {done ? 'Revoir' : 'Ouvrir'}
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </section>
 
-              {/* Score or Status */}
-              <div className="flex items-center gap-3 shrink-0">
-                {isPilot ? (
-                  <>
-                    {score > 0 && (
-                      <div className="hidden sm:block text-right">
-                        <span className="text-[10px] text-muted font-bold uppercase">Score</span>
-                        <div className="font-mono text-sm font-bold text-idgham">
-                          {score}%
-                        </div>
-                      </div>
-                    )}
-                    <div className="w-8 h-8 rounded-full bg-soft flex items-center justify-center text-muted group-hover:bg-ink group-hover:text-paper transition-colors">
-                      <ChevronRight className="w-4 h-4" />
-                    </div>
-                  </>
+      {/* Sommaire complet */}
+      <section className="mt-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <h2 className="font-display text-2xl text-ink">Le programme complet</h2>
+          <div className="segmented self-start overflow-x-auto no-scrollbar max-w-full">
+            {FILTERS.map(f => (
+              <button key={f.id} aria-pressed={filter === f.id} onClick={() => setFilter(f.id)}>
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <ol className="surface divide-y divide-line overflow-hidden">
+          {filteredChapters.map((ch) => {
+            const done = isCompleted(ch.number);
+            const content = (
+              <>
+                <Medallion value={ch.number} tone={ch.isPilot ? (done ? 'good' : 'gilt') : 'muted'} />
+                <div className="min-w-0 flex-1">
+                  <p className={`text-[15px] leading-snug ${ch.isPilot ? 'text-ink font-semibold' : 'text-ink/80'}`}>
+                    {ch.titleFr}
+                  </p>
+                  <p className="text-xs text-muted mt-0.5">{LEVEL_LABEL[ch.category]}</p>
+                </div>
+                <p className="hidden md:block font-ui-ar text-xl text-muted shrink-0" dir="rtl">{ch.titleAr}</p>
+                <span className="sm:w-24 shrink-0 text-right text-sm">
+                  {ch.isPilot ? (
+                    done ? (
+                      <span className="inline-flex items-center gap-1 text-good font-semibold">
+                        <Check className="w-4 h-4" /> Terminé
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-lapis font-semibold">
+                        Ouvrir <ArrowRight className="w-4 h-4" />
+                      </span>
+                    )
+                  ) : (
+                    <span className="text-muted">Bientôt</span>
+                  )}
+                </span>
+              </>
+            );
+            return (
+              <li key={ch.number}>
+                {ch.isPilot ? (
+                  <button
+                    onClick={() => onSelectChapter(ch.number)}
+                    className="w-full px-4 sm:px-5 py-3.5 flex items-center gap-4 text-left hover:bg-soft transition-colors"
+                  >
+                    {content}
+                  </button>
                 ) : (
-                  <span className="text-xs text-muted italic">Bientôt disponible</span>
+                  <div className="px-4 sm:px-5 py-3.5 flex items-center gap-4">{content}</div>
                 )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              </li>
+            );
+          })}
+        </ol>
 
+        <p className="mt-6 flex items-start gap-2 text-sm text-muted">
+          <StarMark className="w-4 h-4 text-gilt shrink-0 mt-0.5" />
+          <span>D'après le <em>Learners' Handbook of Tajweed</em> de Islām Fekry (Arabic101).</span>
+        </p>
+      </section>
     </div>
   );
 };
