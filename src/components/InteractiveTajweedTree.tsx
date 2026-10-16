@@ -42,6 +42,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Al-Lahn Al-Jalī (Erreur Majeure)',
             labelAr: 'اللَّحْنُ الجَلِيُّ (حَرَامٌ)',
             tagColor: 'var(--bad)',
+            letters: ['تَ', 'تُ'],
             descriptionFr: 'Toute erreur qui change le sens ou la grammaire (ex: changer une voyelle). C\'est un péché (Harām) si commis par négligence !',
             examples: ['أَنۡعَمۡتَ (Tu as comblé)', 'أَنۡعَمۡتُ (J\'ai comblé ❌)'],
           },
@@ -50,6 +51,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Al-Lahn Al-Khafī (Erreur Subtile)',
             labelAr: 'اللَّحْنُ الخَفِيُّ (مَكْرُوهٌ)',
             tagColor: 'var(--gold)',
+            letters: ['مَآءَ', 'صَٰ'],
             descriptionFr: 'Défaut de finition ou d\'embellissement sans altérer le sens (ex: prolonger un Madd 2 temps au lieu de 4-5 temps). Déconseillé.',
             examples: ['ٱلسَّمَآءَ (Madd 4-5 temps)', 'بِمَصَٰبِيحَ'],
           },
@@ -58,6 +60,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Rasm \'Uthmānī & Muṣ-ḥaf',
             labelAr: 'الرَّسْمُ العُثْمَانِيُّ وَالمُصْحَفُ',
             tagColor: 'var(--izhar)',
+            letters: ['وٰ'],
             descriptionFr: 'L\'orthographe sacrée fixée par les Compagnons (Sahābah). Qur\'ān = Parole révélée | Muṣ-ḥaf = Volume physique relié.',
             examples: ['ٱلصَّلَوٰةَ (écrit avec Wāw)', 'ٱلزَّكَوٰةَ'],
           },
@@ -84,6 +87,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '1. Waqf Lāzim (مـ) vs Interdiction (لا)',
             labelAr: 'الوَقْفُ اللَّازِمُ (مـ) وَالمَمْنُوعُ (لا)',
             tagColor: 'var(--bad)',
+            letters: ['ۘ', 'لا'],
             descriptionFr: 'مـ = Arrêt obligatoire sous peine de grave contresens théologique. لا = Interdiction de couper la lecture car le sens est incomplet.',
             examples: ['فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ (مـ)', 'فَوَيۡلٞ لِّلۡمُصَلِّينَ (لا)'],
           },
@@ -92,6 +96,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Arrêts Optionnels (ج · قلى · صلى)',
             labelAr: 'الوَقْفُ الجَائِزُ وَأَوْلَوِيَّاتُهُ',
             tagColor: 'var(--gold)',
+            letters: ['ج', 'قلى', 'صلى'],
             descriptionFr: 'ج = Choix égal. قلى = Arrêt préférable (Al-Waqfu awlā). صلى = Liaison préférable (Al-Waslu awlā).',
             examples: ['ج (تخيير متساوٍ)', 'قلى (الوقف أولى)', 'صلى (الوصل أولى)'],
           },
@@ -100,6 +105,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Arrêt d\'Étreinte (ۛ ... ۛ)',
             labelAr: 'الوَقْفُ المُتَعَانِقُ (المُعَانَقَةُ)',
             tagColor: 'var(--iqlab)',
+            letters: ['ۛ'],
             descriptionFr: 'Double triade de points : arrêtez-vous à l\'un OU à l\'autre, mais JAMAIS aux deux à la fois !',
             examples: ['لَا رَيۡبَۛ فِيهِۛ هُدٗى (البقرة 2)'],
           },
@@ -108,6 +114,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. La Pause sans Souffle (س)',
             labelAr: 'السَّكْتَةُ اللَّطِيفَةُ (س)',
             tagColor: 'var(--izhar)',
+            letters: ['ۜ', 'س'],
             descriptionFr: 'Arrêt bref de 2 temps sans reprendre sa respiration pour éviter une fausse liaison contradictoire.',
             examples: ['عِوَجَاۜ ١ قَيِّمٗا (الكهف 1)', 'مِن مَّرۡقَدِنَاۜۗ (يس 52)'],
           },
@@ -116,6 +123,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Lettres Vocales & Zéros (ٰ · ۥ · ۦ · ْ · ۠)',
             labelAr: 'ضَبْطُ الحُرُوفِ وَالصِّفْرَانِ',
             tagColor: 'var(--idgham)',
+            letters: ['ۥ', '۠', 'ْ'],
             descriptionFr: 'Alif Khanjariyyah (ٰ), petit Wāw (ۥ), petit Yā\' (ۦ) = voyelles obligatoires. Cercle rond (ْ) = lettre muette. Ovale (۠) = les 7 Alifs.',
             examples: ['حَوۡلَهُۥ ذَهَبَ', 'أَنَا۠ خَيۡرٞ', 'يَفۡرَحُواْ'],
           }
@@ -142,6 +150,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Règle Universelle : Transformation en Soukoûn',
             labelAr: 'تَحْوِيلُ الحَرَكَاتِ إِلَى سُكُونٍ',
             tagColor: 'var(--idgham)',
+            letters: ['ـِينْ', 'ـِينُ', 'ـِينِ', 'ـينْ', 'ـينَ', 'رْ', 'نْ', 'رٞ'],
             descriptionFr: 'En arabe, on ne s\'arrête JAMAIS sur une voyelle ! Fathah, Dammah, Kasrah, Tanwīn Damm et Tanwīn Kasr deviennent TOUS un Soukoûn pur.',
             examples: ['ٱلۡعَٰلَمِينَ ➔ ٱلۡعَٰلَمِينْ', 'نَسۡتَعِينُ ➔ نَسۡتَعِينْ', 'خَبِيرٞ ➔ خَبِيرْ'],
           },
@@ -150,6 +159,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Exception 1 : Madd \'Iwad (Tanwīn Fath)',
             labelAr: 'مَدُّ العِوَضِ (التَّنْوِينُ المَفْتُوحُ)',
             tagColor: 'var(--gold)',
+            letters: ['ٗا', 'ً', 'ءَا', 'رَا', 'ءٗ'],
             descriptionFr: 'Le Tanwīn Fath (ـً / ـٗا) se transmute TOUJOURS en un Alif de 2 temps à l\'arrêt, même s\'il n\'y a pas d\'Alif dessiné après la Hamzah.',
             examples: ['قَرَارٗا ➔ قَرَارَا (2 temps)', 'بِنَآءٗ ➔ بِنَآءَا (2 temps)', 'مَآءً ➔ مَآءَا'],
           },
@@ -158,6 +168,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Exception 2 : Tā\' Marbūtah (ة ➔ هـ)',
             labelAr: 'التَّاءُ المَرْبُوطَةُ تَنْقَلِبُ هَاءً سَاكِنَةً',
             tagColor: 'var(--iqlab)',
+            letters: ['ةٗ', 'هْ', 'ةَ', 'ةٍ', 'ة'],
             descriptionFr: 'Toute Tā\' Marbūtah (ة / ـة) devient impérativement un Hā\' avec Soukoûn (هْ) à l\'arrêt, MÊME avec un Tanwīn Fath (pas de Madd \'Iwad !).',
             examples: ['وَرَحۡمَةٗ ➔ وَرَحۡمَهْ', 'ٱلصَّلَوٰةَ ➔ ٱلصَّلَاهْ', 'جَنَّةٍ ➔ جَنَّهْ'],
           },
@@ -166,6 +177,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Reprise Sécurisée (Stop & Repeat) & Piège des Citations',
             labelAr: 'الاسْتِئْنَافُ السَّلِيمُ وَحِكَايَةُ أَقْوَالِ الكُفْرِ',
             tagColor: 'var(--bad)',
+            letters: ['إِنَّ'],
             descriptionFr: 'Règle « Stop & Repeat » : reculer de 2-3 mots si le souffle a manqué. Piège fatal : Ne jamais reprendre sur une citation blasphématoire isolée !',
             examples: ['قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ (آل عمران 181)', 'Reculer sur : قَوۡلَ ٱلَّذِينَ قَالُوٓاْ...'],
           }
@@ -184,6 +196,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '1. Les 3 Lettres de Madd & La Clé « Nūhīhā »',
             labelAr: 'حُرُوفُ المَدِّ الثَّلَاثَةُ (نُوحِيهَا)',
             tagColor: 'var(--izhar)',
+            letters: ['نُو', 'حِي', 'هَآ', 'ٰ', 'ۥ'],
             descriptionFr: 'Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي), Alif précédé de Fathah (هَا). Sans voyelle sur la lettre elle-même !',
             examples: ['نُوحِيهَآ (هود 49)', 'مَٰلِكِ (Alif ٰ)', 'يَلۡوُۥنَ (Wāw ۥ)'],
           },
@@ -192,6 +205,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Le Madd Naturel (2 Temps / Harakāt)',
             labelAr: 'المَدُّ الطَّبِيعِيُّ (حَرَكَتَانِ)',
             tagColor: 'var(--gold)',
+            letters: ['قَا', 'قُو', 'قِي', 'ا', 'و', 'ي'],
             descriptionFr: 'La mesure standard : 1 Harakah = durée de « Ba » | 2 Harakāt = durée de « Bā » (Ba + Ba, env. 1 sec). Ni plus, ni moins !',
             examples: ['قَالَ', 'يَقُولُ', 'قِيلَ'],
           },
@@ -200,6 +214,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Le Péril du Lahn Jalī (Raccourcissement)',
             labelAr: 'اللَّحْنُ الجَلِيُّ بِحَذْفِ المَدِّ (حَرَامٌ)',
             tagColor: 'var(--bad)',
+            letters: ['نَآ', 'نَ'],
             descriptionFr: 'Tronquer le Madd en voyelle courte altère le sens du Coran ! Ex: « Akhadhnā » (Nous avons pris) ➔ « Akhadhna » (Les femmes ont pris ❌).',
             examples: ['أَخَذۡنَآ (Nous)', 'أَخَذۡنَ (Elles ❌)'],
           },
@@ -208,6 +223,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Lettres de Madd vs Lettres de Līn',
             labelAr: 'حَرْفَا اللِّينِ (الوَاوُ وَاليَاءُ المَفْتُوحُ مَا قَبْلَهُمَا)',
             tagColor: 'var(--iqlab)',
+            letters: ['يۡ', 'وۡ'],
             descriptionFr: 'Wāw et Yā\' portant un Soukoûn et précédés d\'une FATHAH (ـَ + وْ / يْ). Aucun Madd en lecture continue (Wasl) ! L\'Alif n\'est jamais de Līn.',
             examples: ['قُرَيۡشٍ', 'خَوۡفٖ', 'ٱلۡبَيۡتِ'],
           },
@@ -216,6 +232,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ',
             labelAr: 'الوَقْفُ عَلَى (هُوَ - هِيَ - مَعِيَ)',
             tagColor: 'var(--idgham)',
+            letters: ['هُوَ', 'هُو', 'عِىَ', 'عِي'],
             descriptionFr: 'En continu = consonne avec Fathah (« Huwa »). À l\'arrêt d\'urgence = la Fathah devient Soukoûn et libère un Madd de 2 temps (« Hū ») !',
             examples: ['إِلَّا هُوَۚ ➔ إِلَّا هُو', 'مَعِىَ ➔ مَعِي'],
           }
@@ -234,6 +251,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '1. Madd Muttasil (Lié dans le même mot)',
             labelAr: 'المَدُّ الوَاجِبُ المُتَّصِلُ (٤-٥ حَرَكَاتٍ)',
             tagColor: 'var(--gold)',
+            letters: ['مَآءَ', 'جَآءَ', 'سُوٓءَ', 'سِيٓئَتۡ', 'ٓ', 'ء'],
             descriptionFr: 'Lettre de Madd + Hamzah dans le MÊME mot. Obligatoire (Wājib) 4 ou 5 temps en Wasl et Waqf (jusqu\'à 6 temps si Hamzah finale à l\'arrêt).',
             examples: ['ٱلسَّمَآءَ', 'جَآءَ', 'سُوٓءَ', 'سِيٓئَتۡ'],
           },
@@ -242,6 +260,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Madd Munfasil & Silah Kubrā (Entre deux mots)',
             labelAr: 'المَدُّ المُنْفَصِلُ وَالصِّلَةُ الكُبْرَى (٤-٥ حَرَكَاتٍ)',
             tagColor: 'var(--idgham)',
+            letters: ['ٰٓأَ', 'وٓاْ أَن', 'هُۥٓ أَ', 'ٓ'],
             descriptionFr: 'Madd en fin de mot + Hamzah au début du mot suivant. Permis (Jā\'iz) 4-5 temps en liaison (Wasl) ; redevient 2 temps si l\'on s\'arrête sur le premier mot !',
             examples: ['يَٰٓأَيُّهَا', 'قُوٓاْ أَنفُسَكُمۡ', 'مَالَهُۥٓ أَخۡلَدَهُۥ'],
           },
@@ -250,6 +269,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Madd Badal (Hamzah avant la lettre de Madd)',
             labelAr: 'مَدُّ البَدَلِ (حَرَكَتَانِ فِي رِوَايَةِ حَفْصٍ)',
             tagColor: 'var(--izhar)',
+            letters: ['ءَا', 'إِي', 'أُو'],
             descriptionFr: 'La Hamzah précède la lettre de Madd. Vaut 2 temps seulement dans la lecture de Hafs (identique au Madd Naturel). Origine : substitution de deux Hamzahs.',
             examples: ['ءَامَنُواْ (أَأْمَنُوا)', 'إِيمَٰنٗا (إِئْمَانًا)', 'أُوتُواْ (أُؤْتُوا)'],
           },
@@ -258,6 +278,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Madd Lāzim (6 Temps Stricts Incompressibles)',
             labelAr: 'المَدُّ اللَّازِمُ الكَلِمِيُّ وَالحَرْفِيُّ (٦ حَرَكَاتٍ لَازِمَةً)',
             tagColor: 'var(--bad)',
+            letters: ['ضَّآلِّ', 'ءَآلۡ', 'الٓمٓ', 'ٓ'],
             descriptionFr: 'Suivi d\'un Soukoûn originel ou d\'une Shaddah. Obligatoire 6 temps stricts ! Muthaqqal (avec Shaddah) vs Mukhaffaf (sans Shaddah) dans les mots et les lettres isolées.',
             examples: ['ٱلضَّآلِّينَ (كَلِمِيٌّ مُثَقَّلٌ)', 'ءَآلۡـَٰٔنَ (كَلِمِيٌّ مُخَفَّفٌ)', 'الٓمٓ (حَرْفِيٌّ)'],
           },
@@ -266,6 +287,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Madd \'Ārid li-s-Sukūn & Madd Līn à l\'Arrêt',
             labelAr: 'المَدُّ العَارِضُ لِلسُّكُونِ وَمَدُّ اللِّينِ (٢ - ٤ - ٦ حَرَكَاتٍ)',
             tagColor: 'var(--iqlab)',
+            letters: ['ـِينْ', 'يۡشْ', 'يۡتْ'],
             descriptionFr: 'Provoqué par le Soukoûn incident créé par l\'arrêt à la fin d\'un verset. Choix de 2, 4 ou 6 temps avec maintien strict de la cohérence (Mīzān) sur toute la récitation.',
             examples: ['ٱلۡعَٰلَمِينْ (عارض)', 'قُرَيۡشْ (لين)', 'ٱلۡبَيۡتْ (لين)'],
           }
@@ -284,6 +306,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '1. Hamzat Al-Qat\' (ء - Permanente & Fixe)',
             labelAr: 'هَمْزَةُ القَطْعِ (ثَابِتَةٌ فِي الوَصْلِ وَالوَقْفِ)',
             tagColor: 'var(--gold)',
+            letters: ['أ', 'إ', 'ؤ', 'ئ', 'ء'],
             descriptionFr: 'Porte toujours sa propre voyelle (أَ, إِ, أُ, ء). Elle est prononcée obligatoirement en toutes circonstances, au début, milieu ou fin de mot.',
             examples: ['أَصَٰبَتۡهُم', 'إِنَّا', 'أُوْلَٰٓئِكَ', 'سُوٓءَ'],
           },
@@ -292,6 +315,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '2. Hamzat Al-Wasl (ٱ - Chute en Liaison)',
             labelAr: 'هَمْزَةُ الوَصْلِ (تَسْقُطُ فِي دَرَجِ الكَلَامِ)',
             tagColor: 'var(--idgham)',
+            letters: ['ٱ'],
             descriptionFr: 'Porte le petit Sād (صـ pour Silah). Située uniquement au début du mot. Elle s\'élide et disparaît totalement dès qu\'un mot la précède en lecture continue.',
             examples: ['حَجَّ ٱلۡبَيۡتَ ➔ Hajja-l-bayta', 'أَوِ ٱعۡتَمَرَ ➔ Awi-\'tamara'],
           },
@@ -300,6 +324,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Verbes : Règle de la 3e Lettre',
             labelAr: 'حَرَكَةُ الهَمْزَةِ فِي الأَفْعَالِ (الحَرْفُ الثَّالِثُ)',
             tagColor: 'var(--izhar)',
+            letters: ['ٱ', 'اُ', 'اِ'],
             descriptionFr: '3e lettre avec Dammah ➔ Attaque en Dammah (اُ). 3e lettre avec Fathah ou Kasrah ➔ Attaque en Kasrah (اِ). Jamais de Fathah sur un verbe !',
             examples: ['ٱدۡعُ ➔ اُدۡعُ (عُ)', 'ٱذۡهَبۡ ➔ اِذۡهَبۡ (هَ)', 'ٱهۡدِنَا ➔ اِهۡدِنَا (دِ)'],
           },
@@ -308,6 +333,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Noms Définis (ٱلـ) & Indéfinis (ٱسۡم...)',
             labelAr: 'هَمْزَةُ الوَصْلِ فِي الأَسْمَاءِ',
             tagColor: 'var(--iqlab)',
+            letters: ['ٱ', 'اَلـ', 'اِبۡ', 'اِسۡ'],
             descriptionFr: 'Article défini ٱلـ = TOUJOURS Fathah (اَلـ). Noms singuliers spécifiques (Ibn, Imra\'ah, Ism, Ithnān) = TOUJOURS Kasrah (اِ).',
             examples: ['ٱلۡحَمۡدُ ➔ اَلۡحَمۡدُ', 'ٱبۡنُ ➔ اِبۡنُ', 'ٱسۡمُ ➔ اِسۡمُ'],
           },
@@ -316,6 +342,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Les 5 Verbes Pièges & Rencontre des 2 Hamzahs',
             labelAr: 'الأَفْعَالُ الخَمْسَةُ وَاجْتِمَاعُ الهَمْزَتَيْنِ',
             tagColor: 'var(--bad)',
+            letters: ['ٱ', 'ئ', 'إِي'],
             descriptionFr: '« Ibnū », « Imshū », « Iqdū » s\'attaquent avec KASRAH (Dammah accidentelle) ! Et « ٱئۡتُونِي » devient « ĪTŪNĪ » (إِيتُونِي) à l\'attaque par substitution.',
             examples: ['ٱبۡنُواْ ➔ اِبۡنُواْ', 'ٱمۡشُواْ ➔ اِمۡشُواْ', 'ٱئۡتُونِى ➔ إِيتُونِي (Ītūnī)'],
           }
@@ -352,6 +379,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Lām de Lafz Al-Jalālah (ٱللَّه)',
             labelAr: 'لَامُ لَفْظِ الجَلَالَةِ (تَفْخِيمٌ وَتَرْقِيقٌ)',
             tagColor: 'var(--gold)',
+            letters: ['للَّ', 'ٱللَّهُ', 'ٱللَّهِ'],
             descriptionFr: 'Emphase puissante (Tafkhīm) après Fathah, Dammah ou à l\'attaque. Finesse (Tarqīq) après Kasrah originale ou accidentelle (Tanwīn en Wasl).',
             examples: ['قَالَ ٱللَّهُ (Tafkhīm)', 'عَبۡدُ ٱللَّهِ (Tafkhīm)', 'بِسۡمِ ٱللَّهِ (Tarqīq)', 'أَحَدٌ ٱللَّهُ ➔ Ahaduni-llāh (Tarqīq)'],
           },
@@ -360,6 +388,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Lām du Verbe & de la Particule (Fi\'l & Harf)',
             labelAr: 'لَامُ الفِعْلِ وَالحَرْفِ (قُلۡ، أَنزَلۡنَا، بَلۡ، هَلۡ)',
             tagColor: 'var(--iqlab)',
+            letters: ['لۡ', 'لَّ', 'رَّ'],
             descriptionFr: 'Toujours Izhār (clarté), SAUF si suivie d\'un Lām (fusion par similitude) ou d\'un Râ\' (fusion par proximité) où elle s\'assimile totalement.',
             examples: ['قُلۡ نَعَمۡ (Izhār)', 'أَنزَلۡنَٰهُ (Izhār)', 'قُل لَّكُمۡ (Idghām L-L)', 'قُل رَّبِّ (Idghām L-R)'],
           },
@@ -368,6 +397,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '5. Lām du Nom & de l\'Impératif (Ism & Amr)',
             labelAr: 'لَامُ الاسْمِ وَلَامُ الأَمْرِ (أَلْسِنَتِكُمْ، وَلْيَكْتُبْ)',
             tagColor: 'var(--teal)',
+            letters: ['لۡ'],
             descriptionFr: 'Dans la racine d\'un nom (Alsinatikum) ou préfixée avec Wāw/Fā/Thumma pour l\'ordre (Wal-yaktub) : TOUJOURS Izhār sans aucune exception !',
             examples: ['أَلۡسِنَتِكُمۡ (Izhār)', 'أَلۡوَٰنِكُمۡ (Izhār)', 'وَلۡيُوفُواْ (Izhār)', 'فَلۡيَسۡتَجِيبُواْ (Izhār)'],
           }
@@ -420,6 +450,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
                 labelFr: 'Exception : Izhār Mutlaq',
                 labelAr: 'إِظْهَارٌ مُطْلَقٌ',
                 tagColor: 'var(--gold)',
+                letters: ['نۡيَ', 'نۡوَ'],
                 descriptionFr: 'Si Nūn et la lettre sont dans le MÊME mot, l\'Idghām est interdit (4 mots uniques dans le Coran).',
                 examples: ['دُنۡيَا', 'بُنۡيَٰنٌ', 'قِنۡوَانٌ', 'صِنۡوَانٌ'],
               }
@@ -476,6 +507,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '3. Izhār Shafawī (Clarté)',
             labelAr: 'إِظْهَارٌ شَفَوِيٌّ (26 lettres)',
             tagColor: 'var(--izhar)',
+            letters: ['مۡ'],
             descriptionFr: 'Devant les 26 autres lettres. Le Mīm est émis avec netteté (Soukoûn visible مۡ). Alerte maximale devant Wāw et Fā\' !',
             examples: ['ٱلۡحَمۡدُ لِلَّهِ', 'عَلَيۡهِمۡ غَيۡرِ', 'عَلَيۡهِمۡ وَلَا (Alerte Wāw)', 'هُمۡ فِيهَا (Alerte Fā\')'],
           }
@@ -503,6 +535,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: 'Degré 1 : Kubrā (Majeure)',
             labelAr: 'مَرْتَبَةٌ كُبْرَى',
             tagColor: 'var(--qalqalah)',
+            letters: ['بّ', 'قّ'],
             descriptionFr: 'À l\'arrêt sur une lettre avec Shaddah en fin de mot. Pression maintenue puis explosion vive.',
             examples: ['وَتَبَّ', 'بِٱلۡحَقِّ'],
           },
@@ -511,6 +544,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: 'Degré 2 : Wustā (Moyenne)',
             labelAr: 'مَرْتَبَةٌ وُسْطَى',
             tagColor: 'var(--gold)',
+            letters: ['د', 'ب'],
             descriptionFr: 'À l\'arrêt sur une lettre simple sans Shaddah en fin de mot.',
             examples: ['قُلۡ هُوَ ٱللَّهُ أَحَدٌ', 'مَا كَسَبَ'],
           },
@@ -519,12 +553,13 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: 'Degré 3 : Sughrā (Mineure)',
             labelAr: 'مَرْتَبَةٌ صُغْرَى',
             tagColor: 'var(--izhar)',
+            letters: ['ق'],
             descriptionFr: 'Au milieu d\'un mot ou d\'une phrase en cours de récitation continue.',
             examples: ['يَقۡطَعُونَ', 'خَلَقۡنَا'],
           }
         ]
       };
-    } else {
+    } else if (chapter.number === 11) {
       // Chapitre 11 : L'Assimilation (Idghām)
       return {
         id: 'root-c11',
@@ -611,12 +646,21 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
             labelFr: '4. Takhlees Al-Hurūf (Décontamination des Lettres)',
             labelAr: 'تَخْلِيصُ الحُرُوفِ (عَدَمُ سِرَايَةِ التَّفْخِيمِ)',
             tagColor: 'var(--idgham)',
+            letters: ['خ', 'ق', 'ط', 'ص'],
             descriptionFr: 'L\'art d\'articuler une lettre fine coincée à côté ou entre deux lettres lourdes sans la contaminer. Éviter d\'épaissir le Lām dans « Khalaqa » ou le Nūn dans « Nasīr ».',
             examples: ['خَلَقَ (Khā lourd -> Lām fin -> Qāf lourd)', 'وَٱلۡمُطَلَّقَٰتُ', 'نَصِيرٌ (Nūn fin pur)', 'يَهۡبِطُ'],
           }
         ]
       };
     }
+
+    return {
+      id: `root-fallback-${chapter.number}`,
+      labelFr: chapter.titleFr,
+      labelAr: chapter.titleAr,
+      descriptionFr: chapter.summaryFr,
+      children: [],
+    };
   };
 
   const tree = getTreeData();
@@ -724,21 +768,65 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
               {node.examples.map((ex, idx) => {
                 // Sépare le texte arabe et la note explicative entre parenthèses
                 const match = ex.match(/^([^()]+)(?:\s*\(([^)]+)\))?$/);
-                const arabicText = (match ? match[1] : ex).trim();
+                const mainText = (match ? match[1] : ex).trim();
                 const noteFr = match && match[2] ? match[2].trim() : null;
 
                 const isErrorExample = noteFr && (noteFr.includes('❌') || noteFr.toLowerCase().includes('erreur') || noteFr.toLowerCase().includes('harām'));
                 const itemRuleType = isErrorExample ? 'error' : ruleType;
 
+                const hasArrow = mainText.includes('➔');
+                let leftPart = mainText;
+                let rightPart: string | null = null;
+                let rightIsArabic = false;
+
+                if (hasArrow) {
+                  const arrowSplit = mainText.split(/\s*➔\s*/);
+                  leftPart = arrowSplit[0].trim();
+                  rightPart = arrowSplit[1]?.trim() || null;
+                  rightIsArabic = rightPart ? /[\u0600-\u06FF]/.test(rightPart) : false;
+                }
+
                 return (
                   <li key={idx} className="py-3.5 flex flex-col gap-1.5">
                     <div className="text-right">
-                      <TajweedText
-                        text={arabicText}
-                        highlightLetters={node.letters}
-                        rule={itemRuleType}
-                        className="text-2xl sm:text-3xl leading-[1.8]"
-                      />
+                      {hasArrow && rightPart ? (
+                        rightIsArabic ? (
+                          <div className="flex items-center justify-end gap-2 flex-wrap" dir="rtl">
+                            <TajweedText
+                              text={leftPart}
+                              highlightLetters={node.letters}
+                              rule={itemRuleType}
+                              className="text-2xl sm:text-3xl leading-[1.8]"
+                            />
+                            <span className="text-muted/60 text-lg select-none px-1">➔</span>
+                            <TajweedText
+                              text={rightPart}
+                              highlightLetters={node.letters}
+                              rule={itemRuleType}
+                              className="text-2xl sm:text-3xl leading-[1.8]"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-end gap-3 flex-wrap">
+                            <TajweedText
+                              text={leftPart}
+                              highlightLetters={node.letters}
+                              rule={itemRuleType}
+                              className="text-2xl sm:text-3xl leading-[1.8]"
+                            />
+                            <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-lg bg-soft text-muted border border-line">
+                              ➔ {rightPart}
+                            </span>
+                          </div>
+                        )
+                      ) : (
+                        <TajweedText
+                          text={mainText}
+                          highlightLetters={node.letters}
+                          rule={itemRuleType}
+                          className="text-2xl sm:text-3xl leading-[1.8]"
+                        />
+                      )}
                     </div>
                     {noteFr && (
                       <div className="flex justify-start">
@@ -843,33 +931,6 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
       >
         {selectedNode && renderDetailBody(selectedNode)}
       </Modal>
-
-      {/* Barre flottante mobile pour ré-ouvrir le détail en un tap si fermé */}
-      {selectedNode && !isMobileDetailOpen && (
-        <div className="lg:hidden fixed bottom-20 left-4 right-4 z-20 animate-enter">
-          <button
-            onClick={() => setIsMobileDetailOpen(true)}
-            className="w-full p-3.5 rounded-2xl bg-card/95 backdrop-blur-md border border-line shadow-lg flex items-center justify-between gap-3 text-left hover:border-muted transition-all"
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <span
-                className="w-2.5 h-2.5 rounded-full shrink-0"
-                style={{ background: selectedNode.tagColor || 'var(--lapis)' }}
-              />
-              <div className="min-w-0">
-                <span className="text-[10px] uppercase tracking-wider text-muted font-semibold block">Règle active</span>
-                <span className="font-display font-semibold text-sm text-ink truncate block">
-                  {selectedNode.labelFr}
-                </span>
-              </div>
-            </div>
-            <span className="btn btn-secondary text-xs px-3 py-1.5 shrink-0 flex items-center gap-1.5">
-              <Eye className="w-3.5 h-3.5" />
-              <span>Voir la fiche</span>
-            </span>
-          </button>
-        </div>
-      )}
     </>
   );
 };

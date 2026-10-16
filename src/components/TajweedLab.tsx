@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Chapter } from '../types/tajweed';
 import { StepHeader } from './ui';
 import { TajweedText } from './TajweedHighlighter';
-import { AlertCircle, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, AlertTriangle, CheckCircle2, ArrowUp } from 'lucide-react';
 
 interface TajweedLabProps {
   chapter: Chapter;
@@ -1866,6 +1866,73 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     };
   };
 
+  // Gestion du défilement mobile interactif (descente vers le diagnostic et remontée vers la liste)
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        setShowScrollTop(window.scrollY > 350);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToWorkbench = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setTimeout(() => {
+        const el =
+          document.getElementById('lab-diagnostic-workbench') ||
+          document.getElementById('letter-analysis-workbench');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
+  };
+
+  const scrollToLabList = () => {
+    if (typeof window !== 'undefined') {
+      const el = document.getElementById('lab-cases-list');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const renderBackToTopButton = () => (
+    <button
+      type="button"
+      onClick={scrollToLabList}
+      className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-card/90 hover:bg-card border border-line text-xs font-semibold text-ink shadow-2xs transition-transform active:scale-95 shrink-0"
+      aria-label="Remonter à la liste des cas"
+      title="Remonter à la sélection"
+    >
+      <ArrowUp className="w-3.5 h-3.5 text-lapis stroke-[2.5]" />
+      <span>Remonter</span>
+    </button>
+  );
+
+  const renderFloatingBackToTop = () => {
+    if (!showScrollTop) return null;
+    return (
+      <div className="lg:hidden fixed bottom-24 right-4 z-30 pointer-events-auto animate-enter">
+        <button
+          type="button"
+          onClick={scrollToLabList}
+          aria-label="Remonter à la liste des cas"
+          className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-card/95 backdrop-blur-md border border-line shadow-lg text-ink font-semibold text-xs hover:border-lapis hover:text-lapis transition-all active:scale-95"
+        >
+          <ArrowUp className="w-4 h-4 text-lapis stroke-[2.5]" />
+          <span>Remonter</span>
+        </button>
+      </div>
+    );
+  };
+
   /* =========================================================================
      RENDU CHAPITRE 1 : BANC D'ESSAI DU LAHN
      ========================================================================= */
@@ -1943,7 +2010,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredCases.map((tc) => {
               const isSelected = tc.id === selectedCase.id;
               return (
@@ -1951,14 +2018,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   key={tc.id}
                   onClick={() => {
                     setSelectedCaseId(tc.id);
-                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-                      setTimeout(() => {
-                        const el = document.getElementById('lab-diagnostic-workbench');
-                        if (el) {
-                          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                      }, 60);
-                    }
+                    scrollToWorkbench();
                   }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
@@ -2011,7 +2071,10 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                     {selectedCase.diagnosticTitle}
                   </h3>
                 </div>
-                <SeverityIcon className={`w-7 h-7 ${sev.text} shrink-0`} />
+                <div className="flex items-center gap-2 shrink-0">
+                  {renderBackToTopButton()}
+                  <SeverityIcon className={`w-7 h-7 ${sev.text} shrink-0`} />
+                </div>
               </div>
 
               {/* Fiqh status pill */}
@@ -2064,6 +2127,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2131,13 +2195,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left grid of symbols */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+          <div id="lab-cases-list" className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 scroll-mt-28">
             {filteredSymbols.map((s) => {
               const isSelected = s.id === selectedSymbol.id;
               return (
                 <button
                   key={s.id}
-                  onClick={() => setSelectedSymbolId(s.id)}
+                  onClick={() => {
+                    setSelectedSymbolId(s.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`p-3.5 rounded-2xl flex flex-col items-center justify-between text-center transition-all border ${
                     isSelected
@@ -2163,8 +2230,9 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right diagnostic card */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedSymbol.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             aria-live="polite"
           >
             {/* Header */}
@@ -2181,9 +2249,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   {selectedSymbol.badge}
                 </span>
               </div>
-              <span className="font-ar text-5xl sm:text-6xl text-ink font-bold shrink-0" dir="rtl">
-                {selectedSymbol.symbol}
-              </span>
+              <div className="flex items-center gap-3 shrink-0">
+                {renderBackToTopButton()}
+                <span className="font-ar text-5xl sm:text-6xl text-ink font-bold shrink-0" dir="rtl">
+                  {selectedSymbol.symbol}
+                </span>
+              </div>
             </div>
 
             {/* Action required box */}
@@ -2229,6 +2300,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2303,13 +2375,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredStoppingCases.map((tc) => {
               const isSelected = tc.id === selectedStoppingCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setStoppingCaseId(tc.id)}
+                  onClick={() => {
+                    setStoppingCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -2340,18 +2415,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedStoppingCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedStoppingCase.surahRef}</span>
-                <span className={`chip ${selectedStoppingCase.colorClass}`}>
-                  {selectedStoppingCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedStoppingCase.surahRef}</span>
+                  <span className={`chip ${selectedStoppingCase.colorClass}`}>
+                    {selectedStoppingCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedStoppingCase.title}
@@ -2423,6 +2502,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2491,13 +2571,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredMaddCases.map((tc) => {
               const isSelected = tc.id === selectedMaddCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setMaddCaseId(tc.id)}
+                  onClick={() => {
+                    setMaddCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -2528,18 +2611,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedMaddCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedMaddCase.surahRef}</span>
-                <span className={`chip ${selectedMaddCase.colorClass}`}>
-                  {selectedMaddCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedMaddCase.surahRef}</span>
+                  <span className={`chip ${selectedMaddCase.colorClass}`}>
+                    {selectedMaddCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedMaddCase.title}
@@ -2611,6 +2698,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2685,13 +2773,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredFariCases.map((tc) => {
               const isSelected = tc.id === selectedFariCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setFariCaseId(tc.id)}
+                  onClick={() => {
+                    setFariCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -2722,18 +2813,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedFariCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedFariCase.surahRef}</span>
-                <span className={`chip ${selectedFariCase.colorClass}`}>
-                  {selectedFariCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedFariCase.surahRef}</span>
+                  <span className={`chip ${selectedFariCase.colorClass}`}>
+                    {selectedFariCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedFariCase.title}
@@ -2815,6 +2910,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -2889,13 +2985,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredHamzahCases.map((tc) => {
               const isSelected = tc.id === selectedHamzahCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setHamzahCaseId(tc.id)}
+                  onClick={() => {
+                    setHamzahCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -2926,18 +3025,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedHamzahCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedHamzahCase.surahRef}</span>
-                <span className={`chip ${selectedHamzahCase.colorClass}`}>
-                  {selectedHamzahCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedHamzahCase.surahRef}</span>
+                  <span className={`chip ${selectedHamzahCase.colorClass}`}>
+                    {selectedHamzahCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedHamzahCase.title}
@@ -3019,6 +3122,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3093,13 +3197,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredLamCases.map((tc) => {
               const isSelected = tc.id === selectedLamCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setLamCaseId(tc.id)}
+                  onClick={() => {
+                    setLamCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -3130,18 +3237,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedLamCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedLamCase.surahRef}</span>
-                <span className={`chip ${selectedLamCase.colorClass}`}>
-                  {selectedLamCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedLamCase.surahRef}</span>
+                  <span className={`chip ${selectedLamCase.colorClass}`}>
+                    {selectedLamCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedLamCase.title}
@@ -3200,6 +3311,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3274,13 +3386,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* Left: list of test cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredMimCases.map((tc) => {
               const isSelected = tc.id === selectedMimCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setMimCaseId(tc.id)}
+                  onClick={() => {
+                    setMimCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -3311,18 +3426,22 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
           {/* Right: interactive test bench */}
           <section
+            id="lab-diagnostic-workbench"
             key={selectedMimCase.id}
-            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm"
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
             style={{ boxShadow: `inset 4px 0 0 ${accentBorder}` }}
             aria-live="polite"
           >
             {/* Header banner */}
             <div className="p-6 border-b border-line bg-soft/50">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="ref-tag">{selectedMimCase.surahRef}</span>
-                <span className={`chip ${selectedMimCase.colorClass}`}>
-                  {selectedMimCase.ruleBadge}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag">{selectedMimCase.surahRef}</span>
+                  <span className={`chip ${selectedMimCase.colorClass}`}>
+                    {selectedMimCase.ruleBadge}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
               <h3 className="font-display text-xl sm:text-2xl text-ink leading-snug">
                 {selectedMimCase.title}
@@ -3381,6 +3500,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3447,13 +3567,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* List of cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredCases.map((tc) => {
               const isSelected = tc.id === selectedCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setAssimilationCaseId(tc.id)}
+                  onClick={() => {
+                    setAssimilationCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -3488,13 +3611,20 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
           </div>
 
           {/* Diagnostic details */}
-          <section key={selectedCase.id} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm">
+          <section
+            id="lab-diagnostic-workbench"
+            key={selectedCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
+          >
             <div className="p-6 border-b border-line bg-soft/50 space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
-                <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
-                  {selectedCase.ruleCategory}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
+                  <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
+                    {selectedCase.ruleCategory}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
 
               <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed text-right py-1" dir="rtl">
@@ -3541,6 +3671,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3607,13 +3738,16 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
           {/* List of cases */}
-          <div className="space-y-3">
+          <div id="lab-cases-list" className="space-y-3 scroll-mt-28">
             {filteredCases.map((tc) => {
               const isSelected = tc.id === selectedCase.id;
               return (
                 <button
                   key={tc.id}
-                  onClick={() => setHeavyLightCaseId(tc.id)}
+                  onClick={() => {
+                    setHeavyLightCaseId(tc.id);
+                    scrollToWorkbench();
+                  }}
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
@@ -3648,13 +3782,20 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
           </div>
 
           {/* Diagnostic details */}
-          <section key={selectedCase.id} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm">
+          <section
+            id="lab-diagnostic-workbench"
+            key={selectedCase.id}
+            className="surface overflow-hidden lg:sticky lg:top-36 animate-fade shadow-sm scroll-mt-28 scroll-mb-28"
+          >
             <div className="p-6 border-b border-line bg-soft/50 space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
-                <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
-                  {selectedCase.status}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="ref-tag text-xs">{selectedCase.surahRef}</span>
+                  <span className={`chip ${selectedCase.colorClass} text-xs font-bold`}>
+                    {selectedCase.status}
+                  </span>
+                </div>
+                {renderBackToTopButton()}
               </div>
 
               <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed text-right py-1" dir="rtl">
@@ -3701,6 +3842,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             </div>
           </section>
         </div>
+        {renderFloatingBackToTop()}
       </>
     );
   }
@@ -3736,7 +3878,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
       />
 
       <div className="grid lg:grid-cols-[minmax(0,1fr)_400px] gap-6 items-start">
-        <div className="surface p-4 sm:p-5">
+        <div id="lab-cases-list" className="surface p-4 sm:p-5 scroll-mt-28">
           <div className="grid grid-cols-7 gap-1.5 sm:gap-2" dir="rtl">
             {ARABIC_ALPHABET.map((item) => {
               const isSelected = selectedLetter === item.letter;
@@ -3745,14 +3887,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   key={item.letter}
                   onClick={() => {
                     setSelectedLetter(item.letter);
-                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-                      setTimeout(() => {
-                        const el = document.getElementById('letter-analysis-workbench');
-                        if (el) {
-                          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                      }, 60);
-                    }
+                    scrollToWorkbench();
                   }}
                   aria-pressed={isSelected}
                   aria-label={item.nameFr}
@@ -3773,14 +3908,17 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
         </div>
 
         <section id="letter-analysis-workbench" key={selectedLetter} className="surface overflow-hidden lg:sticky lg:top-36 animate-fade scroll-mt-28 scroll-mb-28" aria-live="polite">
-          <div className="p-6 flex items-center gap-5" style={{ boxShadow: `inset 4px 0 0 ${accentColor}` }}>
-            <span className="font-ui-ar text-[44px] leading-[1.5] text-ink shrink-0" dir="rtl">
-              {chapter.number === 8 ? `نْ ${selectedLetter}` : selectedLetter}
-            </span>
-            <div className="min-w-0">
-              <h3 className="font-display text-xl leading-snug text-ink">{currentAnalysis.rule}</h3>
-              <span className={`chip ${currentAnalysis.colorClass} mt-2`}>{currentAnalysis.badge}</span>
+          <div className="p-6 flex items-center justify-between gap-4" style={{ boxShadow: `inset 4px 0 0 ${accentColor}` }}>
+            <div className="flex items-center gap-5 min-w-0">
+              <span className="font-ui-ar text-[44px] leading-[1.5] text-ink shrink-0" dir="rtl">
+                {chapter.number === 8 ? `نْ ${selectedLetter}` : selectedLetter}
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-display text-xl leading-snug text-ink">{currentAnalysis.rule}</h3>
+                <span className={`chip ${currentAnalysis.colorClass} mt-2`}>{currentAnalysis.badge}</span>
+              </div>
             </div>
+            {renderBackToTopButton()}
           </div>
 
           <dl className="px-6 pb-6 space-y-5 text-[15px] leading-relaxed">
@@ -3805,6 +3943,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
           </div>
         </section>
       </div>
+      {renderFloatingBackToTop()}
     </>
   );
 };

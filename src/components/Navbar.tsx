@@ -104,22 +104,53 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {inLesson && (
           <nav className="pb-3 -mt-1" aria-label="Étapes du chapitre">
-            <ol className="grid grid-cols-6 gap-1.5">
+            {/* Indicateur explicite de section sur mobile (< sm) */}
+            <div className="sm:hidden flex items-center justify-between pb-1.5 text-xs">
+              <span className="font-semibold text-ink flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-gilt animate-pulse" />
+                <span>Section : {STEPS[currentStepIdx].label}</span>
+              </span>
+              <span className="text-muted text-[11px] tabular-nums font-medium">
+                Étape {currentStepIdx + 1} / {STEPS.length}
+              </span>
+            </div>
+
+            <ol className="grid grid-cols-6 gap-1 sm:gap-1.5">
               {STEPS.map((step, idx) => {
                 const isCur = idx === currentStepIdx;
                 const isDone = idx < currentStepIdx;
+
+                // Noms abrégés très lisibles sur petits écrans (360px+)
+                const mobileLabels: Record<string, string> = {
+                  map: 'Carte',
+                  prof: 'Expli.',
+                  lab: 'Labo',
+                  quran: 'Coran',
+                  quiz: 'Quiz',
+                  poster: 'Bilan',
+                };
+
                 return (
                   <li key={step.id}>
                     <button
                       onClick={() => onSelectStep(step.id)}
                       aria-current={isCur ? 'step' : undefined}
-                      className="w-full flex flex-col gap-1.5 text-left group"
+                      className="w-full flex flex-col items-center sm:items-start gap-1 text-center sm:text-left group select-none"
                     >
                       <span
-                        className={`h-1 w-full rounded-full transition-colors duration-300 ${
-                          isCur ? 'bg-gilt' : isDone ? 'bg-lapis' : 'bg-line group-hover:bg-muted/40'
+                        className={`h-1.5 sm:h-1 w-full rounded-full transition-colors duration-300 ${
+                          isCur ? 'bg-gilt shadow-xs' : isDone ? 'bg-lapis' : 'bg-line group-hover:bg-muted/40'
                         }`}
                       />
+                      {/* Libellé sur mobile */}
+                      <span
+                        className={`sm:hidden text-[10px] leading-tight truncate transition-colors ${
+                          isCur ? 'text-ink font-bold' : 'text-muted/80'
+                        }`}
+                      >
+                        {mobileLabels[step.id] || step.label}
+                      </span>
+                      {/* Libellé sur desktop */}
                       <span
                         className={`hidden sm:block text-xs truncate transition-colors ${
                           isCur ? 'text-ink font-semibold' : 'text-muted group-hover:text-ink'

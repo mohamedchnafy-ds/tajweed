@@ -223,37 +223,69 @@ export const TajweedText: React.FC<TajweedTextProps> = ({
     );
   }
 
-  // 2. Recherche par highlightLetters dans le texte
+  // 2. Recherche par highlightLetters dans le texte (préserve harakāt et diacritiques)
   if (highlightLetters && highlightLetters.length > 0) {
-    // Regex de correspondance pour chacune des lettres cibles
-    const escapedLetters = highlightLetters.map(l => l.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
-    const regex = new RegExp(`(${escapedLetters})`, 'g');
-    const parts = text.split(regex);
+    const DIACRITICS = '[\\u064B-\\u065F\\u0670\\u06D6-\\u06ED]';
+    const tokens: string[] = [];
 
-    return (
-      <span className={`inline-block font-ar ${className}`} dir="rtl">
-        {parts.map((part, idx) => {
-          const isTarget = highlightLetters.includes(part);
-          if (isTarget) {
-            return (
-              <span
-                key={idx}
-                className={`inline-block px-1 py-0.5 rounded-md border ${cfg.bgClass} ${cfg.colorClass} ${cfg.borderClass} font-bold shadow-xs`}
-                title={`${cfg.label} : ${part}`}
-              >
-                {part}
-              </span>
-            );
-          }
-          return <span key={idx}>{part}</span>;
-        })}
-        {showBadge && (
-          <span className={`mr-2 align-middle text-[10px] font-sans px-1.5 py-0.5 rounded-full border ${cfg.bgClass} ${cfg.colorClass} ${cfg.borderClass}`}>
-            {cfg.badgeText}
-          </span>
-        )}
-      </span>
-    );
+    const hasHamzahQat = highlightLetters.some(l => /[ءأإؤئآ]/.test(l));
+    const hasHamzahWasl = highlightLetters.some(l => l.includes('ٱ'));
+
+    if (hasHamzahQat) {
+      tokens.push(`[ءأإؤئآ]${DIACRITICS}*`);
+    }
+    if (hasHamzahWasl) {
+      tokens.push(`ٱ${DIACRITICS}*`);
+    }
+
+    for (const item of highlightLetters) {
+      // Ignorer si déjà couvert par les règles Hamzahs globales
+      if (hasHamzahQat && /^[ءأإؤئآ]$/.test(item)) continue;
+      if (hasHamzahWasl && item === 'ٱ') continue;
+
+      const cleanItem = item.replace(/[\u0640]/g, '');
+      const escaped = cleanItem.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const hasDiacritics = new RegExp(DIACRITICS).test(cleanItem);
+
+      // Si c'est une lettre de base sans voyelle, capturer la lettre et toutes ses harakāt attachées
+      if (!hasDiacritics && cleanItem.length === 1) {
+        tokens.push(`${escaped}${DIACRITICS}*`);
+      } else {
+        tokens.push(escaped);
+      }
+    }
+
+    if (tokens.length > 0) {
+      tokens.sort((a, b) => b.length - a.length);
+      const regex = new RegExp(`(${tokens.join('|')})`, 'g');
+      const parts = text.split(regex);
+
+      return (
+        <span className={`inline-block font-ar ${className}`} dir="rtl">
+          {parts.map((part, idx) => {
+            // Dans text.split(withCapturingGroup), les indices impairs sont les correspondances
+            const isMatch = idx % 2 === 1 && part.length > 0;
+            if (isMatch) {
+              return (
+                <span
+                  key={idx}
+                  className={`inline-block px-1 py-0.5 rounded-md border ${cfg.bgClass} ${cfg.colorClass} ${cfg.borderClass} font-bold shadow-xs transition-transform`}
+                  title={`${cfg.label} : ${part}`}
+                >
+                  {part}
+                </span>
+              );
+            }
+            return <span key={idx}>{part}</span>;
+          })}
+          {showBadge && (
+            <span className={`mr-2 align-middle text-[10px] font-sans px-1.5 py-0.5 rounded-full border ${cfg.bgClass} ${cfg.colorClass} ${cfg.borderClass}`}>
+              {cfg.badgeText}
+            </span>
+          )}
+        </span>
+      );
+    }
   }
 
   // Fallback si le segment exact n'a pas été trouvé (ex: différence de signe diacritique mineure)
