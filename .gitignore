@@ -31,3 +31,12 @@ lerna-debug.log*
 *.sw?
 .DS_Store
 Thumbs.db
+
+# Root temporary extracted assets
+/*.png
+/*.pdf
+!tajwid.pdf
+
+# Python
+__pycache__/
+*.pyc

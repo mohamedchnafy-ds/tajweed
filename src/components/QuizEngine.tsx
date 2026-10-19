@@ -61,7 +61,7 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
         chapter.id,
         currentQ.id,
         currentQ.promptFr,
-        currentQ.verseArabic,
+        currentQ.verseArabic || '',
         selectedAnswer,
         String(currentQ.correctAnswer),
         currentQ.explanationFr
@@ -167,21 +167,23 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
           </h2>
         </div>
 
-        <div className="mx-6 sm:mx-8 mt-6 py-6 px-4 rounded-2xl bg-soft text-center">
-          <div className="font-ar text-[36px] sm:text-[44px] leading-[1.9] text-ink" dir="rtl">
-            <TajweedText
-              text={currentQ.verseArabic}
-              highlightSegment={currentQ.targetWord}
-              rule="gold"
-              className="text-[36px] sm:text-[44px]"
-            />
-          </div>
-          {currentQ.surahAyahRef && (
-            <div className="mt-2">
-              <span className="ref-tag">Sourate {currentQ.surahAyahRef}</span>
+        {currentQ.verseArabic && (
+          <div className="mx-6 sm:mx-8 mt-6 py-6 px-4 rounded-2xl bg-soft text-center">
+            <div className="font-ar text-[36px] sm:text-[44px] leading-[1.9] text-ink" dir="rtl">
+              <TajweedText
+                text={currentQ.verseArabic}
+                highlightSegment={currentQ.targetWord}
+                rule="gold"
+                className="text-[36px] sm:text-[44px]"
+              />
             </div>
-          )}
-        </div>
+            {currentQ.surahAyahRef && (
+              <div className="mt-2">
+                <span className="ref-tag">Sourate {currentQ.surahAyahRef}</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="px-6 sm:px-8 py-6">
           {currentQ.type === 'click_word' && currentQ.clickableSegments && (

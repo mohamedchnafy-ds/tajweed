@@ -12,6 +12,7 @@ import { QuizEngine } from './components/QuizEngine';
 import { ChapterPoster } from './components/ChapterPoster';
 import { MistakeNotebookModal } from './components/MistakeNotebookModal';
 import { DataBackupModal } from './components/DataBackupModal';
+import { MakharijSifatLab } from './components/MakharijSifatLab';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -26,7 +27,7 @@ export const App: React.FC = () => {
   const [userStats, setUserStats] = useState<UserStats>(loadUserStats);
 
   // Active view states
-  const [currentTab, setCurrentTab] = useState<'chapters' | 'lesson'>('chapters');
+  const [currentTab, setCurrentTab] = useState<'chapters' | 'lesson' | 'makharij'>('chapters');
   const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
   const [currentStep, setCurrentStep] = useState<LessonStep>('map');
 
@@ -130,12 +131,18 @@ export const App: React.FC = () => {
 
       {/* Main Content Stage */}
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6">
-        {currentTab === 'chapters' || !selectedChapter ? (
+        {currentTab === 'makharij' ? (
+          <MakharijSifatLab onBack={handleBackToChapters} />
+        ) : currentTab === 'chapters' || !selectedChapter ? (
           <ChapterList
             onSelectChapter={handleSelectChapter}
             userStats={userStats}
             pilotChapters={PILOT_CHAPTERS}
             onOpenMistakes={() => setIsMistakesModalOpen(true)}
+            onOpenMakharij={() => {
+              setCurrentTab('makharij');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         ) : (
           <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-12 space-y-8 animate-enter">

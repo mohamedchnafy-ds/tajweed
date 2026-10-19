@@ -54,7 +54,8 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
       {/* Exercises list */}
       <div className="space-y-6">
-        {chapter.guidedExercises.map((exo, index) => {
+        {(chapter.guidedExercises && chapter.guidedExercises.length > 0) ? (
+          chapter.guidedExercises.map((exo, index) => {
           const isHintOpen = revealedHints[exo.id];
           const isSolutionOpen = revealedSolutions[exo.id];
 
@@ -134,7 +135,13 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
             </div>
           );
-        })}
+        })
+      ) : (
+        <div className="surface p-8 text-center text-muted">
+          <p className="text-base font-medium text-ink mb-1">Exercices pratiques intégrés directement dans le Professeur Virtuel et le Quiz !</p>
+          <p className="text-sm">Consultez l'étape 2 (Démonstrateur Interactif) et testez vos connaissances dans l'étape 4 (Quiz).</p>
+        </div>
+      )}
       </div>
 
       {/* Bottom Action: Proceed to Quiz */}

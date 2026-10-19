@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "simulator": "vite --open /simulator.html",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

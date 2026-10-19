@@ -14,7 +14,7 @@ export const STEPS: { id: LessonStep; label: string }[] = [
 ];
 
 interface NavbarProps {
-  currentTab: 'chapters' | 'lesson';
+  currentTab: 'chapters' | 'lesson' | 'makharij';
   currentStep: LessonStep;
   onSelectStep: (step: LessonStep) => void;
   onBackToChapters: () => void;
@@ -112,6 +112,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </span>
                 </div>
               )}
+            </div>
+          ) : currentTab === 'makharij' ? (
+            <div className="flex items-center gap-2 min-w-0 flex-1">
+              <button
+                onClick={onBackToChapters}
+                className="flex items-center gap-2.5 min-w-0 text-left group"
+                title="Retour au sommaire des chapitres"
+                aria-label="Retour au sommaire des chapitres"
+              >
+                <span className="btn btn-secondary btn-icon shrink-0 w-8 h-8 sm:w-9 sm:h-9">
+                  <ArrowLeft className="w-4 h-4" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs text-muted">Laboratoire</span>
+                  <span className="block font-display text-[15px] sm:text-[17px] leading-tight text-ink truncate font-semibold">
+                    Makhārij & Sifāt
+                  </span>
+                </span>
+              </button>
             </div>
           ) : (
             <button onClick={onBackToChapters} className="flex items-center gap-2.5">

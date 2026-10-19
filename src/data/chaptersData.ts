@@ -1,4069 +1,4787 @@
 import { Chapter } from '../types/tajweed';
 
-export const ALL_BOOK_CHAPTERS: { number: number; slug: string; titleFr: string; titleAr: string; category: 'beginner' | 'intermediate' | 'advanced'; isPilot: boolean }[] = [
-  { number: 1, slug: 'basic-concepts', titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)', titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ', category: 'beginner', isPilot: true },
-  { number: 2, slug: 'quranic-symbols', titleFr: 'Symboles Coraniques & Ponctuation', titleAr: 'علامات المصحف وضبطه', category: 'beginner', isPilot: true },
-  { number: 3, slug: 'stopping-resuming', titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')', titleAr: 'الوقف والابتداء', category: 'intermediate', isPilot: true },
-  { number: 4, slug: 'madd-1', titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)', titleAr: 'المد الأصلي وملحقاته', category: 'beginner', isPilot: true },
-  { number: 5, slug: 'madd-2', titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)', titleAr: 'المد الفرعي وأقسامه', category: 'intermediate', isPilot: true },
-  { number: 6, slug: 'hamzah', titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')', titleAr: 'همزتا الوصل والقطع', category: 'intermediate', isPilot: true },
-  { number: 7, slug: 'lam-sakinah', titleFr: 'Les Règles de la Lām Sākinah', titleAr: 'أحكام اللام الساكنة', category: 'intermediate', isPilot: true },
-  { number: 8, slug: 'nun-sakinah', titleFr: 'Nūn Sākinah & Tanwīn (4 Règles)', titleAr: 'أحكام النون الساكنة والتنوين', category: 'intermediate', isPilot: true },
-  { number: 9, slug: 'mim-sakinah', titleFr: 'Les Règles de la Mīm Sākinah', titleAr: 'أحكام الميم الساكنة', category: 'intermediate', isPilot: true },
-  { number: 10, slug: 'qalqalah', titleFr: 'La Qalqalah & Ses Degrés de Rebond', titleAr: 'أحكام القلقلة ومراتبها', category: 'intermediate', isPilot: true },
-  { number: 11, slug: 'assimilation', titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)', titleAr: 'إدغام المتماثلين والمتقاربين والمتجانسين', category: 'advanced', isPilot: true },
-  { number: 12, slug: 'heavy-light', titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)', titleAr: 'التفخيم والترقيق', category: 'advanced', isPilot: true },
-  { number: 13, slug: 'iltiqa-sakīnayn', titleFr: 'Rencontre de Deux Soukoûns (Iltiqā\' As-Sākinayn)', titleAr: 'التقاء الساكنين', category: 'advanced', isPilot: false },
-  { number: 14, slug: 'disjointed-letters', titleFr: 'Les Lettres Isolées (Al-Hurūf Al-Muqatta\'ah)', titleAr: 'الحروف المقطعة', category: 'advanced', isPilot: false },
-  { number: 15, slug: 'important-comparisons', titleFr: 'Comparaisons & Distinctions Subtiles', titleAr: 'مقارنات وفروق هامة', category: 'advanced', isPilot: false },
-  { number: 16, slug: 'special-cases', titleFr: 'Cas Particuliers (Saktah, Tashīl, Imālah)', titleAr: 'الكلمات المخصوصة والرواية', category: 'advanced', isPilot: false },
-];
-
-export const PILOT_CHAPTERS: Chapter[] = [
-  // ==========================================
-  // CHAPITRE 1 : CONCEPTS FONDAMENTAUX & LAHN
-  // ==========================================
+export const CHAPTERS_DATA: Chapter[] = [
   {
-    id: 'chap-1',
-    number: 1,
-    slug: 'basic-concepts',
-    titleFr: 'Concepts Fondamentaux & Le Lahn (Erreurs)',
-    titleAr: 'المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ',
-    category: 'beginner',
-    estimatedMinutes: 15,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre ce qu\'est le Tajwīd, son obligation religieuse (Farḍ \'Ayn vs Farḍ Kifāyah), comment éradiquer le Lahn Jalī (erreur majeure altérant le sens), le graphisme sacré du Rasm \'Uthmānī et les deux conditions d\'acceptation de la récitation.',
-    infographicPoints: [
-      'Application du Tajwīd = Farḍ \'Ayn (obligation individuelle) pour réciter la parole divine sans la corrompre. L\'étude théorique des définitions est Farḍ Kifāyah.',
-      'Al-Lahn Al-Jalī (Erreur Majeure) : Altère le sens ou la grammaire (ex: dire An\'amtu au lieu de An\'amta). C\'est un péché (Harām) si commis par négligence !',
-      'Al-Lahn Al-Khafī (Erreur Subtile) : Défaut de finition sans changer le sens (ex: raccourcir un Madd de 5 temps à 2 temps). Déconseillé (Makrūh).',
-      'Rasm \'Uthmānī : L\'orthographe sacrée établie par les Compagnons sous \'Uthmān ibn \'Affān (ex: ٱلصَّلَوٰةَ s\'écrit avec un Wāw).',
-      'Deux conditions d\'acceptation : 1. L\'Intention pure (Ikhlās) exclusivement pour Allah. 2. La conformité à la Sunnah (Tajwīd et Tartīl).',
-      'Astuce mnémotechnique : 23 ans de mission prophétique. Ajoutez un 6 avant et un 6 après -> 6236 versets dans tout le Coran !'
+    "id": "chap-1",
+    "number": 1,
+    "slug": "basic-concepts",
+    "titleFr": "Concepts Fondamentaux & Le Lahn (Erreurs)",
+    "titleAr": "المَفَاهِيمُ الأَسَاسِيَّةُ وَأَنْوَاعُ اللَّحْنِ",
+    "category": "beginner",
+    "estimatedMinutes": 15,
+    "isPilotChapter": true,
+    "summaryFr": "Comprendre ce qu'est le Tajwīd (لغةً واصطلاحاً), son obligation religieuse (Farḍ 'Ayn vs Farḍ Kifāyah), comment éradiquer le Lahn Jalī (erreur majeure altérant le sens) et le Lahn Khafī (défaut d'embellissement), le graphisme sacré du Rasm 'Uthmānī et les deux conditions d'acceptation de la récitation.",
+    "infographicPoints": [
+      "Définition du Tajwīd : Linguistiquement l'embellissement (التَّحْسِين). Techniquement : donner à chaque lettre son point d'articulation (Makhraj) et ses caractéristiques (Sifāt).",
+      "Application pratique du Tajwīd = Farḍ 'Ayn (obligation individuelle pour chaque lecteur). L'étude théorique des définitions est Farḍ Kifāyah.",
+      "Al-Lahn Al-Jalī (اللحن الجلي) : Erreur évidente altérant le mot ou le sens (ex: An'amtu au lieu de An'amta). C'est un péché (Harām) et cela peut invalider la prière !",
+      "Al-Lahn Al-Khafī (اللحن الخفي) : Erreur subtile liée à la perfection esthétique (ex: raccourcir un Madd de 4 à 2 temps, oublier une Ghunnah). Déconseillé (Makrūh).",
+      "Rasm 'Uthmānī : L'orthographe révélée établie sous le calife 'Uthmān (ex: ٱلصَّلَوٰةَ s'écrit avec un Wāw).",
+      "Deux conditions d'acceptation : 1. L'Intention sincère (Ikhlās) exclusivement pour Allah. 2. La conformité au Tartīl prophétique."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'tajweed-definition',
-        nameFr: '1. Qu\'est-ce que le Tajwīd & Statut Juridique',
-        nameAr: 'تَعْرِيفُ التَّجْوِيدِ وَحُكْمُهُ الشَّرْعِيُّ',
-        mnemonic: 'Pratique = Farḍ \'Ayn (Chacun) | Théorie = Farḍ Kifāyah (Spécialistes)',
-        letters: [],
-        definitionFr: 'Linguistiquement, le Tajwīd signifie l\'embellissement et le perfectionnement. Techniquement, il consiste à donner à chaque lettre son point d\'articulation exact (Makhraj) et ses caractéristiques originelles (Sifāt).',
-        mechanismFr: 'L\'obligation individuelle (Farḍ \'Ayn) exige de lire les lettres et les voyelles correctement pour préserver le sens. Connaître les définitions techniques savantes est une obligation communautaire (Farḍ Kifāyah).',
-        durationHarakat: 0,
-        examples: [
+        "id": "tajweed-definition",
+        "nameFr": "1. Qu'est-ce que le Tajwīd & Statut Juridique",
+        "nameAr": "تَعْرِيفُ التَّجْوِيدِ وَحُكْمُهُ الشَّرْعِيُّ",
+        "mnemonic": "Pratique = Farḍ 'Ayn (Individuelle) | Théorie = Farḍ Kifāyah (Communautaire)",
+        "letters": [],
+        "definitionFr": "Le mot Tajwīd vient de la racine « Jawwada » (جَوَّدَ) signifiant parfaire et embellir. Dans la tradition coranique, il désigne la science canonique qui préserve la parole divine de toute altération phonétique en attribuant à chaque consonne et voyelle son droit strict (Haqq) et son mérite (Mustahaqq).",
+        "definitionLughatan": {
+          "ar": "التَّحْسِينُ وَالتَّجْمِيلُ، يُقَالُ: جَوَّدَ الشَّيْءَ إِذَا أَتَى بِهِ جَيِّداً حَسَناً.",
+          "fr": "L'embellissement et le perfectionnement absolu d'une chose."
+        },
+        "definitionIstilahan": {
+          "ar": "إِخْرَاجُ كُلِّ حَرْفٍ مِنْ مَخْرَجِهِ الصَّحِيحِ مَعَ إِعْطَائِهِ حَقَّهُ (صِفَاتِهِ اللَّازِمَةِ) وَمُسْتَحَقَّهُ (صِفَاتِهِ العَارِضَةِ).",
+          "fr": "Extraire chaque lettre de son point d'articulation exact tout en lui octroyant ses caractéristiques intrinsèques (Haqq : sonorité, emphase, etc.) et ses caractéristiques accidentelles (Mustahaqq : Ghunnah, Idghām, etc.)."
+        },
+        "mechanismFr": "La prononciation coranique s'appuie sur une discipline physique globale : détente du larynx, mâchoire souple sans crispation, appui précis de la langue sur les zones de contact (gencives, palais, dents) et canalisation contrôlée du souffle pulmonaire soit dans la cavité buccale (Jawf), soit dans la cavité nasale (Khayshūm).",
+        "physiologicalDetails": {
+          "tongue": "Positionnée avec précision sur le point de contact palatin sans écrasement parasite ni crispation de la racine.",
+          "lips": "Mobilisées de manière ciblée : ouverture verticale pour la Fathah, arrondissement sans forcer pour la Dammah, étirement souple pour la Kasrah.",
+          "vocalCords": "Vibration sonore régulière (Jahr) pour les lettres sonores, relâchement contrôlé (Hams) pour les lettres soufflées.",
+          "airflow": "Canalisation stricte du flux d'air selon que la lettre exige une résonance buccale pure ou une résonance nasale (Ghunnah)."
+        },
+        "phoneticReasonFr": "Le Coran a été révélé dans la langue arabe la plus pure et la plus musicale. Le Tajwīd n'est pas un artifice mélodique moderne : c'est le moule phonologique précis dans lequel le Prophète ﷺ a reçu la révélation de Jibrīl. Respecter ces règles garantit la préservation intégrale du message à travers les siècles.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَالأَخْذُ بِالتَّجْوِيدِ حَتْمٌ لَازِمُ * مَنْ لَمْ يُجَوِّدِ القُرْآنَ آثِمُ\nلِأَنَّهُ بِهِ الإِلَهُ أَنْزَلَا * وَهَكَذَا مِنْهُ إِلَيْنَا وَصَلَا",
+          "transliteration": "Wal-akhdhu bit-tajwīdi hatmun lāzimu * Man lam yujawwidi-l-Qur'āna āthimu / Li'annahū bihi-l-Ilāhu anzalā * Wa hākadhā minhu ilaynā wasalā",
+          "translationFr": "« L'application du Tajwīd est une obligation absolue ; quiconque ne rectifie pas sa récitation du Coran commet un péché. Car c'est ainsi qu'Allah l'a révélé, et c'est ainsi qu'il nous est parvenu. » (Versets 27-28)",
+          "chapterNameAr": "بَابُ الأَخْذِ بِالتَّجْوِيدِ"
+        },
+        "examples": [
           {
-            id: 'ex-c1-1',
-            arabicText: 'وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا',
-            surahAyahRef: '73:4',
-            surahNameFr: 'Al-Muzzammil',
-            highlightSegment: 'وَرَتِّلِ',
-            highlightLetter: 'Ordre divin',
-            ruleApplied: 'Obligation du Tartīl (Récitation posée)',
-            ruleTag: 'izhar',
-            explanationFr: 'Allah ordonne au Prophète ﷺ et à chaque musulman de réciter le Coran avec Tartīl, c\'est-à-dire lentement, distinctement et en respectant les règles.',
-            transliteration: 'Wa rattili-l-Qur\'āna tartīlā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/073004.mp3'
+            "id": "ex-c1-1",
+            "arabicText": "وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا",
+            "surahAyahRef": "73:4",
+            "surahNameFr": "Al-Muzzammil",
+            "highlightSegment": "وَرَتِّلِ",
+            "highlightLetter": "Ordre divin",
+            "ruleApplied": "Obligation du Tartīl (Récitation posée)",
+            "ruleTag": "izhar",
+            "explanationFr": "Allah ordonne formellement de réciter le Coran avec Tartīl (lentement, posément et en articulant chaque lettre). 'Alī ibn Abī Tālib a défini le Tartīl ainsi : « Le perfectionnement des lettres et la connaissance des règles d'arrêt ».",
+            "transliteration": "Wa rattili-l-Qur'āna tartīlā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/073004.mp3"
           },
           {
-            id: 'ex-c1-2',
-            arabicText: 'ٱلَّذِينَ ءَاتَيۡنَٰهُمُ ٱلۡكِتَٰبَ يَتۡلُونَهُۥ حَقَّ تِلَاوَتِهِۦٓ',
-            surahAyahRef: '2:121',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'حَقَّ تِلَاوَتِهِۦٓ',
-            highlightLetter: 'Droit de récitation',
-            ruleApplied: 'Récitation comme révélée',
-            ruleTag: 'heavy',
-            explanationFr: '« Ils le récitent comme il mérite d\'être récité ». Les Compagnons ont expliqué que cela signifie appliquer ses règles et méditer son sens.',
-            transliteration: 'Yatlūnahū haqqa tilāwatih',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002121.mp3'
+            "id": "ex-c1-2",
+            "arabicText": "ٱلَّذِينَ ءَاتَيۡنَٰهُمُ ٱلۡكِتَٰبَ يَتۡلُونَهُۥ حَقَّ تِلَاوَتِهِۦٓ",
+            "surahAyahRef": "2:121",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "حَقَّ تِلَاوَتِهِۦٓ",
+            "highlightLetter": "Droit de récitation",
+            "ruleApplied": "Récitation selon la norme divine",
+            "ruleTag": "heavy",
+            "explanationFr": "Réciter « comme il mérite d'être récité » signifie respecter les articulations sonores sans altérer les sons et méditer la signification spirituelle des versets.",
+            "transliteration": "Yatlūnahū haqqa tilāwatih",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002121.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Penser que le Tajwīd n\'est qu\'une option réservée aux imams ou aux savants.',
-            correctionFr: 'Le minimum vital (ne pas déformer les lettres ni les voyelles) est une obligation pour chaque musulman dans ses prières.'
+            "trapFr": "Pour les francophones : penser que le Tajwīd se limite à 'chanter' ou ajouter un vibrato artistique.",
+            "correctionFr": "Le Tajwīd est d'abord une science d'ingénierie phonétique et anatomique. Corrigez d'abord le placement de la langue et la clarté des voyelles avant tout embellissement vocal."
+          },
+          {
+            "trapFr": "Confondre l'obligation pratique (Farḍ 'Ayn) et le savoir théorique (Farḍ Kifāyah).",
+            "correctionFr": "Chaque musulman doit savoir prononcer les lettres et voyelles sans distorsion dans sa prière quotidienne ; la connaissance des définitions académiques incombe aux spécialistes."
           }
         ]
       },
       {
-        id: 'lahn-types',
-        nameFr: '2. Les Deux Types d\'Erreurs : Lahn Jalī vs Lahn Khafī',
-        nameAr: 'اللَّحْنُ الجَلِيُّ وَاللَّحْنُ الخَفِيُّ',
-        mnemonic: 'Jalī = Erreur Majeure (Harām / Altère le sens) | Khafī = Erreur Subtile (Makrūh / Altère l\'embellissement)',
-        letters: [],
-        definitionFr: 'Le mot arabe Lahn (لَحْن) désigne une erreur commise lors de la récitation. Le livre distingue formellement l\'erreur majeure qui détruit le sens, de l\'erreur subtile qui prive la récitation de sa plénitude.',
-        mechanismFr: 'Le Lahn Jalī provient du changement d\'une voyelle, de l\'échange d\'une consonne ou de la confusion entre voyelle courte et longue. Le Lahn Khafī concerne les durées de prolongations, l\'omission d\'une Ghunnah ou d\'une Qalqalah.',
-        durationHarakat: 0,
-        examples: [
+        "id": "lahn-types",
+        "nameFr": "2. Les Deux Types d'Erreurs : Lahn Jalī vs Lahn Khafī",
+        "nameAr": "اللَّحْنُ الجَلِيُّ وَاللَّحْنُ الخَفِيُّ",
+        "mnemonic": "Jalī = Erreur Majeure (Harām / Altère la structure ou le sens) | Khafī = Erreur Subtile (Makrūh / Altère l'esthétique)",
+        "letters": [],
+        "definitionFr": "Le mot Lahn (لَحْن) signifie en arabe le dérapage ou l'écart par rapport à la rectitude. En Tajwīd, il se divise catégoriquement en deux ordres de gravité : le Lahn Jalī (évident, connu de tous les arabophones, formellement interdit) et le Lahn Khafī (subtil, perceptible uniquement par les maîtres du Tajwīd).",
+        "definitionLughatan": {
+          "ar": "الخَطَأُ وَالمَيْلُ عَنِ الصَّوَابِ، وَمِنْهُ قَوْلُهُمْ: لَحَنَ فِي كَلَامِهِ إِذَا خَالَفَ قَوَاعِدَ اللُّغَةِ.",
+          "fr": "L'erreur, l'écart et l'éloignement par rapport à la rectitude grammaticale ou phonétique."
+        },
+        "definitionIstilahan": {
+          "ar": "الجَلِيُّ: خَطَأٌ يَطْرَأُ عَلَى الأَلْفَاظِ فَيُخِلُّ بِعُرْفِ اللُّغَةِ مَبْنًى وَمَعْنًى (حَرَامٌ). الخَفِيُّ: خَطَأٌ يَطْرَأُ عَلَى الأَلْفَاظِ فَيُخِلُّ بِعُرْفِ الأَدَاءِ دُونَ المَعْنَى (مَكْرُوهٌ).",
+          "fr": "Lahn Jalī : erreur grossière altérant la structure du mot ou la grammaire, qu'elle change le sens ou non. Lahn Khafī : erreur d'embellissement qui ne modifie ni la grammaire ni le sens."
+        },
+        "mechanismFr": "Le Lahn Jalī se produit lorsqu'une consonne est remplacée par une autre (ex: Tā' remplacé par Tâ' ou Dâl), qu'une voyelle est changée (Fathah -> Dammah), ou qu'un soukoûn est transformé en voyelle. Le Lahn Khafī provient d'un mauvais dosage temporel (Madd écourté, Ghunnah raccourcie ou omise, abandon de la Qalqalah).",
+        "physiologicalDetails": {
+          "tongue": "Éviter la paresse linguale qui fait glisser une lettre emphatique vers une lettre légère (ex: Sād vers Sīn, ou Tā' vers Tâ').",
+          "lips": "Éviter d'arrondir les lèvres sur une consonne sans Dammah (erreur française fréquente) ou de négliger l'ouverture franche sur la Fathah.",
+          "vocalCords": "Ne pas bloquer le souffle sur les lettres soufflées (Hams : Tā', Kāf, Sīn, Thā') pour ne pas les transformer en consonnes lourdes occlusives.",
+          "airflow": "Maintenir un souffle régulier sans saccades émotionnelles qui altèrent la justesse des durées (Harakāt)."
+        },
+        "phoneticReasonFr": "En arabe, la voyelle finale porte la fonction grammaticale (sujet, complément, possession). Remplacer une voyelle inverse l'acteur et le bénéficiaire de l'action. Sur le plan théologique, une telle faute dans la Fātihah peut attribuer un attribut divin à la créature !",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَهُوَ أَيْضاً حِلْيَةُ التِّلَاوَةِ * وَزِينَةُ الأَدَاءِ وَالقِرَاءَةِ\nوَهُوَ إِعْطَاءُ الحُرُوفِ حَقَّهَا * مِنْ كُلِّ نَعْتٍ وَمُسْتَحَقَّهَا",
+          "transliteration": "Wa huwa aydan hilyatu-t-tilāwati * Wa zīnatu-l-adā'i wal-qirā'ati / Wa huwa i'tā'u-l-hurūfi haqqahā * Min kulli na'tin wa mustahaqqahā",
+          "translationFr": "« Le Tajwīd est la parure de la récitation et l'ornement de la lecture ; il consiste à rendre à chaque lettre son droit absolu parmi ses qualités inhérentes et accidentelles. » (Versets 29-30)",
+          "chapterNameAr": "بَابُ صِفَاتِ الحُرُوفِ"
+        },
+        "examples": [
           {
-            id: 'ex-c1-3',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'أَنۡعَمۡتَ',
-            highlightLetter: 'تَ (Fathah)',
-            ruleApplied: 'Piège critique de Lahn Jalī',
-            ruleTag: 'qalqalah',
-            explanationFr: '« An\'amta » avec Fathah signifie : « Ceux que Tu (Allah) as comblés ». Si un lecteur dit par erreur « An\'amtu » avec Dammah, le sens devient : « Ceux que J\'AI comblés », s\'attribuant ainsi l\'acte divin !',
-            transliteration: 'An\'amta \'alayhim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+            "id": "ex-c1-3",
+            "arabicText": "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ",
+            "surahAyahRef": "1:7",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "أَنۡعَمۡتَ",
+            "highlightLetter": "تَ (Fathah)",
+            "ruleApplied": "Piège critique de Lahn Jalī",
+            "ruleTag": "qalqalah",
+            "explanationFr": "« An'amta » avec Fathah signifie : « Ceux que Tu (Allah) as comblés ». Si un lecteur dit par mégarde « An'amtu » avec Dammah, le sens devient sacrilège : « Ceux que J'AI comblés », s'attribuant ainsi l'acte divin !",
+            "transliteration": "An'amta 'alayhim",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001007.mp3"
           },
           {
-            id: 'ex-c1-4',
-            arabicText: 'وَلَقَدۡ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنۡيَا بِمَصَٰبِيحَ',
-            surahAyahRef: '67:5',
-            surahNameFr: 'Al-Mulk',
-            highlightSegment: 'ٱلسَّمَآءَ',
-            highlightLetter: 'Madd Wājib (4-5 temps)',
-            ruleApplied: 'Exemple de Lahn Khafī',
-            ruleTag: 'madd',
-            explanationFr: 'Le mot « As-Samā\' » doit s\'allonger de 4 à 5 temps. Si le lecteur ne fait que 2 temps, le sens (« le ciel ») ne change pas, mais c\'est un Lahn Khafī (manque de rigueur esthétique).',
-            transliteration: 'Zayyannā-s-samā\'a-d-dunyā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/067005.mp3'
+            "id": "ex-c1-4",
+            "arabicText": "وَلَقَدۡ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنۡيَا بِمَصَٰبِيحَ",
+            "surahAyahRef": "67:5",
+            "surahNameFr": "Al-Mulk",
+            "highlightSegment": "ٱلسَّمَآءَ",
+            "highlightLetter": "Madd Wājib (4-5 temps)",
+            "ruleApplied": "Exemple de Lahn Khafī",
+            "ruleTag": "madd",
+            "explanationFr": "Le mot « As-Samā' » requiert une élongation obligatoire de 4 à 5 temps. Raccourcir ce Madd à 2 temps ne change pas le sens du mot (« le ciel »), mais constitue un Lahn Khafī (faute esthétique blâmable).",
+            "transliteration": "Zayyannā-s-samā'a-d-dunyā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/067005.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Négliger la précision des voyelles courtes (Fathah, Dammah, Kasrah) dans la Fātihah.',
-            correctionFr: 'Une seule voyelle déplacée peut inverser le sujet et le complément d\'objet, invalidant la prière.'
+            "trapFr": "Pour les francophones : prononcer les voyelles courtes [a], [i], [u] de manière étirée ou approximative comme en français familier (ex: prononcer 'an'amte' ou 'an'amti').",
+            "correctionFr": "Verrouillez la pureté de la voyelle Fathah [a] nette et franche, sans la transformer en 'é' ou en voyelle neutre française [ə]."
           },
           {
-            trapFr: 'Confondre des consonnes proches comme Tā\' (ت) et Tā\' (ط), ou Sīn (س) et Sād (ص).',
-            correctionFr: 'Travaillez l\'articulation distincte des lettres emphatiques et légères.'
+            "trapFr": "Confondre des consonnes proches : prononcer un Sīn léger (س) au lieu d'un Sād lourd (ص), ou un Tā' français au lieu d'un Tā' lourd (ط) dans « يَطْبَعُ » -> « يَفْبَعُ ».",
+            "correctionFr": "Élevez l'arrière de la langue vers le voile du palais pour les lettres emphatiques afin d'éviter tout Lahn Jalī par substitution de consonne."
           }
         ]
       },
       {
-        id: 'quran-mushaf-rasm',
-        nameFr: '3. Qur\'ān vs Muṣ-ḥaf & Le Rasm \'Uthmānī',
-        nameAr: 'القُرْآنُ وَالمُصْحَفُ وَالرَّسْمُ العُثْمَانِيُّ',
-        mnemonic: 'Qur\'ān = Parole Révélée | Muṣ-ḥaf = Volume Relié | Rasm = Orthographe Sacrée',
-        letters: [],
-        definitionFr: 'Le « Qur\'ān » est la parole incréée d\'Allah, qu\'elle soit psalmodiée ou dans les cœurs, même pour un seul verset. Le « Muṣ-ḥaf » est l\'objet physique contenant l\'intégralité des 114 sourates. Le Rasm \'Uthmānī est le système orthographique fixé par les Compagnons.',
-        mechanismFr: 'L\'écriture du Coran obéit au Rasm \'Uthmānī : les mots s\'écrivent selon cette tradition immuable quel que soit le pays ou la calligraphie (ex: ٱلصَّلَوٰةَ avec Wāw).',
-        durationHarakat: 0,
-        examples: [
+        "id": "quran-mushaf-rasm",
+        "nameFr": "3. Qur'ān vs Muṣ-ḥaf & Le Rasm 'Uthmānī",
+        "nameAr": "القُرْآنُ وَالمُصْحَفُ وَالرَّسْمُ العُثْمَانِيُّ",
+        "mnemonic": "Qur'ān = Parole Divine Récitée | Muṣ-ḥaf = Volume Physique Relié | Rasm = Graphisme Sacré",
+        "letters": [],
+        "definitionFr": "Le « Qur'ān » est la parole incréée d'Allah révélée au Prophète ﷺ. Le « Muṣ-ḥaf » est l'ouvrage matériel qui compile les 114 sourates entre deux couvertures. Le Rasm 'Uthmānī est le système orthographique divinement inspiré et codifié par la commission des Compagnons sous la direction de Zayd ibn Thābit.",
+        "definitionLughatan": {
+          "ar": "الرَّسْمُ: الأَثَرُ وَالكِتَابَةُ وَالخَطُّ.",
+          "fr": "L'empreinte, le tracé, l'écriture et le dessin calligraphique."
+        },
+        "definitionIstilahan": {
+          "ar": "خَطُّ الكَلِمَاتِ القُرْآنِيَّةِ وَهِجَاؤُهَا كَمَا كَتَبَهَا الصَّحَابَةُ فِي المَصَاحِفِ العُثْمَانِيَّةِ، وَهُوَ تَوْقِيفِيٌّ لَا يَجُوزُ تَغْيِيرُهُ.",
+          "fr": "L'orthographe spécifique adoptée par les Compagnons dans les exemplaires califaux. Ce tracé sacré est immuable et s'impose à tout éditeur du Coran."
+        },
+        "mechanismFr": "La lecture s'effectue selon la tradition orale transmise de bouche à oreille (Talaqqī), et non selon les règles de la grammaire ou de l'orthographe moderne. Certains mots s'écrivent avec une lettre mais se prononcent avec une autre (ex: ٱلصَّلَوٰةَ s'écrit avec un Wāw et se lit avec un Alif ; ٱلرِّبَوٰاْ s'écrit avec un Wāw).",
+        "physiologicalDetails": {
+          "tongue": "Ne pas articuler la lettre écrite lorsque le symbole suscrit indique qu'elle est muette.",
+          "lips": "Ne pas arrondir les lèvres sur le Wāw muet de ٱلصَّلَوٰةَ ou de ٱلزَّكَوٰةَ.",
+          "vocalCords": "Émettre le son pur de la voyelle longue [ā] sans aucune composante consonantique de [w].",
+          "airflow": "Flux d'air soutenu en continu sur 2 temps de Madd naturel sans interruption."
+        },
+        "phoneticReasonFr": "Le Rasm 'Uthmānī a été conçu sans points diacritiques ni voyelles à l'origine afin de pouvoir porter simultanément les différentes variantes de lectures authentiques (Qirā'āt) transmises par le Prophète ﷺ.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَاقْضِ لِرَسْمِ الخَطِّ فِي الإِمَامِ * حَسْبَمَا ثَبَتَ عَنِ الأَعْلَامِ\nوَاتَّبِعِ المَرْسُومَ فِي الإِثْبَاتِ * وَالحَذْفِ فِي الأَلْفَاظِ وَالآيَاتِ",
+          "transliteration": "Waqdi li-rasmi-l-khatti fi-l-imāmi * Hasbamā thabata 'ani-l-a'lāmi / Wattabi'i-l-marsūma fi-l-ithbāti * Wal-hadhfi fi-l-alfāzi wal-āyāti",
+          "translationFr": "« Conforme-toi au tracé calligraphique du Mushaf Imām selon ce qui a été authentifié par les illustres maîtres, et suis scrupuleusement le texte écrit quant au maintien ou à l'omission des lettres. »",
+          "chapterNameAr": "بَابُ الرَّسْمِ العُثْمَانِيِّ"
+        },
+        "examples": [
           {
-            id: 'ex-c1-5',
-            arabicText: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ',
-            surahAyahRef: '2:43',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ٱلصَّلَوٰةَ',
-            highlightLetter: 'وٰ (Wāw surmonté d\'un petit Alif)',
-            ruleApplied: 'Rasm \'Uthmānī (Orthographe Sacrée)',
-            ruleTag: 'silent',
-            explanationFr: 'Dans le Mushaf, « As-Salāh » s\'écrit avec un Wāw surmonté d\'un Alif minuscule (خنجرية), mais se lit toujours avec le son Alif long. C\'est la marque sacrée du Rasm \'Uthmānī.',
-            transliteration: 'Wa aqīmu-s-Salāta wa ātu-z-Zakāh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+            "id": "ex-c1-5",
+            "arabicText": "وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ",
+            "surahAyahRef": "2:43",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "ٱلصَّلَوٰةَ",
+            "highlightLetter": "وٰ (Wāw surmonté d'Alif)",
+            "ruleApplied": "Rasm 'Uthmānī (Orthographe Sacrée)",
+            "ruleTag": "silent",
+            "explanationFr": "Dans le Mushaf, « As-Salāh » s'écrit avec la consonne Wāw surmontée d'un Alif miniature (خنجرية). On prononce toujours « As-Salāh » et jamais « As-Salawāh ».",
+            "transliteration": "Wa aqīmu-s-Salāta wa ātu-z-Zakāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002043.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Prononcer le Wāw littéralement dans « As-Salawāh ».',
-            correctionFr: 'Le Wāw n\'est que le support écrit du Alif : on prononce « As-Salāh ».'
+            "trapFr": "Lire phonétiquement les lettres du support graphique : prononcer le son [w] dans « As-Salawāh » ou « Az-Zakawāh ».",
+            "correctionFr": "Repérez le petit Alif miniature posé sur le Wāw : il indique que le Wāw est une simple assise calligraphique muette."
           }
         ]
       },
       {
-        id: 'acceptance-conditions',
-        nameFr: '4. Les 2 Conditions d\'Acceptation de la Récitation',
-        nameAr: 'شَرْطَا قَبُولِ التِّلَاوَةِ (الإِخْلَاصُ وَالمُتَابَعَةُ)',
-        mnemonic: '1. Intention pure (Ikhlās) + 2. Conformité Sunnah (Tartīl & Voix embellie)',
-        letters: [],
-        definitionFr: 'La récitation du Coran est un acte d\'adoration (عِبَادَة) récompensé par Allah. Mais pour être agréée, elle requiert deux conditions absolues : l\'intention sincère dans le cœur et la conformité à la Sunnah.',
-        mechanismFr: '1. Intention : réciter uniquement pour plaire à Allah, sans ostentation (Riyā\'). 2. Sunnah : réciter avec Tajwīd, Tartīl (rythme mesuré) et embellissement naturel de la voix.',
-        durationHarakat: 0,
-        examples: [
+        "id": "acceptance-conditions",
+        "nameFr": "4. Les Deux Conditions d'Acceptation & Piliers de Lecture",
+        "nameAr": "شَرْطَا قَبُولِ التِّلَاوَةِ وَأَرْكَانُ القِرَاءَةِ الصَّحِيحَةِ",
+        "mnemonic": "1. Intention pure (Ikhlās) + 2. Conformité Sunnah (Tartīl) | 3 Piliers : Sanad + Rasm + Langue Arabe",
+        "letters": [],
+        "definitionFr": "Toute récitation coranique est un acte cultuel supérieur. Pour être agréée par Allah et considérée comme une lecture canonique, elle doit remplir deux conditions spirituelles et trois piliers méthodologiques rigoureux.",
+        "definitionLughatan": {
+          "ar": "القَبُولُ: الرِّضَا بِالشَّيْءِ وَإِثَابَةُ فَاعِلِهِ عَلَيْهِ.",
+          "fr": "L'agrément d'un acte et l'octroi de sa rétribution divine."
+        },
+        "definitionIstilahan": {
+          "ar": "1. الإِخْلَاصُ للهِ تَعَالَى دُونَ رِيَاءٍ. 2. مُطَابَقَةُ السُّنَّةِ وَالتَّلَقِّي بِالمُشَافَهَةِ. وَأَرْكَانُ القِرَاءَةِ: صِحَّةُ السَّنَدِ، وَمُوَافَقَةُ الرَّسْمِ العُثْمَانِيِّ، وَمُوَافَقَةُ اللُّغَةِ العَرَبِيَّةِ.",
+          "fr": "1. L'Ikhlās exclusif pour Allah. 2. La conformité à la transmission prophétique par Mushāfahah (bouche à oreille). Les 3 piliers d'authenticité : chaîne continue (Sanad), conformité au Rasm, conformité à la grammaire arabe."
+        },
+        "mechanismFr": "La récitation coranique ne s'improvise pas seul face au livre : elle exige la transmission vivante par « Mushāfahah » (écoute directe d'un maître compétent qui rectifie les erreurs physiques imperceptibles à la simple lecture visuelle).",
+        "physiologicalDetails": {
+          "tongue": "Entraînée par la répétition orale fréquente (Riyādat al-Lisān) sous l'oreille d'un enseignant qualifié.",
+          "lips": "Postures calquées sur le modèle visuel du professeur.",
+          "vocalCords": "Posées, sans hurlement ni théâtralisation excessive.",
+          "airflow": "Maîtrise de la respiration sans couper les mots de manière saccadée."
+        },
+        "phoneticReasonFr": "Le Coran étant une révélation orale avant d'être un livre écrit, seule la chaîne orale ininterrompue protège le texte des dérives dialectales ou des interprétations subjectives.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "فَكُلُّ مَا وَافَقَ وَجْهَ نَحْوِ * وَكَانَ لِلرَّسْمِ احْتِمَالاً يَحْوِي\nوَصَحَّ إِسْنَاداً هُوَ القُرْآنُ * فَهَذِهِ الثَّلَاثَةُ الأَرْكَانُ",
+          "transliteration": "Fa kullu mā wāfaqa wajha nahwi * Wa kāna lir-rasmi-htimālan yahwī / Wa sahha isnādan huwa-l-Qur'ānu * Fahādhihi-th-thalāthatu-l-arkānu",
+          "translationFr": "« Toute lecture qui concorde avec une règle de grammaire arabe, qui s'accorde avec le tracé du Mushaf et dont la chaîne de transmission est authentique, voilà le vrai Coran ! Tels sont les trois piliers indispensables. »",
+          "chapterNameAr": "بَابُ أَرْكَانِ القِرَاءَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-c1-6',
-            arabicText: 'قُلۡ إِنَّ صَلَاتِى وَنُسُكِى وَمَحۡيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '6:162',
-            surahNameFr: 'Al-An\'ām',
-            highlightSegment: 'لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            highlightLetter: 'Pureté exclusive',
-            ruleApplied: 'L\'Intention Pure (Al-Ikhlās)',
-            ruleTag: 'heavy',
-            explanationFr: 'Toute l\'adoration du croyant, y compris chaque lettre récitée, doit être dédiée à Allah seul, sans chercher l\'éloge des créatures.',
-            transliteration: 'Qul inna salātī wa nusukī wa mahyāya wa mamātī lillāhi rabbi-l-\'ālamīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/006162.mp3'
+            "id": "ex-c1-6",
+            "arabicText": "قُلۡ إِنَّ صَلَاتِى وَنُسُكِى وَمَحۡيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
+            "surahAyahRef": "6:162",
+            "surahNameFr": "Al-An'ām",
+            "highlightSegment": "لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
+            "highlightLetter": "Intention exclusive",
+            "ruleApplied": "L'Intention Pure (Al-Ikhlās)",
+            "ruleTag": "heavy",
+            "explanationFr": "Toute l'action du croyant, y compris chaque son prononcé, doit être dédiée à Allah sans recherche de gloire terrestre ni d'admiration du public.",
+            "transliteration": "Qul inna salātī wa nusukī wa mahyāya wa mamātī lillāhi rabbi-l-'ālamīn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/006162.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Réciter pour impressionner son entourage ou faire étalage de sa belle voix.',
-            correctionFr: 'Renouvelez toujours votre intention intérieurement avant d\'ouvrir le Mushaf.'
+            "trapFr": "Se reposer uniquement sur la lecture autodidacte de translitérations phonétiques en alphabet latin.",
+            "correctionFr": "L'alphabet latin est incapable de transcrire les nuances phonétiques sémitiques (Hā' vs Khā', 'Ayn vs Hamzah). L'apprentissage auprès d'un maître ou d'un tuteur est irremplaçable."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c1-1',
-        title: 'Analyse critique : Sūrah Al-Fātihah (1:7)',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ',
-        surahAyahRef: '1:7',
-        targetSegment: 'أَنۡعَمۡتَ',
-        promptFr: 'Pourquoi remplacer la Fathah finale par une Dammah sur « An\'amta » est-il considéré comme un péché (Lahn Jalī) ?',
-        hintFr: 'Traduisez le mot avec la Fathah « -ta » puis avec la Dammah « -tu ».',
-        solutionFr: 'Altération majeure du sens (Lahn Jalī)',
-        breakdownSteps: [
-          'Étape 1 : « An\'amta » (avec Fathah) est à la 2e personne du singulier : « Toi (Allah), Tu as comblé de bienfaits ».',
-          'Étape 2 : « An\'amtu » (avec Dammah) bascule à la 1re personne du singulier : « J\'ai comblé de bienfaits ».',
-          'Étape 3 : Le lecteur s\'attribue ainsi la grâce divine accordée aux prophètes et pieux prédécesseurs.',
-          'Conclusion : Cette faute déforme la théologie et invalide la prière. C\'est l\'archétype du Lahn Jalī à bannir impérativement.'
+        "id": "exo-c1-1",
+        "title": "Analyse critique : Sūrah Al-Fātihah (1:7)",
+        "verseArabic": "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ",
+        "surahAyahRef": "1:7",
+        "targetSegment": "أَنۡعَمۡتَ",
+        "promptFr": "Pourquoi remplacer la Fathah finale par une Dammah sur « An'amta » est-il considéré comme un péché majeur (Lahn Jalī) ?",
+        "hintFr": "Traduisez le mot avec la Fathah « -ta » (2e personne) puis avec la Dammah « -tu » (1re personne).",
+        "solutionFr": "Altération théologique majeure du sens (Lahn Jalī)",
+        "breakdownSteps": [
+          "« An'amta » (avec Fathah) est à la 2e personne du singulier : « Toi (Allah), Tu as comblé de bienfaits ».",
+          "« An'amtu » (avec Dammah) bascule à la 1re personne du singulier : « J'ai comblé de bienfaits ».",
+          "Le lecteur s'attribue ainsi l'acte divin d'accorder la guidance spirituelle !",
+          "Cette faute déforme le dogme ('Aqīdah) et invalide la prière selon les juristes musulmans."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/001007.mp3"
       },
       {
-        id: 'exo-c1-2',
-        title: 'Décryptage du Rasm \'Uthmānī : Sūrah Al-Baqarah (2:43)',
-        verseArabic: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ وَٱرۡكَعُواْ مَعَ ٱلرَّٰكِعِينَ',
-        surahAyahRef: '2:43',
-        targetSegment: 'ٱلصَّلَوٰةَ',
-        promptFr: 'Comment prononce-t-on la lettre Wāw présente dans le mot « ٱلصَّلَوٰةَ » ?',
-        hintFr: 'Observez le petit symbole au-dessus du Wāw.',
-        solutionFr: 'On prononce un Alif long (As-Salāh), le Wāw n\'est que le tracé graphique',
-        breakdownSteps: [
-          'Le mot est écrit dans le Rasm \'Uthmānī sacré avec la lettre Wāw.',
-          'Un petit Alif miniature (Alif Khanjariyyah) est posé au-dessus du Wāw.',
-          'Ce signe indique que le Wāw ne se prononce pas « w », mais sert de support au son « ā ».',
-          'On prononce donc « As-Salāt / As-Salāh » et jamais « As-Salawat ».'
+        "id": "exo-c1-2",
+        "title": "Identification d'erreur : Changement de consonne dans « يَطْبَعُ »",
+        "verseArabic": "كَذَٰلِكَ يَطۡبَعُ ٱللَّهُ عَلَىٰ قُلُوبِ ٱلۡكَٰفِرِينَ",
+        "surahAyahRef": "7:101",
+        "targetSegment": "يَطۡبَعُ",
+        "promptFr": "Un lecteur prononce la lettre Tā' (ط) comme un Tā' fin (ت), disant « Yatba'u ». Quel est le diagnostic canonique de cette erreur ?",
+        "hintFr": "Remplacer une lettre par une autre lettre est-il un Lahn Jalī ou Khafī ?",
+        "solutionFr": "Lahn Jalī : substitution de consonne par abandon de l'Isti'lā' et de l'Itbāq",
+        "breakdownSteps": [
+          "Le Tā' (ط) est une consonne emphatique et écrasée (Musta'liyah / Mutbaqah).",
+          "Le Tā' (ت) est une consonne légère et ouverte (Mustafilah / Munfatihah).",
+          "Changer la consonne modifie la racine même du mot arabe.",
+          "C'est un Lahn Jalī formellement interdit."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/007101.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c1-1',
-        type: 'mcq',
-        promptFr: 'Quel est le statut religieux de l\'application pratique du Tajwīd lors de la lecture du Coran ?',
-        verseArabic: 'وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا',
-        surahAyahRef: '73:4',
-        options: [
-          'Farḍ \'Ayn (Obligation individuelle pour chaque musulman dans la mesure de ses capacités)',
-          'Farḍ Kifāyah (Obligation qui ne concerne que les imams et enseignants)',
-          'Sunnah purement facultative',
-          'Une tradition calligraphique sans rapport avec la voix'
+        "id": "q-c1-1",
+        "type": "mcq",
+        "promptFr": "Selon le livre « التجويد المبسط », quelle est la différence juridique entre la pratique orale du Tajwīd et son apprentissage théorique ?",
+        "verseArabic": "وَرَتِّلِ ٱلۡقُرۡءَانَ تَرۡتِيلًا",
+        "surahAyahRef": "73:4",
+        "options": [
+          "La pratique orale est Farḍ 'Ayn (obligation individuelle) ; la théorie est Farḍ Kifāyah (obligation communautaire)",
+          "La pratique est facultative et la théorie est obligatoire",
+          "Les deux sont Farḍ 'Ayn pour chaque musulman",
+          "Les deux sont une recommandation (Sunnah) sans aucune obligation"
         ],
-        correctAnswer: 'Farḍ \'Ayn (Obligation individuelle pour chaque musulman dans la mesure de ses capacités)',
-        explanationFr: 'Réciter le Coran sans altérer les lettres ni les voyelles est une obligation individuelle (Farḍ \'Ayn). En revanche, apprendre par cœur les définitions et termes techniques savants est une obligation communautaire (Farḍ Kifāyah).',
-        ruleId: 'tajweed-definition'
+        "correctAnswer": "La pratique orale est Farḍ 'Ayn (obligation individuelle) ; la théorie est Farḍ Kifāyah (obligation communautaire)",
+        "explanationFr": "Tout musulman a l'obligation personnelle (Farḍ 'Ayn) de réciter sans altérer les sons ni les sens. En revanche, connaître les termes académiques et les classifications savantes relève de l'obligation collective (Farḍ Kifāyah).",
+        "ruleId": "tajweed-definition"
       },
       {
-        id: 'q-c1-2',
-        type: 'mcq',
-        promptFr: 'Qu\'est-ce qui caractérise un « Lahn Jalī » (اللَّحْنُ الجَلِيُّ) ?',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-        targetWord: 'أَنۡعَمۡتَ',
-        surahAyahRef: '1:7',
-        options: [
-          'Une erreur évidente qui altère la grammaire ou change le sens d\'un verset (Harām par négligence)',
-          'Une prolongation raccourcie d\'un ou deux temps sans altérer le sens',
-          'Une récitation un peu trop rapide',
-          'L\'oubli d\'un signe d\'arrêt en fin de verset'
+        "id": "q-c1-2",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Dans « صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ », le lecteur prononce « أَنْعَمْتُ » avec une Dammah. De quel type d'erreur s'agit-il ?",
+        "verseArabic": "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ",
+        "targetWord": "أَنۡعَمۡتَ",
+        "surahAyahRef": "1:7",
+        "options": [
+          "Lahn Jalī (اللحن الجلي) : Erreur majeure altérant le sens théologique, interdite (Harām) et invalidant la prière",
+          "Lahn Khafī (اللحن الخفي) : Simple défaut d'embellissement sans gravité",
+          "Une variante autorisée dans les dix lectures",
+          "Une pause tolérée"
         ],
-        correctAnswer: 'Une erreur évidente qui altère la grammaire ou change le sens d\'un verset (Harām par négligence)',
-        explanationFr: 'Le Lahn Jalī est une faute claire et majeure (changer une voyelle, omettre une consonne) qui transforme la signification de la parole d\'Allah. C\'est strictement interdit si commis par négligence.',
-        ruleId: 'lahn-types'
+        "correctAnswer": "Lahn Jalī (اللحن الجلي) : Erreur majeure altérant le sens théologique, interdite (Harām) et invalidant la prière",
+        "explanationFr": "Changer la voyelle de la 2e personne (Tu) à la 1re personne (Je) s'attribue l'acte divin de grâce. C'est l'exemple type du Lahn Jalī qui invalide la prière s'il est commis avec négligence.",
+        "ruleId": "lahn-types"
       },
       {
-        id: 'q-c1-3',
-        type: 'click_word',
-        promptFr: 'Repérage visuel : Cliquez sur le mot de ce verset où une faute de voyelle (mettre une Dammah au lieu de la Fathah) change radicalement le sens.',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-        clickableSegments: ['صِرَٰطَ', 'ٱلَّذِينَ', 'أَنۡعَمۡتَ', 'عَلَيۡهِمۡ'],
-        correctAnswer: 'أَنۡعَمۡتَ',
-        explanationFr: '« An\'amta » avec Fathah (« Tu as comblé »). Si on met une Dammah « An\'amtu », cela signifie « J\'ai comblé », déplaçant la divinité vers la créature ! C\'est l\'exemple emblématique du livre.',
-        ruleId: 'lahn-types'
+        "id": "q-c1-3",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Dans « كُفُوًا أَحَدٌ » (Al-Ikhlās 4), un lecteur prononce le Fā' avec un soukoûn : « كُفْؤًا ». Quelle est la nature de cette erreur ?",
+        "verseArabic": "وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ",
+        "targetWord": "كُفُوًا",
+        "surahAyahRef": "112:4",
+        "options": [
+          "Lahn Jalī : remplacement d'une voyelle (Dammah) par un soukoûn, modifiant la structure du mot",
+          "Lahn Khafī : absence de Ghunnah",
+          "Madd 'Iwad défectueux",
+          "Lecture recommandée"
+        ],
+        "correctAnswer": "Lahn Jalī : remplacement d'une voyelle (Dammah) par un soukoûn, modifiant la structure du mot",
+        "explanationFr": "Le livre « التجويد المبسط » classe formellement « changer une voyelle par un soukoûn » dans les catégories du Lahn Jalī (ex: تسكين الفاء في كُفُوًا). En lecture de Hafs, le Fā' porte obligatoirement une Dammah.",
+        "ruleId": "lahn-types"
       },
       {
-        id: 'q-c1-4',
-        type: 'error_detect',
-        promptFr: 'Un lecteur prolonge le mot « As-Samā\' » pendant 2 temps au lieu des 4 à 5 temps requis. Quelle est la nature exacte de cette faute ?',
-        verseArabic: 'وَلَقَدۡ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنۡيَا بِمَصَٰبِيحَ',
-        targetWord: 'ٱلسَّمَآءَ',
-        surahAyahRef: '67:5',
-        options: [
-          'Lahn Khafī : Le sens reste intact (« le ciel »), mais la récitation perd de sa splendeur et de sa perfection.',
-          'Lahn Jalī : La prière est annulée car le mot est invalidé.',
-          'Ce n\'est pas une erreur du tout.',
-          'Une erreur d\'articulation de consonne.'
+        "id": "q-c1-4",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Dans « هَلْ أَتَى عَلَى الإِنسَانِ » (Al-Insān 1), le récitateur omet complètement la Ghunnah sur l'Ikhfā' du Nūn. Quel type d'erreur commet-il ?",
+        "verseArabic": "هَلۡ أَتَىٰ عَلَى ٱلۡإِنسَٰنِ حِينٞ مِّنَ ٱلدَّهۡرِ",
+        "targetWord": "ٱلۡإِنسَٰنِ",
+        "surahAyahRef": "76:1",
+        "options": [
+          "Lahn Khafī (اللحن الخفي) : Défaut dans les règles de perfectionnement de la récitation (omission de la Ghunnah)",
+          "Lahn Jalī : Inversion du sens du verset",
+          "Erreur sur la lettre Hā'",
+          "Arrêt interdit"
         ],
-        correctAnswer: 'Lahn Khafī : Le sens reste intact (« le ciel »), mais la récitation perd de sa splendeur et de sa perfection.',
-        explanationFr: 'Le livre de Drs. Islām Fekry classe explicitement le raccourcissement des prolongations secondaires comme un Lahn Khafī (erreur subtile) : elle ne change pas le sens, n\'est pas un péché, mais doit être évitée pour atteindre l\'excellence.',
-        ruleId: 'lahn-types'
+        "correctAnswer": "Lahn Khafī (اللحن الخفي) : Défaut dans les règles de perfectionnement de la récitation (omission de la Ghunnah)",
+        "explanationFr": "Omettre une Ghunnah, raccourcir un Madd obligatoire ou négliger une Qalqalah ne change pas le sens du mot (« l'humain »), mais prive la récitation de sa rigueur canonique : c'est un Lahn Khafī (déconseillé/makrūh).",
+        "ruleId": "lahn-types"
       },
       {
-        id: 'q-c1-5',
-        type: 'mcq',
-        promptFr: 'Quelle est la méthode mnémotechnique donnée dans le livre pour se souvenir des 6236 versets du Coran ?',
-        verseArabic: '٦٢٣٦',
-        options: [
-          '23 ans de mission prophétique, entourés d\'un 6 avant et d\'un 6 après : 6 - 23 - 6',
-          'Multiplier le nombre de sourates par 55',
-          'Ajouter le nombre de pages du Mushaf',
-          'Compter 100 versets par jour pendant deux mois'
+        "id": "q-c1-5",
+        "type": "mcq",
+        "promptFr": "D'après le Matn Al-Jazariyyah, quels sont les trois piliers indispensables pour qu'une récitation soit reconnue comme Coran authentique ?",
+        "verseArabic": "فَكُلُّ مَا وَافَقَ وَجْهَ نَحْوِ * وَكَانَ لِلرَّسْمِ احْتِمَالاً يَحْوِي",
+        "options": [
+          "1. Chaîne de transmission authentique (Sanad) + 2. Conformité au Rasm 'Uthmānī + 3. Concordance avec la grammaire arabe",
+          "1. Récitation rapide + 2. Voix aiguë + 3. Mémorisation complète",
+          "1. Connaissance du persan + 2. Calligraphie moderne + 3. Accord de l'imam",
+          "1. Traduction en français + 2. Rythme musical + 3. Écriture phonétique"
         ],
-        correctAnswer: '23 ans de mission prophétique, entourés d\'un 6 avant et d\'un 6 après : 6 - 23 - 6',
-        explanationFr: 'Astuce mnémotechnique du chapitre 1 : la Da\'wah prophétique a duré 23 ans. Placez un 6 devant et un 6 derrière : vous obtenez instantanément 6236 versets !',
-        ruleId: 'acceptance-conditions'
+        "correctAnswer": "1. Chaîne de transmission authentique (Sanad) + 2. Conformité au Rasm 'Uthmānī + 3. Concordance avec la grammaire arabe",
+        "explanationFr": "L'imam Ibn Al-Jazarī énonce : toute lecture valide doit impérativement reposer sur ces trois piliers : chaîne authentique ininterrompue jusqu'au Prophète ﷺ, compatibilité avec l'orthographe du Mushaf et conformité à la langue arabe.",
+        "ruleId": "acceptance-conditions"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 2 : SYMBOLES CORANIQUES & PONCTUATION
-  // ==========================================
   {
-    id: 'chap-2',
-    number: 2,
-    slug: 'quranic-symbols',
-    titleFr: 'Symboles Coraniques & Ponctuation',
-    titleAr: 'عَلَامَاتُ المُصْحَفِ وَضَبْطِهِ',
-    category: 'beginner',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Maîtriser tous les symboles du Mushaf selon le Rasm ʿUthmānī : les 6 signes d\'arrêt (Waqf Lāzim, Lā, Jīm, Qalā, Salā, la triade ۛ...ۛ, la Saktah), les symboles de prononciation obligatoire (Alif Khanjariyyah, petit Wāw et Yā\', Madd, Soukoûn coranique, zéros d\'annulation et les 7 Alifs).',
-    infographicPoints: [
-      'Signe (مـ) = Waqf Lāzim (Arrêt obligatoire) : vous DEVEZ vous arrêter car lier dénature le sens théologique.',
-      'Signe (لا) = Interdiction d\'arrêter et de terminer la récitation (Waqf Qabīh) : le sens serait tronqué ou contraire au dogme.',
-      'Triade (ۛ ... ۛ) = Al-Waqf Al-Mutaʿāniq : arrêt permis à l\'un des deux, mais strictement INTERDIT de s\'arrêter aux deux à la fois !',
-      'Saktah (س) = Pause brève de 2 temps sans reprendre sa respiration, empêchant une fausse liaison sémantique.',
-      'Cercle parfait (ْ) = Lettre 100% muette toujours (ex: يَفۡرَحُواْ). Ovale allongé (۠) = Les 7 Alifs : prononcé à l\'arrêt, annulé en continu.',
-      'Alif Khanjariyyah (ٰ), petit Wāw (ۥ) et petit Yā\' (ۦ) = Lettres obligatoires à prononcer transmises par voie orale.'
+    "id": "chap-2",
+    "number": 2,
+    "slug": "quranic-symbols",
+    "titleFr": "Symboles Coraniques & Ponctuation",
+    "titleAr": "عَلَامَاتُ المُصْحَفِ وَضَبْطُهُ",
+    "category": "beginner",
+    "estimatedMinutes": 15,
+    "isPilotChapter": true,
+    "summaryFr": "Maîtriser tous les repères graphiques du Muṣ-ḥaf : les signes d'arrêt (مـ, ج, قلى, صلى, لا, ∴), la Saktah (pause sans souffle), les lettres miniatures ajoutées et la différence cruciale entre le Soukoûn ordinaire (ْ) et le zéro rectangulaire d'annulation (۠).",
+    "infographicPoints": [
+      "« مـ » (Arrêt obligatoire) : Stopper impérativement pour ne pas corrompre le sens avec la phrase suivante.",
+      "« قلى » (Arrêt préférable) : La pause est prioritaire, bien que la liaison soit autorisée.",
+      "« صلى » (Liaison préférable) : Continuer la lecture est préférable, bien que l'arrêt soit permis.",
+      "« ج » (Arrêt permis) : Égalité parfaite entre s'arrêter ou continuer.",
+      "« لا » (Arrêt interdit) : Ne pas s'arrêter si le sens dépend étroitement de la suite du texte.",
+      "« ∴ ∴ » (Arrêt d'étreinte / Mu'ānaqah) : S'arrêter sur l'un des deux repères interdit de s'arrêter sur le second !",
+      "« س » ou « ص » minuscule : Indique si la lettre se lit en Sīn ou en Sād.",
+      "Le zéro rond (ْ) signale une consonne muette ; le zéro rectangulaire (۠) signale une prolongation maintenue à l'arrêt mais supprimée en liaison."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'waqf-symbols',
-        nameFr: '1. Les Signes d\'Arrêt & de Respiration (عَلَامَاتُ الوَقْفِ)',
-        nameAr: 'عَلَامَاتُ الوَقْفِ فِي المُصْحَفِ',
-        mnemonic: 'مـ (Arrêt Obligatoire) | لا (Interdit d\'arrêter) | ج (Permis) | قلى (Arrêt Préférable) | صلى (Liaison Préférable) | ۛ...ۛ (Arrêt d\'Étreinte)',
-        letters: ['مـ', 'لا', 'ج', 'قلى', 'صلى', 'ۛ'],
-        definitionFr: 'Symboles placés au-dessus des mots pour indiquer où il est permis, recommandé ou obligatoire de s\'arrêter pour respirer, et où il est strictement interdit de couper la lecture sous peine de dénaturer le sens divin.',
-        mechanismFr: 'L\'arrêt (Waqf) consiste à couper le son à la fin d\'un mot avec l\'intention de reprendre sa respiration. Ne terminez JAMAIS votre récitation et n\'allez jamais au Rukūʿ sur un mot marqué par (لا).',
-        durationHarakat: 0,
-        examples: [
+        "id": "stop-signs",
+        "nameFr": "1. Les 6 Signes d'Arrêt dans le Mushaf",
+        "nameAr": "عَلَامَاتُ الوَقْفِ فِي ضَبْطِ المَصَاحِفِ",
+        "mnemonic": "مـ (Obligatoire) | قلى (Préférable) | صلى (Liaison d'abord) | ج (Libre) | لا (Ne pas couper) | ∴ (Un seul sur deux)",
+        "letters": [],
+        "definitionFr": "Les signes d'arrêt sont des lettres arabes miniatures insérées au-dessus des mots par les érudits de l'Académie de Médine pour guider le lecteur sur la complétude sémantique et syntaxique de la phrase coranique.",
+        "definitionLughatan": {
+          "ar": "العَلَامَةُ: الأَمَارَةُ الدَّالَّةُ عَلَى الشَّيْءِ لِيُهْتَدَى بِهِ.",
+          "fr": "Le repère visuel servant de balise pour guider la progression."
+        },
+        "definitionIstilahan": {
+          "ar": "رُمُوزٌ اصْطِلَاحِيَّةٌ تُوضَعُ فَوْقَ الكَلِمَاتِ القُرْآنِيَّةِ لِبَيَانِ مَرَاتِبِ الجَوَازِ وَالمَنْعِ فِي الوَقْفِ وَالوَصْلِ.",
+          "fr": "Symboles conventionnels placés au-dessus des mots coraniques indiquant les degrés d'autorisation, de préférence ou d'interdiction de la pause."
+        },
+        "mechanismFr": "À la vue d'un signe d'arrêt autorisé, le récitateur immobilise la dernière lettre sur un soukoûn et coupe la voix tout en reprenant son souffle avant de poursuivre.",
+        "physiologicalDetails": {
+          "tongue": "Vient se poser de manière stable sur le point de l'ultime consonne vocalisée transformée en soukoûn.",
+          "lips": "Rejoignent une posture neutre dès l'extinction du son.",
+          "vocalCords": "Interruption nette de la vibration pour permettre l'inhalation pulmonaire.",
+          "airflow": "Inspiration d'air frais par la bouche ou le nez pendant l'arrêt avant de reprendre."
+        },
+        "phoneticReasonFr": "La structure grammaticale du Coran contient des propositions interdépendantes. S'arrêter au mauvais endroit associe des idées contraires (ex: lier la parole des croyants à celle des mécréants), créant une altération blasphématoire du sens.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَبَعْدَ تَجْوِيدِكَ لِلْحُرُوفِ * لَابُدَّ مِنْ مَعْرِفَةِ الوُقُوفِ\nوَالِابْتِدَاءِ وَهْيَ تُقْسَمُ إِذَنْ * ثَلَاثَةً تَامٌ وَكَافٍ وَحَسَنْ",
+          "transliteration": "Wa ba'da tajwīdika lil-hurūfi * Lā budda min ma'rifati-l-wuqūfi / Wal-ibtidā'i wa hya tuqsamu idhan * Thalāthatan Tāmmun wa Kāfin wa Hasan",
+          "translationFr": "« Après avoir perfectionné les lettres, tu dois impérativement connaître les règles de l'arrêt et de la reprise, qui se divisent en trois catégories : l'arrêt Parfait (Tāmm), Suffisant (Kāf) et Bon (Hasan). »",
+          "chapterNameAr": "بَابُ الوَقْفِ وَالِابْتِدَاءِ"
+        },
+        "examples": [
           {
-            id: 'ex-c2-1',
-            arabicText: 'فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ إِنَّا نَعۡلَمُ مَا يُسِرُّونَ وَمَا يُعۡلِنُونَ',
-            surahAyahRef: '36:76',
-            surahNameFr: 'Yā-Sīn',
-            highlightSegment: 'قَوۡلُهُمۡۘ',
-            highlightLetter: 'مـ (Waqf Lāzim)',
-            ruleApplied: 'Waqf Lāzim (Arrêt Obligatoire)',
-            ruleTag: 'izhar',
-            explanationFr: 'Si vous liez sans vous arrêter, vous faites croire que la phrase « Certes Nous savons ce qu\'ils cachent » fait partie des propos des mécréants, ce qui constitue une altération grave du sens. L\'arrêt est donc obligatoire.',
-            transliteration: 'Fa lā yahzunka qawluhum. Innā na\'lamu mā yusirrūna wa mā yu\'linūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/036076.mp3'
-          },
-          {
-            id: 'ex-c2-2',
-            arabicText: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤ ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ ٥',
-            surahAyahRef: '107:4-5',
-            surahNameFr: 'Al-Mā\'ūn',
-            highlightSegment: 'لِّلۡمُصَلِّينَ',
-            highlightLetter: 'لا (Lā Taqif)',
-            ruleApplied: 'Interdiction de terminer la récitation (Lā)',
-            ruleTag: 'heavy',
-            explanationFr: 'S\'arrêter et clore la récitation sur « Malheur aux prieurs » sans lire la suite déforme totalement le message divin. Il est impératif de poursuivre jusqu\'à la fin du verset 5.',
-            transliteration: 'Fa waylul-lil-musallīn. Alladhīna hum \'an salātihim sāhūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/107004.mp3'
-          },
-          {
-            id: 'ex-c2-3',
-            arabicText: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
-            surahAyahRef: '2:2',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'لَا رَيۡبَۛ فِيهِۛ',
-            highlightLetter: 'ۛ ... ۛ (Triade)',
-            ruleApplied: 'Al-Waqf Al-Muta\'āniq (Arrêt d\'Étreinte)',
-            ruleTag: 'madd',
-            explanationFr: 'Vous pouvez vous arrêter sur « Lā rayb » OU sur « Fīh », mais il est formellement interdit de s\'arrêter aux deux à la fois. Chaque option révèle une nuance sémantique sublime.',
-            transliteration: 'Dhālika-l-kitābu lā rayba fīhi hudal-lil-muttaqīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002002.mp3'
+            "id": "ex-c2-1",
+            "arabicText": "إِنَّمَا يَسۡتَجِيبُ ٱلَّذِينَ يَسۡمَعُونَۘ وَٱلۡمَوۡتَىٰ يَبۡعَثُهُمُ ٱللَّهُ",
+            "surahAyahRef": "6:36",
+            "surahNameFr": "Al-An'ām",
+            "highlightSegment": "يَسۡمَعُونَۘ",
+            "highlightLetter": "مـ (Waqf Lāzim)",
+            "ruleApplied": "Arrêt Obligatoire (Waqf Lāzim)",
+            "ruleTag": "izhar",
+            "explanationFr": "« Seuls ceux qui entendent répondent à l'appel. [Arrêt obligatoire مـ]. Quant aux morts, Allah les ressuscitera. » Lier les deux phrases donnerait le contresens absurde : « Seuls ceux qui entendent et les morts répondent à l'appel » !",
+            "transliteration": "Innamā yastajību-lladhīna yasma'ūn (Arrêt) wal-mawtā yab'athuhumu-Llāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/006036.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'S\'arrêter sur le premier signe (ۛ) puis s\'arrêter à nouveau sur le deuxième signe (ۛ).',
-            correctionFr: 'La règle est stricte : choisissez l\'un des deux arrêts et liez obligatoirement l\'autre.'
-          },
-          {
-            trapFr: 'Aller au Rukūʿ ou terminer sa prière sur un mot marqué par le signe (لا).',
-            correctionFr: 'Le signe (لا) interdit de clore la récitation à cet endroit car la phrase reste suspendue.'
+            "trapFr": "Confondre le Mīm d'arrêt obligatoire (مـ avec queue horizontale) et le Mīm d'Iqlāb (م avec queue verticale vers le bas).",
+            "correctionFr": "Le signe de ponctuation « مـ » est toujours posé en l'air au-dessus de la ligne. Le Mīm d'Iqlāb est posé directement sur la lettre Nūn ou Tanwīn."
           }
         ]
       },
       {
-        id: 'saktah-pause',
-        nameFr: '2. La Pause Momentanée sans Souffle (As-Saktah / السَّكْتَة)',
-        nameAr: 'السَّكْتَاتُ اللَّطِيفَةُ فِي القُرْآنِ',
-        mnemonic: 'س = Silence de 2 temps SANS reprendre de souffle',
-        letters: ['س'],
-        definitionFr: 'Une brève interruption de la voix pendant environ 2 temps, sans respirer, avant de continuer aussitôt la lecture. Il y a 4 Saktahs obligatoires selon Hafs.',
-        mechanismFr: 'Bloquer le son au niveau des cordes vocales pendant deux battements sans ouvrir les poumons ni inspirer d\'air.',
-        durationHarakat: 2,
-        examples: [
+        "id": "saktah-symbol",
+        "nameFr": "2. La Saktah : Pause Momentanée sans Souffle",
+        "nameAr": "السَّكْتَةُ اللَّطِيفَةُ فِي ضَبْطِ حَفْصٍ",
+        "mnemonic": "Saktah = Silence de 2 temps SANS reprendre d'air",
+        "letters": [
+          "س"
+        ],
+        "definitionFr": "La Saktah est une interruption de la voix d'une durée conventionnelle de 2 temps (deux battements) sur une lettre soukounée, avec l'intention continue de reprendre la lecture immédiatement, SANS reprendre de souffle.",
+        "definitionLughatan": {
+          "ar": "المَنْعُ وَالقَطْعُ، يُقَالُ: سَكَتَ عَنِ الكَلَامِ إِذَا قَطَعَهُ.",
+          "fr": "L'interruption de la parole et le silence momentané."
+        },
+        "definitionIstilahan": {
+          "ar": "قَطْعُ الصَّوْتِ زَمَناً قَصِيراً بِمِقْدَارِ حَرَكَتَيْنِ دُونَ تَنَفُّسٍ بِنِيَّةِ اسْتِئْنَافِ القِرَاءَةِ.",
+          "fr": "Couper le son pendant la durée mesurée de deux temps sans reprendre sa respiration, avec l'intention de reprendre la lecture immédiatement."
+        },
+        "mechanismFr": "Retenez l'air dans votre cage thoracique, immobilisez la langue sur la consonne sans relâcher la pression phonatoire, marquez deux battements silencieux et redémarrez aussitôt sur le mot suivant.",
+        "physiologicalDetails": {
+          "tongue": "Reste plaquée ou stabilisée sur le point de contact de la lettre où s'est effectuée la coupure sonore.",
+          "lips": "Immobiles pendant l'intervalle de silence.",
+          "vocalCords": "Fermeture des cordes vocales qui interrompt le son tout en maintenant le souffle pulmonaire bloqué.",
+          "airflow": "Aucune inspiration ni expiration d'air pendant les 2 temps."
+        },
+        "phoneticReasonFr": "La Saktah a pour but d'éviter l'ambiguïté sémantique (séparer la parole des mécréants de la réponse divine dans Yāsīn 52) ou de préserver l'Izhār en empêchant une fusion articulatoire indésirable (dans Al-Qiyāmah 27 et Al-Mutaffifīn 14).",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَسَكْتَةٌ لِحَفْصٍ اخْتِصَاصاً وَرَدَتْ * فِي أَرْبَعٍ عَنِ الأَئِمَّةِ ثَبَتَتْ\nفِي عِوَجاً وَمَرْقَدِنَا كَذَا رَانَا * وَقِيلَ مَنْ رَاقَ احْفَظِ التِّبْيَانَا",
+          "transliteration": "Wa saktatun li-Hafsin ikhtisāsan waradat * Fī arba'in 'ani-l-a'immati thabatat / Fī 'Iwajā wa Marqadinā kadhā Rānā * Wa qīla Man Rāqa-hfazit-tibyānā",
+          "translationFr": "« La Saktah est rapportée chez Hafs dans quatre passages authentifiés : 'Iwajā, Marqadinā, Rāna, et Man Rāq ; retiens cet éclaircissement. »",
+          "chapterNameAr": "بَابُ السَّكْتَاتِ"
+        },
+        "examples": [
           {
-            id: 'ex-c2-4',
-            arabicText: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ بَأۡسٗا شَدِيدٗا',
-            surahAyahRef: '18:1-2',
-            surahNameFr: 'Al-Kahf',
-            highlightSegment: 'عِوَجَاۜ',
-            highlightLetter: 'س (Saktah)',
-            ruleApplied: 'Saktah Latīfah obligatoire',
-            ruleTag: 'silent',
-            explanationFr: 'Si on liait « \'Iwajā » avec « Qayyimā » sans pause, on pourrait penser que le Livre est à la fois « déviant » et « droit » ! La Saktah sépare les deux qualificatifs sans couper la récitation.',
-            transliteration: 'Wa lam yaj\'al lahū \'iwajā. Qayyimāl-liyundhira ba\'san shadīdā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/018001.mp3'
-          },
-          {
-            id: 'ex-c2-5',
-            arabicText: 'قَالُواْ يَٰوَيۡلَنَا مَنۢ بَعَثَنَا مِن مَّرۡقَدِنَاۜۗ هَٰذَا مَا وَعَدَ ٱلرَّحۡمَٰنُ',
-            surahAyahRef: '36:52',
-            surahNameFr: 'Yā-Sīn',
-            highlightSegment: 'مَّرۡقَدِنَاۜۗ',
-            highlightLetter: 'س (Saktah)',
-            ruleApplied: 'Saktah entre les paroles des mécréants et la réponse des anges',
-            ruleTag: 'silent',
-            explanationFr: 'La pause silencieuse de 2 temps sur « marqadinā » sépare la plainte des ressuscités de l\'attestation de vérité des anges : « Voici ce que le Tout Miséricordieux avait promis ».',
-            transliteration: 'Man ba\'athanā mim-marqadinā... hādhā mā wa\'ada-r-Rahmān',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/036052.mp3'
+            "id": "ex-c2-2",
+            "arabicText": "كَلَّاۖ بَلۡۜ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُواْ يَكۡسِبُونَ",
+            "surahAyahRef": "83:14",
+            "surahNameFr": "Al-Mutaffifīn",
+            "highlightSegment": "بَلۡۜ رَانَ",
+            "highlightLetter": "سۜ (Saktah obligatoire)",
+            "ruleApplied": "Saktah Obligatoire chez Hafs",
+            "ruleTag": "silent",
+            "explanationFr": "Le petit « سۜ » posé sur le Lām impose un silence de 2 temps SANS inspirer. Cela empêche le Lām de s'assimiler dans le Râ (on ne doit surtout pas dire « Barrāna »).",
+            "transliteration": "Kallā bal (silence 2t) rāna 'alā qulūbihim",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/083014.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Reprendre son souffle pendant la Saktah.',
-            correctionFr: 'Si vous respirez, cela devient un arrêt ordinaire (Waqf) et non une Saktah. Gardez le souffle suspendu.'
+            "trapFr": "Inspirer de l'air pendant la Saktah comme lors d'un arrêt ordinaire.",
+            "correctionFr": "Bloquez fermement la respiration : si vous prenez une bouffée d'air, votre Saktah se transforme en arrêt normal défectueux."
           }
         ]
       },
       {
-        id: 'vowel-letters-symbols',
-        nameFr: '3. Les Lettres Vocales Rajoutées (Alif Khanjariyyah, Wāw & Yā\')',
-        nameAr: 'الأَلِفُ الخِنْجَرِيَّةُ وَصِلَةُ الوَاوِ وَاليَاءِ الصَّغِيرَتَيْنِ',
-        mnemonic: 'ٰ (Alif Khanjariyyah) | ۥ (Petit Wāw de Silah) | ۦ (Petit Yā\' de Silah)',
-        letters: ['ٰ', 'ۥ', 'ۦ'],
-        definitionFr: 'Caractères miniatures qui indiquent des lettres longues bien réelles que l\'on doit obligatoirement prononcer en continu. Ne jamais les sauter !',
-        mechanismFr: 'Prolonger la voyelle de 2 temps naturels en continu. Si l\'on s\'arrête sur le mot précédent, le petit Wāw ou Yā\' disparaît car la liaison est rompue.',
-        durationHarakat: 2,
-        examples: [
+        "id": "subscript-letters",
+        "nameFr": "3. Lettres Vocales Rajoutées (Alif Khanjariyyah, Wāw & Yā')",
+        "nameAr": "الحُرُوفُ الصَّغِيرَةُ المُلْحَقَةُ بِالضَّبْطِ",
+        "mnemonic": "Lettre miniature = Se prononce pleinement comme une lettre normale",
+        "letters": [
+          "ٰ",
+          "ۥ",
+          "ۦ"
+        ],
+        "definitionFr": "Dans le Rasm 'Uthmānī originel, certaines lettres de prolongation n'étaient pas tracées pour économiser l'espace calligraphique. Les érudits ont rajouté des lettres miniatures pour indiquer la prononciation exacte sans modifier le squelette textuel d'origine.",
+        "definitionLughatan": {
+          "ar": "المُلْحَقُ: مَا أُضِيفَ إِلَى الأَصْلِ لِبَيَانِهِ وَإِتْمَامِهِ.",
+          "fr": "L'élément adjoint au texte originel pour l'expliciter."
+        },
+        "definitionIstilahan": {
+          "ar": "أَحْرُفٌ صَغِيرَةٌ حَمْرَاءُ فِي المَخْطُوطَاتِ سَوْدَاءُ فِي المَطْبُوعِ تُثْبِتُ حَرْفَ مَدٍّ مَحْذُوفاً فِي الرَّسْمِ العُثْمَانِيِّ.",
+          "fr": "Lettres minuscules insérées au-dessus ou à côté du tracé indiquant qu'un Alif, un Wāw ou un Yā' de prolongation doit être prononcé intégralement."
+        },
+        "mechanismFr": "Traitez toute lettre miniature exactement comme si elle était écrite en grande taille dans le mot : donnez-lui ses 2 temps pleins de prolongation naturelle.",
+        "physiologicalDetails": {
+          "tongue": "Abaissée et détendue au fond de la bouche pour laisser résonner le vide buccal (Al-Jawf).",
+          "lips": "Ouverture verticale sans exagération pour l'Alif miniature ; arrondissement pour le petit Wāw ; abaissement mandibulaire pour le petit Yā'.",
+          "vocalCords": "Vibration continue et stable.",
+          "airflow": "Flux expiratoire continu sur 2 temps."
+        },
+        "phoneticReasonFr": "Les Arabes de l'époque de la révélation mémorisaient le texte par transmission orale et n'avaient pas besoin d'écrire chaque voyelle longue. Les lettres miniatures ont été introduites pour les générations suivantes.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَلِفَاتٌ حُذِفَتْ فِي الرَّسْمِ * ثَابِتَةٌ فِي اللَّفْظِ عِنْدَ الفَهْمِ\nكَـ مَٰلِكِ يَوْمِ الدِّينِ إِذْ تُرَتَّلُ * كَذَا السَّمَٰوَٰتِ بِمَدٍّ تُوصَلُ",
+          "transliteration": "Wa alifātun hudhifat fir-rasmi * Thābitatun fil-lafzi 'inda-l-fahmi / Ka Māliki yawmi-d-dīni idh turattalu * Kadhā-s-samāwāti bimaddin tūsalu",
+          "translationFr": "« Des Alifs supprimés dans le tracé écrit demeurent fermement établis lors de la prononciation, comme dans 'Māliki yawmid-dīn' et 'As-Samāwāt' où ils sont prolongés. »",
+          "chapterNameAr": "بَابُ المَحْذُوفِ وَالمُثْبَتِ"
+        },
+        "examples": [
           {
-            id: 'ex-c2-6',
-            arabicText: 'فَلَمَّآ أَضَآءَتۡ مَا حَوۡلَهُۥ ذَهَبَ ٱللَّهُ بِنُورِهِمۡ',
-            surahAyahRef: '2:17',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'حَوۡلَهُۥ',
-            highlightLetter: 'ۥ (Petit Wāw)',
-            ruleApplied: 'Silah Sughrā (Wāw prononcé en continu)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'En lisant en continu, le petit Wāw se prononce comme une voyelle longue de 2 temps : « Hawlahū dhahaba ». Si vous vous arrêtez sur le mot, dites simplement « Hawlah » sans le Wāw.',
-            transliteration: 'Mā hawlahū dhahaba-llāhu bi-nūrihim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002017.mp3'
-          },
-          {
-            id: 'ex-c2-7',
-            arabicText: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ٢',
-            surahAyahRef: '106:1-2',
-            surahNameFr: 'Quraysh',
-            highlightSegment: 'إِۦلَٰفِهِمۡ',
-            highlightLetter: 'ۦ (Petit Yā\')',
-            ruleApplied: 'Petit Yā\' inversé prononcé',
-            ruleTag: 'madd',
-            explanationFr: 'Le petit Yā\' inversé sous la Hamzah indique une voyelle longue "ī" : on prononce « Īlāfihim » avec 2 temps de Madd.',
-            transliteration: 'Īlāfihim rihlata-sh-shitā\'i wa-s-sayf',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
+            "id": "ex-c2-3",
+            "arabicText": "مَٰلِكِ يَوۡمِ ٱلدِّينِ",
+            "surahAyahRef": "1:4",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "مَٰلِكِ",
+            "highlightLetter": "ٰ (Alif Khanjariyyah)",
+            "ruleApplied": "Madd Naturel sur Alif Miniature",
+            "ruleTag": "madd",
+            "explanationFr": "Le Mīm de « Māliki » est surmonté d'un petit Alif dague (خنجرية). Il se lit avec 2 temps complets de prolongation (« Mā-liki »), exactement comme s'il était écrit مالک.",
+            "transliteration": "Māliki yawmi-d-dīn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001004.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Oublier d\'allonger la voyelle sur l\'Alif Khanjariyyah (ٰ) comme dans « Dhālika » ou « Al-Kitāb ».',
-            correctionFr: 'Cet Alif miniature a exactement la même valeur de prolongation qu\'un Alif ordinaire écrit en grand.'
+            "trapFr": "Avaler l'Alif miniature par précipitation et dire 'Maliki' au lieu de 'Māliki' dans la Fātihah selon la lecture de Hafs.",
+            "correctionFr": "Accordez toujours deux battements réguliers à l'Alif miniature pour honorer la lecture de Hafs 'an 'Āsim."
           }
         ]
       },
       {
-        id: 'silent-letters-sifr',
-        nameFr: '4. Les Lettres Muettes & Les Deux Zéros (ْ vs ۠)',
-        nameAr: 'الصِّفْرُ المُسْتَدِيرُ وَالصِّفْرُ المُسْتَطِيلُ (الأَلِفَاتُ السَّبْعُ)',
-        mnemonic: 'Rond parfait (ْ) = 100% muet toujours | Ovale allongé (۠) = Prononcé à l\'arrêt, muet en continu',
-        letters: ['ْ', '۠'],
-        definitionFr: 'Distinction graphique fondamentale du Rasm ʿUthmānī : le cercle rond (As-Sifr Al-Mustadīr) annule la lettre totalement. L\'ovale allongé (As-Sifr Al-Mustatīl) signale les 7 Alifs célèbres.',
-        mechanismFr: 'Devant le cercle rond (ْ), ignorez complètement la lettre. Devant l\'ovale (۠), prononcez une voyelle courte en liaison, mais un Alif long complet de 2 temps si vous vous arrêtez.',
-        durationHarakat: 0,
-        examples: [
+        "id": "two-zeros",
+        "nameFr": "4. Les Deux Zéros : Rond (ْ) vs Rectangulaire (۠)",
+        "nameAr": "الصِّفْرُ المُسْتَدِيرُ (ْ) وَالصِّفْرُ المُسْتَطِيلُ (۠)",
+        "mnemonic": "Zéro Rond (ْ) = Lettre 100% muette toujours | Zéro Rectangulaire (۠) = Prononcée à l'arrêt, muette en liaison",
+        "letters": [
+          "ْ",
+          "۠"
+        ],
+        "definitionFr": "Le Mushaf utilise deux symboles circulaires distincts qu'il ne faut jamais confondre : le zéro parfaitement rond (qui annule la lettre en toutes circonstances) et le zéro rectangulaire oblong (qui maintient la lettre à l'arrêt mais la supprime en liaison).",
+        "definitionLughatan": {
+          "ar": "الصِّفْرُ: الخَالِي، وَمِنْهُ سُمِّيَ صِفْراً لِخُلُوِّ الحَرْفِ مِنَ الحَرَكَةِ أَوْ مِنَ اللَّفْظِ.",
+          "fr": "Le vide et l'absence."
+        },
+        "definitionIstilahan": {
+          "ar": "الصِّفْرُ المُسْتَدِيرُ: حَرْفٌ زَائِدٌ رَسْماً سَاقِطٌ لَفْظاً وَصْلاً وَوَقْفاً. الصِّفْرُ المُسْتَطِيلُ: أَلِفٌ ثَابِتَةٌ وَقْفاً سَاقِطَةٌ وَصْلاً فِي سَبْعِ كَلِمَاتٍ مَخْصُوصَةٍ.",
+          "fr": "Zéro rond : lettre purement calligraphique, muette à la fois en continu et à l'arrêt. Zéro rectangulaire : Alif prononcé avec 2 temps à l'arrêt (Waqf) mais effacé en liaison (Wasl) dans les 7 mots clés du Coran (الألفات السبع)."
+        },
+        "mechanismFr": "Face au zéro rond (ْ), passez directement à la consonne suivante sans émettre le son de la lettre. Face au zéro oblong (۠) : en reliant au mot suivant, effacez l'Alif (ex: « Ana khayrun ») ; si vous stoppez sur le mot, prononcez 2 temps pleins d'Alif (ex: « Anā »).",
+        "physiologicalDetails": {
+          "tongue": "Ne prend aucun appui sur la lettre marquée d'un zéro rond.",
+          "lips": "Passives.",
+          "vocalCords": "Pas d'émission vocale sur la consonne muette.",
+          "airflow": "Traverse directement le conduit vers la lettre active suivante."
+        },
+        "phoneticReasonFr": "Ces signes ont été calibrés par les grammairiens de Bassora et de Koufa pour concilier la calligraphie historique des Compagnons avec la réalité acoustique de la récitation continue.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَالصِّفْرُ إِنْ جَاءَ كَمُسْتَطِيلِ * فَأَثْبِتِ المَدَّ بِذَا السَّبِيلِ\nفِي حَالَةِ الوَقْفِ وَأَمَّا فِي الصِّلَهْ * فَاحْذِفْهُ لَا تَثْبُتْهُ فِي المُوَاصَلَهْ",
+          "transliteration": "Was-sifru in jā'a ka-mustatīli * Fa-athbiti-l-madda bi-dhās-sabīli / Fī hālati-l-waqfi wa ammā fis-silah * Fahdhif-hu lā tathbut-hu fil-muwā Salah",
+          "translationFr": "« Si le zéro se présente sous une forme rectangulaire oblongue, maintiens la prolongation à l'arrêt ; quant à la liaison continue, efface-la complètement et ne la prolonge pas. »",
+          "chapterNameAr": "بَابُ الأَلِفَاتِ السَّبْعِ"
+        },
+        "examples": [
           {
-            id: 'ex-c2-8',
-            arabicText: 'قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ خَلَقۡتَنِي مِن نَّارٖ',
-            surahAyahRef: '7:12',
-            surahNameFr: 'Al-A\'rāf',
-            highlightSegment: 'أَنَا۠',
-            highlightLetter: '۠ (As-Sifr Al-Mustatīl)',
-            ruleApplied: 'Les 7 Alifs (Al-Alifāt As-Sab\')',
-            ruleTag: 'silent',
-            explanationFr: 'En continu, on lit « Ana khayrun » (sans allonger le "na"). Mais si l\'on s\'arrête sur le mot, l\'Alif reprend vie et l\'on prononce « Anā » avec 2 temps complets.',
-            transliteration: 'Qāla ana khayrum-minhu khalaqtanī min nār',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/007012.mp3'
-          },
-          {
-            id: 'ex-c2-9',
-            arabicText: 'وَإِن تُصِبۡكُمۡ سَيِّئَةٞ يَفۡرَحُواْ بِهَا',
-            surahAyahRef: '3:120',
-            surahNameFr: 'Āl \'Imrān',
-            highlightSegment: 'يَفۡرَحُواْ',
-            highlightLetter: 'ْ (Cercle Rond d\'Annulation)',
-            ruleApplied: 'Lettre 100% muette (As-Sifr Al-Mustadīr)',
-            ruleTag: 'silent',
-            explanationFr: 'Le cercle rond sur l\'Alif final de « Yafrahū » indique qu\'il ne se prononce jamais, ni en continu, ni à l\'arrêt. On lit uniquement « Yafrahū ».',
-            transliteration: 'Wa in tusibkum sayyi\'atun yafrahū bihā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003120.mp3'
+            "id": "ex-c2-4",
+            "arabicText": "قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ",
+            "surahAyahRef": "7:12",
+            "surahNameFr": "Al-A'rāf",
+            "highlightSegment": "أَنَا۠ خَيۡرٞ",
+            "highlightLetter": "ـَا۠ (Zéro rectangulaire)",
+            "ruleApplied": "Les 7 Alifs : Muet en liaison, 2 temps à l'arrêt",
+            "ruleTag": "silent",
+            "explanationFr": "Le mot « Anā » porte un zéro oblong. En liaison continue, l'Alif disparaît : on dit « Ana khayrun ». Mais si le lecteur s'arrête sur le mot, il doit obligatoirement prononcer l'Alif sur 2 temps : « Anā ».",
+            "transliteration": "Qāla ana khayrum-minh (en liaison)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/007012.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Confondre le Soukoûn coranique (ﹾ tête de Khā\') avec le cercle rond (ْ zéro d\'annulation).',
-            correctionFr: 'Dans le Coran, le Soukoûn ressemble à un demi-cercle ouvert. Le zéro fermé parfait signifie toujours que la lettre est muette !'
+            "trapFr": "Prolonger l'Alif de « Anā » en liaison continue en disant « Anā khayrun ».",
+            "correctionFr": "En liaison avec le mot suivant, l'Alif de « Anā » s'efface totalement : dites « Ana khayrun » d'une voyelle brève."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c2-1',
-        title: 'Maîtrise de l\'arrêt d\'étreinte : Sūrah Al-Baqarah (2:2)',
-        verseArabic: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
-        surahAyahRef: '2:2',
-        targetSegment: 'لَا رَيۡبَۛ فِيهِۛ',
-        promptFr: 'Peut-on s\'arrêter à la fois sur « Lā rayb » ET sur « Fīh » lors de la même récitation ? Expliquez la règle de la triade.',
-        hintFr: 'Rappelez-vous du principe d\'exclusivité de la double triade de trois points.',
-        solutionFr: 'Non, interdiction absolue de s\'arrêter aux deux emplacements !',
-        breakdownSteps: [
-          'Le signe (ۛ ... ۛ) est appelé Al-Waqf Al-Muta\'āniq (arrêt d\'étreinte).',
-          'Option 1 : Si vous vous arrêtez sur « Lā rayba ۛ », vous devez obligatoirement enchaîner « fīhi hudal-lil-muttaqīn » sans pause.',
-          'Option 2 : Si vous liez « Dhālika-l-kitābu lā rayba », vous pouvez alors vous arrêter sur « fīh ۛ », puis reprendre « hudal-lil-muttaqīn ».',
-          'Conclusion : Cumuler les deux arrêts brise la grammaire coranique et crée un Waqf Qabīh.'
+        "id": "exo-c2-1",
+        "title": "Analyse du zéro rectangulaire dans « لَّٰكِنَّا۠ » (Al-Kahf 38)",
+        "verseArabic": "لَّٰكِنَّا۠ هُوَ ٱللَّهُ رَبِّى وَلَآ أُشۡرِكُ بِرَبِّىٓ أَحَدٗا",
+        "surahAyahRef": "18:38",
+        "targetSegment": "لَّٰكِنَّا۠",
+        "promptFr": "Comment prononce-t-on l'Alif final de « Lākinnā » en liaison continue vers « Huwa » ?",
+        "hintFr": "Observez la forme oblongue du zéro au-dessus de l'Alif.",
+        "solutionFr": "L'Alif s'efface en liaison continue : « Lākinna Huwa »",
+        "breakdownSteps": [
+          "Le mot porte un zéro rectangulaire oblong (۠).",
+          "En liaison continue (Wasl), la voyelle longue s'annule : on prononce une brève Nūn Fathah (« Lākinna Huwa »).",
+          "En cas d'arrêt accidentel (Waqf), on restitue les 2 temps de Madd (« Lākinnā »)."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002002.mp3'
-      },
-      {
-        id: 'exo-c2-2',
-        title: 'Exécution de la Saktah : Sūrah Al-Kahf (18:1-2)',
-        verseArabic: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ بَأۡسٗا شَدِيدٗا',
-        surahAyahRef: '18:1-2',
-        targetSegment: 'عِوَجَاۜ ١ قَيِّمٗا',
-        promptFr: 'Comment le lecteur doit-il exécuter la Saktah (س) entre les deux premiers versets de la sourate Al-Kahf ?',
-        hintFr: 'Faites attention à la différence entre un Waqf (avec respiration) et une Saktah (sans respiration).',
-        solutionFr: 'Interruption brève du son pendant 2 temps en bloquant le souffle dans les poumons',
-        breakdownSteps: [
-          'À la fin du mot « \'Iwajā », arrêtez la vibration des cordes vocales pendant environ 2 temps.',
-          'Ne prenez surtout AUCUNE inspiration d\'air pendant ce silence.',
-          'Reprenez immédiatement au mot « Qayyimā » avec le souffle restant.',
-          'Cette pause empêche de relier le qualificatif négatif (« déviance ») au qualificatif positif (« parfaitement droit »).'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/018001.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/018038.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c2-1',
-        type: 'mcq',
-        promptFr: 'Que devez-vous obligatoirement faire lorsque vous rencontrez le symbole (مـ) au-dessus d\'un mot dans le Coran ?',
-        verseArabic: 'فَلَا يَحۡزُنكَ قَوۡلُهُمۡۘ إِنَّا نَعۡلَمُ مَا يُسِرُّونَ وَمَا يُعۡلِنُونَ',
-        targetWord: 'قَوۡلُهُمۡۘ',
-        surahAyahRef: '36:76',
-        options: [
-          'S\'arrêter obligatoirement (Waqf Lāzim) car lier dénaturerait gravement le sens du verset',
-          'Faire une Ghunnah de 2 temps sur la lettre suivante',
-          'Continuer sans respirer',
-          'Faire une prosternation (Sujūd)'
+        "id": "q-c2-1",
+        "type": "mcq",
+        "promptFr": "Que signifie le symbole « قلى » placé au-dessus d'un mot dans le texte coranique ?",
+        "verseArabic": "قُل رَّبِّىٓ أَعۡلَمُ بِعِدَّتِهِم مَّا يَعۡلَمُهُمۡ إِلَّا قَلِيلٞۗ فَلَا تُمَارِ فِيهِمۡ",
+        "surahAyahRef": "18:22",
+        "options": [
+          "L'arrêt est préférable (الوقف أولى), bien que la liaison soit permise",
+          "L'arrêt est strictement interdit",
+          "La liaison continue est préférable",
+          "Silence de 2 temps sans respirer"
         ],
-        correctAnswer: 'S\'arrêter obligatoirement (Waqf Lāzim) car lier dénaturerait gravement le sens du verset',
-        explanationFr: 'Le symbole (مـ) horizontal indique un Waqf Lāzim (arrêt impératif). Dans Yā-Sīn 36:76, continuer sans arrêt ferait faussement attribuer la parole d\'Allah aux mécréants.',
-        ruleId: 'waqf-symbols'
+        "correctAnswer": "L'arrêt est préférable (الوقف أولى), bien que la liaison soit permise",
+        "explanationFr": "« قلى » est l'abréviation de « الوَقْفُ أَوْلَى » (l'arrêt est prioritaire). Il indique que le sens est complet et que faire une pause est le meilleur choix esthétique et sémantique.",
+        "ruleId": "stop-signs"
       },
       {
-        id: 'q-c2-2',
-        type: 'mcq',
-        promptFr: 'Comment devez-vous vous comporter devant la double triade de points (ۛ ... ۛ) appelée Al-Waqf Al-Muta\'āniq ?',
-        verseArabic: 'ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ',
-        targetWord: 'لَا رَيۡبَۛ فِيهِۛ',
-        surahAyahRef: '2:2',
-        options: [
-          'Vous devez vous arrêter à l\'un des deux emplacements, mais jamais aux deux à la fois',
-          'Vous devez obligatoirement vous arrêter aux deux endroits',
-          'Vous ne devez vous arrêter à aucun des deux',
-          'Vous devez prolonger le mot de 6 temps'
+        "id": "q-c2-2",
+        "type": "error_detect",
+        "promptFr": "Dans « كَلَّاۖ بَلۡۜ رَانَ », un lecteur prend une inspiration profonde entre « Bal » et « Rāna ». Quelle faute commet-il ?",
+        "verseArabic": "كَلَّاۖ بَلۡۜ رَانَ عَلَىٰ قُلُوبِهِم",
+        "targetWord": "بَلۡۜ رَانَ",
+        "surahAyahRef": "83:14",
+        "options": [
+          "Erreur sur la Saktah : la Saktah impose une pause de 2 temps SANS reprendre de souffle. Respirer la transforme en arrêt ordinaire !",
+          "Il fallait faire un Idghām direct sans marquer de silence",
+          "Il fallait prononcer le Lām emphatique",
+          "Aucune erreur"
         ],
-        correctAnswer: 'Vous devez vous arrêter à l\'un des deux emplacements, mais jamais aux deux à la fois',
-        explanationFr: 'L\'arrêt d\'étreinte (Al-Waqf Al-Muta\'āniq) est exclusif : si vous vous arrêtez au premier, vous devez continuer au second (ou vice versa). S\'arrêter aux deux est formellement interdit.',
-        ruleId: 'waqf-symbols'
+        "correctAnswer": "Erreur sur la Saktah : la Saktah impose une pause de 2 temps SANS reprendre de souffle. Respirer la transforme en arrêt ordinaire !",
+        "explanationFr": "Par définition canonique, la Saktah suspend la voix mais retient le souffle dans les poumons sans inspiration d'air.",
+        "ruleId": "saktah-symbol"
       },
       {
-        id: 'q-c2-3',
-        type: 'mcq',
-        promptFr: 'Quelle est la différence fondamentale entre le cercle rond parfait (ْ) et l\'ovale vertical allongé (۠) au-dessus d\'une lettre ?',
-        verseArabic: 'قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ | يَفۡرَحُواْ',
-        targetWord: 'أَنَا۠',
-        surahAyahRef: '7:12',
-        options: [
-          'Le cercle rond (ْ) annule la lettre en permanence, tandis que l\'ovale (۠) se prononce à l\'arrêt mais s\'annule en continu',
-          'L\'ovale est une lettre de Qalqalah',
-          'Le cercle rond impose un arrêt de 2 temps',
-          'Il n\'y a aucune différence, c\'est juste une variante calligraphique'
+        "id": "q-c2-3",
+        "type": "mcq",
+        "promptFr": "Quelle est la règle d'application pour les 3 points d'étreinte (∴ ∴ / Mu'ānaqah) dans « لَا رَيْبَ ۛ فِيهِ ۛ هُدًى » ?",
+        "verseArabic": "ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ",
+        "surahAyahRef": "2:2",
+        "options": [
+          "Si on s'arrête sur le premier repère, on doit continuer sans s'arrêter sur le second (et inversement)",
+          "On doit obligatoirement s'arrêter sur les deux repères",
+          "On ne peut s'arrêter sur aucun des deux",
+          "Ce symbole indique une prosternation"
         ],
-        correctAnswer: 'Le cercle rond (ْ) annule la lettre en permanence, tandis que l\'ovale (۠) se prononce à l\'arrêt mais s\'annule en continu',
-        explanationFr: 'Le cercle rond (ْ) indique une lettre muette en continu et à l\'arrêt. L\'ovale allongé (۠) signale les 7 Alifs : on prononce "Anā" (2 temps) à l\'arrêt, mais "Ana khayr" (sans Alif) en continu !',
-        ruleId: 'silent-letters-sifr'
-      },
-      {
-        id: 'q-c2-4',
-        type: 'mcq',
-        promptFr: 'Qu\'indique le symbole (س) au-dessus d\'un mot coranique (comme dans la sourate Al-Kahf) ?',
-        verseArabic: 'وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا',
-        targetWord: 'عِوَجَاۜ',
-        surahAyahRef: '18:1-2',
-        options: [
-          'Une Saktah : interruption brève de la voix de 2 temps sans reprendre sa respiration',
-          'Prononcer la lettre Sīn avec un fort sifflement',
-          'Une obligation de se prosterner',
-          'Une prolongation de 6 temps'
-        ],
-        correctAnswer: 'Une Saktah : interruption brève de la voix de 2 temps sans reprendre sa respiration',
-        explanationFr: 'La Saktah (س) est un arrêt silencieux d\'environ deux temps sans respirer, évitant une liaison qui créerait une confusion de sens théologique.',
-        ruleId: 'saktah-pause'
-      },
-      {
-        id: 'q-c2-5',
-        type: 'mcq',
-        promptFr: 'Que signifie le symbole (لا) placé au-dessus ou à la fin d\'un mot coranique ?',
-        verseArabic: 'فَوَيۡلٞ لِّلۡمُصَلِّينَ ٤',
-        targetWord: 'لِّلۡمُصَلِّينَ',
-        surahAyahRef: '107:4',
-        options: [
-          'Interdiction de couper la récitation ou d\'aller au Rukūʿ à cet endroit car le sens est incomplet',
-          'Obligation absolue de s\'arrêter pour respirer',
-          'Répéter le mot trois fois',
-          'Ne pas prononcer la lettre suivante'
-        ],
-        correctAnswer: 'Interdiction de couper la récitation ou d\'aller au Rukūʿ à cet endroit car le sens est incomplet',
-        explanationFr: 'Le symbole (لا) signifie "ne coupez pas la lecture ici". Si vous manquez de souffle, vous pouvez faire une courte pause mais vous devez obligatoirement enchaîner pour compléter le sens.',
-        ruleId: 'waqf-symbols'
+        "correctAnswer": "Si on s'arrête sur le premier repère, on doit continuer sans s'arrêter sur le second (et inversement)",
+        "explanationFr": "L'arrêt d'étreinte (تَعَانُقُ الوَقْفِ) lie deux sens complémentaires : vous pouvez dire « Lā rayb » (arrêt) puis reprendre « Fīhi hudan », OU dire « Lā rayba fīh » (arrêt) puis reprendre « Hudan lil-muttaqīn », mais jamais couper les deux en même temps.",
+        "ruleId": "stop-signs"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 3 : ARRÊT & REPRISE (WAQF & IBTIDĀ')
-  // ==========================================
   {
-    id: 'chap-3',
-    number: 3,
-    slug: 'stopping-resuming',
-    titleFr: 'Arrêt & Reprise (Waqf & Ibtidā\')',
-    titleAr: 'عِلْمُ الوَقْفِ وَالابْتِدَاءِ فِي التِّلَاوَةِ',
-    category: 'intermediate',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre et maîtriser les 4 actions du lecteur (Al-Ibtidā\', Al-Waqf, Al-Isti\'nāf, Al-Qat\'), la règle fondamentale d\'arrêt sur Soukoûn, les deux exceptions majeures (Madd \'Iwad et métamorphose de la Tā\' Marbūtah), la technique universelle du « Stop & Repeat » et l\'évitement absolu du Waqf Qabīh sur les citations de mécréance.',
-    infographicPoints: [
-      'Les 4 actions du lecteur : 1. Al-Ibtidā\' (Commencer la lecture) 2. Al-Waqf (Interrompre sa voix avec respiration pour continuer) 3. Al-Isti\'nāf (Reprendre sa lecture) 4. Al-Qat\' (Clore définitivement la récitation).',
-      'Règle d\'or de l\'arrêt : En arabe, on ne s\'arrête JAMAIS sur une lettre vocalisée ! Fathah, Dammah, Kasrah, Tanwīn Damm et Tanwīn Kasr deviennent TOUS un Soukoûn pur (ex : Al-\'Ālamīn, Nasta\'īn).',
-      'Exception 1 — Madd \'Iwad (مد العوض) : Le Tanwīn Fath (ـً / ـٗا) se transmute TOUJOURS en un Alif de 2 temps à l\'arrêt (ex : Qarārā, Binā\'ā), même lorsqu\'aucun Alif n\'est écrit après la Hamzah !',
-      'Exception 2 — Tā\' Marbūtah (ة) : Elle se métamorphose TOUJOURS en Hā\' avec Soukoûn (هْ) à l\'arrêt, MÊME si elle porte un Tanwīn Fath (ex : Rahmah, As-Salāh) ! Jamais de Madd \'Iwad sur la Tā\' Marbūtah.',
-      'Reprise sécurisée (Stop & Repeat) : Si le souffle vous manque en plein milieu d\'un verset, reculez systématiquement de 2 ou 3 mots pour reprendre avec une phrase grammaticalement et théologiquement complète.',
-      'Le piège fatal des citations : Ne reprenez JAMAIS sur une parole de négateurs isolée comme « Inna Allāha faqīr » (Āl \'Imrān 3:181) ! Reculez obligatoirement sur « Qālū » ou « Qawla » pour attribuer le propos à ses auteurs.'
+    "id": "chap-3",
+    "number": 3,
+    "slug": "stopping-resuming",
+    "titleFr": "Arrêt & Reprise (Waqf & Ibtidā')",
+    "titleAr": "الوَقْفُ وَالِابْتِدَاءُ",
+    "category": "intermediate",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Comprendre la règle universelle : l'arabe ne commence jamais par une consonne soukounée et ne s'arrête jamais sur une voyelle. Maîtriser le Waqf 'alā Sukūn, le Madd 'Iwad (compensation du Tanwīn Fathah), la métamorphose de la Tā' Marbūṭah en [h] et les 4 types de Waqf (Tāmm, Kāfin, Hasan, Qabīh).",
+    "infographicPoints": [
+      "Axiome d'or : « لَا يُبْدَأُ بِسَاكِنٍ وَلَا يُوقَفُ عَلَى مُتَحَرِّكٍ » (On ne commence jamais par un soukoûn et on ne s'arrête jamais sur une voyelle vivante).",
+      "Waqf avec Soukoûn Temporaire : Toute voyelle finale (Fathah, Dammah, Kasrah) est obligatoirement gelée en soukoûn lors de l'arrêt (ex: Al-'Ālamīna -> Al-'Ālamīn).",
+      "Madd 'Iwad (مد العوض) : Le Tanwīn Fathah (ـً) se métamorphose à l'arrêt en un Alif pur de 2 temps (ex: Rahīman -> Rahīmā).",
+      "Tā' Marbūṭah (ة / ـة) : Se transforme obligatoirement à l'arrêt en une lettre Hā' soukounée [h] avec un souffle doux (ex: Rahmah).",
+      "Les 4 Degrés de Waqf : 1. Tāmm (Parfait), 2. Kāfin (Suffisant), 3. Hasan (Bon), 4. Qabīh (Mauvais / Interdit car déformant le sens)."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'stopping-sukun',
-        nameFr: '1. Règle Générale : L\'Arrêt sur Soukoûn (السكون عند الوقف)',
-        nameAr: 'تَحْوِيلُ الحَرَكَاتِ إِلَى سُكُونٍ',
-        mnemonic: 'Voyelle courte & Tanwīn Damm/Kasr ➔ Soukoûn Pur',
-        letters: [],
-        definitionFr: 'La règle universelle de la langue arabe et du Coran : on ne commence jamais par une lettre portant un Soukoûn, et on ne s\'arrête JAMAIS sur une lettre vocalisée (لا يبتدأ بساكن ولا يوقف على متحرك).',
-        mechanismFr: 'Sur la consonne finale, immobilisez les cordes vocales et relâchez l\'appareil phonatoire sans émettre la moindre voyelle. Les Tanwīns Damm (ـٌ) et Kasr (ـٍ) perdent totalement leur son "N" pour devenir un Soukoûn pur.',
-        durationHarakat: 0,
-        examples: [
+        "id": "stop-on-sukoon",
+        "nameFr": "1. Règle Générale : L'Arrêt sur Soukoûn (Waqf 'alā Sukūn)",
+        "nameAr": "القَاعِدَةُ العَامَّةُ: الوَقْفُ عَلَى السُّكُونِ",
+        "mnemonic": "Toute voyelle finale meurt et devient Soukoûn à la pause",
+        "letters": [],
+        "definitionFr": "En phonétique arabe classique, il est strictement interdit de terminer un énoncé sur une voyelle brève vivante. À la moindre pause, la voyelle de la consonne finale s'éteint et se convertit instantanément en un Soukoûn temporaire (Sukūn 'Ārid).",
+        "definitionLughatan": {
+          "ar": "الوَقْفُ: الحَبْسُ وَالكَّفُّ، يُقَالُ: وَقَفْتُ الشَّيْءَ إِذَا حَبَسْتَهُ.",
+          "fr": "L'interruption, la retenue et le maintien."
+        },
+        "definitionIstilahan": {
+          "ar": "قَطْعُ الصَّوْتِ عِنْدَ آخِرِ الكَلِمَةِ زَمَناً يَتَنَفَّسُ فِيهِ القَارِئُ عَادَةً بِنِيَّةِ اسْتِئْنَافِ القِرَاءَةِ، وَالأَصْلُ فِيهِ السُّكُونُ.",
+          "fr": "Couper le son sur la dernière consonne d'un mot pendant un temps suffisant pour reprendre son souffle, avec l'intention de poursuivre la lecture. L'arrêt se fait par essence sur le soukoûn."
+        },
+        "mechanismFr": "Fermez ou posez la langue sur la consonne finale sans émettre la voyelle qui la précède dans l'écriture. Si la lettre finale est une consonne de Qalqalah (Qāf, Tā', Bā', Jīm, Dāl), déclenchez le rebond sonore caractéristique.",
+        "physiologicalDetails": {
+          "tongue": "Se stabilise sur le point d'articulation de la consonne finale pour absorber l'arrêt de la voix.",
+          "lips": "Rejoignent la position de repos neutre dès l'extinction du son.",
+          "vocalCords": "Cessent de vibrer à l'instant précis où l'air s'arrête.",
+          "airflow": "Interrompu net, suivi d'une inspiration d'air réparatrice pour la reprise."
+        },
+        "phoneticReasonFr": "La vocalisation finale sert à lier les mots syntaxiquement entre eux. Dès lors que l'orateur s'arrête, la fonction de liaison disparaît : l'effort musculaire pour maintenir la voyelle devient inutile, d'où le retour au repos du soukoûn.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَسَكِّنِ المَوْقُوفَ عَنْهُ إِنْ تَصِلْ * وَاحْذَرْ مِنَ التَّحْرِيكِ حَالَمَا تَكِلْ\nوَالأَصْلُ فِي الوَقْفِ السُّكُونُ حَتْمَا * إِلَّا مَعَ الرَّوْمِ كَمَا تَنَمَّى",
+          "transliteration": "Wa sakkinil-mawqūfa 'anhu in tasil * Wahdhar mina-t-tahrīki hālamā takil / Wal-aslu fil-waqfi-s-sukūnu hatmā * Illā ma'a-r-rawmi kamā tanammā",
+          "translationFr": "« Immobilise par un soukoûn la lettre sur laquelle tu t'arrêtes, et prends garde à ne pas la mouvoir d'une voyelle. Car la norme fondamentale de l'arrêt est obligatoirement le soukoûn, sauf en cas de Rawm. »",
+          "chapterNameAr": "بَابُ الوَقْفِ عَلَى أَوَاخِرِ الكَلِمِ"
+        },
+        "examples": [
           {
-            id: 'ex-c3-1',
-            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '1:2',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلۡعَٰلَمِينَ',
-            highlightLetter: 'نَ ➔ نْ',
-            ruleApplied: 'Fathah devient Soukoûn pur',
-            ruleTag: 'izhar',
-            explanationFr: 'En continuant : « Al-\'Ālamīna Ar-Rahmān ». À l\'arrêt sur le verset : la Fathah disparaît et l\'on prononce « Al-\'Ālamīn » avec un Soukoûn sur le Nūn.',
-            transliteration: 'Al-hamdu lillāhi rabbi-l-\'ālamīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
-          },
-          {
-            id: 'ex-c3-2',
-            arabicText: 'إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ',
-            surahAyahRef: '1:5',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'نَسۡتَعِينُ',
-            highlightLetter: 'نُ ➔ نْ',
-            ruleApplied: 'Dammah devient Soukoûn pur',
-            ruleTag: 'izhar',
-            explanationFr: 'La Dammah finale sur le Nūn s\'efface à l\'arrêt pour donner « Nasta\'īn » avec un arrêt franc sur le Soukoûn.',
-            transliteration: 'Iyyāka na\'budu wa iyyāka nasta\'īn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001005.mp3'
-          },
-          {
-            id: 'ex-c3-3',
-            arabicText: 'وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ',
-            surahAyahRef: '3:153',
-            surahNameFr: 'Āl \'Imrān',
-            highlightSegment: 'خَبِيرٞ',
-            highlightLetter: 'ـٌ ➔ ْ',
-            ruleApplied: 'Tanwīn Damm devient Soukoûn pur',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Tanwīn Damm s\'annule complètement à l\'arrêt : on prononce « Khabīr » avec Râ\' amincie (Tarqīq), SANS aucun Madd \'Iwad.',
-            transliteration: 'Wallāhu bimā ta\'malūna khabīr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003153.mp3'
+            "id": "ex-c3-1",
+            "arabicText": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
+            "surahAyahRef": "1:2",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "ٱلۡعَٰلَمِينَ",
+            "highlightLetter": "نَ ➔ نۡ",
+            "ruleApplied": "Waqf sur Soukoûn Temporaire",
+            "ruleTag": "silent",
+            "explanationFr": "Le mot est écrit « Al-'Ālamīna » avec une Fathah sur le Nūn. À l'arrêt, la Fathah disparaît obligatoirement : on prononce « Al-'Ālamīn » avec un Nūn sākinah.",
+            "transliteration": "Al-hamdu lillāhi rabbi-l-'ālamīn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001002.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Laisser entendre un résidu de voyelle à la fin du mot lors de l\'arrêt.',
-            correctionFr: 'Bloquez l\'air net sur la dernière consonne : l\'arrêt en arabe requiert un Soukoûn parfait et franc.'
-          },
-          {
-            trapFr: 'Croire que le Tanwīn Damm (ـٌ) ou Kasr (ـٍ) se transforme en prolongation comme le Tanwīn Fath.',
-            correctionFr: 'Non ! Seul le Tanwīn Fath donne une prolongation. Le Tanwīn Damm et le Tanwīn Kasr s\'évanouissent complètement en Soukoûn.'
+            "trapFr": "Pour les francophones : laisser traîner un 'e' muet instable ou une demi-voyelle française à la fin du mot (ex: dire 'Al-hamdu lillahi rabbi-l-'alamine-uh').",
+            "correctionFr": "Bloquez l'émission sonore dès que la langue touche le palais sur le Nūn : pas de souffle résiduel ni de rebond intempestif."
           }
         ]
       },
       {
-        id: 'madd-iwad',
-        nameFr: '2. Exception 1 : Madd \'Iwad sur Tanwīn Fath (مد العوض)',
-        nameAr: 'مَدُّ العِوَضِ عَنِ التَّنْوِينِ المَفْتُوحِ',
-        mnemonic: 'Tanwīn Fath (ـً / ـٗا) ➔ Alif de 2 temps à l\'arrêt',
-        letters: ['ـً', 'ـٗا'],
-        definitionFr: 'Le Madd \'Iwad (prolongation de compensation) : lorsque l\'on s\'arrête sur un mot terminé par un Tanwīn Fath, le son de la nunation s\'efface et est remplacé par une voyelle longue Alif de 2 temps.',
-        mechanismFr: 'Ouvrez délicatement la bouche et prolongez le son [ā] sur 2 temps réguliers. Même s\'il n\'y a pas d\'Alif tracé après une Hamzah (ex: بِنَاءً), la phonétique exige un Alif de 2 temps.',
-        durationHarakat: 2,
-        examples: [
+        "id": "madd-iwad",
+        "nameFr": "2. Exception 1 : Madd 'Iwad (Le Tanwīn Fathah تبدیل en Alif)",
+        "nameAr": "مَدُّ العِوَضِ (عِنْدَ الوَقْفِ عَلَى التَّنْوِينِ المَفْتُوحِ)",
+        "mnemonic": "Tanwīn Fathah (ـً) à l'arrêt = Alif pur de 2 temps",
+        "letters": [
+          "ً"
+        ],
+        "definitionFr": "Lorsque l'on s'arrête sur un mot se terminant par un Tanwīn Fathah (double trait au-dessus), le Tanwīn ne prend pas de soukoûn : il se compense (« 'Iwad ») en une prolongation pure d'Alif d'une durée stricte de 2 temps.",
+        "definitionLughatan": {
+          "ar": "العِوَضُ: البَدَلُ وَالخَلَفُ، يُقَالُ: عَوَّضْتُهُ إِذَا أَعْطَيْتَهُ بَدَلاً عَمَّا فَاتَهُ.",
+          "fr": "La compensation, le substitut et le remplacement."
+        },
+        "definitionIstilahan": {
+          "ar": "إِبْدَالُ التَّنْوِينِ المَفْتُوحِ أَلِفاً مَمْدُودَةً مِقْدَارَهَا حَرَكَتَانِ عِنْدَ الوَقْفِ دُونَ الوَصْلِ.",
+          "fr": "Remplacer le Tanwīn Fathah lors de l'arrêt par un Alif de prolongation de deux temps. En liaison continue, le Tanwīn retrouve sa règle ordinaire."
+        },
+        "mechanismFr": "N'articulez pas le son [n] du Tanwīn. Ouvrez verticalement la bouche et laissez résonner la voyelle longue [ā] pendant deux pulsations régulières de la main.",
+        "physiologicalDetails": {
+          "tongue": "Abaissée et complètement passive au fond de la bouche.",
+          "lips": "Ouverture verticale moyenne et détendue sans arrondir les commissures.",
+          "vocalCords": "Vibration continue sur deux battements temporels.",
+          "airflow": "Flux d'air s'échappant exclusivement par la cavité buccale (Jawf) sans aucune fuite nasale."
+        },
+        "phoneticReasonFr": "En arabe classique, le Tanwīn Fathah est historiquement accompagné d'un Alif graphique de soutien. À la pause, la voyelle longue prend naturellement la place de la nasalisation pour amortir la terminaison acoustique du mot.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَبَدِّلِ التَّنْوِينَ حَالَ الفَتْحِ * أَلِفاً عِنْدَ الوُقُوفِ الصَّحِّ\nوَمُدَّهُ حَرَكَتَيْنِ كَالطَّبِيعِي * عِوَضاً عَنِ التَّنْوِينِ لَا تُضَيِّعِ",
+          "transliteration": "Wa baddili-t-tanwīna hāla-l-fathi * Alifan 'inda-l-wuqūfi-s-sahhi / Wa muddahū harakatayni kat-tabī'ī * 'Iwadan 'ani-t-tanwīni lā tudayyi'i",
+          "translationFr": "« Remplace le Tanwīn avec Fathah par un Alif lors de l'arrêt conforme, et prolonge-le de deux temps comme le Madd naturel en compensation du Tanwīn ; ne le néglige pas. »",
+          "chapterNameAr": "بَابُ مَدِّ العِوَضِ"
+        },
+        "examples": [
           {
-            id: 'ex-c3-4',
-            arabicText: 'ٱللَّهُ ٱلَّذِى جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا',
-            surahAyahRef: '40:64',
-            surahNameFr: 'Ghāfir',
-            highlightSegment: 'قَرَارٗا',
-            highlightLetter: 'ـٗا ➔ ا',
-            ruleApplied: 'Madd \'Iwad classique (2 temps)',
-            ruleTag: 'madd',
-            explanationFr: 'En continu : « Qarāraw-was-Samā\' » (Idghām avec Wāw). À l\'arrêt : on prononce « Qarārā » avec une prolongation exacte de 2 temps.',
-            transliteration: 'Ja\'ala lakumu-l-arda qarārā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
-          },
-          {
-            id: 'ex-c3-5',
-            arabicText: 'وَٱلسَّمَآءَ بِنَآءٗ',
-            surahAyahRef: '40:64',
-            surahNameFr: 'Ghāfir',
-            highlightSegment: 'بِنَآءٗ',
-            highlightLetter: 'ءً ➔ ءَا',
-            ruleApplied: 'Madd \'Iwad sans Alif écrit (2 temps)',
-            ruleTag: 'madd',
-            explanationFr: 'En orthographe arabe, on n\'écrit pas d\'Alif après une Hamzah précédée d\'un Alif. Mais à l\'arrêt, on prononce obligatoirement « Binā\'ā » avec 2 temps de Madd !',
-            transliteration: 'Was-samā\'a binā\'ā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
+            "id": "ex-c3-2",
+            "arabicText": "وَكَانَ ٱللَّهُ عَلِيمًا حَكِيمٗا",
+            "surahAyahRef": "4:17",
+            "surahNameFr": "An-Nisā'",
+            "highlightSegment": "حَكِيمٗا",
+            "highlightLetter": "ـٗا (Madd 'Iwad)",
+            "ruleApplied": "Madd 'Iwad (2 Temps)",
+            "ruleTag": "madd",
+            "explanationFr": "Le mot s'écrit « Hakīman ». En s'arrêtant dessus, le son [an] se métamorphose en une prolongation [ā] de 2 temps : on prononce « Hakīmā ».",
+            "transliteration": "Wa kāna-Llāhu 'Alīman Hakīmā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/004017.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Supprimer la voyelle et prononcer un Soukoûn sec sur le Tanwīn Fath (ex: dire "Qarār" au lieu de "Qarārā").',
-            correctionFr: 'Le Tanwīn Fath exige impérativement une prolongation Alif de 2 temps à l\'arrêt.'
+            "trapFr": "Prononcer le son [N] à l'arrêt en disant « Hakīman » ou « 'Alīman ».",
+            "correctionFr": "Le son [N] est strictement aboli à l'arrêt : transformez-le en une douce prolongation voyelle 'Hakīmā'."
           },
           {
-            trapFr: 'Oublier d\'allonger la Hamzah dans « Binā\'an » sous prétexte qu\'aucun Alif n\'est calligraphié.',
-            correctionFr: 'La règle s\'applique à l\'oreille, pas aux yeux : « Binā\'ā » s\'allonge de 2 temps comme n\'importe quel Tanwīn Fath.'
+            "trapFr": "Appliquer le Madd 'Iwad sur une Tā' Marbūṭah portant un Tanwīn Fathah comme dans « رَحْمَةً ».",
+            "correctionFr": "Attention ! La Tā' Marbūṭah est une exception absolue : elle devient un Hā' soukouné [rah-mah] et ne prend jamais de Madd 'Iwad !"
           }
         ]
       },
       {
-        id: 'ta-marbutah',
-        nameFr: '3. Exception 2 : Métamorphose de la Tā\' Marbūtah (التاء المربوطة)',
-        nameAr: 'انْقِلابُ التَّاءِ المَرْبُوطَةِ هَاءً سَاكِنَةً',
-        mnemonic: 'Tā\' Marbūtah (ة / ـة) ➔ Hā\' Soukoûn (هْ) | JAMAIS de Madd \'Iwad !',
-        letters: ['ة', 'ـة'],
-        definitionFr: 'Toute Tā\' Marbūtah (ة / ـة) se métamorphose obligatoirement en une lettre Hā\' avec Soukoûn (هْ) lors d\'un arrêt, quelle que soit sa voyelle (Fathah, Dammah, Kasrah ou Tanwīn Fath).',
-        mechanismFr: 'Relâchez le bout de la langue et expirez un souffle doux depuis le bas de la gorge (Makhraj du Hā\') pour faire entendre la consonne Hā\' sans forcer.',
-        durationHarakat: 0,
-        examples: [
+        "id": "taa-marbutah-stop",
+        "nameFr": "3. Exception 2 : Métamorphose de la Tā' Marbūṭah (ة -> [h])",
+        "nameAr": "وَقْفُ التَّاءِ المَرْبُوطَةِ هَاءً سَاكِنَةً",
+        "mnemonic": "Tā' Marbūṭah (ة) à l'arrêt = Hā' soukounée claire avec souffle (Hams)",
+        "letters": [
+          "ة",
+          "ـة"
+        ],
+        "definitionFr": "Toute Tā' fermée (Marbūṭah ة / ـة), quelle que soit sa voyelle en liaison (Fathah, Dammah, Kasrah ou Tanwīn), se métamorphose obligatoirement à l'arrêt en une lettre Hā' soukounée (هـ) provenant du fond de la gorge avec un souffle doux de Hams.",
+        "definitionLughatan": {
+          "ar": "المَرْبُوطَةُ: المَشْدُودَةُ الَّتِي رُبِطَ طَرَفَاهَا فَالْتَقَيَا كَالدَّائِرَةِ.",
+          "fr": "La lettre attachée dont les extrémités se rejoignent en boucle circulaire."
+        },
+        "definitionIstilahan": {
+          "ar": "التَّاءُ الدَّالَّةُ عَلَى التَّأْنِيثِ الَّتِي تُلْفَظُ تَاءً فِي الوَصْلِ وَتَنْقَلِبُ هَاءً سَاكِنَةً فِي الوَقْفِ.",
+          "fr": "La désinence féminine qui se prononce Tā' [t] en liaison continue et qui se permute obligatoirement en Hā' soukounée [h] lors de l'arrêt."
+        },
+        "mechanismFr": "Relâchez la langue loin des dents incisives supérieures. Émettez un souffle expiratoire doux et limpide depuis le fond du larynx (Aqṣā al-Halq).",
+        "physiologicalDetails": {
+          "tongue": "Ne touche absolument pas les dents ni le palais antérieur (sinon vous prononceriez un Tā' fautif).",
+          "lips": "Entrouvertes de manière passive.",
+          "vocalCords": "Cordes vocales ouvertes sans vibration sonore (Hams / souffle d'air pur).",
+          "airflow": "Expiration douce et continue issue de la glotte sans râcle gutturale."
+        },
+        "phoneticReasonFr": "En arabe, la Tā' Marbūṭah est un phonème mixte qui possède deux visages : la consonne occlusive Tā' en liaison pour articuler la phrase, et le souffle apaisant Hā' à la pause pour soulager l'appareil respiratoire.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَكُلُّ مَا فِيهِ بِتَاءٍ رُبِطَا * فَقِفْ عَلَيْهِ بِالهَاءِ مُحِطَا\nإِلَّا الَّتِي كُتِبَتْ بِتَاءٍ فُتِحَتْ * فَحُكْمُهَا كَالتَّاءِ وَقْفاً رَجَحَتْ",
+          "transliteration": "Wa kullu mā fīhi bi-tā'in rubitā * Fa-qif 'alayhi bil-hā'i muhitā / Illā-l-latī kutibat bi-tā'in futihat * Fa-hukmuhā kat-tā'i waqfan rajahat",
+          "translationFr": "« Tout mot écrit avec une Tā' liée (Marbūṭah), arrête-toi dessus par une Hā' ; excepté celles tracées exceptionnellement avec une Tā' ouverte, dont l'arrêt se fait en Tā'. »",
+          "chapterNameAr": "بَابُ التَّاءِ المَرْبُوطَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-c3-6',
-            arabicText: 'يَٰٓأَيُّهَا ٱلنَّاسُ قَدۡ جَآءَتۡكُم مَّوۡعِظَةٞ مِّن رَّبِّكُمۡ وَشِفَآءٞ لِّمَا فِى ٱلصُّدُورِ وَهُدٗى وَرَحۡمَةٗ لِّلۡمُؤۡمِنِينَ',
-            surahAyahRef: '10:57',
-            surahNameFr: 'Yūnus',
-            highlightSegment: 'وَرَحۡمَةٗ',
-            highlightLetter: 'ةٗ ➔ هْ',
-            ruleApplied: 'Tā\' Marbūtah devient Hā\' Sākinah',
-            ruleTag: 'silent',
-            explanationFr: 'Attention piège ! Même avec un Tanwīn Fath (ـَةٗ), la Tā\' Marbūtah NE PREND PAS de Madd \'Iwad ! Elle devient « Rahmah » avec un Hā\' doux final.',
-            transliteration: 'Wa hudan wa rahmah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/010057.mp3'
-          },
-          {
-            id: 'ex-c3-7',
-            arabicText: 'وَأَقِيمُواْ ٱلصَّلَوٰةَ وَءَاتُواْ ٱلزَّكَوٰةَ',
-            surahAyahRef: '2:43',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ٱلصَّلَوٰةَ',
-            highlightLetter: 'ةَ ➔ هْ',
-            ruleApplied: 'Tā\' Marbūtah avec Fathah ➔ Hā\' Sākinah',
-            ruleTag: 'silent',
-            explanationFr: 'En continu : « As-Salāta wa ātū ». À l\'arrêt : « As-Salāh » avec un souffle franc sur le Hā\' final.',
-            transliteration: 'Wa aqīmu-s-salāh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002043.mp3'
+            "id": "ex-c3-3",
+            "arabicText": "فِيهَا عَيۡنٞ جَارِيَةٞ",
+            "surahAyahRef": "88:12",
+            "surahNameFr": "Al-Ghāshiyah",
+            "highlightSegment": "جَارِيَةٞ",
+            "highlightLetter": "ـةٞ ➔ ـهۡ",
+            "ruleApplied": "Métamorphose en Hā' à l'Arrêt",
+            "ruleTag": "silent",
+            "explanationFr": "En liaison continue : « Jāriyatun ». Lors de l'arrêt, le Tā' disparaît et devient une Hā' soukounée soufflée : « Jāriyah ».",
+            "transliteration": "Fīhā 'aynun jāriyah (à l'arrêt)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/088012.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Appliquer un Madd \'Iwad sur une Tā\' Marbūtah portant Tanwīn Fath (ex: dire "Rahmatā").',
-            correctionFr: 'Interdiction absolue ! La Tā\' Marbūtah se transmute TOUJOURS en Hā\' Sākinah (« Rahmah »).'
+            "trapFr": "Pour les francophones : couper le mot sur la voyelle sans faire entendre le souffle de la Hā' (ex: dire 'Jāriya' sans son final).",
+            "correctionFr": "Assurez-vous d'expirer un souffle perceptible au fond de la gorge pour marquer la Hā' : « Jāriyah »."
           },
           {
-            trapFr: 'Confondre Tā\' Marbūtah (ة) et Tā\' Maftūhah (ت comme dans جَنَّٰتٍ).',
-            correctionFr: 'La Tā\' Maftūhah (ت) reste un Tā\' avec Soukoûn et souffle (Hams) : « Jannāt ». Seule la Tā\' ronde (ة) devient un Hā\'.'
+            "trapFr": "S'arrêter en prononçant un [t] : dire 'Jāriyat'.",
+            "correctionFr": "C'est un Lahn Jalī si la lettre est fermée. Ne touchez pas le palais avec le bout de votre langue."
           }
         ]
       },
       {
-        id: 'resuming-safety',
-        nameFr: '4. Reprise (Al-Isti\'nāf) & Le Piège des Citations',
-        nameAr: 'الاسْتِئْنَافُ الحَسَنُ وَتَجَنُّبُ القَبِيحِ',
-        mnemonic: 'Souffle court ➔ Reculer de 2-3 mots ("Stop & Repeat") | Jamais de citation isolée',
-        letters: [],
-        definitionFr: 'L\'Isti\'nāf régit la reprise de la lecture après une pause respiratoire. Si l\'arrêt a eu lieu au milieu d\'une proposition liée, il est indispensable de reculer de quelques mots pour reprendre une unité de sens autonome.',
-        mechanismFr: 'Identifiez le verbe ou le sujet principal précédent pour relancer la phrase. Ne repartez jamais d\'une particule subordonnée ou d\'une citation sans son locuteur.',
-        durationHarakat: 0,
-        examples: [
+        "id": "waqf-categories",
+        "nameFr": "4. Les 4 Catégories de Waqf & La Reprise (Ibtidā')",
+        "nameAr": "أَقْسَامُ الوَقْفِ الأَرْبَعَةِ وَأَحْكَامُ الِابْتِدَاءِ",
+        "mnemonic": "1. Tāmm (Parfait) | 2. Kāfin (Suffisant) | 3. Hasan (Bon) | 4. Qabīh (Mauvais - À bannir)",
+        "letters": [],
+        "definitionFr": "L'arrêt n'est pas un simple silence physique : il structure la compréhension théologique du Coran. Les savants ont codifié 4 catégories d'arrêt selon le lien sémantique (Ma'nā) et grammatical (Lafz) avec la phrase suivante.",
+        "definitionLughatan": {
+          "ar": "الِابْتِدَاءُ: الشُّرُوعُ فِي الشَّيْءِ وَالبَدْءُ بِهِ.",
+          "fr": "L'inauguration et le début d'une action."
+        },
+        "definitionIstilahan": {
+          "ar": "التَّامُّ: لَا تَعَلُّقَ لَهُ بِمَا بَعْدَهُ لَفْظاً وَلَا مَعْنًى. الكَافِي: تَعَلَّقَ مَعْنًى لَا لَفْظاً. الحَسَنُ: تَعَلَّقَ لَفْظاً وَمَعْنًى مَعَ إِفَادَةِ مَعْنًى تَامٍّ. القَبِيحُ: مَا لَا يُفِيدُ مَعْنًى أَوْ يُوهِمُ فَسَاداً.",
+          "fr": "1. Tāmm : aucun lien grammatical ni sémantique. 2. Kāfin : lien sémantique uniquement. 3. Hasan : lien grammatical et sémantique mais sens complet. 4. Qabīh : déforme le sens ou laisse une phrase tronquée."
+        },
+        "mechanismFr": "Si vous devez vous arrêter par manque de souffle sur un arrêt Hasan ou Qabīh, ne repartez jamais directement du mot suivant : reculez de deux ou trois mots pour reconstruire la phrase grammaticalement.",
+        "physiologicalDetails": {
+          "tongue": "Prête pour la reprise du mot précédent choisi pour l'Ibtidā' correct.",
+          "lips": "Reprennent la voyelle d'attaque avec netteté.",
+          "vocalCords": "Inauguration de la vibration sur une voyelle franche.",
+          "airflow": "Gestion d'un souffle plein après une inspiration profonde."
+        },
+        "phoneticReasonFr": "Une phrase arabe incomplète suspendue sur un verbe sans son sujet ou sur une particule négative sans son affirmation détruit la logique du discours coranique.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَغَيْرُ مَا تَمَّ قَبِيحٌ وَلَهُ * الوَقْفُ مُضْطَرّاً وَيُبْدَا قَبْلَهُ\nوَلَيْسَ فِي القُرْآنِ مِنْ وَقْفٍ وَجَبْ * وَلَا حَرَامٌ غَيْرَ مَا لَهُ سَبَبْ",
+          "transliteration": "Wa ghayru mā tamma qabīhun wa lahū * Al-waqfu mudtarran wa yubdā qablahū / Wa laysa fil-Qur'āni min waqfin wajab * Wa lā harāmun ghayra mā lahū sabab",
+          "translationFr": "« Tout arrêt non abouti est qualifié de Mauvais (Qabīh) ; on ne peut s'y arrêter que sous la contrainte, et il faut alors reprendre avant lui. Il n'existe pas dans le Coran d'arrêt intrinsèquement obligatoire ni interdit, sauf s'il existe une cause qui corrompt le sens. » (Versets 85-86)",
+          "chapterNameAr": "بَابُ الوَقْفِ وَالِابْتِدَاءِ"
+        },
+        "examples": [
           {
-            id: 'ex-c3-8',
-            arabicText: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ وَنَحۡنُ أَغۡنِيَآءُ',
-            surahAyahRef: '3:181',
-            surahNameFr: 'Āl \'Imrān',
-            highlightSegment: 'قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
-            highlightLetter: 'Stop & Repeat',
-            ruleApplied: 'Reprise sécurisée obligatoire',
-            ruleTag: 'izhar',
-            explanationFr: 'Si votre souffle s\'interrompt sur « Qālū », vous devez obligatoirement reculer et reprendre depuis « Qawla-lladhīna qālū » ou au moins « Qālū » ! Reprendre par « Inna Allāha faqīr » seul constitue une parole de mécréance.',
-            transliteration: 'Qawla-lladhīna qālū inna Allāha faqīr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003181.mp3'
-          },
-          {
-            id: 'ex-c3-9',
-            arabicText: 'إِلَىٰ صِرَٰطِ ٱلۡعَزِيزِ ٱلۡحَمِيدِ ١ ٱللَّهِ ٱلَّذِى لَهُۥ مَا فِى ٱلسَّمَٰوَٰتِ',
-            surahAyahRef: '14:1-2',
-            surahNameFr: 'Ibrāhīm',
-            highlightSegment: 'ٱللَّهِ',
-            highlightLetter: 'Kasrah initiale interdite',
-            ruleApplied: 'Liaison Wasl obligatoire',
-            ruleTag: 'heavy',
-            explanationFr: 'En lecture Hafs, le mot « Allāhi » au verset 2 porte une Kasrah grammaticale liée au mot précédent. Si vous commencez au verset 2, liez-le au verset 1 (« Al-Hamīdi-llāh ») pour ne jamais débuter sur une Kasrah subordonnée isolée.',
-            transliteration: 'Al-hamīdi-llāhi-lladhī',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/014001.mp3'
+            "id": "ex-c3-4",
+            "arabicText": "فَوَيۡلٞ لِّلۡمُصَلِّينَ ١ ٱلَّذِينَ هُمۡ عَن صَلَاتِهِمۡ سَاهُونَ",
+            "surahAyahRef": "107:4-5",
+            "surahNameFr": "Al-Mā'ūn",
+            "highlightSegment": "فَوَيۡلٞ لِّلۡمُصَلِّينَ",
+            "highlightLetter": "Arrêt Mauvais si isolé",
+            "ruleApplied": "Exemple de Waqf Qabīh (Mauvais)",
+            "ruleTag": "qalqalah",
+            "explanationFr": "S'arrêter sur « Malheur aux prieurs » sans continuer détruit le sens du verset en maudissant ceux qui prient ! Il faut impérativement continuer : « ...qui sont distraits de leur prière ».",
+            "transliteration": "Fa waylul-lil-musallīn (à ne pas isoler)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/107004.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Reprendre sur le mot qui suit immédiatement l\'endroit où l\'on a manqué d\'air sans regarder le sens.',
-            correctionFr: 'Appliquez la règle de précaution : reculez systématiquement de 2 ou 3 mots pour reconstituer un membre de phrase cohérent.'
-          },
-          {
-            trapFr: 'Débuter une récitation sur une parole négative ou blasphématoire rapportée dans le Coran.',
-            correctionFr: 'Englobez toujours le verbe d\'énonciation (ex: « Wa qālū... » ou « Qāla... ») pour que l\'affirmation ne vous soit pas attribuée.'
+            "trapFr": "Reprendre sa lecture exactement au mot qui suit après un arrêt forcé par essoufflement.",
+            "correctionFr": "Reculez toujours d'un ou deux mots pour assurer une reprise (Ibtidā') sémantiquement correcte."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c3-1',
-        title: 'Le Piège de la Citation Blasphématoire : Sūrah Āl \'Imrān (3:181)',
-        verseArabic: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ وَنَحۡنُ أَغۡنِيَآءُ',
-        surahAyahRef: '3:181',
-        targetSegment: 'قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
-        promptFr: 'Votre souffle s\'épuise sur le mot « قَالُوٓاْ » (Qālū). Comment devez-vous reprendre votre récitation pour éviter un contresens théologique ?',
-        hintFr: 'Réfléchissez à qui prononce les paroles « Allah est pauvre ». Est-ce le croyant ou les négateurs ?',
-        solutionFr: 'Reculer d\'au moins un mot pour ré-énoncer « Qālū » ou « Qawla-lladhīna qālū »',
-        breakdownSteps: [
-          'Étape 1 : Si vous reprenez directement par « Inna Allāha faqīr » (إِنَّ ٱللَّهَ فَقِيرٞ), vous énoncez la phrase comme si c\'était votre propre affirmation, ce qui est une parole sacrilège inacceptable (Ibtidā\' Qabīh).',
-          'Étape 2 : Le mot « Qālū » (ils ont dit) est le marqueur de citation indispensable qui attribue ce propos ignoble à ses véritables auteurs.',
-          'Étape 3 : Règle « Stop & Repeat » : reprenez depuis « Qawla-lladhīna qālū » (قَوۡلَ ٱلَّذِينَ قَالُوٓاْ) ou au minimum « Qālū » (قَالُوٓاْ).',
-          'Étape 4 : Vous préservez ainsi parfaitement la majesté divine et le sens de la révélation.'
+        "id": "exo-c3-1",
+        "title": "Gestion du Waqf sur Tanwīn Fathah : « كِتَٰبٗا مَّوْقُوتٗا »",
+        "verseArabic": "إِنَّ ٱلصَّلَوٰةَ كَانَتۡ عَلَى ٱلۡمُؤۡمِنِينَ كِتَٰبٗا مَّوۡقُوتٗا",
+        "surahAyahRef": "4:103",
+        "targetSegment": "مَّوۡقُوتٗا",
+        "promptFr": "Comment devez-vous clore le verset sur le mot « Mawqūtan » en fin de souffle ?",
+        "hintFr": "Rappelez-vous de la règle du Madd 'Iwad (compensation).",
+        "solutionFr": "En transformant le Tanwīn en un Alif pur de 2 temps : « Mawqūtā »",
+        "breakdownSteps": [
+          "Le mot se termine par un Tanwīn Fathah (ـٗا).",
+          "En cas d'arrêt, le son [N] est éliminé.",
+          "On prolonge la Fathah en un Alif naturel de 2 battements : « Mawqūtā »."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/003181.mp3'
-      },
-      {
-        id: 'exo-c3-2',
-        title: 'Maîtrise du Madd \'Iwad : Sūrah Ghāfir (40:64)',
-        verseArabic: 'ٱللَّهُ ٱلَّذِى جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا وَٱلسَّمَآءَ بِنَآءٗ',
-        surahAyahRef: '40:64',
-        targetSegment: 'قَرَارٗا وَٱلسَّمَآءَ بِنَآءٗ',
-        promptFr: 'Comparez la prononciation du mot « قَرَارٗا » et du mot « بِنَآءٗ » si le lecteur s\'arrête sur chacun d\'eux.',
-        hintFr: 'Examinez la présence d\'un Alif écrit sur le premier mot et son absence sur le second après la Hamzah.',
-        solutionFr: 'Les deux mots reçoivent exactement le même Madd \'Iwad de 2 temps (« Qarārā » et « Binā\'ā »)',
-        breakdownSteps: [
-          'Sur « Qarārā » (قَرَارٗا) : Le Tanwīn Fath est calligraphié avec un Alif. À l\'arrêt, le Tanwīn devient un Alif de 2 temps : « Qarārā ».',
-          'Sur « Binā\'ā » (بِنَآءٗ) : En calligraphie coranique, on n\'écrit pas d\'Alif après une Hamzah précédée d\'un Alif. Mais phonétiquement, la règle de Tajwīd reste stricte !',
-          'À l\'arrêt, « Binā\'an » devient obligatoirement « Binā\'ā » avec une prolongation de 2 temps complets.',
-          'En continu (Wasl), le Madd disparaît et vous appliquez la règle de Tanwīn appropriée (Idghām avec Wāw sur « Qarāraw-was-Samā\' »).'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/040064.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/004103.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c3-1',
-        type: 'mcq',
-        promptFr: 'Quelle est la règle générale en Tajwīd lorsqu\'on marque un arrêt (Waqf) sur un mot qui se termine par une voyelle courte (Fathah, Dammah ou Kasrah) ?',
-        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-        targetWord: 'ٱلۡعَٰلَمِينَ',
-        surahAyahRef: '1:2',
-        options: [
-          'La voyelle s\'efface totalement et la dernière lettre se prononce avec un Soukoûn pur (Al-\'Ālamīn)',
-          'La voyelle est allongée de 2 temps',
-          'On doit obligatoirement chuchoter la voyelle',
-          'On prononce la voyelle normalement comme en lecture continue'
+        "id": "q-c3-1",
+        "type": "mcq",
+        "promptFr": "Quel est l'axiome fondamental de la phonétique arabe lors de l'arrêt et de la reprise ?",
+        "verseArabic": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
+        "options": [
+          "On ne commence jamais par un Soukoûn et on ne s'arrête jamais sur une voyelle",
+          "On s'arrête toujours sur une voyelle longue",
+          "Toute consonne devient une voyelle à l'arrêt",
+          "On peut débuter par n'importe quel son"
         ],
-        correctAnswer: 'La voyelle s\'efface totalement et la dernière lettre se prononce avec un Soukoûn pur (Al-\'Ālamīn)',
-        explanationFr: 'Règle absolue : En arabe, on ne s\'arrête jamais sur une voyelle (لا يوقف على متحرك). Fathah, Dammah et Kasrah se transforment immédiatement en Soukoûn pur.',
-        ruleId: 'stopping-sukun'
+        "correctAnswer": "On ne commence jamais par un Soukoûn et on ne s'arrête jamais sur une voyelle",
+        "explanationFr": "L'adage canonique énonce : « لَا يُبْدَأُ بِسَاكِنٍ وَلَا يُوقَفُ عَلَى مُتَحَرِّكٍ ». Le soukoûn est obligatoire pour sceller l'arrêt.",
+        "ruleId": "stop-on-sukoon"
       },
       {
-        id: 'q-c3-2',
-        type: 'mcq',
-        promptFr: 'Comment devez-vous prononcer le mot « قَرَارٗا » (terminé par Tanwīn Fath) si vous marquez un arrêt sur celui-ci ?',
-        verseArabic: 'جَعَلَ لَكُمُ ٱلۡأَرۡضَ قَرَارٗا',
-        targetWord: 'قَرَارٗا',
-        surahAyahRef: '40:64',
-        options: [
-          '« Qarārā » : Le Tanwīn est remplacé par une prolongation Alif de 2 temps (Madd \'Iwad)',
-          '« Qarār » : On met un simple Soukoûn sans aucun allongement',
-          '« Qarāran » : On prononce le son Nūn du Tanwīn',
-          '« Qarāri » : On transforme en Kasrah'
+        "id": "q-c3-2",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Lors de l'arrêt sur « فِيهَا عَيْنٌ جَارِيَةٌ », un lecteur prononce « Jāriyat » en faisant sonner le Tā'. Quel est le jugement ?",
+        "verseArabic": "فِيهَا عَيۡنٞ جَارِيَةٞ",
+        "targetWord": "جَارِيَةٞ",
+        "surahAyahRef": "88:12",
+        "options": [
+          "Erreur formelle : la Tā' Marbūṭah (ة) se convertit obligatoirement en Hā' soukounée [h] à l'arrêt : « Jāriyah »",
+          "Récitation correcte",
+          "Madd 'Iwad obligatoire",
+          "Qalqalah sur le Tā'"
         ],
-        correctAnswer: '« Qarārā » : Le Tanwīn est remplacé par une prolongation Alif de 2 temps (Madd \'Iwad)',
-        explanationFr: 'C\'est la règle du Madd \'Iwad (مد العوض) : tout Tanwīn Fath (ـً / ـٗا) se transforme à l\'arrêt en une prolongation Alif de 2 temps complets.',
-        ruleId: 'madd-iwad'
+        "correctAnswer": "Erreur formelle : la Tā' Marbūṭah (ة) se convertit obligatoirement en Hā' soukounée [h] à l'arrêt : « Jāriyah »",
+        "explanationFr": "Toute Tā' fermée se métamorphose impérativement en Hā' à la pause. S'arrêter en 't' est une erreur déformante.",
+        "ruleId": "taa-marbutah-stop"
       },
       {
-        id: 'q-c3-3',
-        type: 'mcq',
-        promptFr: 'Que devient une Tā\' Marbūtah portant un Tanwīn Fath (comme dans « رَحۡمَةٗ ») lors d\'un arrêt ?',
-        verseArabic: 'وَرَحۡمَةٗ لِّلۡمُؤۡمِنِينَ',
-        targetWord: 'وَرَحۡمَةٗ',
-        surahAyahRef: '10:57',
-        options: [
-          'Elle se transforme obligatoirement en une lettre Hā\' avec Soukoûn (« Rahmah ») sans aucun Madd',
-          'Elle fait un Madd \'Iwad et se prononce « Rahmatā »',
-          'Elle se prononce « Rahmat » avec un Tā\' net',
-          'Elle se prononce « Rahmahn » avec un Tanwīn'
+        "id": "q-c3-3",
+        "type": "mcq",
+        "promptFr": "Quelle est la durée du Madd 'Iwad lorsqu'on s'arrête sur un mot tel que « عَلِيمًا حَكِيمًا » ?",
+        "verseArabic": "وَكَانَ ٱللَّهُ عَلِيمًا حَكِيمٗا",
+        "surahAyahRef": "4:17",
+        "options": [
+          "2 temps (durée équivalente au Madd naturel)",
+          "4 temps obligatoires",
+          "6 temps incompressibles",
+          "0 temps (aucun allongement)"
         ],
-        correctAnswer: 'Elle se transforme obligatoirement en une lettre Hā\' avec Soukoûn (« Rahmah ») sans aucun Madd',
-        explanationFr: 'C\'est l\'exception capitale : la Tā\' Marbūtah (ة) se transforme TOUJOURS en Hā\' Sākinah (هْ) à l\'arrêt, même si elle porte un Tanwīn Fath. Elle ne prend JAMAIS de Madd \'Iwad !',
-        ruleId: 'ta-marbutah'
-      },
-      {
-        id: 'q-c3-4',
-        type: 'mcq',
-        promptFr: 'Si votre souffle s\'interrompt sur « قَالُوٓاْ » dans Āl \'Imrān 3:181, pourquoi est-il formellement interdit de reprendre directement par « إِنَّ ٱللَّهَ فَقِيرٞ » ?',
-        verseArabic: 'لَّقَدۡ سَمِعَ ٱللَّهُ قَوۡلَ ٱلَّذِينَ قَالُوٓاْ إِنَّ ٱللَّهَ فَقِيرٞ',
-        targetWord: 'إِنَّ ٱللَّهَ فَقِيرٞ',
-        surahAyahRef: '3:181',
-        options: [
-          'Parce qu\'isoler cette phrase attribue ce blasphème au lecteur ou à la vérité, au lieu de citer les négateurs (Ibtidā\' Qabīh)',
-          'Parce que la lettre Hamzah ne peut pas être prononcée en début de souffle',
-          'Parce qu\'il faut faire une Ghunnah de 6 temps',
-          'Parce que le mot Allāh doit toujours être précédé d\'un verbe'
-        ],
-        correctAnswer: 'Parce qu\'isoler cette phrase attribue ce blasphème au lecteur ou à la vérité, au lieu de citer les négateurs (Ibtidā\' Qabīh)',
-        explanationFr: 'C\'est une faute théologique majeure (Ibtidā\' Qabīh). Le lecteur doit appliquer la technique « Stop & Repeat » et reculer au moins sur « Qālū » ou « Qawla-lladhīna qālū ».',
-        ruleId: 'resuming-safety'
-      },
-      {
-        id: 'q-c3-5',
-        type: 'mcq',
-        promptFr: 'Que devient le Tanwīn Damm (ـٌ) ou Kasr (ـٍ) à l\'arrêt sur un mot comme « عَظِيمٌ » ou « خَبِيرٍ » ?',
-        verseArabic: 'وَٱللَّهُ بِمَا تَعۡمَلُونَ خَبِيرٞ',
-        targetWord: 'خَبِيرٞ',
-        surahAyahRef: '3:153',
-        options: [
-          'Le Tanwīn disparaît et la lettre prend un simple Soukoûn (« Khabīr »), SANS prolongation \'Iwad',
-          'Le Tanwīn se transforme en un Wāw prolongé de 2 temps',
-          'Le Tanwīn se transforme en un Yā\' prolongé de 2 temps',
-          'Le Tanwīn continue de sonner avec une Ghunnah'
-        ],
-        correctAnswer: 'Le Tanwīn disparaît et la lettre prend un simple Soukoûn (« Khabīr »), SANS prolongation \'Iwad',
-        explanationFr: 'Le Madd \'Iwad est réservé exclusivement au Tanwīn Fath (ـً / ـٗا). Les Tanwīns Damm et Kasr perdent totalement leur nunation et deviennent un Soukoûn pur.',
-        ruleId: 'stopping-sukun'
+        "correctAnswer": "2 temps (durée équivalente au Madd naturel)",
+        "explanationFr": "Le Madd 'Iwad compense le Tanwīn Fathah par un Alif d'une durée stricte de 2 temps naturels.",
+        "ruleId": "madd-iwad"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 4 : LES PROLONGATIONS I (MADD NATUREL & DÉRIVÉS)
-  // ==========================================
   {
-    id: 'chap-4',
-    number: 4,
-    slug: 'madd-1',
-    titleFr: 'Les Prolongations I (Madd Naturel & Dérivés)',
-    titleAr: 'المَدُّ الأَصْلِيُّ (الطَّبِيعِيُّ) وَحُرُوفُ اللِّينِ',
-    category: 'beginner',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre la nature sacrée du Madd (seule règle de Tajwīd citée nominativement dans le Hadīth prophétique d\'Anas), maîtriser les 3 lettres de Madd et leur formule maîtresse « Nūhīhā » (نُوحِيهَا), calibrer exactement la durée de 2 Harakāt du Madd Naturel pour éradiquer le Lahn Jalī (altération du sens), distinguer lettres de Madd et lettres de Līn (حَرْفَا اللِّينِ), et maîtriser l\'arrêt d\'urgence sur les mots caméléons comme « Huwa » (هُوَ) et « Hiya » (هِيَ).',
-    infographicPoints: [
-      'Fondement Prophétique : Le Madd est la seule règle de Tajwīd citée explicitement dans le Sahīh Al-Bukhārī : « Le Prophète ﷺ étirait nettement les mots lors de sa récitation » (Hadīth d\'Anas ibn Mālik).',
-      'La Clé Sacrée « Nūhīhā » (نُوحِيهَا) : Réunit les 3 lettres de Madd avec leurs voyelles homogènes obligatoires : Wāw précédé de Dammah (نُو), Yā\' précédé de Kasrah (حِي), Alif précédé de Fathah (هَا).',
-      'Mesure des 2 Harakāt : 1 Harakah = durée d\'une voyelle courte (ex: Ba). 2 Harakāt = durée d\'une voyelle longue (ex: Bā = Ba + Ba, environ 1 seconde selon le tempo).',
-      'Le Péril du Lahn Jalī : Tronquer un Madd Naturel en voyelle courte change le sens et constitue un péché (Harām) ! Ex: Dire « Akhadhna » (les femmes ont pris) au lieu de « Akhadhnā » (Nous avons pris).',
-      'Madd vs Līn (حرفا اللين) : Lorsque Wāw ou Yā\' portent un Soukoûn et sont précédés d\'une FATHAH (ex: Bayt, Khawf, Quraysh), ce sont des lettres de Līn, qui ne reçoivent aucun Madd en lecture continue !',
-      'Le Cas Particulier de « Huwa » (هُوَ) & « Hiya » (هِيَ) : En liaison continue, le Wāw porte une Fathah (pas de Madd). Mais si vous vous arrêtez d\'urgence, la voyelle devient Soukoûn et le Wāw se mue en un Madd Naturel de 2 temps (« Hū ») !'
+    "id": "chap-4",
+    "number": 4,
+    "slug": "madd-1",
+    "titleFr": "Les Prolongations I (Madd Naturel & Dérivés)",
+    "titleAr": "المَدُّ الأَصْلِيُّ وَمُلْحَقَاتُهُ",
+    "category": "beginner",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Apprendre les 3 lettres de Madd réunies dans la formule « Nūhīhā » (نُوحِيهَا), le Madd Aslī (2 temps incompressibles), le Madd Silah Sughrā (liaison du pronom Hā'), les lettres de Līn (Wāw et Yā' précédés de Fathah) et les mots caméléons.",
+    "infographicPoints": [
+      "Les 3 Lettres de Madd : 1. Wāw soukouné précédé de Dammah (ـُو), 2. Yā' soukouné précédé de Kasrah (ـِي), 3. Alif toujours précédé de Fathah (ـَا).",
+      "Formule sacrée de synthèse : « نُوحِيهَا » (Nū-hī-hā) regroupe les 3 lettres dans un seul mot !",
+      "Madd Aslī / Tabī'ī : Mesure exactement 2 temps (deux battements métronomiques). Ne pas le réduire à 1 temps ni l'étirer au-delà.",
+      "Madd Silah Sughrā (صلة صغرى) : Le pronom Hā' (ـهُ) situé entre deux consonnes vocalisées se prolonge de 2 temps en liaison (ex: Innahū kāna).",
+      "Lettres de Līn (حرفا اللين) : Wāw ou Yā' soukounés précédés d'une Fathah (ex: Khawf, Bayt). En liaison, ils ne prennent aucun Madd !",
+      "Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ conservent leurs voyelles brèves et ne se prolongent pas."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'madd-definition-nuhiha',
-        nameFr: '1. Les 3 Lettres de Madd & La Formule « Nūhīhā »',
-        nameAr: 'حُرُوفُ المَدِّ الثَّلَاثَةُ وَكَلِمَةُ (نُوحِيهَا)',
-        mnemonic: 'نُوحِيهَا ➔ Dammah + و | Kasrah + ي | Fathah + ا',
-        letters: ['ا', 'و', 'ي'],
-        definitionFr: 'Le mot Madd (مَدّ) signifie linguistiquement l\'étirement. En Tajwīd, il désigne l\'allongement de la voix sur les 3 voyelles longues arabes lorsqu\'elles sont sans voyelle (Sākinah) et précédées de leur voyelle courte correspondante.',
-        mechanismFr: 'La voyelle s\'écoule librement à travers la cavité buccale et la gorge (Al-Jawf) sans aucun blocage consonantique.',
-        durationHarakat: 2,
-        examples: [
+        "id": "madd-letters-nuheeha",
+        "nameFr": "1. Les 3 Lettres de Madd & La Formule « Nūhīhā »",
+        "nameAr": "حُرُوفُ المَدِّ الثَّلَاثَةِ وَشُرُوطُهَا (نُوحِيهَا)",
+        "mnemonic": "Wāw après Dammah | Yā' après Kasrah | Alif après Fathah (نُوحِيهَا)",
+        "letters": [
+          "ا",
+          "و",
+          "ي"
+        ],
+        "definitionFr": "Le mot Madd (مَدّ) signifie allonger et étirer le son. Les lettres de prolongation sont au nombre de trois et naissent de la cavité vide de la bouche et de la gorge (Al-Jawf). Elles n'agissent comme Madd que si elles sont sans voyelle et précédées d'une voyelle homogène.",
+        "definitionLughatan": {
+          "ar": "المَدُّ: الزِّيَادَةُ وَالمَطْلُ، قَالَ تَعَالَى: ﴿وَيُمْدِدْكُمْ بِأَمْوَالٍ﴾ أَيْ يَزِدْكُمْ.",
+          "fr": "L'accroissement, l'étirement et l'extension dans le temps."
+        },
+        "definitionIstilahan": {
+          "ar": "إِطَالَةُ الصَّوْتِ بِحَرْفٍ مِنْ حُرُوفِ المَدِّ الثَّلَاثَةِ عِنْدَ مُلَاقَاةِ سَبَبٍ أَوْ بِدُونِهِ.",
+          "fr": "L'allongement du son d'une voyelle au moyen de l'une des trois lettres de Madd, avec ou sans cause externe."
+        },
+        "mechanismFr": "Le son ne naît d'aucun frottement musculaire dur. Il résonne librement dans le conduit vocal (Al-Jawf). L'air s'écoule avec fluidité sans à-coups laryngés.",
+        "physiologicalDetails": {
+          "tongue": "Détendue et stable au plancher de la bouche.",
+          "lips": "Projetées en avant sans crispation pour le Wāw ; abaissées pour le Yā' ; ouvertes verticalement pour l'Alif.",
+          "vocalCords": "Vibration libre et musicale sans occlusion.",
+          "airflow": "Flux continu sans aucune turbulence ni nasalité."
+        },
+        "phoneticReasonFr": "Ces voyelles longues constituent l'armature syllabique de l'arabe. Si on supprime leur allongement, le mot se contracte en voyelle brève, modifiant le temps verbal ou créant un contresens lexical.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَالمَدُّ مَكْتُوبٌ بِوَاوٍ أَلِفِ * وَيَاءٍ انْ سَكَنَّ بَعْدَ حَرَكِ\nيُجَانِسُ السَّاكِنَ فِيهَا تُحْتَسَبْ * بِمُدَّةٍ مِقْدَارُهَا طَبِيعِي وَجَبْ",
+          "transliteration": "Wal-maddu maktūbun bi-wāwin alifi * Wa yā'in in sakanna ba'da haraki / Yujānisu-s-sākina fīhā tuhtasab * Bi-muttadin miqdāruhā tabī'ī wajab",
+          "translationFr": "« Le Madd s'écrit avec un Wāw, un Alif et un Yā', lorsqu'ils sont dépourvus de voyelle après une voyelle homogène ; on leur accorde obligatoirement la durée naturelle. »",
+          "chapterNameAr": "بَابُ المَدِّ"
+        },
+        "examples": [
           {
-            id: 'ex-c4-1',
-            arabicText: 'تِلۡكَ مِنۡ أَنۢبَآءِ ٱلۡغَيۡبِ نُوحِيهَآ إِلَيۡكَ',
-            surahAyahRef: '11:49',
-            surahNameFr: 'Hūd',
-            highlightSegment: 'نُوحِيهَآ',
-            highlightLetter: 'و + ي + ا',
-            ruleApplied: 'Les 3 lettres de Madd réunies',
-            ruleTag: 'madd',
-            explanationFr: 'Ce mot contient les 3 lettres de Madd avec leurs voyelles homogènes obligatoires : Wāw précédé de Dammah (Nū), Yā\' précédé de Kasrah (hī) et Alif précédé de Fathah (hā).',
-            transliteration: 'Tilka min ambā\'i-l-ghaybi nūhīhā ilayk',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011049.mp3'
-          },
-          {
-            id: 'ex-c4-2',
-            arabicText: 'مَٰلِكِ يَوۡمِ ٱلدِّينِ',
-            surahAyahRef: '1:4',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'مَٰلِكِ',
-            highlightLetter: 'ٰ (Alif Khanjariyyah)',
-            ruleApplied: 'Alif Khanjariyyah = Madd Naturel 2 temps',
-            ruleTag: 'madd',
-            explanationFr: 'Le petit Alif vertical miniature (ٰ) est un Alif à part entière en Rasm \'Uthmānī : il exige exactement 2 temps de Madd.',
-            transliteration: 'Māliki yawmi-d-dīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001004.mp3'
+            "id": "ex-c4-1",
+            "arabicText": "تِلۡكَ مِنۡ أَنۢبَآءِ ٱلۡغَيۡبِ نُوحِيهَآ إِلَيۡكَ",
+            "surahAyahRef": "11:49",
+            "surahNameFr": "Hūd",
+            "highlightSegment": "نُوحِيهَآ",
+            "highlightLetter": "نُو + حِي + هَا",
+            "ruleApplied": "Les 3 lettres réunies dans « Nūhīhā »",
+            "ruleTag": "madd",
+            "explanationFr": "Ce mot modèle contient successivement les 3 lettres de Madd avec leurs voyelles correspondantes : Nū (Wāw après Dammah) + Hī (Yā' après Kasrah) + Hā (Alif après Fathah).",
+            "transliteration": "Nūhīhā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/011049.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Tenter de commencer un mot par une lettre de Madd.',
-            correctionFr: 'Impossible en arabe ! Une lettre de Madd est par définition sans voyelle (Sākinah), et la langue arabe interdit d\'attaquer une phrase par un Soukoûn.'
-          },
-          {
-            trapFr: 'Croire que l\'Alif peut porter une voyelle.',
-            correctionFr: 'L\'Alif est TOUJOURS une lettre de Madd précédée d\'une Fathah. La lettre qui porte une voyelle (Fathah, Dammah, Kasrah) est la Hamzah (ء).'
+            "trapFr": "Pour les francophones : injecter de l'air dans le nez pendant le Madd de l'Alif, produisant un son nasalisé 'an'.",
+            "correctionFr": "Pincez votre nez en récitant 'Nūhīhā' : le son ne doit subir absolument aucune altération. Si le son change, vous laissez fuiter l'air par le nez !"
           }
         ]
       },
       {
-        id: 'madd-tabii-duration',
-        nameFr: '2. Le Madd Naturel (2 Temps) & L\'Éradication du Lahn Jalī',
-        nameAr: 'المَدُّ الطَّبِيعِيُّ (حَرَكَتَانِ) وَتَجَنُّبُ اللَّحْنِ الجَلِيِّ',
-        mnemonic: '2 Harakāt obligatoires (بَا = بَ + بَ) | Ni trop court (Harām), ni trop long',
-        letters: ['ا', 'و', 'ي'],
-        definitionFr: 'Le Madd Naturel (Al-Madd At-Tabī\'ī ou Al-Aslī) est la prolongation intrinsèque sans laquelle la lettre ne peut exister. Il n\'est suivi ni d\'une Hamzah, ni d\'un Soukoûn.',
-        mechanismFr: 'Maintenez le son pendant exactement 2 battements réguliers (environ 1 seconde à tempo modéré). Ne jamais le tronquer en voyelle courte ni l\'étirer au-delà de 2 temps.',
-        durationHarakat: 2,
-        examples: [
+        "id": "madd-tabiee-silah-sughra",
+        "nameFr": "2. Le Madd Naturel (2 Temps) & Madd Silah Sughrā",
+        "nameAr": "المَدُّ الطَّبِيعِيُّ (حَرَكَتَانِ) وَمَدُّ الصِّلَةِ الصُّغْرَى",
+        "mnemonic": "Naturel = 2 temps stricts | Silah Sughrā = Pronom Hā' (ـهُۥ / ـهِۦ) entre deux voyelles",
+        "letters": [],
+        "definitionFr": "Le Madd naturel (طَبِيعِيّ) est celui dont la lettre ne peut exister sans lui et qui ne dépend d'aucune cause extérieure (ni Hamzah ni Soukoûn). Le Madd Silah Sughrā est le prolongement du pronom masculin singulier de 2 temps lorsqu'il est enclavé entre deux consonnes voyellées.",
+        "definitionLughatan": {
+          "ar": "الطَّبِيعِيُّ: المَنْسُوبُ إِلَى الفِطْرَةِ السَّلِيمَةِ الَّتِي لَا تَزِيدُ وَلَا تَنْقُصُ.",
+          "fr": "Naturel et conforme à l'instinct phonétique spontané."
+        },
+        "definitionIstilahan": {
+          "ar": "مَدٌّ لَا تَقُومُ ذَاتُ الحَرْفِ إِلَّا بِهِ، وَلَا يَتَوَقَّفُ عَلَى سَبَبٍ مِنْ هَمْزٍ أَوْ سُكُونٍ، وَمِقْدَارُهُ حَرَكَتَانِ.",
+          "fr": "Prolongation intrinsèque indispensable sans laquelle la consonne disparaîtrait, qui ne requiert aucune cause de Hamzah ni de soukoûn, mesurant rigoureusement deux temps."
+        },
+        "mechanismFr": "Mesurez deux temps métronomiques (le temps d'ouvrir et de fermer un doigt d'une cadence normale). Ne brusquez pas la terminaison par un coup de glotte involontaire.",
+        "physiologicalDetails": {
+          "tongue": "Reste parfaitement immobile pendant l'intégralité des deux battements temporels.",
+          "lips": "Gardent leur posture sans se refermer prématurément.",
+          "vocalCords": "Vibration continue et régulière.",
+          "airflow": "Flux sans à-coup."
+        },
+        "phoneticReasonFr": "Le pronom Hā' est un son faible et discret. Le prolonger de 2 temps en liaison évite qu'il ne soit avalé par la consonne suivante.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَالمَدُّ أَصْلِيٌّ وَفَرْعِيٌّ لَهُ * وَسَمِّ أَوَّلاً طَبِيعِيّاً وَهُوْ\nمَا لَا تَوَقُّفٌ لَهُ عَلَى سَبَبْ * وَلَا بِدُونِهِ الحُرُوفُ تُجْتَلَبْ",
+          "transliteration": "Wal-maddu aslīyyun wa far'īyyun lahū * Wa sammi awwalan tabī'iyyan wa hū / Mā lā tawaqqufun lahū 'alā sabab * Wa lā bi-dūnihi-l-hurūfu tujtalab",
+          "translationFr": "« Le Madd est soit fondamental (Aslī) soit secondaire (Far'ī). Appelle le premier 'Naturel' : c'est celui qui ne dépend d'aucune cause et sans lequel les lettres ne sauraient exister. »",
+          "chapterNameAr": "بَابُ المَدِّ الطَّبِيعِيِّ"
+        },
+        "examples": [
           {
-            id: 'ex-c4-3',
-            arabicText: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
-            surahAyahRef: '9:50',
-            surahNameFr: 'At-Tawbah',
-            highlightSegment: 'أَخَذۡنَآ',
-            highlightLetter: 'نَا (2 temps)',
-            ruleApplied: 'Madd 2 temps obligatoire (Préservation du pronom "Nous")',
-            ruleTag: 'madd',
-            explanationFr: 'Raccourcir « Akhadhnā » en « Akhadhna » supprime l\'Alif et transforme « Nous avons pris » en « Les femmes ont pris », un contresens théologique majeur (Lahn Jalī Harām) !',
-            transliteration: 'Yaqūlū qad akhadhnā amranā min qabl',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009050.mp3'
-          },
-          {
-            id: 'ex-c4-4',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'صِرَٰطَ',
-            highlightLetter: 'ٰ (2 temps seulement)',
-            ruleApplied: 'Calibrage exact à 2 temps (Pas de sur-étirement)',
-            ruleTag: 'madd',
-            explanationFr: 'Le petit Alif vertical sur « Sirāt » ne doit durer que 2 temps : l\'étirer à 4 ou 6 temps est une faute fréquente dans la Fātihah.',
-            transliteration: 'Sirāta-lladhīna an\'amta \'alayhim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+            "id": "ex-c4-2",
+            "arabicText": "إِنَّهُۥ كَانَ بِعِبَادِهِۦ خَبِيرَۢا",
+            "surahAyahRef": "17:30",
+            "surahNameFr": "Al-Isrā'",
+            "highlightSegment": "إِنَّهُۥ كَانَ",
+            "highlightLetter": "ـهُۥ (Silah Sughrā)",
+            "ruleApplied": "Madd Silah Sughrā (2 Temps)",
+            "ruleTag": "madd",
+            "explanationFr": "Le Hā' de « Innahū » est voyellé par une Dammah et entouré de deux lettres pourvues de voyelles (Nūn avec Fathah et Kāf avec Fathah). Il s'allonge de 2 temps en liaison : « Innahū kāna ».",
+            "transliteration": "Innahū kāna bi-'ibādihī Khabīrā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/017030.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Aller trop vite et tronquer la voyelle longue en voyelle courte (ex: dire "Qala" au lieu de "Qāla").',
-            correctionFr: 'C\'est un Lahn Jalī majeur (Harām) qui détruit la grammaire du Coran. Accordez toujours 2 temps pleins.'
-          },
-          {
-            trapFr: 'Sur-allonger le Madd Naturel jusqu\'à 4 ou 5 temps sans aucune justification.',
-            correctionFr: 'Le Madd Naturel ne dure strictement que 2 Harakāt : seul le Madd Far\'ī (avec Hamzah ou Soukoûn) autorise un allongement supérieur.'
+            "trapFr": "Couper la fin du Madd naturel par un coup de glotte parasite [hamzah] en disant 'Qālā'' au lieu de 'Qālā'.",
+            "correctionFr": "Laissez le son s'éteindre doucement sans serrer la gorge à la fin de la prolongation."
           }
         ]
       },
       {
-        id: 'madd-vs-leen',
-        nameFr: '3. Lettres de Madd vs Lettres de Līn (حَرْفَا اللِّينِ)',
-        nameAr: 'الفَرْقُ بَيْنَ حُرُوفِ المَدِّ وَحَرْفَيِ اللِّينِ',
-        mnemonic: 'Madd = Voyelle homogène | Līn = Wāw/Yā\' précédés d\'une Fathah (ـَ + وْ / يْ)',
-        letters: ['و', 'ي'],
-        definitionFr: 'Lorsque les lettres Wāw (و) ou Yā\' (ي) portent un Soukoûn mais sont précédées d\'une FATHAH (ـَ), elles perdent leur statut de Madd pour devenir des « lettres de Līn » (douceur).',
-        mechanismFr: 'La langue ou les lèvres glissent avec souplesse sur la consonne. En lecture continue (Wasl), les lettres de Līn ne reçoivent AUCUNE prolongation supplémentaire !',
-        durationHarakat: 0,
-        examples: [
+        "id": "leen-letters",
+        "nameFr": "3. Lettres de Madd vs Lettres de Līn (حَرْفَا اللِّينِ)",
+        "nameAr": "الفَرْقُ بَيْنَ حُرُوفِ المَدِّ وَحَرْفَيْ اللِّينِ",
+        "mnemonic": "Madd = Voyelle homogène avant | Līn = Fathah avant Wāw ou Yā' soukounés (خَوْف / بَيْت)",
+        "letters": [
+          "و",
+          "ي"
+        ],
+        "definitionFr": "Les lettres de Līn (اللِّين = la douceur) sont le Wāw et le Yā' soukounés lorsqu'ils sont précédés d'une FATHAH (et non d'une voyelle homogène). En liaison continue, ils n'ont AUCUNE prolongation temporelle et se prononcent comme des diphtongues douces.",
+        "definitionLughatan": {
+          "ar": "اللِّينُ: السُّهُولَةُ وَاليُسْرُ، ضِدُّ الخُشُونَةِ وَالشِّدَّةِ.",
+          "fr": "La souplesse, la douceur et l'absence de rudesse."
+        },
+        "definitionIstilahan": {
+          "ar": "خُرُوجُ الحَرْفِ مِنْ مَخْرَجِهِ بِسُهُولَةٍ وَيُسْرٍ مِنْ غَيْرِ كُلْفَةٍ عَلَى اللِّسَانِ، وَهُمَا الوَاوُ وَاليَاءُ السَّاكِنَتَانِ المَفْتُوحُ مَا قَبْلَهُمَا.",
+          "fr": "L'émission fluide et aisée de la consonne sans effort sur la langue. Ce sont le Wāw et le Yā' soukounés précédés d'une voyelle Fathah."
+        },
+        "mechanismFr": "Faites glisser la voix avec souplesse sur la diphtongue sans allonger le temps en cours de phrase (ex: « Bayt », « Khawf »). Si vous vous arrêtez sur le mot, il devient un Madd Līn de 2, 4 ou 6 temps.",
+        "physiologicalDetails": {
+          "tongue": "Glisse doucement vers le palais pour le Yā' de Līn sans marquer de temps long.",
+          "lips": "S'arrondissent avec légèreté pour le Wāw de Līn.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Flux continu sans interruption."
+        },
+        "phoneticReasonFr": "La Fathah qui précède n'étant pas homogène au Wāw ni au Yā', elle ne permet pas la formation d'une voyelle longue pure en milieu d'énoncé.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَاللِّينُ مِنْهَا اليَاءُ وَالوَاوُ انْفَتَحْ * قَبْلَهُمَا كَـ خَوْفٍ اوْ بَيْتٍ وَضَحْ\nفَلَا تَمُدَّ فِي سِيَاقِ الوَصْلِ * وَمُدَّ حَالَ الوَقْفِ مِثْلَ الفَصْلِ",
+          "transliteration": "Wal-līnu minhā-l-yā'u wal-wāwu-nfatah * Qablahumā ka-khawfin aw baytin wadah / Falā tamudda fī siyāqi-l-wasli * Wa mudda hāla-l-waqfi mithla-l-fasli",
+          "translationFr": "« Le Līn concerne le Yā' et le Wāw précédés d'une Fathah comme dans 'Khawf' ou 'Bayt' ; ne les prolonge pas en liaison continue, mais allonge-les à la pause. »",
+          "chapterNameAr": "بَابُ اللِّينِ"
+        },
+        "examples": [
           {
-            id: 'ex-c4-5',
-            arabicText: 'لِإِيلَٰفِ قُرَيۡشٍ',
-            surahAyahRef: '106:1',
-            surahNameFr: 'Quraysh',
-            highlightSegment: 'قُرَيۡشٍ',
-            highlightLetter: 'يْ précédé de Fathah',
-            ruleApplied: 'Lettre de Līn (Yā\' précédé de Fathah)',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Yā\' de Quraysh est précédé d\'un Râ\' avec Fathah : en continu, on prononce « Qurayshin » sans allonger le Yā\'.',
-            transliteration: 'Li-īlāfi quraysh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
-          },
-          {
-            id: 'ex-c4-6',
-            arabicText: 'وَءَامَنَهُم مِّنۡ خَوۡفِۭ',
-            surahAyahRef: '106:4',
-            surahNameFr: 'Quraysh',
-            highlightSegment: 'خَوۡفِۭ',
-            highlightLetter: 'وْ précédé de Fathah',
-            ruleApplied: 'Lettre de Līn (Wāw précédé de Fathah)',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Wāw porte un Soukoûn et est précédé d\'un Khā\' avec Fathah : c\'est un Līn pur. L\'Alif ne peut JAMAIS être une lettre de Līn.',
-            transliteration: 'Wa āmanahum min khawf',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106004.mp3'
+            "id": "ex-c4-3",
+            "arabicText": "فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ ٱلَّذِىٓ أَطۡعَمَهُم مِّن جُوعٖ وَءَامَنَهُم مِّنۡ خَوۡفِۭ",
+            "surahAyahRef": "106:3-4",
+            "surahNameFr": "Quraysh",
+            "highlightSegment": "ٱلۡبَيۡتِ ... خَوۡفِۭ",
+            "highlightLetter": "ـَيۡـ ... ـَوۡـ",
+            "ruleApplied": "Lettres de Līn en Continuité vs Arrêt",
+            "ruleTag": "madd",
+            "explanationFr": "En reliant « Al-Bayti » vers le mot suivant, le Yā' ne prend aucun Madd (durée = 0 temps additionnel). Mais si l'on s'arrête sur « Khawf », le mot prend un Madd Līn de 2, 4 ou 6 temps au choix.",
+            "transliteration": "Rabbi hādhā-l-Bayt... min khawf",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/106003.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Allonger une lettre de Līn en pleine lecture continue (ex: dire "Qurayyyy-shin").',
-            correctionFr: 'En lecture continue (Wasl), la lettre de Līn ne s\'allonge pas ! Elle ne peut être prolongée qu\'à l\'arrêt (Madd Līn à 2, 4 ou 6 temps).'
-          },
-          {
-            trapFr: 'Penser que l\'Alif peut être une lettre de Līn.',
-            correctionFr: 'L\'Alif est exclusivement une lettre de Madd car il est TOUJOURS précédé d\'une Fathah homogène.'
+            "trapFr": "Allonger la lettre de Līn en cours de lecture continue (ex: dire 'Rabbi hādha-l-Baaayt-il-ladhī').",
+            "correctionFr": "En liaison (Wasl), la lettre de Līn n'a AUCUN Madd : prononcez-la rapidement et sans traîner."
           }
         ]
       },
       {
-        id: 'waqf-huwa-hiya',
-        nameFr: '4. Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ (Wasl vs Waqf)',
-        nameAr: 'حُكْمُ الوَقْفِ عَلَى الكَلِمَاتِ المَفْتُوحَةِ (هُوَ - هِيَ)',
-        mnemonic: 'En continu = Consonne avec Fathah | À l\'arrêt d\'urgence = Madd Naturel 2 temps (Hū, Hī)',
-        letters: ['و', 'ي'],
-        definitionFr: 'Des mots comme « Huwa » (هُوَ), « Hiya » (هِيَ) ou « Ma\'iya » (مَعِيَ) se terminent par un Wāw ou un Yā\' portant une Fathah : ce ne sont donc pas des lettres de Madd en lecture continue.',
-        mechanismFr: 'Cependant, si le lecteur est contraint de s\'arrêter (panne de souffle), la Fathah devient Soukoûn, réunissant aussitôt les conditions du Madd Naturel : la lettre doit alors être prolongée de 2 temps !',
-        durationHarakat: 2,
-        examples: [
+        "id": "chameleon-words",
+        "nameFr": "4. Les Mots Caméléons : هُوَ, هِيَ, مَعِيَ (Wasl vs Waqf)",
+        "nameAr": "كَلِمَاتٌ خَادِعَةٌ: هُوَ، هِيَ، مَعِيَ بَيْنَ الوَصْلِ وَالوَقْفِ",
+        "mnemonic": "Ce sont des voyelles courtes vivantes : ne jamais les transformer en Madd !",
+        "letters": [],
+        "definitionFr": "Certains pronoms et mots fréquents comportent un Wāw ou un Yā' pourvus d'une voyelle Fathah (هُوَ, هِيَ, مَعِيَ). Beaucoup de débutants ont le réflexe erroné de les prolonger en voyelles longues. En liaison, ce sont de pures voyelles brèves de 1 temps !",
+        "definitionLughatan": {
+          "ar": "الخَادِعُ: الَّذِي يُوهِمُ غَيْرَ حَقِيقَتِهِ لِشَبَهِهِ بِهَا.",
+          "fr": "Ce qui trompe par ressemblance apparente."
+        },
+        "definitionIstilahan": {
+          "ar": "كَلِمَاتٌ آخِرُهَا حَرْفُ عِلَّةٍ مُتَحَرِّكٌ بِالفَتْحِ لَا مَدَّ فِيهَا وَصْلاً، وَيَجِبُ الحَذَرُ مِنْ تَمْطِيطِهَا.",
+          "fr": "Mots se terminant par une semi-voyelle mobile avec Fathah qui ne comportent aucun allongement en liaison continue."
+        },
+        "mechanismFr": "Articulez la Fathah de manière incisive et rapide sur 1 temps métronomique sans traîner sur le son.",
+        "physiologicalDetails": {
+          "tongue": "Vient rapidement sur la consonne suivante sans s'attarder.",
+          "lips": "Arrondissement bref pour le Wāw de Huwa, étirement bref pour le Yā' de Hiya.",
+          "vocalCords": "Vibration courte.",
+          "airflow": "Flux d'air immédiatement canalisé vers le mot suivant."
+        },
+        "phoneticReasonFr": "L'accent tonique du français incite souvent les francophones à étirer la dernière syllabe d'un mot. En arabe coranique, étirer une voyelle courte ajoute une lettre artificielle (créant un Lahn Jalī).",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَاحْذَرْ تُمَطِّطْ حَرَكَاتِ الأَحْرُفِ * فَتَجْلِبَ الأَلْفَاظَ دُونَ مَعْرِفِ\nفِي هُوَ أَوْ هِيَ وَفِي مَعِيَ فَلَا * تَزِدْ حُرُوفَ المَدِّ فِيمَا فُصِّلَا",
+          "transliteration": "Wahdhar tumattit harakāti-l-ahrufi * Fa-tajliba-l-alfāza dūna ma'rifi / Fī Huwa aw Hiya wa fī Ma'iya falā * Tazid hurūfa-l-maddi fīmā fussilā",
+          "translationFr": "« Prends garde d'étirer excessivement les voyelles des lettres, car tu introduirais des lettres étrangères sans t'en rendre compte : dans 'Huwa', 'Hiya' et 'Ma'iya', n'ajoute aucune lettre de Madd ! »",
+          "chapterNameAr": "بَابُ التَّحْذِيرِ مِنَ التَّمْطِيطِ"
+        },
+        "examples": [
           {
-            id: 'ex-c4-7',
-            arabicText: 'لَّآ إِلَٰهَ إِلَّا هُوَۚ سُبۡحَٰنَهُۥ عَمَّا يُشۡرِكُونَ',
-            surahAyahRef: '9:31',
-            surahNameFr: 'At-Tawbah',
-            highlightSegment: 'إِلَّا هُوَۚ',
-            highlightLetter: 'هُوَ ➔ هُو (2 temps)',
-            ruleApplied: 'Huwa en continu ➔ Hū à l\'arrêt',
-            ruleTag: 'madd',
-            explanationFr: 'En continu : « Illā Huwa Subhānah » (consonne w). À l\'arrêt d\'urgence : la Fathah devient Soukoûn sur le Wāw précédé de Dammah, donnant un Madd pur de 2 temps : « Illā Hū ».',
-            transliteration: 'Lā ilāha illā hū',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009031.mp3'
-          },
-          {
-            id: 'ex-c4-8',
-            arabicText: 'فَقُل لَّن تَخۡرُجُواْ مَعِىَ أَبَدٗا',
-            surahAyahRef: '9:83',
-            surahNameFr: 'At-Tawbah',
-            highlightSegment: 'مَعِىَ',
-            highlightLetter: 'مَعِيَ ➔ مَعِي (2 temps)',
-            ruleApplied: 'Ma\'iya en continu ➔ Ma\'ī à l\'arrêt',
-            ruleTag: 'madd',
-            explanationFr: 'À l\'arrêt, le Yā\' prend un Soukoûn précédé d\'une Kasrah et devient un Madd de 2 temps : « Ma\'ī ».',
-            transliteration: 'Fa-qul lan takhrujū ma\'ī',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/009083.mp3'
+            "id": "ex-c4-4",
+            "arabicText": "قُلۡ هُوَ ٱللَّهُ أَحَدٌ",
+            "surahAyahRef": "112:1",
+            "surahNameFr": "Al-Ikhlās",
+            "highlightSegment": "قُلۡ هُوَ ٱللَّهُ",
+            "highlightLetter": "هُوَ (Fathah brève)",
+            "ruleApplied": "Voyelle Brève sans Madd",
+            "ruleTag": "izhar",
+            "explanationFr": "On prononce « Qul Huwa-Llāhu » avec une Fathah brève et percutante sur le Wāw. Il est formellement interdit de dire « Qul Huwāā-Llāh ».",
+            "transliteration": "Qul Huwa-Llāhu Ahad",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/112001.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'S\'arrêter sur « Huwa » en disant "Huw" avec une consonne sèche sans prolonger.',
-            correctionFr: 'Le Wāw Sākin précédé de Dammah devient un Madd Naturel : vous devez impérativement prolonger de 2 temps (« Hū »).'
-          },
-          {
-            trapFr: 'Allonger « Huwa » en pleine lecture continue.',
-            correctionFr: 'En continu, le Wāw porte une Fathah : on dit rapidement « Huwa » sans aucun Madd.'
+            "trapFr": "Pour les francophones : étirer la fin de « Huwa » ou « Hiya » en « Huwā » ou « Hiyā » par mimétisme de l'accentuation tonique française.",
+            "correctionFr": "Donnez exactement la même durée brève à la Fathah de 'Huwa' qu'à n'importe quelle voyelle courte."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c4-1',
-        title: 'Le Raccourcissement Sacrilège : Sūrah At-Tawbah (9:50)',
-        verseArabic: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
-        surahAyahRef: '9:50',
-        targetSegment: 'أَخَذۡنَآ أَمۡرَنَا',
-        promptFr: 'Quelle est la conséquence dramatique si un lecteur raccourcit le Alif final de « أَخَذۡنَا » à moins de 2 temps ?',
-        hintFr: 'Comparez la signification du verbe avec Alif long (pronom pluriel \'Nā\') et sans Alif (Nūn an-Niswah).',
-        solutionFr: 'Le mot devient « Akhadhna » (les femmes ont pris) au lieu de « Akhadhnā » (Nous avons pris) : Lahn Jalī majeur !',
-        breakdownSteps: [
-          '« Akhadhnā » (أَخَذۡنَا) avec 2 temps de Madd signifie « Nous avons pris » (1re personne pluriel).',
-          'Si vous récitez trop vite et avalez le Alif, le mot s\'entend « Akhadhna » (أَخَذۡنَ) avec une simple Fathah sur le Nūn.',
-          'En grammaire arabe, cela devient le Nūn du féminin pluriel (Nūn an-Niswah) : « Elles (les femmes) ont pris notre affaire en main » !',
-          'Le sens du verset est corrompu : c\'est un Lahn Jalī caractérisé, formellement interdit (Harām).'
+        "id": "exo-c4-1",
+        "title": "Chronométrage du Madd Naturel dans « قَالُواْ »",
+        "verseArabic": "قَالُوٓاْ أَنُؤۡمِنُ كَمَآ ءَامَنَ ٱلسُّفَهَآءُ",
+        "surahAyahRef": "2:13",
+        "targetSegment": "قَالُوٓاْ",
+        "promptFr": "Combien de temps de Madd compte la première syllabe « Qā- » dans le mot « Qālū » ?",
+        "hintFr": "La syllabe « Qā- » est-elle suivie d'une Hamzah dans le même mot ?",
+        "solutionFr": "Exactement 2 temps (Madd Aslī / Tabī'ī)",
+        "breakdownSteps": [
+          "La première syllabe « Qā » contient un Alif précédé d'un Qāf avec Fathah.",
+          "Aucune Hamzah ni soukoûn ne suit immédiatement cet Alif.",
+          "C'est un Madd naturel strict de 2 battements métronomiques."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/009050.mp3'
-      },
-      {
-        id: 'exo-c4-2',
-        title: 'Distinction Pratique Madd vs Līn : Sūrah Quraysh (106:1-4)',
-        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ٢ فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ ٣ ٱلَّذِىٓ أَطۡعَمَهُم مِّن جُوعٖ وَءَامَنَهُم مِّنۡ خَوۡفِۭ ٤',
-        surahAyahRef: '106:1-4',
-        targetSegment: 'قُرَيۡشٍ · ٱلصَّيۡفِ · ٱلۡبَيۡتِ · جُوعٖ · خَوۡفِۭ',
-        promptFr: 'Parmi les mots surlignés, identifiez lequel contient une lettre de Madd naturel et lesquels contiennent des lettres de Līn en lecture continue.',
-        hintFr: 'Regardez attentivement la voyelle qui précède le Wāw ou le Yā\' : est-elle une Fathah ou une voyelle homogène ?',
-        solutionFr: '« Jū\' » contient un Madd Wāw (précédé de Dammah). « Quraysh », « As-Sayf », « Al-Bayt » et « Khawf » contiennent des lettres de Līn (précédées de Fathah).',
-        breakdownSteps: [
-          'Dans « Jū\' » (جُوعٖ) : Le Wāw porte un Soukoûn et est précédé d\'un Jīm avec Dammah (ـُ + و). C\'est une voyelle homogène : Madd Naturel de 2 temps !',
-          'Dans « Quraysh », « As-Sayf », « Al-Bayt » : Le Yā\' porte un Soukoûn et est précédé d\'une FATHAH (ـَ + ي). Ce sont des lettres de Līn, sans aucun Madd en continu.',
-          'Dans « Khawf » : Le Wāw porte un Soukoûn et est précédé d\'un Khā\' avec FATHAH (ـَ + و). C\'est également une lettre de Līn.',
-          'Règle d\'or : La lettre de Līn n\'a jamais de voyelle homogène avant elle, elle est toujours précédée d\'une Fathah.'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/106001.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/002013.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c4-1',
-        type: 'mcq',
-        promptFr: 'Quel mot coranique célèbre réunit à lui seul les 3 lettres de Madd avec leurs 3 voyelles homogènes obligatoires ?',
-        verseArabic: 'تِلۡكَ مِنۡ أَنۢبَآءِ ٱلۡغَيۡبِ نُوحِيهَآ إِلَيۡكَ',
-        targetWord: 'نُوحِيهَآ',
-        surahAyahRef: '11:49',
-        options: [
-          'نُوحِيهَا (Nū-hī-hā) : Dammah avant Wāw, Kasrah avant Yā\', Fathah avant Alif',
-          'ٱلصَّلَوٰةَ',
-          'إِيَّاكَ',
-          'يَرۡمَلُونَ'
+        "id": "q-c4-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Pourquoi le Madd Aslī est-il qualifié de « Tabī'ī » (طبيعي / naturel) ?",
+        "verseArabic": "نُوحِيهَآ إِلَيۡكَ",
+        "options": [
+          "Parce que toute personne douée d'une nature phonétique saine lui donne spontanément 2 temps sans excès ni diminution",
+          "Parce qu'il ne se récite que dans la nature",
+          "Parce qu'il ne nécessite aucune respiration",
+          "Parce qu'il peut durer de 2 à 6 temps au choix"
         ],
-        correctAnswer: 'نُوحِيهَا (Nū-hī-hā) : Dammah avant Wāw, Kasrah avant Yā\', Fathah avant Alif',
-        explanationFr: 'Le mot « Nūhīhā » dans la sourate Hūd (11:49) est la formule universelle du Tajwīd résumant les 3 lettres de Madd et leurs conditions strictes de voyelles homogènes.',
-        ruleId: 'madd-definition-nuhiha'
+        "correctAnswer": "Parce que toute personne douée d'une nature phonétique saine lui donne spontanément 2 temps sans excès ni diminution",
+        "explanationFr": "L'érudit Al-Jamazūrī et les maîtres de l'art expliquent que la personne dotée d'une saine constitution linguistique (« صَاحِبُ الطَّبِيعَةِ السَّلِيمَةِ ») lui accorde instinctivement 2 temps sans le tronquer ni l'exagérer.",
+        "ruleId": "madd-tabiee-silah-sughra"
       },
       {
-        id: 'q-c4-2',
-        type: 'mcq',
-        promptFr: 'Quelle est la durée exacte obligatoire du Madd Naturel (Al-Madd At-Tabī\'ī) lors de la récitation ?',
-        verseArabic: 'قَالَ رَبُّنَا ٱلَّذِىٓ أَعۡطَىٰ كُلَّ شَىۡءٍ خَلۡقَهُۥ',
-        targetWord: 'قَالَ',
-        surahAyahRef: '20:50',
-        options: [
-          'Exactement 2 Harakāt (temps / pulsations) : la durée de deux voyelles courtes (بَ + بَ)',
-          '4 ou 5 Harakāt',
-          '6 Harakāt obligatoires',
-          '1 seule Harakah'
+        "id": "q-c4-2",
+        "type": "error_detect",
+        "promptFr": "Dans « قُلْ هُوَ اللَّهُ أَحَدٌ », un récitateur étire le Wāw en disant « Qul Huwā-Allāh ». Quelle erreur commet-il ?",
+        "verseArabic": "قُلۡ هُوَ ٱللَّهُ أَحَدٌ",
+        "targetWord": "هُوَ",
+        "surahAyahRef": "112:1",
+        "options": [
+          "Lahn Jalī : Allongement fautif d'une voyelle brève (Tamṭīt), créant une lettre de prolongation inexistante",
+          "Lahn Khafī d'allègement",
+          "Madd Lāzim obligatoire",
+          "Arrêt Hasan"
         ],
-        correctAnswer: 'Exactement 2 Harakāt (temps / pulsations) : la durée de deux voyelles courtes (بَ + بَ)',
-        explanationFr: 'Le Madd Naturel se mesure rigoureusement à 2 Harakāt (environ 1 seconde à tempo normal). Ni plus (pour ne pas déformer la mélodie), ni moins (pour ne pas avaler la lettre).',
-        ruleId: 'madd-tabii-duration'
+        "correctAnswer": "Lahn Jalī : Allongement fautif d'une voyelle brève (Tamṭīt), créant une lettre de prolongation inexistante",
+        "explanationFr": "Le mot « Huwa » porte une Fathah brève d'un seul temps. L'étirer jusqu'à créer un Alif (« Huwā ») rajoute une consonne au texte coranique, ce qui constitue un Lahn Jalī.",
+        "ruleId": "chameleon-words"
       },
       {
-        id: 'q-c4-3',
-        type: 'mcq',
-        promptFr: 'Pourquoi raccourcir le mot « أَخَذۡنَا » en « أَخَذۡنَ » est-il considéré comme un péché (Lahn Jalī Harām) ?',
-        verseArabic: 'يَقُولُواْ قَدۡ أَخَذۡنَآ أَمۡرَنَا مِن قَبۡلُ',
-        targetWord: 'أَخَذۡنَآ',
-        surahAyahRef: '9:50',
-        options: [
-          'Parce que cela change le sujet grammatical de « Nous avons pris » à « Les femmes ont pris », dénaturant gravement le verset',
-          'Parce que le Alif doit toujours être prononcé avec une Ghunnah',
-          'Parce que cela brise la rime poétique du verset',
-          'Parce que le mot devient un mot étranger'
+        "id": "q-c4-3",
+        "type": "mcq",
+        "promptFr": "Quelle est la condition indispensable pour que le pronom Hā' bénéficie d'un Madd Silah Sughrā (2 temps) ?",
+        "verseArabic": "إِنَّهُۥ كَانَ بِعِبَادِهِۦ خَبِيرَۢا",
+        "surahAyahRef": "17:30",
+        "options": [
+          "Le Hā' doit être obligatoirement situé entre deux lettres vocalisées (mutaharrik)",
+          "Le Hā' doit être précédé d'un soukoûn",
+          "Le Hā' doit être suivi d'une Hamzah",
+          "Le Hā' doit être placé au début de la phrase"
         ],
-        correctAnswer: 'Parce que cela change le sujet grammatical de « Nous avons pris » à « Les femmes ont pris », dénaturant gravement le verset',
-        explanationFr: 'Raccourcir une voyelle longue en voyelle courte qui inverse ou altère le sens du texte sacré constitue un Lahn Jalī caractérisé, interdit par le consensus des savants.',
-        ruleId: 'madd-tabii-duration'
-      },
-      {
-        id: 'q-c4-4',
-        type: 'mcq',
-        promptFr: 'Quelle est la condition indispensable pour que la lettre Wāw (و) ou Yā\' (ي) soit qualifiée de « lettre de Līn » (حَرْفُ لِين) et non de Madd ?',
-        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ',
-        targetWord: 'قُرَيۡشٍ',
-        surahAyahRef: '106:1',
-        options: [
-          'La lettre porte un Soukoûn et est obligatoirement précédée d\'une FATHAH (ـَ)',
-          'La lettre est suivie d\'une Hamzah',
-          'La lettre est précédée d\'une Dammah',
-          'La lettre est écrite en rouge dans le Coran'
-        ],
-        correctAnswer: 'La lettre porte un Soukoûn et est obligatoirement précédée d\'une FATHAH (ـَ)',
-        explanationFr: 'Les deux lettres de Līn sont Wāw et Yā\' portant un Soukoûn précédées d\'une Fathah (comme dans Khawf et Quraysh). L\'Alif ne peut JAMAIS être une lettre de Līn.',
-        ruleId: 'madd-vs-leen'
-      },
-      {
-        id: 'q-c4-5',
-        type: 'mcq',
-        promptFr: 'Que devient le mot « هُوَ » (Huwa) si le lecteur s\'arrête dessus en cas de panne de souffle impérieuse ?',
-        verseArabic: 'لَّآ إِلَٰهَ إِلَّا هُوَۚ سُبۡحَٰنَهُۥ عَمَّا يُشۡرِكُونَ',
-        targetWord: 'إِلَّا هُوَۚ',
-        surahAyahRef: '9:31',
-        options: [
-          'La Fathah devient un Soukoûn et le Wāw devient un Madd Naturel de 2 temps : on prononce « Hū »',
-          'On prononce « Huw » avec une consonne sèche',
-          'On prononce « Huwa » comme en continu',
-          'Le mot est annulé et on ne prononce rien'
-        ],
-        correctAnswer: 'La Fathah devient un Soukoûn et le Wāw devient un Madd Naturel de 2 temps : on prononce « Hū »',
-        explanationFr: 'À l\'arrêt, la Fathah sur le Wāw se transforme en Soukoûn. Précédé d\'une Dammah (ـُ + وْ), il remplit alors parfaitement les conditions du Madd Naturel et s\'allonge de 2 temps (« Hū ») !',
-        ruleId: 'waqf-huwa-hiya'
+        "correctAnswer": "Le Hā' doit être obligatoirement situé entre deux lettres vocalisées (mutaharrik)",
+        "explanationFr": "La règle canonique du Silah Sughrā exige que le pronom masculin singulier soit enclavé entre deux consonnes pourvues de voyelles (Fathah, Dammah ou Kasrah). S'il y a un soukoûn avant ou après, le Madd est annulé.",
+        "ruleId": "madd-tabiee-silah-sughra"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 5 : LES PROLONGATIONS II (MADD SECONDAIRE / FAR'Ī)
-  // ==========================================
   {
-    id: 'chap-5',
-    number: 5,
-    slug: 'madd-2',
-    titleFr: 'Les Prolongations II (Madd Secondaire / Far\'ī)',
-    titleAr: 'المَدُّ الفَرْعِيُّ (بِسَبَبِ الهَمْزِ وَالسُّكُونِ)',
-    category: 'intermediate',
-    estimatedMinutes: 25,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre et maîtriser le Madd Far\'ī (Secondaire), prolongé au-delà des 2 temps du Madd naturel en raison d\'une Hamzah (همزة) ou d\'un Soukoûn (سكون). Maîtriser le Madd Wājib Muttasil (4-5 temps obligatoire), le Madd Jā\'iz Munfasil (4-5 temps en liaison, 2 temps à l\'arrêt), le Madd Badal (2 temps dans Hafs), le Madd Silah Kubrā (4-5 temps), le Madd Lāzim (6 temps stricts obligatoires incompressibles avec Shaddah ou Soukoûn permanent), et le Madd \'Ārid li-s-Sukūn (2, 4 ou 6 temps) avec la règle d\'or de la cohérence de récitation (Al-Mīzān).',
-    infographicPoints: [
-      'Les deux causes du Madd Far\'ī : 1. La Hamzah (همزة) qui exige 4 à 5 Harakāt (ou 2 pour le Badal). 2. Le Soukoûn (سكون) qui exige 6 Harakāt (Lāzim) ou 2, 4, 6 Harakāt (\'Ārid).',
-      'Madd Muttasil (المتصل) : Lettre de Madd et Hamzah réunies dans le MÊME mot (ex: As-Samā\', Jā\'a). Statut : Wājib (Obligatoire 4-5 temps).',
-      'Madd Munfasil (المنفصل) : Madd en fin de mot + Hamzah au début du suivant (ex: Yā-Ayyuhā). En liaison (Wasl) = 4-5 temps ; à l\'arrêt sur le premier mot = 2 temps !',
-      'Madd Badal (البدل) : La Hamzah PRÉCÈDE la lettre de Madd (ex: Āmanū, Īmānan). Dans la lecture de Hafs \'an \'Āsim, il dure STRICTEMENT 2 temps.',
-      'Madd Lāzim (اللازم) : Madd suivi d\'un Soukoûn originel ou d\'une Shaddah (ex: Ad-Dāllīn, Al-Hāqqah, Alif-Lām-Mīm). Strictement 6 TEMPS OBLIGATOIRES !',
-      'Règle d\'or de l\'Équilibre (Al-Mīzān) : Si vous choisissez 4 temps pour le Madd \'Ārid à la première fin de verset, vous DEVEZ conserver 4 temps sur toutes les fins de versets suivantes !'
+    "id": "chap-5",
+    "number": 5,
+    "slug": "madd-2",
+    "titleFr": "Les Prolongations II (Madd Secondaire / Far'ī)",
+    "titleAr": "المَدُّ الفَرْعِيُّ وَأَقْسَامُهُ",
+    "category": "intermediate",
+    "estimatedMinutes": 25,
+    "isPilotChapter": true,
+    "summaryFr": "Explorer les causes de prolongation secondaire : la Hamzah (Madd Muttasil obligatoire 4-5 temps, Munfasil permis 4-5 temps, Badal 2 temps) et le Soukoûn (Madd Lāzim 6 temps incompressibles, 'Ārid li-s-Sukūn 2, 4 ou 6 temps). Comprendre la hiérarchie de force des prolongations (أقوى المدود).",
+    "infographicPoints": [
+      "Deux seules causes au Madd Far'ī : la Hamzah (همزة) ou le Soukoûn (سكون).",
+      "Madd Wājib Muttasil (مَدّ وَاجِب مُتَّصِل) : Lettre de Madd + Hamzah dans le MÊME mot (ex: As-Samā', Jā'a) -> 4 ou 5 temps obligatoires.",
+      "Madd Jā'iz Munfasil (مَدّ جَائِز مُنْفَصِل) : Lettre de Madd en fin de mot + Hamzah au début du mot suivant (ex: Fī amrikum) -> 4 ou 5 temps par la voie de la Shātibiyyah.",
+      "Madd Lāzim (مَدّ لَازِم) : Suivi d'un soukoûn originel ou d'une Shaddah -> 6 temps stricts incompressibles (ex: Al-Dhāllīn, Al-Hāqqah).",
+      "Madd 'Ārid li-s-Sukūn (مَدّ عَارِض لِلسُّكُون) : Arrêt temporaire créant un soukoûn -> 2, 4 ou 6 temps au choix.",
+      "Échelle de puissance des Madds : Lāzim > Muttasil > 'Ārid > Munfasil > Badal (أَقْوَى المَدُودِ لَازِمٌ فَمَا اتَّصَلْ...)."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'madd-muttasil-munfasil',
-        nameFr: '1. Madd Muttasil vs Madd Munfasil (Causes par la Hamzah)',
-        nameAr: 'المَدُّ المُتَّصِلُ وَالمُنْفَصِلُ بِسَبَبِ الهَمْزَةِ',
-        mnemonic: 'Muttasil = Même mot (4-5 t. Wājib) | Munfasil = 2 mots distincts (4-5 t. Jā\'iz en Wasl, 2 t. en Waqf)',
-        letters: ['ا', 'و', 'ي', 'ء'],
-        definitionFr: 'Toute lettre de Madd suivie d\'une Hamzah voit sa prolongation accrue à 4 ou 5 Harakāt. Si la Hamzah est dans le même mot, le Madd est Muttasil (Obligatoire). Si la Hamzah est dans le mot suivant, le Madd est Munfasil (Permis).',
-        mechanismFr: 'Poussez le souffle depuis Al-Jawf pendant 4 à 5 pulsations régulières, puis attaquez la Hamzah avec fermeté et netteté.',
-        durationHarakat: 4,
-        examples: [
+        "id": "madd-muttasil-munfasil",
+        "nameFr": "1. Madd Muttasil vs Madd Munfasil (Causes par la Hamzah)",
+        "nameAr": "المَدُّ الوَاجِبُ المُتَّصِلُ وَالمَدُّ الجَائِزُ المُنْفَصِلُ",
+        "mnemonic": "Muttasil = Même mot (Wājib 4-5t) | Munfasil = Deux mots distincts (Jā'iz 4-5t)",
+        "letters": [],
+        "definitionFr": "Le Madd Muttasil réunit la lettre de prolongation et la Hamzah au sein du même mot : son allongement est obligatoire (Wājib) à 4 ou 5 temps. Le Madd Munfasil sépare la lettre de Madd (fin du 1er mot) de la Hamzah (début du 2e mot) : il est qualifié de permis (Jā'iz) car certaines lectures le raccourcissent à 2 temps, bien qu'il vaille 4 ou 5 temps par la voie de la Shātibiyyah chez Hafs.",
+        "definitionLughatan": {
+          "ar": "المُتَّصِلُ: المَشْدُودُ المُلْتَحِمُ. المُنْفَصِلُ: المُنْقَطِعُ عَنْ غَيْرِهِ المَفْصُولُ عَنْهُ.",
+          "fr": "Muttasil : joint et continu. Munfasil : disjoint et séparé."
+        },
+        "definitionIstilahan": {
+          "ar": "المُتَّصِلُ: أَنْ يَأْتِيَ حَرْفُ المَدِّ وَبَعْدَهُ هَمْزَةٌ فِي كَلِمَةٍ وَاحِدَةٍ (وَاجِبٌ 4-5 حَرَكَاتٍ). المُنْفَصِلُ: أَنْ يَأْتِيَ حَرْفُ المَدِّ آخِرَ كَلِمَةٍ وَالهَمْزَةُ أَوَّلَ الكَلِمَةِ التَّالِيَةِ (جَائِزٌ).",
+          "fr": "Muttasil : lettre de Madd suivie d'une Hamzah dans le même mot. Munfasil : lettre de Madd en fin de mot et Hamzah au début du mot suivant."
+        },
+        "mechanismFr": "Ouvrez largement la cavité buccale pour laisser flotter la vibration sonore pendant 4 à 5 battements métronomiques stables, puis refermez nettement les cordes vocales au niveau du larynx pour faire claquer la Hamzah sans dureté.",
+        "physiologicalDetails": {
+          "tongue": "Abaissée et détendue au plancher buccal pour maximiser la résonance du son.",
+          "lips": "Ouverture conforme à la voyelle de base sans arrondissement parasite.",
+          "vocalCords": "Vibration continue sur 4 à 5 pulsations régulières, suivie d'une fermeture glottique franche pour articuler la Hamzah.",
+          "airflow": "Flux soutenu et stable à travers la bouche."
+        },
+        "phoneticReasonFr": "La Hamzah est une consonne lourde, occlusive et profonde (Aqṣā al-Halq). La précéder d'une prolongation temporelle de 4 à 5 temps offre à l'appareil phonatoire le temps physique nécessaire pour préparer le coup de glotte sans heurter la gorge.",
+        "durationHarakat": 4,
+        "matnJazariyyah": {
+          "verseAr": "وَوَاجِبٌ إِنْ جَاءَ قَبْلَ هَمْزَةِ * مُتَّصِلاً إِنْ جُمِعَا بِكِلْمَةِ\nوَجَائِزٌ إِذَا أَتَى مُنْفَصِلَا * أَوْ عَرَضَ السُّكُونُ وَقْفاً مُسْجَلَا",
+          "transliteration": "Wa wājibun in jā'a qabla hamzati * Muttasilan in jumi'ā bi-kilmati / Wa jā'izun idhā atā munfasilā * Aw 'arada-s-sukūnu waqfan musjalā",
+          "translationFr": "« La prolongation est obligatoire (Wājib) si elle précède une Hamzah réunie dans un même mot (Muttasil) ; elle est permise (Jā'iz) si elle apparaît dans deux mots séparés (Munfasil), ou si un soukoûn survient à l'arrêt. » (Versets 36-37)",
+          "chapterNameAr": "بَابُ أَقْسَامِ المَدِّ"
+        },
+        "examples": [
           {
-            id: 'ex-c5-1',
-            arabicText: 'وَٱلسَّمَآءِ وَمَا بَنَىٰهَا',
-            surahAyahRef: '91:5',
-            surahNameFr: 'Ash-Shams',
-            highlightSegment: 'وَٱلسَّمَآءِ',
-            highlightLetter: 'آء (Même mot)',
-            ruleApplied: 'Madd Wājib Muttasil (4-5 temps obligatoires)',
-            ruleTag: 'madd',
-            explanationFr: 'La lettre de Madd (Alif) et la Hamzah sont dans le même mot « As-Samā\' » : prolongation obligatoire de 4 à 5 temps en continu comme à l\'arrêt.',
-            transliteration: 'Was-samā\'i wa mā banāhā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/091005.mp3'
+            "id": "ex-c5-1",
+            "arabicText": "إِذَا جَآءَ نَصۡرُ ٱللَّهِ وَٱلۡفَتۡحُ",
+            "surahAyahRef": "110:1",
+            "surahNameFr": "An-Nasr",
+            "highlightSegment": "جَآءَ",
+            "highlightLetter": "ـآءَ (Madd Muttasil)",
+            "ruleApplied": "Madd Wājib Muttasil (4-5 Temps)",
+            "ruleTag": "madd",
+            "explanationFr": "L'Alif et la Hamzah sont réunis au cœur du mot « Jā'a ». La prolongation doit impérativement durer 4 ou 5 temps. La descendre à 2 temps est un Lahn Khafī.",
+            "transliteration": "Idhā jāāā'a nasru-Llāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/110001.mp3"
           },
           {
-            id: 'ex-c5-2',
-            arabicText: 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱسۡتَعِينُواْ',
-            surahAyahRef: '2:153',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'يَٰٓأَيُّهَا',
-            highlightLetter: 'يَا + أَيُّهَا (2 mots)',
-            ruleApplied: 'Madd Jā\'iz Munfasil (4-5 temps en liaison)',
-            ruleTag: 'madd',
-            explanationFr: '« Yā » est la particule d\'appel et « Ayyuhā » est le mot suivant. En liaison continue (Wasl), 4 à 5 temps sont exigés selon Hafs via Ash-Shātibiyyah.',
-            transliteration: 'Yā-ayyuhal-ladhīna āmanūs-ta\'īnū',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002153.mp3'
+            "id": "ex-c5-2",
+            "arabicText": "قُوٓاْ أَنفُسَكُمۡ وَأَهۡلِيكُمۡ نَارٗا",
+            "surahAyahRef": "66:6",
+            "surahNameFr": "At-Tahrīm",
+            "highlightSegment": "قُوٓاْ أَنفُسَكُمۡ",
+            "highlightLetter": "ـوٓاْ + أَ (Madd Munfasil)",
+            "ruleApplied": "Madd Jā'iz Munfasil (4-5 Temps)",
+            "ruleTag": "madd",
+            "explanationFr": "Le Wāw termine « Qū » et la Hamzah ouvre « Anfusakum ». Le lien entre les deux mots s'étire sur 4 à 5 temps selon la récitation standard de Hafs.",
+            "transliteration": "Qūūū anfusakum",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/066006.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Raccourcir le Madd Muttasil à 2 temps par empressement.',
-            correctionFr: 'C\'est un Lahn Khafī : le Madd Muttasil est unanime (Wājib), aucun lecteur coranique ne l\'autorise à 2 temps.'
-          },
-          {
-            trapFr: 'Conserver 4 temps sur un Madd Munfasil si l\'on s\'arrête sur le premier mot.',
-            correctionFr: 'Si vous vous arrêtez sur « Inna » dans « Innā anzalnāh », la Hamzah disparaît : vous devez impérativement revenir à un Madd Naturel de 2 temps !'
+            "trapFr": "Pour les francophones : varier arbitrairement la durée des Madds au sein de la même lecture (ex: faire 2 temps sur un verset, puis 5 temps sur le suivant).",
+            "correctionFr": "Appliquez la règle de concordance d'Al-Jazariyyah : « وَاللَّفْظُ فِي نَظِيرِهِ كَمِثْلِهِ » (Deux structures semblables doivent recevoir exactement la même mesure temporelle)."
           }
         ]
       },
       {
-        id: 'madd-badal-silah-kubra',
-        nameFr: '2. Madd Badal & Madd Silah Kubrā',
-        nameAr: 'مَدُّ البَدَلِ وَمَدُّ الصِّلَةِ الكُبْرَى',
-        mnemonic: 'Badal = Hamzah AVANT le Madd (2 t. dans Hafs) | Silah Kubrā = Pronom ـهُۥٓ / ـهِۦٓ + Hamzah (4-5 t.)',
-        letters: ['ء', 'ا', 'و', 'ي'],
-        definitionFr: 'Dans le Madd Badal, la Hamzah précède la lettre de Madd au lieu de la suivre (ex: Āmanū). Dans le Madd Silah Kubrā, le pronom possessif Hā\' (ـهُۥٓ / ـهِۦٓ) est suivi d\'une Hamzah au mot suivant.',
-        mechanismFr: 'Pour le Badal, prononcez 2 temps simples sans forcer. Pour la Silah Kubrā, étirez le pronom pendant 4 à 5 temps en continu uniquement.',
-        durationHarakat: 2,
-        examples: [
+        "id": "madd-lazim-strict",
+        "nameFr": "2. Le Madd Lāzim (6 Temps Stricts Incompressibles)",
+        "nameAr": "المَدُّ اللَّازِمُ الكَلِمِيُّ وَالحَرْفِيُّ (6 حَرَكَاتٍ)",
+        "mnemonic": "Lāzim = 6 temps incompressibles | Kalimī (dans un mot) / Harfī (dans les lettres isolées)",
+        "letters": [],
+        "definitionFr": "Le Madd Lāzim est la prolongation la plus puissante du Coran. Il survient lorsqu'une lettre de prolongation est immédiatement suivie d'une lettre portant un soukoûn originel permanent ou une Shaddah (ّ), que l'on poursuive ou que l'on s'arrête. Sa durée est obligatoirement et unanimement fixée à 6 temps.",
+        "definitionLughatan": {
+          "ar": "اللَّازِمُ: الثَّابِتُ الوَاجِبُ الَّذِي لَا يَنْفَكُّ عَنْ صَاحِبِهِ.",
+          "fr": "L'inévitable, l'immuable et le constant qui ne quitte jamais son état."
+        },
+        "definitionIstilahan": {
+          "ar": "أَنْ يَأْتِيَ بَعْدَ حَرْفِ المَدِّ سَاكِنٌ أَصْلِيٌّ لَازِمٌ وَصْلاً وَوَقْفاً فِي كَلِمَةٍ أَوْ حَرْفٍ، وَمِقْدَارُهُ سِتُّ حَرَكَاتٍ لُزُوماً.",
+          "fr": "Qu'une lettre de Madd soit suivie d'un soukoûn authentique invariable à la fois en liaison et à l'arrêt, dans un mot ou une lettre. Sa mesure est strictement de 6 temps pour tous les récitateurs."
+        },
+        "mechanismFr": "Maintenez la voyelle longue pendant 6 temps pleins avec amplitude et stabilité, puis appuyez fermement sur la consonne suivante avec un Nabrah (accentuation dynamique) si elle porte une Shaddah.",
+        "physiologicalDetails": {
+          "tongue": "Immobile pendant les 6 battements temporels, puis bondit avec énergie sur la lettre géminée.",
+          "lips": "Posturées sans crispation.",
+          "vocalCords": "Vibration continue et puissante sur toute la longueur des 6 temps.",
+          "airflow": "Colonne d'air pulmonaire ample et contrôlée."
+        },
+        "phoneticReasonFr": "Une lettre avec Shaddah est formée d'une première consonne soukounée suivie d'une consonne voyellée. La lettre de Madd étant elle-même soukounée, deux soukoûns se percutent ! L'allongement majestueux de 6 temps compense ce heurt phonologique et permet à la bouche de s'engager sur la Shaddah.",
+        "durationHarakat": 6,
+        "matnJazariyyah": {
+          "verseAr": "فَلَازِمٌ إِنْ جَاءَ بَعْدَ حَرْفِ مَدْ * سَاكِنُ حَالَيْنِ وَبِالطُّولِ يُمَدْ\nكَلِمِيٌّ انْ فِي كَلِمَةٍ وَقَعْ * وَحَرْفِيٌّ فِي حُرُوفِهَا شَرَعْ",
+          "transliteration": "Fa lāzimun in jā'a ba'da harfi mad * Sākinu hālayni wa bit-tūli yumad / Kalimīyyun in fī kalimatin waqa' * Wa harfīyyun fī hurūfihā shara'",
+          "translationFr": "« Il est qualifié de Lāzim si un soukoûn permanent en liaison et à l'arrêt suit la lettre de Madd : il est alors étiré au maximum (6 temps). Il est Kalimī s'il se produit dans un mot, et Harfī s'il apparaît dans les lettres isolées. » (Verset 35)",
+          "chapterNameAr": "بَابُ المَدِّ اللَّازِمِ"
+        },
+        "examples": [
           {
-            id: 'ex-c5-3',
-            arabicText: 'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ',
-            surahAyahRef: '2:285',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ءَامَنَ',
-            highlightLetter: 'ءَا (Hamzah avant Alif)',
-            ruleApplied: 'Madd Badal (2 temps dans Hafs)',
-            ruleTag: 'madd',
-            explanationFr: 'La Hamzah précède le Alif. À l\'origine « \'A\'mana », la deuxième Hamzah est devenue un Alif. Il dure exactement 2 temps dans la lecture de Hafs.',
-            transliteration: '\'Āmana-r-rasūlu bimā unzila ilayh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002285.mp3'
+            "id": "ex-c5-3",
+            "arabicText": "غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ",
+            "surahAyahRef": "1:7",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "ٱلضَّآلِّينَ",
+            "highlightLetter": "ـآلِّـ (Lāzim Kalimī Muthaqqal)",
+            "ruleApplied": "Madd Lāzim Kalimī Muthaqqal (6 Temps)",
+            "ruleTag": "madd",
+            "explanationFr": "L'Alif de prolongation est suivi de la Lām portant une Shaddah (ّ). L'allongement doit durer 6 temps incompressibles, suivi d'un appui net (Nabr) sur la Lām.",
+            "transliteration": "Wa la-d-dhāāāāāāllīn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001007.mp3"
           },
           {
-            id: 'ex-c5-4',
-            arabicText: 'يَحۡسَبُ أَنَّ مَالَهُۥٓ أَخۡلَدَهُۥ',
-            surahAyahRef: '104:3',
-            surahNameFr: 'Al-Humazah',
-            highlightSegment: 'مَالَهُۥٓ أَخۡلَدَهُۥ',
-            highlightLetter: 'ـهُۥٓ + أَ (Petit Wāw avec vague)',
-            ruleApplied: 'Madd Silah Kubrā (4-5 temps en liaison)',
-            ruleTag: 'madd',
-            explanationFr: 'Le pronom Hā\' est suivi d\'une Hamzah au début du mot suivant : en liaison, le petit Wāw avec la vague (~) reçoit 4 à 5 temps. À l\'arrêt sur « Mālah », il devient un simple Soukoûn pur.',
-            transliteration: 'Yahsabu anna mālahū akhladah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/104003.mp3'
+            "id": "ex-c5-4",
+            "arabicText": "ٱلۡحَآقَّةُ ١ مَا ٱلۡحَآقَّةُ",
+            "surahAyahRef": "69:1-2",
+            "surahNameFr": "Al-Hāqqah",
+            "highlightSegment": "ٱلۡحَآقَّةُ",
+            "highlightLetter": "ـآقَّـ (Madd 6 temps)",
+            "ruleApplied": "Madd Lāzim Kalimī Muthaqqal",
+            "ruleTag": "madd",
+            "explanationFr": "L'Alif est suivi du Qāf avec Shaddah : déployez 6 temps réguliers avant de faire claquer l'écrasement du Qāf lourd.",
+            "transliteration": "Al-Hāāāāāāqqah",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/069001.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Confondre Madd Badal et Madd Muttasil.',
-            correctionFr: 'Dans Badal, la Hamzah est AVANT la voyelle longue (ءَا = 2 temps). Dans Muttasil, elle est APRÈS (آء = 4-5 temps).'
-          },
-          {
-            trapFr: 'Appliquer la Silah Kubrā à l\'arrêt sur le mot.',
-            correctionFr: 'À l\'arrêt, le petit Wāw ou Yā\' s\'annule entièrement et la consonne Hā\' prend un Soukoûn franc sans aucun allongement (« Mālah »).'
+            "trapFr": "Pour les francophones : raccourcir le Madd Lāzim à 3 ou 4 temps par manque de souffle dans la Fātihah.",
+            "correctionFr": "Prenez une inspiration calme avant « Wa la-d-Dhāllīn » et tenez les 6 battements complets sans accélérer."
           }
         ]
       },
       {
-        id: 'madd-lazim-6-counts',
-        nameFr: '3. Le Madd Lāzim (6 Temps Stricts Incompressibles)',
-        nameAr: 'المَدُّ اللَّازِمُ (كَلِمِيٌّ وَحَرْفِيٌّ - ٦ حَرَكَاتٍ)',
-        mnemonic: 'Madd + Soukoûn originel ou Shaddah ➔ 6 Temps OBLIGATOIRES !',
-        letters: ['ا', 'و', 'ي'],
-        definitionFr: 'Le Madd Lāzim survient lorsqu\'une lettre de Madd est suivie d\'un Soukoûn originel permanent (présent en continu comme à l\'arrêt), matérialisé par une Shaddah (Muthaqqal) ou un Soukoûn pur (Mukhaffaf). Il impose STRICTEMENT 6 temps complets de prolongation sans dérogation.',
-        mechanismFr: 'Maintenez la note vocale sur 6 pulsations métronomiques complètes, puis faites claquer la Shaddah ou le Soukoûn avec fermeté (Nabrah).',
-        durationHarakat: 6,
-        examples: [
+        "id": "madd-arid-badal",
+        "nameFr": "3. Madd 'Ārid li-s-Sukūn & Madd Badal",
+        "nameAr": "المَدُّ العَارِضُ لِلسُّكُونِ وَمَدُّ البَدَلِ",
+        "mnemonic": "'Ārid = 2, 4 ou 6 temps à l'arrêt | Badal = Hamzah AVANT lettre de Madd (2 temps)",
+        "letters": [],
+        "definitionFr": "Le Madd 'Ārid li-s-Sukūn apparaît lorsqu'une lettre de Madd précède la dernière consonne d'un mot et que le lecteur s'arrête dessus en gelant la voyelle finale en soukoûn temporaire : il se lit au choix à 2, 4 ou 6 temps. Le Madd Badal survient lorsque la Hamzah PRÉCÈDE la lettre de Madd dans le mot : chez Hafs, il ne vaut que 2 temps.",
+        "definitionLughatan": {
+          "ar": "العَارِضُ: الطَّارِئُ غَيْرُ الأَصْلِيِّ. البَدَلُ: العِوَضُ وَالمُغَيَّرُ عَنْ أَصْلِهِ.",
+          "fr": "'Ārid : accidentel et temporaire. Badal : permuté et substitué."
+        },
+        "definitionIstilahan": {
+          "ar": "العَارِضُ: أَنْ يَقَعَ بَعْدَ حَرْفِ المَدِّ سُكُونٌ عَارِضٌ لِأَجْلِ الوَقْفِ (جَائِزٌ 2 أَوْ 4 أَوْ 6 حَرَكَاتٍ). البَدَلُ: أَنْ تَتَقَدَّمَ الهَمْزَةُ عَلَى حَرْفِ المَدِّ فِي كَلِمَةٍ (حَرَكَتَانِ عِنْدَ حَفْصٍ).",
+          "fr": "'Ārid : lettre de Madd suivie d'un soukoûn accidentel causé exclusivement par la pause (permis à 2, 4 ou 6 temps). Badal : la Hamzah précède la lettre de Madd (2 temps chez Hafs)."
+        },
+        "mechanismFr": "Pour le 'Ārid : choisissez une mesure (2, 4 ou 6 temps) et conservez la même cadence tout au long de votre lecture. Pour le Badal : traitez-le exactement comme un Madd naturel de 2 temps sans l'étirer.",
+        "physiologicalDetails": {
+          "tongue": "Stable pendant l'élongation, puis vient sceller la consonne finale à l'arrêt.",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration libre.",
+          "airflow": "Flux continu sans fuite nasale."
+        },
+        "phoneticReasonFr": "À l'origine, le mot de Badal comportait deux Hamzahs consécutives (ex: « أَاْمَنَ »). Pour adoucir la prononciation, les Arabes ont substitué la 2e Hamzah soukounée par une lettre de Madd homogène à la 1re voyelle (« ءَامَنَ »).",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "أَوْ عَـرَضَ السُّكُونُ وَقْفاً مُسْجَلَا * كَـ نَسْتَعِينُ مَعْ مَـآبٍ فُصِّلَا\nوَقَدِّمِ المَدَّ عَلَى الهَمْزِ يُرَى * بَدَلَ كَـ ءَامَنُوا هُدًى لِمَنْ قَرَا",
+          "transliteration": "Aw 'arada-s-sukūnu waqfan musjalā * Ka-Nasta'īnu ma' Ma'ābin fussilā / Wa qaddimi-l-madda 'alal-hamzi yurā * Badala ka-Āmanū hudan liman qarā",
+          "translationFr": "« Ou si un soukoûn accidentel survient lors de l'arrêt comme dans 'Nasta'īn' et 'Ma'āb'. Et si la Hamzah précède la lettre de prolongation, c'est le Badal comme dans 'Āmanū'. »",
+          "chapterNameAr": "بَابُ المَدِّ العَارِضِ وَالبَدَلِ"
+        },
+        "examples": [
           {
-            id: 'ex-c5-5',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلضَّآلِّينَ',
-            highlightLetter: 'آ + لّ (Shaddah sur Lām)',
-            ruleApplied: 'Madd Lāzim Kalimī Muthaqqal (6 temps incompressibles)',
-            ruleTag: 'madd',
-            explanationFr: 'L\'Alif est suivi d\'un Lām portant une Shaddah (donc un Lām Sākin originel). Obligation absolue d\'étirer sur 6 temps complets puis de compresser sur le Lām.',
-            transliteration: 'Wa lad-dāāāāāāllīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
+            "id": "ex-c5-5",
+            "arabicText": "إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ",
+            "surahAyahRef": "1:5",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "نَسۡتَعِينُ",
+            "highlightLetter": "ـِيـ + نُ (Waqf)",
+            "ruleApplied": "Madd 'Ārid li-s-Sukūn (2, 4 ou 6 temps)",
+            "ruleTag": "madd",
+            "explanationFr": "À l'arrêt sur « Nasta'īn », le Yā' de Madd est suivi du Nūn immobilisé par le soukoûn. Vous pouvez choisir de prolonger de 2, 4 ou 6 temps selon le rythme de votre lecture.",
+            "transliteration": "Iyyāka na'budu wa iyyāka nasta'īīīn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001005.mp3"
           },
           {
-            id: 'ex-c5-6',
-            arabicText: 'الٓمٓ ١ ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ',
-            surahAyahRef: '2:1',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'الٓمٓ',
-            highlightLetter: 'Lām (6t) + Mīm (6t)',
-            ruleApplied: 'Madd Lāzim Harfī (Muthaqqal + Mukhaffaf)',
-            ruleTag: 'madd',
-            explanationFr: 'Dans les lettres isolées au début des sourates : le Lām dure 6 temps et fusionne avec Ghunnah dans le Mīm qui dure lui aussi 6 temps complets.',
-            transliteration: 'Alif-Lāāāāāāmm-Mīīīīīīm',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002001.mp3'
+            "id": "ex-c5-6",
+            "arabicText": "ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ",
+            "surahAyahRef": "2:285",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "ءَامَنَ",
+            "highlightLetter": "ءَا (Madd Badal)",
+            "ruleApplied": "Madd Badal (2 Temps chez Hafs)",
+            "ruleTag": "madd",
+            "explanationFr": "La Hamzah précède l'Alif de prolongation dans « Āmana ». Chez Hafs 'an 'Āsim, ce Madd se lit impérativement à 2 temps (ne pas l'étirer à 4 ou 6 temps comme chez Warsh).",
+            "transliteration": "Āmana-r-Rasūlu",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002285.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Raccourcir « Ad-Dāllīn » à 2 ou 4 temps dans la prière par précipitation.',
-            correctionFr: 'C\'est une faute de récitation majeure (Lahn Khafī impardonnable dans la Fātihah). Comptez mentalement 6 battements complets.'
-          },
-          {
-            trapFr: 'Oublier d\'appuyer sur la Shaddah à la fin des 6 temps (omission du Nabrah).',
-            correctionFr: 'Si vous n\'appuyez pas fermement sur le double Lām, le mot sonne comme « Dālīn » sans Shaddah, altérant le mot coranique.'
-          }
-        ]
-      },
-      {
-        id: 'madd-arid-leen-waqf',
-        nameFr: '4. Madd \'Ārid li-s-Sukūn & Madd Līn à l\'Arrêt',
-        nameAr: 'المَدُّ العَارِضُ لِلسُّكُونِ وَمَدُّ اللِّينِ عِنْدَ الوَقْفِ',
-        mnemonic: 'Arrêt sur fin de verset ➔ Choix libre : 2, 4 ou 6 temps (Garder la même durée !)',
-        letters: ['ا', 'و', 'ي'],
-        definitionFr: 'Sur la dernière consonne d\'un verset, l\'arrêt impose un Soukoûn incident. La voyelle longue précédente devient alors un Madd \'Ārid li-s-Sukūn, et les lettres de Līn (ـَ + وْ / يْ) deviennent un Madd Līn. Le lecteur a le choix libre de prolonger à 2, 4 ou 6 temps.',
-        mechanismFr: 'Choisissez une cadence (ex: 4 temps) et maintenez exactement cette même durée sur toutes les fins de versets de votre lecture.',
-        durationHarakat: 4,
-        examples: [
-          {
-            id: 'ex-c5-7',
-            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '1:2',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلۡعَٰلَمِينَ',
-            highlightLetter: 'ـِينْ (Arrêt sur Soukoûn)',
-            ruleApplied: 'Madd \'Ārid li-s-Sukūn (2, 4 ou 6 temps au choix)',
-            ruleTag: 'madd',
-            explanationFr: 'En continuant : « Al-\'Ālamīna » (2 temps simples). À l\'arrêt : le Nūn prend un Soukoûn incident et le Yā\' peut s\'allonger de 2, 4 ou 6 temps.',
-            transliteration: 'Al-hamdu lillāhi rabbil-\'ālamīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
-          },
-          {
-            id: 'ex-c5-8',
-            arabicText: 'فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ',
-            surahAyahRef: '106:3',
-            surahNameFr: 'Quraysh',
-            highlightSegment: 'ٱلۡبَيۡتِ',
-            highlightLetter: 'ـَيۡتْ (Līn à l\'arrêt)',
-            ruleApplied: 'Madd Līn à l\'arrêt (2, 4 ou 6 temps)',
-            ruleTag: 'madd',
-            explanationFr: 'Le Yā\' est précédé d\'une Fathah : en continu, aucun Madd n\'est permis (« Al-Bayti »). Mais à l\'arrêt, il devient un Madd Līn de 2, 4 ou 6 temps !',
-            transliteration: 'Fal-ya\'budū rabba hādhal-bayt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/106003.mp3'
-          }
-        ],
-        commonMistakes: [
-          {
-            trapFr: 'Changer anarchiquement de durée entre chaque verset (ex: 2 temps sur Al-\'Ālamīn, puis 6 sur Ar-Rahīm, puis 4 sur Ad-Dīn).',
-            correctionFr: 'La règle fondamentale de la récitation (Al-Mīzān) impose l\'uniformité : la durée choisie au départ doit être conservée du début à la fin de la récitation.'
-          },
-          {
-            trapFr: 'Donner au Madd Līn une durée supérieure à celle du Madd \'Ārid.',
-            correctionFr: 'La lettre de Līn est phonétiquement plus faible que la lettre de Madd : elle peut être égale ou plus courte, mais JAMAIS plus longue que le Madd \'Ārid !'
+            "trapFr": "Allonger le Madd Badal à 4 ou 6 temps par imitation d'autres lectures sans maîtriser la transmission de Hafs.",
+            "correctionFr": "En lecture de Hafs 'an 'Āsim (la lecture enseignée dans cette application), le Madd Badal ne mesure que 2 temps stricts."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c5-1',
-        title: 'Le Madd Lāzim de la Fātihah : « Ad-Dāllīn » (1:7)',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
-        surahAyahRef: '1:7',
-        targetSegment: 'وَلَا ٱلضَّآلِّينَ',
-        promptFr: 'Pourquoi le mot « ٱلضَّآلِّينَ » impose-t-il obligatoirement 6 temps complets de prolongation et comment gérer la transition vers le Lām ?',
-        hintFr: 'Observez le symbole au-dessus du Alif et la lettre qui suit immédiatement : porte-t-elle une Shaddah ?',
-        solutionFr: 'C\'est un Madd Lāzim Kalimī Muthaqqal (Madd suivi d\'une Shaddah). Il exige 6 temps incompressibles avec une pression ferme (Nabrah) sur le double Lām.',
-        breakdownSteps: [
-          'Identification de la lettre de Madd : Le Alif après le Dād emphatique.',
-          'Identification de la cause : Le Lām qui suit porte une Shaddah (لّ), ce qui équivaut à un premier Lām avec Soukoûn originel permanent (لْ) suivi d\'un Lām avec Kasrah (لِ).',
-          'Application de la règle : C\'est un Madd Lāzim Kalimī Muthaqqal. Il est strictement obligatoire (Lāzim) de maintenir la voix pendant 6 pulsations complètes.',
-          'Le Nabrah (pression) sur la Shaddah : À la 6e pulsation, compressez la voix avec fermeté sur la langue pour faire claquer le double Lām sans interrompre le souffle.'
+        "id": "exo-c5-1",
+        "title": "Identification de Madd Muttasil dans « ٱلسَّمَآءَ »",
+        "verseArabic": "وَٱلسَّمَآءَ بَنَيۡنَٰهَا بِأَيۡيْدٖ وَإِنَّا لَمُوسِعُونَ",
+        "surahAyahRef": "51:47",
+        "targetSegment": "وَٱلسَّمَآءَ",
+        "promptFr": "Quelle est la durée canonique de prolongation sur le mot « As-Samā' » ?",
+        "hintFr": "L'Alif et la Hamzah sont-ils dans le même mot ou deux mots distincts ?",
+        "solutionFr": "4 ou 5 temps obligatoires (Madd Wājib Muttasil)",
+        "breakdownSteps": [
+          "La lettre de Madd (Alif) est suivie d'une Hamzah dans le même mot.",
+          "C'est un Madd Wājib Muttasil.",
+          "Sa durée est fixée à 4 ou 5 temps par les chaînes de transmission de Hafs."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
-      },
-      {
-        id: 'exo-c5-2',
-        title: 'Muttasil vs Munfasil : Sourate Al-Baqarah (2:5)',
-        verseArabic: 'أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ',
-        surahAyahRef: '2:5',
-        targetSegment: 'أُوْلَٰٓئِكَ',
-        promptFr: 'Analysez la prolongation dans « أُوْلَٰٓئِكَ » : est-elle liée (Muttasil) ou séparée (Munfasil), et que se passe-t-il si vous vous arrêtez dessus ?',
-        hintFr: 'L\'Alif Khanjariyyah et la Hamzah sont-ils dans un seul et même mot indivisible ou répartis sur deux mots ?',
-        solutionFr: '« Ulā\'ika » est un mot unique : c\'est un Madd Wājib Muttasil (4-5 temps obligatoires en continu comme à l\'arrêt).',
-        breakdownSteps: [
-          '« Ulā\'ika » est un mot unique : l\'Alif Khanjariyyah (ٰ) et la Hamzah (ئِ) sont logés dans le même mot.',
-          'Règle : Madd Wājib Muttasil (prolongation obligatoire liée).',
-          'Durée : 4 à 5 Harakāt obligatoires en Wasl comme en Waqf.',
-          'Comparaison avec Munfasil : Même si l\'on s\'arrête sur « Ulā\'ika », la prolongation reste de 4 ou 5 temps, car la Hamzah fait partie intrinsèque du mot (contrairement à « Bimā unzila » où l\'arrêt sur « Bimā » ramène la prolongation à 2 temps).'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002005.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/051047.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c5-1',
-        type: 'mcq',
-        promptFr: 'Quelle est la différence fondamentale entre le Madd Muttasil (المتصل) et le Madd Munfasil (المنفصل) ?',
-        verseArabic: 'ٱلسَّمَآءَ | يَٰٓأَيُّهَا',
-        targetWord: 'ٱلسَّمَآءَ',
-        surahAyahRef: '2:22',
-        options: [
-          'Dans le Muttasil, la lettre de Madd et la Hamzah sont dans le même mot (4-5 t. obligatoires) ; dans le Munfasil, elles sont dans deux mots séparés',
-          'Le Muttasil ne dure que 2 temps et le Munfasil dure 6 temps',
-          'Le Muttasil concerne uniquement le Wāw et le Munfasil uniquement l\'Alif',
-          'Le Muttasil est interdit le vendredi'
+        "id": "q-c5-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Quelles sont les deux seules causes existantes pour déclencher un Madd Secondaire (Far'ī) ?",
+        "verseArabic": "إِذَا جَآءَ نَصۡرُ ٱللَّهِ وَٱلۡفَتۡحُ",
+        "options": [
+          "La Hamzah (همزة) ou le Soukoûn (سكون)",
+          "La Kasrah ou la Dammah",
+          "La Shaddah et la Tanwīn",
+          "La fin de sourate uniquement"
         ],
-        correctAnswer: 'Dans le Muttasil, la lettre de Madd et la Hamzah sont dans le même mot (4-5 t. obligatoires) ; dans le Munfasil, elles sont dans deux mots séparés',
-        explanationFr: 'Le Madd Muttasil réunit le Madd et la Hamzah dans le même mot indivisible (Wājib 4-5 temps). Le Madd Munfasil les sépare entre deux mots (Jā\'iz 4-5 temps en liaison, et 2 temps si l\'on s\'arrête sur le premier mot).',
-        ruleId: 'madd-muttasil-munfasil'
+        "correctAnswer": "La Hamzah (همزة) ou le Soukoûn (سكون)",
+        "explanationFr": "Tout allongement au-delà des 2 temps naturels est déclenché exclusivement soit par la présence d'une Hamzah voisine, soit par un soukoûn (originel ou temporaire).",
+        "ruleId": "madd-muttasil-munfasil"
       },
       {
-        id: 'q-c5-2',
-        type: 'mcq',
-        promptFr: 'Combien de temps (Harakāt) doit impérativement durer un Madd Lāzim (comme dans « ٱلضَّآلِّينَ » ou « الٓمٓ ») ?',
-        verseArabic: 'غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
-        targetWord: 'ٱلضَّآلِّينَ',
-        surahAyahRef: '1:7',
-        options: [
-          'Strictement 6 temps (Harakāt) incompressibles, obligatoires pour tous les lecteurs',
-          '2 temps suffisent en cas de fatigue',
-          '4 temps au choix du lecteur',
-          'Entre 2 et 8 temps selon le rythme'
+        "id": "q-c5-2",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Dans « ءَامَنَ الرَّسُولُ », un lecteur applique une prolongation de 6 temps sur « Āmana » en prétendant lire selon Hafs. Quel est le diagnostic ?",
+        "verseArabic": "ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ",
+        "targetWord": "ءَامَنَ",
+        "surahAyahRef": "2:285",
+        "options": [
+          "Lahn Khafī : Chez Hafs par la voie de la Shātibiyyah, le Madd Badal mesure strictement 2 temps (l'étirer à 6 temps est une confusion avec la lecture de Warsh)",
+          "Récitation excellente et recommandée",
+          "Lahn Jalī modifiant le sens",
+          "Madd Lāzim obligatoire"
         ],
-        correctAnswer: 'Strictement 6 temps (Harakāt) incompressibles, obligatoires pour tous les lecteurs',
-        explanationFr: 'Le Madd Lāzim (suivi d\'un Soukoûn originel ou d\'une Shaddah) exige obligatoirement 6 temps complets selon le consensus unanime de tous les maîtres du Tajwīd.',
-        ruleId: 'madd-lazim-6-counts'
+        "correctAnswer": "Lahn Khafī : Chez Hafs par la voie de la Shātibiyyah, le Madd Badal mesure strictement 2 temps (l'étirer à 6 temps est une confusion avec la lecture de Warsh)",
+        "explanationFr": "Le livre « التجويد المبسط » classe formellement l'élongation excessive du Badal chez Hafs parmi les erreurs de Lahn Khafī. Hafs lit le Badal en 2 temps réguliers.",
+        "ruleId": "madd-arid-badal"
       },
       {
-        id: 'q-c5-3',
-        type: 'mcq',
-        promptFr: 'Dans le mot « ءَامَنُواْ », quelle est la nature de la prolongation sur la Hamzah initiale et combien de temps dure-t-elle selon la lecture de Hafs ?',
-        verseArabic: 'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيۡهِ',
-        targetWord: 'ءَامَنَ',
-        surahAyahRef: '2:285',
-        options: [
-          'C\'est un Madd Badal (la Hamzah précède le Madd), allongé de 2 temps seulement (comme un Madd Naturel)',
-          'C\'est un Madd Lāzim de 6 temps',
-          'C\'est un Madd Muttasil de 5 temps',
-          'Il n\'y a aucun Madd, c\'est une consonne sèche'
+        "id": "q-c5-3",
+        "type": "error_detect",
+        "promptFr": "Dans « وَلَا الضَّالِّينَ », le lecteur ne prolonge que pendant 2 temps avant la lettre Lām. Quelle est la faute ?",
+        "verseArabic": "غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ",
+        "targetWord": "ٱلضَّآلِّينَ",
+        "surahAyahRef": "1:7",
+        "options": [
+          "Lahn Khafī majeur : Le Madd Lāzim exige obligatoirement 6 temps complets pour surmonter la Shaddah",
+          "Aucune erreur",
+          "Erreur sur la Qalqalah",
+          "Prononciation autorisée"
         ],
-        correctAnswer: 'C\'est un Madd Badal (la Hamzah précède le Madd), allongé de 2 temps seulement (comme un Madd Naturel)',
-        explanationFr: 'Dans le Madd Badal, la Hamzah se trouve AVANT la voyelle longue. Dans la lecture de Hafs \'an \'Āsim, il se récite avec exactement 2 Harakāt.',
-        ruleId: 'madd-badal-silah-kubra'
-      },
-      {
-        id: 'q-c5-4',
-        type: 'mcq',
-        promptFr: 'Lorsque vous récitez la sourate Al-Fātihah et que vous choisissez de prolonger la fin du verset 2 (« Al-\'Ālamīn ») de 4 temps, quelle est la règle pour les versets suivants ?',
-        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ٢ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ ٣',
-        targetWord: 'ٱلۡعَٰلَمِينَ',
-        surahAyahRef: '1:2',
-        options: [
-          'Règle de cohérence (Al-Mīzān) : vous devez maintenir la même durée (4 temps) sur toutes les fins de versets de votre récitation',
-          'Vous devez obligatoirement alterner : 2 temps puis 6 temps puis 4 temps',
-          'Vous devez réciter les versets suivants sans aucun Madd',
-          'Le choix est totalement aléatoire à chaque verset'
-        ],
-        correctAnswer: 'Règle de cohérence (Al-Mīzān) : vous devez maintenir la même durée (4 temps) sur toutes les fins de versets de votre récitation',
-        explanationFr: 'Le Madd \'Ārid li-s-Sukūn offre le choix entre 2, 4 ou 6 temps, mais la règle fondamentale de la balance (Al-Mīzān) impose de conserver rigoureusement la même mesure pendant toute votre session de récitation.',
-        ruleId: 'madd-arid-leen-waqf'
-      },
-      {
-        id: 'q-c5-5',
-        type: 'mcq',
-        promptFr: 'Quelle est la règle pour le mot « قُرَيۡشٍ » (Quraysh 106:1) entre la lecture continue (Wasl) et l\'arrêt (Waqf) ?',
-        verseArabic: 'لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ',
-        targetWord: 'قُرَيۡشٍ',
-        surahAyahRef: '106:1',
-        options: [
-          'En continu (Wasl), 0 temps de Madd (simple consonne de Līn douce) ; à l\'arrêt (Waqf), il devient un Madd Līn permis de 2, 4 ou 6 temps',
-          'Il dure 6 temps en continu et 2 temps à l\'arrêt',
-          'Il est interdit de s\'arrêter dessus',
-          'Il prend toujours 4 temps, qu\'on s\'arrête ou qu\'on continue'
-        ],
-        correctAnswer: 'En continu (Wasl), 0 temps de Madd (simple consonne de Līn douce) ; à l\'arrêt (Waqf), il devient un Madd Līn permis de 2, 4 ou 6 temps',
-        explanationFr: 'Les lettres de Līn (Wāw ou Yā\' précédés d\'une Fathah) ne reçoivent AUCUN Madd en continu. Ce n\'est qu\'à l\'arrêt, en raison du Soukoûn incident, qu\'elles peuvent s\'étirer de 2, 4 ou 6 temps.',
-        ruleId: 'madd-arid-leen-waqf'
+        "correctAnswer": "Lahn Khafī majeur : Le Madd Lāzim exige obligatoirement 6 temps complets pour surmonter la Shaddah",
+        "explanationFr": "Le Madd Lāzim est nommé « Lāzim » (obligatoire/inévitable) car tous les imams des dix lectures s'accordent unanimement sur son allongement à 6 temps stricts.",
+        "ruleId": "madd-lazim-strict"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 6 : LES HAMZAHS (HAMZAT AL-WASL & AL-QAT')
-  // ==========================================
   {
-    id: 'chap-6',
-    number: 6,
-    slug: 'hamzah',
-    titleFr: 'Les Hamzahs (Hamzat Al-Wasl & Al-Qat\')',
-    titleAr: 'هَمْزَتَا الوَصْلِ وَالقَطْعِ',
-    category: 'intermediate',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre et maîtriser la distinction absolue entre Hamzat Al-Qat\' (ء - toujours prononcée en toutes circonstances) et Hamzat Al-Wasl (ٱ - qui disparaît entièrement en liaison continue et ne renaît qu\'à l\'attaque du mot). Déterminer avec exactitude la voyelle d\'attaque (Tashkīl) selon la règle de la 3e lettre pour les verbes (Dammah ➔ اُ, Fathah/Kasrah ➔ اِ), la Fathah systématique sur l\'article défini (ٱلـ ➔ اَلـ), la Kasrah des noms singuliers coraniques, et déjouer le piège fatal des 5 verbes d\'exception (ٱبۡنُواْ, ٱمۡشُواْ, ٱقۡضُوٓاْ...) ainsi que la transmutation de « I\'tūnī » en « Ītūnī ».',
-    infographicPoints: [
-      'Hamzat Al-Qat\' (ء) : Porte toujours sa propre voyelle (أَ, إِ, أُ). Elle est TOUJOURS prononcée avec netteté, au début, au milieu ou à la fin d\'un mot, en continu comme à l\'arrêt !',
-      'Hamzat Al-Wasl (ٱ) : Surmontée du petit Sād (صـ pour Silah/connexion). Elle ne se trouve QU\'AU DÉBUT d\'un mot. En liaison continue (Wasl), elle est TOTALEMENT ANNULÉE et escamotée phonétiquement !',
-      'Tashkīl de l\'Article Défini (ٱلـ) : Tout nom commençant par l\'article défini ٱلـ commence TOUJOURS par une FATHAH à l\'attaque (« Al-hamdu », « Al-bayt ») !',
-      'Règle de la 3e lettre pour les Verbes : Comptez jusqu\'à la 3e lettre du verbe : si elle porte une Dammah ➔ attaquez avec Dammah (اُدۡعُ) ; si elle porte une Fathah ou Kasrah ➔ attaquez avec Kasrah (اِذۡهَبۡ, اِهۡدِنَا) !',
-      'Le piège des 5 Verbes d\'Exception : « Ibnū », « Iqdū », « Imshū », « I\'tū », « I\'tūnī » ont une Dammah apparente sur la 3e lettre mais s\'attaquent TOUS avec une KASRAH (اِبۡنُواْ) car la Dammah est accidentelle (due au pluriel).',
-      'La Rencontre des Deux Hamzahs (Al-Ahqāf 46:4) : En continu = « fīs-samāwāti\'-tūnī ». À l\'attaque = la 2e Hamzah se transmute en Yā\' de Madd et l\'on prononce « ĪTŪNĪ » (إِيتُونِي) !'
+    "id": "chap-6",
+    "number": 6,
+    "slug": "hamzah",
+    "titleFr": "Les Hamzahs (Hamzat Al-Wasl & Al-Qat')",
+    "titleAr": "هَمْزَتَا الوَصْلِ وَالقَطْعِ",
+    "category": "intermediate",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Distinguer la Hamzah stable (Qat' : toujours prononcée avec son tracé ء) de la Hamzah de liaison (Wasl : ٱ, prononcée uniquement en début de phrase et effacée en continu). Maîtriser la règle de la 3e lettre pour vocaliser les verbes à l'initiale et mémoriser les 5 verbes d'exception.",
+    "infographicPoints": [
+      "Hamzat Al-Qat' (همزة القطع) : Porte le petit symbole ء. Se prononce fermement partout : au début, au milieu, en liaison et à l'arrêt.",
+      "Hamzat Al-Wasl (همزة الوصل) : Porte un petit Sād miniature (صـ sur ٱ). S'efface complètement en liaison continue ; ne se prononce que si l'on commence par elle !",
+      "Débuter sur un verbe avec Hamzat Al-Wasl : Regardez la 3e lettre du verbe ! 3e lettre avec Dammah originelle -> débuter par Dammah (ex: ٱدۡعُ -> Ud'u). 3e lettre avec Fathah ou Kasrah -> débuter par Kasrah (ex: ٱضۡرِبۡ -> Idrib, ٱفۡتَحۡ -> Iftah).",
+      "Les 7 Noms singuliers indéfinis prennent toujours une KASRAH au démarrage : ٱبۡن, ٱبۡنَة, ٱمۡرُؤ, ٱمۡرَأَة, ٱثۡنَيۡن, ٱثۡنَتَيۡن, ٱسۡم.",
+      "L'article défini (ٱلْـ) prend toujours une FATHAH au démarrage : « Al-Hamd ».",
+      "Les 5 Verbes d'exception à Dammah accidentelle débutent par KASRAH : ٱبۡنُواْ, ٱمۡشُواْ, ٱقۡضُوٓاْ, ٱمۡضُواْ, ٱئۡتُواْ !"
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'hamzat-qat-vs-wasl',
-        nameFr: '1. Hamzat Al-Qat\' (ء) vs Hamzat Al-Wasl (ٱ)',
-        nameAr: 'الفَرْقُ بَيْنَ هَمْزَةِ القَطْعِ وَهَمْزَةِ الوَصْلِ',
-        mnemonic: 'Qat\' (ء) = Fixe & Invariable | Wasl (ٱ avec صـ) = Chute en continu, renaît à l\'attaque',
-        letters: ['ء', 'ٱ'],
-        definitionFr: 'Hamzat Al-Qat\' (ء) est une consonne authentique qui se prononce obligatoirement en toutes circonstances. Hamzat Al-Wasl (ٱ) est une béquille phonétique créée pour éviter de débuter un mot par un Soukoûn : elle disparaît complètement dès qu\'un mot la précède.',
-        mechanismFr: 'En lecture continue, passez directement de la dernière voyelle du mot précédent à la consonne qui suit Hamzat Al-Wasl sans aucune rupture ni hésitation glottale.',
-        durationHarakat: 0,
-        examples: [
+        "id": "hamza-qat-vs-wasl",
+        "nameFr": "1. Hamzat Al-Qat' vs Hamzat Al-Wasl (Nature & Rôle)",
+        "nameAr": "الفَرْقُ بَيْنَ هَمْزَةِ القَطْعِ وَهَمْزَةِ الوَصْلِ",
+        "mnemonic": "Qat' (ء) = Permanente et inébranlable | Wasl (ٱ) = Pont provisoire qui s'efface en liaison",
+        "letters": [
+          "ء",
+          "ٱ"
+        ],
+        "definitionFr": "Hamzat Al-Qat' est une lettre constitutive du mot qui s'articule impérativement en toute circonstance. Hamzat Al-Wasl est une Hamzah auxiliaire rajoutée au début du mot dans le seul but de permettre à la bouche d'articuler la consonne suivante qui est soukounée.",
+        "definitionLughatan": {
+          "ar": "القَطْعُ: الفَصْلُ وَالإِبَانَةُ. الوَصْلُ: الرَّبْطُ وَالجَمْعُ بَيْنَ الشَّيْئَيْنِ.",
+          "fr": "Qat' : la coupure franche et nette. Wasl : la liaison et le rattachement."
+        },
+        "definitionIstilahan": {
+          "ar": "هَمْزَةُ القَطْعِ: تَثْبُتُ ابْتِدَاءً وَوَصْلاً وَرَسْماً. هَمْزَةُ الوَصْلِ: هَمْزَةٌ زَائِدَةٌ تَثْبُتُ فِي الِابْتِدَاءِ لِلْتَمَكُّنِ مِنَ النُّطْقِ بِالسَّاكِنِ وَتَسْقُطُ فِي دَرَجِ الكَلَامِ وَصْلاً.",
+          "fr": "Hamzat Qat' : établie à l'initiale, en liaison et dans le tracé. Hamzat Wasl : Hamzah surajoutée prononcée uniquement en début d'énoncé pour permettre d'amorcer le soukoûn, et qui s'efface en cours de phrase."
+        },
+        "mechanismFr": "Pour Hamzat Al-Qat' : fermez nettement la glotte au fond de la gorge. Pour Hamzat Al-Wasl en liaison : sautez par-dessus elle comme si elle n'existait pas pour atterrir directement sur la consonne suivante.",
+        "physiologicalDetails": {
+          "tongue": "Reste au repos au fond de la bouche.",
+          "lips": "Épousent la voyelle portée par la Hamzah.",
+          "vocalCords": "Fermeture et réouverture nette de la glotte pour Hamzat Al-Qat' ; effacement passif en liaison pour Hamzat Al-Wasl.",
+          "airflow": "Arrêt instantané du flux d'air au niveau glottique pour Al-Qat'."
+        },
+        "phoneticReasonFr": "L'arabe interdit d'entamer la parole par une consonne soukounée. Les grammairiens l'appelaient « Sullam al-Lisān » (l'échelle de la langue) car elle permettait à la langue de monter sur la consonne immobile.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَابْدَأْ بِهَمْزِ الوَصْلِ مِنْ فِعْلٍ بِضَمْ * إِنْ كَانَ ثَالِثٌ مِنَ الفِعْلِ يُضَمْ\nوَاكْسِرْهُ حَالَ الكَسْرِ وَالفَتْحِ وَفِي * الاسْمَاءِ غَيْرَ اللَّامِ كَسْرُهَا وَفِي",
+          "transliteration": "Wabda' bi-hamzi-l-wasli min fi'lin bi-damm * In kāna thālithun mina-l-fi'li yudamm / Waksir-hu hāla-l-kasri wal-fathi wa fī * Al-asmā'i ghayra-l-lāmi kasruhā wa fī",
+          "translationFr": "« Débute par une Dammah sur la Hamzah de liaison d'un verbe si sa 3e lettre porte une Dammah ; et donne-lui une Kasrah si la 3e lettre porte une Kasrah ou une Fathah, ainsi que dans les noms où la Kasrah est de règle (hormis le Lām de l'article défini). » (Versets 100-101)",
+          "chapterNameAr": "بَابُ هَمْزِ الوَصْلِ"
+        },
+        "examples": [
           {
-            id: 'ex-c6-1',
-            arabicText: 'ٱلَّذِينَ إِذَآ أَصَٰبَتۡهُم مُّصِيبَةٞ قَالُوٓاْ إِنَّا لِلَّهِ',
-            surahAyahRef: '2:156',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'أَصَٰبَتۡهُم · إِنَّا',
-            highlightLetter: 'أَ · إِ (Hamzat Al-Qat\')',
-            ruleApplied: 'Hamzat Al-Qat\' (Prononciation obligatoire)',
-            ruleTag: 'izhar',
-            explanationFr: 'Les Hamzahs de « Asābathum » et « Innā » sont des Hamzat Qat\' : elles se détachent nettement des cordes vocales sans jamais pouvoir être élidées.',
-            transliteration: 'Alladhīna idhā asābathum musībah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002156.mp3'
-          },
-          {
-            id: 'ex-c6-2',
-            arabicText: 'فَمَنۡ حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
-            surahAyahRef: '2:158',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
-            highlightLetter: 'ٱ (Chute en liaison continue)',
-            ruleApplied: 'Hamzat Al-Wasl (Élision complète en Wasl)',
-            ruleTag: 'silent',
-            explanationFr: 'En lisant en continu, les deux Hamzats Wasl s\'évanouissent totalement : on prononce « Hajja-l-bayta awi-\'tamara », la voix enchaînant directement sur le Lām puis sur le \'Ayn.',
-            transliteration: 'Faman hajja-l-bayta awi-\'tamara',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002158.mp3'
+            "id": "ex-c6-1",
+            "arabicText": "وَٱسۡتَغۡفِرۡ لِذَنۢبِكَ",
+            "surahAyahRef": "40:55",
+            "surahNameFr": "Ghāfir",
+            "highlightSegment": "وَٱسۡتَغۡفِرۡ",
+            "highlightLetter": "وَ + ٱسۡـ",
+            "ruleApplied": "Élision de Hamzat Al-Wasl en liaison",
+            "ruleTag": "silent",
+            "explanationFr": "En liaison continue après le Wāw, Hamzat Al-Wasl disparaît complètement : on dit « Wa-staghfir » et jamais « Wa-istaghfir ».",
+            "transliteration": "Wastaghfir li-dhambik",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/040055.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Marquer un coup de glotte sec sur Hamzat Al-Wasl en plein milieu d\'une phrase (ex: dire "Hajja ... Al-bayt").',
-            correctionFr: 'C\'est une faute majeure de liaison : Hamzat Al-Wasl doit être totalement imperceptible en Wasl.'
-          },
-          {
-            trapFr: 'Confondre le petit Sād (صـ) de Wasl avec un Soukoûn pur.',
-            correctionFr: 'Le petit Sād est le signe de « Silah » (connexion) : il rappelle que la lettre ne sert qu\'à relier et disparaît en continu.'
+            "trapFr": "Prononcer Hamzat Al-Wasl en liaison en disant « Wa-istaghfir » ou « Bismi-Allāh ».",
+            "correctionFr": "Lie directement la consonne précédente à la suivante sans coup de gorge : dites « Wastaghfir » et « Bismillāh »."
           }
         ]
       },
       {
-        id: 'verbs-third-letter-rule',
-        nameFr: '2. La Règle de la 3e Lettre pour les Verbes',
-        nameAr: 'حُكْمُ حَرَكَةِ هَمْزَةِ الوَصْلِ فِي الأَفْعَالِ (قَاعِدَةُ الحَرْفِ الثَّالِثِ)',
-        mnemonic: '3e lettre Dammah ➔ اُ | 3e lettre Fathah ou Kasrah ➔ اِ (Jamais de Fathah sur un verbe !)',
-        letters: ['ٱ'],
-        definitionFr: 'Dans le Coran, Hamzat Al-Wasl ne porte aucun Tashkīl. Pour savoir quelle voyelle lui donner lorsque l\'on débute par un verbe, on regarde la voyelle de sa 3e lettre (en comptant Hamzat Al-Wasl comme lettre n°1).',
-        mechanismFr: '1 = Hamzat Wasl, 2 = Lettre avec Soukoûn, 3 = Troisième lettre. Si 3 = Dammah originelle (ـُ), prononcez « U » (اُ). Si 3 = Fathah (ـَ) ou Kasrah (ـِ), prononcez « I » (اِ). Un verbe ne commence JAMAIS par une Fathah !',
-        durationHarakat: 0,
-        examples: [
+        "id": "verbs-third-letter-rule",
+        "nameFr": "2. La Règle de la 3e Lettre pour Vocaliser les Verbes",
+        "nameAr": "حُكْمُ حَرَكَةِ هَمْزَةِ الوَصْلِ عِنْدَ الِابْتِدَاءِ بِالأَفْعَالِ",
+        "mnemonic": "3e lettre Dammah originelle = Débuter avec DAMMAH (U) | 3e lettre Fathah ou Kasrah = Débuter avec KASRAH (I)",
+        "letters": [],
+        "definitionFr": "Lorsqu'on débute sa lecture par un verbe commençant par Hamzat Al-Wasl, on examine obligatoirement la voyelle de la 3e lettre du verbe pour déterminer la voyelle d'attaque : si la 3e lettre porte une Dammah originelle, la Hamzah prend une Dammah ; si la 3e lettre porte une Fathah ou une Kasrah, la Hamzah prend une Kasrah.",
+        "definitionLughatan": {
+          "ar": "الثَّالِثُ: رُتْبَةُ الحَرْفِ فِي بِنْيَةِ الفِعْلِ بَعْدَ هَمْزَةِ الوَصْلِ وَالسَّاكِنِ.",
+          "fr": "Le troisième rang consonnantique dans la morphologie du verbe."
+        },
+        "definitionIstilahan": {
+          "ar": "قَاعِدَةٌ صَرْفِيَّةٌ تَقْتَضِي ضَمَّ هَمْزَةِ الوَصْلِ إِذَا كَانَ ثَالِثُ الفِعْلِ مَضْمُوماً ضَمّاً أَصْلِيّاً، وَكَسْرَهَا إِذَا كَانَ مَفْتُوحاً أَوْ مَكْسُوراً.",
+          "fr": "Règle morphologique imposant de débuter par Dammah si la 3e lettre du verbe porte une Dammah originelle, et par Kasrah si elle porte une Fathah ou une Kasrah."
+        },
+        "mechanismFr": "Comptez les lettres depuis le début : 1. Hamzat Wasl, 2. Consonne soukounée, 3. Troisième lettre. Observez sa voyelle : si Dammah -> « U- », si Fathah ou Kasrah -> « I- ».",
+        "physiologicalDetails": {
+          "tongue": "Positionnée pour la voyelle d'attaque choisie.",
+          "lips": "Arrondies en avant si Dammah, étirées vers le bas si Kasrah.",
+          "vocalCords": "Vibration nette dès l'amorce du verbe.",
+          "airflow": "Flux immédiat."
+        },
+        "phoneticReasonFr": "L'arabe harmonise la voyelle de départ avec la voyelle interne du verbe pour assurer l'équilibre acoustique et faciliter l'effort laryngé.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَابْدَأْ بِهَمْزِ الوَصْلِ مِنْ فِعْلٍ بِضَمْ * إِنْ كَانَ ثَالِثٌ مِنَ الفِعْلِ يُضَمْ\nوَاكْسِرْهُ حَالَ الكَسْرِ وَالفَتْحِ",
+          "transliteration": "Wabda' bi-hamzi-l-wasli min fi'lin bi-damm * In kāna thālithun mina-l-fi'li yudamm / Waksir-hu hāla-l-kasri wal-fathi",
+          "translationFr": "« Débute par Dammah si la 3e lettre du verbe est pourvue d'une Dammah, et commence par Kasrah si elle est ouverte par Fathah ou brisée par Kasrah. »",
+          "chapterNameAr": "بَابُ هَمْزِ الوَصْلِ"
+        },
+        "examples": [
           {
-            id: 'ex-c6-3',
-            arabicText: 'ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلۡحِكۡمَةِ',
-            surahAyahRef: '16:125',
-            surahNameFr: 'An-Nahl',
-            highlightSegment: 'ٱدۡعُ',
-            highlightLetter: '1:ٱ, 2:د, 3:عُ ➔ اُدۡعُ',
-            ruleApplied: '3e lettre avec Dammah ➔ Attaque en Dammah (Ud\'u)',
-            ruleTag: 'izhar',
-            explanationFr: 'La 3e lettre (\'Ayn) porte une Dammah originelle. À l\'attaque, Hamzat Al-Wasl prend donc obligatoirement une Dammah : « Ud\'u ».',
-            transliteration: 'Ud\'u ilā sabīli rabbika bil-hikmah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/016125.mp3'
+            "id": "ex-c6-2",
+            "arabicText": "ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلۡحِكۡمَةِ",
+            "surahAyahRef": "16:125",
+            "surahNameFr": "An-Nahl",
+            "highlightSegment": "ٱدۡعُ",
+            "highlightLetter": "1:ٱ, 2:دۡ, 3:عُ",
+            "ruleApplied": "Débuter par Dammah (3e lettre Dammah)",
+            "ruleTag": "izhar",
+            "explanationFr": "Dans « Ud'u », la 3e lettre est le 'Ayn qui porte une Dammah (عُ). On commence donc obligatoirement par la voyelle Dammah : « Ud'u ».",
+            "transliteration": "Ud'u ilā sabīli Rabbik",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/016125.mp3"
           },
           {
-            id: 'ex-c6-4',
-            arabicText: 'ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ',
-            surahAyahRef: '1:6',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱهۡدِنَا',
-            highlightLetter: '1:ٱ, 2:هـ, 3:دِ ➔ اِهۡدِنَا',
-            ruleApplied: '3e lettre avec Kasrah ➔ Attaque en Kasrah (Ihdinā)',
-            ruleTag: 'izhar',
-            explanationFr: 'La 3e lettre (Dāl) porte une Kasrah. À l\'attaque, Hamzat Al-Wasl prend obligatoirement une Kasrah : « Ihdinā ».',
-            transliteration: 'Ihdinā-s-sirātal-mustaqīm',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001006.mp3'
-          },
-          {
-            id: 'ex-c6-5',
-            arabicText: 'ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ',
-            surahAyahRef: '20:24',
-            surahNameFr: 'Tā-Hā',
-            highlightSegment: 'ٱذۡهَبۡ',
-            highlightLetter: '1:ٱ, 2:ذ, 3:هَ ➔ اِذۡهَبۡ',
-            ruleApplied: '3e lettre avec Fathah ➔ Attaque en Kasrah (Idh-hab)',
-            ruleTag: 'izhar',
-            explanationFr: 'La 3e lettre (Hā\') porte une Fathah. Règle absolue : Fathah sur la 3e lettre donne TOUJOURS une Kasrah sur Hamzat Al-Wasl : on prononce « Idh-hab » et JAMAIS « Adh-hab » !',
-            transliteration: 'Idh-hab ilā fir\'awna innahū taghā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/020024.mp3'
+            "id": "ex-c6-3",
+            "arabicText": "ٱضۡرِب بِّعَصَاكَ ٱلۡحَجَرَ",
+            "surahAyahRef": "2:60",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "ٱضۡرِب",
+            "highlightLetter": "1:ٱ, 2:ضۡ, 3:رِ",
+            "ruleApplied": "Débuter par Kasrah (3e lettre Kasrah)",
+            "ruleTag": "izhar",
+            "explanationFr": "Dans « Idrib », la 3e lettre est le Râ avec une Kasrah (رِ). On commence donc par la voyelle Kasrah : « Idrib ».",
+            "transliteration": "Idrib bi-'asāka-l-hajar",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002060.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Attaquer un verbe par une Fathah (ex: dire "Adh-hab" au lieu de "Idh-hab").',
-            correctionFr: 'C\'est un contresens grammatical majeur : les verbes à l\'impératif ne reçoivent JAMAIS de Fathah sur Hamzat Al-Wasl.'
-          },
-          {
-            trapFr: 'Regarder la 2e lettre au lieu de la 3e lettre.',
-            correctionFr: 'La 2e lettre porte obligatoirement un Soukoûn : elle ne vous apprend rien ! C\'est la 3e lettre qui commande toute la règle.'
+            "trapFr": "Débuter par une Fathah sur un verbe en disant 'Ad'u' ou 'Adrib'.",
+            "correctionFr": "Hamzat Al-Wasl sur un verbe ne prend JAMAIS de Fathah ! Elle ne prend que Dammah ou Kasrah."
           }
         ]
       },
       {
-        id: 'nouns-definite-indefinite',
-        nameFr: '3. Les Noms Définis (ٱلـ) & Indéfinis (ٱسۡمُ, ٱبۡنُ...)',
-        nameAr: 'حُكْمُ هَمْزَةِ الوَصْلِ فِي الأَسْمَاءِ المُعَرَّفَةِ وَالمُنَكَّرَةِ',
-        mnemonic: 'Article ٱلـ = TOUJOURS FATHAH (اَلـ) | 4 Noms singuliers = TOUJOURS KASRAH (اِ)',
-        letters: ['ٱ'],
-        definitionFr: 'Pour les noms, la règle est fixe et indépendante de la 3e lettre : tout nom avec l\'article défini ٱلـ s\'attaque avec Fathah. Les noms indéfinis spécifiques du Coran s\'attaquent tous avec Kasrah.',
-        mechanismFr: 'Noms définis : « Al-... ». Noms indéfinis : « Ibn », « Imra\'ah », « Ism », « Ithnān » prennent tous une Kasrah pure (« I »).',
-        durationHarakat: 0,
-        examples: [
+        "id": "five-irregular-verbs",
+        "nameFr": "3. Les 5 Verbes d'Exception à Dammah Accidentelle",
+        "nameAr": "الأَفْعَالُ الخَمْسَةُ المُسْتَثْنَTemporary (ضَمَّةٌ عَارِضَةٌ)",
+        "mnemonic": "ٱبْنُواْ, ٱمْشُواْ, ٱقْضُواْ, ٱمْضُواْ, ٱئْتُواْ = Débutent avec KASRAH (I-) !",
+        "letters": [],
+        "definitionFr": "Il existe dans le Coran 5 verbes particuliers dont la 3e lettre semble porter une Dammah, mais cette Dammah est accidentelle (due à l'ajout du Wāw de pluriel). À l'origine, leur 3e lettre portait une Kasrah : on doit donc obligatoirement débuter par une KASRAH !",
+        "definitionLughatan": {
+          "ar": "العَارِضُ: الَّذِي جَاءَ لِسَبَبٍ طَارِئٍ وَأَصْلُهُ غَيْرُ ذَلِكَ.",
+          "fr": "L'accidentel résultant d'une modification morphologique secondaire."
+        },
+        "definitionIstilahan": {
+          "ar": "أَفْعَالٌ حُرِّكَ ثَالِثُهَا بِالضَّمِّ لِمُنَاسَبَةِ وَاوِ الجَمَاعَةِ، وَأَصْلُهُ كَسْرَةٌ مَحْذُوفَةٌ، فَيُبْدَأُ بِهَمْزَتِهَا مَكْسُورَةً وُجُوباً.",
+          "fr": "Verbes dont la 3e lettre a été modifiée en Dammah pour convenir au Wāw du pluriel, mais dont l'origine était une Kasrah. On débute obligatoirement par Kasrah."
+        },
+        "mechanismFr": "Mémorisez la liste des 5 verbes : « Ibnū », « Imshū », « Iqdū », « Imdū », « Ītū ». Démarrez toujours sur le son [i] et jamais sur [u].",
+        "physiologicalDetails": {
+          "tongue": "Étirée vers le bas pour amorcer la Kasrah.",
+          "lips": "Étirement souple sans arrondi initial.",
+          "vocalCords": "Vibration nette.",
+          "airflow": "Flux continu."
+        },
+        "phoneticReasonFr": "L'étymologie du singulier révèle la Kasrah originelle : « Imshi » -> pluriel archaïque « Imshiyū » -> le Yā' a disparu et la Dammah a été transférée sur la consonne.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَفِي ابْنُوا امْشُوا اقْضُوا مَعَ امْضُوا ائْتُوا * بِكَسْرِ هَمْزِ الوَصْلِ حَيْثُ جِئْتُوا\nلِأَنَّ أَصْلَ ضَمِّهَا قَدْ عَرَضَا * فَابْدَأْ بِكَسْرٍ تَتَّبِعْ مَا فُرِضَا",
+          "transliteration": "Wa fī-bnū imshū iqdū ma'a imdū ītū * Bi-kasri hamzi-l-wasli haythu ji'tū / Li'anna asla dammihā qad 'aradā * Fabda' bi-kasrin tattabi' mā furidā",
+          "translationFr": "« Et dans Ibnū, Imshū, Iqdū ainsi que Imdū et Ītū, commence par une Kasrah sur la Hamzah de liaison, car l'origine de cette Dammah est purement accidentelle ; débute donc par Kasrah pour suivre la règle. »",
+          "chapterNameAr": "بَابُ الأَفْعَالِ الخَمْسَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-c6-6',
-            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '1:2',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلۡحَمۡدُ',
-            highlightLetter: 'ٱلـ ➔ اَلۡحَمۡدُ',
-            ruleApplied: 'Article défini ➔ Fathah obligatoire (Al-hamdu)',
-            ruleTag: 'izhar',
-            explanationFr: 'Tout mot débutant par l\'article défini ٱلـ reçoit obligatoirement une Fathah à l\'attaque (« Al-Hamdu »).',
-            transliteration: 'Al-hamdu lillāhi rabbil-\'ālamīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
-          },
-          {
-            id: 'ex-c6-7',
-            arabicText: 'مَّسِيحُ عِيسَى ٱبۡنُ مَرۡيَمَ',
-            surahAyahRef: '4:171',
-            surahNameFr: 'An-Nisā\'',
-            highlightSegment: 'ٱبۡنُ',
-            highlightLetter: 'ٱبۡنُ ➔ اِبۡنُ (Kasrah)',
-            ruleApplied: 'Nom singulier coranique ➔ Kasrah obligatoire (Ibnu)',
-            ruleTag: 'izhar',
-            explanationFr: 'En continu : « \'Īsa-bnu Maryam ». Mais si l\'on débute sur le mot « Ibn », Hamzat Al-Wasl prend obligatoirement une Kasrah : « Ibnu Maryam ».',
-            transliteration: 'Masīhu \'Īsab-nu maryam',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004171.mp3'
+            "id": "ex-c6-4",
+            "arabicText": "أَنِ ٱمۡشُواْ وَٱصۡبِرُواْ عَلَىٰٓ ءَالِهَتِكُمۡ",
+            "surahAyahRef": "38:6",
+            "surahNameFr": "Sād",
+            "highlightSegment": "ٱمۡشُواْ",
+            "highlightLetter": "Imshū (Kasrah)",
+            "ruleApplied": "Débuter par Kasrah d'exception",
+            "ruleTag": "izhar",
+            "explanationFr": "Si vous commencez sur « Imshū », démarrez obligatoirement par une Kasrah : « Imshū » (et jamais « Umshū »), car l'origine est « Imshiyū ».",
+            "transliteration": "Imshū wasbirū",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/038006.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Attaquer « ٱسۡمُ رَبِّكَ » avec une Dammah sous prétexte que le Mīm porte une Dammah.',
-            correctionFr: '« Ism » est un nom indéfini, pas un verbe ! Il prend impérativement une Kasrah (« Ismu Rabbika »).'
-          }
-        ]
-      },
-      {
-        id: 'five-verbs-and-two-hamzahs',
-        nameFr: '4. Les 5 Verbes d\'Exception & La Rencontre des Deux Hamzahs',
-        nameAr: 'الأَفْعَالُ الخَمْسَةُ المُسْتَثْنَاةُ وَاجْتِمَاعُ الهَمْزَتَيْنِ',
-        mnemonic: '5 verbes (Ibnū, Iqdū, Imshū, I\'tū, I\'tūnī) = KASRAH ! | ٱئۡتُونِي à l\'attaque = ĪTŪNĪ',
-        letters: ['ٱ'],
-        definitionFr: 'Cinq verbes coraniques ont une Dammah apparente sur leur 3e lettre mais s\'attaquent TOUS avec une Kasrah car cette Dammah est accidentelle (due au Wāw du pluriel). De plus, lorsque Hamzat Al-Wasl rencontre une Hamzat Qat\' sans voyelle (comme dans « I\'tūnī »), la 2e Hamzah se transforme en Madd à l\'attaque (« Ītūnī »).',
-        mechanismFr: '1. « Ibnū », « Imshū », « Iqdū » ➔ prononcez « Ibnū », « Imshū », « Iqdū » avec Kasrah. 2. « ٱئۡتُونِي » ➔ en Wasl : « ...s-samāwāti\'-tūnī » ; à l\'attaque : appliquez le Madd Badal et dites « Ītūnī » (إِيتُونِي) !',
-        durationHarakat: 2,
-        examples: [
-          {
-            id: 'ex-c6-8',
-            arabicText: 'قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
-            surahAyahRef: '37:97',
-            surahNameFr: 'As-Sāffāt',
-            highlightSegment: 'ٱبۡنُواْ',
-            highlightLetter: 'نُ = Dammah accidentelle ➔ اِبۡنُواْ',
-            ruleApplied: 'Verbe d\'exception (Attaque en Kasrah obligatoire)',
-            ruleTag: 'izhar',
-            explanationFr: 'Bien que le Nūn porte une Dammah, l\'origine du verbe est « Ibniyū » : la Dammah a été introduite pour le Wāw du pluriel. À l\'attaque, on dit impérativement « Ibnū » avec Kasrah, et JAMAIS « Ubnū » !',
-            transliteration: 'Qālūb-nū lahū bunyānā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/037097.mp3'
-          },
-          {
-            id: 'ex-c6-9',
-            arabicText: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ',
-            surahAyahRef: '46:4',
-            surahNameFr: 'Al-Ahqāf',
-            highlightSegment: 'ٱئۡتُونِى',
-            highlightLetter: 'Wasl: samāwāti\'-tūnī | Ibtidā\': ĪTŪNĪ (إِيتُونِي)',
-            ruleApplied: 'Rencontre de deux Hamzahs (Madd Badal à l\'attaque)',
-            ruleTag: 'madd',
-            explanationFr: 'En continu : Hamzat Wasl saute ➔ « fīs-samāwāti\'-tūnī ». À l\'attaque : Hamzat Wasl prend une Kasrah, et la 2e Hamzah se transforme en voyelle longue Yā\' ➔ « Ītūnī » (إِيتُونِي) !',
-            transliteration: 'Am lahum shirkun fīs-samāwāt, Ītūnī bi-kitāb',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/046004.mp3'
-          }
-        ],
-        commonMistakes: [
-          {
-            trapFr: 'Attaquer « ٱمۡشُواْ » par « Umshū » en regardant la Dammah du Shīn.',
-            correctionFr: 'C\'est une faute de Tajwīd impardonnable : l\'origine est « Imshiyū ». On attaque STRICTEMENT par « Imshū ».'
-          },
-          {
-            trapFr: 'Attaquer « ٱئۡتُونِي » en prononçant une Hamzah saccadée "I\'-tūnī".',
-            correctionFr: 'Deux Hamzahs ne peuvent se suivre ainsi à l\'attaque : la seconde se transforme obligatoirement en Madd ➔ « Ītūnī ».'
+            "trapFr": "Débuter par 'Umshū' ou 'Ubnū' en voyant la Dammah sur la 3e lettre.",
+            "correctionFr": "Retenez les 5 verbes : la Dammah est un piège visuel temporaire ! La règle sacrée impose de commencer par Kasrah : 'Imshū', 'Ibnū'."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c6-1',
-        title: 'Verbe vs Nom Défini : Sourate Al-Fātihah (1:2 & 1:6)',
-        verseArabic: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ... ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ',
-        surahAyahRef: '1:2, 1:6',
-        targetSegment: 'ٱلۡحَمۡدُ · ٱهۡدِنَا',
-        promptFr: 'Pourquoi « ٱلۡحَمۡدُ » s\'attaque-t-il avec une Fathah (« Al-hamdu ») alors que le verbe « ٱهۡدِنَا » s\'attaque avec une Kasrah (« Ihdinā ») ?',
-        hintFr: 'Distinguez la nature grammaticale des deux mots : l\'un possède l\'article de définition, l\'autre est un verbe à l\'impératif.',
-        solutionFr: '« Al-Hamdu » est un nom avec l\'article défini ٱلـ (toujours Fathah). « Ihdinā » est un verbe dont la 3e lettre (Dāl) porte une Kasrah (donc Kasrah d\'attaque).',
-        breakdownSteps: [
-          'Dans « ٱلۡحَمۡدُ » : Le mot commence par l\'article de définition ٱلـ (Lām Ta\'rīf). La règle coranique unanime impose une FATHAH sur Hamzat Al-Wasl ➔ « Al-hamdu ».',
-          'Dans « ٱهۡدِنَا » : C\'est un verbe d\'action. On applique la règle de comptage de la 3e lettre.',
-          '1 = Hamzat Wasl (ٱ), 2 = Lettre Hā\' sans voyelle (هـۡ), 3 = Lettre Dāl avec Kasrah (دِ).',
-          'La 3e lettre portant une Kasrah, Hamzat Al-Wasl prend obligatoirement une KASRAH ➔ « Ihdinā ».'
+        "id": "exo-c6-1",
+        "title": "Vocalisation de démarrage : « ٱسۡتَغۡفِرۡ لَهُمۡ »",
+        "verseArabic": "ٱسۡتَغۡفِرۡ لَهُمۡ أَوۡ لَا تَسۡتَغۡفِرۡ لَهُمۡ",
+        "surahAyahRef": "9:80",
+        "targetSegment": "ٱسۡتَغۡفِرۡ",
+        "promptFr": "Par quelle voyelle commencez-vous la lecture sur le verbe « Istaghfir » ?",
+        "hintFr": "Comptez : 1. Hamzah, 2. Sīn soukouné, 3. Tā' portant une Fathah.",
+        "solutionFr": "Par une Kasrah : « Istaghfir »",
+        "breakdownSteps": [
+          "La 3e lettre du verbe est le Tā' qui porte une Fathah (تَ).",
+          "La règle stipule que si la 3e lettre a une Fathah ou une Kasrah, la Hamzah prend une Kasrah.",
+          "On débute donc par « Istaghfir »."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001006.mp3'
-      },
-      {
-        id: 'exo-c6-2',
-        title: 'Le Chef-d\'Œuvre Phonétique : « Ītūnī » dans Sūrah Al-Ahqāf (46:4)',
-        verseArabic: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ مِّن قَبۡلِ هَٰذَآ',
-        surahAyahRef: '46:4',
-        targetSegment: 'فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى',
-        promptFr: 'Comment récitez-vous « ٱئۡتُونِى » en liaison continue après « As-Samāwāt », et comment le récitez-vous si vous reprenez votre souffle sur ce mot ?',
-        hintFr: 'En continu, Hamzat Al-Wasl s\'élide. À l\'attaque, deux Hamzahs se rencontrent : appliquez la règle de substitution (Badal).',
-        solutionFr: 'En continu : « fīs-samāwāti\'-tūnī ». À l\'attaque : « Ītūnī » (إِيتُونِي) avec prolongation Yā\' de 2 temps.',
-        breakdownSteps: [
-          'En lecture continue (Wasl) : Hamzat Al-Wasl tombe totalement. La Kasrah du Tā\' précédent s\'enchaîne directement sur la Hamzah Sākinah ➔ « fīs-samāwāti\'-tūnī ».',
-          'À l\'arrêt et reprise sur « ٱئۡتُونِى » : C\'est l\'un des 5 verbes d\'exception. Hamzat Al-Wasl prend une KASRAH (« I »).',
-          'Deux Hamzahs se retrouvent côte à côte au début du mot : la première avec Kasrah (إِ) et la seconde avec Soukoûn (ئْ).',
-          'La phonétique arabe interdit cette lourdeur : la 2e Hamzah se transmute en une lettre de Madd homogène (Yā\') ➔ on prononce « ĪTŪNĪ » (إِيتُونِي) !'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/046004.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/009080.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c6-1',
-        type: 'mcq',
-        promptFr: 'Quelle est la différence essentielle entre Hamzat Al-Qat\' (ء) et Hamzat Al-Wasl (ٱ) lors de la lecture continue (Wasl) ?',
-        verseArabic: 'فَمَنۡ حَجَّ ٱلۡبَيۡتَ أَوِ ٱعۡتَمَرَ',
-        targetWord: 'ٱلۡبَيۡتَ',
-        surahAyahRef: '2:158',
-        options: [
-          'Hamzat Al-Qat\' est toujours prononcée, tandis que Hamzat Al-Wasl s\'efface et disparaît totalement en continu',
-          'Hamzat Al-Wasl dure 6 temps et Hamzat Al-Qat\' dure 2 temps',
-          'Hamzat Al-Wasl ne se prononce que le vendredi',
-          'Il n\'y a aucune différence, elles se lisent exactement pareil'
+        "id": "q-c6-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Quels sont les 7 noms singuliers qui débutent TOUJOURS par une Kasrah sur Hamzat Al-Wasl ?",
+        "verseArabic": "مَّسِيحُ عِيسَى ٱبۡنُ مَرۡيَمَ",
+        "options": [
+          "ابن، ابنة، امرؤ، امرأة، اثنين، اثنتين، اسم",
+          "أحمد، إبراهيم، إسماعيل، إسحاق، يعقوب، يوسف، موسى",
+          "الصلاة، الزكاة، الصيام، الحج، العمرة، الجهاد، الصدقة",
+          "شمس، قمر، نجم، سماء، أرض، جبل، بحر"
         ],
-        correctAnswer: 'Hamzat Al-Qat\' est toujours prononcée, tandis que Hamzat Al-Wasl s\'efface et disparaît totalement en continu',
-        explanationFr: 'Hamzat Al-Qat\' est une consonne fondamentale toujours prononcée. Hamzat Al-Wasl n\'est qu\'un pont phonétique : dès qu\'on lit en continu depuis un mot précédent, elle s\'annule complètement.',
-        ruleId: 'hamzat-qat-vs-wasl'
+        "correctAnswer": "ابن، ابنة، امرؤ، امرأة، اثنين، اثنتين، اسم",
+        "explanationFr": "L'imam Ibn Al-Jazarī liste explicitement ces sept noms dans son poème : « ابْنٍ مَعَ ابْنَةِ امْرِئٍ وَاثْنَيْنِ * وَامْرَأَةٍ وَاسْمٍ مَعَ اثْنَتَيْنِ ». Ils débutent tous par Kasrah.",
+        "ruleId": "verbs-third-letter-rule"
       },
       {
-        id: 'q-c6-2',
-        type: 'mcq',
-        promptFr: 'Si vous devez commencer votre récitation par le verbe « ٱدۡعُ » (16:125), quelle voyelle devez-vous donner à Hamzat Al-Wasl et pourquoi ?',
-        verseArabic: 'ٱدۡعُ إِلَىٰ سَبِيلِ رَبِّكَ بِٱلۡحِكۡمَةِ',
-        targetWord: 'ٱدۡعُ',
-        surahAyahRef: '16:125',
-        options: [
-          'Une Dammah (« Ud\'u ») car la 3e lettre (\'Ayn) porte une Dammah originelle',
-          'Une Fathah (« Ad\'u ») comme tous les mots arabes',
-          'Une Kasrah (« Id\'u ») obligatoirement',
-          'Aucune voyelle, on commence par un Soukoûn'
+        "id": "q-c6-2",
+        "type": "error_detect",
+        "promptFr": "En démarrant la lecture sur « ٱبْنُوا عَلَيْهِم بُنْيَانًا » (Al-Kahf 21), un étudiant prononce « Ubnū » en se fiant à la Dammah du Nūn. Quelle est l'erreur ?",
+        "verseArabic": "فَقَالُواْ ٱبۡنُواْ عَلَيۡهِم بُنۡيَٰنٗا",
+        "targetWord": "ٱبۡنُواْ",
+        "surahAyahRef": "18:21",
+        "options": [
+          "Erreur sur la Dammah accidentelle : 'Ibnū' fait partie des 5 verbes d'exception et doit obligatoirement débuter par Kasrah : « Ibnū » !",
+          "Il fallait commencer par Fathah",
+          "La récitation 'Ubnū' est la seule permise",
+          "Ce verbe n'existe pas"
         ],
-        correctAnswer: 'Une Dammah (« Ud\'u ») car la 3e lettre (\'Ayn) porte une Dammah originelle',
-        explanationFr: 'Dans les verbes, on regarde la 3e lettre : le \'Ayn portant une Dammah originelle (عُ), Hamzat Al-Wasl prend obligatoirement une Dammah ➔ « Ud\'u ».',
-        ruleId: 'verbs-third-letter-rule'
+        "correctAnswer": "Erreur sur la Dammah accidentelle : 'Ibnū' fait partie des 5 verbes d'exception et doit obligatoirement débuter par Kasrah : « Ibnū » !",
+        "explanationFr": "Dans « Ibnū », la Dammah sur le Nūn est accidentelle (due au Wāw du pluriel ; le singulier est « Ibni »). L'amorce se fait impérativement par une Kasrah.",
+        "ruleId": "five-irregular-verbs"
       },
       {
-        id: 'q-c6-3',
-        type: 'mcq',
-        promptFr: 'Quelle voyelle reçoit Hamzat Al-Wasl au début du verbe « ٱذۡهَبۡ » (20:24) dont la 3e lettre porte une FATHAH ?',
-        verseArabic: 'ٱذۡهَبۡ إِلَىٰ فِرۡعَوۡنَ إِنَّهُۥ طَغَىٰ',
-        targetWord: 'ٱذۡهَبۡ',
-        surahAyahRef: '20:24',
-        options: [
-          'Une Kasrah (« Idh-hab ») : les verbes dont la 3e lettre a une Fathah ou une Kasrah s\'attaquent toujours en Kasrah',
-          'Une Fathah (« Adh-hab »)',
-          'Une Dammah (« Udh-hab »)',
-          'On ne peut jamais commencer par ce mot'
+        "id": "q-c6-3",
+        "type": "mcq",
+        "promptFr": "Que devient Hamzat Al-Wasl dans « وَٱلشَّمۡسِ » en lecture continue ?",
+        "verseArabic": "وَٱلشَّمۡسِ وَضُحَىٰهَا",
+        "surahAyahRef": "91:1",
+        "options": [
+          "Elle s'efface totalement dans la voix : la liaison se fait directement du Wāw vers le Shīn (« Wash-Shams »)",
+          "Elle se prononce avec une Fathah",
+          "Elle prend un Madd de 6 temps",
+          "Elle devient une consonne de Qalqalah"
         ],
-        correctAnswer: 'Une Kasrah (« Idh-hab ») : les verbes dont la 3e lettre a une Fathah ou une Kasrah s\'attaquent toujours en Kasrah',
-        explanationFr: 'Un verbe à l\'impératif ne commence JAMAIS par une Fathah en arabe ! Si la 3e lettre a une Fathah (هَ), Hamzat Al-Wasl reçoit impérativement une Kasrah ➔ « Idh-hab ».',
-        ruleId: 'verbs-third-letter-rule'
-      },
-      {
-        id: 'q-c6-4',
-        type: 'mcq',
-        promptFr: 'Pourquoi les verbes comme « ٱبۡنُواْ » et « ٱمۡشُواْ » s\'attaquent-ils avec une KASRAH (« Ibnū », « Imshū ») malgré la Dammah visible sur leur 3e lettre ?',
-        verseArabic: 'قَالُواْ ٱبۡنُواْ لَهُۥ بُنۡيَٰنٗا',
-        targetWord: 'ٱبۡنُواْ',
-        surahAyahRef: '37:97',
-        options: [
-          'Parce que cette Dammah est accidentelle (due au Wāw du pluriel) et que la voyelle originelle de la racine est une Kasrah',
-          'Parce que ce sont des noms propres',
-          'Parce que le scribe du Coran a fait une erreur',
-          'Parce qu\'ils sont situés à la fin de la sourate'
-        ],
-        correctAnswer: 'Parce que cette Dammah est accidentelle (due au Wāw du pluriel) et que la voyelle originelle de la racine est une Kasrah',
-        explanationFr: 'Ces 5 verbes ont pour origine « Ibniyū » et « Imshiyū ». La Dammah n\'est pas originelle, elle a été adoptée pour faciliter la prononciation du Wāw pluriel. L\'attaque se fait donc en Kasrah.',
-        ruleId: 'five-verbs-and-two-hamzahs'
-      },
-      {
-        id: 'q-c6-5',
-        type: 'mcq',
-        promptFr: 'Dans la sourate Al-Ahqāf (46:4), comment doit-on prononcer le mot « ٱئۡتُونِى » si l\'on s\'arrête sur le verset précédent et que l\'on commence par ce mot ?',
-        verseArabic: 'أَمۡ لَهُمۡ شِرۡكٞ فِى ٱلسَّمَٰوَٰتِۖ ٱئۡتُونِى بِكِتَٰبٖ',
-        targetWord: 'ٱئۡتُونِى',
-        surahAyahRef: '46:4',
-        options: [
-          'On prononce « ĪTŪNĪ » (إِيتُونِي) : la 2e Hamzah se transmute en lettre de Madd Yā\' de 2 temps',
-          'On prononce « I\'-tūnī » avec un arrêt de gorge saccadé',
-          'On prononce « U\'tūnī » avec une Dammah',
-          'Il est strictement interdit de commencer par ce mot'
-        ],
-        correctAnswer: 'On prononce « ĪTŪNĪ » (إِيتُونِي) : la 2e Hamzah se transmute en lettre de Madd Yā\' de 2 temps',
-        explanationFr: 'À l\'attaque, deux Hamzahs se rencontrent (I + \'). La règle phonétique universelle de substitution (Badal) transforme la Hamzah Sākinah en voyelle longue homogène ➔ « Ītūnī » !',
-        ruleId: 'five-verbs-and-two-hamzahs'
+        "correctAnswer": "Elle s'efface totalement dans la voix : la liaison se fait directement du Wāw vers le Shīn (« Wash-Shams »)",
+        "explanationFr": "Hamzat Al-Wasl tombe toujours en cours de liaison continue (Wasl) et n'est sollicitée que si l'on commence au début du mot.",
+        "ruleId": "hamza-qat-vs-wasl"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 7 : LES RÈGLES DE LA LĀM SĀKINAH
-  // ==========================================
   {
-    id: 'chap-7',
-    number: 7,
-    slug: 'lam-sakinah',
-    titleFr: 'Les Règles de la Lām Sākinah',
-    titleAr: 'أَحْكَامُ اللَّامِ السَّاكِنَةِ',
-    category: 'intermediate',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Maîtriser la prononciation du Lām sans voyelle (لْ) dans le Coran : la Lām Qamariyyah (claire avec Soukoûn), la Lām Shamsiyyah (fondue dans la consonne suivante avec Shaddah), l\'emphase et l\'amincissement sacrés du Nom d\'Allah (Lafz Al-Jalālah), ainsi que la Lām du verbe et de la particule.',
-    infographicPoints: [
-      'Lām Qamariyyah (14 lettres) : Mnémonique « إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (Izhār Qamarī). La Lām porte un Soukoûn visible (لۡ) et se prononce distinctement avec Tawassut (ٱلۡقَمَرِ, ٱلۡبَيۡتِ, ٱلۡحَمۡدُ).',
-      'Lām Shamsiyyah (14 lettres) : Mnémonique « طِبۡ ثُمَّ صِلۡ... ». La Lām est nue (sans voyelle) et s\'assimile totalement (Idghām Shamsī) dans la lettre suivante qui porte une Shaddah (ٱلشَّمۡسِ ➔ Ash-shams).',
-      'Le Double Effacement en Wasl (وَٱلشَّمۡسِ) : En continu, Hamzat Al-Wasl s\'élide ET la Lām Shamsiyyah disparaît ! On passe directement du Wāw au Shīn avec Shaddah : « Wash-shams ».',
-      'Lām de Lafz Al-Jalālah (ٱللَّه) : Emphatique/Lourde (Tafkhīm) après Fathah (قَالَ ٱللَّهُ), Dammah (عَبۡدُ ٱللَّهِ) ou à l\'attaque. Amincie/Légère (Tarqīq) après Kasrah (بِسۡمِ ٱللَّهِ, لِلَّهِ) ou Tanwīn en Wasl (أَحَدٌ ٱللَّهُ ➔ Ahaduni-llāh).',
-      'Lām du Verbe (Lām Al-Fi\'l) & Particule (Harf) : Toujours prononcée avec clarté (Izhār) comme dans « Qul na\'am » et « Anzalnā », SAUF si elle rencontre un Lām (Qul-lakum) ou un Râ\' (Qur-rabbi, Bal-rafa\'ahu) où elle fusionne totalement !'
+    "id": "chap-7",
+    "number": 7,
+    "slug": "lam-sakinah",
+    "titleFr": "Les Règles de la Lām Sākinah",
+    "titleAr": "أَحْكَامُ اللَّامِ السَّاكِنَةِ",
+    "category": "intermediate",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Maîtriser les 5 catégories de Lām sans voyelle : Lām de l'article défini (Qamariyyah avec Izhār vs Shamsiyyah avec Idghām), Lām du Nom Divin (Allah mufakhkhamah après Fathah/Dammah vs Muraqqaqah après Kasrah), et Lāms du verbe, du nom et de la particule.",
+    "infographicPoints": [
+      "Lām Qamariyyah (لَامٌ قَمَرِيَّةٌ) : Suivie d'une des 14 lettres de « اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ » -> Izhār obligatoire (la Lām est couronnée d'un soukoûn).",
+      "Lām Shamsiyyah (لَامٌ شَمْسِيَّةٌ) : Suivie d'une des 14 autres lettres -> Idghām obligatoire (la Lām est nue et la lettre suivante prend une Shaddah).",
+      "Lām de Lafz Al-Jalālah (ٱللَّه) : Emphatique/lourde (Tafkhīm) après Fathah ou Dammah (ex: Qāla-Llāhu) ; fine/légère (Tarqīq) après Kasrah (ex: Bismi-Llāhi).",
+      "Lām du Verbe (لَامُ الفِعْلِ) : Toujours Izhār (ex: Qul na'am), SAUF si elle rencontre un autre Lām ou un Râ (ex: Qul Rabbi) où elle fusionne !",
+      "Lām de l'impératif (لَامُ الأَمْرِ) : Toujours prononcée clairement avec Izhār après Wāw, Fā' ou Thumma (ex: Wal-yattakhi)."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'lam-qamariyyah',
-        nameFr: '1. Lām Qamariyyah (اللَّامُ القَمَرِيَّةُ) — Izhār Qamarī',
-        nameAr: 'اللَّامُ القَمَرِيَّةُ وَالإِظْهَارُ القَمَرِيُّ',
-        mnemonic: 'إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ (14 lettres de la Lune)',
-        letters: ['ء', 'ب', 'غ', 'ح', 'ج', 'ك', 'و', 'خ', 'ف', 'ع', 'ق', 'ي', 'م', 'هـ'],
-        definitionFr: 'Lorsque l\'article défini (ٱلـ) précède l\'une des 14 lettres lunaires, la lettre Lām est prononcée de manière claire et limpide (Izhār Qamarī). Dans le Mushaf, elle est surmontée du symbole classique du Soukoûn (لۡ).',
-        mechanismFr: 'Appuyez la pointe de la langue contre les gencives supérieures et maintenez le son Lām pendant la durée de Tawassut (modérée, sans coupure sèche ni prolongation excessive), puis enchaînez naturellement sur la lettre lunaire.',
-        durationHarakat: 0,
-        examples: [
+        "id": "lam-qamariyyah-shamsiyyah",
+        "nameFr": "1. Lām Qamariyyah vs Lām Shamsiyyah (Article Défini)",
+        "nameAr": "اللَّامُ القَمَرِيَّةُ وَاللَّامُ الشَّمْسِيَّةُ فِي أَلْ التَّعْرِيفِ",
+        "mnemonic": "Qamariyyah (اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ) = Izhār net | Shamsiyyah = Fusion totale en Shaddah",
+        "letters": [],
+        "definitionFr": "La Lām de l'article défini (الـ) possède deux états phonologiques selon la lettre qui lui succède : elle est Qamariyyah (lunaire) et clairement prononcée devant 14 lettres, ou Shamsiyyah (solaire) et totalement assimilée dans la consonne suivante qui prend une Shaddah devant les 14 autres lettres.",
+        "definitionLughatan": {
+          "ar": "القَمَرِيَّةُ: نِسْبَةٌ إِلَى القَمَرِ لِظُهُورِ اللَّامِ فِيهِ. الشَّمْسِيَّةُ: نِسْبَةٌ إِلَى الشَّمْسِ لِخَفَاءِ اللَّامِ وَإِدْغَامِهَا فِيهِ.",
+          "fr": "Qamariyyah : relative à la lune (la lām est apparente comme les étoiles autour de la lune). Shamsiyyah : relative au soleil (la lām s'efface comme les étoiles sous le soleil)."
+        },
+        "definitionIstilahan": {
+          "ar": "القَمَرِيَّةُ: إِظْهَارُ لَامِ التَّعْرِيفِ سَاكِنَةً دُونَ إِدْغَامٍ عِنْدَ 14 حَرْفاً. الشَّمْسِيَّةُ: إِدْغَامُ لَامِ التَّعْرِيفِ فِي الحَرْفِ الَّذِي يَلِيهَا إِدْغَاماً تَامّاً مَعَ تَشْدِيدِهِ عِنْدَ 14 حَرْفاً أُخْرَى.",
+          "fr": "Qamariyyah : prononciation claire de la lām devant les 14 lettres de « اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ ». Shamsiyyah : fusion complète de la lām dans la consonne suivante devant les 14 autres lettres."
+        },
+        "mechanismFr": "Pour la Qamariyyah : appliquez le bout de la langue contre les alvéoles des incisives supérieures et faites sonner la Lām avec clarté. Pour la Shamsiyyah : ne touchez pas le palais sur la Lām, glissez directement sur la consonne suivante en appuyant fermement dessus pour former la Shaddah.",
+        "physiologicalDetails": {
+          "tongue": "Appui alvéolaire net pour la Qamariyyah ; contournement direct vers le point de la consonne assimilée pour la Shamsiyyah.",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration sonore régulière.",
+          "airflow": "Déviation latérale de l'air pour la Lām d'Izhār."
+        },
+        "phoneticReasonFr": "Les 14 lettres solaires partagent une grande proximité d'articulation (Taqārub) avec la Lām (dents, gencives, langue antérieure). Articuler la Lām puis immédiatement une consonne quasi-identique fatiguerait l'appareil musculaire : les Arabes ont préféré la fusion fluide.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "لِلَامِ أَلْ حَالَانِ قَبْلَ الأَحْرُفِ * أُولَاهُمَا إِظْهَارُهَا فَلْتَعْرِفِ\nقَبْلَ ارْبَعٍ مَعْ عَشْرَةٍ خُذْ عِلْمَهُ * مِنْ: اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ\nثَانِيهِمَا إِدْغَامُهَا فِي أَرْبَعِ * وَعَشْرَةٍ أَيْضاً وَرَمْزَهَا فَعِ",
+          "transliteration": "Li-lāmi al hālān qabla-l-ahrufi * Ūlāhumā izhāruhā fal-ta'rifi / Qabla-rba'in ma' 'ashratin khudh 'ilmahū * Min: Ibghi hajjaka wa khaf 'aqīmahū / Thānīhimā idghāmuhā fī arba'i * Wa 'ashratin aydan wa ramzahā fa'i",
+          "translationFr": "« La Lām de l'article possède deux états devant les lettres : le premier est son Izhār clair devant quatorze lettres condensées dans 'Ibghi hajjaka wa khaf 'aqīmah' ; le second est son Idghām assimilé devant quatorze autres lettres. »",
+          "chapterNameAr": "بَابُ لَامِ أَلْ"
+        },
+        "examples": [
           {
-            id: 'ex-c7-qam-1',
-            arabicText: 'ٱقۡتَرَبَتِ ٱلسَّاعَةُ وَٱنشَقَّ ٱلۡقَمَرُ',
-            surahAyahRef: '54:1',
-            surahNameFr: 'Al-Qamar',
-            highlightSegment: 'ٱلۡقَمَرُ',
-            highlightLetter: 'لۡ + ق',
-            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
-            ruleTag: 'izhar',
-            explanationFr: 'La Lām porte un Soukoûn visible et précède la lettre Qāf (lettre lunaire). Elle est prononcée nettement sans vibration parasite ni pause.',
-            transliteration: 'Al-Qamar',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/054001.mp3'
-          },
-          {
-            id: 'ex-c7-qam-2',
-            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '1:2',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلۡحَمۡدُ · ٱلۡعَٰلَمِينَ',
-            highlightLetter: 'لۡ + ح · لۡ + ع',
-            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
-            ruleTag: 'izhar',
-            explanationFr: 'Dans « Al-Hamd » et « Al-\'Ālamīn », la Lām précède le Hā\' et le \'Ayn (deux lettres lunaires de la gorge) : elle est clairement vocalisée.',
-            transliteration: 'Al-hamdu lillāhi rabbi-l-\'ālamīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
-          },
-          {
-            id: 'ex-c7-qam-3',
-            arabicText: 'وَإِذۡ جَعَلۡنَا ٱلۡبَيۡتَ مَثَابَةٗ لِّلنَّاسِ',
-            surahAyahRef: '2:125',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ٱلۡبَيۡتَ',
-            highlightLetter: 'لۡ + ب',
-            ruleApplied: 'Lām Qamariyyah (Izhār Qamarī)',
-            ruleTag: 'izhar',
-            explanationFr: 'La lettre Bā\' fait partie de la formule mnémonique lunaire (إِبۡغِ...). La Lām conserve son Soukoûn et se prononce distinctement en liaison : « Ja\'alna-l-bayta ».',
-            transliteration: 'Al-Bayt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002125.mp3'
+            "id": "ex-c7-1",
+            "arabicText": "ٱلۡقَمَرِ ١ وَٱلشَّمۡسِ",
+            "surahAyahRef": "54:1 / 91:1",
+            "surahNameFr": "Al-Qamar / Ash-Shams",
+            "highlightSegment": "ٱلۡقَمَرِ ... وَٱلشَّمۡسِ",
+            "highlightLetter": "لۡ (Izhār) vs لـّ (Idghām)",
+            "ruleApplied": "Qamariyyah vs Shamsiyyah",
+            "ruleTag": "izhar",
+            "explanationFr": "Dans « Al-Qamar », le Qāf fait partie de « Ibghi hajjaka... », la Lām est couronnée d'un soukoûn et s'entend distinctement. Dans « Ash-Shams », la Lām est nue et disparaît dans le Shīn qui prend une Shaddah.",
+            "transliteration": "Al-Qamar ... Wash-Shams",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/054001.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Faire une Qalqalah (rebond) sur la Lām en disant « Ala-qamar » ou « Ala-hamdu ».',
-            correctionFr: 'La Lām n\'est pas une lettre de Qalqalah : stabilisez la pointe de la langue contre le palais sans la détacher brusquement.'
-          },
-          {
-            trapFr: 'Associer la Lām au son Jīm en l\'assimilant à tort (dire "Aj-jannah" au lieu de "Al-Jannah").',
-            correctionFr: 'Le Jīm (ج) est une lettre lunaire (dans حَجَّكَ) : la Lām doit obligatoirement être audible et séparée (« Al-Jannah »).'
+            "trapFr": "Prononcer la Lām dans une lettre solaire en disant « Al-Shams » ou « Al-Rahmān ».",
+            "correctionFr": "Ne laissez pas la langue toucher le palais : fondez directement la voix dans la consonne solaire pour dire « Ash-Shams » et « Ar-Rahmān »."
           }
         ]
       },
       {
-        id: 'lam-shamsiyyah',
-        nameFr: '2. Lām Shamsiyyah (اللَّامُ الشَّمْسِيَّةُ) — Idghām Shamsī',
-        nameAr: 'اللَّامُ الشَّمْسِيَّةُ وَالإِدْغَامُ الشَّمْسِيُّ',
-        mnemonic: 'طِبۡ ثُمَّ صِلۡ رَحِمًا تَفُزۡ ضِفۡ ذَا نِعَمۡ * دَعۡ سُوءَ ظَنٍّ زُرۡ شَرِيفًا لِلۡكَرَمۡ',
-        letters: ['ط', 'ث', 'ص', 'ر', 'ت', 'ض', 'ذ', 'ن', 'د', 'س', 'ظ', 'ز', 'ش', 'ل'],
-        definitionFr: 'Lorsque l\'article défini (ٱلـ) précède l\'une des 14 lettres solaires, la Lām s\'assimile complètement dans la consonne suivante. Dans le Mushaf, la Lām est dépourvue de tout signe (nue) et la lettre suivante porte une Shaddah (ّ).',
-        mechanismFr: 'La langue ne touche pas le point d\'articulation du Lām : la voix se projette directement sur la lettre solaire avec une tension musculaire marquant le dédoublement de la Shaddah.',
-        durationHarakat: 0,
-        examples: [
+        "id": "lam-jalalah-rules",
+        "nameFr": "2. La Lām de Majesté dans le Nom d'Allah (Lafz Al-Jalālah)",
+        "nameAr": "تَفْخِيمُ وَتَرْقِيقُ لَامِ لَفْظِ الجَلَالَةِ (ٱللَّه)",
+        "mnemonic": "Fathah ou Dammah avant = LOURDE (Allāh) | Kasrah avant = FINE (Lillāh / Bismillāh)",
+        "letters": [
+          "ل"
+        ],
+        "definitionFr": "Dans tout le Coran, la consonne Lām est TOUJOURS fine et légère (Muraqqaqah), SAUF dans le Nom Sacré d'Allah (et Allāhumma) : elle y devient majestueuse et emphatique (Mufakhkhamah) si elle est précédée d'une Fathah ou d'une Dammah, et redevient fine si elle est précédée d'une Kasrah.",
+        "definitionLughatan": {
+          "ar": "التَّفْخِيمُ: التَّسْمِينُ وَالتَّغْلِيظُ. التَّرْقِيقُ: التَّنْحِيفُ.",
+          "fr": "Tafkhīm : engraisser et donner du corps. Tarqīq : amincir et alléger."
+        },
+        "definitionIstilahan": {
+          "ar": "تَغْلِيظُ لَامِ اسْمِ الجَلَالَةِ إِذَا سُبِقَتْ بِفَتْحٍ أَوْ ضَمٍّ تَعْظِيماً للهِ، وَتَرْقِيقُهَا إِذَا سُبِقَتْ بِكَسْرٍ.",
+          "fr": "Épaissir la lām du Nom d'Allah lorsqu'elle est précédée d'une Fathah ou d'une Dammah par vénération divine, et l'amincir lorsqu'elle est précédée d'une Kasrah."
+        },
+        "mechanismFr": "Pour le Tafkhīm : élevez l'arrière de la langue vers le fond du palais et élargissez la cavité pharyngienne pour donner une résonance ample et solennelle SANS projeter les lèvres en avant. Pour le Tarqīq : abaissez la langue et souriez légèrement.",
+        "physiologicalDetails": {
+          "tongue": "Élévation de la racine et du dos de la langue pour la résonance caverneuse lors du Tafkhīm ; langue plate pour le Tarqīq.",
+          "lips": "Parfaitement neutres lors du Tafkhīm (interdiction d'arrondir les lèvres en l'absence de Dammah).",
+          "vocalCords": "Vibration pleine et noble.",
+          "airflow": "Amplification acoustique dans la cavité buccale."
+        },
+        "phoneticReasonFr": "L'emphase glorifie acoustiquement le Nom Divin, tandis que la Kasrah qui précède impose une contrainte articulatoire basse obligeant la langue à rester fine.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَفَخِّمِ اللَّامَ مِنِ اسْمِ اللَّهِ * عَنْ فَتْحٍ اوْ ضَمٍّ كَعَبْدُ اللَّهِ\nوَارْفَعْ بِلَا تَكَلُّفٍ صَوْتَ النِّدَا * وَارْقُبْ بِكَسْرٍ نَحْوَ بِسْمِ اللَّهِ غَدَا",
+          "transliteration": "Wa fakhkhimi-l-lāma min ismi-Llāhi * 'An fathi-nw dammin ka-'Abdu-Llāhi / Warfa' bi-lā takallufin sawta-n-nidā * Warqub bi-kasrin nahwa Bismi-Llāhi ghadā",
+          "translationFr": "« Donne de l'emphase (Tafkhīm) à la Lām du Nom d'Allah lorsqu'elle suit une Fathah ou une Dammah comme dans 'Abdu-Llāh ; et amincis-la après une Kasrah comme dans 'Bismi-Llāh'. » (Verset 69)",
+          "chapterNameAr": "بَابُ لَامِ لَفْظِ الجَلَالَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-c7-sham-1',
-            arabicText: 'وَٱلشَّمۡسِ وَضُحَىٰهَا',
-            surahAyahRef: '91:1',
-            surahNameFr: 'Ash-Shams',
-            highlightSegment: 'وَٱلشَّمۡسِ',
-            highlightLetter: 'ل + شّ',
-            ruleApplied: 'Lām Shamsiyyah (Idghām Shamsī en liaison)',
-            ruleTag: 'silent',
-            explanationFr: 'En lecture continue, Hamzat Wasl ET la Lām Shamsiyyah sont muettes ! On prononce « Wash-shams », la voix enchaînant directement du Wāw au Shīn doublé.',
-            transliteration: 'Wash-shamsi wa duhāhā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/091001.mp3'
+            "id": "ex-c7-2",
+            "arabicText": "شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ",
+            "surahAyahRef": "3:18",
+            "surahNameFr": "Āl 'Imrān",
+            "highlightSegment": "شَهِدَ ٱللَّهُ",
+            "highlightLetter": "ـدَ ٱللَّهُ (Tafkhīm)",
+            "ruleApplied": "Lām Majestueuse Emphatique",
+            "ruleTag": "heavy",
+            "explanationFr": "Le Dāl qui précède porte une Fathah (« Shahida ») : la Lām d'Allah est obligatoirement prononcée avec plénitude et majesté sonore : « Shahida-Llāhu ».",
+            "transliteration": "Shahida-Llāhu",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/003018.mp3"
           },
           {
-            id: 'ex-c7-sham-2',
-            arabicText: 'مَٰلِكِ يَوۡمِ ٱلدِّينِ',
-            surahAyahRef: '1:4',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلدِّينِ',
-            highlightLetter: 'ل + دّ',
-            ruleApplied: 'Lām Shamsiyyah (Idghām Shamsī)',
-            ruleTag: 'silent',
-            explanationFr: 'La lettre Dāl est solaire : la Lām est silencieuse et fond dans le Dāl avec Shaddah. On prononce « Yawmi-d-Dīn ».',
-            transliteration: 'Māliki yawmi-d-dīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001004.mp3'
-          },
-          {
-            id: 'ex-c7-sham-3',
-            arabicText: 'قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ',
-            surahAyahRef: '114:1',
-            surahNameFr: 'An-Nās',
-            highlightSegment: 'ٱلنَّاسِ',
-            highlightLetter: 'ل + نّ',
-            ruleApplied: 'Lām Shamsiyyah avec Ghunnah 2 temps',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Cas particulier : la fusion de la Lām dans le Nūn solaire crée un Nūn Mushaddadah (نّ), imposant une Ghunnah nasale obligatoire de 2 temps pleins !',
-            transliteration: 'Bi-rabbi-n-nās',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/114001.mp3'
+            "id": "ex-c7-3",
+            "arabicText": "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ",
+            "surahAyahRef": "1:1",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "بِسۡمِ ٱللَّهِ",
+            "highlightLetter": "ـمِ ٱللَّهِ (Tarqīq)",
+            "ruleApplied": "Lām Fine Amincie",
+            "ruleTag": "izhar",
+            "explanationFr": "Le Mīm qui précède porte une Kasrah (« Bismi ») : la Lām d'Allah redevient obligatoirement fine et soyeuse : « Bismi-Llāh ».",
+            "transliteration": "Bismi-Llāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001001.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Prononcer la Lām solaire en disant « Al-Shams » ou « Al-Dīn ».',
-            correctionFr: 'C\'est un Lahn Jalī : la Lām solaire s\'annule entièrement au profit de la consonne doublée (« Ash-Shams », « Ad-Dīn »).'
-          },
-          {
-            trapFr: 'Oublier les 2 temps de Ghunnah sur « An-Nās » (ٱلنَّاسِ) après l\'assimilation.',
-            correctionFr: 'Tout Nūn portant une Shaddah exige 2 temps de résonance nasale incompressibles dans la cavité nasale.'
+            "trapFr": "Pour les francophones : arrondir les lèvres en forme de 'O' pour essayer d'épaissir la Lām d'Allah.",
+            "correctionFr": "L'emphase se fabrique exclusivement par la montée du fond de la langue, JAMAIS par les lèvres ! Laissez vos lèvres immobiles."
           }
         ]
       },
       {
-        id: 'lam-lafz-al-jalalah',
-        nameFr: '3. Lām de Lafz Al-Jalālah (لَامُ لَفْظِ الجَلَالَةِ ٱللَّه)',
-        nameAr: 'أَحْكَامُ لَامِ لَفْظِ الجَلَالَةِ (تَفْخِيمٌ وَتَرْقِيقٌ)',
-        mnemonic: 'Fathah (ـَ) / Dammah (ـُ) = Emphase LOURDE (Tafkhīm) | Kasrah (ـِ) = Minceur LÉGÈRE (Tarqīq)',
-        letters: ['ل'],
-        definitionFr: 'La lettre Lām est à l\'origine toujours mince (Tarqīq) en langue arabe. La seule exception réside dans le Nom Majestueux d\'Allah (ٱللَّه) et Allahumma (ٱللَّهُمَّ) : elle devient lourde et majestueuse (Tafkhīm) si elle est précédée d\'une Fathah ou d\'une Dammah, ou lorsqu\'on débute la lecture par ce Nom. Elle redevient fine et douce (Tarqīq) si elle est précédée d\'une Kasrah.',
-        mechanismFr: 'Pour le Tafkhīm : élevez l\'arrière de la langue vers le voile du palais et remplissez la cavité buccale de résonance (sans projeter ni arrondir les lèvres en O !). Pour le Tarqīq : aplatissez la langue au fond de la bouche comme pour un léger sourire intérieur.',
-        durationHarakat: 0,
-        examples: [
+        "id": "lam-verb-noun-particle",
+        "nameFr": "3. Lām du Verbe, de la Particule & du Nom",
+        "nameAr": "لَامُ الفِعْلِ، لَامُ الحَرْفِ، وَلَامُ الاسْمِ",
+        "mnemonic": "Règle de base = Izhār net | Exception = Fusion devant Lām et Râ (قُل رَّبِّ)",
+        "letters": [],
+        "definitionFr": "Toute Lām sans voyelle présente dans un verbe (لام الفعل), un nom (لام الاسم) ou une particule comme 'Hal' et 'Bal' (لام الحرف) doit être prononcée avec clarté absolue (Izhār), sauf si elle rencontre une autre Lām ou un Râ où elle fusionne obligatoirement (Idghām).",
+        "definitionLughatan": {
+          "ar": "الأَصْلُ: القَاعِدَةُ المُسْتَقِرَّةُ الَّتِي يُرْجَعُ إِلَيْهَا.",
+          "fr": "La règle générale constante qui sert de référence."
+        },
+        "definitionIstilahan": {
+          "ar": "وُجُوبُ إِظْهَارِ لَامِ الفِعْلِ وَالحَرْفِ مُطْلَقاً عِنْدَ جَمِيعِ الحُرُوفِ، إِلَّا إِذَا وَقَعَ بَعْدَهَا لَامٌ أَوْ رَاءٌ فَيَجِبُ إِدْغَامُهَا.",
+          "fr": "Obligation de prononcer la lām du verbe et de la particule avec Izhār devant toutes les lettres, sauf si elle est suivie d'une Lām ou d'un Râ où l'Idghām est impératif."
+        },
+        "mechanismFr": "Posez nettement le bout de la langue sur les gencives supérieures et maintenez le son de la Lām sans la faire avaler par la consonne suivante (notamment devant Nūn et Tā').",
+        "physiologicalDetails": {
+          "tongue": "Appui alvéolaire ferme pour empêcher la fusion spontanée dans le Nūn de « Qul na'am » ou « Arsalnā ».",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Passage latéral de l'air."
+        },
+        "phoneticReasonFr": "La langue a une tendance naturelle à fusionner la Lām dans le Nūn en raison de leur extrême proximité articulaire. La règle d'Izhār protège l'intégrité du verbe.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَأَظْهِرَنَّ لَامَ فِعْلٍ مُطْلَقَا * فِي نَحْوِ قُلْ نَعَمْ وَقُلْنَا وَالتَقَى\nوَأَدْغِمَنْ فِي اللَّامِ وَالرَّا نَحْوَ قُلْ * رَبِّ وَبَلْ رَفَعَهُ لَا تَفْتَعِلْ",
+          "transliteration": "Wa azhiranna lāma fi'lin mutlaqā * Fī nahwi Qul na'am wa Qulnā wal-taqā / Wa adghiman fil-lāmi war-rā nahwa Qul * Rabbi wa Bal rafa'ahu lā tafta'il",
+          "translationFr": "« Prononce avec un Izhār absolu la Lām du verbe dans 'Qul na'am', 'Qulnā' et 'Iltaqā' ; et fusionne-la dans la Lām et le Râ comme dans 'Qul Rabbi' et 'Bal rafa'ah'. » (Verset 70)",
+          "chapterNameAr": "بَابُ لَامِ الفِعْلِ"
+        },
+        "examples": [
           {
-            id: 'ex-c7-jal-1',
-            arabicText: 'قَالَ ٱللَّهُ إِنِّى مُنَزِّلُهَا عَلَيۡكُمۡ',
-            surahAyahRef: '5:115',
-            surahNameFr: 'Al-Mā\'idah',
-            highlightSegment: 'قَالَ ٱللَّهُ',
-            highlightLetter: 'ـَ + ٱللَّهُ',
-            ruleApplied: 'Tafkhīm de Lafz Al-Jalālah (Précédé de Fathah)',
-            ruleTag: 'heavy',
-            explanationFr: 'Le Lām de « Qāla » porte une Fathah : le Nom d\'Allah résonne avec une emphase puissante et majestueuse (« Qāla-llāhu »).',
-            transliteration: 'Qāla-llāhu',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005115.mp3'
+            "id": "ex-c7-4",
+            "arabicText": "قُلۡ نَعَمۡ وَأَنتُمۡ دَٰخِرُونَ",
+            "surahAyahRef": "37:18",
+            "surahNameFr": "As-Sāffāt",
+            "highlightSegment": "قُلۡ نَعَمۡ",
+            "highlightLetter": "لۡ + نـ (Izhār)",
+            "ruleApplied": "Izhār de la Lām du Verbe",
+            "ruleTag": "izhar",
+            "explanationFr": "Dans « Qul na'am », la Lām doit être articulée avec une netteté chirurgicale sans glisser dans le Nūn (ne dites surtout pas « Qunna'am »).",
+            "transliteration": "Qul na'am",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/037018.mp3"
           },
           {
-            id: 'ex-c7-jal-2',
-            arabicText: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
-            surahAyahRef: '1:1',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'بِسۡمِ ٱللَّهِ',
-            highlightLetter: 'ـِ + ٱللَّهِ',
-            ruleApplied: 'Tarqīq de Lafz Al-Jalālah (Précédé de Kasrah)',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Mīm de « Bismi » porte une Kasrah : le Lām d\'Allah est prononcé avec une finesse et une douceur absolues (« Bismi-llāhi »).',
-            transliteration: 'Bismi-llāhir-Rahmānir-Rahīm',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001001.mp3'
-          },
-          {
-            id: 'ex-c7-jal-3',
-            arabicText: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ',
-            surahAyahRef: '112:1-2',
-            surahNameFr: 'Al-Ikhlās',
-            highlightSegment: 'أَحَدٌ ٱللَّهُ',
-            highlightLetter: 'ـٌ + ٱللَّهُ',
-            ruleApplied: 'Tarqīq exceptionnel par rupture de double soukoûn',
-            ruleTag: 'izhar',
-            explanationFr: 'En reliant les versets 1 et 2 en continu : le Tanwīn (Nūn sākin) rencontre Hamzat Wasl. Pour briser la rencontre de deux Soukoûns, le Tanwīn prend une Kasrah accidentelle ➔ on récite « Ahaduni-llāhus-Samad » avec un Lām aminci (Tarqīq) !',
-            transliteration: 'Qul huwa-llāhu ahad. Allāhus-Samad',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3'
+            "id": "ex-c7-5",
+            "arabicText": "وَقُل رَّبِّ ٱرۡحَمۡهُمَا كَمَا رَبَّيَانِى صَغِيرٗا",
+            "surahAyahRef": "17:24",
+            "surahNameFr": "Al-Isrā'",
+            "highlightSegment": "وَقُل رَّبِّ",
+            "highlightLetter": "لۡ + رَّ (Idghām)",
+            "ruleApplied": "Idghām de la Lām dans le Râ",
+            "ruleTag": "silent",
+            "explanationFr": "La Lām de « Qul » rencontre la lettre Râ : elle s'assimile à 100% sans laisser de trace. On prononce directement : « Qur-Rabbi ».",
+            "transliteration": "Wa qur-Rabbi-rhamhumā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/017024.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Arrondir les lèvres en avant pour rendre le Nom d\'Allah lourd (dire "Ollāh").',
-            correctionFr: 'L\'emphase (Tafkhīm) provient uniquement de l\'élévation de l\'arrière de la langue : les lèvres restent totalement neutres.'
-          },
-          {
-            trapFr: 'Garder le Lām lourd dans « Bismi-llāh » par habitude.',
-            correctionFr: 'Toute Kasrah précédente impose impérativement un Lām mince (Tarqīq) : dites « Bismi-llāh » avec douceur.'
-          }
-        ]
-      },
-      {
-        id: 'lam-al-fil-wal-harf',
-        nameFr: '4. Lām du Verbe, de la Particule & du Nom (Fi\'l, Harf, Ism, Amr)',
-        nameAr: 'لَامُ الفِعْلِ وَالحَرْفِ وَالاسْمِ وَالأَمْرِ',
-        mnemonic: 'Devant Lām (ل) ou Râ\' (ر) = IDGHĀM (Fusion) | Devant les 26 autres lettres = IZHĀR (Clarté)',
-        letters: ['ل', 'ر'],
-        definitionFr: 'La Lām Sākinah présente dans un verbe (Lām Al-Fi\'l : قُلۡ, أَنزَلۡنَا) ou dans une particule (Lām Al-Harf : بَلۡ, هَلۡ) doit obligatoirement être prononcée avec clarté (Izhār) devant 26 lettres de l\'alphabet. Elle ne fusionne (Idghām) que devant deux lettres spécifiques : le Lām (par identité - Tamāthul) et le Râ\' (par proximité - Taqārub). La Lām interne d\'un nom (Lām Al-Ism) ou de l\'ordre (Lām Al-Amr) est toujours prononcée avec clarté (Izhār).',
-        mechanismFr: 'Pour l\'Izhār sur « Qul na\'am » : marquez le contact de la langue pour la Lām sans la faire rebondir, puis passez au Nūn. Pour l\'Idghām sur « Qur-rabbi » : sautez la Lām et prononcez directement un Râ\' fort doublé d\'une Shaddah.',
-        durationHarakat: 0,
-        examples: [
-          {
-            id: 'ex-c7-fil-1',
-            arabicText: 'قُلۡ نَعَمۡ وَأَنتُمۡ دَاخِرُونَ',
-            surahAyahRef: '37:18',
-            surahNameFr: 'As-Sāffāt',
-            highlightSegment: 'قُلۡ نَعَمۡ',
-            highlightLetter: 'لۡ + ن',
-            ruleApplied: 'Izhār obligatoire de Lām Al-Fi\'l',
-            ruleTag: 'izhar',
-            explanationFr: 'La Lām du verbe impératif « Qul » rencontre un Nūn : elle doit être prononcée avec une parfaite netteté sans rebond parasite ni assimilation.',
-            transliteration: 'Qul na\'am wa antum dākhirūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/037018.mp3'
-          },
-          {
-            id: 'ex-c7-fil-2',
-            arabicText: 'وَقُل رَّبِّ أَدۡخِلۡنِى مُدۡخَلَ صِدۡقٖ',
-            surahAyahRef: '17:80',
-            surahNameFr: 'Al-Isrā\'',
-            highlightSegment: 'وَقُل رَّبِّ',
-            highlightLetter: 'ل + رّ',
-            ruleApplied: 'Idghām complet de Lām dans le Râ\'',
-            ruleTag: 'silent',
-            explanationFr: 'La Lām du verbe rencontre la lettre Râ\' (proximité de point d\'articulation) : la Lām est totalement engloutie et l\'on prononce « Wa Qur-rabbi » avec un Râ\' doublé.',
-            transliteration: 'Wa qur-rabbi adkhilnī',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/017080.mp3'
-          },
-          {
-            id: 'ex-c7-fil-3',
-            arabicText: 'بَل رَّفَعَهُ ٱللَّهُ إِلَيۡهِ',
-            surahAyahRef: '4:158',
-            surahNameFr: 'An-Nisā\'',
-            highlightSegment: 'بَل رَّفَعَهُ',
-            highlightLetter: 'ل + رّ',
-            ruleApplied: 'Idghām de Lām Al-Harf',
-            ruleTag: 'silent',
-            explanationFr: 'La Lām de la particule « Bal » fusionne dans le Râ\' qui la suit : on prononce « Bar-rafa\'ahu-llāhu » sans aucune trace de Lām.',
-            transliteration: 'Bar-rafa\'ahu-llāhu ilayh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004158.mp3'
-          },
-          {
-            id: 'ex-c7-fil-4',
-            arabicText: 'إِنَّآ أَنزَلۡنَٰهُ فِى لَيۡلَةِ ٱلۡقَدۡرِ',
-            surahAyahRef: '97:1',
-            surahNameFr: 'Al-Qadr',
-            highlightSegment: 'أَنزَلۡنَٰهُ',
-            highlightLetter: 'لۡ + ن',
-            ruleApplied: 'Izhār de Lām Al-Fi\'l au milieu d\'un verbe',
-            ruleTag: 'izhar',
-            explanationFr: 'Lām médiane dans le verbe « Anzalnā » suivie de Nūn : clarté absolue requise. Ne jamais fusionner en disant « Anzannā » !',
-            transliteration: 'Innā anzalnāhu fī laylati-l-qadr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/097001.mp3'
-          }
-        ],
-        commonMistakes: [
-          {
-            trapFr: 'Fusionner par erreur la Lām dans le Nūn dans « Anzalnā » en disant "Anzannā".',
-            correctionFr: 'C\'est une faute de prononciation majeure : seule la rencontre Lām-Lām ou Lām-Râ\' autorise l\'Idghām. Devant le Nūn, la Lām doit rester 100% audible.'
-          },
-          {
-            trapFr: 'Faire une Qalqalah sur « Qul » en détachant brutalement la langue (dire "Qula-na\'am").',
-            correctionFr: 'Maintenez la langue fermement plaquée le temps de Tawassut (durée intermédiaire) sans relâcher brusquement le souffle.'
+            "trapFr": "Avaler la Lām dans « Ja'alnā » (جَعَلْنَا) ou « Arsalnā » (أَرْسَلْنَا) et prononcer 'Ja'annā'.",
+            "correctionFr": "Marquez fermement l'appui de la langue sur la Lām avant d'enclencher le Nūn."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'ex-c7-g1',
-        title: 'Distinguer Lām Shamsiyyah et Qamariyyah dans Sourate Ash-Shams (91:1-2)',
-        verseArabic: 'وَٱلشَّمۡسِ وَضُحَىٰهَا ۝ وَٱلۡقَمَرِ إِذَا تَلَىٰهَا',
-        surahAyahRef: '91:1-2',
-        targetSegment: 'وَٱلشَّمۡسِ · وَٱلۡقَمَرِ',
-        promptFr: 'Analysez le comportement de la lettre Lām dans « Wash-Shams » par rapport à « Wal-Qamar » lors d\'une récitation fluide.',
-        hintFr: 'Observez la présence ou l\'absence du signe de Soukoûn au-dessus de la Lām et la présence d\'une Shaddah sur la consonne suivante.',
-        solutionFr: 'Dans « Wash-Shams », la Lām est solaire (Shamsiyyah) : en continu, Hamzat Wasl et la Lām disparaissent toutes les deux, on saute directement du Wāw au Shīn avec Shaddah (« Wash-shams »). Dans « Wal-Qamar », la Lām est lunaire (Qamariyyah) : Hamzat Wasl s\'élide mais la Lām porte un Soukoûn visible et se prononce distinctement (« Wal-qamar ») !',
-        breakdownSteps: [
-          'Étape 1 : Observez le mot « وَٱلشَّمۡسِ » — la Lām n\'a aucun signe et le Shīn porte une Shaddah (ّ). C\'est une Lām Shamsiyyah.',
-          'Étape 2 : En continu depuis « Wa », Hamzat Wasl tombe ET la Lām Shamsiyyah s\'efface ➔ prononciation « Wash-shams ».',
-          'Étape 3 : Observez le mot « وَٱلۡقَمَرِ » — la Lām porte la tête de Khā\' miniature (Soukoûn لۡ) et le Qāf n\'a pas de Shaddah. C\'est une Lām Qamariyyah.',
-          'Étape 4 : En continu, seule Hamzat Wasl tombe : le Lām résonne clairement avec Tawassut ➔ « Wal-qamar ».'
+        "id": "exo-c7-1",
+        "title": "Analyse de la Lām dans « وَقُل رَّبِّ زِدۡنِى عِلۡمٗا »",
+        "verseArabic": "فَتَعَٰلَى ٱللَّهُ ٱلۡمَلِكُ ٱلۡحَقُّۗ وَلَا تَعۡجَلۡ بِٱلۡقُرۡءَانِ مِن قَبۡلِ أَن يُقۡضَىٰٓ إِلَيۡكَ وَحۡيُهُۥۖ وَقُل رَّبِّ زِدۡنِى عِلۡمٗا",
+        "surahAyahRef": "20:114",
+        "targetSegment": "وَقُل رَّبِّ",
+        "promptFr": "Quel traitement sonore reçoit la lettre Lām de « Qul » devant le mot « Rabbi » ?",
+        "hintFr": "La Lām du verbe impératif rencontre la lettre Râ.",
+        "solutionFr": "Assimilation totale (Idghām) : « Qur-Rabbi »",
+        "breakdownSteps": [
+          "La Lām sans voyelle rencontre la lettre Râ.",
+          "En raison de la proximité de leurs points d'articulation (Taqārub), la Lām fusionne dans le Râ.",
+          "On prononce un Râ avec Shaddah : « Qur-Rabbi »."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/091001.mp3'
-      },
-      {
-        id: 'ex-c7-g2',
-        title: 'Le mystère de Lafz Al-Jalālah dans la Sourate Al-Ikhlās (112:1-2)',
-        verseArabic: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ',
-        surahAyahRef: '112:1-2',
-        targetSegment: 'هُوَ ٱللَّهُ · أَحَدٌ ٱللَّهُ',
-        promptFr: 'Pourquoi le Lām du Nom d\'Allah est-il lourd (Tafkhīm) dans « Huwa-llāh », mais devient-il léger (Tarqīq) si l\'on enchaîne le verset 1 avec le verset 2 ?',
-        hintFr: 'Rappelez-vous quelle voyelle précède immédiatement le Nom d\'Allah dans chaque situation, en appliquant la règle de rupture du double Soukoûn sur le Tanwīn.',
-        solutionFr: 'Dans « Huwa-llāh », le Nom d\'Allah est précédé par la Fathah du Wāw : la Lām est donc lourde et majestueuse (Tafkhīm). En revanche, lorsqu\'on lie « Ahadun » avec « Allāh », le Tanwīn (Nūn sākin) rencontre Hamzat Wasl (Soukoûn) : pour éviter l\'affrontement de deux Soukoûns, la règle grammaticale impose d\'attribuer une Kasrah accidentelle au Tanwīn (Ahaduni). Cette Kasrah contraint le Lām d\'Allah à devenir doux et aminci (Tarqīq) : on prononce « Ahaduni-llāhus-Samad » !',
-        breakdownSteps: [
-          'Étape 1 : Dans « Huwa-llāh », la voyelle précédente est une Fathah (ـَ) ➔ Tafkhīm lourd obligatoire.',
-          'Étape 2 : À la fin du verset 1, « Ahadun » (أَحَدٌ) se termine par un Tanwīn, soit phonétiquement le son « N » sans voyelle (نْ).',
-          'Étape 3 : Le début du verset 2 commence par Hamzat Wasl suivie d\'un Soukoûn sur la Lām. Deux Soukoûns consécutifs sont interdits en phonétique arabe.',
-          'Étape 4 : La règle d\'Iltiqā\' As-Sākinayn brise cette collision en vocalisant le Nūn avec une Kasrah (نِ).',
-          'Étape 5 : Comme le Nom d\'Allah est désormais précédé d\'une Kasrah, sa Lām s\'amincit obligatoirement (Tarqīq) ➔ « Ahaduni-llāh » !'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/020114.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c7-1',
-        type: 'mcq',
-        promptFr: 'Quelle phrase mnémotechnique réunit la totalité des 14 lettres lunaires (Lām Qamariyyah) ?',
-        verseArabic: 'إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ',
-        options: [
-          '« إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (ء, ب, غ, ح, ج, ك, و, خ, ف, ع, ق, ي, م, هـ)',
-          '« يَرۡمَلُونَ » (ي, ر, م, ل, و, ن)',
-          '« قُطۡبُ جَدٍّ » (ق, ط, ب, ج, د)',
-          '« طِبۡ ثُمَّ صِلۡ رَحِمًا تَفُزۡ »'
+        "id": "q-c7-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Dans quelle phrase poétique sont regroupées les 14 lettres de la Lām Qamariyyah ?",
+        "verseArabic": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
+        "options": [
+          "اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ",
+          "قُطْبُ جَدٍّ",
+          "يَرْمَلُونَ",
+          "حَيٌّ طَهُرَ"
         ],
-        correctAnswer: '« إِبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُ » (ء, ب, غ, ح, ج, ك, و, خ, ف, ع, ق, ي, م, هـ)',
-        explanationFr: 'Ces 14 lettres rassemblées dans cette célèbre formule provoquent l\'Izhār Qamarī : la Lām reste audible avec son Soukoûn.',
-        ruleId: 'lam-qamariyyah'
+        "correctAnswer": "اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ",
+        "explanationFr": "La formule mnémotechnique universelle « اِبْغِ حَجَّكَ وَخَفْ عَقِيمَهُ » réunit précisément les 14 lettres qui imposent la clarté d'Izhār sur la Lām de l'article.",
+        "ruleId": "lam-qamariyyah-shamsiyyah"
       },
       {
-        id: 'q-c7-2',
-        type: 'mcq',
-        promptFr: 'Comment reconnaître immédiatement dans la graphie du Mushaf une Lām Shamsiyyah (solaire) ?',
-        verseArabic: 'ٱلشَّمۡسُ وَٱلۡقَمَرُ',
-        options: [
-          'La Lām est nue (sans aucun signe au-dessus) et la lettre suivante porte une Shaddah (ّ)',
-          'La Lām porte un petit Soukoûn en forme de tête de Khā\' (لۡ)',
-          'La Lām porte une petite vaguelette de prolongation (~)',
-          'La Lām est écrite en rouge avec un petit point vert en dessous'
+        "id": "q-c7-2",
+        "type": "error_detect",
+        "promptFr": "Dans « أَرْسَلْنَا إِلَيْهِمْ », un lecteur avale la Lām et prononce « Arsannā ». Quelle est la nature de l'erreur ?",
+        "verseArabic": "إِذۡ أَرۡسَلۡنَآ إِلَيۡهِمُ ٱثۡنَيۡنِ",
+        "targetWord": "أَرۡسَلۡنَآ",
+        "surahAyahRef": "36:14",
+        "options": [
+          "Lahn Jalī : Idghām illicite de la Lām du verbe dans le Nūn, détruisant la racine du verbe",
+          "Lahn Khafī d'embellissement",
+          "Règle de Shātibiyyah",
+          "Lecture de Hafs"
         ],
-        correctAnswer: 'La Lām est nue (sans aucun signe au-dessus) et la lettre suivante porte une Shaddah (ّ)',
-        explanationFr: 'Dans le Rasm \'Uthmānī, une consonne assimilée est toujours dépouillée de tout signe (nue), et la consonne qui l\'absorbe reçoit une Shaddah pour indiquer le dédoublement.',
-        ruleId: 'lam-shamsiyyah'
+        "correctAnswer": "Lahn Jalī : Idghām illicite de la Lām du verbe dans le Nūn, détruisant la racine du verbe",
+        "explanationFr": "La Lām du verbe devant le Nūn doit obligatoirement être prononcée avec clarté (Izhār). L'avaler déforme le verbe et constitue une altération phonologique majeure.",
+        "ruleId": "lam-verb-noun-particle"
       },
       {
-        id: 'q-c7-3',
-        type: 'mcq',
-        promptFr: 'En lisant en continu le début de la Sourate Ash-Shams « وَٱلشَّمۡسِ » (91:1), comment s\'effectue la prononciation exacte ?',
-        verseArabic: 'وَٱلشَّمۡسِ وَضُحَىٰهَا',
-        surahAyahRef: '91:1',
-        options: [
-          '« Wash-shams » : Hamzat Wasl ET la Lām Shamsiyyah sont toutes deux totalement muettes',
-          '« Wal-shams » : on prononce la Lām clairement',
-          '« Wa-al-shams » : on marque un coup de glotte sur la Hamzah',
-          '« Wa-ish-shams » : on ajoute une Kasrah sous la Hamzah'
+        "id": "q-c7-3",
+        "type": "mcq",
+        "promptFr": "Dans « وَمَا النَّصْرُ إِلَّا مِنْ عِندِ اللَّهِ », comment doit se prononcer la Lām du Nom de Majesté ?",
+        "verseArabic": "وَمَا ٱلنَّصۡرُ إِلَّا مِنۡ عِندِ ٱللَّهِ",
+        "surahAyahRef": "3:126",
+        "options": [
+          "Fine et légère (Tarqīq) car le Dāl qui précède porte une Kasrah (« 'Indi »)",
+          "Lourde et emphatique (Tafkhīm)",
+          "Prolongée de 6 temps",
+          "Muette"
         ],
-        correctAnswer: '« Wash-shams » : Hamzat Wasl ET la Lām Shamsiyyah sont toutes deux totalement muettes',
-        explanationFr: 'C\'est le piège classique du double effacement : Hamzat Wasl tombe en liaison continue, et la Lām solaire disparaît par Idghām. On passe directement de la voyelle du Wāw au Shīn avec Shaddah.',
-        ruleId: 'lam-shamsiyyah'
-      },
-      {
-        id: 'q-c7-4',
-        type: 'mcq',
-        promptFr: 'Dans « بِسۡمِ ٱللَّهِ », pourquoi la Lām du Nom d\'Allah est-elle prononcée avec finesse et amincissement (Tarqīq) ?',
-        verseArabic: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
-        surahAyahRef: '1:1',
-        options: [
-          'Parce qu\'elle est précédée d\'une Kasrah (ـِ) sous le Mīm de « Bismi »',
-          'Parce que le Nom d\'Allah est toujours mince en toutes circonstances',
-          'Parce que le Nom d\'Allah est suivi du mot Ar-Rahmān',
-          'Parce qu\'il y a une règle de Waqf obligatoire'
-        ],
-        correctAnswer: 'Parce qu\'elle est précédée d\'une Kasrah (ـِ) sous le Mīm de « Bismi »',
-        explanationFr: 'La règle de Lafz Al-Jalālah est stricte : si la consonne précédente porte une Kasrah (originale ou accidentelle), la Lām devient obligatoirement Muraqqaqah (fine/mince).',
-        ruleId: 'lam-lafz-al-jalalah'
-      },
-      {
-        id: 'q-c7-5',
-        type: 'mcq',
-        promptFr: 'Dans le verset « وَقُل رَّبِّ » (17:80), quel phénomène subit la Lām du verbe « Qul » ?',
-        verseArabic: 'وَقُل رَّبِّ أَدۡخِلۡنِى مُدۡخَلَ صِدۡقٖ',
-        surahAyahRef: '17:80',
-        options: [
-          'Elle s\'assimile totalement dans le Râ\' (Idghām par proximité - Taqārub) ➔ on prononce « Qur-rabbi »',
-          'Elle se prononce clairement avec un rebond de Qalqalah ➔ « Qula-rabbi »',
-          'Elle se transforme en Nūn avec Ghunnah de 2 temps ➔ « Qun-rabbi »',
-          'Elle est prolongée de 6 temps de Madd Lāzim'
-        ],
-        correctAnswer: 'Elle s\'assimile totalement dans le Râ\' (Idghām par proximité - Taqārub) ➔ on prononce « Qur-rabbi »',
-        explanationFr: 'La Lām de verbe (Lām Al-Fi\'l) ou de particule ne fusionne que devant deux lettres : Lām (par identité) et Râ\' (par proximité de Makhraj). Le Lām disparaît complètement dans le Râ\' qui prend une Shaddah.',
-        ruleId: 'lam-al-fil-wal-harf'
+        "correctAnswer": "Fine et légère (Tarqīq) car le Dāl qui précède porte une Kasrah (« 'Indi »)",
+        "explanationFr": "Précédée d'une voyelle Kasrah, la Lām du Nom d'Allah s'amincit obligatoirement par Tarqīq (« 'Indi-Llāh »).",
+        "ruleId": "lam-jalalah-rules"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 8 : NŪN SĀKINAH & TANWĪN
-  // ==========================================
   {
-    id: 'chap-8',
-    number: 8,
-    slug: 'nun-sakinah',
-    titleFr: 'Nūn Sākinah & Tanwīn',
-    titleAr: 'أَحْكَامُ النُّونِ السَّاكِنَةِ وَالتَّنْوِينِ',
-    category: 'intermediate',
-    estimatedMinutes: 25,
-    isPilotChapter: true,
-    summaryFr: 'Les 4 règles fondamentales déclenchées par la rencontre d\'un Nūn sans voyelle ou d\'un Tanwīn avec la lettre suivante : Izhār, Idghām, Iqlāb et Ikhfā\'.',
-    infographicPoints: [
-      'Ghunnah : Résonance nasale obligatoire de 2 temps (harakat) pour Idghām bi-ghunnah, Iqlāb et Ikhfā\'.',
-      'Izhār Halqī (6 lettres de gorge) : Prononciation nette et limpide, sans coupure ni prolongation.',
-      'Idghām (6 lettres يَرْمَلُونَ) : Fusion totale ou partielle. Attention à l\'Izhār Mutlaq sur 4 mots du Coran (دُنۡيَا, بُنۡيَٰن, قِنۡوَان, صِنۡوَان).',
-      'Iqlāb (lettre ب) : Transformation en Mīm léger sans écraser les lèvres, avec résonance de 2 temps.',
-      'Ikhfā\' (15 lettres) : Dissimulation avec anticipation du point d\'articulation. Ghunnah emphatique (Tafkhīm) avant les lettres lourdes (ص, ض, ط, ظ, ق) !'
+    "id": "chap-8",
+    "number": 8,
+    "slug": "nun-sakinah",
+    "titleFr": "Nūn Sākinah & Tanwīn (4 Règles)",
+    "titleAr": "أَحْكَامُ النُّونِ السَّاكِنَةِ وَالتَّنْوِينِ",
+    "category": "intermediate",
+    "estimatedMinutes": 25,
+    "isPilotChapter": true,
+    "summaryFr": "Le cœur du Tajwīd traditionnel : maîtriser les 4 règles absolues du Nūn sans voyelle et du Tanwīn : 1. L'Izhār Halqī (6 lettres de gorge), 2. L'Idghām (6 lettres de Yarmalūn, avec ou sans Ghunnah, et les 4 mots d'Izhār Mutlaq), 3. L'Iqlāb (transformation en Mīm devant Bā'), et 4. L'Ikhfā' Haqīqī (dissimulation nasale devant 15 lettres).",
+    "infographicPoints": [
+      "L'Izhār Halqī (الإظهار الحلقي) : Clarté pure sans Ghunnah devant 6 lettres de gorge (ء, هـ, ع, ح, غ, خ).",
+      "L'Idghām avec Ghunnah (إدغام بغنة) : Fusion complète avec 2 temps de nasillement devant (ي, ن, م, و / YANMŪ).",
+      "L'Idghām sans Ghunnah (إدغام بغير غنة) : Fusion totale sèche sans résonance nasale devant (ل, ر).",
+      "Izhār Mutlaq (إظهار مطلق) : Exception sacrée si Nūn + Wāw/Yā' sont dans le MÊME mot : interdiction de fusionner dans 4 mots uniques : دُنْيَا, بُنْيَان, قِنْوَان, صِنْوَان !",
+      "L'Iqlāb (الإقلاب) : Le Nūn devient un Mīm pur avec 2 temps de Ghunnah devant la seule lettre Bā' (ب).",
+      "L'Ikhfā' Haqīqī (الإخفاء الحقيقي) : Dissimulation entre clarté et fusion avec 2 temps de Ghunnah devant les 15 autres lettres."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'izhar',
-        nameFr: '1. Al-Izhār Al-Halqī (L\'Élucidation / Clarté)',
-        nameAr: 'الإِظْهَارُ الحَلْقِيُّ',
-        mnemonic: 'ء - هـ - ع - ح - غ - خ (6 lettres de la gorge)',
-        letters: ['ء', 'هـ', 'ع', 'ح', 'غ', 'خ'],
-        definitionFr: 'Prononciation claire et distincte du son « N » sans ajouter de résonance nasale (Ghunnah) excessive, ni couper la récitation brutalement.',
-        mechanismFr: 'La pointe de la langue touche fermement les gencives supérieures pour former le son N, puis la lettre de la gorge est émise immédiatement sans pause artificielle.',
-        durationHarakat: 0,
-        examples: [
+        "id": "nun-izhar",
+        "nameFr": "1. Al-Izhār Al-Halqī (La Clarté Gutturale)",
+        "nameAr": "الإِظْهَارُ الحَلْقِيُّ (ء هـ ع ح غ خ)",
+        "mnemonic": "Lettres de gorge : Hamzah, Hā', 'Ayn, Hā', Ghayn, Khā' -> Nūn limpide sans Ghunnah étirée",
+        "letters": [
+          "ء",
+          "هـ",
+          "ع",
+          "ح",
+          "غ",
+          "خ"
+        ],
+        "definitionFr": "L'Izhār Halqī consiste à prononcer le son du Nūn Sākinah ou du Tanwīn depuis son point d'articulation exact avec une clarté totale, sans allonger artificiellement la Ghunnah et sans marquer de coupure saccadée (Sakt), lorsqu'il est suivi de l'une des 6 lettres de la gorge.",
+        "definitionLughatan": {
+          "ar": "الإِظْهَارُ: البَيَانُ وَالوُضُوحُ، يُقَالُ: أَظْهَرْتُ الشَّيْءَ إِذَا بَيَّنْتَهُ وَأَوْضَحْتَهُ.",
+          "fr": "La manifestation, la clarté et l'évidence sans dissimulation."
+        },
+        "definitionIstilahan": {
+          "ar": "إِخْرَاجُ النُّونِ السَّاكِنَةِ أَوْ التَّنْوِينِ مِنْ مَخْرَجِهَا مِنْ غَيْرِ غُنَّةٍ زَائِدَةٍ عِنْدَ أَحْرُفِ الحَلْقِ السِّتَّةِ.",
+          "fr": "Extraire le Nūn ou le Tanwīn de son point d'articulation d'origine sans ajouter de Ghunnah temporelle devant les 6 lettres gutturales."
+        },
+        "mechanismFr": "Plaquez fermement le bout de la langue contre les alvéoles des incisives supérieures pour émettre un [N] propre et net, puis passez immédiatement à la lettre de la gorge sans traîner.",
+        "physiologicalDetails": {
+          "tongue": "Contact alvéolaire franc et direct.",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration normale de la consonne sans prolongement nasal.",
+          "airflow": "Flux d'air divisé naturellement sans rétention prolongée dans le nez."
+        },
+        "phoneticReasonFr": "Le Nūn naît du bout de la langue (Taraf al-Lisān) tandis que ces 6 lettres naissent du fond ou du milieu de la gorge (Al-Halq). La grande distance physique (Bu'd al-Makhraj) rend l'assimilation impossible et impose une séparation nette.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "فَعِنْدَ حَرْفِ الحَلْقِ أَظْهِرْ وَادَّغِمْ * فِي اللَّامِ وَالرَّا لَا بِغُنَّةٍ لَزِمْ\nوَأَدْغِمَنْ بِغُنَّةٍ فِي يُومِنُ * إِلَّا بِكِلْمَةٍ كَدُنْيَا عَنْوَنُوا",
+          "transliteration": "Fa-'inda harfi-l-halqi azhir waddaghim * Fil-lāmi war-rā lā bi-ghunnatin lazim / Wa adghiman bi-ghunnatin fī Yūminu * Illā bi-kilmatin ka-Dunyā 'anwanū",
+          "translationFr": "« Devant les lettres de la gorge, applique l'Izhār clair ; et fusionne sans Ghunnah dans le Lām et le Râ ; et fusionne avec Ghunnah dans les lettres de 'Yūminu' (Yanmū), sauf dans un mot unique comme Dunyā. » (Versets 40-41)",
+          "chapterNameAr": "بَابُ أَحْكَامِ النُّونِ السَّاكِنَةِ وَالتَّنْوِينِ"
+        },
+        "examples": [
           {
-            id: 'ex-izh-1',
-            arabicText: 'مَنۡ ءَامَنَ',
-            surahAyahRef: '2:62',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'مَنۡ ءَ',
-            highlightLetter: 'ن + ء',
-            ruleApplied: 'Izhār Halqī',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Nūn Sākinah est suivi d\'une Hamzah (ء), lettre de la gorge. Le Nūn est prononcé nettement sans bourdonnement prolongé.',
-            transliteration: 'Man \'āmana',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002062.mp3'
-          },
-          {
-            id: 'ex-izh-2',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'أَنۡعَمۡتَ',
-            highlightLetter: 'ن + ع',
-            ruleApplied: 'Izhār Halqī dans un seul mot',
-            ruleTag: 'izhar',
-            explanationFr: 'Izhār au sein du mot « An\'amta » : le Nūn Sākin est suivi du \'Ayn (ع). Prononcez le Nūn clairement avant d\'émettre le \'Ayn.',
-            transliteration: 'An\'amta \'alayhim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
-          },
-          {
-            id: 'ex-izh-3',
-            arabicText: 'عَلِيمٌ حَكِيمٞ',
-            surahAyahRef: '4:26',
-            surahNameFr: 'An-Nisā\'',
-            highlightSegment: 'عَلِيمٌ حَ',
-            highlightLetter: 'Tanwīn + ح',
-            ruleApplied: 'Izhār Halqī avec Tanwīn',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Tanwīn de « \'Alīmun » est suivi de la lettre Hā\' (ح). Les deux voyelles du Tanwīn sont dessinées alignées dans le Coran.',
-            transliteration: '\'Alīmun Hakīm',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004026.mp3'
+            "id": "ex-c8-1",
+            "arabicText": "فَصَلِّ لِرَبِّكَ وَٱنۡحَرۡ",
+            "surahAyahRef": "108:2",
+            "surahNameFr": "Al-Kawthar",
+            "highlightSegment": "وَٱنۡحَرۡ",
+            "highlightLetter": "نۡ + ح",
+            "ruleApplied": "Izhār Halqī devant Hā' (ح)",
+            "ruleTag": "izhar",
+            "explanationFr": "Le Nūn est suivi du Hā' (lettre médiane de la gorge). Le Nūn est couronné d'un soukoûn dans le texte : prononcez « Wan-har » avec clarté sans faire vibrer le nez.",
+            "transliteration": "Wan-har",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/108002.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Ajouter une pause (Saktah) artificielle entre le Nūn et la lettre de gorge.',
-            correctionFr: 'Enchaînez naturellement sans bloquer votre souffle : prononcez « man » puis immédiatement « \'āmana ».'
-          },
-          {
-            trapFr: 'Prolonger une Ghunnah nasale sur le Nūn comme si c\'était un Ikhfā\'.',
-            correctionFr: 'Le Nūn en Izhār ne dure qu\'un temps de lettre normale (soukoûn sec et fluide).'
+            "trapFr": "Pour les francophones : maintenir une Ghunnah nasale longue de 2 temps sur l'Izhār comme s'il s'agissait d'un Ikhfā'.",
+            "correctionFr": "L'Izhār ne tolère que la Ghunnah originelle instantanée de la lettre : détachez immédiatement la langue dès l'émission de la consonne."
           }
         ]
       },
       {
-        id: 'idgham',
-        nameFr: '2. Al-Idghām (La Fusion / Assimilation)',
-        nameAr: 'الإِدْغَامُ',
-        mnemonic: 'يَرْمَلُونَ (YARMALŪN) — Divisé en ينمو (avec Ghunnah) et ل/ر (sans Ghunnah)',
-        letters: ['ي', 'ر', 'م', 'ل', 'و', 'ن'],
-        definitionFr: 'Fusion complète ou partielle du Nūn Sākinah ou du Tanwīn dans la lettre suivante, de sorte qu\'elle se prononce comme une lettre doublée (Mushaddadah).',
-        mechanismFr: 'Le son du Nūn disparaît au profit de la lettre suivante. Si la lettre fait partie de (ي-ن-م-و), la fusion s\'accompagne d\'une Ghunnah de 2 temps.',
-        durationHarakat: 2,
-        examples: [
+        "id": "nun-idgham",
+        "nameFr": "2. Al-Idghām (La Fusion) & L'Exception d'Izhār Mutlaq",
+        "nameAr": "الإِدْغَامُ بِغُنَّةٍ وَبِغَيْرِ غُنَّةٍ وَالإِظْهَارُ المُطْلَقُ",
+        "mnemonic": "Lettres « يَرْمَلُونَ » | Y-N-M-W = Avec Ghunnah (2 temps) | L-R = Sans Ghunnah | Mots uniques (دنيا، بنيان، قنوان، صنوان) = Izhār Mutlaq obligatoire !",
+        "letters": [
+          "ي",
+          "ر",
+          "م",
+          "ل",
+          "و",
+          "ن"
+        ],
+        "definitionFr": "L'Idghām est l'insertion complète du Nūn Sākinah ou du Tanwīn dans la consonne suivante. Devant les 4 lettres de « يَنْمُو » (Yanmū), la fusion s'accompagne d'une Ghunnah de 2 temps. Devant Lām et Râ, la fusion est totale et sèche sans aucune Ghunnah. Exception majeure : si le Nūn et la lettre de fusion sont dans le MÊME mot, l'Idghām est interdit et l'Izhār Mutlaq s'impose.",
+        "definitionLughatan": {
+          "ar": "الإِدْغَامُ: الإِدْخَالُ، يُقَالُ: أَدْغَمْتُ اللِّجَامَ فِي فَمِ الفَرَسِ إِذَا أَدْخَلْتَهُ فِيهِ.",
+          "fr": "L'insertion d'une chose dans une autre jusqu'à ce qu'elle y disparaisse."
+        },
+        "definitionIstilahan": {
+          "ar": "إِلْتِقَاءُ حَرْفٍ سَاكِنٍ بِمُتَحَرِّكٍ بِحَيْثُ يَصِيرَانِ حَرْفاً وَاحِداً مُشَدَّداً كَالSECOND.",
+          "fr": "La rencontre d'une lettre sans voyelle avec une lettre voyellée, de sorte qu'elles se fondent en une seule lettre géminée (avec Shaddah) du genre de la seconde."
+        },
+        "mechanismFr": "Pour l'Idghām avec Ghunnah : la langue ne touche pas les alvéoles du Nūn ; le son se fond dans le Wāw ou le Yā' tout en maintenant le flux d'air nasal (Khayshūm) pendant 2 temps pleins.",
+        "physiologicalDetails": {
+          "tongue": "Ne touche pas le palais pour le Nūn ; s'oriente vers la posture de la consonne réceptrice.",
+          "lips": "Arrondies pour le Wāw, neutres pour les autres.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "50% bouche et 50% cavité nasale (Khayshūm) pour Yanmū ; 100% bouche pour Lām et Râ."
+        },
+        "phoneticReasonFr": "Recherche suprême d'allègement (Takhfīf) et d'harmonie phonétique. En revanche, dans un mot unique comme « Dunyā », fusionner créerait « Dwayyā », rendant le mot méconnaissable et créant une confusion avec les racines redoublées (Tad'īf) !",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَدْغِمَنْ بِغُنَّةٍ فِي يُومِنُ * إِلَّا بِكِلْمَةٍ كَدُنْيَا عَنْوَنُوا\nوَالثَّانِ إِدْغَامٌ بِغَيْرِ غُنَّهْ * فِي اللَّامِ وَالرَّا ثُمَّ كَرِّرَنَّهْ",
+          "transliteration": "Wa adghiman bi-ghunnatin fī Yūminu * Illā bi-kilmatin ka-Dunyā 'anwanū / Wath-thāni idghāmun bi-ghayri ghunnah * Fil-lāmi war-rā thumma karrirannah",
+          "translationFr": "« Fusionne avec Ghunnah dans les lettres de 'Yūminu' (Yanmū), sauf au sein d'un mot unique comme dans Dunyā ; et le second type est la fusion sans Ghunnah dans le Lām et le Râ. »",
+          "chapterNameAr": "بَابُ الإِدْغَامِ"
+        },
+        "examples": [
           {
-            id: 'ex-idg-1',
-            arabicText: 'فَمَن يَعۡمَلۡ مِثۡقَالَ ذَرَّةٍ خَيۡرٗا يَرَهُۥ',
-            surahAyahRef: '99:7',
-            surahNameFr: 'Az-Zalzalah',
-            highlightSegment: 'فَمَن يَعۡمَلۡ',
-            highlightLetter: 'ن + ي',
-            ruleApplied: 'Idghām bi-Ghunnah (avec résonance nasale)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Nūn de « man » fusionne dans le Yā\' : on prononce « fa-may-ya\'mal » en maintenant le son nasal dans le nez pendant 2 temps.',
-            transliteration: 'Fa-may-ya\'mal',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/099007.mp3'
+            "id": "ex-c8-2",
+            "arabicText": "فَمَن يَعۡمَلۡ مِثۡقَالَ ذَرَّةٍ خَيۡرٗا يَرَهُۥ",
+            "surahAyahRef": "99:7",
+            "surahNameFr": "Az-Zalzalah",
+            "highlightSegment": "فَمَن يَعۡمَلۡ",
+            "highlightLetter": "نۡ + ي (Idghām avec Ghunnah)",
+            "ruleApplied": "Idghām avec Ghunnah (2 Temps)",
+            "ruleTag": "idgham",
+            "explanationFr": "Le Nūn sākinah rencontre le Yā' : il fond dans le Yā' avec 2 temps de nasillement. On prononce : « Famay-ya'mal ».",
+            "transliteration": "Famay-ya'mal",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/099007.mp3"
           },
           {
-            id: 'ex-idg-2',
-            arabicText: 'مِن رَّبِّهِمۡ',
-            surahAyahRef: '2:5',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'مِن رَّبِّهِمۡ',
-            highlightLetter: 'ن + ر',
-            ruleApplied: 'Idghām bi-Ghayri Ghunnah (fusion complète sans nasalité)',
-            ruleTag: 'silent',
-            explanationFr: 'Le Nūn disparaît totalement dans le Râ\' avec Shaddah : on prononce directement « Mir-rabbihim » sans aucune nasalité.',
-            transliteration: 'Mir-rabbihim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002005.mp3'
-          },
-          {
-            id: 'ex-idg-exception',
-            arabicText: 'فِى ٱلۡحَيَوٰةِ ٱلدُّنۡيَا',
-            surahAyahRef: '2:85',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ٱلدُّنۡيَا',
-            highlightLetter: 'ن + ي (dans le même mot)',
-            ruleApplied: 'Exception : Izhār Mutlaq (الإظهار المطلق)',
-            ruleTag: 'izhar',
-            explanationFr: 'ATTENTION PIÈGE DU LIVRE : Si le Nūn et la lettre d\'Idghām se rencontrent au sein du MÊME mot, l\'Idghām est interdit ! Seuls 4 mots existent dans le Coran : Dunyā (دُنۡيَا), Bunyān (بُنۡيَٰن), Qinwān (قِنۡوَان), Sinwān (صِنۡوَان).',
-            transliteration: 'Ad-Dunyā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002085.mp3'
+            "id": "ex-c8-3",
+            "arabicText": "رَبَّنَآ إِنَّكَ جَامِعُ ٱلنَّاسِ لِيَوۡمٖ لَّا رَيۡبَ فِيهِ",
+            "surahAyahRef": "3:9",
+            "surahNameFr": "Āl 'Imrān",
+            "highlightSegment": "لِيَوۡمٖ لَّا",
+            "highlightLetter": "ٖ + ل (Idghām sans Ghunnah)",
+            "ruleApplied": "Idghām sans Ghunnah",
+            "ruleTag": "silent",
+            "explanationFr": "Le Tanwīn rencontre la Lām : le son [N] est intégralement englouti par la Lām sans aucun résidu nasal. On prononce : « Li-yawmil-lā rayba fīh ».",
+            "transliteration": "Li-yawmil-lā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/003009.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Appliquer l\'Idghām à l\'intérieur d\'un même mot comme « Dunyā » en disant « Duyyā ».',
-            correctionFr: 'Conservez toujours le Nūn clair dans les 4 mots exceptions du Coran (Izhār Mutlaq).'
-          },
-          {
-            trapFr: 'Laisser une résonance nasale sur les lettres Lâm (ل) et Râ\' (ر).',
-            correctionFr: 'Avec Lâm et Râ\', l\'Idghām est pur et sec : aucun souffle ne doit sortir par le nez.'
+            "trapFr": "Fusionner le Nūn dans les 4 mots d'Izhār Mutlaq (dire 'Duyyā' au lieu de 'Dunyā').",
+            "correctionFr": "Dans « دُنْيَا », « بُنْيَان », « قِنْوَان », « صِنْوَان », l'Izhār est obligatoire et absolu."
           }
         ]
       },
       {
-        id: 'iqlab',
-        nameFr: '3. Al-Iqlāb (La Conversion en Mīm)',
-        nameAr: 'الإِقْلَابُ',
-        mnemonic: 'Lettre unique : ب (Bā\') — marquée par un petit mīm (مـ ou ۢ) dans le Mushaf',
-        letters: ['ب'],
-        definitionFr: 'Transformation du son du Nūn Sākinah ou du Tanwīn en un son Mīm (م) caché, accompagné d\'une Ghunnah de 2 temps, lors de la rencontre avec la lettre Bā\' (ب).',
-        mechanismFr: 'Les lèvres se ferment très légèrement et délicatement sans pression excessive, pendant que le son nasal résonne dans la cavité nasale pendant 2 temps.',
-        durationHarakat: 2,
-        examples: [
+        "id": "nun-iqlab",
+        "nameFr": "3. Al-Iqlāb (La Conversion en Mīm devant Bā')",
+        "nameAr": "الإِقْلَابُ عِنْدَ حَرْفِ البَاءِ (م)",
+        "mnemonic": "Nūn + Bā' (ب) = Mīm avec 2 temps de Ghunnah (م)",
+        "letters": [
+          "ب"
+        ],
+        "definitionFr": "L'Iqlāb consiste à transformer phonétiquement le Nūn Sākinah ou le Tanwīn en une consonne Mīm (م) pure, puis à dissimuler ce Mīm au niveau des lèvres avec 2 temps complets de résonance nasale (Ghunnah), lorsqu'il est suivi de la consonne Bā' (ب).",
+        "definitionLughatan": {
+          "ar": "الإِقْلَابُ: تَحْوِيلُ الشَّيْءِ عَنْ وَجْهِهِ وَجَعْلُهُ شَيْئاً آخَرَ.",
+          "fr": "La conversion ou la mutation d'une chose en une autre."
+        },
+        "definitionIstilahan": {
+          "ar": "قَلْبُ النُّونِ السَّاكِنَةِ أَوْ التَّنْوِينِ مِيماً خَالِصَةً مَخْفِيَّةً بِغُنَّةٍ بِمِقْدَارِ حَرَكَتَيْنِ إِذَا وَقَعَ بَعْدَهَا حَرْفُ البَاءِ.",
+          "fr": "Convertir le Nūn sākinah ou le Tanwīn en un Mīm dissimulé doté d'une Ghunnah de deux temps lorsqu'il est suivi de la lettre Bā'."
+        },
+        "mechanismFr": "Rapprochez les lèvres l'une contre l'autre avec délicatesse et sans écrasement (Itbāq latīf), sans laisser d'espace ouvert artificiel (Furjah), et maintenez 2 temps pleins de son nasal.",
+        "physiologicalDetails": {
+          "tongue": "Ne touche absolument pas le palais.",
+          "lips": "Contact délicat et souple sans forcer.",
+          "vocalCords": "Vibration sonore régulière.",
+          "airflow": "Canalisé à 100% dans la cavité nasale (Khayshūm) pendant les 2 temps de Ghunnah."
+        },
+        "phoneticReasonFr": "Passer directement du Nūn (langue) au Bā' (lèvres) tout en préservant le Tanwīn est articulatoirement lourd. Le Mīm partage avec le Bā' son point d'articulation labial et partage avec le Nūn sa nature nasale (Ghunnah) : il sert de passerelle acoustique idéale.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَالقَلْبُ عِنْدَ البَا بِغُنَّةٍ كَذَا * الاِخْفَاءُ لَدَى بَاقِي الحُرُوفِ أُخِذَا",
+          "transliteration": "Wal-qalbu 'inda-l-bā bi-ghunnatin kadhā * Al-ikhfā'u ladā bāqī-l-hurūfi ukhidhā",
+          "translationFr": "« Et la conversion (Qalb / Iqlāb) s'opère devant le Bā' avec Ghunnah ; de même l'Ikhfā' est adopté devant toutes les autres lettres restantes. » (Verset 42)",
+          "chapterNameAr": "بَابُ الإِقْلَابِ"
+        },
+        "examples": [
           {
-            id: 'ex-iql-1',
-            arabicText: 'مِنۢ بَعۡدِ مَا جَآءَتۡهُمُ ٱلۡبَيِّنَٰتُ',
-            surahAyahRef: '2:213',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'مِنۢ بَعۡدِ',
-            highlightLetter: 'ن + ب',
-            ruleApplied: 'Iqlāb',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Nūn de « min » suivi de « ba\'d » se transforme en un Mīm doux avec Ghunnah de 2 temps : « Mim-ba\'d ».',
-            transliteration: 'Mim-ba\'di',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002213.mp3'
-          },
-          {
-            id: 'ex-iql-2',
-            arabicText: 'وَٱللَّهُ سَمِيعُۢ بَصِيرٌ',
-            surahAyahRef: '2:224',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'سَمِيعُۢ بَصِيرٌ',
-            highlightLetter: 'Tanwīn + ب',
-            ruleApplied: 'Iqlāb avec Tanwīn',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Tanwīn de « Samī\'un » est suivi du Bā\'. On entend « Samī\'um-Basīr » avec Ghunnah.',
-            transliteration: 'Samī\'um-Basīr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002224.mp3'
+            "id": "ex-c8-4",
+            "arabicText": "كَلَّا لَيُنۢبَذَنَّ فِى ٱلۡحُطَمَةِ",
+            "surahAyahRef": "104:4",
+            "surahNameFr": "Al-Humazah",
+            "highlightSegment": "لَيُنۢبَذَنَّ",
+            "highlightLetter": "ـنۢبَـ (Iqlāb)",
+            "ruleApplied": "Iqlāb (Mīm + Ghunnah 2 temps)",
+            "ruleTag": "iqlab",
+            "explanationFr": "Le Nūn est surmonté d'un petit Mīm vertical (ۢ). Il se transforme en Mīm labial avec 2 temps de Ghunnah : on prononce « Layumbadhanna ».",
+            "transliteration": "Layumbadhanna",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/104004.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Serrer et presser les lèvres très fort sur le Mīm.',
-            correctionFr: 'Le contact des lèvres doit être doux et naturel (Mulāmasah latīfah), sans laisser un écart visible ni contracter la mâchoire.'
-          },
-          {
-            trapFr: 'Oublier la Ghunnah et prononcer un Mīm ultra-rapide sans temps de maintien.',
-            correctionFr: 'Maintenez la Ghunnah pendant 2 temps complets avant d\'exploser sur le son Bā\'.'
+            "trapFr": "Serrer violemment les lèvres comme pour bloquer une consonne dure.",
+            "correctionFr": "Posez les lèvres avec légèreté : le son doit s'échapper avec fluidité par le nez."
           }
         ]
       },
       {
-        id: 'ikhfa',
-        nameFr: '4. Al-Ikhfā\' Al-Haqīqī (La Dissimulation)',
-        nameAr: 'الإِخْفَاءُ الحَقِيقِيُّ',
-        mnemonic: 'Les 15 lettres restantes : ص ذ ث ك ج ش ق س د ط ز ف ت ض ظ',
-        letters: ['ص', 'ذ', 'ث', 'ك', 'ج', 'ش', 'ق', 'س', 'د', 'ط', 'ز', 'ف', 'ت', 'ض', 'ظ'],
-        definitionFr: 'Dissimulation partielle de la consonne Nūn entre l\'Izhār et l\'Idghām, sans Shaddah, tout en conservant une Ghunnah complète de 2 temps.',
-        mechanismFr: 'La langue NE DOIT PAS toucher les gencives supérieures ! Elle se prépare immédiatement à l\'endroit exact de la lettre suivante tandis que le son résonne dans le nez.',
-        durationHarakat: 2,
-        examples: [
+        "id": "nun-ikhfa",
+        "nameFr": "4. Al-Ikhfā' Al-Haqīqī (La Dissimulation aux 15 Lettres)",
+        "nameAr": "الإِخْفَاءُ الحَقِيقِيُّ عِنْدَ خَمْسَةَ عَشَرَ حَرْفاً",
+        "mnemonic": "15 Lettres restantes : ص ذ ث ك ج ش ق س د ط ز ف ت ض ظ | Ghunnah lourde devant lettres d'emphase (ق, ط, ص, ض, ظ) et légère devant les autres",
+        "letters": [
+          "ص",
+          "ذ",
+          "ث",
+          "ك",
+          "ج",
+          "ش",
+          "ق",
+          "س",
+          "د",
+          "ط",
+          "ز",
+          "ف",
+          "ت",
+          "ض",
+          "ظ"
+        ],
+        "definitionFr": "L'Ikhfā' Haqīqī est un état acoustique intermédiaire entre l'Izhār (clarté) et l'Idghām (fusion sans Shaddah). Il consiste à dissimuler le Nūn en plaçant la langue à proximité immédiate du point de la lettre suivante tout en faisant résonner une Ghunnah de 2 temps pleins.",
+        "definitionLughatan": {
+          "ar": "الإِخْفَاءُ: السَّتْرُ وَالحَجْبُ، يُقَالُ: أَخْفَيْتُ الشَّيْءَ إِذَا سَتَرْتَهُ عَنِ الأَعْيُنِ.",
+          "fr": "Le voilement, la dissimulation et le masquage."
+        },
+        "definitionIstilahan": {
+          "ar": "النُّطْقُ بِالنُّونِ السَّاكِنَةِ أَوْ التَّنْوِينِ بِحَالَةٍ بَيْنَ الإِظْهَارِ وَالإِدْغَامِ عَارِيَةٍ عَنِ التَّشْدِيدِ مَعَ بَقَاءِ الغُنَّةِ بِمِقْدَارِ حَرَكَتَيْنِ.",
+          "fr": "Articuler le Nūn ou le Tanwīn dans un état intermédiaire entre l'Izhār et l'Idghām, exempt de Shaddah, tout en maintenant la Ghunnah pendant deux temps."
+        },
+        "mechanismFr": "La langue ne doit JAMAIS toucher le palais sur le Nūn. Elle se prépare directement à l'entrée de la consonne suivante. Si la lettre suivante est lourde (ex: Qāf, Sād, Tā'), la Ghunnah résonne lourde (Tafkhīm) ; si la lettre est légère, la Ghunnah résonne fine (Tarqīq).",
+        "physiologicalDetails": {
+          "tongue": "Suspendue à proximité immédiate du point de contact de la lettre suivante sans verrouillage.",
+          "lips": "Neutres, sauf si la lettre suivante commande une posture particulière.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Canalisé dans le Khayshūm pour faire résonner la Ghunnah."
+        },
+        "phoneticReasonFr": "Les 15 lettres ne sont ni assez éloignées pour exiger l'Izhār (comme les lettres de gorge), ni assez proches pour justifier l'Idghām complet (comme Yarmalūn) : la phonétique arabe a créé cette solution intermédiaire sublime.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَفِي البَوَاقِي أَخْفِ نَحْوَ: مَنْ كَانَا * صِفْ ذَا ثَنَا كَمْ جَادَ شَخْصٌ قَدْ سَمَا\nدُمْ طَيِّباً زِدْ فِي تُقَى ضَعْ ظَالِماً * خُذْ مِنْ حُرُوفِ البَدْءِ نُوراً لَازِماً",
+          "transliteration": "Wa fil-bawāqī akhfi nahwa Man Kānā * Sif dhā thanā kam jāda shakhsun qad samā / Dum tayyiban zid fī tuqā da' zālimā * Khudh min hurūfil-bad'i nūran lāzimā",
+          "translationFr": "« Et dissimule (Ikhfā') devant le reste des lettres comme dans 'Man kāna', résumées dans les initiales de ce vers : Sif dhā thanā kam jāda shakhsun qad samā, dum tayyiban zid fī tuqan da' zālimā. »",
+          "chapterNameAr": "بَابُ الإِخْفَاءِ الحَقِيقِيِّ"
+        },
+        "examples": [
           {
-            id: 'ex-ikh-1',
-            arabicText: 'مِن تَحۡتِهَا ٱلۡأَنۡهَٰرُ',
-            surahAyahRef: '2:25',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'مِن تَحۡتِهَا',
-            highlightLetter: 'ن + ت (Ghunnah légère)',
-            ruleApplied: 'Ikhfā\' avec Ghunnah légère (Tarqīq)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Tā\' (ت) est une lettre fine (Murāqqaqah). La Ghunnah qui précède doit obligatoirement être légère et claire.',
-            transliteration: 'Min-tahtihā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002025.mp3'
+            "id": "ex-c8-5",
+            "arabicText": "مِن قَبۡلِ أَن يَأۡتِيَ يَوۡمٞ",
+            "surahAyahRef": "2:254",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "مِن قَبۡلِ",
+            "highlightLetter": "نۡ + ق (Ghunnah lourde)",
+            "ruleApplied": "Ikhfā' avec Ghunnah Lourde (Tafkhīm)",
+            "ruleTag": "heavy",
+            "explanationFr": "Le Qāf étant une lettre d'Isti'lā' (lourde), la Ghunnah d'Ikhfā' prend obligatoirement une résonance sombre et ample (Mufakhkhamah) pendant 2 temps.",
+            "transliteration": "Min qabli",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002254.mp3"
           },
           {
-            id: 'ex-ikh-2',
-            arabicText: 'مِن قَبۡلِكَ وَمِن قَبۡلِهِمۡ',
-            surahAyahRef: '2:4',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'مِن قَبۡلِكَ',
-            highlightLetter: 'ن + ق (Ghunnah lourde)',
-            ruleApplied: 'Ikhfā\' avec Ghunnah emphatique (Tafkhīm)',
-            ruleTag: 'heavy',
-            explanationFr: 'RÈGLE D\'OR DU LIVRE : Le Qāf (ق) est lourd. La Ghunnah d\'Ikhfā\' prend la couleur de la lettre suivante et devient emphatique et profonde.',
-            transliteration: 'Min-qablika',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002004.mp3'
+            "id": "ex-c8-6",
+            "arabicText": "مَن كَانَ يَرۡجُواْ لِقَآءَ ٱللَّهِ",
+            "surahAyahRef": "29:5",
+            "surahNameFr": "Al-'Ankabūt",
+            "highlightSegment": "مَن كَانَ",
+            "highlightLetter": "نۡ + ك (Ghunnah fine)",
+            "ruleApplied": "Ikhfā' avec Ghunnah Fine (Tarqīq)",
+            "ruleTag": "ikhfa",
+            "explanationFr": "Le Kāf étant une lettre légère, la Ghunnah de 2 temps s'amincit avec clarté : « Man kāna ».",
+            "transliteration": "Man kāna",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/029005.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Coller la langue au palais comme pour un Izhār : cela produit un son N dur.',
-            correctionFr: 'Gardez la langue suspendue près des dents ou du point d\'articulation de la lettre suivante sans verrouiller.'
-          },
-          {
-            trapFr: 'Faire une Ghunnah fine devant des lettres lourdes comme ص, ض, ط, ظ, ق.',
-            correctionFr: 'Donnez du volume à la Ghunnah en reculant légèrement l\'arrière de la langue devant les 5 lettres de Tafkhīm.'
+            "trapFr": "Pour les francophones : plaquer la langue contre le palais et prononcer un 'N' ordinaire avant la lettre (ex: dire 'min-qabli' au lieu d'une dissimulation).",
+            "correctionFr": "Ne laissez JAMAIS la pointe de votre langue toucher le palais ! Laissez le son flotter dans le nez."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-nun-1',
-        title: 'Analyse guidée : Sūrah Al-Baqarah (2:8)',
-        verseArabic: 'وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ',
-        surahAyahRef: '2:8',
-        targetSegment: 'مَن يَقُولُ',
-        promptFr: 'Identifiez la règle de Tajwīd qui s\'applique entre « man » et « yaqūlu ».',
-        hintFr: 'Observez la lettre qui suit le Nūn sans soukoûn visible.',
-        solutionFr: 'Idghām bi-Ghunnah (إدغام بغنة)',
-        breakdownSteps: [
-          'Étape 1 : Le mot « man » se termine par un Nūn Sākinah.',
-          'Étape 2 : Le mot suivant débute par la lettre Yā\' (ي).',
-          'Étape 3 : Le Yā\' fait partie des 4 lettres du mot YANMŪ (ينمو).',
-          'Conclusion : Le Nūn fusionne dans le Yā\' avec une Ghunnah de 2 temps : on récite « may-yaqūlu ».'
+        "id": "exo-c8-1",
+        "title": "Identification de règle : « مِن مَّسَدِۭ »",
+        "verseArabic": "فِى جِيدِهَا حَبۡلٞ مِّن مَّسَدِۭ",
+        "surahAyahRef": "111:5",
+        "targetSegment": "مِّن مَّسَدِۭ",
+        "promptFr": "Quelle règle de Nūn Sākinah s'applique entre « Min » et « Masad » ?",
+        "hintFr": "La lettre suivante est le Mīm (lettre de Yanmū).",
+        "solutionFr": "Idghām avec Ghunnah (2 temps) : « Mim-masad »",
+        "breakdownSteps": [
+          "Le Nūn sākinah rencontre la lettre Mīm.",
+          "Le Mīm fait partie des lettres de « يَنْمُو ».",
+          "Le Nūn fusionne totalement dans le Mīm avec 2 temps de résonance nasale."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/002008.mp3'
-      },
-      {
-        id: 'exo-nun-2',
-        title: 'Piège d\'Izhār Mutlaq : Sūrah Ar-Ra\'d (13:4)',
-        verseArabic: 'صِنۡوَانٞ وَغَيۡرُ صِنۡوَانٖ يُسۡقَىٰ بِمَآءٖ وَٰحِدٖ',
-        surahAyahRef: '13:4',
-        targetSegment: 'صِنۡوَانٞ',
-        promptFr: 'Pourquoi ne fait-on pas d\'Idghām sur « Sinwān » alors qu\'un Nūn est suivi d\'un Wāw ?',
-        hintFr: 'Regardez si le Nūn et le Wāw sont dans le même mot ou séparés.',
-        solutionFr: 'Izhār Mutlaq (Exception absolue)',
-        breakdownSteps: [
-          'Le Nūn et le Wāw se trouvent à l\'intérieur du MÊME mot (« Sin-wān »).',
-          'Si on appliquait l\'Idghām, le mot deviendrait « Siwwān », altérant le sens originel.',
-          'La règle exige donc un Izhār clair et net. C\'est l\'un des 4 cas uniques du Coran entier.'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/013004.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/111005.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-nun-1',
-        type: 'mcq',
-        promptFr: 'Quelle règle de Nūn Sākinah s\'applique dans le segment surligné ci-dessous ?',
-        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
-        targetWord: 'مِّن سِجِّيلٖ',
-        surahAyahRef: '105:4',
-        options: [
-          'Izhār Halqī (Clarté)',
-          'Idghām bi-Ghunnah (Fusion)',
-          'Ikhfā\' Haqīqī (Dissimulation)',
-          'Iqlāb (Conversion)'
+        "id": "q-c8-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Quels sont les 4 mots uniques dans tout le Coran où le Nūn rencontre Wāw ou Yā' dans le MÊME mot sans que l'on n'applique d'Idghām (Izhār Mutlaq) ?",
+        "verseArabic": "كَأَنَّهُم بُنۡيَٰنٞ مَّرۡصُوصٞ",
+        "options": [
+          "دُنْيَا (Dunyā), بُنْيَان (Bunyān), قِنْوَان (Qinwān), صِنْوَان (Sinwān)",
+          "الرَّحْمَن, الرَّحِيم, المَلِك, القُدُّوس",
+          "آمَنُوا, عَمِلُوا, قَالُوا, كَانُوا",
+          "مَرْيَم, عِيسَى, مُوسَى, هَارُون"
         ],
-        correctAnswer: 'Ikhfā\' Haqīqī (Dissimulation)',
-        explanationFr: 'Le Nūn Sākinah de « min » est suivi du Sīn (س), qui fait partie des 15 lettres de l\'Ikhfā\'. La récitation dissimule le Nūn avec une Ghunnah fine de 2 temps.',
-        ruleId: 'ikhfa'
+        "correctAnswer": "دُنْيَا (Dunyā), بُنْيَان (Bunyān), قِنْوَان (Qinwān), صِنْوَان (Sinwān)",
+        "explanationFr": "L'Izhār Mutlaq ne se produit que dans ces 4 mots précis. L'Idghām y est strictement interdit pour préserver l'intégrité de la racine lexicale.",
+        "ruleId": "nun-idgham"
       },
       {
-        id: 'q-nun-2',
-        type: 'mcq',
-        promptFr: 'Dans le verset suivant, quelle règle s\'applique sur « \'Anhum » ?',
-        verseArabic: 'رَّضِىَ ٱللَّهُ عَنۡهُمۡ وَرَضُواْ عَنۡهُۚ',
-        targetWord: 'عَنۡهُمۡ',
-        surahAyahRef: '98:8',
-        options: [
-          'Izhār Halqī',
-          'Ikhfā\'',
-          'Idghām',
-          'Iqlāb'
+        "id": "q-c8-2",
+        "type": "error_detect",
+        "promptFr": "Examen du livre arabe : Dans « مِن مَّالِ اللَّهِ », un lecteur prononce le Nūn avec un Izhār sec sans fusionner : « Min-Māli ». Quelle est l'erreur ?",
+        "verseArabic": "وَءَاتُوهُم مِّن مَّالِ ٱللَّهِ ٱلَّذِىٓ ءَاتَىٰكُمۡ",
+        "targetWord": "مِّن مَّالِ",
+        "surahAyahRef": "24:33",
+        "options": [
+          "Lahn Khafī : Omission de l'Idghām avec Ghunnah obligatoire (le Nūn devait fusionner dans le Mīm sur 2 temps : « Mim-māl »)",
+          "Lahn Jalī modifiant la prière",
+          "Récitation recommandée",
+          "Madd 'Iwad négligé"
         ],
-        correctAnswer: 'Izhār Halqī',
-        explanationFr: 'Le Nūn Sākinah est suivi de la lettre Hā\' (هـ), qui est l\'une des 6 lettres de la gorge (Halq). Le son N doit être prononcé clairement sans allongement nasal.',
-        ruleId: 'izhar'
+        "correctAnswer": "Lahn Khafī : Omission de l'Idghām avec Ghunnah obligatoire (le Nūn devait fusionner dans le Mīm sur 2 temps : « Mim-māl »)",
+        "explanationFr": "Ne pas fusionner le Nūn devant les lettres de Yanmū constitue un manquement formel aux règles canoniques d'assimilation.",
+        "ruleId": "nun-idgham"
       },
       {
-        id: 'q-nun-3',
-        type: 'error_detect',
-        promptFr: 'Détection d\'erreur : Quelle faute de récitation (Lahn) est commise si un récitateur prononce « Min-qablika » avec une Ghunnah très aiguë et fine (Tarqīq) ?',
-        verseArabic: 'وَٱلَّذِينَ يُؤۡمِنُونَ بِمَآ أُنزِلَ إِلَيۡكَ وَمَآ أُنزِلَ مِن قَبۡلِكَ',
-        targetWord: 'مِن قَبۡلِكَ',
-        surahAyahRef: '2:4',
-        options: [
-          'C\'est correct, la Ghunnah est toujours légère.',
-          'Erreur de Lahn Khafī : Le Qāf (ق) est une lettre lourde, la Ghunnah DOIT être emphatique (Tafkhīm).',
-          'Erreur de Lahn Jalī : Il fallait prononcer un Izhār sec.',
-          'Erreur : Le Qāf est une lettre de gorge.'
+        "id": "q-c8-3",
+        "type": "mcq",
+        "promptFr": "Comment règle-t-on le timbre de la Ghunnah lors de l'Ikhfā' devant le Qāf (ق) dans « مِن قَبْلِكُمْ » par rapport au Kāf (ك) dans « مِن كُلِّ » ?",
+        "verseArabic": "مِن قَبۡلِكُمۡ ... مِن كُلِّ",
+        "options": [
+          "La Ghunnah est lourde (Mufakhkhamah) devant le Qāf et fine (Muraqqaqah) devant le Kāf",
+          "Elle est toujours légère dans tous les cas",
+          "Elle est toujours lourde dans tous les cas",
+          "La Ghunnah est supprimée devant le Qāf"
         ],
-        correctAnswer: 'Erreur de Lahn Khafī : Le Qāf (ق) est une lettre lourde, la Ghunnah DOIT être emphatique (Tafkhīm).',
-        explanationFr: 'La règle d\'or stipule que la Ghunnah d\'Ikhfā\' adopte la nature de la lettre qui suit. Devant les 5 lettres lourdes (ص, ض, ط, ظ, ق), la Ghunnah doit résonner avec plénitude et gravité.',
-        ruleId: 'ikhfa'
-      },
-      {
-        id: 'q-nun-4',
-        type: 'click_word',
-        promptFr: 'Repérage visuel : Cliquez sur le mot précis contenant une règle d\'IQLĀB dans ce verset.',
-        verseArabic: 'كَلَّا لَئِن لَّمۡ يَنتَهِ لَنَسۡفَعَۢا بِٱلنَّاصِيَةِ',
-        clickableSegments: ['كَلَّا', 'لَئِن', 'لَّمۡ', 'يَنتَهِ', 'لَنَسۡفَعَۢا', 'بِٱلنَّاصِيَةِ'],
-        correctAnswer: 'لَنَسۡفَعَۢا',
-        explanationFr: '« Lanasfa\'an » se termine par un Tanwīn suivi de la lettre Bā\' dans le mot suivant. Le petit mīm (ۢ) indique la conversion en son Mīm avec Ghunnah de 2 temps.',
-        ruleId: 'iqlab'
+        "correctAnswer": "La Ghunnah est lourde (Mufakhkhamah) devant le Qāf et fine (Muraqqaqah) devant le Kāf",
+        "explanationFr": "La Ghunnah d'Ikhfā' est un caméléon acoustique : elle adopte la sonorité lourde ou légère de la lettre qui lui succède immédiatement.",
+        "ruleId": "nun-ikhfa"
       }
     ]
   },
-
-  // ==========================================
-  // CHAPITRE 9 : LES RÈGLES DE LA MĪM SĀKINAH
-  // ==========================================
   {
-    id: 'chap-9',
-    number: 9,
-    slug: 'mim-sakinah',
-    titleFr: 'Les Règles de la Mīm Sākinah',
-    titleAr: 'أَحْكَامُ المِيمِ السَّاكِنَةِ',
-    category: 'intermediate',
-    estimatedMinutes: 15,
-    isPilotChapter: true,
-    summaryFr: 'Maîtriser les 3 règles de la Mīm sans voyelle (مْ) : l\'Ikhfā\' Shafawī (dissimulation devant Bā\'), l\'Idghām Shafawī (fusion dans un autre Mīm avec Ghunnah 2 temps), et l\'Izhār Shafawī (clarté absolue devant les 26 autres lettres, avec vigilance extrême devant Wāw et Fā\').',
-    infographicPoints: [
-      '3 Règles Uniquement : Contrairement au Nūn Sākinah qui en a 4, le Mīm Sākinah n\'obéit qu\'à 3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م) et Izhār Shafawī (les 26 autres lettres).',
-      'Ikhfā\' Shafawī (Lettre ب) : Se produit UNIQUEMENT entre deux mots distincts (تَرۡمِيهِم بِحِجَارَةٖ). Les lèvres se touchent doucement sans forcer (sans laisser d\'espace / sans furjah), avec une Ghunnah de 2 temps.',
-      'Idghām Shafawī (Lettre م) : Le premier Mīm sans voyelle fond dans le Mīm suivant qui prend une Shaddah (فِى قُلُوبِهِم مَّرَضٞ). Ghunnah de 2 temps obligatoire.',
-      'Mīm Mushaddadah (مّ) Partout : Tout Mīm avec Shaddah (ex: عَمَّا, ٱلۡيَمِّ) porte le plus haut degré de Ghunnah (2 temps), même si l\'on s\'arrête sur le mot !',
-      'Alerte Maximale sur Wāw (و) et Fā\' (ف) : Devant ces deux lettres labiales, l\'Izhār doit être particulièrement vigilant (Ashadd Izhār) pour ne pas avaler ou dissimuler le Mīm par facilité articulaire (عَلَيۡهِمۡ وَلَا, هُمۡ فِيهَا) !'
+    "id": "chap-9",
+    "number": 9,
+    "slug": "mim-sakinah",
+    "titleFr": "Les Règles de la Mīm Sākinah",
+    "titleAr": "أَحْكَامُ المِيمِ السَّاكِنَةِ",
+    "category": "intermediate",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Maîtriser les 3 règles de la consonne Mīm sans voyelle : 1. L'Ikhfā' Shafawī (dissimulation labiale devant Bā' avec 2 temps de Ghunnah), 2. L'Idghām Shafawī (fusion totale avec le Mīm suivant), et 3. L'Izhār Shafawī (clarté absolue devant les 26 autres lettres avec alerte maximale devant Wāw et Fā').",
+    "infographicPoints": [
+      "Seulement 3 règles pour le Mīm (beaucoup plus simple que le Nūn !) : Bā' -> Ikhfā', Mīm -> Idghām, Tout le reste -> Izhār.",
+      "Pas d'Iqlāb pour le Mīm : Car l'Iqlāb consiste précisément à transformer une lettre en Mīm !",
+      "Ikhfā' Shafawī (إخفاء شفوي) : Mīm sākinah + Bā' (ب) -> Contact délicat des lèvres sans forcer avec 2 temps de Ghunnah (ex: Tar-mīhim bi-hijārah).",
+      "Idghām Shafawī / Mithlayn Saghīr (إدغام شفوي) : Mīm + Mīm -> Un seul Mīm Mushaddadah avec 2 temps de Ghunnah (ex: Fī qulūbihim maradun).",
+      "Ashadd Izhār (Alerte Maximale) : Devant Wāw (و) et Fā' (ف), fermez rigoureusement les lèvres pour ne pas avaler le Mīm par facilité articulaire !"
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'ikhfa-shafawi',
-        nameFr: '1. Al-Ikhfā\' Al-Shafawī (La Dissimulation Labiale)',
-        nameAr: 'الإِخْفَاءُ الشَّفَوِيُّ',
-        mnemonic: 'Lettre unique : Bā\' (ب) — Entre deux mots obligatoirement',
-        letters: ['ب'],
-        definitionFr: 'Lorsque le Mīm Sākinah est suivi de la lettre Bā\' (ب), le son Mīm est dissimulé avec une résonance nasale (Ghunnah) de 2 temps pleins. Cette règle a toujours lieu entre deux mots séparés.',
-        mechanismFr: 'Appliquez les deux lèvres l\'une contre l\'autre avec une douceur naturelle (sans serrer excessivement et sans laisser d\'ouverture / pas de furjah), maintenez la résonance dans le nez pendant 2 battements, puis ouvrez les lèvres en libérant le son Bā\'.',
-        durationHarakat: 2,
-        examples: [
+        "id": "mim-ikhfa-shafawi",
+        "nameFr": "1. Al-Ikhfā' Al-Shafawī (La Dissimulation Labiale devant Bā')",
+        "nameAr": "الإِخْفَاءُ الشَّفَوِيُّ عِنْدَ البَاءِ",
+        "mnemonic": "Mīm + Bā' (ب) = Lèvres douces sans pression + 2 temps de Ghunnah",
+        "letters": [
+          "ب"
+        ],
+        "definitionFr": "L'Ikhfā' Shafawī survient lorsque le Mīm Sākinah (à la fin d'un mot) est immédiatement suivi de la lettre Bā' (ب) au début du mot suivant. Il consiste à fermer doucement les lèvres l'une contre l'autre sans pression excessive tout en maintenant une résonance nasale (Ghunnah) de 2 temps pleins.",
+        "definitionLughatan": {
+          "ar": "الشَّفَوِيُّ: المَنْسُوبُ إِلَى الشَّفَتَيْنِ لِأَنَّ المِيمَ وَالبَاءَ يَخْرُجَانِ مِنْهُمَا.",
+          "fr": "Labial, relatif aux deux lèvres qui constituent le point d'articulation commun du Mīm et du Bā'."
+        },
+        "definitionIstilahan": {
+          "ar": "أَنْ يَقَعَ بَعْدَ المِيمِ السَّاكِنَةِ حَرْفُ البَاءِ فَتُنْطَقُ المِيمُ مَخْفِيَّةً مَعَ غُنَّةٍ بِمِقْدَارِ حَرَكَتَيْنِ.",
+          "fr": "L'apparition de la lettre Bā' après le Mīm sans voyelle : le Mīm est dissimulé avec une Ghunnah complète de deux temps."
+        },
+        "mechanismFr": "Déposez la lèvre supérieure sur la lèvre inférieure avec une délicatesse totale (Talāmus latīf sans écrasement Kazz), sans laisser d'interstice ouvert artificiel (Furjah), et faites résonner le son dans la cavité nasale pendant 2 battements.",
+        "physiologicalDetails": {
+          "tongue": "Au repos total.",
+          "lips": "Contact souple et étanche sans crispation musculaire.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Flux d'air s'échappant exclusivement par le nez (Khayshūm)."
+        },
+        "phoneticReasonFr": "Le Mīm et le Bā' partagent exactement le même lieu d'articulation (les deux lèvres) et des caractéristiques proches : la voix réalise une transition soyeuse par la Ghunnah plutôt qu'une double percussion labiale sèche.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَالمِيمُ إِنْ تَسْكُنْ تَجِي قَبْلَ الهِجَا * لَا أَلِفٍ لَيِّنَةٍ لِذِي الحِجَا\nأَحْكَامُهَا ثَلَاثَةٌ لِمَنْ ضَبَطْ * إِخْفَاءٌ ادْغَامٌ وَإِظْهَارٌ فَقَطْ\nفَالأَوَّلُ الإِخْفَاءُ عِنْدَ البَاءِ * وَسَمِّهِ الشَّفْوِيَّ لِلقُرَّاءِ",
+          "transliteration": "Wal-mīmu in taskun tajī qabla-l-hijā * Lā alifin layyinatin li-dhī-l-hijā / Ahkāmuhā thalāthatun liman dabat * Ikhfā'un idghāmun wa izhārun faqat / Fal-awwalu-l-ikhfā'u 'inda-l-bā'i * Wa sammihi-sh-shafwiyya lil-qurrā'i",
+          "translationFr": "« Le Mīm sans voyelle précède toutes les lettres de l'alphabet sauf l'Alif malléable. Ses règles sont au nombre de trois pour qui maîtrise : Ikhfā', Idghām et Izhār seulement. Le premier est l'Ikhfā' devant le Bā', que les récitateurs nomment 'Labial'. » (Versets 43-45)",
+          "chapterNameAr": "بَابُ أَحْكَامِ المِيمِ السَّاكِنَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-c9-ikh-1',
-            arabicText: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
-            surahAyahRef: '105:4',
-            surahNameFr: 'Al-Fīl',
-            highlightSegment: 'تَرۡمِيهِم بِ',
-            highlightLetter: 'م + ب',
-            ruleApplied: 'Ikhfā\' Shafawī (Ghunnah 2 temps)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Mīm sans voyelle de « Tarmīhim » rencontre le Bā\' de « bi-hijārah ». La voix maintient une Ghunnah douce de 2 temps sur les lèvres avant d\'émettre le Bā\'.',
-            transliteration: 'Tarmīhim bi-hijārah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/105004.mp3'
-          },
-          {
-            id: 'ex-c9-ikh-2',
-            arabicText: 'إِنَّ رَبَّهُم بِهِمۡ يَوۡمَئِذٖ لَّخَبِيرُۢ',
-            surahAyahRef: '100:11',
-            surahNameFr: 'Al-\'Ādiyāt',
-            highlightSegment: 'رَبَّهُم بِهِمۡ',
-            highlightLetter: 'م + ب',
-            ruleApplied: 'Ikhfā\' Shafawī',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Mīm Sākinah suivi du Bā\' : dissimulation labiale avec 2 temps de résonance nasale.',
-            transliteration: 'Inna rabbahum bihim',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/100011.mp3'
-          },
-          {
-            id: 'ex-c9-ikh-3',
-            arabicText: 'خُذُواْ مَآ ءَاتَيۡنَٰكُم بِقُوَّةٖ',
-            surahAyahRef: '2:93',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ءَاتَيۡنَٰكُم بِ',
-            highlightLetter: 'م + ب',
-            ruleApplied: 'Ikhfā\' Shafawī',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Même règle entre « Ātaynākum » et « bi-quwwah ». Le Mīm est nu (sans Soukoûn tracé dans le Mushaf).',
-            transliteration: 'Ātaynākum bi-quwwah',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002093.mp3'
+            "id": "ex-c9-1",
+            "arabicText": "تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ",
+            "surahAyahRef": "105:4",
+            "surahNameFr": "Al-Fīl",
+            "highlightSegment": "تَرۡمِيهِم بِحِجَارَةٖ",
+            "highlightLetter": "ـم بِـ (Ikhfā' Shafawī)",
+            "ruleApplied": "Ikhfā' Shafawī (2 Temps de Ghunnah)",
+            "ruleTag": "ikhfa",
+            "explanationFr": "Le Mīm sākinah rencontre le Bā' : maintenez les lèvres jointes doucement avec 2 temps de nasillement avant d'ouvrir la bouche sur « Bi-hijārah ».",
+            "transliteration": "Tarmīhim bi-hijārah",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/105004.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Laisser un espace béant entre les lèvres (Furjah artificielle) en produisant un son flottant.',
-            correctionFr: 'Selon la transmission authentique préférée des grands savants dont Ibn Al-Jazarī, les lèvres doivent simplement être en contact léger sans pression excessive.'
-          },
-          {
-            trapFr: 'Écraser les lèvres très fort en forçant le son.',
-            correctionFr: 'Le contact doit être souple et sans tension musculaire brutale.'
+            "trapFr": "Pour les francophones : presser violemment les lèvres comme pour bloquer l'air, produisant un claquement dur.",
+            "correctionFr": "Le contact doit être léger comme une caresse : ne serrez pas les mâchoires."
           }
         ]
       },
       {
-        id: 'idgham-shafawi',
-        nameFr: '2. Al-Idghām Al-Shafawī / Mithlayn Saghīr (La Fusion Labiale)',
-        nameAr: 'الإِدْغَامُ الشَّفَوِيُّ (إِدْغَامُ المِثْلَيْنِ الصَّغِيرُ)',
-        mnemonic: 'Lettre unique : Mīm (م) ➔ Devient Mīm Mushaddadah (مّ) avec Ghunnah 2 temps',
-        letters: ['م'],
-        definitionFr: 'Lorsque le Mīm Sākinah rencontre un autre Mīm pourvu d\'une voyelle, le premier s\'annule et fusionne entièrement dans le second. Les deux deviennent un seul Mīm avec Shaddah (مّ) portant une Ghunnah obligatoire de 2 temps.',
-        mechanismFr: 'Fermez les lèvres pour le premier Mīm et prolongez la résonance nasale pendant 2 pulsations complètes avant d\'ouvrir sur la voyelle du second Mīm.',
-        durationHarakat: 2,
-        examples: [
+        "id": "mim-idgham-shafawi",
+        "nameFr": "2. Al-Idghām Al-Shafawī (La Fusion des deux Mīms)",
+        "nameAr": "الإِدْغَامُ الشَّفَوِيُّ / إِدْغَامُ المِثْلَيْنِ الصَّغِيرُ",
+        "mnemonic": "Mīm + Mīm = Mīm avec Shaddah (مّ) + 2 temps de Ghunnah",
+        "letters": [
+          "م"
+        ],
+        "definitionFr": "L'Idghām Shafawī (ou Idghām Mithlayn Saghīr) se produit lorsqu'un Mīm sans voyelle rencontre un second Mīm pourvu d'une voyelle : les deux fusionnent en un seul Mīm Mushaddadah accompagné de 2 temps incompressibles de Ghunnah.",
+        "definitionLughatan": {
+          "ar": "المِثْلَانِ: الحَرْفَانِ اللَّذَانِ اتَّحَدَا مَخْرَجاً وَصِفَةً كَالمِيمَيْنِ.",
+          "fr": "Les deux lettres parfaitement identiques en point d'articulation et en caractéristiques."
+        },
+        "definitionIstilahan": {
+          "ar": "إِدْخَالُ المِيمِ السَّاكِنَةِ فِي المِيمِ المُتَحَرِّكَةِ بِحَيْثُ يُنْطَقُ بِمِيمٍ وَاحِدَةٍ مُشَدَّدَةٍ مَعَ غُنَّةٍ حَرَكَتَيْنِ.",
+          "fr": "Insérer le Mīm sans voyelle dans le Mīm voyellé pour n'émettre qu'un seul Mīm doublé avec deux temps de résonance nasale."
+        },
+        "mechanismFr": "Fermez les lèvres une seule fois, maintenez la résonance dans le nez pendant 2 battements métronomiques, puis relâchez les lèvres en prononçant la voyelle du second Mīm.",
+        "physiologicalDetails": {
+          "tongue": "Au repos.",
+          "lips": "Occlusion labiale complète durant les 2 temps.",
+          "vocalCords": "Vibration sonore régulière.",
+          "airflow": "Canalisation nasale intégrale (Khayshūm)."
+        },
+        "phoneticReasonFr": "Puisque les deux consonnes sont rigoureusement identiques, prononcer deux Mīms séparés nécessiterait d'ouvrir et de refermer les lèvres deux fois de suite : la fusion réduit l'effort musculaire à une seule fermeture prolongée.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَالثَّانِ إِدْغَامٌ بِمِثْلِهَا أَتَى * وَسَمِّ إِدْغَاماً صَغِيراً يَا فَتَى",
+          "transliteration": "Wath-thāni idghāmun bi-mithlihā atā * Wa sammi idghāman saghīran yā fatā",
+          "translationFr": "« La seconde règle est la fusion dans une lettre identique, que tu nommeras 'Idghām Saghīr' (petite assimilation), ô noble étudiant. » (Verset 46)",
+          "chapterNameAr": "بَابُ إِدْغَامِ المِيمِ"
+        },
+        "examples": [
           {
-            id: 'ex-c9-idg-1',
-            arabicText: 'فِى قُلُوبِهِم مَّرَضٞ فَزَادَهُمُ ٱللَّهُ مَرَضٗا',
-            surahAyahRef: '2:10',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'قُلُوبِهِم مَّرَضٞ',
-            highlightLetter: 'م + مّ',
-            ruleApplied: 'Idghām Shafawī (Fusion avec Ghunnah 2 temps)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Le Mīm de « Qulūbihim » fusionne dans le Mīm de « Marad ». Dans le Mushaf, le premier Mīm est nu et le second porte une Shaddah.',
-            transliteration: 'Fī qulūbihim marad',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002010.mp3'
-          },
-          {
-            id: 'ex-c9-idg-2',
-            arabicText: 'كُلَّمَآ أَضَآءَ لَهُم مَّشَوۡاْ فِيهِ',
-            surahAyahRef: '2:20',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'لَهُم مَّشَوۡاْ',
-            highlightLetter: 'م + مّ',
-            ruleApplied: 'Idghām Shafawī',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Fusion complète de « Lahum » dans « Mashaw ». Ghunnah obligatoire de 2 temps.',
-            transliteration: 'Lahum-mashaw fīh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002020.mp3'
-          },
-          {
-            id: 'ex-c9-idg-3',
-            arabicText: 'فَٱقۡذِفِيهِ فِى ٱلۡيَمِّ فَلۡيُلۡقِهِ ٱلۡيَمُّ بِٱلسَّاحِلِ',
-            surahAyahRef: '20:39',
-            surahNameFr: 'Tāhā',
-            highlightSegment: 'ٱلۡيَمِّ',
-            highlightLetter: 'مّ (Mīm Mushaddadah)',
-            ruleApplied: 'Ghunnah maximale sur Mīm Mushaddadah (même à l\'arrêt)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Même si le récitateur s\'arrête sur « Al-Yamm », la Ghunnah de 2 temps sur le Mīm avec Shaddah doit être parfaitement maintenue !',
-            transliteration: 'Fil-yamm',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/020039.mp3'
+            "id": "ex-c9-2",
+            "arabicText": "فِى قُلُوبِهِم مَّرَضٞ فَزَادَهُمُ ٱللَّهُ مَرَضٗا",
+            "surahAyahRef": "2:10",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "قُلُوبِهِم مَّرَضٞ",
+            "highlightLetter": "ـم مَّـ (Idghām)",
+            "ruleApplied": "Idghām Shafawī (2 Temps)",
+            "ruleTag": "idgham",
+            "explanationFr": "Le premier Mīm est nu dans le Mushaf et le second porte une Shaddah : fondez les deux Mīms en maintenant 2 temps de résonance nasale : « Fī qulūbihim-marad ». ",
+            "transliteration": "Fī qulūbihim-marad",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002010.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Passer trop vite sans marquer les 2 temps de Ghunnah sur le Mīm doublé.',
-            correctionFr: 'Le Mīm avec Shaddah exige impérativement 2 pulsations complètes de résonance nasale.'
+            "trapFr": "Écouter ou prononcer le Mīm doublé sans lui donner ses 2 temps pleins de Ghunnah.",
+            "correctionFr": "Tout Mīm portant une Shaddah (ّ) exige obligatoirement deux temps de nasillement."
           }
         ]
       },
       {
-        id: 'izhar-shafawi',
-        nameFr: '3. Al-Izhār Al-Shafawī (L\'Élucidation / Clarté Labiale)',
-        nameAr: 'الإِظْهَارُ الشَّفَوِيُّ',
-        mnemonic: 'Les 26 autres lettres (tout sauf ب et م) — Vigilance extrême devant Wāw (و) et Fā\' (ف)',
-        letters: ['ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'ن', 'هـ', 'و', 'ي', 'ء'],
-        definitionFr: 'Lorsque le Mīm Sākinah est suivi de n\'importe quelle lettre hormis Bā\' et Mīm, il doit être prononcé clairement sans allonger la Ghunnah au-delà de sa durée naturelle, et sans coupure brusque. Dans le Mushaf, le Mīm porte un Soukoûn visible (مۡ). L\'Izhār est particulièrement strict et vigilant devant Wāw (و) et Fā\' (ف) !',
-        mechanismFr: 'Fermez les lèvres pour former le son M avec Tawassut (durée intermédiaire), puis ouvrez immédiatement sur la consonne suivante sans temps de nasalité supplémentaire et sans rebond de Qalqalah.',
-        durationHarakat: 0,
-        examples: [
+        "id": "mim-izhar-shafawi",
+        "nameFr": "3. Al-Izhār Al-Shafawī & L'Alerte devant Wāw et Fā'",
+        "nameAr": "الإِظْهَارُ الشَّفَوِيُّ وَالتَّحْذِيرُ عِنْدَ الوَاوِ وَالفَاءِ",
+        "mnemonic": "26 lettres = Izhār pur sans traîner | Alerte Rouge devant Wāw (و) et Fā' (ف) !",
+        "letters": [],
+        "definitionFr": "L'Izhār Shafawī s'applique devant toutes les 26 autres lettres de l'alphabet : le Mīm doit être prononcé clairement sans allonger sa Ghunnah. L'imam Ibn Al-Jazarī adresse une mise en garde solennelle devant le Wāw (و) et le Fā' (ف) : en raison de leur voisinage labial immédiat, la bouche risque d'avaler le Mīm par erreur !",
+        "definitionLughatan": {
+          "ar": "الأَشَدُّ إِظْهَاراً: الآكَدُ بَيَاناً لِقُوَّةِ الدَّاعِي إِلَى الإِخْفَاءِ.",
+          "fr": "La clarté renforcée en raison du risque accru d'assimilation involontaire."
+        },
+        "definitionIstilahan": {
+          "ar": "إِظْهَارُ المِيمِ السَّاكِنَةِ عِنْدَ 26 حَرْفاً، مَعَ شِدَّةِ الحَذَرِ مِنْ إِخْفَائِهَا عِنْدَ الوَاوِ لِاتِّحَادِ المَخْرَجِ، وَعِنْدَ الفَاءِ لِقُرْبِهِ.",
+          "fr": "Prononciation nette du Mīm devant 26 lettres, avec une vigilance absolue devant le Wāw (même point d'articulation labial) et le Fā' (point très proche) pour éviter qu'il ne disparaisse."
+        },
+        "mechanismFr": "Fermez franchement les lèvres sur le Mīm, arrêtez le son instantanément, puis sautez sur le Wāw ou le Fā' sans faire d'Ikhfā' involontaire.",
+        "physiologicalDetails": {
+          "tongue": "Se prépare à la consonne suivante.",
+          "lips": "Fermeture nette et rapide sur le Mīm, puis passage instantané aux dents supérieures pour le Fā' ou à l'arrondissement pour le Wāw.",
+          "vocalCords": "Vibration normale sans étirement.",
+          "airflow": "Flux naturel sans rétention."
+        },
+        "phoneticReasonFr": "Le Wāw sort des deux lèvres (comme le Mīm) et le Fā' sort de la lèvre inférieure : la paresse articulatoire inciterait le récitateur à fusionner le Mīm dans le Fā' ou le Wāw.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَالثَّالِثُ الإِظْهَارُ فِي البَقِيَّهْ * مِنْ أَحْرُفٍ وَسَمِّهَا شَفْوِيَّهْ\nوَاحْذَرْ لَدَى وَاوٍ وَفَا أَنْ تَخْتَفِي * لِقُرْبِهَا وَلاِتِّحَادِ فَاعْرِفِ",
+          "transliteration": "Wath-thālithu-l-izhāru fil-baqiyyah * Min ahrufin wa sammihā shafwiyyah / Wahdhar ladā wāwin wa fā an takhtafī * Li-qurbihā walit-tihādi fa'rifi",
+          "translationFr": "« Et la troisième règle est l'Izhār devant les lettres restantes, que tu qualifieras de 'Labial'. Et prends bien garde à ce que le Mīm ne disparaisse (Ikhfā') devant le Wāw et le Fā', en raison de leur proximité et de leur communauté de point d'émission ; sache-le bien ! » (Versets 47-48)",
+          "chapterNameAr": "بَابُ إِظْهَارِ المِيمِ"
+        },
+        "examples": [
           {
-            id: 'ex-c9-izh-1',
-            arabicText: 'ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ',
-            surahAyahRef: '1:2',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'ٱلۡحَمۡدُ',
-            highlightLetter: 'مۡ + د',
-            ruleApplied: 'Izhār Shafawī (Clarté dans un même mot)',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Mīm porte un Soukoûn et est suivi du Dāl : prononciation limpide et naturelle sans Ghunnah prolongée.',
-            transliteration: 'Al-Hamdu',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001002.mp3'
-          },
-          {
-            id: 'ex-c9-izh-2',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'عَلَيۡهِمۡ غَيۡرِ · عَلَيۡهِمۡ وَلَا',
-            highlightLetter: 'مۡ + غ · مۡ + و (Alerte Wāw)',
-            ruleApplied: 'Izhār Shafawī avec alerte maximale devant Wāw',
-            ruleTag: 'izhar',
-            explanationFr: 'Devant le Wāw de « Wa lā », l\'Izhār doit être extrêmement clair : comme le Mīm et le Wāw partagent les lèvres, le réflexe fautif est de dissimuler le Mīm. Il faut le prononcer fermement !',
-            transliteration: '\'Alayhim ghayril... \'Alayhim wa lā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
-          },
-          {
-            id: 'ex-c9-izh-3',
-            arabicText: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُولَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
-            surahAyahRef: '2:82',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'هُمۡ فِيهَا',
-            highlightLetter: 'مۡ + ف (Alerte Fā\')',
-            ruleApplied: 'Izhār Shafawī avec alerte maximale devant Fā\'',
-            ruleTag: 'izhar',
-            explanationFr: 'Deuxième alerte majeure : le Fā\' provient du bord des dents sur la lèvre inférieure. Ne dissimulez jamais le Mīm dans « Hum fīhā » !',
-            transliteration: 'Hum fīhā khālidūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002082.mp3'
+            "id": "ex-c9-3",
+            "arabicText": "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ",
+            "surahAyahRef": "1:7",
+            "surahNameFr": "Al-Fātihah",
+            "highlightSegment": "عَلَيۡهِمۡ غَيۡرِ ... عَلَيۡهِمۡ وَلَا",
+            "highlightLetter": "ـمۡ غَـ & ـمۡ وَ (Izhār Shafawī)",
+            "ruleApplied": "Izhār Shafawī & Alerte devant Wāw",
+            "ruleTag": "izhar",
+            "explanationFr": "Dans « 'Alayhim ghayr », le Mīm est parfaitement clair. Dans « 'Alayhim wa lā », fermez fermement les lèvres sur le Mīm avant d'articuler le Wāw pour ne pas l'avaler par inadvertance.",
+            "transliteration": "'Alayhim ghayri ... 'alayhim wa-lā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/001007.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Avaler ou dissimuler le Mīm devant Wāw (« \'Alayhiw-walā ») ou Fā\' (« Huf-fīhā »).',
-            correctionFr: 'C\'est le piège numéro un du Tajwīd : les savants l\'appellent Ashadd Izhār (la clarté la plus impérative) pour résister à la tentation de fusionner ces lettres labiales.'
-          },
-          {
-            trapFr: 'Faire une Qalqalah sur le Mīm en détachant les lèvres avec force (« Al-Hamadu »).',
-            correctionFr: 'Le Mīm n\'a pas de Qalqalah : maintenez les lèvres doucement jointes.'
+            "trapFr": "Faire un Ikhfā' inconscient dans « 'Alayhim wa lā » en laissant traîner les lèvres.",
+            "correctionFr": "Marquez une frontière nette entre la fermeture du Mīm et l'ouverture du Wāw."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'ex-c9-g1',
-        title: 'L\'Alerte Maximale d\'Izhār Shafawī dans Al-Fātihah 1:7',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
-        surahAyahRef: '1:7',
-        targetSegment: 'عَلَيۡهِمۡ وَلَا',
-        promptFr: 'Pourquoi la rencontre entre le Mīm de « \'Alayhim » et le Wāw de « Wa lā » fait-elle l\'objet d\'une mise en garde solennelle des maîtres du Tajwīd ?',
-        hintFr: 'Observez où se forment le Mīm et le Wāw au niveau de la bouche (Makhraj commun).',
-        solutionFr: 'Le Mīm et le Wāw proviennent tous les deux exactement des deux lèvres (Ash-Shafatayn). En raison de cette proximité immédiate (Ittihād Al-Makhraj), l\'appareil vocal a naturellement tendance à dissimuler ou assimiler le Mīm dans le Wāw (en disant à tort « \'Alayhiw-walā »). L\'imam Ibn Al-Jazarī a expressément ordonné de redoubler de vigilance (Ashadd Izhār) pour bien fermer les lèvres sur le Mīm avant d\'ouvrir sur le Wāw !',
-        breakdownSteps: [
-          'Étape 1 : Identifiez le mot « عَلَيۡهِمۡ » se terminant par un Mīm Sākin (مۡ).',
-          'Étape 2 : Identifiez la lettre suivante « وَلَا » commençant par un Wāw (و).',
-          'Étape 3 : Notez que le Mīm et le Wāw partagent le même point d\'articulation (les deux lèvres).',
-          'Étape 4 : Pour éviter l\'erreur d\'Ikhfā\' inconscient, fermez complètement les lèvres sur le Mīm avec Tawassut, puis projetez le Wāw distinctement.'
+        "id": "exo-c9-1",
+        "title": "Alerte phonétique : « هُمۡ فِيهَا خَٰلِدُونَ »",
+        "verseArabic": "أُو۟لَٰٓئِكَ أَصۡحَٰبُ ٱلنَّارِۖ هُمۡ فِيهَا خَٰلِدُونَ",
+        "surahAyahRef": "2:39",
+        "targetSegment": "هُمۡ فِيهَا",
+        "promptFr": "Pourquoi Ibn Al-Jazarī met-il en garde contre la prononciation du Mīm dans « Hum fīhā » ?",
+        "hintFr": "Où s'articule le Mīm et où s'articule le Fā' ?",
+        "solutionFr": "Alerte d'Izhār : éviter d'avaler le Mīm dans le Fā' par proximité labiale",
+        "breakdownSteps": [
+          "Le Mīm sākinah rencontre le Fā'.",
+          "Le Mīm naît des deux lèvres et le Fā' de la lèvre inférieure contre les incisives.",
+          "Cette proximité physique risque de provoquer un Ikhfā' fautif.",
+          "On doit fermer les lèvres sur le Mīm avant d'engager le Fā'."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
-      },
-      {
-        id: 'ex-c9-g2',
-        title: 'Ikhfā\' Shafawī vs Izhār Shafawī dans Sourate Al-Fīl (105:4-5)',
-        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ ۝ فَجَعَلَهُمۡ كَعَصۡفٖ مَّأۡكُولِۭ',
-        surahAyahRef: '105:4-5',
-        targetSegment: 'تَرۡمِيهِم بِحِجَارَةٖ · فَجَعَلَهُمۡ كَعَصۡفٖ',
-        promptFr: 'Comparez le comportement du Mīm Sākinah dans « Tarmīhim bi-hijārah » et dans « Fa-ja\'alahum ka-\'asf ».',
-        hintFr: 'Quelle est la lettre qui suit le Mīm dans chaque cas ? Quel impact sur la durée de Ghunnah ?',
-        solutionFr: 'Dans « Tarmīhim bi-hijārah », le Mīm est suivi du Bā\' : c\'est un Ikhfā\' Shafawī, les lèvres se joignent doucement avec une Ghunnah de 2 temps pleins. Dans « Fa-ja\'alahum ka-\'asf », le Mīm est suivi du Kāf (lettre ordinaire) : c\'est un Izhār Shafawī, la prononciation est nette et immédiate sans allongement de Ghunnah !',
-        breakdownSteps: [
-          'Étape 1 : Dans « تَرۡمِيهِم بِ », le Mīm rencontre la lettre unique d\'Ikhfā\' Shafawī (ب) ➔ Maintenez 2 temps de résonance nasale.',
-          'Étape 2 : Les lèvres se touchent avec délicatesse sans forcer ni laisser d\'ouverture.',
-          'Étape 3 : Dans « فَجَعَلَهُمۡ كَ », le Mīm porte un Soukoûn visible et précède le Kāf (ك) ➔ Izhār pur sans délai.',
-          'Étape 4 : Ne prolongez pas la Ghunnah sur le Kāf et ne laissez pas la langue rebondir en Qalqalah.'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/105004.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/002039.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c9-1',
-        type: 'mcq',
-        promptFr: 'À combien de règles fondamentales la Mīm Sākinah obéit-elle dans le Coran ?',
-        verseArabic: 'أَحْكَامُ المِيمِ السَّاكِنَةِ',
-        options: [
-          '3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م), et Izhār Shafawī (26 lettres)',
-          '4 règles comme la Nūn Sākinah',
-          '2 règles seulement : Izhār et Idghām',
-          '5 règles incluant la Qalqalah'
+        "id": "q-c9-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Pourquoi la Mīm Sākinah n'a-t-elle pas de règle d'Iqlāb ?",
+        "verseArabic": "تَرۡمِيهِم بِحِجَارَةٖ",
+        "options": [
+          "Parce que l'Iqlāb consiste précisément à transformer une lettre en Mīm, or la lettre est déjà un Mīm !",
+          "Parce que le Mīm ne se prononce pas avec les lèvres",
+          "Parce que l'Iqlāb est réservé aux lettres de la gorge",
+          "C'est une omission des grammairiens"
         ],
-        correctAnswer: '3 règles : Ikhfā\' Shafawī (ب), Idghām Shafawī (م), et Izhār Shafawī (26 lettres)',
-        explanationFr: 'Contrairement au Nūn Sākinah qui compte 4 règles, le Mīm Sākinah n\'a ni Iqlāb ni Ikhfā\' à 15 lettres : seulement Ikhfā\' (ب), Idghām (م) et Izhār (le reste).',
-        ruleId: 'ikhfa-shafawi'
+        "correctAnswer": "Parce que l'Iqlāb consiste précisément à transformer une lettre en Mīm, or la lettre est déjà un Mīm !",
+        "explanationFr": "L'Iqlāb consiste à transformer le Nūn en Mīm devant le Bā'. Le Mīm étant déjà un Mīm, il n'a besoin d'aucune transformation : il applique directement l'Ikhfā' Shafawī.",
+        "ruleId": "mim-ikhfa-shafawi"
       },
       {
-        id: 'q-c9-2',
-        type: 'mcq',
-        promptFr: 'Quelle est l\'unique lettre qui déclenche la règle de l\'Ikhfā\' Shafawī sur le Mīm Sākinah ?',
-        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ',
-        surahAyahRef: '105:4',
-        options: [
-          'La lettre Bā\' (ب)',
-          'La lettre Mīm (م)',
-          'La lettre Wāw (و)',
-          'La lettre Nūn (ن)'
+        "id": "q-c9-2",
+        "type": "error_detect",
+        "promptFr": "Dans « صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ », un récitateur applique une Ghunnah de 2 temps sur « عَلَيْهِمْ وَلَا ». Quelle est l'erreur ?",
+        "verseArabic": "عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ",
+        "targetWord": "عَلَيۡهِمۡ وَلَا",
+        "surahAyahRef": "1:7",
+        "options": [
+          "Lahn Khafī : Ikhfā' illicite devant le Wāw. Le Mīm devant Wāw doit impérativement être prononcé avec Izhār sans allonger la Ghunnah !",
+          "Récitation recommandée",
+          "Erreur sur la lettre Dād",
+          "Madd Munfasil obligatoire"
         ],
-        correctAnswer: 'La lettre Bā\' (ب)',
-        explanationFr: 'Le Bā\' est l\'unique lettre d\'Ikhfā\' Shafawī. Elle exige une fermeture douce des lèvres avec une Ghunnah de 2 temps.',
-        ruleId: 'ikhfa-shafawi'
-      },
-      {
-        id: 'q-c9-3',
-        type: 'mcq',
-        promptFr: 'Pourquoi les imams du Tajwīd insistent-ils tant sur l\'Izhār devant Wāw (و) et Fā\' (ف) ?',
-        verseArabic: 'عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ ۝ هُمۡ فِيهَا خَٰلِدُونَ',
-        options: [
-          'Car elles partagent les lèvres avec le Mīm, ce qui pousse par facilité à assimiler ou dissimuler le Mīm',
-          'Car le Wāw et le Fā\' sont des lettres de gorge',
-          'Car il faut marquer une pause obligatoire (Saktah) entre eux',
-          'Car le Mīm doit être prolongé de 6 temps de Madd Lāzim'
-        ],
-        correctAnswer: 'Car elles partagent les lèvres avec le Mīm, ce qui pousse par facilité à assimiler ou dissimuler le Mīm',
-        explanationFr: 'L\'identité de point d\'articulation (Wāw) ou sa proximité immédiate (Fā\') incite le récitateur à dissimuler par inadvertance le Mīm. Les savants imposent une clarté vigilante (Ashadd Izhār).',
-        ruleId: 'izhar-shafawi'
-      },
-      {
-        id: 'q-c9-4',
-        type: 'mcq',
-        promptFr: 'Comment positionner correctement les lèvres lors de l\'Ikhfā\' Shafawī sur « Tarmīhim bi-hijārah » ?',
-        verseArabic: 'تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ',
-        surahAyahRef: '105:4',
-        options: [
-          'Les lèvres se touchent avec douceur sans pression excessive et sans laisser d\'ouverture (pas de Furjah)',
-          'Il faut laisser un large trou de 5 millimètres entre les lèvres',
-          'Il faut serrer les dents et mordre la lèvre inférieure',
-          'Il faut ouvrir grand la bouche en disant un son A prolongé'
-        ],
-        correctAnswer: 'Les lèvres se touchent avec douceur sans pression excessive et sans laisser d\'ouverture (pas de Furjah)',
-        explanationFr: 'La position authentique transmise consiste en un contact doux et naturel des lèvres sans écrasement ni écartement artificiel.',
-        ruleId: 'ikhfa-shafawi'
-      },
-      {
-        id: 'q-c9-5',
-        type: 'mcq',
-        promptFr: 'Dans « Fī qulūbihim maradun » (2:10), que se passe-t-il entre les deux Mīms ?',
-        verseArabic: 'فِى قُلُوبِهِم مَّرَضٞ',
-        surahAyahRef: '2:10',
-        options: [
-          'Le premier Mīm fusionne totalement dans le second (Idghām Shafawī) avec 2 temps de Ghunnah',
-          'Le premier Mīm est prononcé avec un arrêt sec de Qalqalah',
-          'Le premier Mīm disparaît sans aucune résonance nasale',
-          'Les deux Mīms sont séparés par un arrêt obligatoire'
-        ],
-        correctAnswer: 'Le premier Mīm fusionne totalement dans le second (Idghām Shafawī) avec 2 temps de Ghunnah',
-        explanationFr: 'La rencontre de deux Mīms entraîne un Idghām Mutamāthilayn Saghīr : ils forment un seul Mīm portant une Shaddah avec une Ghunnah de 2 temps.',
-        ruleId: 'idgham-shafawi'
+        "correctAnswer": "Lahn Khafī : Ikhfā' illicite devant le Wāw. Le Mīm devant Wāw doit impérativement être prononcé avec Izhār sans allonger la Ghunnah !",
+        "explanationFr": "Ibn Al-Jazarī avertit formellement : « Prends garde à ce que le Mīm ne disparaisse devant le Wāw et le Fā' ». C'est un Izhār strict.",
+        "ruleId": "mim-izhar-shafawi"
       }
     ]
   },
-
-  // ==========================================
-  // CHAPITRE 10 : LA QALQALAH
-  // ==========================================
   {
-    id: 'chap-10',
-    number: 10,
-    slug: 'qalqalah',
-    titleFr: 'La Qalqalah & Ses Degrés',
-    titleAr: 'أَحْكَامُ القَلْقَلَةِ وَمَرَاتِبُهَا',
-    category: 'intermediate',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Le rebond ou écho acoustique produit lors de l\'émission d\'une des 5 lettres de « Qutb Jadd » à l\'état de soukoûn, et la distinction essentielle entre ses 3 degrés de force.',
-    infographicPoints: [
-      'Les 5 lettres de la Qalqalah sont regroupées dans la formule mnémotechnique : قُطْبُ جَدٍّ (Qāf, Tā\', Bā\', Jīm, Dāl).',
-      'Condition sine qua non : La lettre DOIT porter un Soukoûn (qu\'il soit originel ou temporaire suite à l\'arrêt / Waqf).',
-      'Degré 1 - Qalqalah Kubrā (Majeure) : À l\'arrêt sur une lettre portant une Shaddah (ex: وَتَبَّ, بِٱلۡحَقِّ).',
-      'Degré 2 - Qalqalah Wustā (Moyenne) : À l\'arrêt sur une lettre simple sans Shaddah (ex: قُلۡ هُوَ ٱللَّهُ أَحَدٌ).',
-      'Degré 3 - Qalqalah Sughrā (Mineure) : Au milieu d\'un mot ou d\'une phrase en continuant la lecture (ex: يَقۡطَعُونَ, خَلَقۡنَا).',
-      'Piège absolu à bannir : Ne jamais ajouter de voyelle (ni Fathah, ni Kasrah, ni Dammah) lors du rebond !'
+    "id": "chap-10",
+    "number": 10,
+    "slug": "qalqalah",
+    "titleFr": "La Qalqalah & Ses Degrés de Rebond",
+    "titleAr": "أَحْكَامُ القَلْقَلَةِ وَمَرَاتِبُهَا",
+    "category": "intermediate",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Comprendre le phénomène d'écho ou de rebond phonétique des 5 lettres de « Qutb Jadd » (قُطْبُ جَدٍّ) lorsqu'elles sont soukounées. Découvrir ses 3 degrés de puissance (Kubrā à l'arrêt avec Shaddah, Wustā à l'arrêt sans Shaddah, Sughrā au milieu d'un mot) et éviter les dérives d'adjonction de voyelle parasite.",
+    "infographicPoints": [
+      "Les 5 Lettres de Qalqalah : ق - ط - ب - ج - د regroupées dans la formule « قُطْبُ جَدٍّ » (Quṭbu Jaddin).",
+      "Condition d'activation : La lettre DOIT être porteuse d'un Soukoûn (originel ou temporaire à l'arrêt). Les lettres voyellées n'ont pas de Qalqalah !",
+      "Degré 1 - Sughrā (Mineure) : Au milieu d'un mot ou en liaison continue (ex: Khalaqnā, Yaṭma'u).",
+      "Degré 2 - Wustā (Moyenne) : À l'arrêt sur une lettre sans Shaddah (ex: Al-Falaqْ, Ahadْ).",
+      "Degré 3 - Kubrā / Akbar (Majeure) : À l'arrêt sur une lettre portant une Shaddah (ex: Wa tabbّ, Al-Haqqّ).",
+      "Règle d'or : La Qalqalah est un rebond sec, JAMAIS une voyelle (Fathah, Dammah ou Kasrah) !"
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'qalqalah-definition',
-        nameFr: '1. Mécanisme Phonétique & Les 5 Lettres',
-        nameAr: 'حَقِيقَةُ القَلْقَلَةِ وَحُرُوفُهَا',
-        mnemonic: 'قُطْبُ جَدٍّ (Q-T-B-J-D)',
-        letters: ['ق', 'ط', 'ب', 'ج', 'د'],
-        definitionFr: 'La Qalqalah est une vibration ou rebond audible qui se produit lors du relâchement immédiat des deux articulateurs après un blocage total de l\'air et de la voix (caractéristiques de Jahr et Shiddah).',
-        mechanismFr: 'Lorsqu\'on prononce une lettre sākinah, les articulateurs entrent en collision sans voyelle. Comme ces 5 lettres ont une fermeture totale, un rebond vif sans mouvement de mâchoire libère l\'air emprisonné.',
-        durationHarakat: 0,
-        examples: [
+        "id": "qalqalah-mechanism-letters",
+        "nameFr": "1. Mécanisme Phonétique & Les 5 Lettres (قُطْبُ جَدٍّ)",
+        "nameAr": "مَفْهُومُ القَلْقَلَةِ وَحُرُوفُهَا الخَمْسَةُ (قُطْبُ جَدٍّ)",
+        "mnemonic": "Lettres « قُطْبُ جَدٍّ » soukounées = Rebond acoustique pur sans voyelle",
+        "letters": [
+          "ق",
+          "ط",
+          "ب",
+          "ج",
+          "د"
+        ],
+        "definitionFr": "La Qalqalah est un ébranlement ou sursaut mécanique qui se produit dans le point d'articulation de la consonne lorsqu'elle est dépourvue de voyelle, permettant de libérer avec force la pression de l'air emprisonnée par l'occlusion complète.",
+        "definitionLughatan": {
+          "ar": "القَلْقَلَةُ: التَّحْرِيكُ وَالاضْطِرَابُ، يُقَالُ: تَقَلْقَلَ القِدْرُ إِذَا غَلَى وَاضْطَرَبَ عَلَى النَّارِ.",
+          "fr": "L'ébranlement, l'agitation et la secousse."
+        },
+        "definitionIstilahan": {
+          "ar": "اضْطِرَابُ المَخْرَجِ عِنْدَ النُّطْقِ بِالحَرْفِ سَاكِناً حَتَّى يُسْمَعَ لَهُ نَبْرَةٌ قَوِيَّةٌ.",
+          "fr": "L'ébranlement du point d'articulation lors de la prononciation de la lettre sans voyelle, jusqu'à faire entendre une forte résonance de déclic sans la teinter d'aucune voyelle."
+        },
+        "mechanismFr": "Bloquez l'air hermétiquement au point de contact, puis ouvrez brusquement les deux organes articulatoires par un relâchement élastique spontané sans bouger les lèvres ni la mâchoire.",
+        "physiologicalDetails": {
+          "tongue": "Verrouillage occlusif total (Shiddah), puis séparation instantanée et franche sans frottement.",
+          "lips": "Fermeture totale pour le Bā', puis décollement élastique sec sans arrondissement.",
+          "vocalCords": "Vibration sonore puissante (Jahr).",
+          "airflow": "Pression pneumatique accumulée derrière le barrage, relâchée d'un coup sec."
+        },
+        "phoneticReasonFr": "Ces 5 consonnes combinent deux caractéristiques extrêmes : l'occlusion totale (Chiddah / impossibilité au son de couler) et la résonance sonore (Jahr / impossibilité à l'air de fuiter). Si on ne déclenche pas le rebond de Qalqalah, la lettre s'étouffe et devient inaudible !",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "قَلْقَلَةٌ قُطْبُ جَدٍّ وَاللِّينُ * وَاوٌ وَيَاءٌ سَكَنَا وَانْفَتَحَا\nقَبْلَهُمَا وَبَيِّنَنْ مُقَلْقَلَا * إِنْ سَكَنَا وَإِنْ يَكُنْ فِي الوَقْفِ كَانَ أَبْيَنَا",
+          "transliteration": "Qalqalātun Qutbu Jaddin wal-līnu * Wāwun wa Yā'un sakanā wan-fatahā / Qablahumā wa bayyinam-muqalqalā * In sakanā wa in yakun fil-waqfi kāna abyanā",
+          "translationFr": "« Les lettres de Qalqalah sont Quṭbu Jaddin... Rends la Qalqalah bien apparente lorsqu'elle est sans voyelle, et si elle survient lors de l'arrêt, qu'elle soit plus éclatante encore ! » (Versets 15 & 58)",
+          "chapterNameAr": "بَابُ القَلْقَلَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-qal-letters-1',
-            arabicText: 'قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ',
-            surahAyahRef: '113:1',
-            surahNameFr: 'Al-Falaq',
-            highlightSegment: 'ٱلۡفَلَقِ',
-            highlightLetter: 'ق (à l\'arrêt)',
-            ruleApplied: 'Qalqalah sur la lettre Qāf',
-            ruleTag: 'qalqalah',
-            explanationFr: 'En s\'arrêtant sur « Al-Falaq », la Kasrah finale devient un soukoûn temporaire. Le Qāf rebondit avec force tout en conservant son emphase (Tafkhīm).',
-            transliteration: 'Al-Falaq',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/113001.mp3'
-          },
-          {
-            id: 'ex-qal-letters-2',
-            arabicText: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ',
-            surahAyahRef: '112:1',
-            surahNameFr: 'Al-Ikhlās',
-            highlightSegment: 'أَحَدٌ',
-            highlightLetter: 'د (à l\'arrêt)',
-            ruleApplied: 'Qalqalah sur le Dāl',
-            ruleTag: 'qalqalah',
-            explanationFr: 'Arrêt sur « Ahad » : le Dāl reçoit un soukoûn temporaire et produit un claquement net et sec, sans voyelle parasite.',
-            transliteration: 'Ahad',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/112001.mp3'
+            "id": "ex-c10-1",
+            "arabicText": "لَقَدۡ خَلَقۡنَا ٱلۡإِنسَٰنَ فِىٓ أَحۡسَنِ تَقۡوِيمٖ",
+            "surahAyahRef": "95:4",
+            "surahNameFr": "At-Tīn",
+            "highlightSegment": "خَلَقۡنَا ... تَقۡوِيمٖ",
+            "highlightLetter": "قۡ (Qalqalah Sughrā)",
+            "ruleApplied": "Qalqalah Sughrā (au milieu d'un mot)",
+            "ruleTag": "qalqalah",
+            "explanationFr": "Le Qāf porte un soukoûn au milieu du mot : déclenchez un rebond sec et rapide sans traîner sur le son (« Khalaq-nā »).",
+            "transliteration": "Khalaqnā ... taqwīm",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/095004.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Incliner le son vers une Fathah (ex: dire "Ahad-a") ou vers une Hamzah bloquée.',
-            correctionFr: 'Le rebond doit être neutre : la mâchoire et les lèvres restent parfaitement immobiles.'
-          },
-          {
-            trapFr: 'Faire rebondir des lettres qui ne font pas partie de Qutb Jadd (comme le Kāf ك ou le Tā\' ت).',
-            correctionFr: 'Le Kāf et le Tā\' ont du souffle (Hams), jamais de rebond de Qalqalah !'
+            "trapFr": "Pour les francophones : rajouter une petite voyelle Fathah ou 'e' après la lettre (ex: dire 'Khalaqana' ou 'Ahada').",
+            "correctionFr": "Le rebond doit être 100% neutre et sans voyelle. C'est un décollement physique sec, pas une Fathah."
           }
         ]
       },
       {
-        id: 'qalqalah-degrees',
-        nameFr: '2. Les 3 Degrés de Force (Kubrā, Wustā, Sughrā)',
-        nameAr: 'مَرَاتِبُ القَلْقَلَةِ الثَّلَاثُ',
-        mnemonic: 'Majeure (Shaddah arrêt) > Moyenne (Arrêt simple) > Mineure (En cours de verset)',
-        letters: ['ق', 'ط', 'ب', 'ج', 'د'],
-        definitionFr: 'L\'intensité du rebond varie selon la position de la lettre et la présence d\'une Shaddah.',
-        mechanismFr: '1. Kubrā : Pression maintenue sur la première lettre puis libération explosive sur la seconde. 2. Wustā : Rebond clair à la fin du souffle. 3. Sughrā : Rebond agile et rapide pour ne pas briser le rythme du mot.',
-        examples: [
+        "id": "qalqalah-degrees",
+        "nameFr": "2. Les 3 Degrés de Force (Kubrā, Wustā, Sughrā)",
+        "nameAr": "مَرَاتِبُ القَلْقَلَةِ (كُبْرَى، وُسْطَى، صُغْرَى)",
+        "mnemonic": "Kubrā = À l'arrêt avec Shaddah (وَتَبَّ) | Wustā = À l'arrêt sans Shaddah (الفَلَقْ) | Sughrā = En cours de mot (خَلَقْنَا)",
+        "letters": [],
+        "definitionFr": "La force acoustique de la Qalqalah varie selon la position de la lettre : elle atteint son paroxysme (Kubrā) lors de l'arrêt sur une lettre doublée par une Shaddah, son niveau intermédiaire (Wustā) à l'arrêt sur une consonne simple, et son niveau minimal (Sughrā) au cœur du mot ou en liaison.",
+        "definitionLughatan": {
+          "ar": "المَرْتَبَةُ: المَنْزِلَةُ وَالدَّرَجَةُ فِي الشِّدَّةِ وَالوُضُوحِ.",
+          "fr": "Le degré et le rang d'intensité sonore."
+        },
+        "definitionIstilahan": {
+          "ar": "تَفَاوُتُ وُضُوحِ صَوْتِ القَلْقَلَةِ بِحَسَبِ مَوْضِعِ الحَرْفِ: فِي المَوْقُوفِ عَلَيْهِ المُشَدَّدِ، ثُمَّ المُخَفَّفِ، ثُمَّ السَّاكِنِ وَصْلاً.",
+          "fr": "La gradation de la netteté du rebond selon la position de la lettre : maximale sur la lettre arrêtée avec Shaddah, médiane sur la lettre arrêtée sans Shaddah, mineure en cours de mot."
+        },
+        "mechanismFr": "Sur la Kubrā : appuyez fermement sur la première consonne de la Shaddah, marquez un temps de pression, puis faites exploser le rebond sur la seconde consonne libérée.",
+        "physiologicalDetails": {
+          "tongue": "Pression accrue pour la Kubrā, relâchée avec netteté.",
+          "lips": "Pression ferme pour le Bā' de « Wa tabb ».",
+          "vocalCords": "Vibration dense.",
+          "airflow": "Déflagration acoustique brève."
+        },
+        "phoneticReasonFr": "La lettre à l'arrêt bénéficie de tout le repos articulatoire de la pause, tandis que la Shaddah double la masse musculaire mobilisée.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَإِنْ يَكُنْ فِي الوَقْفِ كَانَ أَبْيَنَا * لِأَنَّهُ اسْتَقَرَّ فِي المَكَانَا\nوَأَكْبَرُهَا حَيْثُ يُشَدَّدُ الحَرَمْ * كَـ الحَقِّ مَعْ تَبَّ بِلَا خَفَا لَزِمْ",
+          "transliteration": "Wa in yakun fil-waqfi kāna abyanā * Li'annahus-taqarra fil-makānā / Wa akbaruhā haythu yushaddadu-l-haram * Kal-Haqqi ma' Tabba bi-lā khafā lazim",
+          "translationFr": "« Et si la lettre se trouve à l'arrêt, qu'elle soit plus éclatante encore car elle est stabilisée ; et son degré suprême intervient là où elle porte une Shaddah, comme dans 'Al-Haqq' et 'Tabb' sans aucune équivoque. »",
+          "chapterNameAr": "بَابُ مَرَاتِبِ القَلْقَلَةِ"
+        },
+        "examples": [
           {
-            id: 'ex-deg-kubra',
-            arabicText: 'تَبَّتۡ يَدَآ أَبِى لَهَبٖ وَتَبَّ',
-            surahAyahRef: '111:1',
-            surahNameFr: 'Al-Masad',
-            highlightSegment: 'وَتَبَّ',
-            highlightLetter: 'بّ (Shaddah à l\'arrêt)',
-            ruleApplied: 'Degré 1 : Qalqalah Kubrā (Majeure)',
-            ruleTag: 'qalqalah',
-            explanationFr: 'La lettre Bā\' porte une Shaddah et se trouve à la fin du verset. On maintient la première consonne puis on fait jaillir le rebond le plus puissant.',
-            transliteration: 'Wa-tabb',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/111001.mp3'
+            "id": "ex-c10-2",
+            "arabicText": "تَبَّتۡ يَدَآ أَبِى لَهَبٖ وَتَبَّ",
+            "surahAyahRef": "111:1",
+            "surahNameFr": "Al-Masad",
+            "highlightSegment": "وَتَبَّ",
+            "highlightLetter": "بَّ (Qalqalah Kubrā)",
+            "ruleApplied": "Qalqalah Kubrā à l'Arrêt avec Shaddah",
+            "ruleTag": "qalqalah",
+            "explanationFr": "À l'arrêt sur « Wa tabb », le Bā' porte une Shaddah : maintenez l'occlusion un court instant pour marquer la gémination avant de libérer le rebond le plus puissant : « Wa tabb ! ».",
+            "transliteration": "Wa tabb",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/111001.mp3"
           },
           {
-            id: 'ex-deg-wusta',
-            arabicText: 'مَا كَسَبَ',
-            surahAyahRef: '111:2',
-            surahNameFr: 'Al-Masad',
-            highlightSegment: 'كَسَبَ',
-            highlightLetter: 'ب (sans Shaddah à l\'arrêt)',
-            ruleApplied: 'Degré 2 : Qalqalah Wustā (Moyenne)',
-            ruleTag: 'qalqalah',
-            explanationFr: 'Arrêt sur une lettre de Qalqalah non doublée. Le rebond est franc, sonore et bien audible.',
-            transliteration: 'Kasab',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/111002.mp3'
-          },
-          {
-            id: 'ex-deg-sughra',
-            arabicText: 'ٱلَّذِينَ يَقۡطَعُونَ مَآ أَمَرَ ٱللَّهُ بِهِۦٓ',
-            surahAyahRef: '2:27',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'يَقۡطَعُونَ',
-            highlightLetter: 'ق (au milieu du mot)',
-            ruleApplied: 'Degré 3 : Qalqalah Sughrā (Mineure)',
-            ruleTag: 'qalqalah',
-            explanationFr: 'Le Qāf est sākin à l\'intérieur du mot « yaq-ta\'ūna ». Le rebond est rapide et fluide pour enchaîner sans interruption de la récitation.',
-            transliteration: 'Yaqta\'ūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002027.mp3'
+            "id": "ex-c10-3",
+            "arabicText": "قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ",
+            "surahAyahRef": "113:1",
+            "surahNameFr": "Al-Falaq",
+            "highlightSegment": "ٱلۡفَلَقِ",
+            "highlightLetter": "قِ ➔ قۡ (Wustā)",
+            "ruleApplied": "Qalqalah Wustā à l'Arrêt",
+            "ruleTag": "qalqalah",
+            "explanationFr": "À l'arrêt sur « Al-Falaq », le Qāf devient sākin sans Shaddah : le rebond est franc, clair et vigoureux.",
+            "transliteration": "Qul a'ūdhu bi-rabbi-l-Falaq",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/113001.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Interrompre la récitation sur une Qalqalah Sughrā en plein milieu d\'un mot.',
-            correctionFr: 'Le rebond en Sughrā doit être léger et instantané, sans marquer de temps d\'arrêt.'
-          },
-          {
-            trapFr: 'Affaiblir la Qalqalah Kubrā comme si la lettre n\'avait pas de Shaddah.',
-            correctionFr: 'Marquez bien le poids de la Shaddah avant l\'explosion du son.'
+            "trapFr": "Avaler la Shaddah sur « Wa tabb » et faire un rebond immédiat sans marquer la consonne double.",
+            "correctionFr": "Marquez une infime rétention sur les lèvres avant de relâcher le claquement."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-qal-1',
-        title: 'Classement des degrés : Sūrah Al-Falaq (113:1-3)',
-        verseArabic: 'قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ',
-        surahAyahRef: '113:1-3',
-        targetSegment: 'ٱلۡفَلَقِ, خَلَقَ, وَقَبَ',
-        promptFr: 'Quel degré de Qalqalah produit-on lors de l\'arrêt sur les rimes de ces versets ?',
-        hintFr: 'Ces lettres portent-elles une Shaddah ? Sont-elles situées à la fin du mot lors de l\'arrêt ?',
-        solutionFr: 'Qalqalah Wustā (Degré moyen)',
-        breakdownSteps: [
-          'Les lettres finales sont Qāf (ق) et Bā\' (ب).',
-          'Ces lettres ne comportent pas de Shaddah.',
-          'Comme le lecteur s\'arrête dessus (Waqf), elles prennent un soukoûn temporaire.',
-          'Il s\'agit donc du deuxième degré (Wustā / Moyenne).'
+        "id": "exo-c10-1",
+        "title": "Comparaison de Qalqalah : « خَلَقْنَا » vs « الفَلَقْ »",
+        "verseArabic": "خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ ١ ٱقۡرَأۡ",
+        "surahAyahRef": "96:2-3",
+        "targetSegment": "عَلَقٍ",
+        "promptFr": "Quel degré de Qalqalah appliquez-vous en vous arrêtant sur le mot « 'Alaq » ?",
+        "hintFr": "La lettre Qāf est-elle à l'arrêt ou en cours de mot ? Porte-t-elle une Shaddah ?",
+        "solutionFr": "Qalqalah Wustā (Moyenne à l'arrêt sur consonne sans Shaddah)",
+        "breakdownSteps": [
+          "Le mot se termine par un Qāf.",
+          "Lors de l'arrêt, le Tanwīn devient un soukoûn temporaire.",
+          "La lettre ne porte pas de Shaddah : c'est le degré Wustā."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/113001.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/096002.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-qal-1',
-        type: 'mcq',
-        promptFr: 'Parmi ces combinaisons, quelle est la formule exacte regroupant toutes les lettres de la Qalqalah ?',
-        verseArabic: 'قُطۡبُ جَدٍّ',
-        options: [
-          'قُطۡبُ جَدٍّ (Qāf, Tā\', Bā\', Jīm, Dāl)',
-          'يَرۡمَلُونَ (Yā\', Râ\', Mīm, Lâm, Wāw, Nūn)',
-          'حُرُوفُ الحَلۡقِ (Les 6 lettres de gorge)',
-          'حُرُوفُ المَدِّ (Alif, Wāw, Yā\')'
+        "id": "q-c10-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Quelles sont les 5 lettres de la Qalqalah et quelle est leur condition obligatoire pour rebondir ?",
+        "verseArabic": "قُلۡ هُوَ ٱللَّهُ أَحَدٌ",
+        "options": [
+          "ق، ط، ب، ج، د (قُطْبُ جَدٍّ) à condition qu'elles soient porteuses d'un Soukoûn",
+          "ي، ر، م، ل، و، ن avec Fathah",
+          "ء، هـ، ع، ح، غ، خ avec Kasrah",
+          "ص، ض، ط، ظ avec Shaddah"
         ],
-        correctAnswer: 'قُطۡبُ جَدٍّ (Qāf, Tā\', Bā\', Jīm, Dāl)',
-        explanationFr: 'La formule mnémotechnique universelle enseignée dans le livre est « Qutb Jadd » (قُطْبُ جَدٍّ).',
-        ruleId: 'qalqalah-definition'
+        "correctAnswer": "ق، ط، ب، ج، د (قُطْبُ جَدٍّ) à condition qu'elles soient porteuses d'un Soukoûn",
+        "explanationFr": "Les 5 lettres de « Qutb Jadd » ne manifestent leur Qalqalah que lorsqu'elles sont immobiles (soukounées). Si elles portent une voyelle, la voyelle ouvre naturellement le point d'émission.",
+        "ruleId": "qalqalah-mechanism-letters"
       },
       {
-        id: 'q-qal-2',
-        type: 'mcq',
-        promptFr: 'Quel est le degré le plus fort de Qalqalah (Kubrā) ?',
-        verseArabic: 'تَبَّتۡ يَدَآ أَبِى لَهَبٖ وَتَبَّ',
-        targetWord: 'وَتَبَّ',
-        surahAyahRef: '111:1',
-        options: [
-          'À l\'arrêt sur une lettre de Qalqalah avec Shaddah en fin de verset',
-          'Au milieu d\'un mot avec soukoûn simple',
-          'À l\'arrêt sur une lettre sans Shaddah',
-          'Lorsque la lettre est vocalisée avec une Fathah'
+        "id": "q-c10-2",
+        "type": "error_detect",
+        "promptFr": "Dans « لَمْ يَلِدْ وَلَمْ يُولَدْ », un lecteur prononce le Dāl avec une Kasrah glissée : « Lam yalidi wa lam yūlad ». De quel type d'erreur s'agit-il ?",
+        "verseArabic": "لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ",
+        "targetWord": "يَلِدۡ",
+        "surahAyahRef": "112:3",
+        "options": [
+          "Lahn Jalī : Remplacement d'un soukoûn par une voyelle, déformant la structure grammaticale du verbe",
+          "Lahn Khafī d'embellissement",
+          "Qalqalah Kubrā conforme",
+          "Arrêt Tāmm"
         ],
-        correctAnswer: 'À l\'arrêt sur une lettre de Qalqalah avec Shaddah en fin de verset',
-        explanationFr: 'Le degré le plus puissant (Kubrā) survient lors d\'un arrêt (Waqf) sur une lettre doublée d\'une Shaddah comme « Wa-tabb » ou « Al-Haqq ».',
-        ruleId: 'qalqalah-degrees'
-      },
-      {
-        id: 'q-qal-3',
-        type: 'click_word',
-        promptFr: 'Repérage visuel : Cliquez sur le mot contenant une Qalqalah Sughrā (au milieu d\'un mot) dans ce verset.',
-        verseArabic: 'إِنَّا خَلَقۡنَا ٱلۡإِنسَٰنَ مِن نُّطۡفَةٍ',
-        clickableSegments: ['إِنَّا', 'خَلَقۡنَا', 'ٱلۡإِنسَٰنَ', 'مِن', 'نُّطۡفَةٍ'],
-        correctAnswer: 'خَلَقۡنَا',
-        explanationFr: 'Dans le mot « Khalaqnā », le Qāf (ق) porte un soukoûn au milieu du mot. C\'est une Qalqalah Sughrā (rebond léger et vif).',
-        ruleId: 'qalqalah-degrees'
-      },
-      {
-        id: 'q-qal-4',
-        type: 'error_detect',
-        promptFr: 'Un étudiant récite « Ahad » en ajoutant une voyelle à la fin : "Ahada". Quelle est l\'erreur ?',
-        verseArabic: 'قُلۡ هُوَ ٱللَّهُ أَحَدٌ',
-        targetWord: 'أَحَدٌ',
-        options: [
-          'Erreur classique : Ne jamais transformer le rebond en voyelle (Fathah). Le rebond doit rester un soukoûn pur.',
-          'C\'est la bonne prononciation.',
-          'Il devait faire une prolongation de 4 temps.',
-          'Il devait nasaliser le Dāl.'
-        ],
-        correctAnswer: 'Erreur classique : Ne jamais transformer le rebond en voyelle (Fathah). Le rebond doit rester un soukoûn pur.',
-        explanationFr: 'Le livre insiste fermement : le piège le plus fréquent en Qalqalah est d\'ouvrir la bouche et de glisser vers une Fathah. Le rebond ne doit comporter aucun mouvement de lèvres ou de mâchoire.',
-        ruleId: 'qalqalah-definition'
+        "correctAnswer": "Lahn Jalī : Remplacement d'un soukoûn par une voyelle, déformant la structure grammaticale du verbe",
+        "explanationFr": "Le livre « التجويد المبسط » avertit : changer un soukoûn en voyelle (تحريك الساكن) est un Lahn Jalī formellement interdit. La Qalqalah doit rester un rebond neutre sans voyelle.",
+        "ruleId": "qalqalah-mechanism-letters"
       }
     ]
   },
-
-  // ==========================================
-  // CHAPITRE 11 : L'ASSIMILATION (IDGHĀM)
-  // ==========================================
   {
-    id: 'chap-11',
-    number: 11,
-    slug: 'assimilation',
-    titleFr: 'L\'Assimilation (Idghām Mutamāthilayn, etc.)',
-    titleAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ وَالمُتَقَارِبَيْنِ وَالمُتَجَانِسَيْنِ',
-    category: 'advanced',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre la fusion des lettres selon leurs points d\'articulation et leurs attributs : les lettres identiques (Mutamāthilayn), l\'interdiction formelle de fusionner les lettres de Madd (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ), les 8 fusions totales historiques (Irkam-ma\'anā, Nakhlukkum), et l\'assimilation partielle (Idghām Nāqis dans Basatta).',
-    infographicPoints: [
-      'Règle de Base : L\'Izhār (clarté) est la norme fondamentale de récitation dans le Coran. L\'assimilation (Idghām) est une exception phonétique n\'intervenant que pour faciliter la diction lorsque la première consonne est dépourvue de voyelle (sākinah).',
-      'Mutamāthilayn (Identiques) : Deux consonnes strictement identiques se suivent et la première est sākinah ➔ fusion totale avec Shaddah (ex: فَلَا يُسۡرِف فِّى, وَقَد دَّخَلُواْ, يُدۡرِككُّمُ).',
-      'Interdiction Absolue sur les Lettres de Madd : Les lettres de prolongation (Wāw et Yā\') NE FUSIONNENT JAMAIS avec une consonne identique (فِى يُوسُفَ, ءَامَنُواْ وَعَمِلُواْ) car leur Makhraj est différent (Al-Jawf vs langue/lèvres) !',
-      '8 Cas d\'Assimilation Totale (Kāmil) : Des couples spécifiques de lettres proches ou homogènes fusionnent entièrement : ت➔ط (وَقَالَت طَّآئِفَةٞ), ذ➔ظ (إِذ ظَّلَمۡتُمۡ), ب➔م (ٱرۡكَب مَّعَنَا), ق➔ك (أَلَمۡ نَخۡلُقكُّم), د➔ت (قَد تَّبَيَّنَ, عَبَدتُّمۡ), ت➔د (أَثۡقَلَت دَّعَوَا), ل➔ر (بَل رَّفَعَهُ, وَقُل رَّبِّ), ث➔ذ (يَلۡهَثۚ ذَّٰلِكَ).',
-      'Idghām Nāqis Unique (ط dans ت) : Dans « Basatta » (بَسَطتَ), « Farrattum » (فَرَّطتُمۡ) et « Ahattu » (أَحَطتُ), la lourdeur et l\'élévation du Tā\' (ط) subsistent sans Qalqalah avant de relâcher sur le Tā\' (ت) !',
-      'Règle du Waqf : L\'assimilation entre deux mots n\'existe qu\'en liaison continue (Wasl). À l\'arrêt d\'urgence sur « Irkab » (ٱرۡكَبۡ), vous prononcez le Bā\' avec sa Qalqalah Wustā pure !'
+    "id": "chap-11",
+    "number": 11,
+    "slug": "assimilation",
+    "titleFr": "L'Assimilation (Idghām Mutamāthilayn, etc.)",
+    "titleAr": "إِدْغَامُ المُتَمَاثِلَيْنِ وَالمُتَقَارِبَيْنِ وَالمُتَجَانِسَيْنِ",
+    "category": "advanced",
+    "estimatedMinutes": 25,
+    "isPilotChapter": true,
+    "summaryFr": "Comprendre les lois universelles de fusion entre consonnes : 1. Les Mutamāthilayn (lettres identiques en makhraj et sifāt), 2. Les Mutajānisayn (même point d'articulation mais caractéristiques différentes), 3. Les Mutaqāribayn (points d'articulation voisins). Découvrir l'exception sacrée des lettres de Madd et l'Idghām Nāqis dans « Basatta ».",
+    "infographicPoints": [
+      "Mutamāthilān (مُتَمَاثِلَانِ) : Deux lettres 100% identiques qui se suivent (ex: Bā' + Bā' dans Idrib bi-'asāka). La 1ère nue fond dans la 2e avec Shaddah.",
+      "Exception sacrée du Madd : Le Wāw et le Yā' de prolongation ne fusionnent JAMAIS dans une consonne identique (ex: Fī Yūsufa, Āmanū wa 'amilū) -> Izhār obligatoire !",
+      "Mutajānisān (مُتَجَانِسَانِ) : Même makhraj, attributs différents (ex: ت avec ط dans Āmanat-tā'ifah).",
+      "Idghām Nāqis (إدغام ناقص) : Dans « Basatta » (بَسَطتَ) et « Ahattu » (أَحَطتُ), le Tā' lourd garde son emphase et son écrasement (Itbāq) sans Qalqalah, puis libère la consonne sur le Tā' fin !",
+      "Les 8 couples de fusions codifiés par les maîtres du Coran (ت->ط, ذ->ظ, ب->م dans Irkam ma'anā, etc.)."
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'idgham-mutamathilayn',
-        nameFr: '1. Idghām Al-Mutamāthilayn (Lettres Identiques)',
-        nameAr: 'إِدْغَامُ المُتَمَاثِلَيْنِ الصَّغِيرُ',
-        mnemonic: 'Deux lettres 100% identiques : la 1ère sans voyelle fond dans la 2nde avec Shaddah (ّ)',
-        letters: ['ف', 'د', 'ب', 'ك', 'هـ'],
-        definitionFr: 'Lorsque deux lettres exactement identiques se suivent et que la première est privée de voyelle (sākinah), la première fusionne entièrement dans la seconde qui reçoit une Shaddah.',
-        mechanismFr: 'Prononcez la seconde consonne comme une lettre doublée avec Shaddah. Cela s\'applique entre deux mots séparés ou à l\'intérieur du même mot.',
-        durationHarakat: 0,
-        examples: [
+        "id": "mutamathilayn-fusion",
+        "nameFr": "1. Idghām Al-Mutamāthilayn (Lettres Identiques)",
+        "nameAr": "إِدْغَامُ المُتَمَاثِلَيْنِ الصَّغِيرِ",
+        "mnemonic": "Deux lettres identiques : 1ère sans voyelle + 2e avec voyelle = Shaddah immédiate (ّ)",
+        "letters": [],
+        "definitionFr": "Les Mutamāthilayn sont deux consonnes rigoureusement identiques partageant le même point d'articulation et les mêmes caractéristiques (ex: deux Bā', deux Dāl, deux Kâf). Lorsque la première est soukounée et la seconde voyellée, la première fond intégralement dans la seconde qui prend une Shaddah.",
+        "definitionLughatan": {
+          "ar": "المُتَمَاثِلَانِ: الشَّيْئَانِ المُتَشَابِهَانِ فِي كُلِّ شَيْءٍ حَتَّى كَأَنَّهُمَا شَيْءٌ وَاحِدٌ.",
+          "fr": "Deux entités parfaitement jumelles et similaires en tous points."
+        },
+        "definitionIstilahan": {
+          "ar": "حَرْفَانِ اتَّفَقَا مَخْرَجاً وَصِفَةً، كَالبَاءَيْنِ وَالدَّالَيْنِ، سَكَنَ أَوَّلُهُمَا وَتَحَرَّكَ ثَانِيهِمَا فَيَجِبُ إِدْغَامُهُ إِدْغَاماً كَامِلاً.",
+          "fr": "Deux lettres concordant en point d'émission et en caractéristiques, la première étant sans voyelle et la seconde voyellée : l'assimilation complète est obligatoire."
+        },
+        "mechanismFr": "Ne détachez pas la langue entre les deux lettres. Pressez une seule fois sur le point d'articulation en doublant la consonne par une Shaddah.",
+        "physiologicalDetails": {
+          "tongue": "Une seule percussion ferme au lieu de deux contacts successifs.",
+          "lips": "Occlusion unique si lettres labiales.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Flux continu sans interruption."
+        },
+        "phoneticReasonFr": "Prononcer deux lettres identiques immobiles consécutives briserait la fluidité phonatoire. L'arabe privilégie l'économie d'effort musculaire par la gémination.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "إِنْ فِي الصِّفَاتِ وَالمَخَارِجِ اتَّفَقْ * حَرْفَانِ فَالْمِثْلَانِ فِيهِمَا أَحَقْ\nوَإِنْ يَكُونَا مَخْرَجاً تَقَارَبَا * وَفِي الصِّفَاتِ اخْتَلَفَا يُلَقَّبَا\nمُتَقَارِبَيْنِ أَوْ يَكُونَا اتَّفَقَا * فِي مَخْرَجٍ دُونَ الصِّفَاتِ حُقِّقَا\nبِالْمُتَجَانِسَيْنِ",
+          "transliteration": "In fis-sifāti wal-makhāriji-ttafaq * Harfāni fal-mithlāni fīhimā ahaq / Wa in yakūnā makhrajan taqārabā * Wa fis-sifātikhtalafā yulaqqabā / Mutaqāribayni aw yakūnā-ttafaqā * Fī makhrajin dūna-s-sifāti huqqiqā / Bil-mutajānisayni",
+          "translationFr": "« Si deux lettres s'accordent en caractéristiques et en point d'articulation, le titre de 'Mithlayn' (identiques) leur revient de droit. Si elles sont proches en articulation et diffèrent en caractéristiques, on les nomme 'Mutaqāribayn'. Et si elles partagent le même point d'émission mais diffèrent en caractéristiques, on les nomme 'Mutajānisayn'. » (Versets 52-54)",
+          "chapterNameAr": "بَابُ التَّمَاثُلِ وَالتَّقَارُبِ وَالتَّجَانُسِ"
+        },
+        "examples": [
           {
-            id: 'ex-c11-1',
-            arabicText: 'فَلَا يُسۡرِف فِّى ٱلۡقَتۡلِۖ إِنَّهُۥ كَانَ مَنصُورٗا',
-            surahAyahRef: '17:33',
-            surahNameFr: 'Al-Isrā\'',
-            highlightSegment: 'يُسۡرِف فِّى',
-            highlightLetter: 'ف + فّ (Idghām Mutamāthilayn)',
-            ruleApplied: 'Idghām Mutamāthilayn entre deux mots (Yusrif-fī)',
-            ruleTag: 'silent',
-            explanationFr: 'Le Fā\' de « Yusrif » n\'a aucun signe de soukoûn et fusionne à 100% dans le Fā\' de « fī » qui prend une Shaddah : on prononce « Yusrif-fī ».',
-            transliteration: 'Falā yusrif-fīl-qatl',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/017033.mp3'
-          },
-          {
-            id: 'ex-c11-2',
-            arabicText: 'وَإِذَا جَآءُوكُمۡ قَالُوٓاْ ءَامَنَّا وَقَد دَّخَلُواْ بِٱلۡكُفۡرِ',
-            surahAyahRef: '5:61',
-            surahNameFr: 'Al-Mā\'idah',
-            highlightSegment: 'وَقَد دَّخَلُواْ',
-            highlightLetter: 'د + دّ',
-            ruleApplied: 'Idghām Mutamāthilayn (Wa-qad-dakhalū)',
-            ruleTag: 'silent',
-            explanationFr: 'Le premier Dāl disparaît totalement au profit du second : on prononce directement « Wa-qad-dakhalū » sans Qalqalah sur le premier Dāl !',
-            transliteration: 'Wa-qad-dakhalū bil-kufr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005061.mp3'
-          },
-          {
-            id: 'ex-c11-3',
-            arabicText: 'أَيۡنَمَا تَكُونُواْ يُدۡرِككُّمُ ٱلۡمَوۡتُ',
-            surahAyahRef: '4:78',
-            surahNameFr: 'An-Nisā\'',
-            highlightSegment: 'يُدۡرِككُّمُ',
-            highlightLetter: 'ك + كّ dans le même mot',
-            ruleApplied: 'Idghām Mutamāthilayn dans un mot (Yudrik-kum)',
-            ruleTag: 'silent',
-            explanationFr: 'L\'assimilation d\'identiques peut avoir lieu dans un même mot : le premier Kāf est nu et fond dans le second qui porte une Shaddah (« Yudrik-kumu-l-mawt »).',
-            transliteration: 'Aynamā takūnū yudrik-kumu-l-mawt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004078.mp3'
+            "id": "ex-c11-1",
+            "arabicText": "وَقَد دَّخَلُواْ بِٱلۡكُفۡرِ وَهُمۡ قَدۡ خَرَجُواْ بِهِۦ",
+            "surahAyahRef": "5:61",
+            "surahNameFr": "Al-Mā'idah",
+            "highlightSegment": "وَقَد دَّخَلُواْ",
+            "highlightLetter": "دۡ + دَ ➔ دَّ",
+            "ruleApplied": "Idghām Mutamāthilayn (Fusion totale)",
+            "ruleTag": "idgham",
+            "explanationFr": "Le Dāl de « Qad » rencontre le Dāl de « Dakhalū » : le premier est nu et fond totalement dans le second. On prononce : « Wa qad-dakhalū » (sans Qalqalah sur le 1er Dāl).",
+            "transliteration": "Wa qad-dakhalū",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/005061.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Faire une Qalqalah sur le premier Dāl dans « Qad dakhalū ».',
-            correctionFr: 'Le premier Dāl a totalement fusionné : il n\'a ni soukoûn ni rebond. On passe directement au Dāl doublé avec Shaddah.'
+            "trapFr": "Faire une Qalqalah sur la première lettre soukounée avant d'enchaîner sur la seconde (ex: dire 'Qad-e-dakhalū').",
+            "correctionFr": "La Qalqalah est strictement interdite en cas d'Idghām : fondez directement les deux sons en une seule Shaddah."
           }
         ]
       },
       {
-        id: 'mutamathilayn-madd-exceptions',
-        nameFr: '2. L\'Exception Sacrée des Lettres de Madd (فِى يُوسُفَ & ءَامَنُواْ وَعَمِلُواْ)',
-        nameAr: 'اسْتِثْنَاءُ حُرُوفِ المَدِّ مِنَ الإِدْغَامِ (حُكْمُ الإِظْهَارِ)',
-        mnemonic: 'Lettre de Madd + Consonne identique ➔ TOUJOURS Izhār avec 2 temps de Madd !',
-        letters: ['و', 'ي'],
-        definitionFr: 'Bien que le Yā\' et le Wāw de prolongation soient suivis d\'une consonne de même graphie, IL EST STRICTEMENT INTERDIT de les assimiler ! Le point d\'articulation d\'une voyelle longue est la cavité buccale (Al-Jawf), tandis que la consonne naît de la langue ou des lèvres.',
-        mechanismFr: 'Maintenez les 2 temps complets de Madd Naturel sur « Fī » et « Āmanū » avant d\'articuler distinctement la consonne qui suit, sans Shaddah.',
-        durationHarakat: 2,
-        examples: [
+        "id": "madd-letters-no-idgham",
+        "nameFr": "2. L'Exception Sacrée des Lettres de Madd (فِى يُوسُفَ & ءَامَنُواْ)",
+        "nameAr": "اسْتِثْنَاءُ حُرُوفِ المَدِّ مِنَ الإِدْغَامِ (وُجُوبُ الإِظْهَارِ)",
+        "mnemonic": "Lettre de Madd + Lettre identique = Izhār OBLIGATOIRE (2 temps de Madd)",
+        "letters": [],
+        "definitionFr": "Bien qu'un Wāw de Madd ressemble à une consonne Wāw et qu'un Yā' de Madd ressemble à une consonne Yā', les lettres de prolongation ne naissent PAS du même point d'articulation (elles naissent du vide buccal Al-Jawf, alors que les consonnes naissent des lèvres ou du milieu de la langue). Elles ne fusionnent JAMAIS !",
+        "definitionLughatan": {
+          "ar": "المَانِعُ: الحَائِلُ الَّذِي يَمْنَعُ وُقُوعَ الإِدْغَامِ حِفْظاً لِلْمَدِّ.",
+          "fr": "L'obstacle physiologique qui empêche la fusion pour préserver la prolongation."
+        },
+        "definitionIstilahan": {
+          "ar": "امْتِنَاعُ إِدْغَامِ حَرْفِ المَدِّ فِي مِثْلِهِ خَوْفَ زَوَالِ المَدِّ بِالإِدْغَامِ، فَيَجِبُ الإِظْهَارُ فِي نَحْوِ: ﴿فِي يُوسُفَ﴾ وَ﴿آمَنُوا وَعَمِلُوا﴾.",
+          "fr": "L'interdiction absolue de fusionner une lettre de Madd dans son homologue afin de ne pas détruire la durée de la prolongation : l'Izhār est obligatoire."
+        },
+        "mechanismFr": "Donnez 2 temps pleins de prolongation naturelle sur le mot, puis articulez la consonne suivante de manière indépendante sans créer de Shaddah.",
+        "physiologicalDetails": {
+          "tongue": "Reste au fond pour laisser résonner la voyelle longue, puis se mobilise pour la consonne.",
+          "lips": "S'arrondissent pour le Madd, puis ré-engagent le Wāw consonne.",
+          "vocalCords": "Vibration continue sur 2 temps.",
+          "airflow": "Flux continu sans interruption."
+        },
+        "phoneticReasonFr": "Si vous fusionniez le Wāw de prolongation de « Āmanū » dans le Wāw suivant de « Wa 'amilū », la prolongation disparaîtrait, transformant le pluriel en singulier et déformant la grammaire coranique.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَظْهِرَنَّ فِي يَقُولُ مَعْ فِعَالْ * وَفِي اتَّقَوْا وَآمَنُوا لَا فِي ادْغَالْ\nوَأَبِنِ المَدَّ فِي نَحْوِ: فِى يُوسُفَ حَتْمَا * وَاصْبِرْ عَلَى وَاوِ: عَصَوْا وَكَانُوا لُزْمَا",
+          "transliteration": "Wa azhiranna fī yaqūlu ma' fi'āl * Wa fitta-qaw wa āmanū lā fīd-dighāl / Wa abini-l-madda fī nahwi Fī Yūsufa hatmā * Wasbir 'alā wāwi 'Asaw wa kānū luzmā",
+          "translationFr": "« Rends manifeste la récitation et préserve la prolongation dans 'Fī Yūsuf' de manière impérative, et maintiens le Wāw dans 'Āmanū wa 'amilū' sans jamais fusionner. »",
+          "chapterNameAr": "بَابُ المَانِعِ مِنَ الإِدْغَامِ"
+        },
+        "examples": [
           {
-            id: 'ex-c11-4',
-            arabicText: 'لَّقَدۡ كَانَ فِى يُوسُفَ وَإِخۡوَتِهِۦٓ ءَايَٰتٞ',
-            surahAyahRef: '12:7',
-            surahNameFr: 'Yūsuf',
-            highlightSegment: 'فِى يُوسُفَ',
-            highlightLetter: 'ي de Madd + يُ consonne ➔ Pas d\'Idghām !',
-            ruleApplied: 'Izhār obligatoire avec Madd Naturel 2 temps (Fī Yūsuf)',
-            ruleTag: 'madd',
-            explanationFr: 'Le Yā\' de « Fī » est une voyelle longue d\'Al-Jawf. On prononce « Fī » avec 2 temps pleins puis « Yūsufa » clairement. Assimiler en « Fiy-yūsuf » est un Lahn interdit !',
-            transliteration: 'Laqad kāna fī yūsufa wa-ikhwatihī āyāt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/012007.mp3'
-          },
-          {
-            id: 'ex-c11-5',
-            arabicText: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ',
-            surahAyahRef: '11:23',
-            surahNameFr: 'Hūd',
-            highlightSegment: 'ءَامَنُواْ وَعَمِلُواْ',
-            highlightLetter: 'و de Madd + وَ consonne ➔ Pas d\'Idghām !',
-            ruleApplied: 'Izhār obligatoire avec Madd Naturel 2 temps (Āmanū wa-\'amilū)',
-            ruleTag: 'madd',
-            explanationFr: 'Le Wāw de « Āmanū » est une voyelle longue. On prolonge 2 temps « Āmanū » puis on attaque le Wāw consonne « wa-\'amilū ». Interdiction absolue de fusionner en « Āmanuw-wa-\'amilū » !',
-            transliteration: 'Innal-ladhīna āmanū wa-\'amilūs-sālihāt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011023.mp3'
+            "id": "ex-c11-2",
+            "arabicText": "ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ",
+            "surahAyahRef": "2:25",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "ءَامَنُواْ وَعَمِلُواْ",
+            "highlightLetter": "ـُواْ وَ (Izhār Obligatoire)",
+            "ruleApplied": "Madd Naturel préservé sans fusion",
+            "ruleTag": "madd",
+            "explanationFr": "Le Wāw de « Āmanū » est une lettre de prolongation de 2 temps. Il est strictement interdit de le fusionner dans le Wāw suivant : dites « Āmanū » (2 temps) puis « Wa 'amilū ».",
+            "transliteration": "Āmanū wa 'amilū",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002025.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Avaler le Madd de « Fī » ou « Āmanū » pour enchaîner directement sur une Shaddah (« Fiy-yūsuf » ou « Āmanuw-wa »).',
-            correctionFr: 'C\'est l\'un des pièges les plus dénoncés par les imams du Tajwīd : le Madd doit être pleinement déployé pendant 2 temps avant d\'émettre la consonne suivante.'
+            "trapFr": "Fusionner en disant « Āmanuwwa 'amilū » en écrasant la voyelle longue du pluriel.",
+            "correctionFr": "Marquez toujours 2 temps calmes sur le Madd avant d'articuler le mot suivant."
           }
         ]
       },
       {
-        id: 'idgham-kamil-similar',
-        nameFr: '3. Les 8 Cas d\'Assimilation Totale (Mutajānisayn & Mutaqāribayn)',
-        nameAr: 'حَالَاتُ الإِدْغَامِ الكَامِلِ الثَّمَانِي (المُتَجَانِسَيْنِ وَالمُتَقَارِبَيْنِ)',
-        mnemonic: '8 couples précis : ت➔ط, ذ➔ظ, ب➔م, ق➔ك, د➔ت, ت➔د, ل➔ر, ث➔ذ',
-        letters: ['ت', 'ط', 'ذ', 'ظ', 'ب', 'م', 'ق', 'ك', 'د', 'ل', 'ر', 'ث'],
-        definitionFr: 'Lorsque deux lettres proches (Mutaqāribayn) ou de même point d\'articulation (Mutajānisayn) se rencontrent et que la première est sākinah, la première disparaît totalement au profit de la seconde qui prend une Shaddah.',
-        mechanismFr: 'La première consonne s\'efface à 100%. Cas unique exceptionnel : dans « Irkam-ma\'anā » (ب dans م), la fusion produit un Mīm Mushaddadah avec une Ghunnah de 2 temps obligatoires !',
-        durationHarakat: 0,
-        examples: [
+        "id": "idgham-naqis-basatta",
+        "nameFr": "3. L'Assimilation Partielle (Idghām Nāqis dans بَسَطتَ & أَحَطتُ)",
+        "nameAr": "الإِدْغَامُ النَّاقِصُ (بَسَطتَ، أَحَطتُ، فَرَّطتُمْ)",
+        "mnemonic": "ط lourd + ت fin = Conserver l'emphase (Isti'lā') et l'écrasement (Itbāq) du Tā' SANS Qalqalah, puis relâcher en Tā'",
+        "letters": [
+          "ط",
+          "ت"
+        ],
+        "definitionFr": "L'Idghām Nāqis est une merveille de précision phonétique : lorsque la lettre forte et lourde Tā' (ط) sans voyelle rencontre la lettre fine et faible Tā' (ت), le Tā' ne peut pas être totalement anéanti. On absorbe son point d'articulation dans le Tā' tout en conservant son emphase et son écrasement palatin (Itbāq), sans émettre de Qalqalah.",
+        "definitionLughatan": {
+          "ar": "النَّاقِصُ: الَّذِي لَمْ يَكْتَمِلْ ذَهَابُ أَثَرِهِ بَلْ بَقِيَتْ مِنْهُ صِفَةٌ قَوِيَّةٌ.",
+          "fr": "Incomplet, partiel : dont la disparition n'est pas totale car un attribut de force subsiste."
+        },
+        "definitionIstilahan": {
+          "ar": "إِدْغَامُ حَرْفٍ قَوِيٍّ (الطَّاءِ) فِي حَرْفٍ ضَعِيفٍ (التَّاءِ) بِحَيْثُ يَسْقُطُ مَخْرَجُهُ وَتَبْقَى صِفَتَا الاسْتِعْلَاءِ وَالإِطْبَاقِ بِلَا قَلْقَلَةٍ.",
+          "fr": "Assimiler une lettre forte dans une lettre faible de telle sorte que son point d'articulation disparaisse tout en maintenant ses qualités d'Isti'lā' et d'Itbāq sans Qalqalah."
+        },
+        "mechanismFr": "Plaquez fermement et largement la langue contre la voûte du palais pour sceller l'emphase du Tā' lourd SANS ouvrir la bouche (interdiction absolue de faire une Qalqalah !), puis décollez la langue en expirant le souffle léger du Tā' fin.",
+        "physiologicalDetails": {
+          "tongue": "Écrasement large de la langue contre le palais dur (Itbāq), retenue sans relâchement, puis libération ciblée sur l'apex pour le Tā'.",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration bloquée sur l'occlusion, puis relâchement d'air soufflé (Hams) sur le Tā'.",
+          "airflow": "Pression étanche bloquée sous la langue puis libérée en souffle fin."
+        },
+        "phoneticReasonFr": "En phonétique sacrée, une consonne puissante et majestueuse ne peut pas être dissoute par une consonne faible. Conserver l'Itbāq préserve la noblesse de la lettre divine.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَبَيِّنِ الإِطْبَاقَ مِنْ أَحَطتُ مَعْ * بَسَطتَ وَالخُلْفُ بِنَخْلُقكُّمْ وَقَعْ",
+          "transliteration": "Wa bayyini-l-itbāqa min Ahattu ma' * Basatta wal-khulfu bi-Nakhluqkum waqa'",
+          "translationFr": "« Et rends bien évident l'écrasement palatin (Itbāq) dans 'Ahattu' ainsi que dans 'Basatta' ; et une divergence existe dans 'Nakhluqkum' quant à la plénitude de la fusion. » (Verset 54)",
+          "chapterNameAr": "بَابُ الإِدْغَامِ النَّاقِصِ"
+        },
+        "examples": [
           {
-            id: 'ex-c11-6',
-            arabicText: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا وَلَا تَكُن مَّعَ ٱلۡكَٰفِرِينَ',
-            surahAyahRef: '11:42',
-            surahNameFr: 'Hūd',
-            highlightSegment: 'ٱرۡكَب مَّعَنَا',
-            highlightLetter: 'ب + م ➔ مّ avec Ghunnah 2 temps',
-            ruleApplied: 'Idghām Mutajānisayn Kāmil avec Ghunnah (Irkam-ma\'anā)',
-            ruleTag: 'ghunnah',
-            explanationFr: 'Cas unique dans tout le Coran : le Bā\' sans voyelle de « Irkab » fusionne dans le Mīm de « ma\'anā » : on prononce « Irkam-ma\'anā » avec 2 temps de Ghunnah nasale !',
-            transliteration: 'Yā bunayya-rkam-ma\'anā',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011042.mp3'
-          },
-          {
-            id: 'ex-c11-7',
-            arabicText: 'أَلَمۡ نَخۡلُقكُّم مِّن مَّآءٖ مَّهِينٖ',
-            surahAyahRef: '77:20',
-            surahNameFr: 'Al-Mursalāt',
-            highlightSegment: 'نَخۡلُقكُّم',
-            highlightLetter: 'ق + ك ➔ كّ',
-            ruleApplied: 'Idghām Mutaqāribayn Kāmil (Nakhlukkum)',
-            ruleTag: 'silent',
-            explanationFr: 'Dans la lecture de Hafs via Ash-Shātibiyyah, le Qāf sans voyelle fusionne totalement dans le Kāf : on prononce « Nakhlukkum » avec un pur Kāf Mushaddadah !',
-            transliteration: 'Alam nakhluk-kum mim-mā\'im-mahīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/077020.mp3'
-          },
-          {
-            id: 'ex-c11-8',
-            arabicText: 'قَد تَّبَيَّنَ ٱلرُّشۡدُ مِنَ ٱلۡغَيِّۚ',
-            surahAyahRef: '2:256',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'قَد تَّبَيَّنَ',
-            highlightLetter: 'د + ت ➔ تّ',
-            ruleApplied: 'Idghām Mutajānisayn Kāmil (Qat-tabayyana)',
-            ruleTag: 'silent',
-            explanationFr: 'Le Dāl et le Tā\' partagent exactement le même point d\'articulation. Le Dāl fond dans le Tā\' qui prend une Shaddah : « Qat-tabayyana ».',
-            transliteration: 'Qat-tabayyanar-rushdu minal-ghayy',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002256.mp3'
-          },
-          {
-            id: 'ex-c11-9',
-            arabicText: 'بَل رَّفَعَهُ ٱللَّهُ إِلَيۡهِۚ',
-            surahAyahRef: '4:158',
-            surahNameFr: 'An-Nisā\'',
-            highlightSegment: 'بَل رَّفَعَهُ',
-            highlightLetter: 'ل + ر ➔ رّ',
-            ruleApplied: 'Idghām Mutaqāribayn Kāmil (Bar-rafa\'ahu)',
-            ruleTag: 'silent',
-            explanationFr: 'Le Lām de la particule « Bal » fusionne totalement dans le Râ\' qui prend une Shaddah : « Bar-rafa\'ahu-llāh ».',
-            transliteration: 'Bar-rafa\'ahul-lāhu ilayh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/004158.mp3'
+            "id": "ex-c11-3",
+            "arabicText": "لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ لِتَقۡتُلَنِى",
+            "surahAyahRef": "5:28",
+            "surahNameFr": "Al-Mā'idah",
+            "highlightSegment": "بَسَطتَ",
+            "highlightLetter": "ـطتَ (Idghām Nāqis)",
+            "ruleApplied": "Itbāq du Tā' sans Qalqalah",
+            "ruleTag": "heavy",
+            "explanationFr": "Plaquez la langue en écrasement lourd sur le Tā', ne faites aucun rebond de Qalqalah, puis détachez la langue sur le son 'ta' fin : « Basat-ta ».",
+            "transliteration": "La'im basatta",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/005028.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Oublier la Ghunnah de 2 temps sur « Irkam-ma\'anā » en passant trop vite.',
-            correctionFr: 'Le Bā\' transformé en Mīm avec Shaddah exige impérativement 2 pulsations complètes de résonance nasale.'
-          },
-          {
-            trapFr: 'Faire une Qalqalah sur le Bā\' de « Irkab » en lisant en continu.',
-            correctionFr: 'En lecture continue, le Bā\' n\'existe plus ! La Qalqalah ne réapparaît que si vous vous arrêtez d\'urgence sur « Irkab ».'
-          }
-        ]
-      },
-      {
-        id: 'idgham-naqis-ta-ta',
-        nameFr: '4. L\'Assimilation Partielle (Idghām Nāqis : ط dans ت)',
-        nameAr: 'الإِدْغَامُ النَّاقِصُ (إِدْغَامُ الطَّاءِ فِي التَّاءِ)',
-        mnemonic: 'Formule unique : ط + ت (Basatta, Farrattum, Ahattu) — Emphase conservée SANS Qalqalah',
-        letters: ['ط', 'ت'],
-        definitionFr: 'Le Tā\' (ط) est doté des attributs les plus puissants du Tajwīd (emphase Isti\'lā\' et compression Itbāq), alors que le Tā\' (ت) est faible et mince. Il est donc impossible de dissoudre entièrement le Tā\' dans le Tā\' : l\'assimilation reste partielle (Nāqis).',
-        mechanismFr: 'Collez la langue contre le palais supérieur avec l\'emphase et la fermeture du Tā\' (SANS relâcher en Qalqalah), puis décollez la langue en prononçant le son fin du Tā\' (ت) !',
-        durationHarakat: 0,
-        examples: [
-          {
-            id: 'ex-c11-10',
-            arabicText: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ لِتَقۡتُلَنِى',
-            surahAyahRef: '5:28',
-            surahNameFr: 'Al-Mā\'idah',
-            highlightSegment: 'بَسَطتَ',
-            highlightLetter: 'ط + ت (Idghām Nāqis)',
-            ruleApplied: 'Idghām Mutajānisayn Nāqis (Basatta)',
-            ruleTag: 'heavy',
-            explanationFr: 'La langue se plaque contre le palais pour bloquer le Tā\' lourd (Itbāq) sans émettre de rebond de Qalqalah, puis la voix libère un Tā\' fin et doux.',
-            transliteration: 'La\'im-basatta ilayya yadaka',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/005028.mp3'
-          },
-          {
-            id: 'ex-c11-11',
-            arabicText: 'فَقَالَ أَحَطتُ بِمَا لَمۡ تُحِطۡ بِهِۦ',
-            surahAyahRef: '27:22',
-            surahNameFr: 'An-Naml',
-            highlightSegment: 'أَحَطتُ',
-            highlightLetter: 'ط + ت (Idghām Nāqis)',
-            ruleApplied: 'Idghām Mutajānisayn Nāqis (Ahattu)',
-            ruleTag: 'heavy',
-            explanationFr: 'Même mécanisme dans « Ahat-tu » : la lourdeur du Tā\' est scellée sans Qalqalah, puis relâchée sur le Tā\' avec Dammah.',
-            transliteration: 'Faqāla ahattu bimā lam tuhit bih',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/027022.mp3'
-          }
-        ],
-        commonMistakes: [
-          {
-            trapFr: 'Faire une Qalqalah sur le Tā\' dans « Basat-ta » en disant « Basata-ta ».',
-            correctionFr: 'Il n\'y a AUCUNE Qalqalah dans l\'Idghām Nāqis : la fermeture du Tā\' doit être silencieuse et retenue jusqu\'à l\'émission du Tā\'.'
-          },
-          {
-            trapFr: 'Amincir le mot entier en disant « Basatta » avec un Tā\' ordinaire dès le début.',
-            correctionFr: 'L\'emphase (Tafkhīm) du Tā\' doit être nettement entendue avant la libération du Tā\'.'
+            "trapFr": "Faire une Qalqalah sur le Tā' en disant « Basat-e-ta » ou « Ahat-e-tu ».",
+            "correctionFr": "Ne décollez jamais la langue entre les deux sons ! Gardez l'adhérence palatine jusqu'à la libération sur le Tā'."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c11-1',
-        title: 'Analyse guidée : Sūrah Hūd (11:42) — « Yā bunayya-rkam ma\'anā »',
-        verseArabic: 'وَهِيَ تَجۡرِي بِهِمۡ فِي مَوۡجٖ كَٱلۡجِبَالِ وَنَادَىٰ نُوحٌ ٱبۡنَهُۥ وَكَانَ فِي مَعۡزِلٖ يَٰبُنَيَّ ٱرۡكَب مَّعَنَا وَلَا تَكُن مَّعَ ٱلۡكَٰفِرِينَ',
-        surahAyahRef: '11:42',
-        targetSegment: 'يَٰبُنَيَّ ٱرۡكَب مَّعَنَا',
-        promptFr: 'Comment se récite la rencontre entre le Bā\' de « Irkab » et le Mīm de « ma\'anā » en continu, et que se passe-t-il si le récitateur s\'arrête sur « Irkab » ?',
-        hintFr: 'Distinguez le comportement en liaison continue (Wasl) de l\'arrêt d\'urgence (Waqf).',
-        solutionFr: 'En lecture continue (Wasl) : le Bā\' fusionne entièrement dans le Mīm (Idghām Mutajānisayn Kāmil) avec une Ghunnah obligatoire de 2 temps ➔ « Irkam-ma\'anā ». À l\'arrêt d\'urgence (Waqf sur « Irkab ») : l\'assimilation est annulée, le Bā\' retrouve son Soukoûn et produit un rebond sonore de Qalqalah Wustā ➔ « Irkab ! ».',
-        breakdownSteps: [
-          'Étape 1 : Le mot « ٱرۡكَب » se termine par un Bā\' sākin sans voyelle dans le Rasm coranique.',
-          'Étape 2 : Le mot suivant « مَّعَنَا » commence par un Mīm, lettre voisine articulée aux lèvres.',
-          'Étape 3 : En continu, le Bā\' s\'efface complètement dans le Mīm qui prend une Shaddah avec 2 temps de résonance nasale.',
-          'Étape 4 : Si le souffle s\'interrompt sur « Irkab », l\'Idghām disparaît et le Bā\' claque en Qalqalah Wustā.'
+        "id": "exo-c11-1",
+        "title": "Chirurgie phonétique : « فَقَالَ أَحَطتُ بِمَا لَمۡ تُحِطۡ بِهِۦ »",
+        "verseArabic": "فَمَكَثَ غَيۡرَ بَعِيدٖ فَقَالَ أَحَطتُ بِمَا لَمۡ تُحِطۡ بِهِۦ",
+        "surahAyahRef": "27:22",
+        "targetSegment": "أَحَطتُ",
+        "promptFr": "Comment devez-vous articuler la rencontre entre le Tā' (ط) et le Tā' (ت) dans « Ahattu » ?",
+        "hintFr": "Rappelez-vous du verset d'Al-Jazariyyah : « وَبَيِّنِ الإِطْبَاقَ مِنْ أَحَطتُ ».",
+        "solutionFr": "Conserver l'Itbāq (lourdeur) du Tā' sans Qalqalah, puis libérer sur le Tā' fin",
+        "breakdownSteps": [
+          "Le Tā' (ط) est soukouné et le Tā' (ت) est voyellé.",
+          "Le Tā' ne fusionne pas entièrement car il est plus fort que le Tā'.",
+          "On maintient la langue collée au palais pour produire l'emphase, puis on ouvre sur le son 'tu' fin."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/011042.mp3'
-      },
-      {
-        id: 'exo-c11-2',
-        title: 'L\'Assimilation Partielle (Idghām Nāqis) dans Al-Mā\'idah (5:28)',
-        verseArabic: 'لَئِنۢ بَسَطتَ إِلَيَّ يَدَكَ لِتَقۡتُلَنِي مَآ أَنَا۠ بِبَاسِطٖ يَدِيَ إِلَيۡكَ لِأَقۡتُلَكَ',
-        surahAyahRef: '5:28',
-        targetSegment: 'بَسَطتَ',
-        promptFr: 'Pourquoi qualifie-t-on la fusion de « Basatta » d\'Idghām Nāqis (partiel), et quelle est la technique pour le réussir ?',
-        hintFr: 'Le Tā\' (ط) est-il plus lourd ou plus léger que le Tā\' (ت) ? Fait-on une Qalqalah ?',
-        solutionFr: 'Le Tā\' (ط) est plus fort que le Tā\' (ت) car il possède l\'élévation (Isti\'lā\') et l\'écrasement lingual (Itbāq). Comme la lettre faible ne peut pas engloutir la lettre forte, le Tā\' conserve ses qualités lourdes mais perd son explosion (pas de Qalqalah). La langue se plaque avec fermeté pour sceller le son lourd, puis se détache sur le son doux du Tā\'.',
-        breakdownSteps: [
-          'Étape 1 : Observez la rencontre du Tā\' sākin (ط) suivi du Tā\' (ت) dans le même mot.',
-          'Étape 2 : Bloquez l\'air au point d\'articulation en élevant l\'arrière de la langue (Itbāq lourd).',
-          'Étape 3 : Gardez la langue scellée SANS rebond de Qalqalah (erreur fréquente).',
-          'Étape 4 : Relâchez l\'air avec la sonorité fine du Tā\' : « Basat-ta ».'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/005028.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/027022.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c11-1',
-        type: 'mcq',
-        promptFr: 'Pourquoi les lettres identiques dans « Fī Yūsuf » (فِى يُوسُفَ) et « Āmanū wa \'amilū » (ءَامَنُواْ وَعَمِلُواْ) ne doivent-elles JAMAIS fusionner ?',
-        verseArabic: 'لَّقَدۡ كَانَ فِى يُوسُفَ ۝ ءَامَنُواْ وَعَمِلُواْ',
-        surahAyahRef: '12:7',
-        options: [
-          'Car la première lettre est une lettre de prolongation (Madd) issue du vide de la bouche (Al-Jawf), ayant un point d\'articulation différent de la consonne',
-          'Car il faut marquer une pause obligatoire (Saktah) entre les deux mots',
-          'Car le Coran interdit toute assimilation entre deux mots distincts',
-          'Car la deuxième lettre porte un soukoûn'
+        "id": "q-c11-1",
+        "type": "error_detect",
+        "promptFr": "Dans « وَقَالُوا اتَّقَوْا وَآمَنُوا ثُمَّ اتَّقَوْا وَّآمَنُوا », un lecteur fusionne le Wāw de prolongation de « Āmanū » dans le Wāw suivant en disant « Āmanuwwa ». Quel est le jugement ?",
+        "verseArabic": "ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ",
+        "targetWord": "ءَامَنُواْ وَعَمِلُواْ",
+        "surahAyahRef": "2:25",
+        "options": [
+          "Lahn Jalī : Fusion interdite ! Les lettres de prolongation ne fusionnent JAMAIS sous peine de détruire le Madd du pluriel",
+          "Idghām recommandé",
+          "Règle optionnelle",
+          "Qalqalah obligatoire"
         ],
-        correctAnswer: 'Car la première lettre est une lettre de prolongation (Madd) issue du vide de la bouche (Al-Jawf), ayant un point d\'articulation différent de la consonne',
-        explanationFr: 'Bien qu\'ayant la même graphie, une lettre de Madd n\'a pas le même Makhraj qu\'une consonne. Les fusionner détruirait la voyelle longue : l\'Izhār avec 2 temps de Madd est obligatoire.',
-        ruleId: 'mutamathilayn-madd-exceptions'
+        "correctAnswer": "Lahn Jalī : Fusion interdite ! Les lettres de prolongation ne fusionnent JAMAIS sous peine de détruire le Madd du pluriel",
+        "explanationFr": "L'exception sacrée protège les lettres de Madd : elles naissent d'Al-Jawf et doivent conserver leurs 2 temps pleins sans jamais être absorbées dans une Shaddah.",
+        "ruleId": "madd-letters-no-idgham"
       },
       {
-        id: 'q-c11-2',
-        type: 'mcq',
-        promptFr: 'Dans Sūrah Hūd (11:42), comment se prononce « Irkab ma\'anā » en liaison continue (Wasl) ?',
-        verseArabic: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا',
-        surahAyahRef: '11:42',
-        options: [
-          'Le Bā\' fusionne entièrement dans le Mīm avec 2 temps de Ghunnah nasale : « Irkam-ma\'anā »',
-          'Le Bā\' est prononcé avec une Qalqalah vive : « Irkab-ma\'anā »',
-          'Le Bā\' devient un Nūn avec Idghām : « Irkan-ma\'anā »',
-          'On marque un arrêt complet de 2 secondes entre les deux mots'
+        "id": "q-c11-2",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Dans « بَسَطْتَ », pourquoi l'assimilation du Tā' dans le Tā' est-elle qualifiée d'incomplète (Nāqis) ?",
+        "verseArabic": "لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ",
+        "options": [
+          "Parce que la caractéristique d'écrasement palatin (Itbāq) du Tā' est conservée et ne disparaît pas",
+          "Parce qu'on ne prononce que le Tā'",
+          "Parce qu'il y a une Ghunnah",
+          "Parce qu'on doit respirer au milieu"
         ],
-        correctAnswer: 'Le Bā\' fusionne entièrement dans le Mīm avec 2 temps de Ghunnah nasale : « Irkam-ma\'anā »',
-        explanationFr: 'C\'est l\'unique cas d\'Idghām Mutajānisayn de Bā\' dans Mīm du Coran : le son B disparaît totalement et forme un Mīm doublé avec 2 temps de résonance nasale.',
-        ruleId: 'idgham-kamil-similar'
-      },
-      {
-        id: 'q-c11-3',
-        type: 'mcq',
-        promptFr: 'Dans « Basatta » (بَسَطتَ), pourquoi l\'assimilation du Tā\' (ط) dans le Tā\' (ت) est-elle dite « partielle » (Idghām Nāqis) ?',
-        verseArabic: 'لَئِنۢ بَسَطتَ إِلَىَّ يَدَكَ',
-        surahAyahRef: '5:28',
-        options: [
-          'Car les caractéristiques lourdes du Tā\' (emphase et Itbāq) sont préservées, sans Qalqalah, avant de relâcher sur le Tā\' fin',
-          'Car on récite le mot en coupant le souffle au milieu',
-          'Car la lettre Tā\' disparaît à 100% sans laisser aucune trace',
-          'Car le Tā\' prend un soukoûn avec sifflement'
-        ],
-        correctAnswer: 'Car les caractéristiques lourdes du Tā\' (emphase et Itbāq) sont préservées, sans Qalqalah, avant de relâcher sur le Tā\' fin',
-        explanationFr: 'Une lettre forte (Tā\') ne peut être entièrement absorbée par une lettre faible (Tā\'). L\'emphase et le placage lingual subsistent, mais la Qalqalah est supprimée.',
-        ruleId: 'idgham-naqis-ta-ta'
-      },
-      {
-        id: 'q-c11-4',
-        type: 'error_detect',
-        promptFr: 'Un récitateur s\'arrête par manque de souffle sur le mot « ٱرۡكَبۡ » dans 11:42 en disant « Irkam ! ». Quelle est l\'erreur ?',
-        verseArabic: 'يَٰبُنَىَّ ٱرۡكَب مَّعَنَا',
-        targetWord: 'ٱرۡكَب',
-        surahAyahRef: '11:42',
-        options: [
-          'Erreur majeure : L\'assimilation n\'existe qu\'en reliant les mots ! À l\'arrêt, le Bā\' retrouve sa prononciation originelle avec un rebond net de Qalqalah : « Irkab ! ».',
-          'Aucune erreur, l\'assimilation est permanente même à l\'arrêt.',
-          'Il fallait prononcer un son Wāw.',
-          'Il fallait prolonger le mot de 6 temps.'
-        ],
-        correctAnswer: 'Erreur majeure : L\'assimilation n\'existe qu\'en reliant les mots ! À l\'arrêt, le Bā\' retrouve sa prononciation originelle avec un rebond net de Qalqalah : « Irkab ! ».',
-        explanationFr: 'L\'assimilation entre deux mots dépend entièrement de la liaison continue (Wasl). Si l\'on s\'arrête sur le premier mot, la consonne finale est prononcée avec clarté (Izhār) et rebond de Qalqalah.',
-        ruleId: 'idgham-kamil-similar'
-      },
-      {
-        id: 'q-c11-5',
-        type: 'click_word',
-        promptFr: 'Repérage visuel : Cliquez sur le mot contenant une assimilation d\'identiques (Mutamāthilayn) dans le MÊME mot.',
-        verseArabic: 'أَيۡنَمَا تَكُونُواْ يُدۡرِككُّمُ ٱلۡمَوۡتُ وَلَوۡ كُنتُمۡ فِى بُرُوجٖ مُّشَيَّدَةٖ',
-        clickableSegments: ['أَيۡنَمَا', 'تَكُونُواْ', 'يُدۡرِككُّمُ', 'ٱلۡمَوۡتُ', 'بُرُوجٖ', 'مُّشَيَّدَةٖ'],
-        correctAnswer: 'يُدۡرِككُّمُ',
-        explanationFr: 'Dans « Yudrik-kum », deux Kāf se rencontrent dans le même mot. Le premier est nu et fond entièrement dans le second qui porte une Shaddah (« Yudrikkumu »).',
-        ruleId: 'idgham-mutamathilayn'
+        "correctAnswer": "Parce que la caractéristique d'écrasement palatin (Itbāq) du Tā' est conservée et ne disparaît pas",
+        "explanationFr": "L'Idghām est complet (Kāmil) quand la première lettre s'efface corps et âme. Ici, le corps du Tā' disparaît mais son âme (son emphase et son Itbāq) reste vivante : c'est un Idghām Nāqis.",
+        "ruleId": "idgham-naqis-basatta"
       }
     ]
   },
-  // ==========================================
-  // CHAPITRE 12 : TAFKHĪM & TARQĪQ (EMPHASE & AMINCISSEMENT)
-  // ==========================================
   {
-    id: 'chap-12',
-    number: 12,
-    slug: 'heavy-light',
-    titleFr: 'Emphase & Amincissement (Tafkhīm & Tarqīq)',
-    titleAr: 'التَّفْخِيمُ وَالتَّرْقِيقُ',
-    category: 'advanced',
-    estimatedMinutes: 20,
-    isPilotChapter: true,
-    summaryFr: 'Comprendre et maîtriser la résonance des lettres arabes : les 7 lettres d\'emphase absolue (خُصَّ ضَغۡطٍ قِظۡ) et leurs 5 degrés, le piège fatal de l\'arrondissement des lèvres, les 3 lettres hybrides caméléons (Alif, Lām du Nom d\'Allah, et la Râ\' avec ses 4 cas de finesse), et l\'art suprême de la décontamination des lettres adjacentes (Takhlees Al-Hurūf).',
-    infographicPoints: [
-      'Tafkhīm (Élévation / Isti\'lā\') : La résonance caverneuse est créée en élevant l\'arrière de la langue vers le voile du palais. Les lèvres NE DOIVENT JAMAIS s\'arrondir (sauf si la lettre porte une Dammah) !',
-      'Les 7 Lettres Toujours Lourdes : Mnémonique « خُصَّ ضَغۡطٍ قِظۡ » (Khuṣṣa Ḍaghṭin Qiz). Les 4 lettres d\'Itbāq (ص, ض, ط, ظ) ont une emphase encore plus puissante et compacte.',
-      'Les 5 Degrés d\'Emphase (Ibn Al-Jazarī) : 1. Fathah + Alif (صَابِرِينَ) > 2. Fathah seule (خَلَقَ) > 3. Dammah (يَقُولُ) > 4. Soukoûn (يَخۡشَىٰ) > 5. Kasrah (صِرَاطَ - degré minimal, mais toujours lourd !).',
-      'L\'Alif Caméléon : L\'Alif ne possède aucun son propre, il mime la lettre précédente ! Lourd après lettre lourde (خَالِدِينَ), fin après lettre légère (إِيَّاكَ).',
-      'La Lām du Nom Majestueux : La Lām est TOUJOURS fine dans tout le Coran, sauf dans le mot « Allāh / Allāhumma » s\'il est précédé d\'une Fathah ou Dammah (شَهِدَ ٱللَّهُ). S\'il est précédé d\'une Kasrah, il redevient fin (بِسۡمِ ٱللَّهِ).',
-      'La Râ\' (ر) : Lourde par défaut ! Elle n\'est amincie (Tarqīq) que dans 4 cas précis : avec Kasrah directe (رِجَالٌ), avec Soukoûn après Kasrah sans consonne lourde (فِرۡعَوۡنَ), à l\'arrêt après soukoûn précédé de kasrah (حِجۡرٍ), ou à l\'arrêt après un Yā\' soukouné (خَبِيرٌ, خَيۡرٌ).',
-      'Takhlees Al-Hurūf (Décontamination) : L\'épreuve de virtuosité du lecteur ! Dans « خَلَقَ », isoler le Lām fin au milieu de deux lettres lourdes (Khā et Qāf) sans le contaminer.'
+    "id": "chap-12",
+    "number": 12,
+    "slug": "heavy-light",
+    "titleFr": "Emphase & Amincissement (Tafkhīm & Tarqīq)",
+    "titleAr": "التَّفْخِيمُ وَالتَّرْقِيقُ وَأَحْكَامُ الرَّاءِ",
+    "category": "advanced",
+    "estimatedMinutes": 25,
+    "isPilotChapter": true,
+    "summaryFr": "Explorer la physique acoustique du Coran : les 7 consonnes d'Isti'lā' toujours lourdes (خُصَّ ضَغْطٍ قِظْ) et leurs 5 degrés de puissance, les lettres caméléons (Alif miroir, Lām d'Allah, et le grand simulateur de la Râ' avec ses 8 cas d'emphase, ses 4 cas d'amincissement et ses cas au choix) et la méthode chirurgicale du Takhlees Al-Hurūf.",
+    "infographicPoints": [
+      "Tafkhīm (التَّفْخِيم) : Épaissir la consonne pour emplir la bouche d'une résonance ample. Tarqīq (التَّرْقِيق) : Amincir le son avec douceur.",
+      "Les 7 Lettres d'Isti'lā' : خ, ص, ض, غ, ط, ق, ظ condensées dans « خُصَّ ضَغْطٍ قِظْ ». Elles sont TOUJOURS lourdes !",
+      "Les 4 Lettres d'Itbāq (Écrasement suprême) : ص, ض, ط, ظ sont les reines absolues de l'emphase.",
+      "Les 5 Degrés de Tafkhīm (selon Ibn Al-Jazarī) : 1. Fathah + Alif > 2. Fathah seule > 3. Dammah > 4. Soukoûn > 5. Kasrah.",
+      "La Râ' (ر) : 8 cas d'emphase par défaut, 4 cas d'amincissement (Kasrah directe, après Kasrah originelle, après Yā' à l'arrêt, etc.), et 3 cas au choix (Firq, Misr, Al-Qitr).",
+      "Takhlees Al-Hurūf (تخليص الحروف) : Isoler chaque consonne pour que le lourd ne contamine pas le léger dans « خَلَقَ » !"
     ],
-    subrules: [
+    "subrules": [
       {
-        id: 'heavy-letters-degrees',
-        nameFr: '1. Les 7 Lettres d\'Emphase Permanente & Leurs 5 Degrés',
-        nameAr: 'حُرُوفُ الِاسْتِعْلَاءِ السَّبْعَةُ وَمَرَاتِبُ التَّفْخِيمِ',
-        mnemonic: 'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz) | 5 Degrés du plus sonore au plus adouci',
-        letters: ['خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'],
-        definitionFr: 'Les 7 lettres d\'Isti\'lā\' (élévation de la racine de la langue) sont TOUJOURS emphatiques (Tafkhīm), quelle que soit leur voyelle ou leur position. Les 4 lettres d\'Itbāq (ص, ض, ط, ظ) possèdent la plus forte intensité en écrasant le corps de la langue contre le palais.',
-        mechanismFr: 'L\'emphase résulte de l\'élévation du fond de la langue et de l\'abaissement de sa partie centrale, créant une chambre acoustique caverneuse dans la cavité buccale. L\'intensité varie en 5 degrés hiérarchiques selon la voyelle associée.',
-        durationHarakat: 0,
-        examples: [
+        "id": "istila-7-degrees",
+        "nameFr": "1. Les 7 Lettres d'Isti'lā' (خُصَّ ضَغۡطٍ قِظۡ) & Leurs 5 Degrés",
+        "nameAr": "حُرُوفُ الاسْتِعْلَاءِ السَّبْعَةِ وَمَرَاتِبُ التَّفْخِيمِ الخَمْسُ",
+        "mnemonic": "Formule « خُصَّ ضَغْطٍ قِظْ » | Les 4 souveraines d'Itbāq : ص, ض, ط, ظ | 5 Degrés d'intensité",
+        "letters": [
+          "خ",
+          "ص",
+          "ض",
+          "غ",
+          "ط",
+          "ق",
+          "ظ"
+        ],
+        "definitionFr": "L'Isti'lā' (élévation) est la montée de la racine et du dos de la langue vers le voile du palais lors de l'émission sonore, provoquant une résonance ample et grave appelée Tafkhīm. Les 7 lettres de « Khuṣṣa Ḍaghṭin Qiz » sont constamment lourdes, avec une hiérarchie de 5 degrés de puissance.",
+        "definitionLughatan": {
+          "ar": "الاسْتِعْلَاءُ: العُلُوُّ وَالارْتِفَاعُ. التَّفْخِيمُ: التَّسْمِينُ وَالتَّعْظِيمُ.",
+          "fr": "Isti'lā' : l'élévation et la hauteur. Tafkhīm : l'engraissement et la magnification."
+        },
+        "definitionIstilahan": {
+          "ar": "تَصَاعُدُ صَوْتِ الحَرْفِ عِنْدَ النُّطْقِ بِهِ إِلَى الحَنَكِ الأَعْلَى. وَالتَّفْخِيمُ: رَبْوٌ يَدْخُلُ عَلَى صَوْتِ الحَرْفِ فَيَمْتَلِئُ الفَمُ بِصَدَاهُ.",
+          "fr": "L'ascension du son de la consonne vers le palais supérieur. Le Tafkhīm est l'épaississement qui emplit toute la cavité buccale de son écho majestueux."
+        },
+        "mechanismFr": "Élevez la base postérieure de la langue vers le palais mou tout en creusant légèrement le centre de la langue. Ne projetez JAMAIS les lèvres en rond (interdiction absolue d'ajouter un 'O' artificiel).",
+        "physiologicalDetails": {
+          "tongue": "Élévation marquée de la racine de la langue (Isti'lā') ; écrasement plaqué contre la voûte pour les 4 lettres d'Itbāq (ص, ض, ط, ظ).",
+          "lips": "Parfaitement neutres ! L'arrondissement des lèvres est une erreur majeure réservée à la Dammah.",
+          "vocalCords": "Vibration pleine.",
+          "airflow": "Réverbération caverneuse dans la cavité buccale élargie."
+        },
+        "phoneticReasonFr": "L'élévation linguale réduit le volume supérieur et crée une caisse de résonance pharyngienne qui abaisse la fréquence fondamentale du son, produisant le timbre grave et noble des consonnes sémitiques.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَحَرْفَ الاسْتِعْلَاءِ فَخِّمْ وَاخْصُصَا * الاِطْبَاقَ أَقْوَى نَحْوُ قَالَ وَالعَصَا\nوَبَيِّنِ الإِطْبَاقَ مِنْ أَحَطتُ مَعْ * بَسَطتَ وَالخُلْفُ بِنَخْلُقكُّمْ وَقَعْ",
+          "transliteration": "Wa harfa-l-isti'lā'i fakhkhim wakhsusā * Al-itbāqa aqwā nahwu Qāla wal-'Asā / Wa bayyini-l-itbāqa min Ahattu ma' * Basatta wal-khulfu bi-Nakhluqkum waqa'",
+          "translationFr": "« Donne de l'emphase aux lettres d'Isti'lā', et accorde aux lettres d'Itbāq une force supérieure comme dans 'Qāla' et 'Al-'Asā' ! » (Verset 55)",
+          "chapterNameAr": "بَابُ التَّفْخِيمِ"
+        },
+        "examples": [
           {
-            id: 'ex-c12-1',
-            arabicText: 'ٱلصَّٰبِرِينَ وَٱلصَّٰدِقِينَ وَٱلۡقَٰنِتِينَ',
-            surahAyahRef: '3:17',
-            surahNameFr: 'Āl \'Imrān',
-            highlightSegment: 'ٱلصَّٰبِرِينَ',
-            highlightLetter: 'صَّٰ (Degré 1 : Fathah + Alif)',
-            ruleApplied: 'Tafkhīm de 1er degré (Maximum)',
-            ruleTag: 'heavy',
-            explanationFr: 'La lettre Sād est suivie d\'un Alif : c\'est le sommet du Tafkhīm. L\'écho acoustique remplit toute la bouche.',
-            transliteration: 'As-Sābirīna',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003017.mp3'
-          },
-          {
-            id: 'ex-c12-2',
-            arabicText: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-            surahAyahRef: '1:7',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'صِرَٰطَ',
-            highlightLetter: 'صِ (Degré 5 : Kasrah)',
-            ruleApplied: 'Tafkhīm de 5e degré (Adouci)',
-            ruleTag: 'heavy',
-            explanationFr: 'Sous Kasrah, l\'emphase du Sād est au degré le plus bas, mais la lettre RESTE lourde ! Il est formellement interdit de la prononcer comme un Sīn fin.',
-            transliteration: 'Sirāta',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001007.mp3'
-          },
-          {
-            id: 'ex-c12-3',
-            arabicText: 'وَلَقَدۡ خَلَقۡنَا ٱلۡإِنسَٰنَ مِن سُلَٰلَةٖ مِّن طِينٖ',
-            surahAyahRef: '23:12',
-            surahNameFr: 'Al-Mu\'minūn',
-            highlightSegment: 'طِينٖ',
-            highlightLetter: 'طِ (Itbāq avec Kasrah)',
-            ruleApplied: 'Itbāq résistant à la Kasrah',
-            ruleTag: 'heavy',
-            explanationFr: 'Le Tā\' (ط) fait partie des 4 lettres d\'Itbāq : même avec une Kasrah, sa lourdeur reste très perceptible et ne doit jamais sonner comme un Tā\' (ت).',
-            transliteration: 'Min tīn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/023012.mp3'
+            "id": "ex-c12-1",
+            "arabicText": "قَالَ إِنَّى عَبۡدُ ٱللَّهِ",
+            "surahAyahRef": "19:30",
+            "surahNameFr": "Maryam",
+            "highlightSegment": "قَالَ",
+            "highlightLetter": "قَا (Degré 1 : Fathah + Alif)",
+            "ruleApplied": "Tafkhīm au Degré Suprême",
+            "ruleTag": "heavy",
+            "explanationFr": "Le Qāf porte une Fathah suivie d'un Alif : il atteint le degré 1, le plus haut niveau d'emphase du Coran : « Qāla ».",
+            "transliteration": "Qāla innī 'Abdu-Llāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/019030.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Arrondir les lèvres vers l\'avant en récitant une lettre lourde sans Dammah (ex: faire la moue sur « Khā »).',
-            correctionFr: 'Le Tafkhīm se fait exclusivement à l\'arrière du pharynx avec la langue ! Les lèvres doivent rester neutres et détendues.'
-          },
-          {
-            trapFr: 'Amincir les lettres lourdes lorsqu\'elles portent une Kasrah (ex: prononcer « Sirāt » comme « Sirate » avec un Sīn).',
-            correctionFr: 'Maintenez l\'élévation de l\'arrière de la langue même sous Kasrah pour préserver l\'identité de la lettre.'
+            "trapFr": "Pour les francophones : avancer et arrondir les lèvres en forme de 'O' pour faire une lettre lourde sans Dammah (ex: dire 'Khol' au lieu de 'Qāla').",
+            "correctionFr": "L'emphase se crée exclusivement à l'arrière de la langue, jamais avec les lèvres. Gardez les lèvres immobiles."
           }
         ]
       },
       {
-        id: 'hybrid-alif-lam',
-        nameFr: '2. Les Lettres Hybrides I : L\'Alif Caméléon & Le Nom d\'Allah',
-        nameAr: 'الأَلِفُ التَّابِعَةُ وَلَامُ لَفْظِ الجَلَالَةِ',
-        mnemonic: 'Alif = Miroir de son prédécesseur | Lām d\'Allah = Lourd après Fathah/Dammah, Léger après Kasrah',
-        letters: ['ا', 'ل'],
-        definitionFr: 'L\'Alif de prolongation n\'a pas de timbre propre : il est emphatique s\'il succède à une lettre d\'Isti\'lā\', et mince s\'il succède à une lettre d\'Istifāl. La Lām est toujours mince dans tout le Coran, sauf dans le Nom Sacré d\'Allah et Allāhumma.',
-        mechanismFr: 'Pour le Nom Majestueux « Allāh » : après une voyelle Fathah (ـَ) ou Dammah (ـُ), la Lām devient lourde et ample. Après une Kasrah (ـِ), elle retrouve sa finesse originelle.',
-        durationHarakat: 0,
-        examples: [
+        "id": "raa-simulator-mastery",
+        "nameFr": "2. Le Grand Simulateur de la Râ' (8 Tafkhīm, 4 Tarqīq, Cas au Choix)",
+        "nameAr": "أَحْكَامُ الرَّاءِ الكَامِلَةُ (8 تَفْخِيمٍ، 4 تَرْقِيقٍ، وَجَوَازُ الوَجْهَيْنِ)",
+        "mnemonic": "Râ' = Lourde par défaut ! | 8 Cas de Tafkhīm | 4 Portes de Finesse (Kasrah) | Jawāz (فِرْقٍ، مِصْرَ، القِطْرِ)",
+        "letters": [
+          "ر"
+        ],
+        "definitionFr": "La consonne Râ' (ر) est la lettre la plus versatile du Tajwīd. Par essence, elle est lourde et majestueuse (Tafkhīm dans 8 situations) ; elle ne s'amincit (Tarqīq) que dans 4 portes codifiées gouvernées par la Kasrah ou le Yā' ; et elle admet les deux options au choix dans une poignée de mots exceptionnels.",
+        "definitionLughatan": {
+          "ar": "التَّرْقِيقُ: التَّنْحِيفُ وَضِدُّ التَّغْلِيظِ. التَّفْخِيمُ: التَّعْظِيمُ.",
+          "fr": "Tarqīq : l'amincissement soyeux. Tafkhīm : l'emphase majestueuse."
+        },
+        "definitionIstilahan": {
+          "ar": "أَحْكَامُ الرَّاءِ فِي حَالَتَيِ الوَصْلِ وَالوَقْفِ: فَتُفَخَّمُ فِي 8 حَالَاتٍ، وَتُرَقَّقُ فِي 4 حَالَاتٍ، وَيَجُوزُ فِيهَا الوَجْهَانِ فِي كَلِمَاتٍ مَخْصُوصَةٍ.",
+          "fr": "Les règles de la lettre Râ en liaison et à l'arrêt : emphase dans 8 cas, amincissement dans 4 cas, et double visage permis dans des contextes spécifiques."
+        },
+        "mechanismFr": "Pour la Râ' mufakhkhamah (lourde) : élevez le dos de la langue vers le palais avec un seul battement apico-alvéolaire (Takrīr masqué). Pour la Râ' muraqqaqah (fine) : abaissez la langue et souriez en prononçant la voyelle Kasrah.",
+        "physiologicalDetails": {
+          "tongue": "Élévation de la racine linguale pour le Tafkhīm ; abaissement complet pour le Tarqīq ; la pointe ne doit vibrer qu'une seule fois sans roulement continu !",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration sonore régulière (Jahr).",
+          "airflow": "Déviation bilatérale de l'air."
+        },
+        "phoneticReasonFr": "La Râ' subit l'influence acoustique de son environnement vocalique : la Fathah et la Dammah orientent le son vers le haut (emphase), tandis que la Kasrah et le Yā' l'attirent vers le bas (amincissement).",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَرَقِّقِ الرَّاءَ إِذَا مَا كُسِرَتْ * كَذَاكَ بَعْدَ الكَسْرِ حَيْثُ سَكَنَتْ\nإِنْ لَمْ تَكُنْ مِنْ قَبْلِ حَرْفِ اسْتِعْلَا * أَوْ كَانَتِ الكَسْرَةُ لَيْسَتْ أَصْلَا\nوَالخُلْفُ فِي فِرْقٍ لِكَسْرٍ يُوجَدُ * وَأَخْفِ تَكْرِيراً إِذَا تُشَدَّدُ",
+          "transliteration": "Wa raqqiqi-r-rā'a idhā mā kusirat * Kadhāka ba'da-l-kasri haythu sakanat / In lam takun min qabli harfi-sti'lā * Aw kānati-l-kasratu laysat aslā / Wal-khulfu fī Firqin li-kasrin yūjadu * Wa akhfi takrīran idhā tushaddadu",
+          "translationFr": "« Et amincis la Râ' lorsqu'elle porte une Kasrah, de même après une Kasrah lorsqu'elle est sans voyelle, pourvu qu'elle ne précède pas une lettre d'Isti'lā' ou que la Kasrah ne soit pas occasionnelle. Une divergence existe dans 'Firq' en raison de la Kasrah ; et masque le roulement excessif (Takrīr) lorsqu'elle est doublée. » (Versets 59-61)",
+          "chapterNameAr": "بَابُ الرَّاءَاتِ"
+        },
+        "examples": [
           {
-            id: 'ex-c12-4',
-            arabicText: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُوْلَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
-            surahAyahRef: '2:82',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'خَٰلِدُونَ',
-            highlightLetter: 'Alif après Khā (Lourd)',
-            ruleApplied: 'Alif Emphatique',
-            ruleTag: 'heavy',
-            explanationFr: 'Le Khā (خ) étant une consonne d\'Isti\'lā\', l\'Alif qui le prolonge absorbe son emphase et résonne lourdement.',
-            transliteration: 'Khālidūn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002082.mp3'
+            "id": "ex-c12-2",
+            "arabicText": "فَرِحِينَ بِمَآ ءَاتَىٰهُمُ ٱللَّهُ مِن فَضۡلِهِۦ",
+            "surahAyahRef": "3:170",
+            "surahNameFr": "Āl 'Imrān",
+            "highlightSegment": "فَرِحِينَ",
+            "highlightLetter": "رِ (Tarqīq direct)",
+            "ruleApplied": "Tarqīq par Kasrah directe",
+            "ruleTag": "izhar",
+            "explanationFr": "La Râ' porte directement une voyelle Kasrah (ـِ) : elle s'amincit instantanément avec douceur : « Farihīna ».",
+            "transliteration": "Farihīna",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/003170.mp3"
           },
           {
-            id: 'ex-c12-5',
-            arabicText: 'إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ',
-            surahAyahRef: '1:5',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'إِيَّاكَ',
-            highlightLetter: 'Alif après Yā (Léger)',
-            ruleApplied: 'Alif Aminci (Tarqīq)',
-            ruleTag: 'madd',
-            explanationFr: 'Le Yā\' (ي) étant une lettre légère, l\'Alif est prononcé avec une clarté fine et lumineuse sans aucun gonflement buccal.',
-            transliteration: 'Iyyāka',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001005.mp3'
-          },
-          {
-            id: 'ex-c12-6',
-            arabicText: 'شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ',
-            surahAyahRef: '3:18',
-            surahNameFr: 'Āl \'Imrān',
-            highlightSegment: 'شَهِدَ ٱللَّهُ',
-            highlightLetter: 'Lām d\'Allah après Fathah',
-            ruleApplied: 'Tafkhīm de la Lām d\'Allah',
-            ruleTag: 'heavy',
-            explanationFr: 'Le Nom d\'Allah est précédé par la Fathah du Dāl (« Shahida-Llāhu ») : les deux Lām s\'épaississent avec majesté.',
-            transliteration: 'Shahida-Llāh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/003018.mp3'
-          },
-          {
-            id: 'ex-c12-7',
-            arabicText: 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ',
-            surahAyahRef: '1:1',
-            surahNameFr: 'Al-Fātihah',
-            highlightSegment: 'بِسۡمِ ٱللَّهِ',
-            highlightLetter: 'Lām d\'Allah après Kasrah',
-            ruleApplied: 'Tarqīq de la Lām d\'Allah',
-            ruleTag: 'izhar',
-            explanationFr: 'Le Nom d\'Allah est précédé par la Kasrah du Mīm (« Bismi-Llāhi ») : la Lām est amincie avec douceur.',
-            transliteration: 'Bismi-Llāh',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/001001.mp3'
+            "id": "ex-c12-3",
+            "arabicText": "كِتَٰبٗا فِى قِرۡطَاسٖ فَلَمَسُوهُ",
+            "surahAyahRef": "6:7",
+            "surahNameFr": "Al-An'ām",
+            "highlightSegment": "قِرۡطَاسٖ",
+            "highlightLetter": "رۡطَ (Tafkhīm exceptionnel)",
+            "ruleApplied": "Tafkhīm malgré Kasrah (suivie de Tā' lourd)",
+            "ruleTag": "heavy",
+            "explanationFr": "Bien que précédée d'une Kasrah, la Râ' reste obligatoirement LOURDE car elle est immédiatement suivie de la consonne d'Itbāq Tā' (ط) avec Fathah dans le même mot.",
+            "transliteration": "Qirṭās",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/006007.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Rendre la Lām lourde dans des mots ordinaires comme « Al-Hamd » (ٱلۡحَمۡدُ) ou « Salāt » (ٱلصَّلَوٰةَ).',
-            correctionFr: 'La Lām n\'est JAMAIS lourde dans les mots ordinaires en lecture Hafs : seule celle du Nom Divin peut l\'être.'
+            "trapFr": "Pour les francophones : rouler la Râ' au fond de la gorge (R uvulaire ou grasseyé français) au lieu de battre la langue sur le palais antérieur.",
+            "correctionFr": "Placez la pointe de la langue sur les gencives supérieures : la Râ' arabe est exclusivement apico-alvéolaire !"
           },
           {
-            trapFr: 'Amincir le Nom d\'Allah quand il est précédé d\'une voyelle longue tombée par rencontre de soukoûns (ex: « Qālu-Llāhumma »).',
-            correctionFr: 'On regarde la voyelle prononcée juste avant la Lām : ici la Dammah du Lām dans « Qālu », donc la Lām d\'Allah est lourde !'
+            "trapFr": "Faire un roulement de mitraillette en laissant trembler la langue (Takrīr excessif).",
+            "correctionFr": "Ibn Al-Jazarī ordonne : « Masque le Takrīr ». Bloquez la langue après un seul battement ferme."
           }
         ]
       },
       {
-        id: 'hybrid-raa-rules',
-        nameFr: '3. Les Lettres Hybrides II : La Râ\' (ر) & Ses 4 Cas d\'Amincissement',
-        nameAr: 'أَحْكَامُ الرَّاءِ : التَّفْخِيمُ الأَصْلِيُّ وَحَالَاتُ التَّرْقِيقِ الأَرْبَعُ',
-        mnemonic: 'Râ\' = Lourde par défaut ! 4 Cas de finesse : Kasrah directe, Soukoûn après Kasrah originelle, Arrêt après Soukoûn après Kasrah, Arrêt après Yā\'',
-        letters: ['ر'],
-        definitionFr: 'La lettre Râ\' (ر) est fondamentale en Tajwīd : sa nature première est d\'être EMPHATIQUE (Tafkhīm). Elle ne s\'amincit (Tarqīq) que sous l\'influence directe de la Kasrah ou du Yā\' à travers 4 cas codifiés.',
-        mechanismFr: '1. Râ\' avec Kasrah directe (رِزۡقٗا). 2. Râ\' soukounée précédée d\'une Kasrah originelle dans le même mot sans lettre lourde après elle (فِرۡعَوۡنَ). 3. Râ\' à l\'arrêt précédée d\'une consonne soukounée elle-même précédée d\'une Kasrah (حِجۡرٍ). 4. Râ\' à l\'arrêt précédée d\'un Yā\' soukouné (خَبِيرٌ, خَيۡرٌ). Partout ailleurs, elle est LOURDE.',
-        durationHarakat: 0,
-        examples: [
+        "id": "takhlees-al-huroof",
+        "nameFr": "3. Takhlees Al-Hurūf : L'Art de la Décontamination Phonétique",
+        "nameAr": "تَخْلِيصُ الحُرُوفِ المُسْتَفِلَةِ مِنَ المُسْتَعْلِيَةِ",
+        "mnemonic": "Ne jamais laisser une lettre lourde contaminer son voisin léger (خَلَقَ -> Kha-la-qa, et non Kha-lâ-qa)",
+        "letters": [],
+        "definitionFr": "Takhlees Al-Hurūf (la délivrance et la purification des lettres) est la marque suprême des récitateurs d'élite. Il consiste à isoler anatomiquement chaque consonne au sein d'un même mot, afin qu'une lettre lourde (Mufakhkhamah) ne contamine pas la lettre fine voisine (Muraqqaqah).",
+        "definitionLughatan": {
+          "ar": "التَّخْلِيصُ: التَّنْقِيَةُ وَالتَّمْيِيزُ وَفَصْلُ الشَّيْءِ عَمَّا يُخَالِطُهُ.",
+          "fr": "L'épuration, la purification et la séparation nette des mélanges."
+        },
+        "definitionIstilahan": {
+          "ar": "تَخْلِيصُ الحَرْفِ المُرَقَّقِ مِنْ مُجَاوَرَةِ الحَرْفِ المُفَخَّمِ دُونَ أَنْ يَسْرِيَ إِلَيْهِ التَّفْخِيمُ.",
+          "fr": "Préserver la consonne amincie de l'influence de la consonne emphatique contiguë, sans que l'emphase ne déteigne sur elle."
+        },
+        "mechanismFr": "Dans « Khalaqa » (خَلَقَ) : élevez la racine sur le Khā (lourd), abaissez instantanément la langue et souriez sur le Lām (fin), puis remontez avec puissance sur le Qāf (lourd).",
+        "physiologicalDetails": {
+          "tongue": "Agilité extrême : bascule verticale en une fraction de seconde de la position haute vers la position basse.",
+          "lips": "Neutres.",
+          "vocalCords": "Vibration modulée.",
+          "airflow": "Flux continu sans interruption."
+        },
+        "phoneticReasonFr": "L'inertie musculaire pousse naturellement la langue à rester haute pour les deux lettres qui entourent le Lām. Le Takhlees rétablit la justice phonétique due à chaque consonne.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "فَرَقِّقَنْ مُسْتَفِلاً مِنْ أَحْرُفِ * وَحَاذِرَنْ تَفْخِيمَ لَفْظِ الأَلِفِ\nكَهَمْزِ أَلْحَمْدُ أَعُوذُ إِهْدِنَا * أَللَّهَ ثُمَّ لَامِ لِلَّهِ لَنَا\nوَبَاءِ بُرْقٍ بَاطِلٍ بِهِمْ بِذِي * وَاحْرِصْ عَلَى الشِّدَّةِ وَالجَهْرِ الَّذِي\nفِيهَا وَفِي الجِيمِ كَـ حَبِّ الصَّبْرِ * وَرَبْوَةٍ اجْتُثَّتْ وَحَجِّ الفَجْرِ",
+          "transliteration": "Fa-raqqiqan mustafilan min ahrufi * Wa hādhiran tafkhīma lafzi-l-alifi / Ka-hamzi Al-hamdu A'ūdhu Ihdinā * Allāha thumma lāmi Lillāhi lanā / Wa bā'i burqin bātilin bihim bidhī * Wahriss 'alā-sh-shiddati wal-jahri-l-ladhī / Fīhā wa fil-jīmi ka-habbi-s-sabri * Wa rabwatin-jtuththat wa hajji-l-fajri",
+          "translationFr": "« Amincis toujours les lettres d'abaissement (Mustafilah), et prends bien garde d'épaissir le son de l'Alif, comme la Hamzah de 'Al-Hamdu', 'A'ūdhu', 'Ihdinā', ainsi que la Lām de 'Lillāh' et 'Lanā'... » (Versets 49-51)",
+          "chapterNameAr": "بَابُ التَّرْقِيقِ"
+        },
+        "examples": [
           {
-            id: 'ex-c12-8',
-            arabicText: 'وَإِذۡ نَجَّيۡنَٰكُم مِّنۡ ءَالِ فِرۡعَوۡنَ يَسُومُونَكُمۡ سُوٓءَ ٱلۡعَذَابِ',
-            surahAyahRef: '2:49',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'فِرۡعَوۡنَ',
-            highlightLetter: 'Râ\' soukounée après Fā\' Kasrah',
-            ruleApplied: 'Tarqīq Cas 2 (Kasrah originelle)',
-            ruleTag: 'izhar',
-            explanationFr: 'La Râ\' porte un Soukoûn, est précédée d\'une Kasrah originelle dans le mot, et la lettre suivante (\'Ayn) est légère : Tarqīq absolu (« Fir\'awn »).',
-            transliteration: 'Fir\'awn',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002049.mp3'
-          },
-          {
-            id: 'ex-c12-9',
-            arabicText: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
-            surahAyahRef: '11:1',
-            surahNameFr: 'Hūd',
-            highlightSegment: 'خَبِيرٍ',
-            highlightLetter: 'Râ\' à l\'arrêt après Yā\'',
-            ruleApplied: 'Tarqīq Cas 4 (Waqf après Yā\')',
-            ruleTag: 'izhar',
-            explanationFr: 'À l\'arrêt sur « Khabīr », la Râ\' prend un soukoûn temporaire après un Yā\' : elle doit être prononcée très fine et souple (« Khabeer »).',
-            transliteration: 'Khabīr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/011001.mp3'
-          },
-          {
-            id: 'ex-c12-10',
-            arabicText: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ فَلَمَسُوهُ بِأَيۡدِيهِمۡ',
-            surahAyahRef: '6:7',
-            surahNameFr: 'Al-An\'ām',
-            highlightSegment: 'قِرۡطَاسٖ',
-            highlightLetter: 'Râ\' suivie d\'un Tā\' lourd',
-            ruleApplied: 'Exception : Tafkhīm malgré la Kasrah !',
-            ruleTag: 'heavy',
-            explanationFr: 'Bien que précédée d\'une Kasrah, la Râ\' est immédiatement suivie dans le même mot d\'une lettre lourde avec Fathah (Tā\' ط). La force du Tā\' impose le Tafkhīm de la Râ\' !',
-            transliteration: 'Qirṭās',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/006007.mp3'
-          },
-          {
-            id: 'ex-c12-11',
-            arabicText: 'هَلۡ فِى ذَٰلِكَ قَسَمٞ لِّذِى حِجۡرٍ',
-            surahAyahRef: '89:5',
-            surahNameFr: 'Al-Fajr',
-            highlightSegment: 'حِجۡرٍ',
-            highlightLetter: 'Râ\' à l\'arrêt : Kasrah + Jīm soukoûn + Râ\'',
-            ruleApplied: 'Tarqīq Cas 3 (Waqf après soukoûn)',
-            ruleTag: 'izhar',
-            explanationFr: 'À l\'arrêt sur « Hijr », la Râ\' devient soukounée, précédée d\'un Jīm soukouné, lui-même précédé d\'un Hā\' avec Kasrah : la Kasrah traverse le soukoûn et amincit la Râ\'.',
-            transliteration: 'Hijr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/089005.mp3'
+            "id": "ex-c12-4",
+            "arabicText": "ٱلَّذِى خَلَقَكَ فَسَوَّىٰكَ فَعَدَلَكَ",
+            "surahAyahRef": "82:7",
+            "surahNameFr": "Al-Infitār",
+            "highlightSegment": "خَلَقَكَ",
+            "highlightLetter": "خَ (lourd) + لَ (fin) + قَ (lourd)",
+            "ruleApplied": "Takhlees Al-Hurūf",
+            "ruleTag": "heavy",
+            "explanationFr": "Le Khā est lourd, le Lām est fin, le Qāf est lourd. Votre langue doit s'abaisser en une fraction de seconde pour préserver la clarté du Lām sans jamais dire « Kha-lâ-qa » !",
+            "transliteration": "Khalaqaka",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/082007.mp3"
           }
         ],
-        commonMistakes: [
+        "commonMistakes": [
           {
-            trapFr: 'Faire le Tafkhīm sur la Râ\' à l\'arrêt sur des mots se terminant par « -īr » ou « -ayr » (ex: « Bashīr », « Khayr »).',
-            correctionFr: 'Le Yā\' attire irrémédiablement la langue vers l\'avant et le bas : la Râ\' à l\'arrêt après tout Yā\' est toujours fine.'
-          },
-          {
-            trapFr: 'Amincir la Râ\' dans « Irji\'ī » (ٱرۡجِعِيٓ) en croyant que la Kasrah sous le Hamzat Wasl est d\'origine.',
-            correctionFr: 'La voyelle de Hamzat Wasl est accidentelle et temporaire : la Râ\' reste obligatoirement lourde (Tafkhīm).'
-          }
-        ]
-      },
-      {
-        id: 'takhlees-al-huroof',
-        nameFr: '4. Takhlees Al-Hurūf : L\'Art Suprême de la Décontamination',
-        nameAr: 'تَخْلِيصُ الحُرُوفِ : فَنُّ عَدَمِ سِرَايَةِ التَّفْخِيمِ لِلْمُرَقَّقِ',
-        mnemonic: 'Chaque lettre est une île indépendante : ne laissez jamais le lourd déborder sur le fin !',
-        letters: [],
-        definitionFr: '« Takhlees Al-Hurūf » désigne l\'art d\'extraire et de purifier la prononciation de chaque consonne lorsqu\'une lettre fine (Tarqīq) est coincée à côté ou entre deux lettres lourdes (Tafkhīm). C\'est la signature des maîtres de récitation.',
-        mechanismFr: 'L\'appareil phonatoire doit modifier instantanément la position de l\'arrière de la langue entre deux consonnes consécutives sans altérer la continuité du souffle ni saccader la récitation.',
-        durationHarakat: 0,
-        examples: [
-          {
-            id: 'ex-c12-12',
-            arabicText: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
-            surahAyahRef: '96:2',
-            surahNameFr: 'Al-\'Alaq',
-            highlightSegment: 'خَلَقَ',
-            highlightLetter: 'Khā (Lourd) -> Lām (Fin !) -> Qāf (Lourd)',
-            ruleApplied: 'Chirurgie de Takhlees',
-            ruleTag: 'heavy',
-            explanationFr: 'Le Khā (خ) est lourd, puis la langue doit redescendre immédiatement pour un Lām (ل) limpide et fin, avant de remonter vivement pour le Qāf (ق) lourd. Ne dites jamais « Kha-lâ-qa » !',
-            transliteration: 'Khalaqa',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/096002.mp3'
-          },
-          {
-            id: 'ex-c12-13',
-            arabicText: 'وَٱلۡمُطَلَّقَٰتُ يَتَرَبَّصۡنَ بِأَنفُسِهِنَّ ثَلَٰثَةَ قُرُوٓءٖ',
-            surahAyahRef: '2:228',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'ٱلۡمُطَلَّقَٰتُ',
-            highlightLetter: 'Mīm (Fin) -> Tā (Lourd) -> Lām (Fin) -> Qāf (Lourd) -> Tā (Fin)',
-            ruleApplied: 'Alternance complexe de résonance',
-            ruleTag: 'heavy',
-            explanationFr: 'Ce mot contient une alternance virtuose : Fin (Mīm) -> Lourd (Tā\') -> Fin (Lām doublé) -> Lourd (Qāf) -> Fin (Tā\'). Chaque son garde sa pureté.',
-            transliteration: 'Al-mutallaqāt',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002228.mp3'
-          },
-          {
-            id: 'ex-c12-14',
-            arabicText: 'وَمَا لَكَ مِنَ ٱللَّهِ مِن وَلِيّٖ وَلَا نَصِيرٍ',
-            surahAyahRef: '2:120',
-            surahNameFr: 'Al-Baqarah',
-            highlightSegment: 'نَصِيرٍ',
-            highlightLetter: 'Nūn (Fin !) -> Sād (Lourd) -> Yā/Rā (Fin)',
-            ruleApplied: 'Protection du Nūn fin',
-            ruleTag: 'heavy',
-            explanationFr: 'L\'erreur fréquente est d\'anticiper l\'emphase du Sād et de dire « Nâ-ṣīr ». Le Nūn initial doit rester parfaitement fin : « Na-ṣīr ».',
-            transliteration: 'Nasīr',
-            audioUrl: 'https://everyayah.com/data/Husary_128kbps/002120.mp3'
-          }
-        ],
-        commonMistakes: [
-          {
-            trapFr: 'Laisser l\'emphase d\'une consonne contaminer la voyelle ou la consonne légère voisine (ex: dire « Twa-baba\'a » au lieu de « Taba\'a »).',
-            correctionFr: 'Entraînez-vous à prononcer le mot au ralenti, syllabe par syllabe, en vérifiant la position de la langue sur chaque lettre.'
-          },
-          {
-            trapFr: 'Faire des pauses hachées artificielles entre les lettres pour éviter la contamination.',
-            correctionFr: 'La transition doit être fluide et liée sans interruption de son ni saccade.'
+            "trapFr": "Pour les francophones : prononcer « Khalaqa » comme « Kha-lâ-qa » avec un Lām lourd déformé.",
+            "correctionFr": "Prononcez le mot au ralenti : « Kha » (lourd), puis souriez franchement sur « La » (fin), avant de refermer sur « Qa » (lourd)."
           }
         ]
       }
     ],
-    guidedExercises: [
+    "guidedExercises": [
       {
-        id: 'exo-c12-1',
-        title: 'Chirurgie Phonétique : Takhlees dans « Khalaqa » (96:2)',
-        verseArabic: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
-        surahAyahRef: '96:2',
-        targetSegment: 'خَلَقَ',
-        promptFr: 'Dans le mot « خَلَقَ », comment articulerez-vous précisément le Lām central entre les deux géants d\'emphase que sont le Khā et le Qāf ?',
-        hintFr: 'Visualisez la descente de la racine de la langue dès la fin du Khā.',
-        solutionFr: 'Takhlees Al-Hurūf : Khā lourd (Isti\'lā\') -> Abaissement instantané pour Lām fin (Istifāl) -> Réélévation vive pour Qāf lourd',
-        breakdownSteps: [
-          'Étape 1 : Articulez le « Khā » (خَ) avec l\'arrière de la langue relevé, lèvres neutres : écho caverneux sans faire la moue.',
-          'Étape 2 : Relâchez instantanément l\'arrière de la langue vers le bas lors de l\'attaque du « Lām » (لَ) : le son doit être mince et souriant.',
-          'Étape 3 : Remontez immédiatement et fermement l\'arrière de la langue pour frapper le « Qāf » (قَ) lourd.',
-          'Piège classique éliminé : Ne prononcez jamais « Kha-LÂ-qa » avec un Lām épais !'
+        "id": "exo-c12-1",
+        "title": "Chirurgie de décontamination : « سَلَقُوكُم بِأَلْسِنَةٍ »",
+        "verseArabic": "سَلَقُوكُم بِأَلۡسِنَةٍ حِدَادٍ أَشِحَّةً عَلَى ٱلۡخَيۡرِ",
+        "surahAyahRef": "33:19",
+        "targetSegment": "سَلَقُوكُم",
+        "promptFr": "Comment devez-vous prononcer le Sīn (س) et le Lām (ل) qui précèdent le Qāf (ق) lourd ?",
+        "hintFr": "Attention à ne pas transformer le Sīn en Sād sous l'influence du Qāf !",
+        "solutionFr": "En préservant l'amincissement strict du Sīn et du Lām avant d'élever la voix sur le Qāf",
+        "breakdownSteps": [
+          "Le Sīn est une lettre légère (Mustafilah).",
+          "Le Lām est également légère.",
+          "Le Qāf qui suit est une lettre lourde d'Isti'lā'.",
+          "On doit garder le sourire sur « Sala- » avant de monter sur « -qūkum »."
         ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/096002.mp3'
-      },
-      {
-        id: 'exo-c12-2',
-        title: 'Le Duel de la Râ\' : « Khabīr » (11:1) vs « Qirṭās » (6:7)',
-        verseArabic: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
-        surahAyahRef: '11:1',
-        targetSegment: 'خَبِيرٍ',
-        promptFr: 'Pourquoi la Râ\' de « خَبِيرٍ » s\'amincit-elle à l\'arrêt, tandis que celle de « قِرۡطَاسٖ » reste obligatoirement lourde malgré sa Kasrah précédente ?',
-        hintFr: 'Observez la lettre qui suit directement la Râ\' dans chaque mot.',
-        solutionFr: '« Khabīr » = Tarqīq (arrêt après Yā\') | « Qirṭās » = Tafkhīm (suivi d\'une lettre lourde avec Fathah dans le même mot)',
-        breakdownSteps: [
-          'Pour « خَبِيرٍ » à l\'arrêt : la Râ\' prend un soukoûn consécutif à l\'arrêt, précédé par un Yā\' de prolongation. La règle n°4 impose un Tarqīq absolu et soyeux.',
-          'Pour « قِرۡطَاسٖ » : bien que précédée d\'un Qāf avec Kasrah, la Râ\' est suivie dans le MÊME mot par le Tā\' (ط), lettre d\'Isti\'lā\' et d\'Itbāq avec Fathah.',
-          'La force d\'attraction du Tā\' neutralise l\'effet amincissant de la Kasrah antérieure.',
-          'Conclusion : La Râ\' de « Qirṭās » est lue avec une emphase pleine (Tafkhīm).'
-        ],
-        audioUrl: 'https://everyayah.com/data/Husary_128kbps/011001.mp3'
+        "audioUrl": "https://everyayah.com/data/Husary_128kbps/033019.mp3"
       }
     ],
-    quizzes: [
+    "quizzes": [
       {
-        id: 'q-c12-1',
-        type: 'mcq',
-        promptFr: 'Quelle formule mnémotechnique rassemble les 7 lettres qui sont TOUJOURS prononcées avec emphase (Tafkhīm) ?',
-        verseArabic: 'صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ',
-        surahAyahRef: '1:7',
-        options: [
-          'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz)',
-          'قُطۡبُ جَدٍّ (Qutbu Jaddin)',
-          'يَرۡمَلُونَ (Yarmalūn)',
-          'أَخِي هَاكَ عِلۡمًا (Akhī Hāka \'Ilman)'
+        "id": "q-c12-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : Dans quel mot unique du Coran la Râ' sākinah admet-elle les deux visages (Tafkhīm ou Tarqīq au choix) en liaison en raison de la Kasrah sur la lettre lourde suivante ?",
+        "verseArabic": "فَانفَلَقَ فَكَانَ كُلُّ فِرۡقٖ كَٱلطَّوۡدِ ٱلۡعَظِيمِ",
+        "options": [
+          "فِرْقٍ (Sourate Ach-Chou'ara 63)",
+          "مِرْصَاداً",
+          "قِرْطَاسٍ",
+          "فِرْعَوْنَ"
         ],
-        correctAnswer: 'خُصَّ ضَغۡطٍ قِظۡ (Khuṣṣa Ḍaghṭin Qiz)',
-        explanationFr: 'Les 7 lettres d\'Isti\'lā\' sont : Khā (خ), Sād (ص), Dād (ض), Ghayn (غ), Tā (ط), Qāf (ق), Zā (ظ). Elles ne sont jamais amincies !',
-        ruleId: 'heavy-letters-degrees'
+        "correctAnswer": "فِرْقٍ (Sourate Ach-Chou'ara 63)",
+        "explanationFr": "Dans « Firq », la lettre d'Isti'lā' qui suit est le Qāf avec une Kasrah brisée : Ibn Al-Jazarī dit « وَالخُلْفُ فِي فِرْقٍ لِكَسْرٍ يُوجَدُ » (Une divergence existe dans Firq en raison de la Kasrah). Les deux voies sont permises.",
+        "ruleId": "raa-simulator-mastery"
       },
       {
-        id: 'q-c12-2',
-        type: 'mcq',
-        promptFr: 'Pourquoi l\'Alif de prolongation est-il lourd dans « خَالِدِينَ » mais fin dans « إِيَّاكَ » ?',
-        verseArabic: 'وَٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ أُوْلَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
-        surahAyahRef: '2:82',
-        options: [
-          'Car l\'Alif est un caméléon sans timbre propre : il copie l\'emphase ou la finesse de la lettre qui le précède directement',
-          'Car l\'Alif dépend de la lettre qui le suit',
-          'Car l\'Alif est toujours lourd au début des mots et fin à la fin',
-          'Car cela dépend du choix arbitraire du récitateur'
+        "id": "q-c12-2",
+        "type": "error_detect",
+        "promptFr": "Dans « فِى قِرْطَاسٍ فَلَمَسُوهُ », un lecteur amincit la Râ' (Tarqīq) sous prétexte qu'elle est précédée d'une Kasrah. Quelle est l'erreur ?",
+        "verseArabic": "كِتَٰبٗا فِى قِرۡطَاسٖ فَلَمَسُوهُ",
+        "targetWord": "قِرۡطَاسٖ",
+        "surahAyahRef": "6:7",
+        "options": [
+          "Lahn Khafī : La Râ' est obligatoirement LOURDE (Tafkhīm) car elle est suivie d'une lettre d'Isti'lā' (le Tā' ط) avec Fathah dans le même mot !",
+          "Récitation autorisée",
+          "Madd Lāzim négligé",
+          "Erreur sur le Sīn"
         ],
-        correctAnswer: 'Car l\'Alif est un caméléon sans timbre propre : il copie l\'emphase ou la finesse de la lettre qui le précède directement',
-        explanationFr: 'L\'Alif est la seule lettre qui suit aveuglément son prédécesseur : précédé du Khā lourd -> Alif lourd ; précédé du Yā\' fin -> Alif fin.',
-        ruleId: 'hybrid-alif-lam'
+        "correctAnswer": "Lahn Khafī : La Râ' est obligatoirement LOURDE (Tafkhīm) car elle est suivie d'une lettre d'Isti'lā' (le Tā' ط) avec Fathah dans le même mot !",
+        "explanationFr": "L'obstacle majeur au Tarqīq est la présence d'une lettre d'Isti'lā' non-kasrah dans le même mot (comme dans Qirṭās, Mirsād, Firqah). La Râ' redevient obligatoirement lourde.",
+        "ruleId": "raa-simulator-mastery"
       },
       {
-        id: 'q-c12-3',
-        type: 'mcq',
-        promptFr: 'Dans « Qirṭās » (قِرۡطَاسٖ), pourquoi la Râ\' reste-t-elle EMPHATIQUE bien qu\'elle soit précédée d\'une Kasrah ?',
-        verseArabic: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ',
-        surahAyahRef: '6:7',
-        options: [
-          'Car elle est immédiatement suivie dans le même mot par une lettre lourde avec Fathah (le Tā\' ط)',
-          'Car le mot contient 5 lettres',
-          'Car c\'est un nom propre étranger',
-          'Car le Qāf initial a une Shaddah'
+        "id": "q-c12-3",
+        "type": "error_detect",
+        "promptFr": "Dans « وَاللَّيْلِ إِذَا يَسْرِ » (Al-Fajr 4), comment peut-on lire la Râ' lors de l'arrêt selon le livre « التجويد المبسط » ?",
+        "verseArabic": "وَٱلَّيۡلِ إِذَا يَسۡرِ",
+        "targetWord": "يَسۡرِ",
+        "surahAyahRef": "89:4",
+        "options": [
+          "Les deux visages sont permis à l'arrêt : le Tarqīq (en considérant le Yā' supprimé dans le tracé) ou le Tafkhīm (en considérant le Sīn sākin précédé de Fathah)",
+          "Uniquement l'emphase",
+          "Uniquement l'amincissement",
+          "La Râ' devient muette"
         ],
-        correctAnswer: 'Car elle est immédiatement suivie dans le même mot par une lettre lourde avec Fathah (le Tā\' ط)',
-        explanationFr: 'Pour que la Râ\' soukounée s\'amincisse après une Kasrah, la lettre suivante ne doit pas être une consonne lourde dans le même mot. Ici le Tā\' impose l\'emphase.',
-        ruleId: 'hybrid-raa-rules'
+        "correctAnswer": "Les deux visages sont permis à l'arrêt : le Tarqīq (en considérant le Yā' supprimé dans le tracé) ou le Tafkhīm (en considérant le Sīn sākin précédé de Fathah)",
+        "explanationFr": "Le livre arabe détaille précisément les mots comme « Yasr » et « Asr » : l'origine est « Yasrī » avec un Yā' élidé dans le Rasm, d'où la permission de conserver le Tarqīq à la pause.",
+        "ruleId": "raa-simulator-mastery"
+      }
+    ]
+  },
+  {
+    "id": "chap-13",
+    "number": 13,
+    "slug": "iltiqa-sakinayn",
+    "titleFr": "Rencontre de Deux Soukoûns (Iltiqā' As-Sākinayn)",
+    "titleAr": "اِلْتِقَاءُ السَّاكِنَيْنِ",
+    "category": "advanced",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Comprendre l'interdiction phonologique fondamentale en arabe d'enchaîner deux consonnes soukounées entre deux mots en continu. Découvrir les solutions sacrées : vocalisation de secours en Kasrah (le fameux Nūn Qutnī après Tanwīn), Dammah ou Fathah, ou l'élision complète de la lettre de prolongation (Madd).",
+    "infographicPoints": [
+      "Dans un même mot : La rencontre de 2 soukoûns est autorisée et naturelle à l'arrêt (ex: Al-'Asr, Quraysh) et compensée par 6 temps dans le Madd Lāzim (Al-Jāāānn).",
+      "Entre deux mots : En continu (Wasl), l'arabe interdit catégoriquement la succession de deux soukoûns. Le conflit doit obligatoirement être résolu.",
+      "Cas 1 (Tanwīn + Wasl) : Le Tanwīn cache un Nūn sākinah. Devant Hamzat Al-Wasl, il prend une KASRAH de secours (Nūhun ibnahū -> Nūhuni-bnahū) : c'est le Nūn Qutnī !",
+      "Cas 2 (Madd + Wasl) : La lettre de prolongation s'efface complètement à l'oral lors de la liaison (Wa qālā-l-hamdu au lieu de Wa qālāā al-hamdu).",
+      "Règle d'or : L'élision du Madd n'a lieu qu'en liaison continue (Wasl). Si l'on s'arrête sur le premier mot (Waqf), le Madd naturel de 2 temps est intégralement rétabli !",
+      "Les 4 modes de résolution : 1. Kasrah de secours (majorité), 2. Dammah (Mīm du pluriel & Wāw de communauté), 3. Fathah (Min, duel Tā', Alif-Lām-Mīm Allāh), 4. Hadhf (élision du Madd)."
+    ],
+    "subrules": [
+      {
+        "id": "iltiqa-general-rules",
+        "nameFr": "1. Règle Générale : Dans un Mot vs Entre Deux Mots",
+        "nameAr": "حُكْمُ الْتِقَاءِ السَّاكِنَيْنِ فِي كَلِمَةٍ وَكَلِمَتَيْنِ",
+        "mnemonic": "Même mot = Toléré à l'arrêt | Deux mots = Résolution obligatoire en continu",
+        "letters": [],
+        "definitionFr": "Un sākin (consonne soukounée) est une lettre dépourvue de voyelle. En phonologie coranique, deux sākins peuvent coexister à la pause dans un mot (ex: Al-'Asr), mais ne peuvent jamais être enchaînés à la suite entre deux mots consécutifs en récitation liée.",
+        "definitionLughatan": {
+          "ar": "الِالْتِقَاءُ: الِاجْتِمَاعُ وَالمُلَاقَاةُ. وَالسَّاكِنَانِ: كُلُّ حَرْفَيْنِ لَا حَرَكَةَ لَهُمَا.",
+          "fr": "La rencontre, la jonction de deux consonnes ou sons privés de voyelles dynamiques."
+        },
+        "definitionIstilahan": {
+          "ar": "أَنْ يَتَتَابَعَ حَرْفَانِ سَاكِنَانِ فِي كَلِمَةٍ وَاحِدَةٍ (جَائِزٌ وَقْفاً وَفِي المَدِّ اللَّازِمِ) أَوْ فِي كَلِمَتَيْنِ (مَمْنُوعٌ عِنْدَ الوَصْلِ فَيَجِبُ التَّخَلُّصُ مِنْهُ).",
+          "fr": "La succession consécutive de deux soukoûns : permise dans un même mot lors de la pause ou compensée par un Madd Lāzim de 6 temps, mais formellement prohibée en liaison continue entre deux mots distincts."
+        },
+        "mechanismFr": "À l'arrêt, l'appareil phonatoire produit un appui expiratoire stable sur la consonne avant l'extinction de la voix. Entre deux mots, la continuité du flux aérien ne tolère pas deux inerties successives : le lecteur doit soit mouvoir le premier soukoûn par une voyelle de dépannage, soit effacer la voyelle longue précédente.",
+        "physiologicalDetails": {
+          "tongue": "Repositionnée instantanément pour vocaliser le premier son immobile ou enchaîner sans heurt.",
+          "lips": "S'adaptent à la voyelle de secours appliquée ou restent neutres en cas d'élision.",
+          "vocalCords": "Vibration continue pour assurer la liaison mélodique sans coupure glottique artificielle.",
+          "airflow": "Flux continu sans à-coups ni blocage thoracique."
+        },
+        "phoneticReasonFr": "L'articulation arabe repose sur l'alternance consonne-voyelle (CV-CV). Deux consonnes consécutives sans voyelle en plein débit créent une impossibilité motrice ou une saccade disgracieuse (Lahn Jalī).",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَإِنْ تَلاَقَى سَاكِنَانِ فَاكْسِرِ * مَا كَانَ مِنْ تَأْنِيثٍ أَو مِثْلِ اصْبِرِ\nوَاحْذِفْ حُرُوفَ المَدِّ إِنْ سَاكِنٌ أَتَى * مِنْ بَعْدِهَا وَالضَّمُّ لِلْوَاوِ انْتَقَى",
+          "transliteration": "Wa in talāqā sākināni faksiri * Mā kāna min ta'nīthin aw mithli-sbiri / Wahdhif hurūfa-l-maddi in sākinun atā * Min ba'dihā wad-dammu lil-wāwi-ntaqā",
+          "translationFr": "« Si deux soukoûns se rencontrent, résous par la Kasrah sur le Tā' de féminin ou l'impératif ; et supprime la lettre de prolongation si un soukoûn lui succède, tandis que le Wāw du pluriel se résout par la Dammah. »",
+          "reference": "Matn Al-Jazariyyah (Bāb Iltiqā' As-Sākinayn)"
+        },
+        "examples": [
+          {
+            "id": "ex-c13-1",
+            "arabicText": "وَٱلۡعَصۡرِ إِنَّ ٱلۡإِنسَٰنَ لَفِى خُسۡرٍ",
+            "surahAyahRef": "103:1-2",
+            "surahNameFr": "Al-'Asr",
+            "highlightSegment": "وَٱلۡعَصۡرِ",
+            "highlightLetter": "صۡ + رۡ",
+            "ruleApplied": "Deux soukoûns tolérés à l'arrêt dans un même mot",
+            "ruleTag": "silent",
+            "explanationFr": "Lors de l'arrêt sur « Al-'Asr », le Sād porte son soukoûn originel et le Râ prend un soukoûn accidentel (Sukoûn 'Ārid). Cette succession est parfaitement naturelle et autorisée à la pause.",
+            "transliteration": "Wa-l-'asri (à l'arrêt : Wa-l-'asr)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/103001.mp3"
+          },
+          {
+            "id": "ex-c13-2",
+            "arabicText": "فَيَوۡمَئِذٖ لَّا يُسۡـَٔلُ عَن ذَنۢبِهِۦٓ إِنسٞ وَلَا جَآنّٞ",
+            "surahAyahRef": "55:39",
+            "surahNameFr": "Ar-Rahmān",
+            "highlightSegment": "جَآنّٞ",
+            "highlightLetter": "Madd + Shaddah",
+            "ruleApplied": "Trois soukoûns consécutifs à l'arrêt",
+            "ruleTag": "madd",
+            "explanationFr": "L'Alif de Madd est toujours sākin, et le Nūn avec Shaddah contient deux Nūn (l'un sākin, l'autre prenant un soukoûn temporaire à l'arrêt). L'élongation de 6 temps (Madd Lāzim) compense cette rencontre.",
+            "transliteration": "Wa lā jāāāāāānn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/055039.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Croire qu'il est interdit de s'arrêter sur un mot contenant deux soukoûns consécutifs (ex: Al-'Asr).",
+            "correctionFr": "C'est au contraire la norme à la pause pour les mots comme « Al-'Asr », « Quraysh », ou « Nasta'īn »."
+          },
+          {
+            "trapFr": "Insérer une voyelle parasite à l'arrêt (dire « Al-'asré » au lieu de « Al-'asr »).",
+            "correctionFr": "Maintenir les deux consonnes immobiles sans faire rebondir le Râ."
+          }
+        ]
       },
       {
-        id: 'q-c12-4',
-        type: 'error_detect',
-        promptFr: 'Un étudiant prononce le Khā dans « خَلَقَ » en projetant et en arrondissant les lèvres comme pour siffler. Quelle est l\'erreur ?',
-        verseArabic: 'خَلَقَ ٱلۡإِنسَٰنَ مِنۡ عَلَقٍ',
-        targetWord: 'خَلَقَ',
-        surahAyahRef: '96:2',
-        options: [
-          'Erreur d\'arrondissement des lèvres : l\'emphase (Tafkhīm) provient uniquement de l\'élévation du fond de la langue (Isti\'lā\') dans la bouche. Les lèvres ne doivent jamais s\'arrondir sans Dammah !',
-          'Aucune erreur, arrondir les lèvres est la seule façon de faire du Tafkhīm.',
-          'Il fallait faire une prolongation de 4 temps.',
-          'Le Khā doit être prononcé comme un Hā.'
+        "id": "iltiqa-tanween-wasl",
+        "nameFr": "2. Tanwīn suivi de Hamzat Al-Wasl (Le Nūn Qutnī)",
+        "nameAr": "الْتِقَاءُ السَّاكِنَيْنِ عِنْدَ التَّنْوِينِ (نُونُ الوِقَايَةِ / نُونُ قُطْنِي)",
+        "mnemonic": "Tanwīn + Wasl = Nūn vocalisé avec KASRAH de secours (Ni)",
+        "letters": [
+          "ن"
         ],
-        correctAnswer: 'Erreur d\'arrondissement des lèvres : l\'emphase (Tafkhīm) provient uniquement de l\'élévation du fond de la langue (Isti\'lā\') dans la bouche. Les lèvres ne doivent jamais s\'arrondir sans Dammah !',
-        explanationFr: 'C\'est l\'un des pièges les plus fréquents dénoncés par les maîtres de Tajwīd : projeter les lèvres déforme le timbre de la Fathah en un son « O » hybride défectueux.',
-        ruleId: 'heavy-letters-degrees'
+        "definitionFr": "Le Tanwīn est phonétiquement un Nūn sākinah sous-jacent. Lorsqu'il est immédiatement suivi d'un mot débutant par Hamzat Al-Wasl (qui s'élide en liaison continue), ce Nūn caché rencontre la consonne suivante qui est soukounée. Pour briser ce blocage sans déformer le texte, le Nūn prend obligatoirement une Kasrah de secours.",
+        "definitionLughatan": {
+          "ar": "نُونُ الوِقَايَةِ أَوِ التَّنْوِينِ المَكْسُورِ لِلتَّخَلُّصِ مِنَ السَّاكِنَيْنِ.",
+          "fr": "Nūn de préservation vocalisé par Kasrah pour débloquer la rencontre de deux consonnes immobiles."
+        },
+        "definitionIstilahan": {
+          "ar": "تَحْرِيكُ نُونِ التَّنْوِينِ السَّاكِنَةِ لَفْظاً بِالكَسْرِ عِنْدَ وَصْلِ المُنَوَّنِ بِحَرْفٍ سَاكِنٍ بَعْدَ هَمْزَةِ الوَصْلِ السَّاقِطَةِ.",
+          "fr": "L'activation phonétique du Nūn caché du Tanwīn en le dotant d'une Kasrah de liaison lors du passage vers un mot commençant par une Hamzat Al-Wasl caduque."
+        },
+        "mechanismFr": "Ne marquez aucune coupure entre les deux mots. Décomposez le mot initial en sa voyelle simple, puis attachez le son [ni] directement à la consonne suivante sans prononcer de Hamzah.",
+        "physiologicalDetails": {
+          "tongue": "Pointe de la langue frappant les alvéoles supérieures pour émettre le son [N], immédiatement suivie de l'abaissement pour la Kasrah [i].",
+          "lips": "Étirement horizontal léger propre à la Kasrah.",
+          "vocalCords": "Vibration continue sans à-coup glottique.",
+          "airflow": "Transition fluide de la voie nasale du Nūn vers la cavité buccale."
+        },
+        "phoneticReasonFr": "Puisque la Hamzat Al-Wasl disparaît en continu, le Nūn sākinah du Tanwīn entrerait en collision frontale avec la consonne soukounée suivante : la Kasrah brise cette inertie.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَإِنْ يَكُنْ تَنْوِينُ لَفْظٍ قَدْ وَصَلْ * بِسَاكِنٍ فَاحْكُمْ بِكَسْرٍ قَدْ حَصَلْ\nمِثْلُ ابْنِ نُوحٍ قُلْ بِهِ نُوحُنِ ابْنَهُ * وَاحْذَرْ مِنَ الوَقْفِ كَمَنْ قَدْ أَمَّنَهْ",
+          "transliteration": "Wa in yakun tanwīnu lafzin qad wasal * Bi-sākinin fahkum bi-kasrin qad hasal / Mithlu-bni Nūhin qul bihī Nūhuni-bnahū * Wahdhar mina-l-waqfi kaman qad ammanah",
+          "translationFr": "« Et si le Tanwīn phonétique rejoint une lettre immobile, applique la Kasrah sans hésiter, comme pour le fils de Noé : prononce 'Nūhu-ni-bnahū'. »",
+          "reference": "Matn Al-Muqaddimah Al-Jazariyyah (Ahkām at-Tanwīn wal-Wasl)"
+        },
+        "examples": [
+          {
+            "id": "ex-c13-3",
+            "arabicText": "وَنَادَىٰ نُوحٌ ٱبۡنَهُۥ وَكَانَ فِى مَعۡزِلٖ",
+            "surahAyahRef": "11:42",
+            "surahNameFr": "Hūd",
+            "highlightSegment": "نُوحٌ ٱبۡنَهُۥ",
+            "highlightLetter": "ٌ + ٱبۡ",
+            "ruleApplied": "Nūn Qutnī : Vocalisation en Kasrah",
+            "ruleTag": "izhar",
+            "explanationFr": "S'écrit « Nūhun ibnahū ». En liaison continue, se prononce obligatoirement : « Nūhu-ni-bnahū » (نُوحُنِ بۡنَهُ).",
+            "transliteration": "Nūhu-ni-bnahū",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/011042.mp3"
+          },
+          {
+            "id": "ex-c13-4",
+            "arabicText": "قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ",
+            "surahAyahRef": "112:1-2",
+            "surahNameFr": "Al-Ikhlās",
+            "highlightSegment": "أَحَدٌ ٱللَّهُ",
+            "highlightLetter": "ٌ + ٱللَّ",
+            "ruleApplied": "Nūn Qutnī en reliant les deux versets",
+            "ruleTag": "tarqiq",
+            "explanationFr": "Si l'on relie le verset 1 au verset 2, le Tanwīn de « Ahadun » rencontre le Lām de « Allāh ». Le Nūn prend une Kasrah et le Lām d'Allāh devient aigu (Muraqqaq) : « Ahadu-ni-llāh-us-Samad ».",
+            "transliteration": "Qul huwa-llāhu ahadu-ni-llāhu-s-Samad",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/112001.mp3"
+          },
+          {
+            "id": "ex-c13-5",
+            "arabicText": "كُتِبَ عَلَيْكُمُ الْقِتَالُ وَهُوَ كُرْهٌ لَّكُمْ وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ... خَيْرًا ٱلۡوَصِيَّةُ",
+            "surahAyahRef": "2:180",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "خَيۡرًا ٱلۡوَصِيَّةُ",
+            "highlightLetter": "ًا + ٱلۡ",
+            "ruleApplied": "Nūn Qutnī après Tanwīn Fathah",
+            "ruleTag": "izhar",
+            "explanationFr": "S'écrit « Khayran al-wasiyyatu ». En liaison continue, le Tanwīn se prononce « Khayra-ni-l-wasiyyah ».",
+            "transliteration": "Khayrani-l-wasiyyatu",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002180.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Prononcer une Hamzah de rupture entre les deux mots (dire « Nūhun... Ibnahū »).",
+            "correctionFr": "Lier de façon ininterrompue en prononçant « Nūhu-ni-bnahū »."
+          },
+          {
+            "trapFr": "Prononcer le Lām de Majesté lourd après « Ahaduni-llāh ».",
+            "correctionFr": "Le Lām de Majesté devient impérativement aminci (Tarqīq) car la Kasrah du Nūn Qutnī le précède immédiatement !"
+          }
+        ]
       },
       {
-        id: 'q-c12-5',
-        type: 'click_word',
-        promptFr: 'Repérage auditif : Cliquez sur le mot où la lettre Râ\' (ر) doit être prononcée FINE (Tarqīq) lors d\'un arrêt de pause (Waqf).',
-        verseArabic: 'كِتَٰبٌ أُحۡكِمَتۡ ءَايَٰتُهُۥ ثُمَّ فُصِّلَتۡ مِن لَّدُنۡ حَكِيمٍ خَبِيرٍ',
-        clickableSegments: ['كِتَٰبٌ', 'أُحۡكِمَتۡ', 'ءَايَٰتُهُۥ', 'فُصِّلَتۡ', 'حَكِيمٍ', 'خَبِيرٍ'],
-        correctAnswer: 'خَبِيرٍ',
-        explanationFr: 'À l\'arrêt sur « خَبِيرٍ », la Râ\' prend un soukoûn précédé par un Yā\' sākinah : elle s\'amincit obligatoirement (Tarqīq) avec élégance et finesse.',
-        ruleId: 'hybrid-raa-rules'
+        "id": "iltiqa-madd-elision",
+        "nameFr": "3. Élision de la Lettre de Prolongation (Hadhf Harf Al-Madd)",
+        "nameAr": "حَذْفُ حَرْفِ المَدِّ لَفْظاً عِنْدَ الْتِقَاءِ السَّاكِنَيْنِ",
+        "mnemonic": "Lettre de Madd + Hamzat Wasl = Le Madd disparaît en liaison continue",
+        "letters": [
+          "ا",
+          "و",
+          "ي"
+        ],
+        "definitionFr": "Les lettres d'allongement (Alif, Wāw, Yā') sont par nature des consonnes soukounées (Sākinah). Si elles se trouvent à la fin d'un mot et sont suivies par un mot débutant par une consonne soukounée (après élision de Hamzat Al-Wasl), la lettre de Madd s'efface totalement à l'oral en liaison, mais est maintenue si l'on s'arrête sur le mot.",
+        "definitionLughatan": {
+          "ar": "الحَذْفُ: الإِسْقَاطُ وَالإِزَالَةُ.",
+          "fr": "La suppression phonétique, l'élision orale de la consonne allongeante."
+        },
+        "definitionIstilahan": {
+          "ar": "إِسْقَاطُ حَرْفِ المَدِّ وَاللِّينِ لَفْظاً لَا خَطّاً فِي الوَصْلِ خَشْيَةَ اجْتِمَاعِ سَاكِنَيْنِ، مَعَ ثُبُوتِهِ فِي الوَقْفِ.",
+          "fr": "L'élision orale (et non orthographique) de la voyelle longue lors de la récitation continue pour éviter l'affrontement de deux soukoûns, tout en la restituant pleinement à la pause."
+        },
+        "mechanismFr": "En liaison, réduisez la voyelle longue à une voyelle simple d'un temps (Fathah, Kasrah, Dammah) et basculez instantanément sur la consonne suivante. À l'arrêt en revanche, restaurez les deux temps du Madd naturel.",
+        "physiologicalDetails": {
+          "tongue": "Ne s'attarde pas sur la résonance du Madd ; bascule immédiatement vers le makhraj de la consonne suivante.",
+          "lips": "Se contractent pour la consonne d'arrivée sans prolonger l'ouverture.",
+          "vocalCords": "Vibration écourtée à 1 harakah.",
+          "airflow": "Flux continu sans suspension vocale."
+        },
+        "phoneticReasonFr": "La prolongation équivaut phonétiquement à une voyelle brève suivie d'une consonne muette immobile. Pour préserver la dynamique du verset, l'arabe sacrifie la seconde moitié immobile pour ne garder que la brève.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَاحْذِفْ حُرُوفَ المَدِّ إِنْ سَاكِنٌ أَتَى * مِنْ بَعْدِهَا فِي الوَصْلِ خُذْهُ مُثْبَتَا\nوَثَبِّتِ المَدَّ إِذَا مَا تَقِفُ * وَلَا تَزِدْ عَنْ حَدِّهِ فَتُسْرِفُ",
+          "transliteration": "Wahdhif hurūfa-l-maddi in sākinun atā * Min ba'dihā fī-l-wasli khudh-hu muthbatā / Wa thabbiti-l-madda idhā mā taqifu * Wa lā tazid 'an haddihī fatusrifu",
+          "translationFr": "« Supprime les lettres de prolongation si un soukoûn survient après elles en liaison continue ; mais rétablis le Madd dès que tu marques l'arrêt sans outrepasser sa mesure. »",
+          "reference": "Matn Al-Jazariyyah (Hadhf Hurūf al-Madd)"
+        },
+        "examples": [
+          {
+            "id": "ex-c13-6",
+            "arabicText": "وَقَالَا ٱلۡحَمۡدُ لِلَّهِ ٱلَّذِى فَضَّلَنَا",
+            "surahAyahRef": "27:15",
+            "surahNameFr": "An-Naml",
+            "highlightSegment": "وَقَالَا ٱلۡحَمۡدُ",
+            "highlightLetter": "Alif + Lām",
+            "ruleApplied": "Élision de l'Alif de prolongation en liaison",
+            "ruleTag": "silent",
+            "explanationFr": "S'écrit « Wa qālā al-hamdu ». À l'arrêt sur le premier mot, on prononce « Wa qālāā » (2 temps). En liaison continue, l'Alif s'efface totalement : « Wa qāla-l-hamdu ».",
+            "transliteration": "Wa qāla-l-hamdu lillāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/027015.mp3"
+          },
+          {
+            "id": "ex-c13-7",
+            "arabicText": "وَإِذَا قِيلَ لَهُمۡ ءَامِنُواْ كَمَآ ءَامَنَ ٱلنَّاسُ",
+            "surahAyahRef": "2:13",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "ءَامَنَ ٱلنَّاسُ",
+            "highlightLetter": "Wasl + Nūn",
+            "ruleApplied": "Élision de Wasl et passage direct au Nūn",
+            "ruleTag": "idgham",
+            "explanationFr": "Dans « fī-s-samāwāt » (فِي السَّمَاوَاتِ), le Yā' de « fī » disparaît en liaison continue : on prononce « Fis-samāwāt ».",
+            "transliteration": "Fī-s-samāwāt (oral : Fis-samāwāt)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002013.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Maintenir l'allongement de 2 temps en liaison (dire « Wa qālāāl-hamdu » ou « Fīī-s-samāwāt »).",
+            "correctionFr": "Élider impérativement la voyelle longue : « Wa qāla-l-hamdu » et « Fis-samāwāt »."
+          },
+          {
+            "trapFr": "Oublier de rétablir les 2 temps du Madd si l'on s'arrête sur le premier mot pour reprendre son souffle.",
+            "correctionFr": "À la pause sur « وَقَالَا », la consonne suivante disparaissant, le Madd naturel de 2 temps redevient obligatoire !"
+          }
+        ]
+      },
+      {
+        "id": "iltiqa-special-resolutions",
+        "nameFr": "4. Les 4 Modes Canoniques de Résolution (Tableau du Livre Arabe)",
+        "nameAr": "كَيْفِيَّاتُ التَّخَلُّصِ الأَرْبَعُ مِنَ الْتِقَاءِ السَّاكِنَيْنِ",
+        "mnemonic": "1. Kasrah (Défaut) | 2. Dammah (Pluriel) | 3. Fathah (Min & Duel) | 4. Hadhf (Madd)",
+        "letters": [],
+        "definitionFr": "Le livre « التجويد المبسط للمبتدئين » synthétise avec une rigueur magistrale les 4 manières dont la langue arabe résout le conflit de deux soukoûns consécutifs : 1. Par la Kasrah (règle par défaut pour Tanwīn, Wāw de Līn singulier, et verbes), 2. Par la Dammah (pour le Mīm du pluriel et le Wāw de la communauté), 3. Par la Fathah (pour la préposition Min, le Tā' duel féminin, et Alif-Lām-Mīm Allāh), 4. Par l'élision orale (Hadhf) des lettres de prolongation.",
+        "definitionLughatan": {
+          "ar": "كَيْفِيَّاتُ التَّخَلُّصِ: الطُّرُقُ الصَّوْتِيَّةُ لِفَضِّ اجْتِمَاعِ السَّاكِنَيْنِ.",
+          "fr": "Les procédés phonologiques d'arbitrage et de déblocage articulatoire."
+        },
+        "definitionIstilahan": {
+          "ar": "الأَوْجُهُ الأَرْبَعَةُ المُعْتَمَدَةُ عِنْدَ القُرَّاءِ: التَّحْرِيكُ بِالكَسْرِ، أَوِ الضَّمِّ، أَوِ الفَتْحِ، أَوْ حَذْفُ حَرْفِ المَدِّ لَفْظاً.",
+          "fr": "Les quatre modalités d'ajustement agréées par les maîtres de récitation : vocalisation par Kasrah, Dammah, Fathah, ou élision phonique de l'allongement."
+        },
+        "mechanismFr": "Observer la nature grammaticale de la première lettre immobile. Si c'est un Mīm de pluriel (hum) ou Wāw de pluriel (ishtaraw), elle s'élève en Dammah. Si c'est « Min », elle s'ouvre en Fathah par légèreté phonique. Si c'est un Tanwīn ou une consonne ordinaire, elle descend en Kasrah.",
+        "physiologicalDetails": {
+          "tongue": "Adopte la hauteur adéquate selon la voyelle : basse pour Fathah, intermédiaire pour Kasrah, rétractée pour Dammah.",
+          "lips": "Circulaires pour Dammah, étirées pour Kasrah, relâchées pour Fathah.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Flux continu sans à-coups."
+        },
+        "phoneticReasonFr": "La Fathah sur « Min » évite la succession lourde de deux Kasrahs consécutives (Min-il). La Dammah sur le pluriel préserve la marque morphologique originale du pluriel (Humu).",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَضُمَّ لِلْجَمْعِ كَمِثْلِ عَصَوُا ادْعُوا * وَاكْسِرْ لِغَيْرِهِ وَبِالفَتْحِ اسْمَعُوا\nفِي مِنْ وَفِي مِيمِ الَّتِي فِي آلِ عِمْرَانَ * تَفُزْ بِالضَّبْطِ وَالإِتْقَانِ",
+          "transliteration": "Wa dumma lil-jam'i kamithli 'asawu-d'ū * Waksir li-ghayrihī wa bil-fathi-sma'ū / Fī Min wa fī Mīmi-llatī fī Āli 'Imrān * Tafuz bid-dabti wal-itqān",
+          "translationFr": "« Vocalise par la Dammah pour le pluriel, applique la Kasrah pour les autres, et applique la Fathah dans la préposition 'Min' ainsi que sur le Mīm d'ouverture d'Al-Imran pour atteindre la perfection. »",
+          "reference": "Matn Al-Muqaddimah Al-Jazariyyah"
+        },
+        "examples": [
+          {
+            "id": "ex-c13-8",
+            "arabicText": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱسۡتَجِيبُواْ لِلَّهِ",
+            "surahAyahRef": "8:24",
+            "surahNameFr": "Al-Anfāl",
+            "highlightSegment": "ءَامَنُواْ ٱسۡتَجِيبُواْ",
+            "highlightLetter": "Wāw de Madd",
+            "ruleApplied": "Élision du Wāw de Madd : 'Āmanu-stajībū",
+            "ruleTag": "silent",
+            "explanationFr": "Le Wāw de « Āmanū » est une consonne de Madd : devant Hamzat Al-Wasl, il s'élide totalement en liaison continue.",
+            "transliteration": "'Āmanu-stajībū lillāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/008024.mp3"
+          },
+          {
+            "id": "ex-c13-9",
+            "arabicText": "فَتَمَنَّوُاْ ٱلۡمَوۡتَ إِن كُنتُمۡ صَٰدِقِينَ",
+            "surahAyahRef": "2:94",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "فَتَمَنَّوُاْ ٱلۡمَوۡتَ",
+            "highlightLetter": "Wāw du pluriel + Dammah",
+            "ruleApplied": "Dammah de secours sur le Wāw de communauté",
+            "ruleTag": "tafkhim",
+            "explanationFr": "Ici, le Wāw n'est pas un Madd mais une consonne de Līn marquant le pluriel : il prend une Dammah de secours (Fataman-nawu-l-mawt).",
+            "transliteration": "Fataman-nawu-l-mawt",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002094.mp3"
+          },
+          {
+            "id": "ex-c13-10",
+            "arabicText": "الم ١ ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلۡحَىُّ ٱلۡقَيُّومُ",
+            "surahAyahRef": "3:1-2",
+            "surahNameFr": "Āl 'Imrān",
+            "highlightSegment": "الم ١ ٱللَّهُ",
+            "highlightLetter": "Mīm avec Fathah",
+            "ruleApplied": "Fathah de secours sur le Mīm pour magnifier le Nom d'Allāh",
+            "ruleTag": "tafkhim",
+            "explanationFr": "En reliant le verset 1 au verset 2, le Mīm final prend une FATHAH de secours : « Alif-Lāāām-Mīīīma-llāhu ». Le Lām de Majesté reste lourd (Mufakhkham) par vénération.",
+            "transliteration": "Alif-Lāāām-Mīīīma-llāh",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/003001.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Donner une Kasrah au Mīm dans « Alif-Lām-Mīm Allāh » d'Al-Imran.",
+            "correctionFr": "La règle sacrée chez Hafs est la FATHAH sur le Mīm pour conserver l'emphase majestueuse du Nom d'Allāh."
+          },
+          {
+            "trapFr": "Confondre le Wāw de Madd (qui s'élide : Āmanū -> Āmanu-stajībū) et le Wāw de Līn du pluriel (qui prend une Dammah : Ishtarawu-d-dalālah).",
+            "correctionFr": "Identifier si le Wāw est précédé d'une Dammah (Madd -> élision) ou d'une Fathah (Līn pluriel -> Dammah de secours)."
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "id": "q-c13-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe (Page 64) : Quelles sont les quatre manières canoniques de résoudre la rencontre de deux consonnes soukounées (Iltiqā' As-Sākinayn) entre deux mots ?",
+        "options": [
+          "1. La Kasrah de secours, 2. La Dammah de secours, 3. La Fathah de secours, 4. L'élision (Hadhf) de la lettre de Madd",
+          "1. La Shaddah, 2. La Ghunnah, 3. Le Soukoûn, 4. La Qalqalah",
+          "1. Le silence, 2. La prolongation de 6 temps, 3. L'Ikhfā', 4. L'Iqlāb",
+          "La rencontre de deux soukoûns est impossible et n'a aucune solution"
+        ],
+        "correctAnswer": "1. La Kasrah de secours, 2. La Dammah de secours, 3. La Fathah de secours, 4. L'élision (Hadhf) de la lettre de Madd",
+        "explanationFr": "Le tableau de la page 64 du livre « التجويد المبسط » détaille exhaustivement ces 4 méthodes : Kasrah (majorité), Dammah (Mīm du pluriel, Wāw de communauté), Fathah (préposition Min, duel, Mīm d'Al-Imran), et Hadhf (lettres de Madd).",
+        "ruleId": "iltiqa-special-resolutions"
+      },
+      {
+        "id": "q-c13-2",
+        "type": "error_detect",
+        "promptFr": "Dans le verset « وَقَالَا ٱلۡحَمۡدُ لِلَّهِ » (An-Naml 15), un élève allonge le Alif de « Wa qālā » sur 2 temps en faisant la liaison vers « Al-Hamd ». Quel est le jugement ?",
+        "verseArabic": "وَقَالَا ٱلۡحَمۡدُ لِلَّهِ ٱلَّذِى فَضَّلَنَا",
+        "targetWord": "وَقَالَا ٱلۡحَمۡدُ",
+        "surahAyahRef": "27:15",
+        "options": [
+          "Lahn Khafī : L'Alif de prolongation doit s'élider totalement à l'oral en liaison (Wa qāla-l-hamdu) car deux soukoûns se rencontrent !",
+          "Récitation recommandée car l'Alif est écrit dans le texte",
+          "Lahn Jalī modifiant le sens en singulier",
+          "Obligation de s'arrêter entre les deux mots"
+        ],
+        "correctAnswer": "Lahn Khafī : L'Alif de prolongation doit s'élider totalement à l'oral en liaison (Wa qāla-l-hamdu) car deux soukoûns se rencontrent !",
+        "explanationFr": "La lettre de prolongation (Alif Sākin) rencontre le Lām Sākin d'Al-Hamd : la règle universelle impose l'élision phonétique de la prolongation lors de la liaison continue.",
+        "ruleId": "iltiqa-madd-elision"
+      },
+      {
+        "id": "q-c13-3",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe (Page 64) : Dans « قُلْ هُوَ اللَّهُ أَحَدٌ ١ اللَّهُ الصَّمَدُ », comment se prononce la liaison entre les versets 1 et 2 ?",
+        "verseArabic": "قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ",
+        "options": [
+          "Ahadu-ni-llāh-us-Samad (avec Nūn Qutnī vocalisé en Kasrah et Lām d'Allāh aminci)",
+          "Ahadu Allāh (sans Nūn)",
+          "Ahadun Allāh (avec arrêt sec)",
+          "Ahadu-nu-llāh (avec Dammah de secours)"
+        ],
+        "correctAnswer": "Ahadu-ni-llāh-us-Samad (avec Nūn Qutnī vocalisé en Kasrah et Lām d'Allāh aminci)",
+        "explanationFr": "Le Tanwīn de « Ahadun » cache un Nūn sākin. Pour éviter la collision avec le Lām d'Allāh, il prend une Kasrah (Nūn Qutnī), ce qui affine le nom d'Allāh par Tarqīq.",
+        "ruleId": "iltiqa-tanween-wasl"
+      }
+    ]
+  },
+  {
+    "id": "chap-14",
+    "number": 14,
+    "slug": "fawatih-as-suwar",
+    "titleFr": "Les Lettres Isolées & Débuts de Sourates (Fawātih As-Suwar)",
+    "titleAr": "فَوَاتِحُ السُّوَرِ وَالحُرُوفُ المُقَطَّعَةُ",
+    "category": "advanced",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Déchiffrer les combinaisons mystérieuses ouvrant 29 sourates du Coran. Maîtriser les 3 groupes de durée (0 temps pour Alif, 2 temps pour Hayyun Tahur, 6 temps pour Kam 'Asala Naqas), appliquer le Tajwīd interne entre les noms des lettres (Idghām, Ikhfā') et maîtriser les règles de liaison singulières.",
+    "infographicPoints": [
+      "29 sourates débutent par des lettres disjointes (Hurūf Muqatta'ah) composées de 14 lettres uniques regroupées dans la formule : « صِلْهُ سُحَيْرًا مَنْ قَطَعْكَ ».",
+      "Groupe 1 (0 temps) : La lettre « ALIF » (أَلِفْ) ne contient aucune voyelle longue : aucune prolongation permise !",
+      "Groupe 2 (2 temps) : Les 5 lettres de « حَيٌّ طَهُرَ » (Hā, Yā, Tā, Hā, Rā) s'épellent en 2 lettres (terminées par un Alif) : Madd Tabī'ī Harfī de 2 temps constants.",
+      "Groupe 3 (6 temps) : Les 8 lettres de « كَمْ عَسَلَ نَقَصَ » s'épellent en 3 lettres avec voyelle longue au milieu : Madd Lāzim Harfī obligatoire de 6 temps pleins !",
+      "Cas unique de 'Ayn (ع) : Son milieu est une consonne de Līn (Yā' précédé de Fathah) : il admet 4 ou 6 temps (6 étant prioritaire).",
+      "Tajwīd interne : Les règles s'appliquent entre les lettres découpées ! Dans Tā-Sīn-Mīm, le Nūn de Sīn s'assimile dans le Mīm avec 2 temps de Ghunnah (Idghām).",
+      "Exceptions de Hafs : Yā-Sīn et Nūn se lisent en Izhār Mutlaq (sans assimilation dans le Wāw suivant) en liaison continue !"
+    ],
+    "subrules": [
+      {
+        "id": "fawatih-classification",
+        "nameFr": "1. Les 3 Familles de Lettres Isolées (0, 2 et 6 temps)",
+        "nameAr": "أَقْسَامُ الحُرُوفِ المُقَطَّعَةِ مِنْ حَيْثُ المَدُّ",
+        "mnemonic": "Alif = 0 | Hayyun Tahur = 2 temps | Kam 'Asala Naqas = 6 temps",
+        "letters": [
+          "أ",
+          "ح",
+          "ي",
+          "ط",
+          "ه",
+          "ر",
+          "ك",
+          "م",
+          "ع",
+          "س",
+          "ل",
+          "ن",
+          "ق",
+          "ص"
+        ],
+        "definitionFr": "Les 14 lettres de début de sourates se répartissent rigoureusement en 3 catégories selon leur morphologie phonétique : celles dont le nom ne contient pas de Madd (Alif), celles dont le nom se compose de deux lettres se terminant par un Alif (2 temps), et celles dont le nom se compose de trois lettres avec une voyelle longue centrale suivie d'un soukoûn originel (6 temps de Madd Lāzim).",
+        "definitionLughatan": {
+          "ar": "المُقَطَّعَةُ: المَفْصُولَةُ الَّتِي يُنْطَقُ بِأَسْمَائِهَا لَا بِمُسَمَّيَاتِهَا.",
+          "fr": "Les lettres disjointes récitées selon l'énoncé complet de leurs noms alphabétiques sacrés."
+        },
+        "definitionIstilahan": {
+          "ar": "حُرُوفُ الهِجَاءِ فِي فَوَاتِحِ السُّوَرِ الَّتِي تُقْرَأُ مُقَطَّعَةً بِأَسْمَائِهَا مُوَزَّعَةً بَيْنَ: عَدِيمِ المَدِّ، وَالمَدِّ الطَّبِيعِيِّ حَرْفِيّاً، وَالمَدِّ اللَّازِمِ الحَرْفِيِّ.",
+          "fr": "L'énonciation des consonnes liminaires du Coran selon les 3 échelles temporelles consacrées : absence d'allongement, allongement naturel de 2 temps, et allongement contraignant obligatoire de 6 temps."
+        },
+        "mechanismFr": "Pour Alif, articulez fermement les 3 consonnes [A-l-i-f] sans étirer. Pour Hayyun Tahur, ouvrez la voyelle sur 2 battements métronomiques calmes. Pour Kam 'Asala Naqas, déployez l'allongement sur 6 battements complets avant de fermer la consonne finale avec son soukoûn.",
+        "physiologicalDetails": {
+          "tongue": "Repose souplement au fond de la bouche pour Alif ; soutient la résonance du Madd pendant les 6 temps requis.",
+          "lips": "Ouverture verticale pour les voyelles ouvertes [ā], projection pour [ū], étirement pour [ī].",
+          "vocalCords": "Vibration continue et stable sans à-coups ni essoufflement prématuré.",
+          "airflow": "Débit d'air constant et maîtrisé pendant toute la durée des 6 temps."
+        },
+        "phoneticReasonFr": "Puisque le nom complet de la lettre s'achève par une consonne soukounée originelle (ex: N-ū-n, S-ī-n, Q-ā-f), la rencontre de cette consonne avec la voyelle longue précédente engendre mécaniquement un Madd Lāzim Harfī.",
+        "durationHarakat": 6,
+        "matnJazariyyah": {
+          "verseAr": "وَاللَّازِمُ الحَرْفِيُّ فِي الفَوَاتِحِ * وُجُودُهُ وَفِي ثَمَانٍ رَاجِحِ\nيَجْمَعُهَا كَمْ عَسَلَ نَقَصْ وَعَيْنُ * ذُو وَجْهَيْنِ وَالطُّولُ أَبْيَنُ\nوَمَا سِوَاهَا فِي حَيٍّ طَهُرْ * فَمَدُّهُ طَبِيعِيٌّ كَمَا شُهِرْ",
+          "transliteration": "Wal-lāzimu-l-harfiyyu fī-l-fawātihi * Wujūduhū wa fī thamānin rājihi / Yajma'uhā kam 'asala naqas wa 'aynu * Dhū wajhayni wat-tūlu abyānu / Wa mā siwāhā fī hayyin tahur * Famadduhū tabī'iyyun kamā shuhir",
+          "translationFr": "« Le Madd Lāzim Harfī s'incarne dans les ouvertures de sourates au sein de 8 lettres résumées par 'Kam 'Asala Naqas'. La lettre 'Ayn possède deux options, mais la durée longue (6 temps) est plus évidente. Quant aux autres dans 'Hayyun Tahur', leur allongement est naturel de deux temps. »",
+          "reference": "Matn Tuhfat Al-Atfāl & Al-Jazariyyah (Fawātih As-Suwar)"
+        },
+        "examples": [
+          {
+            "id": "ex-c14-1",
+            "arabicText": "الم ١ ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ",
+            "surahAyahRef": "2:1-2",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "الم",
+            "highlightLetter": "Alif (0) + Lām (6) + Mīm (6)",
+            "ruleApplied": "Alif (0 temps) + Madd Lāzim Harfī (6 temps)",
+            "ruleTag": "madd",
+            "explanationFr": "Se décompose en : Alif (0 temps) + Lāāām (6 temps avec Idghām) + Mīīīm (6 temps). Total de la récitation : 14 temps avec la Ghunnah intermédiaire.",
+            "transliteration": "Alif-Lāāām-Mīīīm",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002001.mp3"
+          },
+          {
+            "id": "ex-c14-2",
+            "arabicText": "طه ١ مَآ أَنزَلۡنَا عَلَيۡكَ ٱلۡقُرۡءَانَ لِتَشۡقَىٰٓ",
+            "surahAyahRef": "20:1-2",
+            "surahNameFr": "Tā-Hā",
+            "highlightSegment": "طه",
+            "highlightLetter": "Tā (2) + Hā (2)",
+            "ruleApplied": "Madd Tabī'ī Harfī de 2 temps chacun",
+            "ruleTag": "madd",
+            "explanationFr": "Les lettres Tā' et Hā' font partie de « حَيٌّ طَهُرَ » : chacune se prolonge exactement de 2 temps naturels sans Hamzah finale.",
+            "transliteration": "Tā-Hā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/020001.mp3"
+          },
+          {
+            "id": "ex-c14-3",
+            "arabicText": "قٓۚ وَٱلۡقُرۡءَانِ ٱلۡمَجِيدِ",
+            "surahAyahRef": "50:1",
+            "surahNameFr": "Qāf",
+            "highlightSegment": "قٓۚ",
+            "highlightLetter": "Qāf (6 temps)",
+            "ruleApplied": "Madd Lāzim Harfī Mukhaffaf",
+            "ruleTag": "madd",
+            "explanationFr": "La lettre unique Qāf s'épelle « Q-ā-f » : 6 temps d'allongement obligatoire avec soukoûn sans Shaddah.",
+            "transliteration": "Qāāāāāāf",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/050001.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Allonger la lettre ALIF (dire « Ālif » au lieu de « Alif » bref).",
+            "correctionFr": "L'Alif ne comporte aucune voyelle longue : il se prononce en 0 temps d'allongement, sec et précis."
+          },
+          {
+            "trapFr": "Rajouter une Hamzah à la fin des lettres de Hayyun Tahur (dire « Tā' » ou « Hā' » avec coup de glotte).",
+            "correctionFr": "Elles se terminent par un Alif ouvert et fluide sans aucun arrêt glottique : « Tā », « Hā », « Yā », « Rā »."
+          }
+        ]
+      },
+      {
+        "id": "fawatih-internal-tajweed",
+        "nameFr": "2. Le Tajwīd Interne entre les Noms des Lettres",
+        "nameAr": "أَحْكَامُ التَّجْوِيدِ البَيْنِيَّةِ فِي هِجَاءِ الفَوَاتِحِ",
+        "mnemonic": "Épeler phonétiquement les lettres et appliquer Idghām, Ikhfā' et Ghunnah",
+        "letters": [],
+        "definitionFr": "Lorsque plusieurs lettres disjointes se succèdent, la fin du nom de la première consonne rencontre le début du nom de la suivante. Toutes les règles de Tajwīd canoniques (Idghām Shafawī, Idghām avec Ghunnah, Ikhfā' Haqīqī avec Ghunnah) s'appliquent rigoureusement entre les noms des lettres comme dans un texte suivi.",
+        "definitionLughatan": {
+          "ar": "التَّجْوِيدُ البَيْنِيُّ: إِعْمَالُ قَوَاعِدِ النُّونِ وَالمِيمِ بَيْنَ أَسْمَاءِ الحُرُوفِ.",
+          "fr": "L'application des règles phonétiques de transition entre les noms des lettres consécutives."
+        },
+        "definitionIstilahan": {
+          "ar": "تَطْبِيقُ أَحْكَامِ الإِدْغَامِ وَالإِخْفَاءِ وَالقَلْقَلَةِ النَّاشِئَةِ عَنِ الْتِقَاءِ حُرُوفِ الهِجَاءِ فِي الفَوَاتِحِ عِنْدَ وَصْلِهَا صَوْتِيّاً.",
+          "fr": "La mise en œuvre des assimilations et dissimulations résultant de la rencontre des consonnes terminales et initiales des noms de lettres découpées."
+        },
+        "mechanismFr": "Écrivez mentalement les noms : dans Tā-Sīn-Mīm, la fin de « Sīn » est un Nūn Sākinah, et le début de « Mīm » est un Mīm. Nūn + Mīm déclenche obligatoirement un Idghām avec Ghunnah de 2 temps pleins. Dans Kāf-Hā-Yā-'Ayn-Sād, le Nūn de « 'Ayn » devant le Sād déclenche un Ikhfā' avec Ghunnah emphatique.",
+        "physiologicalDetails": {
+          "tongue": "Se prépare au Makhraj de la lettre suivante pendant la Ghunnah d'Ikhfā' (ex: près du Sād pour 'Ayn-Sād).",
+          "lips": "Se ferment complètement pour l'Idghām du Mīm dans Lām-Mīm et Sīn-Mīm.",
+          "vocalCords": "Vibration continue pour la Ghunnah.",
+          "airflow": "Flux d'air passant à 100% par le nez (Khayshūm) pendant 2 temps de Ghunnah."
+        },
+        "phoneticReasonFr": "Les noms des lettres sont des mots arabes à part entière régis par les lois phonotactiques immuables de la langue sacrée.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَدْغِمَنَّ سِينَ فِي المِيمِ تَفُزْ * كَذَاكَ لَامٌ بَعْدَهَا مِيمٌ تُعَزْ\nوَأَخْفِ نُونَ العَيْنِ عِنْدَ الصَّادِ * بِغُنَّةٍ تُعْزَى لِأَهْلِ الضَّادِ",
+          "transliteration": "Wa adghimanna Sīna fī-l-Mīmi tafuz * Kadhāka Lāmun ba'dahā Mīmun tu'az / Wa akhfi Nūna-l-'Ayni 'inda-s-Sādi * Bi-ghunnatin tu'zā li-ahli-d-Dād",
+          "translationFr": "« Assimile le Sīn dans le Mīm pour triompher, de même que le Lām suivi du Mīm avec noblesse ; et dissimule le Nūn de 'Ayn devant le Sād avec une Ghunnah attribuée aux maîtres de la langue. »",
+          "reference": "Matn Al-Jazariyyah & Chāṭibiyyah (Ahkām al-Hurūf al-Muqatta'ah)"
+        },
+        "examples": [
+          {
+            "id": "ex-c14-4",
+            "arabicText": "طسٓمٓ ١ تِلۡكَ ءَايَٰتُ ٱلۡكِتَٰبِ ٱلۡمُبِينِ",
+            "surahAyahRef": "26:1-2",
+            "surahNameFr": "Ash-Shu'arā",
+            "highlightSegment": "طسٓمٓ",
+            "highlightLetter": "Sīn + Mīm (Idghām avec Ghunnah)",
+            "ruleApplied": "Madd Lāzim Harfī Muthaqqal (Idghām interne)",
+            "ruleTag": "idgham",
+            "explanationFr": "S'épelle : « Tā » (2 temps) + « Sīīī[n » + « M]īīīm » (6 temps). Le Nūn s'assimile totalement dans le Mīm avec 2 temps de Ghunnah obligatoire.",
+            "transliteration": "Tā-Sīīīm-Mīīīm",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/026001.mp3"
+          },
+          {
+            "id": "ex-c14-5",
+            "arabicText": "كٓهيعٓصٓ ١ ذِكۡرُ رَحۡمَتِ رَبِّكَ عَبۡدَهُۥ زَكَرِيَّآ",
+            "surahAyahRef": "19:1-2",
+            "surahNameFr": "Maryam",
+            "highlightSegment": "كٓهيعٓصٓ",
+            "highlightLetter": "'Ayn + Sād (Ikhfā' avec Ghunnah lourde)",
+            "ruleApplied": "Ikhfā' Haqīqī interne avec Ghunnah Mufakhkhamah",
+            "ruleTag": "ikhfa",
+            "explanationFr": "Le nom de la lettre « 'Ayn » se termine par un Nūn sākinah. Devant le « Sād », ce Nūn subit un Ikhfā' avec une Ghunnah lourde et grave de 2 temps.",
+            "transliteration": "Kāāāf-Hā-Yā-'Ayynnn-Sāāād",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/019001.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Oublier l'Idghām dans « Tā-Sīn-Mīm » et prononcer un Nūn sec (dire « Tā-Sīn... Mīm » séparés).",
+            "correctionFr": "Fusionner impérativement le Nūn dans le Mīm avec 2 temps de Ghunnah continue : « Tā-Sīīīm-Mīīīm »."
+          },
+          {
+            "trapFr": "Faire une Ghunnah aiguë (mince) entre 'Ayn et Sād dans Maryam.",
+            "correctionFr": "Le Sād étant une lettre lourde et emphatique d'Isti'lā', la Ghunnah d'Ikhfā' doit être puissante et sombre."
+          }
+        ]
+      },
+      {
+        "id": "fawatih-liaison-ayah",
+        "nameFr": "3. Règles de Liaison avec le Verset Suivant & Exceptions de Hafs",
+        "nameAr": "وَصْلُ الفَوَاتِحِ بِمَا بَعْدَهَا وَاسْتِثْنَاءَاتُ حَفْصٍ",
+        "mnemonic": "Yā-Sīn & Nūn = Izhār Mutlaq | Alif-Lām-Mīm Allāh = Fathah sur Mīm",
+        "letters": [],
+        "definitionFr": "Lorsque l'on relie les lettres disjointes au verset suivant sans marquer d'arrêt, des règles particulières de lecture s'imposent : dans « Yā-Sīn wal-Qur'ān » et « Nūn wal-Qalam », l'Imam Hafs pratique obligatoirement l'Izhār Mutlaq (aucun Idghām dans le Wāw). Dans « Alif-Lām-Mīm Allāh » (Āl 'Imrān), le Mīm prend une Fathah pour magnifier le Nom d'Allāh.",
+        "definitionLughatan": {
+          "ar": "الوَصْلُ: الِاتِّصَالُ دُونَ سَكْتٍ أَوْ قَطْعٍ.",
+          "fr": "L'enchaînement mélodique continu sans rupture respiratoire."
+        },
+        "definitionIstilahan": {
+          "ar": "أَحْكَامُ الرَّبْطِ بَيْنَ فَاتِحَةِ السُّورَةِ وَمَبْدَإِ الآيَةِ التَّالِيَةِ مَعَ مُرَاعَاةِ انْفِرَادَاتِ حَفْصٍ مِنْ طَرِيقِ الشَّاطِبِيَّةِ.",
+          "fr": "Les règles spécifiques reliant le sigle liminaire au premier verset selon la voie canonique de la Chāṭibiyyah pour l'Imam Hafs."
+        },
+        "mechanismFr": "Pour « Yā-Sīn wal-Qur'ān », prononcez le Nūn de « Sīn » avec une clarté totale (Izhār) sans faire d'Idghām avec le Wāw. Pour « Alif-Lām-Mīm Allāh », donnez une Fathah au Mīm et récitez soit avec 2 temps de Madd, soit avec 6 temps de Madd sur le Mīm.",
+        "physiologicalDetails": {
+          "tongue": "Pointe de la langue claquant franchement sur les alvéoles supérieures pour le Nūn d'Izhār.",
+          "lips": "Ouverture horizontale pour la Fathah du Mīm.",
+          "vocalCords": "Continuité vibratoire sans pause glottique.",
+          "airflow": "Flux oral continu."
+        },
+        "phoneticReasonFr": "L'Izhār dans Yā-Sīn et Nūn préserve l'intégrité de la lettre d'ouverture en tant qu'entité révélée indépendante.",
+        "durationHarakat": 6,
+        "matnJazariyyah": {
+          "verseAr": "وَيَاسِينُ أَظْهِرْ عِنْدَ وَاوٍ تَلَتْ كَذَا * بِنُونَ وَلَا تُدْغِمْ لِحَفْصٍ كَمَا خَذَا\nوَفِي آلِ عِمْرَانَ افْتَحِ المِيمَ وَاصِلَا * بِتَقْصِيرِ أَوْ مَدٍّ كَمَا قَدْ تَأَصَّلَا",
+          "transliteration": "Wa Yāsīnu azhir 'inda wāwin talat kadhā * Bi-Nūnin wa lā tudghim li-Hafsin kamā khadhā / Wa fī Āli 'Imrāna-ftahi-l-Mīma wāsilā * Bi-taqsīrin aw maddin kamā qad ta'assalā",
+          "translationFr": "« Fais l'Izhār pour Yā-Sīn devant le Wāw qui suit, ainsi que pour Nūn, et n'assimile pas pour Hafs. Et dans Āl 'Imrān, donne la Fathah au Mīm en liaison, avec option courte (2 temps) ou longue (6 temps) selon la règle établie. »",
+          "reference": "Matn Al-Chāṭibiyyah & Al-Jazariyyah (Fawātih & Idghām)"
+        },
+        "examples": [
+          {
+            "id": "ex-c14-6",
+            "arabicText": "يسٓ ١ وَٱلۡقُرۡءَانِ ٱلۡحَكِيمِ",
+            "surahAyahRef": "36:1-2",
+            "surahNameFr": "Yā-Sīn",
+            "highlightSegment": "يسٓ ١ وَٱلۡقُرۡءَانِ",
+            "highlightLetter": "Sīn + Wāw (Izhār Mutlaq)",
+            "ruleApplied": "Izhār Mutlaq en liaison continue (Hafs)",
+            "ruleTag": "izhar",
+            "explanationFr": "Si l'on relie sans s'arrêter, Hafs prononce obligatoirement « Yā-Sīīn wal-Qur'ān » en faisant entendre clairement le Nūn sans fusion ni Ghunnah dans le Wāw.",
+            "transliteration": "Yā-Sīīīn wal-Qur'āni-l-Hakīm",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/036001.mp3"
+          },
+          {
+            "id": "ex-c14-7",
+            "arabicText": "نٓۚ وَٱلۡقَلَمِ وَمَا يَسۡطُرُونَ",
+            "surahAyahRef": "68:1",
+            "surahNameFr": "Al-Qalam",
+            "highlightSegment": "نٓۚ وَٱلۡقَلَمِ",
+            "highlightLetter": "Nūn + Wāw (Izhār Mutlaq)",
+            "ruleApplied": "Izhār Mutlaq de Hafs",
+            "ruleTag": "izhar",
+            "explanationFr": "Même exception : le Nūn d'ouverture se lie au Wāw avec un Izhār absolu : « Nūūūn wal-Qalami wa mā yasturūn ».",
+            "transliteration": "Nūūūn wal-qalami wa mā yasturūn",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/068001.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Assimiler le Nūn dans le Wāw (dire « Yā-Sīw-wal-Qur'ān » avec Ghunnah).",
+            "correctionFr": "L'Idghām est formellement interdit chez Hafs par la voie de la Chāṭibiyyah : l'Izhār Mutlaq est obligatoire."
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "id": "q-c14-1",
+        "type": "mcq",
+        "promptFr": "Quelle est la durée d'allongement de la lettre ALIF (أَلِفْ) en ouverture de sourate ?",
+        "options": [
+          "0 temps (aucun allongement)",
+          "2 temps (Madd Tabī'ī)",
+          "4 temps",
+          "6 temps (Madd Lāzim)"
+        ],
+        "correctAnswer": "0 temps (aucun allongement)",
+        "explanationFr": "Le nom de la lettre Alif s'épelle [A-l-i-f] : il ne contient aucune voyelle longue au milieu ni à la fin. Elle se prononce donc en 0 temps d'allongement.",
+        "ruleId": "fawatih-classification"
+      },
+      {
+        "id": "q-c14-2",
+        "type": "error_detect",
+        "promptFr": "Dans « يسٓ وَٱلۡقُرۡءَانِ ٱلۡحَكِيمِ », un récitateur applique un Idghām avec Ghunnah entre le Nūn de Yā-Sīn et le Wāw suivant. Quelle est la nature de l'erreur selon Hafs 'an 'Āsim ?",
+        "verseArabic": "يسٓ ١ وَٱلۡقُرۡءَانِ ٱلۡحَكِيمِ",
+        "targetWord": "يسٓ ١ وَٱلۡقُرۡءَانِ",
+        "surahAyahRef": "36:1-2",
+        "options": [
+          "Lahn Khafī : Hafs récite obligatoirement avec un Izhār Mutlaq (clarté du Nūn sans Idghām)",
+          "Récitation recommandée",
+          "Erreur sur la lettre Yā'",
+          "Obligation de supprimer le Wāw"
+        ],
+        "correctAnswer": "Lahn Khafī : Hafs récite obligatoirement avec un Izhār Mutlaq (clarté du Nūn sans Idghām)",
+        "explanationFr": "Par la voie de la Chāṭibiyyah, Hafs fait exception à la règle générale de l'Idghām dans « Yā-Sīn wal-Qur'ān » et « Nūn wal-Qalam » en appliquant un Izhār rigoureux.",
+        "ruleId": "fawatih-liaison-ayah"
+      },
+      {
+        "id": "q-c14-3",
+        "type": "mcq",
+        "promptFr": "Combien de temps dure l'allongement de la lettre 'Ayn (عٓ) dans « كٓهيعٓصٓ » et « عٓسٓقٓ » selon les règles canoniques ?",
+        "options": [
+          "4 ou 6 temps au choix (avec préférence pour 6 temps)",
+          "Exactement 2 temps",
+          "0 temps",
+          "Toujours 8 temps"
+        ],
+        "correctAnswer": "4 ou 6 temps au choix (avec préférence pour 6 temps)",
+        "explanationFr": "La lettre 'Ayn contient une consonne de Līn au milieu (Yā' précédé d'une Fathah) : elle admet donc le Tawassut (4 temps) ou le Tūl (6 temps), la durée de 6 temps étant prioritaire et recommandée.",
+        "ruleId": "fawatih-classification"
+      }
+    ]
+  },
+  {
+    "id": "chap-15",
+    "number": 15,
+    "slug": "distinctions-subtiles",
+    "titleFr": "Distinctions Subtiles : Tā'āt & Ahkām Al-Waqf",
+    "titleAr": "بَابُ التَّاءَاتِ وَأَحْكَامُ الوَقْفِ عَلَيْهَا",
+    "category": "advanced",
+    "estimatedMinutes": 20,
+    "isPilotChapter": true,
+    "summaryFr": "Distinguer la Tā' Marbūṭah (ة qui devient [h] à l'arrêt) de la Tā' Maftūḥah (ت qui reste [t] avec souffle de Hams). Mémoriser les 13 mots sacrés tracés avec une Tā' ouverte dans le Mushaf selon le Matn Al-Jazariyyah, et maîtriser les règles de pause sur Hā' Al-Kināyah et Alif Maqsūrah.",
+    "infographicPoints": [
+      "Règle d'or du Tā' à la pause : La Tā' Marbūṭah (ة) se transforme obligatoirement en Hā' soukouné [h] (ex: Rahmah -> Rahmah). La Tā' Maftūḥah (ت) reste un Tā' soukouné [t] avec Hams.",
+      "En récitation liée (Wasl) : Les deux types de Tā' se prononcent rigoureusement comme un son [t] avec leur voyelle.",
+      "Les 13 mots exceptionnels : 13 termes féminins sont tracés dans le Mushaf avec une Tā' ouverte (ت) dans des contextes précis (ex: Rahmat, Ni'mat, Imra'at, Sunnat).",
+      "Arrêt d'épreuve (Waqf Idtirārī) : Si le récitateur s'arrête sur ces 13 mots tracés avec (ت), il DOIT s'arrêter sur un [t] et non sur un [h] !",
+      "Matn d'Ibn Al-Jazarī : Il consacre tout un chapitre poétique (« بَابُ التَّاءِ ») pour énumérer méthodiquement chacun des 13 termes et leurs sourates respectives.",
+      "Hā' Al-Kināyah : Le pronom possessif singulier masculin (ـهُ / ـهِ) fait l'objet de règles de prolongation précises (Silah Sughrā et Kubrā) avec des exceptions clés chez Hafs."
+    ],
+    "subrules": [
+      {
+        "id": "taa-marbuta-vs-maftuha",
+        "nameFr": "1. Tā' Marbūṭah (ة) vs Tā' Maftūḥah (ت) à l'Arrêt",
+        "nameAr": "الفَرْقُ بَيْنَ التَّاءِ المَرْبُوطَةِ وَالمَفْتُوحَةِ عِنْدَ الوَقْفِ",
+        "mnemonic": "Marbūṭah (ة) = Arrêt en [h] | Maftūḥah (ت) = Arrêt en [t] avec Hams",
+        "letters": [
+          "ة",
+          "ت"
+        ],
+        "definitionFr": "En langue arabe et dans le Rasm coranique, le Tā' de féminité peut s'écrire fermé (Tā' Marbūṭah ة) ou ouvert (Tā' Maftūḥah / Mabsūtah ت). En liaison, les deux se prononcent [t]. Mais lors de la pause (Waqf), la Tā' Marbūṭah se métamorphose impérativement en Hā' soukouné [h], tandis que la Tā' Maftūḥah conserve son identité consonantique de Tā' [t] avec le souffle de Hams.",
+        "definitionLughatan": {
+          "ar": "المَرْبُوطَةُ: المَعْقُودَةُ الَّتِي تُشْبِهُ الهَاءَ. وَالمَفْتُوحَةُ: المَبْسُوطَةُ.",
+          "fr": "La liée/fermée ressemblant au Hā', et l'ouverte/étalée conservant sa structure de Tā'."
+        },
+        "definitionIstilahan": {
+          "ar": "التَّاءُ المَرْبُوطَةُ يُوقَفُ عَلَيْهَا بِالهَاءِ السَّاكِنَةِ إِجْمَاعاً، وَالمَفْتُوحَةُ يُوقَفُ عَلَيْهَا بِالتَّاءِ مَعَ جَرَيَانِ النَّفَسِ (الهَمْسِ).",
+          "fr": "La Tā' liée sur laquelle l'arrêt s'effectue unanimement par un Hā' immobile, et la Tā' ouverte sur laquelle l'arrêt s'effectue par un Tā' immobile doté de son chuchotement (Hams)."
+        },
+        "mechanismFr": "Pour la Tā' Marbūṭah à l'arrêt, relâchez la langue de l'arcade dentaire et laissez expirer un souffle doux depuis le fond de la gorge (Aqsal-Halq). Pour la Tā' Maftūḥah, appliquez fermement la pointe de la langue sur les gencives supérieures pour le blocage Shiddah, puis libérez un léger filet d'air (Hams).",
+        "physiologicalDetails": {
+          "tongue": "Pour [ة -> h] : langue au repos complet. Pour [ت -> t] : appui net de la pointe sur les gencives des incisives supérieures.",
+          "lips": "Neutres et immobiles.",
+          "vocalCords": "Ouvertes pour le Hams du Tā' ou pour le souffle glottique du Hā'.",
+          "airflow": "Flux doux expiratoire sans forcer."
+        },
+        "phoneticReasonFr": "La fermeture graphique de la boucle de la Tā' Marbūṭah symbolise sa transition historique vers le phonème glottique doux [h] à l'arrêt pour alléger la fin des mots féminins.",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَقِفْ بِهَاءٍ عَلَى تَاءِ التَّأْنِيثِ إِنْ كُتِبَتْ * مَرْبُوطَةً وَبِتَاءٍ إِنْ هِيَ ارْتَسَمَتْ\nمَبْسُوطَةً فِي مُصْحَفِ الإِمَامِ ضَبْطَا * وَاتَّبِعِ الأَثَرَ لَا تَحِدْ عَنْهُ قَطَّا",
+          "transliteration": "Waqif bi-hā'in 'alā tā'i-t-ta'nīthi in kutibat * Marbūtatan wa bi-tā'in in hiya-rtasamat / Mabsūtatan fī mushafi-l-imāmi dabtā * Wattabi'i-l-athara lā tahid 'anhu qattā",
+          "translationFr": "« Arrête-toi avec un Hā' sur le Tā' de féminin s'il est écrit fermé, et avec un Tā' s'il est tracé ouvert dans le Mushaf de référence, et suis fidèlement la tradition sans jamais t'en écarter. »",
+          "reference": "Matn Al-Jazariyyah (Bāb at-Tā'āt)"
+        },
+        "examples": [
+          {
+            "id": "ex-c15-1",
+            "arabicText": "فِيهَا عَيۡنٞ جَارِيَةٞ",
+            "surahAyahRef": "88:12",
+            "surahNameFr": "Al-Ghāshiyah",
+            "highlightSegment": "جَارِيَةٞ",
+            "highlightLetter": "Tā' Marbūṭah (ة)",
+            "ruleApplied": "Arrêt en Hā' soukouné doux [h]",
+            "ruleTag": "silent",
+            "explanationFr": "S'écrit avec une Tā' Marbūṭah (ة). En liaison : « Jāriyatun ». Lors de l'arrêt (Waqf) : se prononce obligatoirement « Jāriyah » avec un souffle de Hā'.",
+            "transliteration": "Jāriyah (liaison : Jāriyatun)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/088012.mp3"
+          },
+          {
+            "id": "ex-c15-2",
+            "arabicText": "فَأَمَّا مَن ثَقُلَتۡ مَوَٰزِينُهُۥ",
+            "surahAyahRef": "101:6",
+            "surahNameFr": "Al-Qāri'ah",
+            "highlightSegment": "ثَقُلَتۡ",
+            "highlightLetter": "Tā' Maftūḥah (ت)",
+            "ruleApplied": "Arrêt sur Tā' soukouné avec Hams",
+            "ruleTag": "hams",
+            "explanationFr": "Tā' de féminité du verbe, écrit ouvert (ت). À l'arrêt, conserve son son [t] avec un souffle net de Hams : « Thaqulat ».",
+            "transliteration": "Thaqulat",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/101006.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Prononcer un Tā' à la pause sur une Tā' Marbūṭah (dire « Al-Qāri'at » au lieu de « Al-Qāri'ah »).",
+            "correctionFr": "C'est une faute grave (Lahn Jalī) : la Tā' Marbūṭah se transmute intégralement en [h] à l'arrêt."
+          },
+          {
+            "trapFr": "Oublier le souffle de Hams sur le Tā' ouvert à l'arrêt, rendant la consonne étouffée ou inaudible.",
+            "correctionFr": "Libérer immédiatement après le blocage lingual un filet d'air audible sans forcer."
+          }
+        ]
+      },
+      {
+        "id": "taa-thirteen-words",
+        "nameFr": "2. Les 13 Mots Sacrés Tracés avec Tā' Ouverte (ت) dans le Mushaf",
+        "nameAr": "الكَلِمَاتُ الثَّلَاثَ عَشْرَةَ المَكْتُوبَةُ بِالتَّاءِ المَفْتُوحَةِ",
+        "mnemonic": "13 mots exceptionnels qui s'arrêtent en [t] dans le Mushaf (Tableau page 68)",
+        "letters": [
+          "ت"
+        ],
+        "definitionFr": "Le livre « التجويد المبسط للمبتدئين » (Page 68) et le Matn Al-Jazariyyah recensent 13 vocables féminins qui, contre toute attente graphique, ont été tracés dans certains versets avec une Tā' ouverte (ت) au lieu de fermée (ة). Si un récitateur est contraint de s'arrêter sur ces occurrences précises (pour cause d'essoufflement ou d'examen), il DOIT s'arrêter en prononçant un [t] avec Hams.",
+        "definitionLughatan": {
+          "ar": "المَقْطُوعُ وَالمَوْصُولُ وَالتَّاءَاتُ المَرْسُومَةُ فِي المَصَاحِفِ العُثْمَانِيَّةِ.",
+          "fr": "Les particularités orthographiques du tracé 'Othmānī officiel."
+        },
+        "definitionIstilahan": {
+          "ar": "ثَلَاثَ عَشْرَةَ كَلِمَةً أُنِّثَتْ بِتَاءٍ مَبْسُوطَةٍ فِي مَوَاضِعَ مَخْصُوصَةٍ فَيُوقَفُ عَلَيْهَا اتِّبَاعاً لِلرَّسْمِ بِالتَّاءِ لَا بِالهَاءِ.",
+          "fr": "Treize termes coraniques féminins dotés d'une Tā' ouverte dans des emplacements consacrés, imposant à la pause un arrêt sur la consonne [t] par conformité stricte au tracé sacré."
+        },
+        "mechanismFr": "Repérez les 13 vocables : 1. Rahmat (رَحْمَتَ), 2. Ni'mat (نِعْمَتَ), 3. Imra'at (امْرَأَتَ), 4. Sunnat (سُنَّتَ), 5. La'nat (لَعْنَتَ), 6. Ma'siyat (مَعْصِيَتِ), 7. Kalimat (كَلِمَتُ), 8. Baqiyyat (بَقِيَّتُ), 9. Qurrat (قُرَّتُ), 10. Fitrat (فِطْرَتَ), 11. Shajarat (شَجَرَتَ), 12. Jannat (جَنَّتُ), 13. Ibnat (ابْنَتَ). À la pause sur ces versets identifiés, bloquez la langue sur les gencives et lâchez le souffle de Hams.",
+        "physiologicalDetails": {
+          "tongue": "Pointe fermement appliquée contre l'arcade dentaire supérieure, prête au relâchement de Hams.",
+          "lips": "Neutres.",
+          "vocalCords": "Ouvertes pour laisser passer l'expiration.",
+          "airflow": "Flux continu sans interruption brusque."
+        },
+        "phoneticReasonFr": "Le principe absolu de la récitation coranique est la conformité indéfectible au tracé de la 'Uthmāniyyah : « Al-Waqfu 'alā Hasabi ar-Rasm » (On s'arrête selon le tracé de la plume).",
+        "durationHarakat": 0,
+        "matnJazariyyah": {
+          "verseAr": "وَرَحْمَتُ الزُّخْرُفِ بِالتَّا زَبَرَهْ * لَعْنَتْ بِهَا وَالنُّورِ وَامْرَأَتْ بَقَرْ\nنِعْمَتُهَا ثَلَاثُ نَحْلٍ إِبْرَهَمْ * مَعًا أَخِيرَاتٌ عُقُودُ الثَّانِ هَمْ\nلُقْمَانُ ثُمَّ فَاطِرٌ كَالطُّورِ * عِمْرَانَ لَعْنَتَ بِهَا وَالنُّورِ",
+          "transliteration": "Wa rahmatu-z-Zukhrufi bit-tā zabarah * La'nat bihā wan-Nūri wamra'at baqar / Ni'matuhā thalāthu Nahlin Ibraham * Ma'an akhīrātun 'Uqūdu-th-thāni ham / Luqmānu thumma Fātirun kat-Tūri * 'Imrāna la'nata bihā wan-Nūri",
+          "translationFr": "« Rahmat dans Az-Zukhruf est écrite avec un Tā', de même que La'nat dans celle-ci et dans An-Nūr, et Imra'at dans Al-Baqarah. Ni'mat dans trois passages d'An-Nahl, deux dans Ibrāhīm, dans Al-'Uqūd (Al-Mā'idah), Luqmān, Fātir, At-Tūr, et Āl 'Imrān... »",
+          "reference": "Matn Al-Jazariyyah (Versets 71-74)"
+        },
+        "examples": [
+          {
+            "id": "ex-c15-3",
+            "arabicText": "إِنَّ رَحۡمَتَ ٱللَّهِ قَرِيبٞ مِّنَ ٱلۡمُحۡسِنِينَ",
+            "surahAyahRef": "7:56",
+            "surahNameFr": "Al-A'rāf",
+            "highlightSegment": "رَحۡمَتَ ٱللَّهِ",
+            "highlightLetter": "ت ouverte dans Rahmat",
+            "ruleApplied": "Arrêt exceptionnel en [t] avec Hams selon le Rasm",
+            "ruleTag": "hams",
+            "explanationFr": "Dans ce verset, « Rahmat » est tracé avec une Tā' ouverte (رَحْمَتَ). Si l'on s'arrête en cas d'urgence, on prononce obligatoirement « Rahmat » avec son [t] et non « Rahmah ».",
+            "transliteration": "Rahmat (à la pause)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/007056.mp3"
+          },
+          {
+            "id": "ex-c15-4",
+            "arabicText": "امۡرَأَتَ نُوحٖ وَٱمۡرَأَتَ لُوطٖ",
+            "surahAyahRef": "66:10",
+            "surahNameFr": "At-Tahrīm",
+            "highlightSegment": "امۡرَأَتَ",
+            "highlightLetter": "ت ouverte dans Imra'at",
+            "ruleApplied": "Arrêt sur [t] pour l'épouse associée à son époux",
+            "ruleTag": "hams",
+            "explanationFr": "Chaque fois que le mot « Imra'ah » est annexé à son mari dans le Coran, il s'écrit avec une Tā' ouverte (امْرَأَتَ) et se termine par un [t] à l'arrêt : « Imra'at ».",
+            "transliteration": "Imra'at",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/066010.mp3"
+          },
+          {
+            "id": "ex-c15-5",
+            "arabicText": "فَرَوْحٌ وَرَيْحَانٌ وَجَنَّتُ نَعِيمٍ",
+            "surahAyahRef": "56:89",
+            "surahNameFr": "Al-Wāqi'ah",
+            "highlightSegment": "وَجَنَّتُ نَعِيمٍ",
+            "highlightLetter": "ت ouverte dans Jannat",
+            "ruleApplied": "Arrêt sur [t] dans Jannat Na'īm",
+            "ruleTag": "hams",
+            "explanationFr": "Écrit « وَجَنَّتُ نَعِيمٍ » avec une Tā' ouverte. À l'arrêt, se prononce « Jannat » avec un Tā' soukouné et son souffle de Hams.",
+            "transliteration": "Jannat",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/056089.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "S'arrêter en disant « Rahmah » sur le verset 7:56 tracé « رَحْمَتَ ».",
+            "correctionFr": "C'est une contradiction directe avec le tracé officiel : on doit s'arrêter sur « Rahmat » avec le son [t] et son souffle de Hams."
+          },
+          {
+            "trapFr": "Croire que tous les mots « Ni'mah » ou « Rahmah » s'écrivent avec Tā' ouverte.",
+            "correctionFr": "La grande majorité s'écrit avec une Tā' Marbūṭah classique (ة) qui s'arrête en [h] ; seuls les emplacements recensés par Ibn Al-Jazarī portent la Tā' ouverte (ت)."
+          }
+        ]
+      },
+      {
+        "id": "alif-maqsurah-vs-yaa",
+        "nameFr": "3. Alif Maqsūrah (ى) vs Yā' (ي) et Hā' Al-Kināyah",
+        "nameAr": "الأَلِفُ المَقْصُورَةُ وَاليَاءُ وَأَحْكَامُ هَاءِ الكِنَايَةِ",
+        "mnemonic": "Yā' = 2 points en dessous ou voyelle longue [ī] | Maqsūrah = Son [ā] | Hā' Kināyah = Règles de Silah",
+        "letters": [
+          "ى",
+          "ي",
+          "ه"
+        ],
+        "definitionFr": "Dans le Mushaf, l'Alif Maqsūrah (ى) s'écrit sans les deux points souscrits et représente la voyelle longue [ā] de 2 temps (ex: Hudā هُدَى, Ramā رَمَى). Le Yā' authentique représente la consonne ou voyelle [ī] (fī فِي). Par ailleurs, le pronom singulier masculin Hā' Al-Kināyah (ـهُ / ـهِ) s'allonge de 2 temps (Silah Sughrā) s'il se trouve entre deux lettres vocalisées, sauf exceptions répertoriées chez Hafs.",
+        "definitionLughatan": {
+          "ar": "المَقْصُورَةُ: المَحْبُوسَةُ. وَالكِنَايَةُ: الضَّمِيرُ الدَّالُّ عَلَى المُفْرَدِ الغَائِبِ.",
+          "fr": "L'Alif raccourci et le pronom de troisième personne du singulier."
+        },
+        "definitionIstilahan": {
+          "ar": "الأَلِفُ المَرْسُومَةُ يَاءً تُنْطَقُ أَلِفاً مَدِّيَّةً، وَهَاءُ الضَّمِيرِ تُمَدُّ بِمِقْدَارِ حَرَكَتَيْنِ (صِلَةٌ صُغْرَى) إِذَا وَقَعَتْ بَيْنَ مُتَحَرِّكَيْنِ.",
+          "fr": "L'Alif figuré sous forme de Yā' qui conserve acoustiquement sa phonie d'Alif pur, et le Hā' pronominal allongé de 2 temps par liaison entre deux consonnes animées de voyelles."
+        },
+        "mechanismFr": "Pour l'Alif Maqsūrah, ouvrez la bouche verticalement sur le son [ā] sans fléchir vers le [ē]. Pour le Hā' Al-Kināyah, allongez le souffle de 2 temps si la lettre précédente et la suivante sont vocalisées (ex: « Innahū kāna »). Si une des deux lettres est immobile, ne faites aucun allongement (ex: « Fīhi hudan »).",
+        "physiologicalDetails": {
+          "tongue": "Au repos pour l'Alif Maqsūrah ; au fond pour le Hā' glottique.",
+          "lips": "Ouverture verticale détendue.",
+          "vocalCords": "Vibration pour le son vocalique [ā].",
+          "airflow": "Flux continu sans obstruction."
+        },
+        "phoneticReasonFr": "La prolongation du pronom (Silah) rétablit la voyelle longue originelle de la langue sémitique lorsque la cadence métrique entre consonnes mobiles le permet.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَصِلْ بِضَمٍّ هَاءَ كُلِّ مُضْمَرِ * إِذَا تَحَرَّكَ مَا قَبْلَهُ يَرِدْ\nوَبَيْنَ سَاكِنَيْنِ فَاخْتَصِرْ سِوَى * فِيهِ مُهَانًا مَعَ فُرْقَانٍ رَوَى",
+          "transliteration": "Wa sil bi-dammin hā'a kulli mudmari * Idhā taharraka mā qablahū yarid / Wa bayna sākinayni fakhtasir siwā * Fīhi muhānan ma'a Furqānin rawā",
+          "translationFr": "« Allonge par une liaison de Dammah le Hā' de chaque pronom s'il se trouve entouré de voyelles ; mais écourte sans prolongation s'il est voisin d'un soukoûn, à l'exception unique de 'Fīhi muhānā' dans la sourate Al-Furqān selon la transmission sacrée. »",
+          "reference": "Matn Al-Chāṭibiyyah & Al-Jazariyyah (Hā' al-Kināyah)"
+        },
+        "examples": [
+          {
+            "id": "ex-c15-6",
+            "arabicText": "ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ",
+            "surahAyahRef": "2:2",
+            "surahNameFr": "Al-Baqarah",
+            "highlightSegment": "فِيهِۛ هُدٗى",
+            "highlightLetter": "Hā' sans Silah car précédé d'un Yā' sākin",
+            "ruleApplied": "Absence de Silah (Pas de prolongation du Hā')",
+            "ruleTag": "silent",
+            "explanationFr": "Puisque le Hā' de « fīhi » est précédé d'un Yā' immobile (Sākin), il ne s'allonge pas : on prononce « Fīhi hudā » d'un temps bref.",
+            "transliteration": "Fīhi hudan",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/002002.mp3"
+          },
+          {
+            "id": "ex-c15-7",
+            "arabicText": "وَيَخۡلُدۡ فِيهِۦ مُهَانًا",
+            "surahAyahRef": "25:69",
+            "surahNameFr": "Al-Furqān",
+            "highlightSegment": "فِيهِۦ مُهَانًا",
+            "highlightLetter": "Hā' avec Silah exceptionnelle",
+            "ruleApplied": "Silah Sughrā exceptionnelle chez Hafs",
+            "ruleTag": "madd",
+            "explanationFr": "Bien qu'il soit précédé d'un Yā' sākin, Hafs fait une exception unique dans tout le Coran en allongeant ce Hā' de 2 temps par Silah : « Fīhīī muhānā » pour souligner la gravité du châtiment.",
+            "transliteration": "Wa yakh-lud fīhīī muhānā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/025069.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Confondre l'Alif Maqsūrah (هُدَى) avec la lettre Yā' et prononcer un son [i] à la pause.",
+            "correctionFr": "L'Alif Maqsūrah est un Alif pur de 2 temps : on prononce « Hudā » avec la bouche ouverte."
+          },
+          {
+            "trapFr": "Oublier l'allongement de Silah exceptionnelle dans « Fīhī muhānā » (Sourate Al-Furqān).",
+            "correctionFr": "Cette exception majeure de Hafs est expressément signalée dans le Mushaf par un petit Yā' souscrit (ۦ) après le Hā'."
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "id": "q-c15-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe (Page 68) : Comment s'arrête-t-on sur la Tā' Marbūṭah (ة) par opposition à la Tā' Maftūḥah (ت) ?",
+        "options": [
+          "La Tā' Marbūṭah (ة) devient obligatoirement un Hā' [h] à l'arrêt, tandis que la Tā' Maftūḥah (ت) reste un Tā' [t] avec son souffle de Hams",
+          "Les deux s'arrêtent toujours avec le son [t]",
+          "Les deux s'arrêtent toujours avec le son [h]",
+          "On ne peut jamais s'arrêter sur une Tā' de féminin"
+        ],
+        "correctAnswer": "La Tā' Marbūṭah (ة) devient obligatoirement un Hā' [h] à l'arrêt, tandis que la Tā' Maftūḥah (ت) reste un Tā' [t] avec son souffle de Hams",
+        "explanationFr": "C'est la règle canonique absolue d'Ahkām al-Waqf : le Tā' fermé se métamorphose en Hā' soukouné [h], tandis que le Tā' ouvert conserve sa consonne [t] avec le souffle de Hams.",
+        "ruleId": "taa-marbuta-vs-maftuha"
+      },
+      {
+        "id": "q-c15-2",
+        "type": "error_detect",
+        "promptFr": "Dans « إِنَّ رَحۡمَتَ ٱللَّهِ قَرِيبٞ مِّنَ ٱلۡمُحۡسِنِينَ » (Al-A'rāf 56), le mot est tracé « رَحْمَتَ ». Un lecteur s'arrête en prononçant « Rahmah » avec un son [h]. Quel est le jugement ?",
+        "verseArabic": "إِنَّ رَحۡمَتَ ٱللَّهِ قَرِيبٞ مِّنَ ٱلۡمُحۡسِنِينَ",
+        "targetWord": "رَحۡمَتَ",
+        "surahAyahRef": "7:56",
+        "options": [
+          "Lahn Khafī : Il doit obligatoirement s'arrêter avec un Tā' [t] (Rahmat) car le mot est écrit avec une Tā' Maftūḥah dans le Mushaf !",
+          "Récitation permise car le mot est féminin",
+          "Obligation de prolonger de 6 temps",
+          "Lahn Jalī annulant la prière"
+        ],
+        "correctAnswer": "Lahn Khafī : Il doit obligatoirement s'arrêter avec un Tā' [t] (Rahmat) car le mot est écrit avec une Tā' Maftūḥah dans le Mushaf !",
+        "explanationFr": "Selon la règle « On s'arrête selon le tracé de la lettre », les 13 mots recensés avec une Tā' ouverte dans le Rasm 'Othmānī imposent un arrêt sur le son [t] avec son Hams.",
+        "ruleId": "taa-thirteen-words"
+      },
+      {
+        "id": "q-c15-3",
+        "type": "mcq",
+        "promptFr": "Dans quel verset unique de Hafs le pronom Hā' Al-Kināyah fait-il l'objet d'un allongement de Silah Sughrā (2 temps) bien qu'il soit précédé d'une consonne soukounée ?",
+        "verseArabic": "وَيَخۡلُدۡ فِيهِۦ مُهَانًا",
+        "options": [
+          "« Fīhi muhānā » dans la sourate Al-Furqān (verset 69)",
+          "« Fīhi hudan » dans la sourate Al-Baqarah (verset 2)",
+          "« 'Alayhu-llāh » dans Al-Fath (verset 10)",
+          "« Yar-dahu lakum » dans Az-Zumar (verset 7)"
+        ],
+        "correctAnswer": "« Fīhi muhānā » dans la sourate Al-Furqān (verset 69)",
+        "explanationFr": "C'est une exception majeure transmise de Hafs : par dérogation à la règle qui interdit la Silah après un soukoûn, le mot « fīhī » est allongé de 2 temps dans la sourate Al-Furqān pour marquer l'opprobre du châtiment.",
+        "ruleId": "alif-maqsurah-vs-yaa"
+      }
+    ]
+  },
+  {
+    "id": "chap-16",
+    "number": 16,
+    "slug": "cas-particuliers-hafs",
+    "titleFr": "Cas Particuliers & Récitation de Hafs 'An 'Āsim",
+    "titleAr": "خُصُوصِيَّاتُ رِوَايَةِ حَفْصٍ عَنْ عَاصِمٍ",
+    "category": "mastery",
+    "estimatedMinutes": 25,
+    "isPilotChapter": true,
+    "summaryFr": "Couronner son apprentissage du Tajwīd en maîtrisant les trésors phonétiques uniques transmis par l'Imam Hafs d'après 'Āsim : l'Imālah unique de Majrāhā, le Tashīl canonique de A'a'jamiyyun, l'Ishmām & le Rawm de Lā Ta'mannā, les 4 Saktāt obligatoires sans reprise de souffle, et les 7 Alifs d'arrêt.",
+    "infographicPoints": [
+      "L'Imālah unique (مَجْرَاهَا) : La seule et unique Imālah majeure chez Hafs dans tout le Coran (Sourate Hūd 41) : inclinaison à 50% entre le [a] et le [i].",
+      "Le Tashīl obligatoire (ءَاعْجَمِيٌّ) : Adoucissement de la 2e Hamzah sans coup de glotte dans Fussilat 44, et 3 mots à double visage (Ā-dhakarayni, Āl-āna, Āllāhu).",
+      "Ishmām & Rawm (لَا تَأْمَنَّا) : Deux manières sacrées de lire dans Yūsuf 11 : l'Ishmām (arrondir muettement les lèvres) ou le Rawm (chuchoter 1/3 de Dammah).",
+      "Les 4 Saktāt canoniques : Arrêt de voix précis d'environ 2 secondes SANS reprendre de souffle (Al-Kahf 1, Yāsīn 52, Al-Qiyāmah 27, Al-Mutaffifīn 14).",
+      "Les 7 Alifs (الألفات السبع) : Sept mots se terminant par un Alif qui se prolongent de 2 temps à l'arrêt, mais s'élident totalement en continu (ex: Anā, Lākinnā, Ad-Dunūnā).",
+      "Singularités lexicales : Basaṭta (Idghām incomplet préservant l'Itbāq), Yabsuṭ & Basṭatan (avec la lettre Sīn), et Bi'sa-l-ismu (liaison en Al-Ism)."
+    ],
+    "subrules": [
+      {
+        "id": "hafs-imalah-tashil",
+        "nameFr": "1. L'Imālah Unique (مَجْرَاهَا) & Le Tashīl Canonique (ءَاعْجَمِيٌّ)",
+        "nameAr": "الإِمَالَةُ الكُبْرَى (مَجْرَاهَا) وَالتَّسْهِيلُ (ءَاعْجَمِيٌّ)",
+        "mnemonic": "Majrāhā = Son [ē] incliné à 50% | A'a'jamiyyun = 2e Hamzah adoucie sans à-coup",
+        "letters": [
+          "ر",
+          "ء"
+        ],
+        "definitionFr": "L'Imālah majeure (Kubrā) consiste à orienter la Fathah vers la Kasrah et l'Alif vers le Yā' (prononciation à mi-chemin entre [a] et [e]). Dans la lecture de Hafs, elle ne s'applique qu'à un SEUL mot dans tout le Coran : « Majrāhā » (مَجْرَاهَا, Sourate Hūd 41), ce qui amincit automatiquement le Râ (Tarqīq). Le Tashīl consiste à adoucir l'articulation de la seconde Hamzah consécutive entre la Hamzah et la voyelle longue sans coup de glotte sec (obligatoire dans « A'a'jamiyyun » ءَا۬عۡجَمِىّٞ, Fussilat 44).",
+        "definitionLughatan": {
+          "ar": "الإِمَالَةُ: التَّعْوِيجُ وَالمَيْلُ. وَالتَّسْهِيلُ: التَّيْسِيرُ وَالتَّلْيِينُ.",
+          "fr": "L'inclinaison/le fléchissement mélodique, et l'adoucissement/l'assouplissement articulatoire."
+        },
+        "definitionIstilahan": {
+          "ar": "الإِمَالَةُ: أَنْ تَنْحُوَ بِالفَتْحَةِ نَحْوَ الكَسْرَةِ، وَبِالأَلِفِ نَحْوَ اليَاءِ مِنْ غَيْرِ قَلْبٍ خَالِصٍ. وَالتَّسْهِيلُ: النُّطْقُ بِالهَمْزَةِ بَيْنَ بَيْنَ، أَيْ بَيْنَ الهَمْزَةِ المُحَقَّقَةِ وَحَرْفِ المَدِّ المُجَانِسِ لِحَرَكَتِهَا.",
+          "fr": "L'Imālah est l'inclinaison de l'ouverture Fathah vers la Kasrah sans basculer dans un Yā' pur. Le Tashīl est l'émission de la Hamzah intermédiaire entre l'arrêt glottique franc et la consonne de prolongement de sa voyelle."
+        },
+        "mechanismFr": "Pour « Majrāhā », ne dites ni « Majrāhā » pur, ni « Majrīhā », mais « Majrēhā » avec la commissure des lèvres légèrement étirée. Pour « A'a'jamiyyun », attaquez la première Hamzah avec fermeté [ʔa], puis laissez glisser la deuxième sans fermeture glottique [ʔa-ha-jamiyyun].",
+        "physiologicalDetails": {
+          "tongue": "Milieu de la langue s'élevant légèrement vers le palais pour l'Imālah sans toucher le palais.",
+          "lips": "Étirement horizontal souple (comme une esquisse de sourire).",
+          "vocalCords": "Vibration continue pour la voyelle inclinée ; passage sans choc brutal pour la Hamzah facilitée.",
+          "airflow": "Débit d'air continu et régulier."
+        },
+        "phoneticReasonFr": "Allègement phonique majeur évitant la succession de deux occlusives glottiques dures (Hamzatayn) ou facilitant l'évocation métaphorique du flot de l'Arche de Noé sur les vagues.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَهَمْزُ أَعْجَمِيٍّ التَّسْهِيلُ حُتِمْ * وَفِي مَجْرَاهَا الإِمَالَةُ عَلَمْ\nوَأَبْدِلِ الهَمْزَ إِذَا مَا يَرِدُ * فِي آلْآنَ مَعْ ذَكَرَيْنِ قَدْ رَفَدُوا",
+          "transliteration": "Wa hamzu a'jamiyyin at-tashīlu hutim * Wa fī Majrāhā al-imālatu 'alam / Wa abdili-l-hamza idhā mā yaridu * Fī Āl-āna ma' dhakarayni qad rafadū",
+          "translationFr": "« La Hamzah de A'a'jamiyyun exige le Tashīl de manière impérative, et dans Majrāhā l'Imālah est un repère incontournable. De même, convertis la Hamzah par Ibdāl ou Tashīl dans Āl-āna et Ā-dhakarayni selon les transmissions reçues. »",
+          "reference": "Matn Al-Chāṭibiyyah & Al-Jazariyyah (Bāb al-Hamzatayn)"
+        },
+        "examples": [
+          {
+            "id": "ex-c16-1",
+            "arabicText": "وَقَالَ ٱرۡكَبُواْ فِيهَا بِسۡمِ ٱللَّهِ مَجۡرٜىٰهَا وَمُرۡسَىٰهَآ",
+            "surahAyahRef": "11:41",
+            "surahNameFr": "Hūd",
+            "highlightSegment": "مَجۡرٜىٰهَا",
+            "highlightLetter": "Rā avec Imālah majeure (losange souscrit)",
+            "ruleApplied": "Imālah majeure unique de Hafs",
+            "ruleTag": "tarqiq",
+            "explanationFr": "Repérée dans le Mushaf par un losange (◊) sous le Râ. Se prononce « Majrēhā » avec une Râ amincie (Tarqīq) obligatoire.",
+            "transliteration": "Bismi-llāhi majrēhā wa mursāhā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/011041.mp3"
+          },
+          {
+            "id": "ex-c16-2",
+            "arabicText": "وَلَوۡ جَعَلۡنَٰهُ قُرۡءَانًا أَعۡجَمِيّٗا لَّقَالُواْ لَوۡلَا فُصِّلَتۡ ءَايَٰتُهُۥٓۖ ءَ۬عۡجَمِىّٞ وَعَرَبِىّٞ",
+            "surahAyahRef": "41:44",
+            "surahNameFr": "Fussilat",
+            "highlightSegment": "ءَ۬عۡجَمِىّٞ",
+            "highlightLetter": "Deuxième Hamzah (point noir / cercle plein)",
+            "ruleApplied": "Tashīl obligatoire de la seconde Hamzah",
+            "ruleTag": "silent",
+            "explanationFr": "Repérée par un point plein (•) sur la 2e Hamzah. On réalise la 1re Hamzah avec fermeté et on adoucit la seconde sans choc glottique : « 'A-a-jamiyyun ».",
+            "transliteration": "'A-a-jamiyyun wa 'arabiyy",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/041044.mp3"
+          },
+          {
+            "id": "ex-c16-3",
+            "arabicText": "قُلۡ ءَآلذَّكَرَيۡنِ حَرَّمَ أَمِ ٱلۡأُنثَيَيۡنِ",
+            "surahAyahRef": "6:143",
+            "surahNameFr": "Al-An'ām",
+            "highlightSegment": "ءَآلذَّكَرَيۡنِ",
+            "highlightLetter": "Deux voies canoniques : Ibdāl ou Tashīl",
+            "ruleApplied": "Madd Al-Farq : Ibdāl 6 temps ou Tashīl",
+            "ruleTag": "madd",
+            "explanationFr": "Deux visages sont permis chez Hafs : 1. L'Ibdāl (transformer la 2e Hamzah en Alif allongé de 6 temps pleins : « Āāāāāā-dhakarayn », voie prioritaire), 2. Le Tashīl sans prolongation.",
+            "transliteration": "Āāāāāā-dhakarayni (ou Tashīl)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/006143.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Prononcer « Majrāhā » avec une Fathah pure et un Râ lourd (Tafkhīm).",
+            "correctionFr": "L'Imālah est obligatoire chez Hafs dans ce mot : le son doit être incliné en [ē] et le Râ aminci."
+          },
+          {
+            "trapFr": "Prononcer deux Hamzahs dures et percutantes dans « ءَاعْجَمِيٌّ » (dire « 'A-'a-jamiyyun » en saccade).",
+            "correctionFr": "La seconde Hamzah doit impérativement être adoucie (Tashīl) avec une émission fluide."
+          }
+        ]
+      },
+      {
+        "id": "hafs-ishmam-rawm",
+        "nameFr": "2. L'Ishmām & Le Rawm dans « Lā Ta'mannā » (Sourate Yūsuf 11)",
+        "nameAr": "الإِشْمَامُ وَالرَّوْمُ فِي كَلِمَةِ (لَا تَأْمَنَّا)",
+        "mnemonic": "Ishmām = Fusion du Nūn + Arrondir les lèvres sans son | Rawm = 1/3 de Dammah à voix basse",
+        "letters": [
+          "ن"
+        ],
+        "definitionFr": "Dans la sourate Yūsuf (verset 11), les frères de Joseph disent : « مَا لَكَ لَا تَأْمَنَّا عَلَىٰ يُوسُفَ ». L'origine morphologique du verbe est « Lā Ta'manunā » (لَا تَأْمَنُنَا) avec deux Nūn, le premier étant porteur d'une Dammah. Pour concilier la fusion phonétique et la trace grammaticale de la Dammah, l'Imam Hafs autorise deux voies de récitation magistrales : l'Ishmām (la voie la plus connue et prioritaire) et le Rawm (Al-Ikhtilās).",
+        "definitionLughatan": {
+          "ar": "الإِشْمَامُ: إِشْمَامُ الشَّفَتَيْنِ رَائِحَةَ الحَرَكَةِ. وَالرَّوْمُ: الطَّلَبُ وَالقَصْدُ.",
+          "fr": "L'Ishmām est l'action de faire humer aux lèvres le parfum de la voyelle. Le Rawm est la quête ou l'ébauche de la voyelle."
+        },
+        "definitionIstilahan": {
+          "ar": "الإِشْمَامُ: ضَمُّ الشَّفَتَيْنِ بُعَيْدَ إِسْكَانِ النُّونِ الأُولَى وَإِدْغَامِهَا إِشَارَةً إِلَى الضَّمِّ دُونَ صَوْتٍ، يَرَاهُ المُبْصِرُ لَا الكَفِيفُ. وَالرَّوْمُ: النُّطْقُ بِبَعْضِ الضَّمَّةِ (ثُلُثِهَا) بِصَوْتٍ خَفِيٍّ يَسْمَعُهُ القَرِيبُ.",
+          "fr": "L'Ishmām consiste à projeter les deux lèvres en rond juste après le soukoûn du premier Nūn assimilé pour signaler visuellement la Dammah sans émettre aucun son audible. Le Rawm consiste à prononcer un tiers de la Dammah à voix basse audible seulement par un auditeur proche."
+        },
+        "mechanismFr": "Pour l'Ishmām : prononcez « Lā ta'man-nā » avec une Shaddah et une Ghunnah de 2 temps sur le Nūn ; pendant la tenue de la Ghunnah, projetez immédiatement vos lèvres vers l'avant en cercle comme pour faire un bisou ou prononcer [w], puis relâchez-les avant d'ouvrir la Fathah. Pour le Rawm : prononcez « Lā ta'man-u-nā » sans fusionner, en réduisant la durée de la Dammah et son intensité sonore au tiers.",
+        "physiologicalDetails": {
+          "tongue": "Plaquée contre les alvéoles supérieures pour le Nūn avec Ghunnah nasale.",
+          "lips": "Arrondissement immédiat et projection en cercle pendant la résonance du Nūn pour l'Ishmām.",
+          "vocalCords": "Vibration pour la Ghunnah ; absence de son vocalique pendant la projection des lèvres.",
+          "airflow": "S'échappe exclusivement par le nez (Khayshūm) pendant l'Ishmām."
+        },
+        "phoneticReasonFr": "L'Ishmām et le Rawm préservent la conscience auditive ou visuelle de la forme grammaticale d'origine (Ta'manunā) tout en préservant la cadence de l'Idghām.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَشْمِمِ الشِّفَاهَ فِي لَا تَأْمَنَّا * وَرُمْ بِصَوْتٍ خَافِتٍ لِتُعْنَى\nفَالرَّوْمُ إِتْيَانٌ بِبَعْضِ الحَرَكَهْ * وَكُلُّ ذِي بَصِيرَةٍ قَدْ أَدْرَكَهُ",
+          "transliteration": "Wa ashmimi-sh-shifāha fī Lā Ta'mannā * Wa rum bi-sawtin khāfitin litu'nā / Far-rawmu ityānun bi-ba'di-l-harakah * Wa kullu dhī basīratin qad adrakahu",
+          "translationFr": "« Arrondis les lèvres par Ishmām dans 'Lā Ta'mannā', ou applique le Rawm à voix tamisée avec application. Car le Rawm consiste à apporter une fraction de la voyelle, que tout connaisseur averti sait identifier. »",
+          "reference": "Matn Al-Chāṭibiyyah (Bāb al-Idghām al-Kabīr)"
+        },
+        "examples": [
+          {
+            "id": "ex-c16-4",
+            "arabicText": "قَالُواْ يَٰٓأَبَانَا مَا لَكَ لَا تَأۡمَ۫نَّا عَلَىٰ يُوسُفَ",
+            "surahAyahRef": "12:11",
+            "surahNameFr": "Yūsuf",
+            "highlightSegment": "لَا تَأۡمَ۫نَّا",
+            "highlightLetter": "Nūn Mushaddadah avec symbole losange/cercle",
+            "ruleApplied": "Ishmām labial (ou Rawm partiel)",
+            "ruleTag": "ghunnah",
+            "explanationFr": "Signalé dans le Mushaf par un losange au-dessus du Nūn. On prononce le Nūn avec sa Ghunnah de 2 temps tout en avançant les lèvres en cercle muet pour signaler la Dammah d'origine.",
+            "transliteration": "Qālū yā abānā mā laka lā ta'man-nā (avec Ishmām)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/012011.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Prononcer un son [ou] audible pendant l'Ishmām (dire « Lā ta'man-nou-nā » à voix haute).",
+            "correctionFr": "L'Ishmām est un geste purement VISUEL des lèvres sans aucune émission sonore ! Seul le Rawm comporte un son vocalique atténué."
+          },
+          {
+            "trapFr": "Oublier d'arrondir les lèvres et prononcer un Nūn simple sans particularité.",
+            "correctionFr": "L'une des deux voies (Ishmām ou Rawm) est impérativement requise chez Hafs."
+          }
+        ]
+      },
+      {
+        "id": "hafs-saktat-arba",
+        "nameFr": "3. Les 4 Saktāt Canoniques Obligatoires (Pauses Sans Respiration)",
+        "nameAr": "السَّكْتَاتُ الأَرْبَعُ الوَاجِبَةُ عِنْدَ حَفْصٍ",
+        "mnemonic": "4 arrêts nets de 2 secondes SANS reprendre de souffle : Kahf, Yāsīn, Qiyāmah, Mutaffifīn",
+        "letters": [
+          "س"
+        ],
+        "definitionFr": "Le Sakt (السَّكْتُ) est une suspension délibérée du son vocalique d'environ 2 battements (le temps de deux harakahs) SANS reprendre de respiration, suivie de la poursuite immédiate de la lecture. L'Imam Hafs prescrit obligatoirement 4 Saktāt dans le Coran pour dissiper toute ambiguïté de sens théologique ou grammaticale.",
+        "definitionLughatan": {
+          "ar": "السَّكْتُ: المَنْعُ وَالقَطْعُ وَالصَّمْتُ.",
+          "fr": "L'interruption, le silence temporaire, la rétention du souffle."
+        },
+        "definitionIstilahan": {
+          "ar": "قَطْعُ الصَّوْتِ زَمَناً دُونَ زَمَنِ الوَقْفِ عَادَةً مِنْ غَيْرِ تَنَفُّسٍ مَعَ قَصْدِ مُتَابَعَةِ القِرَاءَةِ فِي الحَالِ.",
+          "fr": "La coupure nette de la phonation pour une durée mesurée inférieure au Waqf ordinaire, sans inspiration pulmonaire, avec l'intention ferme de poursuivre immédiatement la récitation."
+        },
+        "mechanismFr": "Lorsque vous arrivez sur la lettre portant le petit Sīn supérieur (س) : immobilisez instantanément la voix sur la consonne ou la voyelle d'arrêt, retenez votre souffle pendant 2 secondes sans inspirer ni expirer, puis repartez aussitôt sur le mot suivant.",
+        "physiologicalDetails": {
+          "tongue": "Reste figée sur place ou au repos.",
+          "lips": "Immobiles.",
+          "vocalCords": "Se ferment doucement pour suspendre la vibration sans heurt glottique violent.",
+          "airflow": "Bloqué au niveau laryngé sans appel d'air pulmonaire."
+        },
+        "phoneticReasonFr": "Empêcher que le sens ne soit corrompu : dans Al-Kahf, pour ne pas croire que « Qayyiman » qualifie « 'Iwajā » ; dans Yāsīn, pour séparer la parole des incrédules de la réponse des anges ; dans Al-Qiyāmah et Al-Mutaffifīn, pour empêcher l'Idghām phonétique (Man-Rāq -> Mar-rāq) qui altérerait le sens.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَسَكْتَةُ حَفْصٍ عَنْهُ فِي أَرْبَعٍ جَرَتْ * عِوَجًا بَلْ رَانَ مَعْ مَنْ رَاقَ انْبَرَتْ\nوَمَرْقَدِنَا كَذَاكَ ثَبِّتْ لَفْظَهَا * بِلَا تَنَفُّسٍ تُحِزْ مُعْتَمَدَهَا",
+          "transliteration": "Wa saktatu Hafsin 'anhu fī arba'in jarat * 'Iwajan bal rāna ma' man rāqa-nbarat / Wa marqadinā kadhāka thabbit lafzahā * Bilā tanaffusin tuhiz mu'tamadahā",
+          "translationFr": "« Le Sakt de Hafs s'applique à quatre passages établis : 'Iwajā, Bal Rāna, Man Rāq, et Marqadinā. Maintiens leur énonciation sans reprendre ton souffle pour saisir la norme authentique. »",
+          "reference": "Matn Al-Chāṭibiyyah & Al-Muqaddimah Al-Jazariyyah"
+        },
+        "examples": [
+          {
+            "id": "ex-c16-5",
+            "arabicText": "وَلَمۡ يَجۡعَل لَّهُۥ عِوَجَاۜ ١ قَيِّمٗا لِّيُنذِرَ",
+            "surahAyahRef": "18:1-2",
+            "surahNameFr": "Al-Kahf",
+            "highlightSegment": "عِوَجَاۜ ١ قَيِّمٗا",
+            "highlightLetter": "Sakt sur l'Alif de 'Iwajā (س)",
+            "ruleApplied": "Saktah obligatoire de 2 temps sans souffle",
+            "ruleTag": "silent",
+            "explanationFr": "On prononce « 'Iwajā » avec 2 temps de Madd d'arrêt, on suspend la voix 2 secondes sans respirer, puis on enchaîne : « Qayyiman ».",
+            "transliteration": "'Iwajā [silence sans souffle] Qayyiman",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/018001.mp3"
+          },
+          {
+            "id": "ex-c16-6",
+            "arabicText": "مَنۢ بَعَثَنَا مِن مَّرۡقَدِنَاۜۗ هَٰذَا مَا وَعَدَ ٱلرَّحۡمَٰنُ",
+            "surahAyahRef": "36:52",
+            "surahNameFr": "Yā-Sīn",
+            "highlightSegment": "مَّرۡقَدِنَاۜۗ هَٰذَا",
+            "highlightLetter": "Sakt sur Marqadinā",
+            "ruleApplied": "Saktah séparant deux déclarations théologiques",
+            "ruleTag": "silent",
+            "explanationFr": "Silence sans souffle sur « Marqadinā » avant de proclamer « Hādhā mā wa'ada-r-Rahmān ».",
+            "transliteration": "Min marqadinā [silence sans souffle] hādhā",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/036052.mp3"
+          },
+          {
+            "id": "ex-c16-7",
+            "arabicText": "وَقِيلَ مَنۡۜ رَاقٖ",
+            "surahAyahRef": "75:27",
+            "surahNameFr": "Al-Qiyāmah",
+            "highlightSegment": "مَنۡۜ رَاقٖ",
+            "highlightLetter": "Sakt empêchant l'Idghām du Nūn dans le Râ",
+            "ruleApplied": "Saktah avec Izhār obligatoire du Nūn",
+            "ruleTag": "izhar",
+            "explanationFr": "Le silence sans souffle bloque l'assimilation normale du Nūn dans le Râ : on prononce « Man » nettement, pause de 2 secondes sans souffle, puis « Rāq ».",
+            "transliteration": "Wa qīla Man [silence] Rāq",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/075027.mp3"
+          },
+          {
+            "id": "ex-c16-8",
+            "arabicText": "كَلَّاۖ بَلۡۜ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُواْ يَكۡسِبُونَ",
+            "surahAyahRef": "83:14",
+            "surahNameFr": "Al-Mutaffifīn",
+            "highlightSegment": "بَلۡۜ رَانَ",
+            "highlightLetter": "Sakt empêchant l'Idghām du Lām dans le Râ",
+            "ruleApplied": "Saktah avec Izhār obligatoire du Lām",
+            "ruleTag": "izhar",
+            "explanationFr": "Le silence bloque l'assimilation du Lām de « Bal » dans le Râ de « Rāna » : on prononce « Bal » (sans souffle), puis « Rāna ».",
+            "transliteration": "Kallā bal [silence] rāna 'alā qulūbihim",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/083014.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Reprendre sa respiration pendant le Sakt (respirer entre « Man » et « Rāq »).",
+            "correctionFr": "Le Sakt se fait obligatoirement SANS reprise de souffle. Si vous respirez, cela devient un Waqf (pause complète)."
+          },
+          {
+            "trapFr": "Faire l'Idghām dans « Man Rāq » (dire « Mar-rāq ») ou dans « Bal Rāna » (dire « Bar-rāna »).",
+            "correctionFr": "Le Sakt brise l'assimilation et impose la clarté (Izhār) absolue de la consonne."
+          }
+        ]
+      },
+      {
+        "id": "hafs-alfat-saba",
+        "nameFr": "4. Les 7 Alifs (الألفات السبع) & Singularités Lexicales",
+        "nameAr": "الأَلِفَاتُ السَّبْعُ وَالكَلِمَاتُ المَخْصُوصَةُ عِنْدَ حَفْصٍ",
+        "mnemonic": "7 Alifs = 2 temps à l'arrêt, 0 temps en continu (symbole rond allongé)",
+        "letters": [
+          "ا"
+        ],
+        "definitionFr": "Les 7 Alifs sont sept mots coraniques précis dotés d'un Alif final portant un zéro rectangulaire allongé (Sifr Mustatīl ْ). En récitation liée (Wasl), cet Alif s'efface totalement de la phonation. Mais si le lecteur marque l'arrêt (Waqf) sur le mot, l'Alif doit être obligatoirement prolongé de 2 temps pleins. De plus, Hafs possède des règles singulières pour des mots célèbres comme « Bi'sa-l-ismu », « Yabsuṭ », et « Basṭatan ».",
+        "definitionLughatan": {
+          "ar": "الأَلِفَاتُ السَّبْعُ: كَلِمَاتٌ مَخْصُوصَةٌ فِيهَا أَلِفَاتٌ ثَابِتَةٌ وَقْفاً سَاقِطَةٌ وَصْلاً.",
+          "fr": "Sept vocables spécifiques dont l'Alif subsiste à la pause et tombe en liaison continue."
+        },
+        "definitionIstilahan": {
+          "ar": "سَبْعَةُ أَلِفَاتٍ فِي القُرْآنِ تُثْبَتُ مَدّاً بِمِقْدَارِ حَرَكَتَيْنِ عِنْدَ الوَقْفِ، وَتُحْذَفُ لَفْظاً عِنْدَ الوَصْلِ، وَعَلَامَتُهَا الصِّفْرُ المُسْتَطِيلُ القَائِمُ.",
+          "fr": "Sept Alifs coraniques maintenus sur une durée de 2 temps à la pause et effacés à l'oral en liaison, repérés par le petit ovale vertical suscrite."
+        },
+        "mechanismFr": "Pour les 7 Alifs : en liaison continue, prononcez la voyelle simple Fathah sans vous attarder et enchaînez. À l'arrêt, immobilisez le souffle et déployez les 2 temps métronomiques complets de l'allongement. Pour « Bi'sa-l-ismu » (الحجرات 11), commencez directement par « Al-Ismu » ou « Li-smu ».",
+        "physiologicalDetails": {
+          "tongue": "Au repos pour l'Alif à la pause ; transition rapide vers la consonne suivante en liaison.",
+          "lips": "Ouverture verticale pour les 2 temps du Madd à l'arrêt.",
+          "vocalCords": "Vibration continue.",
+          "airflow": "Flux continu sans heurts."
+        },
+        "phoneticReasonFr": "Particularité de la graphie et de la cadence poético-liturgique arabe archaïque préservée inviolablement dans le codex universel.",
+        "durationHarakat": 2,
+        "matnJazariyyah": {
+          "verseAr": "وَأَثْبِتِ الأَلِفَ فِي أَنَا وَقَفْ * كَذَاكَ لَكِنَّا وَظُنُونَا اعْتَرَفْ\nوَالرَّسُولَا وَالسَّبِيلَا سَلَاسِلَا * قَوَارِيرَا مَعَ الأُولَى كَمَا انْجَلَى",
+          "transliteration": "Wa athbiti-l-alifa fī Anā waqaf * Kadhāka Lākinnā wa zunūnā-'taraf / War-rasūlā was-sabīlā salāsilā * Qawārīrā ma'al-ūlā kamā-njalā",
+          "translationFr": "« Maintiens l'Alif à la pause dans 'Anā', de même que 'Lākinnā', 'Ad-Dunūnā', 'Ar-Rasūlā', 'As-Sabīlā', 'Salāsilā', et le premier 'Qawārīrā' comme cela a été clarifié. »",
+          "reference": "Matn Al-Chāṭibiyyah & Al-Jazariyyah (Al-Alifāt As-Sab')"
+        },
+        "examples": [
+          {
+            "id": "ex-c16-9",
+            "arabicText": "قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ خَلَقۡتَنِى مِن نَّارٖ",
+            "surahAyahRef": "7:12",
+            "surahNameFr": "Al-A'rāf",
+            "highlightSegment": "أَنَا۠ خَيۡرٞ",
+            "highlightLetter": "Alif dans Anā (أَنَا۠)",
+            "ruleApplied": "Premier des 7 Alifs : 2 temps à l'arrêt, 0 en continu",
+            "ruleTag": "madd",
+            "explanationFr": "En liaison continue : on prononce « Ana khayrun » sans allongement (0 temps). Si l'on s'arrête sur le mot, on prononce obligatoirement « Anāā » (2 temps complets).",
+            "transliteration": "Ana khayrun (arrêt : Anāā)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/007012.mp3"
+          },
+          {
+            "id": "ex-c16-10",
+            "arabicText": "لَّٰكِنَّا۠ هُوَ ٱللَّهُ رَبِّى",
+            "surahAyahRef": "18:38",
+            "surahNameFr": "Al-Kahf",
+            "highlightSegment": "لَّٰكِنَّا۠",
+            "highlightLetter": "Alif dans Lākinnā",
+            "ruleApplied": "Deuxième des 7 Alifs",
+            "ruleTag": "madd",
+            "explanationFr": "En continu : « Lākinna huwa-llāh ». À l'arrêt : « Lākinnāā » avec 2 temps.",
+            "transliteration": "Lākinna huwa-llāh (arrêt : Lākinnā)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/018038.mp3"
+          },
+          {
+            "id": "ex-c16-11",
+            "arabicText": "بِئۡسَ ٱلِٱسۡمُ ٱلۡفُسُوقُ بَعۡدَ ٱلۡإِيمَٰنِ",
+            "surahAyahRef": "49:11",
+            "surahNameFr": "Al-Hujurāt",
+            "highlightSegment": "بِئۡسَ ٱلِٱسۡمُ",
+            "highlightLetter": "Liaison singulière dans Al-Ism",
+            "ruleApplied": "Début par « Al-Ism » ou « Lism »",
+            "ruleTag": "silent",
+            "explanationFr": "En liaison : « Bi'sa-l-ismu ». Si l'on débute par le mot « Al-Ism », deux voies sont permises : 1. « Al-Ismu », 2. « Li-smu ».",
+            "transliteration": "Bi'sa-l-ismu (début : Al-ismu ou Lismu)",
+            "audioUrl": "https://everyayah.com/data/Husary_128kbps/049011.mp3"
+          }
+        ],
+        "commonMistakes": [
+          {
+            "trapFr": "Allonger l'Alif de « Anā » (أَنَا) en récitation continue (dire « Anāā khayrun »).",
+            "correctionFr": "L'Alif des 7 mots s'élide impérativement en liaison continue : on prononce « Ana khayrun »."
+          },
+          {
+            "trapFr": "Oublier de prolonger de 2 temps l'Alif si l'on s'arrête sur « Lākinnā » ou « Anā ».",
+            "correctionFr": "À la pause (Waqf), l'allongement de 2 temps est obligatoire."
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "id": "q-c16-1",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe (Pages 74-82) : Dans quel mot unique du Coran l'Imam Hafs applique-t-il l'Imālah majeure (inclinaison vers le son [ē]) ?",
+        "verseArabic": "وَقَالَ ٱرۡكَبُواْ فِيهَا بِسۡمِ ٱللَّهِ مَجۡرٜىٰهَا وَمُرۡسَىٰهَآ",
+        "options": [
+          "مَجْرَاهَا (Sourate Hūd 41)",
+          "الضُّحَىٰ",
+          "ءَاعْجَمِيٌّ",
+          "مُوسَىٰ"
+        ],
+        "correctAnswer": "مَجْرَاهَا (Sourate Hūd 41)",
+        "explanationFr": "« Majrāhā » dans la sourate Hūd (verset 41) est l'unique occurrence d'Imālah majeure chez Hafs par la voie de la Chāṭibiyyah dans tout le Noble Coran. Le Râ y est amincit par Tarqīq.",
+        "ruleId": "hafs-imalah-tashil"
+      },
+      {
+        "id": "q-c16-2",
+        "type": "error_detect",
+        "promptFr": "Dans « كَلَّا بَلۡۜ رَانَ عَلَىٰ قُلُوبِهِم » (Al-Mutaffifīn 14), un lecteur effectue l'Idghām du Lām dans le Râ en disant « Bar-rāna ». Quelle règle de Hafs a-t-il enfreinte ?",
+        "verseArabic": "كَلَّاۖ بَلۡۜ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُواْ يَكۡسِبُونَ",
+        "targetWord": "بَلۡۜ رَانَ",
+        "surahAyahRef": "83:14",
+        "options": [
+          "Lahn Khafī : Il a omis la Saktah obligatoire (pause de 2 temps sans reprise de souffle) qui interdit l'Idghām !",
+          "Récitation autorisée",
+          "Madd Lāzim négligé",
+          "Erreur sur le mot Kallā"
+        ],
+        "correctAnswer": "Lahn Khafī : Il a omis la Saktah obligatoire (pause de 2 temps sans reprise de souffle) qui interdit l'Idghām !",
+        "explanationFr": "Hafs applique une Saktah obligatoire sur « Bal », ce qui suspend la phonation et empêche formellement l'assimilation normale dans le Râ : on doit prononcer « Bal » distinctement, marquer le silence sans souffle, puis dire « Rāna ».",
+        "ruleId": "hafs-saktat-arba"
+      },
+      {
+        "id": "q-c16-3",
+        "type": "mcq",
+        "promptFr": "Examen du livre arabe : En quoi consiste l'Ishmām dans le mot « لَا تَأْمَنَّا » (Yūsuf 11) ?",
+        "verseArabic": "قَالُواْ يَٰٓأَبَانَا مَا لَكَ لَا تَأۡمَ۫نَّا عَلَىٰ يُوسُفَ",
+        "options": [
+          "Arrondir et projeter les lèvres vers l'avant en cercle muet juste après l'impact du premier Nūn pour signaler la Dammah, sans émettre de son",
+          "Prononcer le mot avec un sifflement",
+          "Changer le Nūn en Mīm",
+          "Prolonger le mot de 6 temps"
+        ],
+        "correctAnswer": "Arrondir et projeter les lèvres vers l'avant en cercle muet juste après l'impact du premier Nūn pour signaler la Dammah, sans émettre de son",
+        "explanationFr": "L'Ishmām est un geste purement visuel des lèvres projetées en avant pour indiquer la Dammah originelle (Ta'manunā) pendant la Ghunnah du Nūn, sans bruit vocalique.",
+        "ruleId": "hafs-ishmam-rawm"
       }
     ]
   }
 ];
 
+export const PILOT_CHAPTERS: Chapter[] = CHAPTERS_DATA;
+export const ALL_BOOK_CHAPTERS: Chapter[] = CHAPTERS_DATA;

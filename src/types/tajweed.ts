@@ -1,4 +1,4 @@
-export type TajweedCategory = 'beginner' | 'intermediate' | 'advanced';
+export type TajweedCategory = 'beginner' | 'intermediate' | 'advanced' | 'mastery';
 
 export interface TajweedExample {
   id: string;
@@ -8,12 +8,21 @@ export interface TajweedExample {
   highlightSegment: string;    // e.g. "مَن يَقُولُ"
   highlightLetter: string;     // e.g. "ن + ي"
   ruleApplied: string;
-  ruleTag: 'madd' | 'ghunnah' | 'qalqalah' | 'silent' | 'heavy' | 'izhar';
+  ruleTag: 'madd' | 'ghunnah' | 'qalqalah' | 'silent' | 'heavy' | 'izhar' | 'idgham' | 'iqlab' | 'ikhfa' | 'tarqiq' | 'tafkhim' | 'hams';
   explanationFr: string;
   transliteration: string;
   audioUrl?: string;           // Direct verse or clip audio URL
   audioStartSec?: number;      // Optional timing in audio
   audioEndSec?: number;
+}
+
+export interface MatnVerse {
+  verseAr: string;
+  transliteration?: string;
+  translationFr: string;
+  verseNumber?: string;
+  chapterNameAr?: string;
+  reference?: string;
 }
 
 export interface SubRule {
@@ -23,8 +32,24 @@ export interface SubRule {
   mnemonic?: string;           // e.g. "يَرْمَلُونَ", "قُطْبُ جَدٍّ"
   letters: string[];
   definitionFr: string;
+  definitionLughatan?: {
+    ar?: string;
+    fr: string;
+  };
+  definitionIstilahan?: {
+    ar?: string;
+    fr: string;
+  };
   mechanismFr: string;         // Comment la bouche/langue se positionne
+  physiologicalDetails?: {
+    tongue?: string;
+    lips?: string;
+    vocalCords?: string;
+    airflow?: string;
+  };
+  phoneticReasonFr?: string;   // Le "Pourquoi" de la règle (cause phonétique)
   durationHarakat?: number;    // ex: 2 temps
+  matnJazariyyah?: MatnVerse;  // Strophe poétique mnémotechnique d'Ibn Al-Jazarī
   examples: TajweedExample[];
   commonMistakes: {
     trapFr: string;
@@ -51,7 +76,7 @@ export interface QuizQuestion {
   id: string;
   type: QuestionType;
   promptFr: string;
-  verseArabic: string;
+  verseArabic?: string;
   surahAyahRef?: string;
   targetWord?: string;
   clickableSegments?: string[];
@@ -72,8 +97,9 @@ export interface Chapter {
   summaryFr: string;
   estimatedMinutes: number;
   isPilotChapter: boolean;     // True for pilot chapters (8 & 10)
+  isPilot?: boolean;
   subrules: SubRule[];
-  guidedExercises: GuidedExercise[];
+  guidedExercises?: GuidedExercise[];
   quizzes: QuizQuestion[];
   infographicPoints: string[];
 }

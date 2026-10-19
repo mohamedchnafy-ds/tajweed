@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Chapter } from '../types/tajweed';
 import { ExampleAudioCard } from './ExampleAudioCard';
-import { ArrowLeft, Clock, Info, AlertTriangle, ArrowRight, BookOpen, Layers } from 'lucide-react';
+import { ArrowLeft, Clock, Info, AlertTriangle, ArrowRight, BookOpen, Layers, Activity, Sparkles, Scroll } from 'lucide-react';
 
 interface LessonViewProps {
   chapter: Chapter;
@@ -89,37 +89,160 @@ export const LessonView: React.FC<LessonViewProps> = ({
           <div key={sub.id} className="space-y-8 animate-fadeIn">
             
             {/* Rule Header Card with Mnemonic */}
-            <div className="p-5 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/60 dark:bg-neutral-900/40">
+            <div className="p-5 sm:p-6 rounded-2xl border border-line bg-card shadow-xs">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                <h2 className="text-lg font-bold text-neutral-950 dark:text-neutral-50">
+                <h2 className="text-xl font-bold text-ink">
                   {sub.nameFr}
                 </h2>
-                <span className="font-quran text-xl text-neutral-600 dark:text-neutral-300" dir="rtl">
+                <span className="font-ar text-2xl text-lapis font-bold" dir="rtl">
                   {sub.nameAr}
                 </span>
               </div>
 
               {sub.mnemonic && (
-                <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-200/70 dark:bg-neutral-800/80 text-xs font-mono font-medium text-neutral-800 dark:text-neutral-200">
-                  <span className="text-[10px] uppercase font-bold text-neutral-500">Formule clé :</span>
-                  <span>{sub.mnemonic}</span>
+                <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-soft text-xs font-mono font-medium text-ink border border-line">
+                  <span className="text-[10px] uppercase font-bold text-gilt tracking-wider">Formule clé :</span>
+                  <span className="font-ar text-sm font-semibold">{sub.mnemonic}</span>
                 </div>
               )}
 
-              <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
+              <p className="text-[15px] text-ink leading-relaxed mb-5">
                 {sub.definitionFr}
               </p>
 
-              {/* Articulation mechanism callout */}
-              <div className="text-xs bg-white dark:bg-neutral-950 p-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 flex items-start gap-2.5">
-                <Info className="w-4 h-4 text-neutral-400 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="font-semibold text-neutral-900 dark:text-neutral-100">
-                    Point d'articulation (Makhraj) & Gestuelle :
-                  </strong>{' '}
-                  <span className="text-neutral-600 dark:text-neutral-300">{sub.mechanismFr}</span>
+              {/* 1. Double Définition Savante (لغةً & اصطلاحاً) */}
+              {(sub.definitionLughatan || sub.definitionIstilahan) && (
+                <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                  {sub.definitionLughatan && (
+                    <div className="p-4 rounded-xl border border-line bg-soft/70">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="chip chip-izhar text-[11px] font-semibold">لُغَةً — Sens Linguistique</span>
+                        {sub.definitionLughatan.ar && (
+                          <span className="font-ar text-sm text-lapis font-bold" dir="rtl">{sub.definitionLughatan.ar}</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-ink leading-relaxed">
+                        {sub.definitionLughatan.fr}
+                      </p>
+                    </div>
+                  )}
+
+                  {sub.definitionIstilahan && (
+                    <div className="p-4 rounded-xl border border-line bg-soft/70">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="chip chip-idgham text-[11px] font-semibold">اصْطِلَاحاً — Définition Canonique</span>
+                        {sub.definitionIstilahan.ar && (
+                          <span className="font-ar text-sm text-good font-bold" dir="rtl">{sub.definitionIstilahan.ar}</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-ink leading-relaxed">
+                        {sub.definitionIstilahan.fr}
+                      </p>
+                    </div>
+                  )}
                 </div>
+              )}
+
+              {/* 2. Mécanisme Physiologique & Posture Corporelle */}
+              <div className="p-4 sm:p-5 rounded-xl border border-line bg-soft/40 mb-6 space-y-3.5">
+                <div className="flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-lapis shrink-0" />
+                  <strong className="text-xs uppercase tracking-wider font-bold text-ink">
+                    Mécanisme Physiologique & Posture des Organes
+                  </strong>
+                </div>
+
+                {sub.physiologicalDetails ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs">
+                    {sub.physiologicalDetails.tongue && (
+                      <div className="p-2.5 rounded-lg bg-card border border-line">
+                        <div className="font-semibold text-ink flex items-center gap-1.5 mb-1">
+                          <span>👅</span>
+                          <span>Langue & Palais :</span>
+                        </div>
+                        <p className="text-muted leading-relaxed">{sub.physiologicalDetails.tongue}</p>
+                      </div>
+                    )}
+                    {sub.physiologicalDetails.lips && (
+                      <div className="p-2.5 rounded-lg bg-card border border-line">
+                        <div className="font-semibold text-ink flex items-center gap-1.5 mb-1">
+                          <span>👄</span>
+                          <span>Lèvres & Mâchoire :</span>
+                        </div>
+                        <p className="text-muted leading-relaxed">{sub.physiologicalDetails.lips}</p>
+                      </div>
+                    )}
+                    {sub.physiologicalDetails.vocalCords && (
+                      <div className="p-2.5 rounded-lg bg-card border border-line">
+                        <div className="font-semibold text-ink flex items-center gap-1.5 mb-1">
+                          <span>🫁</span>
+                          <span>Cordes Vocales (Jahr / Hams) :</span>
+                        </div>
+                        <p className="text-muted leading-relaxed">{sub.physiologicalDetails.vocalCords}</p>
+                      </div>
+                    )}
+                    {sub.physiologicalDetails.airflow && (
+                      <div className="p-2.5 rounded-lg bg-card border border-line">
+                        <div className="font-semibold text-ink flex items-center gap-1.5 mb-1">
+                          <span>👃</span>
+                          <span>Canal Aérien & Résonance :</span>
+                        </div>
+                        <p className="text-muted leading-relaxed">{sub.physiologicalDetails.airflow}</p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-xs text-muted leading-relaxed pl-6">
+                    {sub.mechanismFr}
+                  </p>
+                )}
               </div>
+
+              {/* 3. Le « Pourquoi » de la Règle (Cause Phonétique) */}
+              {sub.phoneticReasonFr && (
+                <div className="p-4 rounded-xl border border-gilt/30 bg-gilt-soft/40 mb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-gilt shrink-0" />
+                    <strong className="text-xs uppercase tracking-wider font-bold text-gilt">
+                      Le « Pourquoi » de la Règle (Cause Phonétique)
+                    </strong>
+                  </div>
+                  <p className="text-xs text-ink leading-relaxed">
+                    {sub.phoneticReasonFr}
+                  </p>
+                </div>
+              )}
+
+              {/* 4. Versets du Matn Al-Jazariyyah */}
+              {sub.matnJazariyyah && (
+                <div className="p-4 sm:p-5 rounded-2xl border-2 border-gilt/40 bg-gilt-soft/20 mb-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-gilt uppercase tracking-wider">
+                      <Scroll className="w-4 h-4 shrink-0" />
+                      <span>Matn Al-Jazariyyah (Ibn Al-Jazarī)</span>
+                    </div>
+                    {sub.matnJazariyyah.chapterNameAr && (
+                      <span className="font-ar text-xs font-bold text-gilt" dir="rtl">{sub.matnJazariyyah.chapterNameAr}</span>
+                    )}
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-card/80 border border-gilt/20 text-center my-2">
+                    <p className="font-ar text-lg sm:text-xl font-bold text-ink leading-[2] tracking-wide" dir="rtl">
+                      {sub.matnJazariyyah.verseAr}
+                    </p>
+                  </div>
+
+                  {sub.matnJazariyyah.transliteration && (
+                    <p className="text-[11px] font-mono text-muted text-center mt-2 italic">
+                      « {sub.matnJazariyyah.transliteration} »
+                    </p>
+                  )}
+
+                  <p className="text-xs text-ink text-center mt-2 font-medium">
+                    {sub.matnJazariyyah.translationFr}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Interactive Quranic Examples Section */}
