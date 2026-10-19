@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulateur Mobile Tajwīd • Temps Réel</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --phone-border: #2a2e39;
+      --phone-shadow: rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="light"] {
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --phone-border: #1e293b;
+      --phone-shadow: rgba(15, 23, 42, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* TOP HEADER */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .control-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    select, button, .btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+      outline: none;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    select:hover, button:hover, .btn:hover {
+      border-color: var(--primary);
+    }
+
+    button:active, .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    /* STATUS PILL */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* MAIN STAGE */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 15px;
+      position: relative;
+    }
+
+    .viewport-container {
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center center;
+    }
+
+    /* SMARTPHONE CASING */
+    .phone-case {
+      position: relative;
+      background: #000000;
+      border: 12px solid var(--phone-border);
+      border-radius: 54px;
+      box-shadow: 0 25px 60px -15px var(--phone-shadow),
+                  0 0 0 2px rgba(255, 255, 255, 0.1) inset,
+                  0 0 25px rgba(59, 130, 246, 0.15);
+      overflow: hidden;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-radius 0.3s;
+    }
+
+    /* HARDWARE BUTTONS SIMULATION (EXTERNAL) */
+    .phone-case::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 110px;
+      width: 4px;
+      height: 48px;
+      background: #475569;
+      border-radius: 3px 0 0 3px;
+      box-shadow: 0 65px 0 #475569, 0 130px 0 #475569;
+      pointer-events: none;
+    }
+
+    .phone-case::after {
+      content: "";
+      position: absolute;
+      right: -15px;
+      top: 150px;
+      width: 4px;
+      height: 75px;
+      background: #475569;
+      border-radius: 0 3px 3px 0;
+      pointer-events: none;
+    }
+
+    /* SCREEN WRAPPER */
+    .screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* DYNAMIC ISLAND */
+    .dynamic-island {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 118px;
+      height: 32px;
+      background: #000000;
+      border-radius: 20px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dynamic-island:hover {
+      width: 170px;
+      height: 38px;
+    }
+
+    .island-camera {
+      width: 11px;
+      height: 11px;
+      background: radial-gradient(circle, #1e293b 30%, #020617 80%);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .island-sensor {
+      width: 8px;
+      height: 8px;
+      background: #050b14;
+      border-radius: 50%;
+    }
+
+    .island-tag {
+      color: #94a3b8;
+      font-size: 10px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .dynamic-island:hover .island-tag {
+      opacity: 1;
+    }
+
+    /* STATUS BAR */
+    .status-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 40;
+      pointer-events: none;
+      transition: color 0.2s;
+    }
+
+    .status-bar.dark-text {
+      color: #0f172a;
+    }
+    .status-bar.light-text {
+      color: #f8fafc;
+    }
+
+    .status-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* HOME INDICATOR */
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 135px;
+      height: 5px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 3px;
+      z-index: 50;
+      pointer-events: none;
+      transition: background 0.2s;
+    }
+
+    .home-indicator.light-indicator {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* IFRAME */
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
+      transition: opacity 0.2s;
+    }
+
+    /* FOOTER TIPS */
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tips-list {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kbd {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+
+    /* MODAL QR CODE */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .modal-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .qr-box {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .qr-box img {
+      display: block;
+      width: 180px;
+      height: 180px;
+    }
+
+    .network-url-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      margin-bottom: 15px;
+      user-select: all;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION & CONTROLS -->
+  <header>
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+        <path d="M12 18h.01"/>
+      </svg>
+      <span>Simulateur Mobile</span>
+      <span class="brand-badge">Temps Réel • HMR</span>
+    </div>
+
+    <div class="toolbar-group">
+      <!-- Device Preset -->
+      <div class="control-item">
+        <span>Appareil :</span>
+        <select id="deviceSelect" onchange="updateDevice()">
+          <option value="iphone16pro" selected>iPhone 16 / 15 Pro (393 × 852)</option>
+          <option value="iphone15promax">iPhone 15 Pro Max (430 × 932)</option>
+          <option value="iphonese">iPhone SE (375 × 667)</option>
+          <option value="galaxys24">Samsung Galaxy S24 (412 × 915)</option>
+          <option value="pixel8">Google Pixel 8 (412 × 892)</option>
+          <option value="ipadmini">iPad Mini (768 × 1024)</option>
+        </select>
+      </div>
+
+      <!-- Orientation -->
+      <button onclick="toggleOrientation()" title="Basculer Portrait / Paysage">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+          <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+          <path d="M16 21h5v-5"/>
+        </svg>
+        <span id="orientationLabel">Portrait</span>
+      </button>
+
+      <!-- Zoom -->
+      <div class="control-item">
+        <span>Zoom :</span>
+        <select id="zoomSelect" onchange="updateZoom()">
+          <option value="auto" selected>Ajuster (Auto)</option>
+          <option value="1">100%</option>
+          <option value="0.9">90%</option>
+          <option value="0.8">80%</option>
+          <option value="0.7">70%</option>
+          <option value="1.15">115%</option>
+        </select>
+      </div>
+
+      <!-- Reload Frame -->
+      <button onclick="reloadFrame()" title="Forcer le rafraîchissement de l'application">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+        <span>Recharger</span>
+      </button>
+
+      <!-- Real Phone QR Code -->
+      <button onclick="openQrModal()" class="btn-primary" title="Tester sur votre vrai smartphone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect width="5" height="5" x="3" y="3" rx="1"/>
+          <rect width="5" height="5" x="16" y="3" rx="1"/>
+          <rect width="5" height="5" x="3" y="16" rx="1"/>
+          <path d="M21 16h-3a2 2 0 0 0-2 2v3"/>
+          <path d="M21 21v.01"/>
+          <path d="M12 7v3a2 2 0 0 1-2 2H7"/>
+          <path d="M3 12h.01"/>
+          <path d="M12 3h.01"/>
+          <path d="M12 16v.01"/>
+          <path d="M16 12h1"/>
+          <path d="M21 12v.01"/>
+          <path d="M12 21v-1"/>
+        </svg>
+        <span>Vrai Mobile (QR)</span>
+      </button>
+
+      <!-- Open in new tab -->
+      <a href="/" target="_blank" class="btn" title="Ouvrir l'application plein écran dans un nouvel onglet">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+
+      <!-- Theme Toggle -->
+      <button onclick="toggleTheme()" title="Basculer thème sombre / clair du simulateur">
+        <span id="themeIcon">🌓</span>
+      </button>
+
+      <!-- Status indicator -->
+      <div class="status-pill" title="Vite HMR actif : toutes les sauvegardes de code se mettent à jour instantanément">
+        <span class="status-dot"></span>
+        <span id="statusText">Vite HMR en direct</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SIMULATOR STAGE -->
+  <main id="mainStage">
+    <div class="viewport-container" id="viewportContainer">
+      <div class="phone-case" id="phoneCase" style="width: 393px; height: 852px;">
+        
+        <div class="screen" id="screen">
+          <!-- Dynamic Island -->
+          <div class="dynamic-island" id="dynamicIsland">
+            <div class="island-camera"></div>
+            <span class="island-tag">Tajwīd • Live</span>
+            <div class="island-sensor"></div>
+          </div>
+
+          <!-- Status Bar -->
+          <div class="status-bar" id="statusBar">
+            <span id="statusClock">09:41</span>
+            <div class="status-icons">
+              <!-- Signal bars -->
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+                <rect x="0" y="8" width="3" height="4" rx="0.5"/>
+                <rect x="4" y="6" width="3" height="6" rx="0.5"/>
+                <rect x="8" y="3" width="3" height="9" rx="0.5"/>
+                <rect x="12" y="0" width="3" height="12" rx="0.5"/>
+              </svg>
+              <!-- 5G / Wifi -->
+              <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                <line x1="12" y1="20" x2="12.01" y2="20"/>
+              </svg>
+              <!-- Battery -->
+              <svg width="22" height="12" viewBox="0 0 24 12" fill="currentColor">
+                <rect x="1" y="1" width="19" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/>
+                <path d="M22 4.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- The Live App Iframe -->
+          <iframe id="appFrame" src="/" title="Application Tajweed Live"></iframe>
+
+          <!-- Home Indicator Bar -->
+          <div class="home-indicator" id="homeIndicator"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="tips-list">
+      <div class="tip-item">
+        <span>⚡ <strong>Temps réel actif :</strong> modifiez n'importe quel fichier dans <code>src/</code>, l'écran s'actualise immédiatement.</span>
+      </div>
+      <div class="tip-item">
+        <span>Inspecter dans DevTools : <span class="kbd">F12</span></span>
+      </div>
+      <div class="tip-item">
+        <span>Mode Device natif Chrome/Edge : <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span></span>
+      </div>
+    </div>
+    <div>
+      <span>Tajwīd Mastery Live Preview</span>
+    </div>
+  </footer>
+
+  <!-- MODAL QR CODE -->
+  <div class="modal-backdrop" id="qrModal" onclick="closeQrModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <h3>Scanner avec votre Smartphone</h3>
+      <p>Ouvrez l'appareil photo de votre téléphone (connecté au même Wi-Fi) pour tester l'application directement dans vos mains !</p>
+      
+      <div class="qr-box">
+        <img id="qrImage" src="" alt="QR Code de l'application">
+      </div>
+
+      <div class="network-url-badge" id="networkUrlText">Chargement...</div>
+
+      <button onclick="closeQrModal()" class="btn-primary" style="width: 100%; justify-content: center;">
+        Fermer
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const DEVICES = {
+      iphone16pro: { width: 393, height: 852, radius: 54, hasIsland: true, name: "iPhone 16 / 15 Pro" },
+      iphone15promax: { width: 430, height: 932, radius: 56, hasIsland: true, name: "iPhone 15 Pro Max" },
+      iphonese: { width: 375, height: 667, radius: 36, hasIsland: false, name: "iPhone SE" },
+      galaxys24: { width: 412, height: 915, radius: 46, hasIsland: false, name: "Samsung Galaxy S24" },
+      pixel8: { width: 412, height: 892, radius: 44, hasIsland: false, name: "Google Pixel 8" },
+      ipadmini: { width: 768, height: 1024, radius: 34, hasIsland: false, name: "iPad Mini" }
+    };
+
+    let isLandscape = false;
+    let currentDeviceKey = 'iphone16pro';
+
+    // Live clock in status bar
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('statusClock').textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Update Device Dimensions
+    function updateDevice() {
+      const select = document.getElementById('deviceSelect');
+      currentDeviceKey = select.value;
+      const device = DEVICES[currentDeviceKey];
+      const phoneCase = document.getElementById('phoneCase');
+      const island = document.getElementById('dynamicIsland');
+
+      const width = isLandscape ? device.height : device.width;
+      const height = isLandscape ? device.width : device.height;
+
+      phoneCase.style.width = `${width}px`;
+      phoneCase.style.height = `${height}px`;
+      phoneCase.style.borderRadius = `${device.radius}px`;
+
+      if (device.hasIsland && !isLandscape) {
+        island.style.display = 'flex';
+      } else {
+        island.style.display = 'none';
+      }
+
+      updateZoom();
+    }
+
+    // Toggle Orientation
+    function toggleOrientation() {
+      isLandscape = !isLandscape;
+      document.getElementById('orientationLabel').textContent = isLandscape ? 'Paysage' : 'Portrait';
+      updateDevice();
+    }
+
+    // Adjust Zoom / Scale
+    function updateZoom() {
+      const zoomValue = document.getElementById('zoomSelect').value;
+      const container = document.getElementById('viewportContainer');
+      const phoneCase = document.getElementById('phoneCase');
+      const mainStage = document.getElementById('mainStage');
+
+      if (zoomValue === 'auto') {
+        const availableWidth = mainStage.clientWidth - 40;
+        const availableHeight = mainStage.clientHeight - 40;
+        const caseWidth = phoneCase.offsetWidth;
+        const caseHeight = phoneCase.offsetHeight;
+
+        const scaleX = availableWidth / caseWidth;
+        const scaleY = availableHeight / caseHeight;
+        let scale = Math.min(scaleX, scaleY, 1);
+        if (scale < 0.4) scale = 0.4;
+
+        container.style.transform = `scale(${scale})`;
+      } else {
+        container.style.transform = `scale(${zoomValue})`;
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (document.getElementById('zoomSelect').value === 'auto') {
+        updateZoom();
+      }
+    });
+
+    // Reload iframe
+    function reloadFrame() {
+      const frame = document.getElementById('appFrame');
+      frame.style.opacity = '0.3';
+      frame.src = frame.src;
+      setTimeout(() => {
+        frame.style.opacity = '1';
+      }, 300);
+    }
+
+    // Toggle Simulator Theme (Dark/Light)
+    function toggleTheme() {
+      const isDark = document.body.getAttribute('data-theme') !== 'light';
+      if (isDark) {
+        document.body.setAttribute('data-theme', 'light');
+        document.getElementById('themeIcon').textContent = '☀️';
+      } else {
+        document.body.removeAttribute('data-theme');
+        document.getElementById('themeIcon').textContent = '🌓';
+      }
+    }
+
+    // QR Code for real phone
+    function openQrModal() {
+      const host = window.location.hostname;
+      const port = window.location.port ? `:${window.location.port}` : '';
+      // If localhost, try local IP (or user can scan current origin)
+      const targetUrl = `${window.location.protocol}//${host}${port}/`;
+      document.getElementById('networkUrlText').textContent = targetUrl;
+      const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(targetUrl)}`;
+      document.getElementById('qrImage').src = qrApi;
+      document.getElementById('qrModal').classList.add('open');
+    }
+
+    function closeQrModal(e) {
+      if (!e || e.target.id === 'qrModal') {
+        document.getElementById('qrModal').classList.remove('open');
+      }
+    }
+
+    // Check Vite connection
+    setInterval(async () => {
+      try {
+        const res = await fetch('/', { method: 'HEAD', cache: 'no-cache' });
+        if (res.ok) {
+          document.getElementById('statusText').textContent = 'Vite HMR en direct';
+          document.querySelector('.status-dot').style.background = 'var(--success)';
+        }
+      } catch (err) {
+        document.getElementById('statusText').textContent = 'Connexion interrompue...';
+        document.querySelector('.status-dot').style.background = '#ef4444';
+      }
+    }, 5000);
+
+    // Initial setup
+    setTimeout(updateDevice, 50);
+  </script>
+</body>
+</html>
