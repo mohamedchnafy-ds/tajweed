@@ -16,7 +16,7 @@ export const MakharijSifatLab: React.FC = () => {
   return (
     <div className="pb-20 pt-8 sm:pt-10 space-y-8 animate-enter">
       <header className="max-w-2xl space-y-2">
-        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] tracking-[-0.01em] text-ink">
+        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.3] tracking-[-0.01em] text-ink">
           Points d'articulation & attributs
         </h1>
         <p className="font-ui-ar text-2xl text-lapis leading-normal text-left" dir="rtl">
@@ -27,7 +27,7 @@ export const MakharijSifatLab: React.FC = () => {
         </p>
       </header>
 
-      <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+      <div className="segmented">
         <button onClick={() => setActiveTab('makharij')} aria-pressed={activeTab === 'makharij'}>
           5 régions
         </button>
