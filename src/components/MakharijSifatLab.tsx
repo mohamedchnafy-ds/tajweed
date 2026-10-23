@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { GENERAL_MAKHAREJ, ALL_28_LETTERS, SIFAT_CLASSIFICATION, LetterProfile, GeneralMakhraj } from '../data/makharijSifatData';
-import { ArrowLeft, BookOpen, Volume2, Sparkles, CheckCircle2, AlertTriangle, Layers, Info } from 'lucide-react';
+import { BookOpen, Volume2, Sparkles, CheckCircle2, AlertTriangle, Layers, Info } from 'lucide-react';
 import { Modal } from './ui';
 
-interface MakharijSifatLabProps {
-  onBack: () => void;
-}
-
-export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) => {
+export const MakharijSifatLab: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'makharij' | 'letters' | 'sifat'>('makharij');
   const [selectedMakhraj, setSelectedMakhraj] = useState<GeneralMakhraj | null>(GENERAL_MAKHAREJ[1]); // Default to Al-Halq
   const [selectedLetter, setSelectedLetter] = useState<LetterProfile | null>(null);
@@ -18,71 +14,28 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
     : ALL_28_LETTERS.filter(l => l.generalMakhraj === filterRegion);
 
   return (
-    <div className="pb-20 pt-4 max-w-4xl mx-auto px-4 space-y-6 animate-enter">
-      {/* ================= HEADER BAR ================= */}
-      <div className="flex items-center justify-between gap-3">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-line bg-card hover:bg-soft text-ink text-sm font-medium transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Retour aux chapitres</span>
-        </button>
-        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-          Source : التجويد المبسط
-        </span>
-      </div>
+    <div className="pb-20 pt-8 sm:pt-10 space-y-8 animate-enter">
+      <header className="max-w-2xl space-y-2">
+        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] tracking-[-0.01em] text-ink">
+          Points d'articulation & attributs
+        </h1>
+        <p className="font-ui-ar text-2xl text-lapis leading-normal text-left" dir="rtl">
+          مَخَارِجُ الحُرُوفِ العَرَبِيَّةِ وَصِفَاتُهَا
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted">
+          Donner à chaque consonne sa sortie exacte parmi les 17 <em>Makhārij</em>, et ses attributs originels : force, souffle, emphase, résonance.
+        </p>
+      </header>
 
-      {/* ================= HERO BANNER ================= */}
-      <div className="rounded-[24px] bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white p-6 sm:p-8 shadow-sm relative overflow-hidden">
-        <div className="relative z-10 max-w-2xl space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-semibold backdrop-blur-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Laboratoire Phonétique Fondamental</span>
-          </div>
-          <h1 className="font-display text-2xl sm:text-3xl font-bold leading-tight">
-            Les Points d'Articulation & Caractéristiques
-          </h1>
-          <p className="font-ui-ar text-xl text-emerald-200" dir="rtl">
-            مَخَارِجُ الحُرُوفِ العَرَبِيَّةِ وَصِفَاتُهَا
-          </p>
-          <p className="text-white/80 text-sm leading-relaxed pt-1">
-            Le pilier n°1 de la récitation coranique : donner à chaque consonne sa sortie exacte parmi les 17 <em>Makhārij</em> et ses attributs originels (force, souffle, emphase, résonance).
-          </p>
-        </div>
-      </div>
-
-      {/* ================= NAVIGATION TABS ================= */}
-      <div className="flex rounded-2xl bg-soft p-1.5 border border-line gap-1">
-        <button
-          onClick={() => setActiveTab('makharij')}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-            activeTab === 'makharij'
-              ? 'bg-card text-ink shadow-xs border border-line'
-              : 'text-muted hover:text-ink'
-          }`}
-        >
-          <span>🎙️ 5 Régions (17 Sorties)</span>
+      <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+        <button onClick={() => setActiveTab('makharij')} aria-pressed={activeTab === 'makharij'}>
+          5 régions
         </button>
-        <button
-          onClick={() => setActiveTab('letters')}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-            activeTab === 'letters'
-              ? 'bg-card text-ink shadow-xs border border-line'
-              : 'text-muted hover:text-ink'
-          }`}
-        >
-          <span>🔤 28 Fiches Lettres</span>
+        <button onClick={() => setActiveTab('letters')} aria-pressed={activeTab === 'letters'}>
+          28 lettres
         </button>
-        <button
-          onClick={() => setActiveTab('sifat')}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-            activeTab === 'sifat'
-              ? 'bg-card text-ink shadow-xs border border-line'
-              : 'text-muted hover:text-ink'
-          }`}
-        >
-          <span>⚖️ Les 17 Attributs (Sifāt)</span>
+        <button onClick={() => setActiveTab('sifat')} aria-pressed={activeTab === 'sifat'}>
+          17 attributs
         </button>
       </div>
 
@@ -90,11 +43,11 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
       {activeTab === 'makharij' && (
         <div className="space-y-6 animate-enter">
           {/* Poème Jazariyyah Intro */}
-          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-ink space-y-1 text-center">
-            <p className="text-xs font-bold text-amber-700 dark:text-amber-300">
+          <div className="p-4 rounded-2xl bg-gilt-soft border border-gilt/25 text-ink space-y-1 text-center">
+            <p className="text-xs font-bold text-gilt">
               Le Verset Fondateur d'Ibn Al-Jazarī (متن الجزرية)
             </p>
-            <p className="font-ui-ar text-xl text-amber-800 dark:text-amber-200 font-semibold" dir="rtl">
+            <p className="font-ui-ar text-xl text-gilt font-semibold" dir="rtl">
               مَخَارِجُ الحُرُوفِ سَبْعَةَ عَشَرْ ... عَلَى الَّذِي يَخْتَارُهُ مَنِ اخْتَبَرْ
             </p>
             <p className="text-xs text-muted">
@@ -113,7 +66,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                   className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between gap-3 relative overflow-hidden active:scale-[0.99] ${
                     isSelected
                       ? 'bg-card border-2 shadow-sm'
-                      : 'bg-card/70 border-line hover:border-line-hover hover:bg-card'
+                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
                   }`}
                   style={{
                     borderColor: isSelected ? m.color : undefined,
@@ -137,9 +90,8 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                     {m.descriptionFr}
                   </p>
 
-                  <div className="pt-2 border-t border-line/60 flex items-center justify-between text-xs">
-                    <span className="text-muted">Lettres :</span>
-                    <div className="flex gap-1" dir="rtl">
+                  <div className="pt-2 border-t border-line/60">
+                    <div className="flex flex-wrap gap-1" dir="rtl">
                       {m.letters.map((l, i) => (
                         <span key={i} className="font-ui-ar font-bold text-base px-1.5 py-0.5 rounded bg-soft text-ink">
                           {l}
@@ -169,7 +121,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                     setFilterRegion(selectedMakhraj.id);
                     setActiveTab('letters');
                   }}
-                  className="px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-semibold hover:opacity-90 transition-opacity"
+                  className="btn btn-primary h-9 px-4 text-xs"
                 >
                   Voir les {selectedMakhraj.lettersCount} lettres associées →
                 </button>
@@ -180,7 +132,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
               </p>
 
               <div className="p-3.5 rounded-xl bg-soft/80 border border-line flex items-start gap-3">
-                <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                <BookOpen className="w-5 h-5 text-lapis shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-muted">Verset de référence de la Jazariyyah :</p>
                   <p className="font-ui-ar text-base font-semibold text-ink" dir="rtl">
@@ -231,9 +183,9 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
               <button
                 key={l.letter}
                 onClick={() => setSelectedLetter(l)}
-                className="p-3 rounded-2xl bg-card border border-line hover:border-emerald-500 hover:shadow-xs transition-all flex flex-col items-center justify-center gap-1 group active:scale-95"
+                className="p-3 rounded-2xl bg-card border border-line hover:border-lapis hover:shadow-xs transition-all flex flex-col items-center justify-center gap-1 group active:scale-95"
               >
-                <span className="font-ui-ar text-3xl font-bold text-ink group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                <span className="font-ui-ar text-3xl font-bold text-ink group-hover:text-lapis transition-colors">
                   {l.letter}
                 </span>
                 <span className="text-[11px] font-medium text-muted text-center truncate w-full" dir="ltr">
@@ -241,10 +193,10 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                 </span>
                 <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full ${
                   l.strength.includes('Forte')
-                    ? 'bg-red-500/10 text-red-600 dark:text-red-400'
+                    ? 'bg-bad-bg text-bad'
                     : l.strength.includes('Faible')
-                    ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
-                    : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                    ? 'bg-izhar-bg text-izhar'
+                    : 'bg-gilt-soft text-gilt'
                 }`}>
                   {l.strength.includes('Forte') ? 'Forte' : l.strength.includes('Faible') ? 'Faible' : 'Moyenne'}
                 </span>
@@ -268,7 +220,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
           {/* 1. Attributs avec opposés (Al-Mutadāddah) */}
           <div className="space-y-3">
             <h3 className="font-display text-base font-bold text-ink flex items-center gap-2">
-              <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <Layers className="w-4 h-4 text-lapis" />
               <span>Les 5 Paires d'Attributs Opposés (10 Sifāt)</span>
             </h3>
 
@@ -278,8 +230,8 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                   <h4 className="font-semibold text-sm text-ink">{pair.titleFr}</h4>
                   <div className="grid gap-2 sm:grid-cols-2 text-xs">
                     {/* First attribute */}
-                    <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20 space-y-1">
-                      <span className="font-bold text-emerald-700 dark:text-emerald-300 block">
+                    <div className="p-3 rounded-xl bg-lapis-bg border border-lapis/20 space-y-1">
+                      <span className="font-bold text-lapis block">
                         {(pair as any).hams?.nameFr || (pair as any).shiddah?.nameFr || (pair as any).istila?.nameFr || (pair as any).itbaq?.nameFr || (pair as any).idhlaq?.nameFr}
                       </span>
                       {((pair as any).hams?.mnemonic || (pair as any).shiddah?.mnemonic || (pair as any).istila?.mnemonic || (pair as any).itbaq?.mnemonic || (pair as any).idhlaq?.mnemonic) && (
@@ -293,8 +245,8 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                     </div>
 
                     {/* Second attribute */}
-                    <div className="p-3 rounded-xl bg-blue-500/5 border border-blue-500/20 space-y-1">
-                      <span className="font-bold text-blue-700 dark:text-blue-300 block">
+                    <div className="p-3 rounded-xl bg-izhar-bg border border-izhar/20 space-y-1">
+                      <span className="font-bold text-izhar block">
                         {(pair as any).jahr?.nameFr || (pair as any).rakhawah?.nameFr || (pair as any).istifal?.nameFr || (pair as any).infitah?.nameFr || (pair as any).ismat?.nameFr}
                       </span>
                       <p className="text-muted leading-relaxed">
@@ -310,7 +262,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
           {/* 2. Attributs sans opposés */}
           <div className="space-y-3">
             <h3 className="font-display text-base font-bold text-ink flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-500" />
+              <Sparkles className="w-4 h-4 text-gilt" />
               <span>Les 8 Attributs Sans Opposés (Singuliers)</span>
             </h3>
 
@@ -319,10 +271,10 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
                 <div key={idx} className="p-3.5 rounded-2xl bg-card border border-line space-y-1 text-xs">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-ink text-sm">{s.nameFr}</span>
-                    <span className="font-ui-ar text-base font-bold text-emerald-600 dark:text-emerald-400" dir="rtl">{s.nameAr}</span>
+                    <span className="font-ui-ar text-base font-bold text-lapis" dir="rtl">{s.nameAr}</span>
                   </div>
                   {s.mnemonic && (
-                    <p className="font-ui-ar text-sm font-bold text-amber-600 dark:text-amber-400" dir="rtl">
+                    <p className="font-ui-ar text-sm font-bold text-gilt" dir="rtl">
                       Formule : {s.mnemonic}
                     </p>
                   )}
@@ -348,7 +300,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
           onClose={() => setSelectedLetter(null)}
           title={
             <div className="flex items-center gap-3">
-              <span className="font-ui-ar text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+              <span className="font-ui-ar text-3xl font-bold text-lapis">
                 {selectedLetter.letter}
               </span>
               <div>
@@ -371,7 +323,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
               <p className="font-semibold text-ink leading-relaxed">
                 {selectedLetter.specificMakhrajFr}
               </p>
-              <p className="font-ui-ar text-base font-bold text-emerald-700 dark:text-emerald-300" dir="rtl">
+              <p className="font-ui-ar text-base font-bold text-lapis" dir="rtl">
                 {selectedLetter.specificMakhrajAr}
               </p>
             </div>
@@ -403,19 +355,19 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
 
             {/* Attributs singuliers sans opposés */}
             {selectedLetter.sifatWithoutOpposites.length > 0 && (
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
-                <span className="text-[10px] font-bold text-amber-700 dark:text-amber-300">
+              <div className="p-3 rounded-xl bg-gilt-soft border border-gilt/25 space-y-1">
+                <span className="text-[10px] font-bold text-gilt">
                   Attribut Singulier Propre :
                 </span>
-                <p className="font-semibold text-amber-900 dark:text-amber-200">
+                <p className="font-semibold text-ink">
                   {selectedLetter.sifatWithoutOpposites.join(' · ')}
                 </p>
               </div>
             )}
 
             {/* Pièges de prononciation tirés du livre */}
-            <div className="p-3.5 rounded-xl bg-red-500/5 border border-red-500/20 space-y-1">
-              <div className="flex items-center gap-1.5 text-red-600 dark:text-red-400 font-bold text-xs">
+            <div className="p-3.5 rounded-xl bg-bad-bg/60 border border-bad/20 space-y-1">
+              <div className="flex items-center gap-1.5 text-bad font-bold text-xs">
                 <AlertTriangle className="w-4 h-4 shrink-0" />
                 <span>Piège fréquent signalé dans le livre :</span>
               </div>
@@ -425,14 +377,14 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
             </div>
 
             {/* Verset de la Jazariyyah */}
-            <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-between">
+            <div className="p-3 rounded-xl bg-lapis-bg border border-lapis/20 flex items-center justify-between">
               <div className="space-y-0.5">
                 <span className="text-[10px] text-muted font-bold">Ibn Al-Jazarī :</span>
-                <p className="font-ui-ar text-sm font-bold text-emerald-800 dark:text-emerald-200" dir="rtl">
+                <p className="font-ui-ar text-sm font-bold text-lapis" dir="rtl">
                   {selectedLetter.jazariyyahVerse}
                 </p>
               </div>
-              <span className="font-ui-ar text-xl font-bold px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">
+              <span className="font-ui-ar text-xl font-bold px-3 py-1 rounded-xl bg-lapis-bg text-lapis">
                 {selectedLetter.audioSampleText}
               </span>
             </div>

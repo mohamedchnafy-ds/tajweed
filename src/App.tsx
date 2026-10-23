@@ -131,7 +131,7 @@ export const App: React.FC = () => {
       {/* Main Content Stage */}
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6">
         {currentTab === 'makharij' ? (
-          <MakharijSifatLab onBack={handleBackToChapters} />
+          <MakharijSifatLab />
         ) : currentTab === 'chapters' || !selectedChapter ? (
           <ChapterList
             onSelectChapter={handleSelectChapter}
@@ -175,14 +175,7 @@ export const App: React.FC = () => {
             )}
 
             {currentStep === 'poster' && (
-              <ChapterPoster
-                chapter={selectedChapter}
-                onRestartSteps={() => {
-                  setCurrentStep('map');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onGoToNextChapter={moveToNextChapter}
-              />
+              <ChapterPoster chapter={selectedChapter} />
             )}
           </div>
         )}
