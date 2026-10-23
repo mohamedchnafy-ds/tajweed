@@ -474,7 +474,6 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
   return (
     <>
       <StepHeader
-        step={4}
         title="Le verset, mot par mot"
         description="Écoutez la récitation, puis touchez chaque mot coloré pour comprendre la règle qui s'y applique."
         aside={

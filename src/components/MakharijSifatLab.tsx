@@ -91,7 +91,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
         <div className="space-y-6 animate-enter">
           {/* Poème Jazariyyah Intro */}
           <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-ink space-y-1 text-center">
-            <p className="text-xs font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider">
+            <p className="text-xs font-bold text-amber-700 dark:text-amber-300">
               Le Verset Fondateur d'Ibn Al-Jazarī (متن الجزرية)
             </p>
             <p className="font-ui-ar text-xl text-amber-800 dark:text-amber-200 font-semibold" dir="rtl">
@@ -157,7 +157,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
             <div className="p-5 sm:p-6 rounded-2xl bg-card border border-line shadow-xs space-y-4">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
-                  <span className="text-xs uppercase tracking-wider font-bold text-muted">
+                  <span className="text-xs font-bold text-muted">
                     Région sélectionnée
                   </span>
                   <h2 className="font-display text-xl font-bold text-ink">
@@ -365,7 +365,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
           <div className="space-y-4 text-xs sm:text-sm text-ink pt-1">
             {/* Point de sortie précis */}
             <div className="p-3.5 rounded-xl bg-soft border border-line space-y-1">
-              <span className="text-[11px] uppercase tracking-wider font-bold text-muted">
+              <span className="text-[11px] font-bold text-muted">
                 Point d'Articulation Précis (Makhraj Khāss)
               </span>
               <p className="font-semibold text-ink leading-relaxed">
@@ -378,7 +378,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
 
             {/* Profil des 5 attributs permanents */}
             <div className="space-y-2">
-              <span className="text-[11px] uppercase tracking-wider font-bold text-muted block">
+              <span className="text-[11px] font-bold text-muted block">
                 Ses 5 Attributs Permanents (Sifāt Lāzimah)
               </span>
               <div className="grid grid-cols-2 gap-2 text-xs">
@@ -404,7 +404,7 @@ export const MakharijSifatLab: React.FC<MakharijSifatLabProps> = ({ onBack }) =>
             {/* Attributs singuliers sans opposés */}
             {selectedLetter.sifatWithoutOpposites.length > 0 && (
               <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
-                <span className="text-[10px] uppercase tracking-wider font-bold text-amber-700 dark:text-amber-300">
+                <span className="text-[10px] font-bold text-amber-700 dark:text-amber-300">
                   Attribut Singulier Propre :
                 </span>
                 <p className="font-semibold text-amber-900 dark:text-amber-200">

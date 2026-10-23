@@ -124,7 +124,6 @@ export const App: React.FC = () => {
         selectedChapterNumber={selectedChapter?.number}
         unresolvedMistakesCount={unresolvedMistakesCount}
         onOpenMistakes={() => setIsMistakesModalOpen(true)}
-        onOpenDataBackup={() => setIsDataBackupModalOpen(true)}
         isDark={isDark}
         onToggleTheme={toggleTheme}
       />
@@ -139,13 +138,14 @@ export const App: React.FC = () => {
             userStats={userStats}
             pilotChapters={PILOT_CHAPTERS}
             onOpenMistakes={() => setIsMistakesModalOpen(true)}
+            onOpenDataBackup={() => setIsDataBackupModalOpen(true)}
             onOpenMakharij={() => {
               setCurrentTab('makharij');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         ) : (
-          <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-12 space-y-8 animate-enter">
+          <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-10 space-y-8 animate-enter">
             {currentStep === 'map' && (
               <InteractiveTajweedTree chapter={selectedChapter} />
             )}

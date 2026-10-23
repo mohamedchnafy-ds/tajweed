@@ -59,7 +59,6 @@ export const ChapterPoster: React.FC<ChapterPosterProps> = ({
   return (
     <>
       <StepHeader
-        step={6}
         title="L'essentiel à retenir"
         description="Relisez cette synthèse avant chaque séance de récitation."
       />

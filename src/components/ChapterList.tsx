@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ALL_BOOK_CHAPTERS } from '../data/chaptersData';
 import { UserStats, Chapter } from '../types/tajweed';
-import { Check, ChevronRight, Clock, Lock, NotebookPen, Play, Trophy } from 'lucide-react';
+import { AudioLines, Check, ChevronRight, Download, NotebookPen, Play } from 'lucide-react';
 import { StarMark } from './ui';
 
 interface ChapterListProps {
@@ -10,26 +10,27 @@ interface ChapterListProps {
   pilotChapters: Chapter[];
   onOpenMistakes: () => void;
   onOpenMakharij?: () => void;
+  onOpenDataBackup: () => void;
 }
 
-/** Titres courts + pictogramme pour les cartes de chaque chapitre. */
-const CHAPTER_VISUALS: Record<number, { short: string; icon: string }> = {
-  1: { short: 'Les bases & le Lahn', icon: '📜' },
-  2: { short: 'Symboles du Mushaf', icon: '🚦' },
-  3: { short: 'Arrêt & reprise', icon: '⏸️' },
-  4: { short: 'Madd naturel', icon: '📏' },
-  5: { short: 'Madd secondaire', icon: '⏳' },
-  6: { short: 'Les Hamzahs', icon: '👻' },
-  7: { short: 'Lām sākinah', icon: '🌙' },
-  8: { short: 'Nūn sākinah & Tanwīn', icon: '👃' },
-  9: { short: 'Mīm sākinah', icon: '👄' },
-  10: { short: 'Qalqalah', icon: '🏀' },
-  11: { short: 'Assimilation (Idghām)', icon: '🔗' },
-  12: { short: 'Tafkhīm & Tarqīq', icon: '🏋️' },
-  13: { short: 'Deux soukoûns', icon: '🤝' },
-  14: { short: 'Lettres isolées', icon: '🔠' },
-  15: { short: 'Distinctions subtiles', icon: '🔍' },
-  16: { short: 'Cas particuliers', icon: '✨' },
+/** Titres courts pour les cartes de chaque chapitre. */
+const CHAPTER_VISUALS: Record<number, { short: string }> = {
+  1: { short: 'Les bases & le Lahn' },
+  2: { short: 'Symboles du Mushaf' },
+  3: { short: 'Arrêt & reprise' },
+  4: { short: 'Madd naturel' },
+  5: { short: 'Madd secondaire' },
+  6: { short: 'Les Hamzahs' },
+  7: { short: 'Lām sākinah' },
+  8: { short: 'Nūn sākinah & Tanwīn' },
+  9: { short: 'Mīm sākinah' },
+  10: { short: 'Qalqalah' },
+  11: { short: 'Assimilation (Idghām)' },
+  12: { short: 'Tafkhīm & Tarqīq' },
+  13: { short: 'Deux soukoûns' },
+  14: { short: 'Lettres isolées' },
+  15: { short: 'Distinctions subtiles' },
+  16: { short: 'Cas particuliers' },
 };
 
 /** Phrases d'enjeux concises pour chaque étape de la roadmap. */
@@ -68,23 +69,22 @@ const ProgressRing: React.FC<{ value: number; total: number }> = ({ value, total
   return (
     <div className="relative w-14 h-14 shrink-0">
       <svg viewBox="0 0 64 64" className="w-full h-full -rotate-90" aria-hidden="true">
-        <circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity="0.2" strokeWidth="5.5" />
+        <circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity="0.2" strokeWidth="5" />
         <circle
           cx="32"
           cy="32"
           r={r}
           fill="none"
           stroke="var(--gilt)"
-          strokeWidth="5.5"
+          strokeWidth="5"
           strokeLinecap="round"
           strokeDasharray={c}
           strokeDashoffset={c * (1 - pct)}
           className="transition-all duration-700"
         />
       </svg>
-      <span className="absolute inset-0 flex flex-col items-center justify-center leading-none">
-        <span className="font-display text-base font-semibold tabular-nums">{value}</span>
-        <span className="text-[10px] opacity-70 tabular-nums">/{total}</span>
+      <span className="absolute inset-0 flex items-center justify-center font-display text-sm tabular-nums">
+        {value}/{total}
       </span>
     </div>
   );
@@ -96,19 +96,15 @@ export const ChapterList: React.FC<ChapterListProps> = ({
   pilotChapters,
   onOpenMistakes,
   onOpenMakharij,
+  onOpenDataBackup,
 }) => {
   const getScore = (n: number) => userStats.chapterScores[`chap-${n}`] || 0;
   const isCompleted = (n: number) => userStats.completedChapters.includes(`chap-${n}`);
 
   const unresolvedCount = userStats.mistakeHistory.filter((m) => !m.retriedSuccessfully).length;
-  const availableCount = pilotChapters.length;
   const completedCount = pilotChapters.filter((c) => isCompleted(c.number)).length;
 
   const next = pilotChapters.find((ch) => !isCompleted(ch.number)) || pilotChapters[0];
-  const nextVisual = next ? CHAPTER_VISUALS[next.number] : undefined;
-
-  const scores = pilotChapters.map((c) => getScore(c.number)).filter((s) => s > 0);
-  const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
 
   // L'onglet actif s'ouvre par défaut sur la partie contenant le cours en cours
   const [activePartIdx, setActivePartIdx] = useState<number>(() => {
@@ -119,306 +115,176 @@ export const ChapterList: React.FC<ChapterListProps> = ({
 
   const currentPart = PARTS[activePartIdx];
   const partChapters = ALL_BOOK_CHAPTERS.filter((c) => c.number >= currentPart.from && c.number <= currentPart.to);
-  const partAvailable = partChapters.filter((c) => c.isPilot || c.isPilotChapter);
-  const partDone = partAvailable.filter((c) => isCompleted(c.number)).length;
 
   return (
-    <div className="pb-16 pt-4 sm:pt-8 space-y-6 sm:space-y-8 animate-enter">
-      
-      {/* ================= BANNIÈRE D'ACCUEIL & REPRISE (COMPACTE) ================= */}
+    <div className="pb-16 pt-6 sm:pt-10 space-y-8 animate-enter">
+      {/* Reprise */}
       {next && (
-        <section className="relative overflow-hidden rounded-[24px] bg-lapis text-lapis-ink p-5 sm:p-6 shadow-sm">
-          <StarMark className="pointer-events-none absolute -right-10 -top-10 w-44 h-44 text-gilt opacity-[0.16]" />
-
-          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <section className="relative overflow-hidden rounded-card bg-lapis text-lapis-ink p-5 sm:p-7">
+          <StarMark className="pointer-events-none absolute -right-10 -top-10 w-44 h-44 text-gilt opacity-[0.14]" />
+          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             <div className="flex items-center gap-4 min-w-0">
-              <ProgressRing value={completedCount} total={availableCount} />
+              <ProgressRing value={completedCount} total={pilotChapters.length} />
               <div className="min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-xs font-semibold opacity-75">
-                    {completedCount === 0 ? 'Bienvenue' : 'Votre progression'}
-                  </span>
-                  {avgScore !== null && (
-                    <span className="text-[11px] opacity-80 flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded-full">
-                      <Trophy className="w-3 h-3 text-gilt" /> {avgScore}% de réussite
-                    </span>
-                  )}
-                </div>
-                <h3 className="font-display text-lg sm:text-xl font-bold leading-tight truncate">
-                  {completedCount > 0 ? `Chapitre ${next.number} : ${nextVisual?.short ?? next.titleFr}` : 'Prêt à commencer le Chapitre 1 ?'}
-                </h3>
-                <p className="font-ui-ar text-base leading-normal opacity-85 truncate" dir="rtl">
+                <p className="text-xs opacity-75">
+                  {completedCount === 0 ? 'Pour commencer' : 'Reprendre'} · Chapitre {next.number}
+                </p>
+                <h1 className="font-display text-xl sm:text-2xl leading-tight">
+                  {CHAPTER_VISUALS[next.number]?.short ?? next.titleFr}
+                </h1>
+                <p className="font-ui-ar text-lg leading-normal opacity-80" dir="rtl">
                   {next.titleAr}
                 </p>
               </div>
             </div>
-
             <button
               onClick={() => onSelectChapter(next.number)}
-              className="px-6 h-11 rounded-full bg-gilt text-white font-semibold text-sm shadow-sm transition-transform active:scale-[0.98] hover:opacity-95 flex items-center justify-center gap-2 shrink-0 self-start sm:self-auto"
+              className="btn h-11 px-6 bg-gilt text-white dark:text-paper hover:opacity-90 self-start sm:self-auto"
             >
               <Play className="w-4 h-4 fill-current" />
-              <span>{completedCount > 0 ? 'Continuer' : 'Commencer'}</span>
+              {completedCount > 0 ? 'Continuer' : 'Commencer'}
             </button>
           </div>
         </section>
       )}
 
-      {/* ================= OUTILS RAPIDES EN DUO (COMPACTS) ================= */}
+      {/* Outils */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {onOpenMakharij && (
-          <button
+          <ToolLink
+            icon={<AudioLines className="w-5 h-5" />}
+            title="Labo Makhārij & Sifāt"
+            subtitle="Points d'articulation et attributs des lettres"
             onClick={onOpenMakharij}
-            className="surface p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 text-left hover:border-emerald-500/50 transition-all active:scale-[0.99] group"
-          >
-            <div className="flex items-center gap-3 min-w-0">
-              <span className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
-                🎙️
-              </span>
-              <div className="min-w-0">
-                <span className="block text-xs font-bold text-ink group-hover:text-emerald-700 dark:group-hover:text-emerald-300 truncate">
-                  Labo Makhārij & Sifāt
-                </span>
-                <span className="block text-[11px] text-muted truncate">
-                  17 points d'articulation & 17 attributs
-                </span>
-              </div>
-            </div>
-            <ChevronRight className="w-4 h-4 text-muted shrink-0 group-hover:translate-x-0.5 group-hover:text-ink transition-all" />
-          </button>
+          />
         )}
-
-        <button
+        <ToolLink
+          icon={<NotebookPen className="w-5 h-5" />}
+          title="Cahier d'erreurs"
+          subtitle={
+            unresolvedCount > 0
+              ? `${unresolvedCount} question${unresolvedCount > 1 ? 's' : ''} à revoir`
+              : 'Aucune erreur en attente'
+          }
           onClick={onOpenMistakes}
-          className="surface p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 text-left hover:border-gilt transition-all active:scale-[0.99] group"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="w-10 h-10 rounded-xl bg-gilt-soft text-gilt flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
-              <NotebookPen className="w-5 h-5" />
-            </span>
-            <div className="min-w-0">
-              <span className="block text-xs font-bold text-ink group-hover:text-gilt truncate">
-                Cahier d'erreurs
-              </span>
-              <span className="block text-[11px] text-muted truncate">
-                {unresolvedCount > 0 ? `${unresolvedCount} question${unresolvedCount > 1 ? 's' : ''} à consolider` : '0 erreur en attente'}
-              </span>
-            </div>
-          </div>
-          <ChevronRight className="w-4 h-4 text-muted shrink-0 group-hover:translate-x-0.5 group-hover:text-ink transition-all" />
-        </button>
+        />
       </div>
 
-      {/* ================= SÉLECTEUR DE PALIER PAR ONGLETS ================= */}
-      <div className="space-y-3 pt-1">
-        <div className="flex items-center justify-between px-1">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted">
-            Programme d'étude par palier
-          </p>
-          <span className="text-xs text-muted font-medium">
-            Partie {activePartIdx + 1} sur {PARTS.length}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {PARTS.map((part, pIdx) => {
-            const isCurrent = activePartIdx === pIdx;
-            const pChapters = ALL_BOOK_CHAPTERS.filter((c) => c.number >= part.from && c.number <= part.to);
-            const pDone = pChapters.filter((c) => isCompleted(c.number)).length;
-
-            return (
-              <button
-                key={pIdx}
-                onClick={() => setActivePartIdx(pIdx)}
-                className={`p-3 rounded-2xl border text-left transition-all ${
-                  isCurrent
-                    ? 'bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 border-neutral-900 dark:border-neutral-100 shadow-sm'
-                    : 'bg-card text-muted hover:text-ink hover:bg-soft border-line'
-                }`}
-              >
-                <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider opacity-75 mb-0.5">
-                  <span>Partie {pIdx + 1}</span>
-                  <span className="tabular-nums font-mono">{pDone}/{pChapters.length}</span>
-                </div>
-                <span className="block text-xs font-bold truncate">
-                  {part.title}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ================= ROADMAP CONNECTÉE DU PALIER ACTIF ================= */}
-      <section className="space-y-4 pt-1">
-        {/* En-tête du palier sélectionné */}
-        <div className="surface p-4 sm:p-5 rounded-2xl flex items-center justify-between gap-3 border-line">
+      {/* Programme */}
+      <section className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-gilt">
-                Partie {activePartIdx + 1}
-              </span>
-              <span className="text-muted text-xs">•</span>
-              <span className="text-xs text-muted font-medium">
-                {partChapters.length} chapitres
-              </span>
-            </div>
-            <h2 className="font-display text-lg sm:text-xl font-bold text-ink leading-tight mt-0.5">
-              {currentPart.title}
-            </h2>
-            <p className="text-xs text-muted mt-0.5">
-              {currentPart.subtitle}
-            </p>
+            <h2 className="font-display text-2xl text-ink">Programme</h2>
+            <p className="text-sm text-muted">{currentPart.subtitle}</p>
           </div>
-
-          <div className="text-right shrink-0">
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold tabular-nums bg-soft text-ink">
-              {partDone}/{partChapters.length} validés
-            </span>
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar self-start sm:self-auto">
+            {PARTS.map((part, pIdx) => (
+              <button key={pIdx} aria-pressed={activePartIdx === pIdx} onClick={() => setActivePartIdx(pIdx)}>
+                {part.title}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Ligne connectée verticale */}
-        <div className="relative pl-6 sm:pl-8 space-y-4 before:absolute before:left-3 sm:before:left-4 before:top-4 before:bottom-4 before:w-0.5 before:bg-line">
-          {partChapters.map((ch, idx) => {
-            const visual = CHAPTER_VISUALS[ch.number];
+        <ul className="surface divide-y divide-line overflow-hidden">
+          {partChapters.map((ch) => {
             const pilot = pilotChapters.find((p) => p.number === ch.number);
+            const available = (ch.isPilot || ch.isPilotChapter) && pilot;
             const isDone = isCompleted(ch.number);
             const isNext = next?.number === ch.number && !isDone;
             const score = getScore(ch.number);
-            const pitch = CHAPTER_PITCHES[ch.number];
-
-            if ((!ch.isPilot && !ch.isPilotChapter) || !pilot) {
-              return (
-                <div key={ch.number} className="relative opacity-60 select-none">
-                  <span className="absolute -left-6 sm:-left-8 top-3.5 w-6 h-6 rounded-full bg-soft border border-line text-muted text-xs font-semibold flex items-center justify-center ring-4 ring-paper">
-                    {ch.number}
-                  </span>
-                  <div className="surface p-4 rounded-2xl flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className="text-2xl grayscale shrink-0">{visual?.icon}</span>
-                      <div className="min-w-0">
-                        <span className="text-[11px] text-muted">Chapitre {ch.number}</span>
-                        <h4 className="text-sm font-semibold text-ink truncate">{visual?.short ?? ch.titleFr}</h4>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1 text-xs text-muted shrink-0">
-                      <Lock className="w-3.5 h-3.5" /> Bientôt
-                    </span>
-                  </div>
-                </div>
-              );
-            }
 
             return (
-              <div
-                key={ch.number}
-                className="relative group cursor-pointer animate-enter"
-                style={{ animationDelay: `${idx * 40}ms` }}
-                onClick={() => onSelectChapter(ch.number)}
-              >
-                {/* Nœud de la timeline */}
-                <span
-                  className={`absolute -left-6 sm:-left-8 top-3.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full text-xs flex items-center justify-center transition-transform group-hover:scale-110 ${
-                    isDone
-                      ? 'bg-good text-white ring-4 ring-paper shadow-2xs'
-                      : isNext
-                      ? 'bg-gilt text-white font-bold ring-4 ring-paper shadow-sm'
-                      : 'bg-card border-2 border-line text-muted font-semibold ring-4 ring-paper'
-                  }`}
+              <li key={ch.number}>
+                <button
+                  disabled={!available}
+                  onClick={() => onSelectChapter(ch.number)}
+                  className="w-full flex items-center gap-4 p-4 sm:p-5 text-left transition-colors hover:bg-soft/60 disabled:opacity-50 disabled:hover:bg-transparent group"
                 >
-                  {isDone ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : ch.number}
-                </span>
+                  <span
+                    className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-sm tabular-nums ${
+                      isDone
+                        ? 'bg-good text-white'
+                        : isNext
+                        ? 'bg-gilt text-white dark:text-paper font-semibold'
+                        : 'border border-line text-muted'
+                    }`}
+                  >
+                    {isDone ? <Check className="w-4 h-4" strokeWidth={3} /> : ch.number}
+                  </span>
 
-                {/* Carte de l'étape */}
-                <div
-                  className={`surface p-4 sm:p-5 rounded-2xl transition-all active:scale-[0.99] space-y-2.5 ${
-                    isNext
-                      ? 'border-2 border-gilt/60 bg-gilt-soft/30 shadow-xs ring-1 ring-gilt/30'
-                      : 'hover:border-lapis/50 shadow-2xs'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-2xl">{visual?.icon}</span>
-                      <span className="text-xs text-muted font-medium flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-muted" />
-                        ~{pilot.estimatedMinutes} min
+                  <span className="flex-1 min-w-0">
+                    <span className="flex items-baseline justify-between gap-3">
+                      <span className="font-display text-[17px] text-ink leading-snug group-hover:text-lapis transition-colors">
+                        {CHAPTER_VISUALS[ch.number]?.short ?? ch.titleFr}
                       </span>
-                      {isNext && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gilt text-white">
-                          À suivre
-                        </span>
-                      )}
-                      {score > 0 && (
-                        <span
-                          className={`text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums ${
-                            score >= 80 ? 'bg-good-bg text-good' : 'bg-soft text-ink'
-                          }`}
-                        >
-                          Score : {score}%
-                        </span>
-                      )}
-                    </div>
-
-                    <span
-                      className={`text-xs font-bold flex items-center gap-1 shrink-0 ${
-                        isNext ? 'text-gilt' : 'text-muted group-hover:text-ink'
-                      } transition-colors`}
-                    >
-                      <span>{isNext ? 'Continuer' : isDone ? 'Revoir' : 'Explorer'}</span>
-                      <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      <span className="font-ui-ar text-lg text-lapis shrink-0 hidden sm:inline" dir="rtl">
+                        {ch.titleAr}
+                      </span>
                     </span>
-                  </div>
+                    <span className="block text-sm text-muted leading-relaxed mt-0.5 line-clamp-2">
+                      {CHAPTER_PITCHES[ch.number]}
+                    </span>
+                    <span className="flex items-center gap-2 mt-1.5 text-xs text-muted">
+                      {available ? <>~{pilot.estimatedMinutes} min</> : 'Bientôt disponible'}
+                      {score > 0 && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span className={score >= 80 ? 'text-good font-semibold' : ''}>{score} %</span>
+                        </>
+                      )}
+                      {isNext && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span className="text-gilt font-semibold">À suivre</span>
+                        </>
+                      )}
+                    </span>
+                  </span>
 
-                  <div>
-                    <h3 className="font-display text-base sm:text-lg font-bold text-ink leading-tight group-hover:text-lapis transition-colors">
-                      {visual?.short ?? ch.titleFr}
-                    </h3>
-                    <p className="font-ui-ar text-base sm:text-lg text-lapis font-semibold mt-0.5" dir="rtl">
-                      {ch.titleAr}
-                    </p>
-                  </div>
-
-                  {pitch && (
-                    <p className="text-xs text-muted leading-relaxed pt-1 border-t border-line/60">
-                      {pitch}
-                    </p>
+                  {available && (
+                    <ChevronRight className="w-4 h-4 text-muted shrink-0 transition-transform group-hover:translate-x-0.5" />
                   )}
-                </div>
-              </div>
+                </button>
+              </li>
             );
           })}
-        </div>
-
-        {/* Jalon de transition vers le palier suivant */}
-        <div className="surface p-4 rounded-2xl flex items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-ink">
-            <span>🏁</span>
-            <span>
-              {activePartIdx < PARTS.length - 1 ? (
-                <>Palier suivant : <strong>Partie {activePartIdx + 2} ({PARTS[activePartIdx + 1].title})</strong></>
-              ) : (
-                <strong>Félicitations ! Vous parcourez le palier d'excellence.</strong>
-              )}
-            </span>
-          </div>
-
-          <button
-            onClick={() => setActivePartIdx(activePartIdx === PARTS.length - 1 ? 0 : activePartIdx + 1)}
-            className="btn btn-secondary text-xs h-8 px-3 shrink-0"
-          >
-            {activePartIdx === PARTS.length - 1 ? 'Revoir Partie 1 ↺' : 'Palier suivant →'}
-          </button>
-        </div>
+        </ul>
       </section>
 
-      <p className="pt-2 flex items-start gap-2 text-xs text-muted px-1">
-        <StarMark className="w-4 h-4 text-gilt shrink-0" />
-        <span>
-          Riwāyah Hafs ʿan ʿĀṣim · d'après le <em>Learners' Handbook of Tajweed</em> de Islām Fekry (Arabic101).
-        </span>
-      </p>
+      <footer className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-muted">
+        <p className="flex items-start gap-2">
+          <StarMark className="w-4 h-4 text-gilt shrink-0" />
+          <span>
+            Riwāyah Hafs ʿan ʿĀṣim · d'après le <em>Learners' Handbook of Tajweed</em> d'Islām Fekry.
+          </span>
+        </p>
+        <button onClick={onOpenDataBackup} className="btn btn-ghost h-8 px-3 text-xs self-start sm:self-auto">
+          <Download className="w-3.5 h-3.5" />
+          Sauvegarder ma progression
+        </button>
+      </footer>
     </div>
   );
 };
+
+const ToolLink: React.FC<{
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  onClick: () => void;
+}> = ({ icon, title, subtitle, onClick }) => (
+  <button
+    onClick={onClick}
+    className="surface p-4 flex items-center gap-3 text-left transition-colors hover:border-muted/40 group"
+  >
+    <span className="w-10 h-10 rounded-xl bg-lapis-bg text-lapis flex items-center justify-center shrink-0">
+      {icon}
+    </span>
+    <span className="flex-1 min-w-0">
+      <span className="block text-sm font-semibold text-ink truncate">{title}</span>
+      <span className="block text-xs text-muted truncate">{subtitle}</span>
+    </span>
+    <ChevronRight className="w-4 h-4 text-muted shrink-0 transition-transform group-hover:translate-x-0.5" />
+  </button>
+);

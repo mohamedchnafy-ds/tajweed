@@ -146,7 +146,6 @@ export const QuizEngine: React.FC<QuizEngineProps> = ({
   return (
     <>
       <StepHeader
-        step={5}
         title="Vérifiez vos acquis"
         aside={
           <div className="flex items-center gap-3 text-sm text-muted">

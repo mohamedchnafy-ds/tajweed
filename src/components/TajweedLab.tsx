@@ -1939,7 +1939,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai du Lahn"
           description="Sélectionnez un cas de récitation pour diagnostiquer son statut théologique, son impact sur la prière et la technique pour le corriger."
         />
@@ -2033,7 +2032,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             <div className={`p-6 border-b ${sev.border} ${sev.bg}`}>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                  <span className="text-xs font-semibold text-muted">
                     Diagnostic officiel
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-ink mt-1">
@@ -2123,7 +2122,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Décodeur des Symboles du Mushaf"
           description="Sélectionnez un symbole calligraphique du Coran pour comprendre immédiatement ce que vous devez faire, son impact théologique et le piège à éviter."
         />
@@ -2227,7 +2225,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
             {/* Action required box */}
             <div className="p-5 bg-card border-b border-line">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-1">
+              <span className="text-xs font-bold text-muted block mb-1">
                 Action immédiate exigée
               </span>
               <p className="text-base font-semibold text-ink leading-snug">
@@ -2296,7 +2294,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Arrêt & Reprise (Waqf & Ibtidā')"
           description="Basculez entre lecture continue (Wasl) et arrêt (Waqf) pour observer en temps réel la transformation phonétique et la sécurité théologique."
         />
@@ -2497,7 +2494,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire du Madd Naturel & des Lettres de Līn"
           description="Analysez les conditions d'éligibilité du Madd (2 Harakāt), distinguez les lettres de Līn et observez la métamorphose des mots à l'arrêt."
         />
@@ -2692,7 +2688,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire du Madd Far'ī (Secondaire)"
           description="Expérimentez l'impact de la Hamzah et du Soukoûn sur la voix : basculez entre liaison continue (Wasl) et arrêt (Waqf) pour observer l'évanouissement ou le surgissement de la prolongation."
         />
@@ -2903,7 +2898,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire des Hamzahs (Wasl & Qat')"
           description="Testez la chute de Hamzat Al-Wasl en liaison continue (Wasl) et découvrez sa voyelle d'attaque exacte (Tashkīl) à l'attaque (Ibtidā')."
         />
@@ -3114,7 +3108,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire de la Lām Sākinah"
           description="Testez la clarté lunaire (Izhār Qamarī), la fusion solaire (Idghām Shamsī), l'emphase sacrée du Nom d'Allah et les fusions de verbe et de particule."
         />
@@ -3302,7 +3295,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire de la Mīm Sākinah"
           description="Testez l'Ikhfā' Shafawī (dissimulation devant Bā'), l'Idghām Shafawī (fusion des 2 Mīms) et l'Izhār Shafawī avec l'alerte maximale devant Wāw et Fā'."
         />
@@ -3482,7 +3474,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai de l'Assimilation (Idghām)"
           description="Explorez les fusions totales et partielles, ainsi que les exceptions sacrées où l'assimilation est strictement prohibée."
         />
@@ -3652,7 +3643,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai du Tafkhīm & Tarqīq"
           description="Testez la résonance des lettres : observez les 5 degrés de lourdeur, les caméléons (Alif, Lām d'Allah, Râ') et l'art de la décontamination (Takhlees Al-Hurūf)."
         />
@@ -3827,7 +3817,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   return (
     <>
       <StepHeader
-        step={3}
         title="Le laboratoire des lettres"
         description={
           chapter.number === 8

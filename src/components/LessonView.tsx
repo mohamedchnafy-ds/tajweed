@@ -45,7 +45,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
       {/* Chapter Title Banner */}
       <div className="border-b border-neutral-200 dark:border-neutral-800 pb-6 mb-8">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900">
+          <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900">
             Chapitre {chapter.number}
           </span>
           <span className="text-xs text-neutral-400 flex items-center gap-1">
@@ -101,7 +101,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
 
               {sub.mnemonic && (
                 <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-soft text-xs font-mono font-medium text-ink border border-line">
-                  <span className="text-[10px] uppercase font-bold text-gilt tracking-wider">Formule clé :</span>
+                  <span className="text-[10px] font-bold text-gilt">Formule clé :</span>
                   <span className="font-ar text-sm font-semibold">{sub.mnemonic}</span>
                 </div>
               )}
@@ -147,7 +147,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               <div className="p-4 sm:p-5 rounded-xl border border-line bg-soft/40 mb-6 space-y-3.5">
                 <div className="flex items-center gap-2">
                   <Activity className="w-4 h-4 text-lapis shrink-0" />
-                  <strong className="text-xs uppercase tracking-wider font-bold text-ink">
+                  <strong className="text-xs font-bold text-ink">
                     Mécanisme Physiologique & Posture des Organes
                   </strong>
                 </div>
@@ -203,7 +203,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
                 <div className="p-4 rounded-xl border border-gilt/30 bg-gilt-soft/40 mb-6">
                   <div className="flex items-center gap-2 mb-2">
                     <Sparkles className="w-4 h-4 text-gilt shrink-0" />
-                    <strong className="text-xs uppercase tracking-wider font-bold text-gilt">
+                    <strong className="text-xs font-bold text-gilt">
                       Le « Pourquoi » de la Règle (Cause Phonétique)
                     </strong>
                   </div>
@@ -217,7 +217,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               {sub.matnJazariyyah && (
                 <div className="p-4 sm:p-5 rounded-2xl border-2 border-gilt/40 bg-gilt-soft/20 mb-6 relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-gilt uppercase tracking-wider">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-gilt">
                       <Scroll className="w-4 h-4 shrink-0" />
                       <span>Matn Al-Jazariyyah (Ibn Al-Jazarī)</span>
                     </div>
@@ -248,7 +248,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             {/* Interactive Quranic Examples Section */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
                   <span>Exemples Coraniques & Entraînement Oral</span>
                 </h3>
@@ -265,7 +265,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             {/* Common Traps / Lahn Warning Box */}
             {sub.commonMistakes && sub.commonMistakes.length > 0 && (
               <div className="rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/50 dark:bg-amber-950/20 p-5">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-900 dark:text-amber-300 mb-3">
+                <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300 mb-3">
                   <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                   <span>Pièges fréquents à éviter (Lahn Khafī / Jalī)</span>
                 </div>

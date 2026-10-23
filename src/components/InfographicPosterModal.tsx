@@ -73,7 +73,7 @@ export const InfographicPosterModal: React.FC<InfographicPosterModalProps> = ({
 
           {/* Subrules overview table */}
           <div className="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3">
+            <h4 className="text-xs font-bold text-neutral-500 mb-3">
               Récapitulatif des règles & lettres
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

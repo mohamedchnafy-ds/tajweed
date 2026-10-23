@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Chapter } from '../types/tajweed';
-import { StepHeader, Modal, StarMark } from './ui';
+import { Modal, StarMark } from './ui';
 import { TajweedText, TajweedRuleType } from './TajweedHighlighter';
-import { Clock } from 'lucide-react';
 
 interface InteractiveTajweedTreeProps {
   chapter: Chapter;
@@ -1062,7 +1061,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         {showAlphabetLetters && (
           <div className="rounded-2xl p-3.5 bg-soft/60 border border-line">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted">
+              <span className="text-xs font-bold text-muted">
                 Lettres de la règle ({node.letters!.length})
               </span>
               {node.visualKeyAr && !node.visualKeyAr.includes('≠') && !node.visualKeyAr.includes('➔') && (
@@ -1092,7 +1091,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         {/* 3. Exemples concrets dans le Coran */}
         {node.examples && node.examples.length > 0 && (
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">
+            <p className="text-xs font-bold text-muted mb-2">
               {node.examples.length > 1 ? 'Exemples dans le Coran' : 'Exemple dans le Coran'}
             </p>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -1140,7 +1139,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         {/* 4. Sous-cas à distinguer (ex. Idghām du chapitre 8) */}
         {node.children && node.children.length > 0 && (
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">
+            <p className="text-xs font-bold text-muted mb-2">
               Les {node.children.length} cas à distinguer
             </p>
             <div className="grid gap-2.5 sm:grid-cols-3">
@@ -1198,102 +1197,35 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
 
   return (
     <div className="space-y-8 animate-enter">
-      <StepHeader
-        step={1}
-        title="La carte des règles"
-        description="Comprenez les fondements du chapitre, son enjeu spirituel et explorez chacune des règles clés."
-      />
-
-      {/* Hero Banner Narratif & Pédagogique (Cadrage du Chapitre) */}
-      <section className="surface p-6 sm:p-8 space-y-6 overflow-hidden relative border border-line">
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-          <div className="space-y-3.5 max-w-2xl min-w-0">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900">
-                Chapitre {chapter.number}
-              </span>
-              <span className="text-xs text-muted font-medium flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-muted" />
-                ~{chapter.estimatedMinutes || 15} min
-              </span>
-              <span className="text-muted text-xs">•</span>
-              <span className="text-xs text-muted font-medium">
-                {branches.length} notions fondamentales
-              </span>
-            </div>
-
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink leading-tight">
-              {chapter.titleFr}
-            </h2>
-
-            <p className="font-ui-ar text-2xl sm:text-3xl text-lapis font-bold leading-normal" dir="rtl">
-              {rootTitleAr}
-            </p>
-
-            {chapter.summaryFr && (
-              <div className="pt-3 text-[15px] sm:text-base text-ink/85 leading-relaxed border-t border-line/70">
-                <p>
-                  <strong className="text-ink font-semibold">Ce que vous allez comprendre : </strong>
-                  {chapter.summaryFr}
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Encart Règle d'or du Chapitre */}
-          <div className="rounded-2xl p-4 sm:p-5 bg-gilt-soft border border-gilt/30 text-ink lg:w-80 shrink-0 space-y-2 relative overflow-hidden">
-            <StarMark className="absolute -right-6 -bottom-6 w-28 h-28 text-gilt opacity-[0.12] pointer-events-none" />
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gilt">
-              <StarMark className="w-4 h-4 text-gilt" />
-              <span>La Règle d'or</span>
-            </div>
-            <p className="text-xs sm:text-[13px] leading-relaxed text-ink relative z-10 font-medium">
-              « {goldenRule} »
-            </p>
-          </div>
-        </div>
-
-        {/* Repères cardinaux du chapitre (si présents) */}
-        {chapter.infographicPoints && chapter.infographicPoints.length > 0 && (
-          <div className="pt-4 border-t border-line/70">
-            <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">
-              En un coup d'œil — Les repères cardinaux du chapitre
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {chapter.infographicPoints.slice(0, 3).map((pt, idx) => (
-                <div key={idx} className="well p-3.5 flex items-start gap-2.5">
-                  <span className="w-5 h-5 rounded-md bg-lapis-bg text-lapis font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <p className="text-xs text-ink/90 leading-relaxed line-clamp-2" title={pt}>
-                    {pt}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <header className="max-w-3xl space-y-3">
+        <p className="label">
+          {chapter.estimatedMinutes || 15} min · {branches.length} notions
+        </p>
+        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] tracking-[-0.01em] text-ink">
+          {chapter.titleFr}
+        </h1>
+        <p className="font-ui-ar text-2xl sm:text-3xl text-lapis leading-normal text-left" dir="rtl">
+          {rootTitleAr}
+        </p>
+        {chapter.summaryFr && (
+          <p className="text-[15px] sm:text-base leading-relaxed text-muted">{chapter.summaryFr}</p>
         )}
+      </header>
+
+      {/* Règle d'or du chapitre */}
+      <section className="rounded-card p-5 sm:p-6 bg-gilt-soft border border-gilt/25 flex gap-3">
+        <StarMark className="w-5 h-5 text-gilt shrink-0 mt-0.5" />
+        <div>
+          <p className="text-sm font-semibold text-gilt mb-1">La règle d'or</p>
+          <p className="text-[15px] leading-relaxed text-ink">{goldenRule}</p>
+        </div>
       </section>
 
-      {/* Titre de la section des cartes */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2">
+      <div className="flex items-end justify-between gap-2 pt-2">
         <div>
-          <h3 className="font-display text-xl font-bold text-ink flex items-center gap-2">
-            <span>Les {branches.length} cartes de règles</span>
-            <span className="text-xs font-medium text-muted bg-soft px-2.5 py-0.5 rounded-full">
-              Touchez pour explorer
-            </span>
-          </h3>
-          <p className="text-xs text-muted mt-0.5">
-            Retenez l'icône, sa formule-réflexe et le mot clé. Cliquez sur une carte pour voir l'explication complète ci-dessous.
-          </p>
+          <h2 className="font-display text-2xl text-ink">Les {branches.length} notions</h2>
+          <p className="text-sm text-muted mt-0.5">Touchez une carte pour afficher son explication.</p>
         </div>
-
-        {selectedNode && (
-          <span className="text-xs text-muted font-medium px-3 py-1.5 rounded-full bg-soft self-start sm:self-auto hidden sm:inline-block">
-            Sélectionné : <strong className="text-ink">{cleanTitle(selectedNode.shortTitleFr)}</strong>
-          </span>
-        )}
       </div>
 
       {/* Grille de cartes épurées (Design Sobre & Noble) */}

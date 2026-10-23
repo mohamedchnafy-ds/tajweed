@@ -985,7 +985,7 @@ const MaddIwadVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 
         {isWaqf && (
           <div className="p-4 rounded-xl bg-gold-bg border border-gold/30 text-center animate-fade">
-            <span className="text-xs uppercase tracking-wider font-semibold text-gold block mb-2">
+            <span className="text-xs font-semibold text-gold block mb-2">
               Chronomètre de prolongation (2 Harakāt)
             </span>
             <div className="flex justify-center items-center gap-3">
@@ -1336,7 +1336,7 @@ const NuhihaBreakdownVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 
         {/* Miniature Rasm Uthmani symbols */}
         <div className="pt-3 border-t border-line/60">
-          <span className="text-xs uppercase tracking-wider font-semibold text-muted block mb-2">
+          <span className="text-xs font-semibold text-muted block mb-2">
             Équivalents miniatures en Rasm 'Uthmānī
           </span>
           <div className="grid grid-cols-3 gap-2 text-center text-xs">
@@ -4367,7 +4367,7 @@ const TakhleesLetterDecontaminationVisual: React.FC<{ animKey: number }> = ({ an
               }`}
             >
               <span className="font-ar text-4xl block font-bold">{seg.letter}</span>
-              <span className="text-[10px] uppercase font-bold tracking-wider block mt-1">
+              <span className="text-[10px] font-bold block mt-1">
                 {seg.type === 'heavy' ? 'Lourd' : 'Fin'}
               </span>
             </div>
@@ -4473,7 +4473,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 0 && (
           <div className="space-y-3 py-3">
-            <span className="text-xs text-muted block uppercase tracking-wider">1. Tracé dans le Mushaf</span>
+            <span className="text-xs text-muted block">1. Tracé dans le Mushaf</span>
             <div className="font-ar text-4xl sm:text-5xl text-ink leading-relaxed" dir="rtl">{curr.mushaf}</div>
             <p className="text-xs text-muted">{curr.translit}</p>
           </div>
@@ -4481,7 +4481,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 1 && (
           <div className="space-y-3 py-3">
-            <span className="text-xs text-muted block uppercase tracking-wider">2. Décomposition des éléments</span>
+            <span className="text-xs text-muted block">2. Décomposition des éléments</span>
             <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed" dir="rtl">{curr.step2}</div>
             <p className="text-xs text-ink font-medium">Le Tanwīn cache un Nūn sākinah immobile !</p>
           </div>
@@ -4489,7 +4489,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 2 && (
           <div className="space-y-3 py-3 bg-bad-bg p-4 rounded-xl border border-bad/30">
-            <span className="text-xs text-bad font-bold block uppercase tracking-wider">3. Conflit Phonologique Prohibé</span>
+            <span className="text-xs text-bad font-bold block">3. Conflit Phonologique Prohibé</span>
             <div className="text-xl sm:text-2xl font-bold text-bad">{curr.step3}</div>
             <p className="text-xs text-bad">L'arabe interdit formellement d'enchaîner deux consonnes immobiles en continu !</p>
           </div>
@@ -4497,7 +4497,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 3 && (
           <div className="space-y-3 py-3 bg-good-bg p-4 rounded-xl border border-good/30">
-            <span className="text-xs text-good font-bold block uppercase tracking-wider">4. La Solution Sacrée : Nūn Qutnī</span>
+            <span className="text-xs text-good font-bold block">4. La Solution Sacrée : Nūn Qutnī</span>
             <div className="text-xl sm:text-2xl font-bold text-good">{curr.step4}</div>
             <p className="text-xs text-good">On insère une Kasrah de secours sous le Nūn pour fluidifier la liaison.</p>
           </div>
@@ -4505,7 +4505,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 4 && (
           <div className="space-y-3 py-3 bg-soft p-4 rounded-xl border border-line">
-            <span className="text-xs text-gilt font-bold block uppercase tracking-wider">5. Ce que l'on récite réellement</span>
+            <span className="text-xs text-gilt font-bold block">5. Ce que l'on récite réellement</span>
             <div className="font-ar text-4xl sm:text-5xl text-ink leading-relaxed text-good" dir="rtl">{curr.resultAr}</div>
             <div className="p-2 rounded-lg bg-card text-xs sm:text-sm font-mono text-ink">
               Rendu oral : <strong>{curr.resultPhonetic}</strong>
@@ -4562,7 +4562,7 @@ const MaddElisionVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
       <div className={`p-6 rounded-2xl border text-center transition-all animate-pop ${
         !isWaqf ? "bg-bad-bg border-bad/30" : "bg-good-bg border-good/30"
       }`}>
-        <span className="text-xs uppercase font-bold tracking-wider block text-muted mb-2">
+        <span className="text-xs font-bold block text-muted mb-2">
           An-Naml 27:15
         </span>
 
@@ -5246,7 +5246,7 @@ const HafsSaktatTimerVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
         </div>
 
         <div className="p-4 rounded-xl bg-soft border border-line space-y-3">
-          <span className="text-xs font-bold text-muted uppercase tracking-wider block">Simulateur de Silence Respiratoire</span>
+          <span className="text-xs font-bold text-muted block">Simulateur de Silence Respiratoire</span>
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={handleStartTimer}
@@ -5968,7 +5968,6 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
   return (
     <>
       <StepHeader
-        step={2}
         title={current.title}
         description={current.concept}
         aside={
