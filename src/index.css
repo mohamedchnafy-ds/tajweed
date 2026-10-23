@@ -183,7 +183,13 @@ html, body {
     padding: 3px;
     border-radius: 999px;
     background: var(--soft);
+    /* Reste dans son conteneur et défile si les options débordent (mobile) */
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  .segmented::-webkit-scrollbar { display: none; }
+  .segmented > button { flex-shrink: 0; }
   .segmented > button {
     height: 32px;
     padding: 0 14px;

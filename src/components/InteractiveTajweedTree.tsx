@@ -1150,7 +1150,7 @@ export const InteractiveTajweedTree: React.FC<InteractiveTajweedTreeProps> = ({ 
         <p className="label">
           {chapter.estimatedMinutes || 15} min · {branches.length} notions
         </p>
-        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] tracking-[-0.01em] text-ink">
+        <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.3] tracking-[-0.01em] text-ink">
           {chapter.titleFr}
         </h1>
         <p className="font-ui-ar text-2xl sm:text-3xl text-lapis leading-normal text-left" dir="rtl">

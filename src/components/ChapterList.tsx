@@ -1,57 +1,16 @@
 import React, { useState } from 'react';
-import { ALL_BOOK_CHAPTERS } from '../data/chaptersData';
-import { UserStats, Chapter } from '../types/tajweed';
+import { CHAPTER_INDEX } from '../data/chaptersIndex';
+import { UserStats } from '../types/tajweed';
 import { AudioLines, Check, ChevronRight, Download, NotebookPen, Play } from 'lucide-react';
 import { StarMark } from './ui';
 
 interface ChapterListProps {
   onSelectChapter: (chapterNumber: number) => void;
   userStats: UserStats;
-  pilotChapters: Chapter[];
   onOpenMistakes: () => void;
   onOpenMakharij?: () => void;
   onOpenDataBackup: () => void;
 }
-
-/** Titres courts pour les cartes de chaque chapitre. */
-const CHAPTER_VISUALS: Record<number, { short: string }> = {
-  1: { short: 'Les bases & le Lahn' },
-  2: { short: 'Symboles du Mushaf' },
-  3: { short: 'Arrêt & reprise' },
-  4: { short: 'Madd naturel' },
-  5: { short: 'Madd secondaire' },
-  6: { short: 'Les Hamzahs' },
-  7: { short: 'Lām sākinah' },
-  8: { short: 'Nūn sākinah & Tanwīn' },
-  9: { short: 'Mīm sākinah' },
-  10: { short: 'Qalqalah' },
-  11: { short: 'Assimilation (Idghām)' },
-  12: { short: 'Tafkhīm & Tarqīq' },
-  13: { short: 'Deux soukoûns' },
-  14: { short: 'Lettres isolées' },
-  15: { short: 'Distinctions subtiles' },
-  16: { short: 'Cas particuliers' },
-};
-
-/** Phrases d'enjeux concises pour chaque étape de la roadmap. */
-const CHAPTER_PITCHES: Record<number, string> = {
-  1: "Comprendre pourquoi le Tajwīd est obligatoire (Farḍ 'Ayn) et éliminer tout Lahn Jalī sacrilège.",
-  2: "Les 5 familles de signes : stop obligatoire (مـ), interdiction (لا) et les arrêts permis.",
-  3: "L'arrêt sur un Soukoûn pur, la mutation de la Tā' Marbūtah et la méthode Stop & Repeat.",
-  4: "La clé نُوحِيهَا sur 2 temps incompressibles et l'interdiction d'allonger le Līn en continu.",
-  5: "Les 4-5 temps devant la Hamzah (Muttasil/Munfasil) et les 6 temps stricts du Madd Lāzim.",
-  6: "Distinguer le ء fixe de l'ٱ élidé, la règle de la 3e lettre et les 5 verbes d'exception.",
-  7: "Lām Qamariyyah (claire) vs Shamsiyyah (solaire effacée) et les degrés du Nom divin Allah.",
-  8: "Izhār (gorge), Idghām (Yarmalūn), Iqlāb (Bā') et Ikhfā' (15 lettres cachées avec Ghunnah).",
-  9: "Ikhfā' Shafawī (devant Bā'), Idghām Shafawī (devant Mīm) et clarté vigilante sur Wāw/Fā'.",
-  10: "Les 5 lettres de Qutb Jadd : distinguer la Majeure (Shaddah), Moyenne (arrêt) et Mineure.",
-  11: "Mutamāthilayn, Mutaqāribayn, Mutajānisayn : les 8 fusions historiques et l'Idghām Nāqis.",
-  12: "Les 7 lettres de Khussa Daghtin Qiz, la lettre Râ' et l'art du Takhlīs pour isoler les sons.",
-  13: "Iltiqā' As-Sākinayn : élimination par suppression du Madd ou par Nūn Qutnī réparateur.",
-  14: "Alif (0t), Hayyun Tahura (2t), Naqasa 'Asalukum (6t) en tête des sourates.",
-  15: "Tā' ouverte vs fermée (arrêt en T ou en H), et Alif Maqsūrah vs Yā'.",
-  16: "L'Imālah (Majrēhā), la Tashīl douce, l'Ishmām des lèvres et les 4 silences sacrés (Saktāt).",
-};
 
 /** Le livre découpé en 4 parties pédagogiques. */
 const PARTS: { title: string; subtitle: string; from: number; to: number }[] = [
@@ -93,7 +52,6 @@ const ProgressRing: React.FC<{ value: number; total: number }> = ({ value, total
 export const ChapterList: React.FC<ChapterListProps> = ({
   onSelectChapter,
   userStats,
-  pilotChapters,
   onOpenMistakes,
   onOpenMakharij,
   onOpenDataBackup,
@@ -102,9 +60,9 @@ export const ChapterList: React.FC<ChapterListProps> = ({
   const isCompleted = (n: number) => userStats.completedChapters.includes(`chap-${n}`);
 
   const unresolvedCount = userStats.mistakeHistory.filter((m) => !m.retriedSuccessfully).length;
-  const completedCount = pilotChapters.filter((c) => isCompleted(c.number)).length;
+  const completedCount = CHAPTER_INDEX.filter((c) => isCompleted(c.number)).length;
 
-  const next = pilotChapters.find((ch) => !isCompleted(ch.number)) || pilotChapters[0];
+  const next = CHAPTER_INDEX.find((ch) => !isCompleted(ch.number)) || CHAPTER_INDEX[0];
 
   // L'onglet actif s'ouvre par défaut sur la partie contenant le cours en cours
   const [activePartIdx, setActivePartIdx] = useState<number>(() => {
@@ -114,7 +72,7 @@ export const ChapterList: React.FC<ChapterListProps> = ({
   });
 
   const currentPart = PARTS[activePartIdx];
-  const partChapters = ALL_BOOK_CHAPTERS.filter((c) => c.number >= currentPart.from && c.number <= currentPart.to);
+  const partChapters = CHAPTER_INDEX.filter((c) => c.number >= currentPart.from && c.number <= currentPart.to);
 
   return (
     <div className="pb-16 pt-6 sm:pt-10 space-y-8 animate-enter">
@@ -124,13 +82,13 @@ export const ChapterList: React.FC<ChapterListProps> = ({
           <StarMark className="pointer-events-none absolute -right-10 -top-10 w-44 h-44 text-gilt opacity-[0.14]" />
           <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             <div className="flex items-center gap-4 min-w-0">
-              <ProgressRing value={completedCount} total={pilotChapters.length} />
+              <ProgressRing value={completedCount} total={CHAPTER_INDEX.length} />
               <div className="min-w-0">
                 <p className="text-xs opacity-75">
                   {completedCount === 0 ? 'Pour commencer' : 'Reprendre'} · Chapitre {next.number}
                 </p>
                 <h1 className="font-display text-xl sm:text-2xl leading-tight">
-                  {CHAPTER_VISUALS[next.number]?.short ?? next.titleFr}
+                  {next.short}
                 </h1>
                 <p className="font-ui-ar text-lg leading-normal opacity-80" dir="rtl">
                   {next.titleAr}
@@ -177,7 +135,7 @@ export const ChapterList: React.FC<ChapterListProps> = ({
             <h2 className="font-display text-2xl text-ink">Programme</h2>
             <p className="text-sm text-muted">{currentPart.subtitle}</p>
           </div>
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar self-start sm:self-auto">
+          <div className="segmented self-start sm:self-auto">
             {PARTS.map((part, pIdx) => (
               <button key={pIdx} aria-pressed={activePartIdx === pIdx} onClick={() => setActivePartIdx(pIdx)}>
                 {part.title}
@@ -188,8 +146,6 @@ export const ChapterList: React.FC<ChapterListProps> = ({
 
         <ul className="surface divide-y divide-line overflow-hidden">
           {partChapters.map((ch) => {
-            const pilot = pilotChapters.find((p) => p.number === ch.number);
-            const available = (ch.isPilot || ch.isPilotChapter) && pilot;
             const isDone = isCompleted(ch.number);
             const isNext = next?.number === ch.number && !isDone;
             const score = getScore(ch.number);
@@ -197,9 +153,8 @@ export const ChapterList: React.FC<ChapterListProps> = ({
             return (
               <li key={ch.number}>
                 <button
-                  disabled={!available}
                   onClick={() => onSelectChapter(ch.number)}
-                  className="w-full flex items-center gap-4 p-4 sm:p-5 text-left transition-colors hover:bg-soft/60 disabled:opacity-50 disabled:hover:bg-transparent group"
+                  className="w-full flex items-center gap-4 p-4 sm:p-5 text-left transition-colors hover:bg-soft/60 group"
                 >
                   <span
                     className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-sm tabular-nums ${
@@ -216,17 +171,17 @@ export const ChapterList: React.FC<ChapterListProps> = ({
                   <span className="flex-1 min-w-0">
                     <span className="flex items-baseline justify-between gap-3">
                       <span className="font-display text-[17px] text-ink leading-snug group-hover:text-lapis transition-colors">
-                        {CHAPTER_VISUALS[ch.number]?.short ?? ch.titleFr}
+                        {ch.short}
                       </span>
                       <span className="font-ui-ar text-lg text-lapis shrink-0 hidden sm:inline" dir="rtl">
                         {ch.titleAr}
                       </span>
                     </span>
                     <span className="block text-sm text-muted leading-relaxed mt-0.5 line-clamp-2">
-                      {CHAPTER_PITCHES[ch.number]}
+                      {ch.pitch}
                     </span>
                     <span className="flex items-center gap-2 mt-1.5 text-xs text-muted">
-                      {available ? <>~{pilot.estimatedMinutes} min</> : 'Bientôt disponible'}
+                      ~{ch.estimatedMinutes} min
                       {score > 0 && (
                         <>
                           <span aria-hidden="true">·</span>
@@ -242,9 +197,7 @@ export const ChapterList: React.FC<ChapterListProps> = ({
                     </span>
                   </span>
 
-                  {available && (
-                    <ChevronRight className="w-4 h-4 text-muted shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  )}
+                  <ChevronRight className="w-4 h-4 text-muted shrink-0 transition-transform group-hover:translate-x-0.5" />
                 </button>
               </li>
             );

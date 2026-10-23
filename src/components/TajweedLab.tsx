@@ -1945,7 +1945,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setFilterCategory('all')}
               aria-pressed={filterCategory === 'all'}
@@ -2125,7 +2125,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setSymbolCategory('all')}
               aria-pressed={symbolCategory === 'all'}
@@ -2294,7 +2294,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setStoppingFilter('all')}
               aria-pressed={stoppingFilter === 'all'}
@@ -2409,7 +2409,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+                <div className="segmented">
                   <button
                     onClick={() => setIsWaqfMode(false)}
                     aria-pressed={!isWaqfMode}
@@ -2491,7 +2491,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setMaddFilter('all')}
               aria-pressed={maddFilter === 'all'}
@@ -2600,7 +2600,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+                <div className="segmented">
                   <button
                     onClick={() => setIsMaddWaqfMode(false)}
                     aria-pressed={!isMaddWaqfMode}
@@ -2682,7 +2682,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setFariFilter('all')}
               aria-pressed={fariFilter === 'all'}
@@ -2797,7 +2797,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+                <div className="segmented">
                   <button
                     onClick={() => setIsFariWaqfMode(false)}
                     aria-pressed={!isFariWaqfMode}
@@ -2889,7 +2889,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setHamzahFilter('all')}
               aria-pressed={hamzahFilter === 'all'}
@@ -3004,7 +3004,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+                <div className="segmented">
                   <button
                     onClick={() => setIsHamzahIbtidaMode(false)}
                     aria-pressed={!isHamzahIbtidaMode}
@@ -3096,7 +3096,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setLamFilter('all')}
               aria-pressed={lamFilter === 'all'}
@@ -3280,7 +3280,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setMimFilter('all')}
               aria-pressed={mimFilter === 'all'}
@@ -3456,7 +3456,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setAssimilationFilter('all')}
               aria-pressed={assimilationFilter === 'all'}
@@ -3622,7 +3622,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
+          <div className="segmented">
             <button
               onClick={() => setHeavyLightFilter('all')}
               aria-pressed={heavyLightFilter === 'all'}

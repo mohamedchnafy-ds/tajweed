@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { PILOT_CHAPTERS } from './data/chaptersData';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { CHAPTER_INDEX } from './data/chaptersIndex';
 import { Chapter, UserStats } from './types/tajweed';
 import { loadUserStats } from './services/storageService';
 import { Navbar, LessonStep, STEPS } from './components/Navbar';
 import { ChapterList } from './components/ChapterList';
-import { InteractiveTajweedTree } from './components/InteractiveTajweedTree';
-import { AnimatedProfessor } from './components/AnimatedProfessor';
-import { TajweedLab } from './components/TajweedLab';
-import { QuranExplorer } from './components/QuranExplorer';
-import { QuizEngine } from './components/QuizEngine';
-import { ChapterPoster } from './components/ChapterPoster';
 import { MistakeNotebookModal } from './components/MistakeNotebookModal';
 import { DataBackupModal } from './components/DataBackupModal';
-import { MakharijSifatLab } from './components/MakharijSifatLab';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+
+// Les étapes et le labo sont chargés à la demande pour alléger l'accueil.
+const InteractiveTajweedTree = lazy(() => import('./components/InteractiveTajweedTree').then(m => ({ default: m.InteractiveTajweedTree })));
+const AnimatedProfessor = lazy(() => import('./components/AnimatedProfessor').then(m => ({ default: m.AnimatedProfessor })));
+const TajweedLab = lazy(() => import('./components/TajweedLab').then(m => ({ default: m.TajweedLab })));
+const QuranExplorer = lazy(() => import('./components/QuranExplorer').then(m => ({ default: m.QuranExplorer })));
+const QuizEngine = lazy(() => import('./components/QuizEngine').then(m => ({ default: m.QuizEngine })));
+const ChapterPoster = lazy(() => import('./components/ChapterPoster').then(m => ({ default: m.ChapterPoster })));
+const MakharijSifatLab = lazy(() => import('./components/MakharijSifatLab').then(m => ({ default: m.MakharijSifatLab })));
 
 export const App: React.FC = () => {
   // Theme state
@@ -55,8 +57,10 @@ export const App: React.FC = () => {
   };
 
   // Chapter selection
-  const handleSelectChapter = (chapterNumber: number) => {
-    const found = PILOT_CHAPTERS.find(c => c.number === chapterNumber);
+  // Le contenu complet des chapitres n'est chargé qu'à la première ouverture.
+  const handleSelectChapter = async (chapterNumber: number) => {
+    const { CHAPTERS_DATA } = await import('./data/chaptersData');
+    const found = CHAPTERS_DATA.find(c => c.number === chapterNumber);
     if (found) {
       setSelectedChapter(found);
       setCurrentTab('lesson');
@@ -84,14 +88,14 @@ export const App: React.FC = () => {
   };
 
   const isLastPilotChapter = () => {
-    const currentIdx = PILOT_CHAPTERS.findIndex(c => c.number === selectedChapter?.number);
-    return currentIdx === -1 || currentIdx + 1 >= PILOT_CHAPTERS.length;
+    const currentIdx = CHAPTER_INDEX.findIndex(c => c.number === selectedChapter?.number);
+    return currentIdx === -1 || currentIdx + 1 >= CHAPTER_INDEX.length;
   };
 
   const moveToNextChapter = () => {
-    const currentIdx = PILOT_CHAPTERS.findIndex(c => c.number === selectedChapter?.number);
-    if (currentIdx !== -1 && currentIdx + 1 < PILOT_CHAPTERS.length) {
-      handleSelectChapter(PILOT_CHAPTERS[currentIdx + 1].number);
+    const currentIdx = CHAPTER_INDEX.findIndex(c => c.number === selectedChapter?.number);
+    if (currentIdx !== -1 && currentIdx + 1 < CHAPTER_INDEX.length) {
+      handleSelectChapter(CHAPTER_INDEX[currentIdx + 1].number);
     } else {
       handleBackToChapters();
     }
@@ -130,13 +134,13 @@ export const App: React.FC = () => {
 
       {/* Main Content Stage */}
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6">
+        <Suspense fallback={<div className="py-24 text-center text-sm text-muted animate-fade">Chargement…</div>}>
         {currentTab === 'makharij' ? (
           <MakharijSifatLab />
         ) : currentTab === 'chapters' || !selectedChapter ? (
           <ChapterList
             onSelectChapter={handleSelectChapter}
             userStats={userStats}
-            pilotChapters={PILOT_CHAPTERS}
             onOpenMistakes={() => setIsMistakesModalOpen(true)}
             onOpenDataBackup={() => setIsDataBackupModalOpen(true)}
             onOpenMakharij={() => {
@@ -179,6 +183,7 @@ export const App: React.FC = () => {
             )}
           </div>
         )}
+        </Suspense>
       </main>
 
       {/* Navigation entre étapes */}

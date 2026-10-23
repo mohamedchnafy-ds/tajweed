@@ -46,7 +46,7 @@ export const StepHeader: React.FC<{
 }> = ({ title, description, aside }) => (
   <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
     <div className="max-w-2xl">
-      <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] font-normal tracking-[-0.01em] text-ink">
+      <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.3] font-normal tracking-[-0.01em] text-ink">
         {title}
       </h1>
       {description && (
