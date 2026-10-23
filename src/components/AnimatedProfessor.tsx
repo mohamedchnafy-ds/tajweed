@@ -985,7 +985,7 @@ const MaddIwadVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 
         {isWaqf && (
           <div className="p-4 rounded-xl bg-gold-bg border border-gold/30 text-center animate-fade">
-            <span className="text-xs uppercase tracking-wider font-semibold text-gold block mb-2">
+            <span className="text-xs font-semibold text-gold block mb-2">
               Chronomètre de prolongation (2 Harakāt)
             </span>
             <div className="flex justify-center items-center gap-3">
@@ -1336,7 +1336,7 @@ const NuhihaBreakdownVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 
         {/* Miniature Rasm Uthmani symbols */}
         <div className="pt-3 border-t border-line/60">
-          <span className="text-xs uppercase tracking-wider font-semibold text-muted block mb-2">
+          <span className="text-xs font-semibold text-muted block mb-2">
             Équivalents miniatures en Rasm 'Uthmānī
           </span>
           <div className="grid grid-cols-3 gap-2 text-center text-xs">
@@ -2013,7 +2013,7 @@ const MaddLeenWaqfVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
           </p>
 
           <p className="text-[11px] text-muted pt-2 border-t border-line/40">
-            ⚠️ Règle de proportionnalité : La durée du Madd Līn peut être égale ou inférieure au Madd 'Ārid, mais JAMAIS supérieure (si votre 'Ārid fait 4 temps, votre Līn fera 2 ou 4 temps, jamais 6).
+            Règle de proportionnalité : La durée du Madd Līn peut être égale ou inférieure au Madd 'Ārid, mais JAMAIS supérieure (si votre 'Ārid fait 4 temps, votre Līn fera 2 ou 4 temps, jamais 6).
           </p>
         </div>
       </div>
@@ -2546,7 +2546,7 @@ const DoubleDropWaslVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
         }`}>
           <div className="flex items-center justify-between">
             <span className="font-semibold text-ink">
-              {isWasl ? '⚠️ Le piège du Double Effacement :' : 'Attaque du mot :'}
+              {isWasl ? 'Le piège du Double Effacement :' : 'Attaque du mot :'}
             </span>
             <span className={`chip ${isWasl ? 'chip-gold' : 'chip-izhar'} text-xs font-bold`}>
               {isWasl ? '2 lettres muettes simultanées' : 'Hamzat Wasl ressuscite (اَ)'}
@@ -2983,7 +2983,7 @@ const IdghamShafawiTwinVisual: React.FC<{ animKey: number }> = ({ animKey }) => 
           </div>
 
           <p className="text-xs sm:text-sm text-ink leading-relaxed">
-            ⚠️ <strong>Règle d'or du Dr. Islām Fekry :</strong> Même si vous vous arrêtez sur un mot qui se termine par un Mīm Mushaddadah (مّ) ou un Nūn Mushaddadah (نّ), vous DEVEZ obligatoirement maintenir la Ghunnah pendant 2 temps avant de couper la voix ! Ne coupez jamais à sec.
+            <strong>Règle d'or du Dr. Islām Fekry :</strong> Même si vous vous arrêtez sur un mot qui se termine par un Mīm Mushaddadah (مّ) ou un Nūn Mushaddadah (نّ), vous DEVEZ obligatoirement maintenir la Ghunnah pendant 2 temps avant de couper la voix ! Ne coupez jamais à sec.
           </p>
         </div>
       )}
@@ -3038,7 +3038,7 @@ const AshaddIzharWarningVisual: React.FC<{ animKey: number }> = ({ animKey }) =>
       <div className="p-5 rounded-2xl bg-card border border-bad/40 shadow-sm space-y-4 max-w-xl mx-auto">
         <div className="flex items-center justify-between">
           <span className="chip chip-qalqalah text-xs font-bold">
-            ⚠️ Ashadd Izhār (Clarté Vigilante Impérative)
+            Ashadd Izhār (Clarté Vigilante Impérative)
           </span>
           <span className="text-xs text-muted">{curr.surahRef}</span>
         </div>
@@ -3481,7 +3481,7 @@ const QalqalahTrapsAndHamsVisual: React.FC<{ animKey: number }> = ({ animKey }) 
         <div className="p-5 rounded-2xl bg-card border border-bad/40 shadow-sm space-y-4 max-w-xl mx-auto animate-fade">
           <div className="flex items-center justify-between">
             <span className="chip chip-qalqalah text-xs font-bold">
-              ⚠️ Infiltration de Voyelle Parasite
+              Infiltration de Voyelle Parasite
             </span>
             <span className="text-xs text-muted">Livre p. 132</span>
           </div>
@@ -3513,7 +3513,7 @@ const QalqalahTrapsAndHamsVisual: React.FC<{ animKey: number }> = ({ animKey }) 
           </div>
 
           <p className="text-xs sm:text-sm text-ink leading-relaxed text-left bg-soft p-3 rounded-xl border border-line">
-            ⚠️ <strong>Règle d'or :</strong> Ne bougez JAMAIS la mâchoire ou les lèvres lors du rebond ! Si vous ouvrez la bouche, le rebond devient une Fathah parasite (Lahn Khafī).
+            <strong>Règle d'or :</strong> Ne bougez JAMAIS la mâchoire ou les lèvres lors du rebond ! Si vous ouvrez la bouche, le rebond devient une Fathah parasite (Lahn Khafī).
           </p>
         </div>
       ) : (
@@ -3595,7 +3595,7 @@ const MutamathilaynFusionVisual: React.FC<{ animKey: number }> = ({ animKey }) =
       arabicDisplay: 'نُؤۡمِنُ بِبَعۡضٖ وَنَكۡفُرُ بِبَعۡضٖ',
       formula: '[ بِ voyellé avec Kasrah ] + [ بَ voyellé ] ➔ IZHĀR OBLIGATOIRE !',
       pronunciation: 'Bi-ba\'d (Deux Bā\' distincts prononcés clairement)',
-      badge: '⚠️ Izhār Obligatoire (Pas de Soukoûn)',
+      badge: 'Izhār Obligatoire (Pas de Soukoûn)',
       badgeClass: 'chip-qalqalah',
       explanation: 'Condition sine qua non : La première lettre DOIT porter un soukoûn ! Si la première lettre porte une voyelle (comme la Kasrah dans « Bi-ba\'d »), l\'assimilation est strictement interdite en lecture de Hafs : vous devez prononcer chaque lettre avec clarté.',
     },
@@ -3951,7 +3951,7 @@ const IdghamNaqisHeavyToLightVisual: React.FC<{ animKey: number }> = ({ animKey 
         </div>
 
         <div className="p-3.5 rounded-xl bg-soft text-xs text-ink leading-relaxed text-left border border-line">
-          ⚠️ <strong>Règle d'or du Dr. Islām Fekry :</strong> Le Tā\' (ط) possède des attributs de force absolue (Isti\'lā\' et Itbāq). Comme une lettre faible (ت) ne peut pas anéantir une lettre forte, l\'emphase survit obligatoirement mais la Qalqalah est éteinte !
+          <strong>Règle d'or du Dr. Islām Fekry :</strong> Le Tā\' (ط) possède des attributs de force absolue (Isti\'lā\' et Itbāq). Comme une lettre faible (ت) ne peut pas anéantir une lettre forte, l\'emphase survit obligatoirement mais la Qalqalah est éteinte !
         </div>
       </div>
     </div>
@@ -4367,7 +4367,7 @@ const TakhleesLetterDecontaminationVisual: React.FC<{ animKey: number }> = ({ an
               }`}
             >
               <span className="font-ar text-4xl block font-bold">{seg.letter}</span>
-              <span className="text-[10px] uppercase font-bold tracking-wider block mt-1">
+              <span className="text-[10px] font-bold block mt-1">
                 {seg.type === 'heavy' ? 'Lourd' : 'Fin'}
               </span>
             </div>
@@ -4388,7 +4388,7 @@ const TakhleesLetterDecontaminationVisual: React.FC<{ animKey: number }> = ({ an
         </div>
 
         <div className="p-3.5 rounded-xl bg-soft text-xs text-ink leading-relaxed text-left border border-line">
-          ⚠️ <strong>Avertissement pédagogique :</strong> {curr.danger}
+          <strong>Avertissement pédagogique :</strong> {curr.danger}
         </div>
       </div>
     </div>
@@ -4473,7 +4473,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 0 && (
           <div className="space-y-3 py-3">
-            <span className="text-xs text-muted block uppercase tracking-wider">1. Tracé dans le Mushaf</span>
+            <span className="text-xs text-muted block">1. Tracé dans le Mushaf</span>
             <div className="font-ar text-4xl sm:text-5xl text-ink leading-relaxed" dir="rtl">{curr.mushaf}</div>
             <p className="text-xs text-muted">{curr.translit}</p>
           </div>
@@ -4481,7 +4481,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 1 && (
           <div className="space-y-3 py-3">
-            <span className="text-xs text-muted block uppercase tracking-wider">2. Décomposition des éléments</span>
+            <span className="text-xs text-muted block">2. Décomposition des éléments</span>
             <div className="font-ar text-3xl sm:text-4xl text-ink leading-relaxed" dir="rtl">{curr.step2}</div>
             <p className="text-xs text-ink font-medium">Le Tanwīn cache un Nūn sākinah immobile !</p>
           </div>
@@ -4489,7 +4489,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 2 && (
           <div className="space-y-3 py-3 bg-bad-bg p-4 rounded-xl border border-bad/30">
-            <span className="text-xs text-bad font-bold block uppercase tracking-wider">3. Conflit Phonologique Prohibé</span>
+            <span className="text-xs text-bad font-bold block">3. Conflit Phonologique Prohibé</span>
             <div className="text-xl sm:text-2xl font-bold text-bad">{curr.step3}</div>
             <p className="text-xs text-bad">L'arabe interdit formellement d'enchaîner deux consonnes immobiles en continu !</p>
           </div>
@@ -4497,7 +4497,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 3 && (
           <div className="space-y-3 py-3 bg-good-bg p-4 rounded-xl border border-good/30">
-            <span className="text-xs text-good font-bold block uppercase tracking-wider">4. La Solution Sacrée : Nūn Qutnī</span>
+            <span className="text-xs text-good font-bold block">4. La Solution Sacrée : Nūn Qutnī</span>
             <div className="text-xl sm:text-2xl font-bold text-good">{curr.step4}</div>
             <p className="text-xs text-good">On insère une Kasrah de secours sous le Nūn pour fluidifier la liaison.</p>
           </div>
@@ -4505,7 +4505,7 @@ const NunQutniDemonstratorVisual: React.FC<{ animKey: number }> = ({ animKey }) 
 
         {step === 4 && (
           <div className="space-y-3 py-3 bg-soft p-4 rounded-xl border border-line">
-            <span className="text-xs text-gilt font-bold block uppercase tracking-wider">5. Ce que l'on récite réellement</span>
+            <span className="text-xs text-gilt font-bold block">5. Ce que l'on récite réellement</span>
             <div className="font-ar text-4xl sm:text-5xl text-ink leading-relaxed text-good" dir="rtl">{curr.resultAr}</div>
             <div className="p-2 rounded-lg bg-card text-xs sm:text-sm font-mono text-ink">
               Rendu oral : <strong>{curr.resultPhonetic}</strong>
@@ -4562,7 +4562,7 @@ const MaddElisionVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
       <div className={`p-6 rounded-2xl border text-center transition-all animate-pop ${
         !isWaqf ? "bg-bad-bg border-bad/30" : "bg-good-bg border-good/30"
       }`}>
-        <span className="text-xs uppercase font-bold tracking-wider block text-muted mb-2">
+        <span className="text-xs font-bold block text-muted mb-2">
           An-Naml 27:15
         </span>
 
@@ -4590,7 +4590,7 @@ const MaddElisionVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
 
         <p className="text-xs sm:text-sm text-left text-ink leading-relaxed mt-4 bg-soft/60 p-3 rounded-xl border border-line">
           {!isWaqf ? (
-            <>⚠️ <strong>Règle de Liaison :</strong> L'Alif de Madd rencontre le Lām soukouné d'Al-Hamd. Deux soukoûns ne pouvant se suivre, la voyelle longue est entièrement sacrifiée dans la phonation.</>
+            <><strong>Règle de Liaison :</strong> L'Alif de Madd rencontre le Lām soukouné d'Al-Hamd. Deux soukoûns ne pouvant se suivre, la voyelle longue est entièrement sacrifiée dans la phonation.</>
           ) : (
             <>🌿 <strong>Règle de Pause :</strong> Si vous vous arrêtez sur « وَقَالَا » pour reprendre votre souffle, le second soukoûn n'existe plus : vous DEVEZ rétablir les 2 temps de Madd naturel !</>
           )}
@@ -5246,7 +5246,7 @@ const HafsSaktatTimerVisual: React.FC<{ animKey: number }> = ({ animKey }) => {
         </div>
 
         <div className="p-4 rounded-xl bg-soft border border-line space-y-3">
-          <span className="text-xs font-bold text-muted uppercase tracking-wider block">Simulateur de Silence Respiratoire</span>
+          <span className="text-xs font-bold text-muted block">Simulateur de Silence Respiratoire</span>
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={handleStartTimer}
@@ -5967,63 +5967,67 @@ export const AnimatedProfessor: React.FC<AnimatedProfessorProps> = ({ chapter })
 
   return (
     <>
-      <StepHeader
-        step={2}
-        title={current.title}
-        description={current.concept}
-        aside={
-          <button onClick={restartAnimation} className="btn btn-secondary" title="Rejouer l'animation">
-            <RotateCcw className="w-4 h-4" />
-            Rejouer
-          </button>
-        }
-      />
+      <StepHeader title={current.title} description={current.concept} />
 
       <div className="surface overflow-hidden">
+        <div className="px-4 sm:px-6 h-14 flex items-center justify-between gap-3 border-b border-line">
+          <div className="flex items-center gap-2 min-w-0" role="tablist" aria-label="Écrans">
+            {screens.map((s, idx) => (
+              <button
+                key={idx}
+                onClick={() => goTo(idx)}
+                role="tab"
+                aria-selected={idx === screenIndex}
+                aria-label={s.badge}
+                title={s.badge}
+                className={`h-2 rounded-full transition-all shrink-0 ${
+                  idx === screenIndex ? 'w-7 bg-lapis' : 'w-2 bg-line hover:bg-muted'
+                }`}
+              />
+            ))}
+            <span className="ml-1 text-sm text-muted truncate">
+              <span className="tabular-nums">{screenIndex + 1}/{screens.length}</span>
+              <span className="hidden sm:inline"> · {current.badge}</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1 shrink-0">
+            <button onClick={restartAnimation} className="btn btn-ghost btn-icon" aria-label="Rejouer l'animation" title="Rejouer l'animation">
+              <RotateCcw className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => screenIndex > 0 && goTo(screenIndex - 1)}
+              disabled={screenIndex === 0}
+              className="btn btn-ghost btn-icon"
+              aria-label="Écran précédent"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => screenIndex + 1 < screens.length && goTo(screenIndex + 1)}
+              disabled={screenIndex + 1 >= screens.length}
+              className="btn btn-secondary btn-icon"
+              aria-label="Écran suivant"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
         <div className="bg-soft">
           {current.renderVisual()}
         </div>
 
-        <div className="p-6 sm:p-8">
-          <p className="font-display text-[19px] sm:text-xl leading-relaxed text-ink max-w-2xl">
+        <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <p className="font-display text-lg sm:text-xl leading-relaxed text-ink max-w-2xl">
             {current.explanation}
           </p>
-
-          <div className="flex items-center justify-between gap-3 mt-8">
-            <button
-              onClick={() => screenIndex > 0 && goTo(screenIndex - 1)}
-              disabled={screenIndex === 0}
-              className="btn btn-ghost"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Précédent</span>
-            </button>
-
-            <div className="flex items-center gap-2" role="tablist" aria-label="Écrans">
-              {screens.map((s, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goTo(idx)}
-                  role="tab"
-                  aria-selected={idx === screenIndex}
-                  aria-label={s.badge}
-                  className={`h-2 rounded-full transition-all ${
-                    idx === screenIndex ? 'w-7 bg-lapis' : 'w-2 bg-line hover:bg-muted'
-                  }`}
-                />
-              ))}
-              <span className="ml-2 text-sm text-muted">{screenIndex + 1} / {screens.length}</span>
-            </div>
-
-            <button
-              onClick={() => screenIndex + 1 < screens.length && goTo(screenIndex + 1)}
-              disabled={screenIndex + 1 >= screens.length}
-              className="btn btn-secondary"
-            >
-              <span className="hidden sm:inline">Suivant</span>
+          {screenIndex + 1 < screens.length && (
+            <button onClick={() => goTo(screenIndex + 1)} className="btn btn-secondary shrink-0 self-start sm:self-auto">
+              Écran suivant
               <ArrowRight className="w-4 h-4" />
             </button>
-          </div>
+          )}
         </div>
       </div>
     </>

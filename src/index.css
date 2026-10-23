@@ -237,6 +237,7 @@ html, body {
   font-weight: 500;
   color: var(--muted);
   font-family: var(--f-body);
+  white-space: nowrap;
 }
 .ref-tag::before {
   content: "";

@@ -1336,7 +1336,7 @@ const MIM_SAKINAH_TEST_BENCH_CASES: MimSakinahBenchCase[] = [
     category: 'warning',
     arabicWord: 'غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ',
     highlightedSegment: 'عَلَيۡهِمۡ وَلَا',
-    ruleBadge: '⚠️ Ashadd Izhār (Alerte Wāw)',
+    ruleBadge: 'Ashadd Izhār (Alerte Wāw)',
     colorClass: 'chip-qalqalah',
     ruleCategory: 'Alerte Maximale (Wāw)',
     followingLetter: 'و (Wāw - Partage les deux lèvres !)',
@@ -1353,7 +1353,7 @@ const MIM_SAKINAH_TEST_BENCH_CASES: MimSakinahBenchCase[] = [
     category: 'warning',
     arabicWord: 'أُولَٰٓئِكَ أَصۡحَٰبُ ٱلۡجَنَّةِۖ هُمۡ فِيهَا خَٰلِدُونَ',
     highlightedSegment: 'هُمۡ فِيهَا',
-    ruleBadge: '⚠️ Ashadd Izhār (Alerte Fā\')',
+    ruleBadge: 'Ashadd Izhār (Alerte Fā\')',
     colorClass: 'chip-qalqalah',
     ruleCategory: 'Alerte Maximale (Fā\')',
     followingLetter: 'ف (Fā\' - Lèvre inférieure et incisives)',
@@ -1425,7 +1425,7 @@ const ASSIMILATION_TEST_BENCH_CASES: AssimilationBenchCase[] = [
     category: 'madd',
     arabicWord: 'لَّقَدۡ كَانَ فِى يُوسُفَ وَإِخۡوَتِهِۦٓ ءَايَٰتٞ',
     highlightedSegment: 'فِى يُوسُفَ',
-    ruleBadge: '⚠️ Izhār Obligatoire (Lettre de Madd)',
+    ruleBadge: 'Izhār Obligatoire (Lettre de Madd)',
     colorClass: 'chip-gold',
     ruleCategory: 'Exception Sacrée (Madd)',
     involvedLetters: 'ي (Madd d\'Al-Jawf) + يُ (Consonne de la langue)',
@@ -1442,7 +1442,7 @@ const ASSIMILATION_TEST_BENCH_CASES: AssimilationBenchCase[] = [
     category: 'madd',
     arabicWord: 'إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ',
     highlightedSegment: 'ءَامَنُواْ وَعَمِلُواْ',
-    ruleBadge: '⚠️ Izhār Obligatoire (Lettre de Madd)',
+    ruleBadge: 'Izhār Obligatoire (Lettre de Madd)',
     colorClass: 'chip-gold',
     ruleCategory: 'Exception Sacrée (Madd)',
     involvedLetters: 'و (Madd d\'Al-Jawf) + وَ (Consonne des lèvres)',
@@ -1657,7 +1657,7 @@ const HEAVY_LIGHT_BENCH_CASES: HeavyLightBenchCase[] = [
     category: 'hybrid-raa',
     arabicWord: 'وَلَوۡ نَزَّلۡنَا عَلَيۡكَ كِتَٰبٗا فِى قِرۡطَاسٖ',
     highlightedSegment: 'قِرۡطَاسٖ',
-    ruleBadge: '⚠️ Exception : Tafkhīm de la Râ\' !',
+    ruleBadge: 'Exception : Tafkhīm de la Râ\' !',
     colorClass: 'chip-gold',
     ruleCategory: 'Lettre Hybride (Râ\')',
     status: 'Tafkhīm Imposé par Lettre Lourde',
@@ -1939,14 +1939,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai du Lahn"
           description="Sélectionnez un cas de récitation pour diagnostiquer son statut théologique, son impact sur la prière et la technique pour le corriger."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setFilterCategory('all')}
               aria-pressed={filterCategory === 'all'}
@@ -1972,9 +1971,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Conforme (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas analysés selon le manuel du Dr. Islām Fekry
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -1992,13 +1988,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef} · {tc.surahName}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.badge}
                     </span>
                   </div>
@@ -2033,7 +2029,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
             <div className={`p-6 border-b ${sev.border} ${sev.bg}`}>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                  <span className="text-xs font-semibold text-muted">
                     Diagnostic officiel
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-ink mt-1">
@@ -2123,14 +2119,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Décodeur des Symboles du Mushaf"
           description="Sélectionnez un symbole calligraphique du Coran pour comprendre immédiatement ce que vous devez faire, son impact théologique et le piège à éviter."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setSymbolCategory('all')}
               aria-pressed={symbolCategory === 'all'}
@@ -2156,9 +2151,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Spéciaux (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Symboles officiels du Mushaf de Médine
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -2176,7 +2168,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`p-3.5 rounded-2xl flex flex-col items-center justify-between text-center transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20 scale-[1.02]'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
                       : 'bg-card/75 border-line hover:border-muted/50 hover:bg-card'
                   }`}
                 >
@@ -2227,7 +2219,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
 
             {/* Action required box */}
             <div className="p-5 bg-card border-b border-line">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-1">
+              <span className="text-xs font-bold text-muted block mb-1">
                 Action immédiate exigée
               </span>
               <p className="text-base font-semibold text-ink leading-snug">
@@ -2296,14 +2288,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Arrêt & Reprise (Waqf & Ibtidā')"
           description="Basculez entre lecture continue (Wasl) et arrêt (Waqf) pour observer en temps réel la transformation phonétique et la sécurité théologique."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setStoppingFilter('all')}
               aria-pressed={stoppingFilter === 'all'}
@@ -2335,9 +2326,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Reprise (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -2355,24 +2343,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -2421,7 +2409,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented">
+                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
                   <button
                     onClick={() => setIsWaqfMode(false)}
                     aria-pressed={!isWaqfMode}
@@ -2437,7 +2425,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 {isWaqfMode
                   ? selectedStoppingCase.waqfPronunciation
                   : selectedStoppingCase.waslPronunciation}
@@ -2497,14 +2485,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire du Madd Naturel & des Lettres de Līn"
           description="Analysez les conditions d'éligibilité du Madd (2 Harakāt), distinguez les lettres de Līn et observez la métamorphose des mots à l'arrêt."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setMaddFilter('all')}
               aria-pressed={maddFilter === 'all'}
@@ -2530,9 +2517,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Mots Caméléons (2)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -2550,24 +2534,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -2616,7 +2600,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented">
+                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
                   <button
                     onClick={() => setIsMaddWaqfMode(false)}
                     aria-pressed={!isMaddWaqfMode}
@@ -2632,7 +2616,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 {isMaddWaqfMode
                   ? selectedMaddCase.waqfPronunciation
                   : selectedMaddCase.waslPronunciation}
@@ -2692,14 +2676,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire du Madd Far'ī (Secondaire)"
           description="Expérimentez l'impact de la Hamzah et du Soukoûn sur la voix : basculez entre liaison continue (Wasl) et arrêt (Waqf) pour observer l'évanouissement ou le surgissement de la prolongation."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setFariFilter('all')}
               aria-pressed={fariFilter === 'all'}
@@ -2731,9 +2714,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               'Ārid li-s-Sukūn (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas pratiques du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -2751,24 +2731,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -2817,7 +2797,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented">
+                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
                   <button
                     onClick={() => setIsFariWaqfMode(false)}
                     aria-pressed={!isFariWaqfMode}
@@ -2843,7 +2823,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 {isFariWaqfMode
                   ? selectedFariCase.waqfPronunciation
                   : selectedFariCase.waslPronunciation}
@@ -2903,14 +2883,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire des Hamzahs (Wasl & Qat')"
           description="Testez la chute de Hamzat Al-Wasl en liaison continue (Wasl) et découvrez sa voyelle d'attaque exacte (Tashkīl) à l'attaque (Ibtidā')."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setHamzahFilter('all')}
               aria-pressed={hamzahFilter === 'all'}
@@ -2942,9 +2921,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Deux Hamzahs (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas tirés du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -2962,24 +2938,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -3028,7 +3004,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               </div>
 
               <div className="flex justify-center">
-                <div className="segmented">
+                <div className="segmented max-w-full overflow-x-auto no-scrollbar">
                   <button
                     onClick={() => setIsHamzahIbtidaMode(false)}
                     aria-pressed={!isHamzahIbtidaMode}
@@ -3054,7 +3030,7 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 {isHamzahIbtidaMode
                   ? selectedHamzahCase.ibtidaPronunciation
                   : selectedHamzahCase.waslPronunciation}
@@ -3114,14 +3090,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire de la Lām Sākinah"
           description="Testez la clarté lunaire (Izhār Qamarī), la fusion solaire (Idghām Shamsī), l'emphase sacrée du Nom d'Allah et les fusions de verbe et de particule."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setLamFilter('all')}
               aria-pressed={lamFilter === 'all'}
@@ -3153,9 +3128,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Verbe & Particule (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas extraits du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -3173,24 +3145,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -3239,12 +3211,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   {selectedLamCase.followingLetter}
                 </span>
                 <span className="text-xs text-muted">Signe Mushaf :</span>
-                <span className="chip chip-izhar font-mono text-xs">
+                <span className="chip chip-izhar text-xs">
                   {selectedLamCase.mushafSign}
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 Prononciation exacte : <strong className="text-ink">{selectedLamCase.pronunciation}</strong>
               </div>
             </div>
@@ -3302,14 +3274,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Laboratoire de la Mīm Sākinah"
           description="Testez l'Ikhfā' Shafawī (dissimulation devant Bā'), l'Idghām Shafawī (fusion des 2 Mīms) et l'Izhār Shafawī avec l'alerte maximale devant Wāw et Fā'."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setMimFilter('all')}
               aria-pressed={mimFilter === 'all'}
@@ -3338,12 +3309,9 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               onClick={() => setMimFilter('warning')}
               aria-pressed={mimFilter === 'warning'}
             >
-              ⚠️ Alerte Wāw/Fā' (2)
+              Alerte Wāw/Fā' (2)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas extraits du manuel du Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -3361,24 +3329,24 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-4">
-                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight" dir="rtl">
-                      {tc.arabicWord}
+                    <div className="min-w-0">
+                      <span className="font-display font-semibold text-[15px] text-ink leading-snug block">{tc.title.split('—')[0].trim()}</span>
+                      <span className="text-xs text-muted">{tc.ruleCategory}</span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-ink block">{tc.title.split('—')[0].trim()}</span>
-                      <span className="text-[11px] text-muted">{tc.ruleCategory}</span>
+                    <div className="font-ar text-2xl sm:text-3xl text-ink leading-tight shrink-0" dir="rtl">
+                      {tc.arabicWord}
                     </div>
                   </div>
                 </button>
@@ -3427,12 +3395,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   {selectedMimCase.followingLetter}
                 </span>
                 <span className="text-xs text-muted">Signe Mushaf :</span>
-                <span className="chip chip-izhar font-mono text-xs">
+                <span className="chip chip-izhar text-xs">
                   {selectedMimCase.mushafSign}
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-soft text-xs sm:text-sm text-muted">
                 Prononciation exacte : <strong className="text-ink">{selectedMimCase.pronunciation}</strong>
               </div>
             </div>
@@ -3482,14 +3450,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai de l'Assimilation (Idghām)"
           description="Explorez les fusions totales et partielles, ainsi que les exceptions sacrées où l'assimilation est strictement prohibée."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setAssimilationFilter('all')}
               aria-pressed={assimilationFilter === 'all'}
@@ -3521,9 +3488,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Idghām Nāqis (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Cas de Hafs 'an 'Āsim via Ash-Shātibiyyah
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -3541,13 +3505,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
@@ -3598,12 +3562,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   {selectedCase.involvedLetters}
                 </span>
                 <span className="text-xs text-muted">Rasm Muṣ-ḥaf :</span>
-                <span className="chip chip-izhar font-mono text-xs">
+                <span className="chip chip-izhar text-xs">
                   {selectedCase.mushafSign}
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm text-muted">
                 Prononciation exacte : <strong className="text-ink">{selectedCase.pronunciation}</strong>
               </div>
             </div>
@@ -3652,14 +3616,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
     return (
       <>
         <StepHeader
-          step={3}
           title="Le Banc d'Essai du Tafkhīm & Tarqīq"
           description="Testez la résonance des lettres : observez les 5 degrés de lourdeur, les caméléons (Alif, Lām d'Allah, Râ') et l'art de la décontamination (Takhlees Al-Hurūf)."
         />
 
         {/* Filter bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 my-4">
-          <div className="segmented">
+          <div className="segmented max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setHeavyLightFilter('all')}
               aria-pressed={heavyLightFilter === 'all'}
@@ -3691,9 +3654,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
               Takhlees (1)
             </button>
           </div>
-          <span className="text-xs text-muted">
-            Manuel de Tajwīd — Dr. Islām Fekry (Arabic101)
-          </span>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 items-start">
@@ -3711,13 +3671,13 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   aria-pressed={isSelected}
                   className={`w-full p-4 rounded-2xl text-left transition-all border ${
                     isSelected
-                      ? 'bg-card border-lapis shadow-md ring-2 ring-lapis/20'
-                      : 'bg-card/70 border-line hover:border-muted/50 hover:bg-card'
+                      ? 'bg-card border-lapis ring-1 ring-lapis'
+                      : 'bg-card border-line hover:border-muted/50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="ref-tag text-xs">{tc.surahRef}</span>
-                    <span className={`chip ${tc.colorClass} text-xs py-0.5 px-2.5`}>
+                    <span className={`chip ${tc.colorClass} !bg-transparent !p-0 text-xs`}>
                       {tc.ruleBadge}
                     </span>
                   </div>
@@ -3768,12 +3728,12 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
                   {selectedCase.involvedLetters}
                 </span>
                 <span className="text-xs text-muted">Rasm :</span>
-                <span className="chip chip-izhar font-mono text-xs">
+                <span className="chip chip-izhar text-xs">
                   {selectedCase.mushafSign}
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm font-mono text-muted">
+              <div className="p-3 rounded-xl bg-card border border-line text-xs sm:text-sm text-muted">
                 Prononciation exacte : <strong className="text-ink">{selectedCase.pronunciation}</strong>
               </div>
             </div>
@@ -3827,7 +3787,6 @@ export const TajweedLab: React.FC<TajweedLabProps> = ({ chapter }) => {
   return (
     <>
       <StepHeader
-        step={3}
         title="Le laboratoire des lettres"
         description={
           chapter.number === 8

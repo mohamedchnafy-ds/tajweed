@@ -124,7 +124,6 @@ export const App: React.FC = () => {
         selectedChapterNumber={selectedChapter?.number}
         unresolvedMistakesCount={unresolvedMistakesCount}
         onOpenMistakes={() => setIsMistakesModalOpen(true)}
-        onOpenDataBackup={() => setIsDataBackupModalOpen(true)}
         isDark={isDark}
         onToggleTheme={toggleTheme}
       />
@@ -132,20 +131,21 @@ export const App: React.FC = () => {
       {/* Main Content Stage */}
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6">
         {currentTab === 'makharij' ? (
-          <MakharijSifatLab onBack={handleBackToChapters} />
+          <MakharijSifatLab />
         ) : currentTab === 'chapters' || !selectedChapter ? (
           <ChapterList
             onSelectChapter={handleSelectChapter}
             userStats={userStats}
             pilotChapters={PILOT_CHAPTERS}
             onOpenMistakes={() => setIsMistakesModalOpen(true)}
+            onOpenDataBackup={() => setIsDataBackupModalOpen(true)}
             onOpenMakharij={() => {
               setCurrentTab('makharij');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         ) : (
-          <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-12 space-y-8 animate-enter">
+          <div key={`${selectedChapter.id}-${currentStep}`} className="pt-8 sm:pt-10 space-y-8 animate-enter">
             {currentStep === 'map' && (
               <InteractiveTajweedTree chapter={selectedChapter} />
             )}
@@ -175,14 +175,7 @@ export const App: React.FC = () => {
             )}
 
             {currentStep === 'poster' && (
-              <ChapterPoster
-                chapter={selectedChapter}
-                onRestartSteps={() => {
-                  setCurrentStep('map');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                onGoToNextChapter={moveToNextChapter}
-              />
+              <ChapterPoster chapter={selectedChapter} />
             )}
           </div>
         )}

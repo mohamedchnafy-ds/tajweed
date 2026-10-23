@@ -66,7 +66,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
             >
               {/* Header */}
               <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-mono font-semibold text-neutral-500">
                   Exercice {index + 1} • {exo.surahAyahRef}
                 </span>
                 <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">

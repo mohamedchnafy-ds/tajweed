@@ -327,7 +327,7 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
         { text: 'عَلَيۡهِمۡ', rule: 'Izhār Shafawī (Devant Ghayn)', ruleClass: 'chip-izhar', why: 'Mīm suivi du Ghayn : clarté sans pause.', target: true },
         { text: 'غَيۡرِ', rule: 'Ghayn de gorge', ruleClass: 'chip-gold', why: 'Ghayn profond.' },
         { text: 'ٱلۡمَغۡضُوبِ', rule: 'Dād avec Istitālah', ruleClass: 'chip-gold', why: 'Bord de la langue.' },
-        { text: 'عَلَيۡهِمۡ', rule: '⚠️ Ashadd Izhār (Alerte Wāw)', ruleClass: 'chip-qalqalah', why: 'Mīm suivi du Wāw : alerte maximale d\'Ibn Al-Jazarī pour ne pas dissimuler le Mīm !', target: true },
+        { text: 'عَلَيۡهِمۡ', rule: 'Ashadd Izhār (Alerte Wāw)', ruleClass: 'chip-qalqalah', why: 'Mīm suivi du Wāw : alerte maximale d\'Ibn Al-Jazarī pour ne pas dissimuler le Mīm !', target: true },
         { text: 'وَلَا', rule: 'Wāw après Mīm', ruleClass: 'chip-gold', why: 'Ouverture nette des lèvres.' },
         { text: 'ٱلضَّآلِّينَ', rule: 'Madd Lāzim (6 temps)', ruleClass: 'chip-idgham', why: '6 temps stricts incompressibles.' },
       ],
@@ -474,7 +474,6 @@ export const QuranExplorer: React.FC<QuranExplorerProps> = ({ chapter }) => {
   return (
     <>
       <StepHeader
-        step={4}
         title="Le verset, mot par mot"
         description="Écoutez la récitation, puis touchez chaque mot coloré pour comprendre la règle qui s'y applique."
         aside={

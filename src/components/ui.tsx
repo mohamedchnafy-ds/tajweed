@@ -40,14 +40,12 @@ export const Medallion: React.FC<{
 
 /** En-tête commun aux six étapes d'un chapitre. */
 export const StepHeader: React.FC<{
-  step: number;
   title: React.ReactNode;
   description?: React.ReactNode;
   aside?: React.ReactNode;
-}> = ({ step, title, description, aside }) => (
+}> = ({ title, description, aside }) => (
   <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
     <div className="max-w-2xl">
-      <p className="label mb-2">Étape {step} sur 6</p>
       <h1 className="font-display text-[32px] sm:text-[40px] leading-[1.1] font-normal tracking-[-0.01em] text-ink">
         {title}
       </h1>
